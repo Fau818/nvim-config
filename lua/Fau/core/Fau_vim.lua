@@ -151,7 +151,7 @@ Fau_vim = {
 
 	start = nil, -- will be defined in autocmd.lua file
 	set_client_by_ft = nil, -- will be defined in lspconfig.lua file
-	configured_ft = {}
+	configured_ft = {},
 }
 
 

@@ -50,7 +50,7 @@ local config = {
 		-- $dir                -- path of directory to file opened
 
 		-- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-		python = "cd $dir && python3 $fileName",
+		python = "export PYTHONPATH=$(pwd) && python3 $dir/$fileName",
 		c = "cd $dir && g++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
 		cpp = "cd $dir && g++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
 		-- typescript = "deno run",
@@ -62,6 +62,11 @@ local config = {
 		-- description: Project description
 		-- file_name: Filename relative to root path
 		-- command: Command to run the project. It is possible to use variables exactly the same as we would in `CRFiletype`
+
+		-- ["~/Documents/Fau/Projects/PyCharm_Projects/Iris_Recognition.nosync"] = {
+		-- 	name = "Iris Recognition",
+		-- 	description = "Scientific Research",
+		-- },
 	},
 
 
