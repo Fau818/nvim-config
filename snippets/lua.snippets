@@ -1,0 +1,48 @@
+snippet seccom #section comment
+	-- =============================================
+	-- ========== $1
+	-- =============================================$0
+
+snippet subseccom #subsection comment
+	-- -----------------------------------
+	-- -------- $1
+	-- -----------------------------------$0
+
+snippet load_plugin_by_Fau_vim #call Fau_vim.load_plugin templete
+	local $1 = Fau_vim.load_plugin("$2")
+	if $1 == nil then return end$0
+
+snippet #!
+	#!/usr/bin/env lua
+	$1
+
+snippet function
+	function ${1:fname}(${2:...})
+		$0
+	end
+
+snippet for
+	for ${1:i}=${2:1},${3:10} do
+		${0:print(i)}
+	end
+
+snippet forp
+	for ${1:i},${2:v} in pairs(${3:table_name}) do
+		$0
+	end
+
+snippet fori
+	for ${1:i},${2:v} in ipairs(${3:table_name}) do
+		$0
+	end
+
+snippet if
+	if $1 then
+		$2
+	end
+
+snippet while
+	while ${1:true} do
+		$0
+	end
+
