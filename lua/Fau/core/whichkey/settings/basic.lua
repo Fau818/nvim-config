@@ -94,8 +94,7 @@ return {
 
 		-- Move Line(s)
 		["<A-j>"] = { ":MoveLine(1)<CR>",  "Move Down" },
-		["<A-k>"] = { ":MoveLine(-1)<CR>", "Move UP" },
-
+		["<A-k>"] = { ":MoveLine(-1)<CR>", "Move Up"   },
 
 
 		-- =============================================
@@ -167,6 +166,17 @@ return {
 
 
 
-	x = { move, edit, range },
+	x = {
+		move, edit, range,
+
+
+		["<A-j>"] = { ":MoveBlock(1)<CR>",   "Move Down"  },
+		["<A-k>"] = { ":MoveBlock(-1)<CR>",  "Move Up"    },
+		["<A-h>"] = { ":MoveHBlock(-1)<CR>", "Move Left"  },
+		["<A-l>"] = { ":MoveHBlock(1)<CR>",  "Move Right" },
+	},
+
+
+
 	o = { move, range }
 }
