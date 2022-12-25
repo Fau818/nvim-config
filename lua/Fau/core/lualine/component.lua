@@ -59,12 +59,14 @@ local utils = {
 		local filename = vim.fn.expand "%:t"
 		local extension = vim.fn.expand "%:e"
 
+		if #filename == 0 then return "" end
+
 		local file_icon, hl_group = require("nvim-web-devicons").get_icon(filename, extension, { default = true })
 		local buf_ft = vim.bo.filetype
 
 		if buf_ft == "dapui_breakpoints" then file_icon = Fau_vim.ui.Bug
-		elseif buf_ft == "dapui_stacks"  then file_icon = Fau_vim.ui.Stacks
-		elseif buf_ft == "dapui_scopes"  then file_icon = Fau_vim.ui.Scopes
+		elseif buf_ft == "dapui_stacks" then file_icon = Fau_vim.ui.Stacks
+		elseif buf_ft == "dapui_scopes" then file_icon = Fau_vim.ui.Scopes
 		elseif buf_ft == "dapui_watches" then file_icon = Fau_vim.ui.Watches
 		elseif buf_ft == "dapui_console" then file_icon = Fau_vim.ui.DebugConsole
 		end
@@ -225,7 +227,7 @@ return {
 				"%#SLCopilot#" .. " " .. Fau_vim.git_icons.Octoface .. "%*" end
 
 			-- if empty
-			if language_servers == "[]" then language_servers = "[LS Empty]" end
+			if language_servers == "[]" then language_servers = "LS Empty" end
 
 			return language_servers
 		end,
