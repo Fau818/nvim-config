@@ -16,15 +16,28 @@ local config = {
 	-- virtual_text = { prefix="■" },
 	virtual_text = false,
 	signs = true,
-	update_in_insert = true,
+
 	underline = true,
+	update_in_insert = true,
+
 	severity_sort = true,
 	float = {
-		severity_sort = true,
 		focusable = true,
-		border = "single",
-		source = true,  -- use "if_many" to set only multiple diagnostic sources to show the diagnostic source.
+		border = "rounded",
+
+		scope = "line", -- values: cursor|line|buffer
+		source = true,  -- values: boolean|"if_many"
+
+		header = "",
+		prefix = "",
+
+		format = function(diagnostic)  -- for show the error code
+			local code = diagnostic.code or (diagnostic.user_data and diagnostic.user_data.lsp.code)
+			if code then return string.format("%s [%s]", diagnostic.message, code) end
+			return diagnostic.message
+		end,
 	},
+
 }
 vim.diagnostic.config(config)
 

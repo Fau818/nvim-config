@@ -72,6 +72,9 @@ Fau_vim.set_client_by_ft = function()
 end
 
 
+-- =============================================
+-- ========== Alternative Setup
+-- =============================================
 -- if mlspconfig then mlspconfig.setup_handlers({ function(server_name) setup_server(server_name) end })
 -- else
 -- 	-- Loading every server in servers list

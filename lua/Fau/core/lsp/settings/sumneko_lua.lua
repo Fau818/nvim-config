@@ -33,7 +33,6 @@ return {
 				enable = true,  -- Enable code formatter.
 
 				defaultConfig = {
-
 					-- =============================================
 					-- ========== Basic
 					-- =============================================
@@ -52,7 +51,6 @@ return {
 					insert_final_newline = "true",
 
 
-
 					-- =============================================
 					-- ========== Function
 					-- =============================================
@@ -64,7 +62,6 @@ return {
 					call_arg_parentheses = "keep",  -- values: keep|remove|remove_table_only|remove_string_only|unambiguous_remove_string_only
 
 
-
 					-- =============================================
 					-- ========== Table
 					-- =============================================
@@ -73,7 +70,6 @@ return {
 					continuous_assign_table_field_align_to_equal_sign = "true",
 					keep_one_space_between_table_and_bracket = "true",
 					align_table_field_to_first_field = "false",  -- if indent_style is tab, this option is invalid
-
 
 
 					-- =============================================
@@ -89,7 +85,6 @@ return {
 					max_continuous_line_distance = "0",  -- This option indicates the definition of continuous lines, and its value determines the same continuous when the spacing between lines is less than or equal to how much.
 
 
-
 					-- =============================================
 					-- ========== Indentation
 					-- =============================================
@@ -97,7 +92,6 @@ return {
 					do_statement_no_indent = "false",
 					if_condition_no_continuation_indent = "true",
 					if_branch_comments_after_block_no_indent = "true",
-
 
 
 					-- =============================================
@@ -120,7 +114,6 @@ return {
 					keep_one_space_between_namedef_and_attribute = "false",
 
 
-
 					-- =============================================
 					-- ========== row_layout
 					-- =============================================
@@ -141,11 +134,10 @@ return {
 					keep_line_after_expression_statement = "keepLine",
 
 
-
 					-- =============================================
 					-- ========== Diagnostic
 					-- =============================================
-					enable_check_codestyle = "true",
+					enable_check_codestyle = "false",
 					enable_name_style_check = "false",
 					-- https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/lua.template.editorconfig
 				},
@@ -187,4 +179,3 @@ return {
 		}
 	}
 }
-

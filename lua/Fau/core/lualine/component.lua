@@ -173,7 +173,7 @@ return {
 		function()
 			local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
 
-			if next(buf_clients) == nil then return "[LS Inactive]" end
+			if next(buf_clients) == nil then return "LS Inactive" end
 
 			local buf_ft = vim.bo.filetype
 			local copilot_active = false
