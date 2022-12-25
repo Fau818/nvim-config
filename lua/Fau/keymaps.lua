@@ -128,8 +128,9 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- ========== Indent and Unindent Line(s)
 -- =============================================
 -- Normal Mode
-keymap("n", "<TAB>",   ">>",  opts)
-keymap("n", "<S-TAB>", "<<",  opts)
+keymap("n", "<TAB>",   ">>",    opts)
+keymap("n", "<C-i>",   "<C-i>", opts) -- for keeping the <C-i> default behavior
+keymap("n", "<S-TAB>", "<<",    opts)
 
 -- Visual Mode
 keymap("x", "<TAB>",   ">gv", opts)
