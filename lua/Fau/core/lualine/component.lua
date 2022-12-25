@@ -52,7 +52,28 @@ local utils = {
 			venv = final_venv
 		end
 		return venv
-	end
+	end,
+
+
+	get_filename = function()
+		local filename = vim.fn.expand "%:t"
+		local extension = vim.fn.expand "%:e"
+
+		local file_icon, hl_group = require("nvim-web-devicons").get_icon(filename, extension, { default = true })
+		local buf_ft = vim.bo.filetype
+
+		if buf_ft == "dapui_breakpoints" then file_icon = Fau_vim.ui.Bug
+		elseif buf_ft == "dapui_stacks"  then file_icon = Fau_vim.ui.Stacks
+		elseif buf_ft == "dapui_scopes"  then file_icon = Fau_vim.ui.Scopes
+		elseif buf_ft == "dapui_watches" then file_icon = Fau_vim.ui.Watches
+		elseif buf_ft == "dapui_console" then file_icon = Fau_vim.ui.DebugConsole
+		end
+
+		local navic_text = vim.api.nvim_get_hl_by_name("Normal", true)
+		vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
+
+		return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
+	end,
 }
 
 
@@ -254,4 +275,22 @@ return {
 		cond = condition.hide_in_width,
 	},
 
+
+	breadcrumb = {
+		function()
+			local winbar = utils.get_filename()
+
+			local status_ok, navic = pcall(require, "nvim-navic")
+			if not status_ok then return winbar end
+
+			if navic.is_available() then
+				local navic_string = navic.get_location()
+				if #navic_string ~= 0 then
+					winbar = winbar .. " " .. "%#NavicSeparator#" .. Fau_vim.ui.ChevronRight .. "%* " .. navic_string
+				end
+			end
+
+			return winbar
+		end
+	},
 }

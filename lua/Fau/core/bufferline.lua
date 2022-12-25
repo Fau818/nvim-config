@@ -31,8 +31,8 @@ local config = {
 		left_trunc_marker = "",  -- if too long
 		right_trunc_marker = "", -- if too long
 
-		always_show_bufferline = true, -- whether or not to show the bufferline if only one tab
-		enforce_regular_tabs = true,   -- prevent beyond the tab size and all tabs will be the same length
+		always_show_bufferline = false, -- whether or not to show the bufferline if only one tab
+		enforce_regular_tabs = true,    -- prevent beyond the tab size and all tabs will be the same length
 
 		tab_size = 16,                -- the tab length
 		max_name_length = 15,

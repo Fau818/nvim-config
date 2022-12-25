@@ -27,6 +27,7 @@ require "Fau.core.colorscheme"
 require "Fau.core.alpha"
 require "Fau.core.dressing"
 require "Fau.core.lualine"
+require "Fau.core.navic"
 require "Fau.core.bufferline"
 require "Fau.core.indentline"
 require "Fau.core.gitsigns"
@@ -52,6 +53,7 @@ require "Fau.core.trouble"
 require "Fau.core.autopairs"
 require "Fau.core.tabout"
 require "Fau.core.align"
+require "Fau.core.code_runner"
 
 -- parser
 require "Fau.core.treesitter"
@@ -65,4 +67,3 @@ require "Fau.core.terminal"
 -- =============================================
 -- ========== test
 -- =============================================
-require "Fau.core.code_runner"

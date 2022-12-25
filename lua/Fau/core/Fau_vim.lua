@@ -12,15 +12,15 @@ Fau_vim = {
 	-- -----------------------------------
 	-- -------- load plugin function
 	-- -----------------------------------
-	---@return nil|table
+	---@param plugin any
+	---@return any result
 	load_plugin = function(plugin)
 		local status_ok, instance = pcall(require, plugin)
 		if not status_ok then
 			---@diagnostic disable-next-line: param-type-mismatch
 			vim.notify(plugin .. " not found!", "ERROR", { title = "Fau: Plugin Not Found" })
-			return nil
-		else return instance
 		end
+		return instance
 	end,
 
 	-- -----------------------------------
@@ -137,14 +137,20 @@ Fau_vim = {
 		Tab = "",
 		Space = "⎵",
 
-		DividerLeft = "", -- DividerLeft = "",
-		DividerRight = "", -- DividerRight = "",
-		BoldDividerLeft = "", -- BoldDividerLeft = "",
+		DividerLeft = "",       -- DividerLeft = "",
+		DividerRight = "",      -- DividerRight = "",
+		BoldDividerLeft = "",  -- BoldDividerLeft = "",
 		BoldDividerRight = "", -- BoldDividerRight = "",
 
 		ChevronRight = ">",
 
 		Tree = "",
+
+		Bug = "",
+		Stacks = " ",
+		Scopes = "",
+		Watches = "",
+		DebugConsole = " ",
 	},
 
 	terminal = {}, -- will be redefined in terminal.lua file

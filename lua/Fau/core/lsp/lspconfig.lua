@@ -13,6 +13,7 @@ if mlspconfig == nil then return end
 
 local illuminate = Fau_vim.load_plugin("illuminate")
 local inlayhints = Fau_vim.load_plugin("lsp-inlayhints")
+local navic = Fau_vim.load_plugin("nvim-navic")
 
 
 
@@ -31,13 +32,15 @@ local function is_available(client_name)
 end
 
 
-local function server_attach(client, buffer)
+local function server_attach(client, bufnr)
 	-- disable lsp formatting
 	-- client.server_capabilities.documentFormattingProvider = false
 	-- for highlight support
 	if illuminate then illuminate.on_attach(client) end
 	-- for inlayhints support
-	if inlayhints then inlayhints.on_attach(client, buffer, false) end
+	if inlayhints then inlayhints.on_attach(client, bufnr, false) end
+	-- for breadcrumb support
+	if navic then navic.attach(client, bufnr) end
 end
 
 

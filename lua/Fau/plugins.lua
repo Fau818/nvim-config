@@ -121,9 +121,9 @@ return require("packer").startup(function(use)
 
 	use "stevearc/dressing.nvim"  -- a ui selector
 
-
 	use "kyazdani42/nvim-tree.lua"   -- a file explorer tree
 	use "nvim-lualine/lualine.nvim"  -- bottom status line
+	use "SmiteshP/nvim-navic"				 -- breadcrumb
 	use "akinsho/bufferline.nvim"    -- show the buffer tab
 	use "famiu/bufdelete.nvim"       -- close the buffer but don't affect the layout (like vim-bbye)
 
@@ -148,13 +148,12 @@ return require("packer").startup(function(use)
 	use "abecodes/tabout.nvim"   -- type <TAB> could jump out of brakets
 	use "echasnovski/mini.align" -- align text
 	use "fedepujol/move.nvim"    -- move line
+	use "CRAG666/code_runner.nvim"
 
 
 	-- ===================================
 	-- ======== new plugins [test]
 	-- ===================================
-	use "CRAG666/code_runner.nvim"
-	-- use "is0n/jaq-nvim"
 
 
 

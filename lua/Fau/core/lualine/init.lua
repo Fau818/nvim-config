@@ -3,6 +3,7 @@
 -- =============================================
 local lualine = Fau_vim.load_plugin("lualine")
 if lualine == nil then return end
+local navic = Fau_vim.load_plugin("nvim-navic")
 
 
 
@@ -51,7 +52,9 @@ local config = {
 		lualine_z = {}
 	},
 	tabline = {},
-	winbar = {},
+	winbar = {
+		lualine_c = { component.breadcrumb },
+	},
 	inactive_winbar = {},
 	extensions = {}
 }
