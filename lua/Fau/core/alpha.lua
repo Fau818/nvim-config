@@ -38,6 +38,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("p", Fau_vim.ui.Project .. "  Projects ",    "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR> "),
 	dashboard.button("r", Fau_vim.ui.History .. "  Recent files", "<CMD>Telescope oldfiles<CR>"),
 	dashboard.button("t", Fau_vim.ui.FindText .. "  Find Text",   "<CMD>Telescope live_grep<CR>"),
+	dashboard.button("c", Fau_vim.ui.Gear .. "  Configuration",   "<CMD>FauvimConfig<CR>"),
 	dashboard.button("q", "Quit",   "<CMD>qa<CR>"),
 }
 

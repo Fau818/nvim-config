@@ -132,7 +132,7 @@ Fau_vim = {
 		Project = "",
 		History = "",
 		FindText = "",
-		-- Gear = "",
+		Gear = "",
 
 		Tab = "",
 		Space = "⎵",
@@ -159,6 +159,9 @@ Fau_vim = {
 -- =============================================
 -- ========== User Commands
 -- =============================================
+-- -----------------------------------
+-- -------- Edit Snippet
+-- -----------------------------------
 vim.api.nvim_create_user_command("EditSnip",
 	function()
 		require("luasnip.loaders").edit_snippet_files {
@@ -172,8 +175,21 @@ vim.api.nvim_create_user_command("EditSnip",
 )
 
 
+-- -----------------------------------
+-- -------- Edit Style
+-- -----------------------------------
 vim.api.nvim_create_user_command("EditStyle",
 	function()
 		vim.api.nvim_command("edit " .. Fau_vim.config_path .. "/style")
+	end, {}
+)
+
+
+-- -----------------------------------
+-- -------- Configuration
+-- -----------------------------------
+vim.api.nvim_create_user_command("FauvimConfig",
+	function()
+		vim.api.nvim_command("edit " .. Fau_vim.config_path)
 	end, {}
 )
