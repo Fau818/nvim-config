@@ -170,3 +170,10 @@ vim.api.nvim_create_user_command("EditSnip",
 		}
 	end, {}
 )
+
+
+vim.api.nvim_create_user_command("EditStyle",
+	function()
+		vim.api.nvim_command("edit " .. Fau_vim.config_path .. "/style")
+	end, {}
+)

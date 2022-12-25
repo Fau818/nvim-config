@@ -92,6 +92,9 @@ return {
 		-- Snippet
 		["<LEADER>s"] = { "<CMD>EditSnip<CR>", "Edit Snippet" },
 
+		-- Style
+		["<LEADER>S"] = { "<CMD>EditStyle<CR>", "Edit Style" },
+
 		-- Move Line(s)
 		["<A-j>"] = { ":MoveLine(1)<CR>",  "Move Down" },
 		["<A-k>"] = { ":MoveLine(-1)<CR>", "Move Up"   },
