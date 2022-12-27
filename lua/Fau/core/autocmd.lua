@@ -39,3 +39,10 @@ end
 vim.cmd [[ augroup Fau_vim
 	autocmd VimEnter * lua Fau_vim.start()
 augroup END ]]
+
+
+
+-- =============================================
+-- ========== Auto format file
+-- =============================================
+vim.cmd [[ autocmd BufWritePre * lua Fau_vim.remove_blank_lines_and_spaces() ]]

@@ -161,3 +161,10 @@ keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
 -- Save and Close Buffers
 keymap("n", "q",         "<CMD>update<CR>", opts)
 keymap("n", "<LEADER>w", "<CMD>wall<CR>",   opts)
+
+
+
+-- =============================================
+-- ========== Terminal [TEST]
+-- =============================================
+keymap("t", "<C-r>", "<Nop>", opts)

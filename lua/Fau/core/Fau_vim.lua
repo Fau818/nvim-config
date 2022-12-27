@@ -47,6 +47,18 @@ Fau_vim = {
 	end,
 
 
+	-- -----------------------------------
+	-- -------- auto format file
+	-- -----------------------------------
+	remove_blank_lines_and_spaces = function()
+		local save_cursor = vim.fn.getpos(".")
+		vim.api.nvim_command([[silent! %s#\($\n\s*\)\+\%$##]])
+		vim.api.nvim_command([[silent! %s/\s\+$//e]])
+		vim.fn.setpos(".", save_cursor)
+	end,
+
+
+
 	-- =============================================
 	-- ========== icons definition
 	-- =============================================
