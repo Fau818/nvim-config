@@ -148,13 +148,18 @@ return require("packer").startup(function(use)
 	use "abecodes/tabout.nvim"   -- type <TAB> could jump out of brakets
 	use "echasnovski/mini.align" -- align text
 	use "fedepujol/move.nvim"    -- move line
-	use "CRAG666/code_runner.nvim"
+
+
+	-- =============================================
+	-- ========== MISC
+	-- =============================================
+	use "CRAG666/code_runner.nvim" -- run code
+	use "wakatime/vim-wakatime"    -- wakatime statistic
 
 
 	-- ===================================
 	-- ======== new plugins [test]
 	-- ===================================
-
 
 
 

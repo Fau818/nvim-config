@@ -39,7 +39,10 @@ local config = {
 		additional_vim_regex_highlighting = false,
 	},
 
-	indent = { enable = true },
+	indent = {
+		enable = true,
+		disable = { "python" }
+	},
 
 	-- nvim-ts-context-commentstring plugin
 	context_commentstring = {

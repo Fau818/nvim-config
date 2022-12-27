@@ -148,6 +148,7 @@ return {
 
 
 			-- check mixed indent
+			-- TODO: avoid " *" pattern
 			local mixed_line = 0
 			if space_indent_cnt > 0 and tab_indent_cnt > 0 then -- get the mixed_line
 				if file_indent_type then mixed_line = vim.fn.search(tab_pat, "nwc")
