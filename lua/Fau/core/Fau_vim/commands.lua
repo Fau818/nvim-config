@@ -30,5 +30,8 @@ vim.api.nvim_create_user_command("EditStyle",
 vim.api.nvim_create_user_command("FauvimConfig",
 	function()
 		vim.api.nvim_command("edit " .. Fau_vim.config_path)
+		-- vim.api.nvim_command("NvimTreeToggle")
+		-- vim.api.nvim_command("Alpha")
+		-- vim.api.nvim_command("NvimTreeToggle")
 	end, {}
 )

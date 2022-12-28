@@ -148,6 +148,7 @@ return require("packer").startup(function(use)
 	use "abecodes/tabout.nvim"   -- type <TAB> could jump out of brakets
 	use "echasnovski/mini.align" -- align text
 	use "fedepujol/move.nvim"    -- move line
+	use "windwp/nvim-ts-autotag" -- autotag
 
 
 	-- =============================================

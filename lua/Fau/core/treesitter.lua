@@ -48,7 +48,11 @@ local config = {
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false,
-	}
+	},
+
+
+	-- nvim-ts-autotag plugin
+	autotag = { enable = true },
 }
 
 
