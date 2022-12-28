@@ -78,7 +78,7 @@ return require("packer").startup(function(use)
 
 	use "L3MON4D3/LuaSnip"             -- code snippets engine
 	use "saadparwaiz1/cmp_luasnip"     -- support L3MON4D3/LuaSnip plugin cmp in nvim-cmp
-	use "rafamadriz/friendly-snippets" -- snippets repository
+	-- use "rafamadriz/friendly-snippets" -- snippets repository
 
 	use "neovim/nvim-lspconfig" -- LSP support
 	use "hrsh7th/cmp-nvim-lsp"  -- LSP for nvim-cmp
