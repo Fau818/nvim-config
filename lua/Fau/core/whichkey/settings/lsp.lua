@@ -1,13 +1,13 @@
 local modifyer = {  -- ni
-		-- Document
-		["<C-d>"] = { "<CMD>lua vim.lsp.buf.hover()<CR>", "Show Document" },
+	-- Document
+	["<C-d>"] = { "<CMD>lua vim.lsp.buf.hover()<CR>", "Show Document" },
 
-		-- Signature
-		["<C-p>"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Show Signature" },
+	-- Signature
+	["<C-p>"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Show Signature" },
 
-		-- Prev/Next Reference
-		["<A-p>"] = { "<CMD>lua require('illuminate').next_reference{reverse=true,wrap=true}<CR>", "Prev Reference" },
-		["<A-n>"] = { "<CMD>lua require('illuminate').next_reference{wrap=true}<CR>",							 "Next Reference" },
+	-- Prev/Next Reference
+	["<A-p>"] = { "<CMD>lua require('illuminate').next_reference{reverse=true,wrap=true}<CR>", "Prev Reference" },
+	["<A-n>"] = { "<CMD>lua require('illuminate').next_reference{wrap=true}<CR>",							 "Next Reference" },
 }
 
 
@@ -45,7 +45,8 @@ return {
 			D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Workspace Diagnostics" },
 
 			-- Format
-			f = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format Code" },
+			f = { "<CMD>lua Fau_vim.format()<CR>",     "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format Code" },
 
 			-- LSP Manager
 			i = { "<CMD>LspInfo<CR>", "LspInfo" },
@@ -67,7 +68,8 @@ return {
 		["<LEADER>l"] = {
 			name = "+LSP",
 			-- Format
-			f = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>", "Format Code" },
+			f = { "<CMD>lua Fau_vim.format()<CR><ESC>",     "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>", "Format Code" },
 		},
 	},
 

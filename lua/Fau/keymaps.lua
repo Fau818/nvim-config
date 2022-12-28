@@ -153,6 +153,14 @@ keymap({ "n", "t" }, "<C-RIGHT>", "<CMD>vertical resize +2<CR>", opts)
 keymap({ "n", "t" }, "<C-DOWN>",  "<CMD>resize -1<CR>",          opts)
 keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
 
+-- -----------------------------------
+-- -------- TEST windows
+-- -----------------------------------
+keymap({ "n", "t" }, "<A-left>",  "<CMD>wincmd h<CR>", opts)
+keymap({ "n", "t" }, "<A-down>",  "<CMD>wincmd j<CR>", opts)
+keymap({ "n", "t" }, "<A-up>",    "<CMD>wincmd k<CR>", opts)
+keymap({ "n", "t" }, "<A-right>", "<CMD>wincmd l<CR>", opts)
+
 
 
 -- ===================================

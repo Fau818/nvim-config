@@ -67,14 +67,20 @@ local config = {
 		-- 	name = "Iris Recognition",
 		-- 	description = "Scientific Research",
 		-- },
+		["~/Documents/Fau/Projects/PyCharm_Projects/Flask_Book"] = {
+			name = "Flask_Book",
+			description = "ZYW Book Manager",
+			file_name = "app.py",
+			-- command = "export PYTHONPATH=$(pwd) && python"
+		},
 	},
 
 
 	-- -----------------------------------
 	-- -------- Configure by json
 	-- -----------------------------------
-	-- filetype_path = vim.fn.expand('~/.config/nvim/code_runner.json'),
-	-- project_path  = vim.fn.expand('~/.config/nvim/project_manager.json'),
+	-- filetype_path = vim.fn.expand(Fau_vim.config_path .. "/code_runner/filetype.json"),
+	-- project_path  = vim.fn.expand(Fau_vim.config_path .. "/code_runner/project.json"),
 }
 
 

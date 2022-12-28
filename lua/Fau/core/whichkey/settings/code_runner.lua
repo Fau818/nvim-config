@@ -5,7 +5,7 @@ return {
 		["<LEADER>r"] = {
 			name = "+Runcode",
 
-			t = { "<CMD>update<CR><CMD>RunFile term<CR>",        "Run File in Terminal" },
+			t = { "<CMD>update<CR><CMD>RunFile term<CR>",   "Run File in Terminal" },
 			T = { "<CMD>update<CR><CMD>RunFile toggle<CR>", "Run File Toggle" },
 			f = { "<CMD>update<CR><CMD>RunFile float<CR>",  "Run File in Float" },
 
