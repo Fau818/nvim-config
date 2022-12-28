@@ -64,11 +64,11 @@ local utils = {
 		local file_icon, hl_group = require("nvim-web-devicons").get_icon(filename, extension, { default = true })
 		local buf_ft = vim.bo.filetype
 
-		if buf_ft == "dapui_breakpoints" then file_icon = Fau_vim.ui.Bug
-		elseif buf_ft == "dapui_stacks" then file_icon = Fau_vim.ui.Stacks
-		elseif buf_ft == "dapui_scopes" then file_icon = Fau_vim.ui.Scopes
-		elseif buf_ft == "dapui_watches" then file_icon = Fau_vim.ui.Watches
-		elseif buf_ft == "dapui_console" then file_icon = Fau_vim.ui.DebugConsole
+		if buf_ft == "dapui_breakpoints" then file_icon = Fau_vim.icons.ui.Bug
+		elseif buf_ft == "dapui_stacks"  then file_icon = Fau_vim.icons.ui.Stacks
+		elseif buf_ft == "dapui_scopes"  then file_icon = Fau_vim.icons.ui.Scopes
+		elseif buf_ft == "dapui_watches" then file_icon = Fau_vim.icons.ui.Watches
+		elseif buf_ft == "dapui_console" then file_icon = Fau_vim.icons.ui.DebugConsole
 		end
 
 		local navic_text = vim.api.nvim_get_hl_by_name("Normal", true)
@@ -142,7 +142,7 @@ return {
 			local file_indent_type = space_indent_cnt > tab_indent_cnt  -- same as indent_type
 			if space_indent_cnt == tab_indent_cnt then file_indent_type = indent_type end
 
-			local indent_icon = file_indent_type and Fau_vim.ui.Space or Fau_vim.ui.Tab
+			local indent_icon = file_indent_type and Fau_vim.icons.ui.Space or Fau_vim.icons.ui.Tab
 			local indent_show = indent_icon .. " " .. indent_width  -- show
 			if file_indent_type ~= indent_type then indent_show = "*" .. indent_show end -- unexpected indent type
 
@@ -169,16 +169,16 @@ return {
 	-- =============================================
 	branch = {
 		"branch",
-		icon = Fau_vim.git_icons.Branch,
+		icon = Fau_vim.icons.git.Branch,
 		color = { gui = "bold" },
 	},
 	diff = {
 		"diff",
 		source = source.diff,
 		symbols = {
-			added = Fau_vim.git_icons.LineAdded .. " ",
-			modified = Fau_vim.git_icons.LineModified .. " ",
-			removed = Fau_vim.git_icons.LineRemoved .. " ",
+			added = Fau_vim.icons.git.LineAdded .. " ",
+			modified = Fau_vim.icons.git.LineModified .. " ",
+			removed = Fau_vim.icons.git.LineRemoved .. " ",
 		},
 		-- padding = { left = 2, right = 1 },
 		diff_color = {
@@ -225,7 +225,7 @@ return {
 			local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
 
 			if copilot_active then language_servers = language_servers ..
-				"%#SLCopilot#" .. " " .. Fau_vim.git_icons.Octoface .. "%*" end
+				"%#SLCopilot#" .. " " .. Fau_vim.icons.git.Octoface .. "%*" end
 
 			-- if empty
 			if language_servers == "[]" then language_servers = "LS Empty" end
@@ -241,17 +241,17 @@ return {
 		"diagnostics",
 		sources = { "nvim_diagnostic" },
 		symbols = {
-			error = Fau_vim.diagnostics.Error .. " ",
-			warn = Fau_vim.diagnostics.Warning .. " ",
-			info = Fau_vim.diagnostics.Information .. " ",
-			hint = Fau_vim.diagnostics.Hint .. " ",
+			error = Fau_vim.icons.diagnostics.Error .. " ",
+			warn  = Fau_vim.icons.diagnostics.Warning .. " ",
+			info  = Fau_vim.icons.diagnostics.Information .. " ",
+			hint  = Fau_vim.icons.diagnostics.Hint .. " ",
 		},
 	},
 
 
 	treesitter = {
 		function()
-			return Fau_vim.ui.Tree
+			return Fau_vim.icons.ui.Tree
 		end,
 		color = function()
 			local buf = vim.api.nvim_get_current_buf()
@@ -289,7 +289,7 @@ return {
 			if navic.is_available() then
 				local navic_string = navic.get_location()
 				if #navic_string ~= 0 then
-					winbar = winbar .. " " .. "%#NavicSeparator#" .. Fau_vim.ui.ChevronRight .. "%* " .. navic_string
+					winbar = winbar .. " " .. "%#NavicSeparator#" .. Fau_vim.icons.ui.ChevronRight .. "%* " .. navic_string
 				end
 			end
 

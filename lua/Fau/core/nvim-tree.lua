@@ -204,10 +204,10 @@ local config = {
 		show_on_dirs = false, -- Show diagnostic icons on parent directories.
 		debounce_delay = 50, -- Idle milliseconds between diagnostic event and update.
 		icons = {
-			hint = Fau_vim.diagnostics.BoldHint,
-			info = Fau_vim.diagnostics.BoldInformation,
-			warning = Fau_vim.diagnostics.BoldWarning,
-			error = Fau_vim.diagnostics.BoldError,
+			hint    = Fau_vim.icons.diagnostics.BoldHint,
+			info    = Fau_vim.icons.diagnostics.BoldInformation,
+			warning = Fau_vim.icons.diagnostics.BoldWarning,
+			error   = Fau_vim.icons.diagnostics.BoldError,
 		},
 	},
 

@@ -3,10 +3,10 @@
 -- =============================================
 -- setting icons
 local signs = {
-	{ name = "DiagnosticSignError", text = Fau_vim.diagnostics.BoldError },
-	{ name = "DiagnosticSignWarn",  text = Fau_vim.diagnostics.BoldWarning },
-	{ name = "DiagnosticSignHint",  text = Fau_vim.diagnostics.BoldHint },
-	{ name = "DiagnosticSignInfo",  text = Fau_vim.diagnostics.BoldInformation },
+	{ name = "DiagnosticSignError", text = Fau_vim.icons.diagnostics.BoldError },
+	{ name = "DiagnosticSignWarn",  text = Fau_vim.icons.diagnostics.BoldWarning },
+	{ name = "DiagnosticSignHint",  text = Fau_vim.icons.diagnostics.BoldHint },
+	{ name = "DiagnosticSignInfo",  text = Fau_vim.icons.diagnostics.BoldInformation },
 }
 for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, { texthl = sign.name, numhl = sign.name, text = sign.text }) end
 

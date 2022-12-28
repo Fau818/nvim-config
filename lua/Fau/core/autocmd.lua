@@ -28,21 +28,21 @@ augroup END ]]
 -- =============================================
 -- ========== Auto LSP
 -- =============================================
-Fau_vim.start = function()
+Fau_vim.functions.initialize_vim = function()
 	vim.cmd [[ augroup Fau_vim
-		autocmd BufReadPost * lua Fau_vim.set_client_by_ft()
+		autocmd BufReadPost * lua Fau_vim.functions.set_client_by_ft()
 	augroup END ]]
-	Fau_vim.set_client_by_ft()
+	Fau_vim.functions.set_client_by_ft()
 end
 
 
 vim.cmd [[ augroup Fau_vim
-	autocmd VimEnter * lua Fau_vim.start()
+	autocmd VimEnter * lua Fau_vim.functions.initialize_vim()
 augroup END ]]
 
 
 
 -- =============================================
--- ========== Auto format file
+-- ========== Auto Trim Blank Lines and Spaces
 -- =============================================
-vim.cmd [[ autocmd BufWritePre * lua Fau_vim.remove_blank_lines_and_spaces() ]]
+vim.cmd [[ autocmd BufWritePre * lua Fau_vim.functions.remove_blank_lines_and_spaces() ]]

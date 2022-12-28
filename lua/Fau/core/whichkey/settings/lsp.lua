@@ -46,7 +46,7 @@ return {
 
 			-- Format
 			f = { "<CMD>lua Fau_vim.format()<CR>",     "Format Code" },
-			F = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format Code (Force Formatter)" },
 
 			-- LSP Manager
 			i = { "<CMD>LspInfo<CR>", "LspInfo" },
@@ -69,7 +69,7 @@ return {
 			name = "+LSP",
 			-- Format
 			f = { "<CMD>lua Fau_vim.format()<CR><ESC>",     "Format Code" },
-			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>", "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>", "Format Code (Force Formatter)" },
 		},
 	},
 

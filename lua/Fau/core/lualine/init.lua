@@ -3,7 +3,6 @@
 -- =============================================
 local lualine = Fau_vim.load_plugin("lualine")
 if lualine == nil then return end
-local navic = Fau_vim.load_plugin("nvim-navic")
 
 
 
@@ -16,8 +15,8 @@ local config = {
 		icons_enabled = true,
 		theme = "auto", -- lualine theme
 
-		component_separators = { left = Fau_vim.ui.DividerLeft, right = Fau_vim.ui.DividerRight },
-		section_separators = { left = Fau_vim.ui.BoldDividerLeft, right = Fau_vim.ui.BoldDividerRight },
+		component_separators = { left = Fau_vim.icons.ui.DividerLeft,     right = Fau_vim.icons.ui.DividerRight },
+		section_separators   = { left = Fau_vim.icons.ui.BoldDividerLeft, right = Fau_vim.icons.ui.BoldDividerRight },
 
 		disabled_filetypes = {  -- Filetypes to disable lualine for.
 			statusline = { "alpha" }, -- only ignores the ft for statusline.

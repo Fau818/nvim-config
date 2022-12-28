@@ -59,7 +59,7 @@ local function setup_server(server)
 end
 
 
-Fau_vim.set_client_by_ft = function()
+Fau_vim.functions.set_client_by_ft = function()
 	local bufferid = vim.api.nvim_get_current_buf()
 	local filetype = vim.api.nvim_buf_get_option(bufferid, "filetype")
 

@@ -33,12 +33,12 @@ dashboard.section.header.val = {
 	[[]],
 }
 dashboard.section.buttons.val = {
-	dashboard.button("f", Fau_vim.ui.FindFile .. "  Find File",   "<CMD>Telescope find_files<CR>"),
-	dashboard.button("n", Fau_vim.ui.NewFile .. "  New File",     "<CMD>ene!<CR>"),
-	dashboard.button("p", Fau_vim.ui.Project .. "  Projects ",    "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR> "),
-	dashboard.button("r", Fau_vim.ui.History .. "  Recent files", "<CMD>Telescope oldfiles<CR>"),
-	dashboard.button("t", Fau_vim.ui.FindText .. "  Find Text",   "<CMD>Telescope live_grep<CR>"),
-	dashboard.button("c", Fau_vim.ui.Gear .. "  Configuration",   "<CMD>FauvimConfig<CR>"),
+	dashboard.button("f", Fau_vim.icons.ui.FindFile .. "  Find File",   "<CMD>Telescope find_files<CR>"),
+	dashboard.button("n", Fau_vim.icons.ui.NewFile .. "  New File",     "<CMD>ene!<CR>"),
+	dashboard.button("p", Fau_vim.icons.ui.Project .. "  Projects ",    "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR> "),
+	dashboard.button("r", Fau_vim.icons.ui.History .. "  Recent files", "<CMD>Telescope oldfiles<CR>"),
+	dashboard.button("t", Fau_vim.icons.ui.FindText .. "  Find Text",   "<CMD>Telescope live_grep<CR>"),
+	dashboard.button("c", Fau_vim.icons.ui.Gear .. "  Configuration",   "<CMD>FauvimConfig<CR>"),
 	dashboard.button("q", "Quit",   "<CMD>qa<CR>"),
 }
 

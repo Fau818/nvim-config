@@ -51,8 +51,8 @@ local config = {
 			--- Don't get too fancy as this function will be executed a lot
 			local show = ""
 			for diagnostics, cou in pairs(diagnostics_dict) do
-				local icon = (diagnostics == "error" and Fau_vim.diagnostics.Error) or
-						(diagnostics == "warning" and Fau_vim.diagnostics.Warning)
+				local icon = (diagnostics == "error" and Fau_vim.icons.diagnostics.Error) or
+						(diagnostics == "warning" and Fau_vim.icons.diagnostics.Warning)
 				if icon then show = show .. icon .. " " .. cou .. " " end
 			end
 			return show
@@ -90,7 +90,7 @@ local config = {
 					name = "Docs",
 					highlight = { undercurl = false, sp = "green" },
 					priority = 2, -- determines where it will appear relative to other groups (Optional)
-					icon = Fau_vim.ui.File, -- Optional
+					icon = Fau_vim.icons.ui.File, -- Optional
 					auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
 					matcher = function(buf) return buf.filename:match("%.md") or buf.filename:match("%.txt") end,
 					separator = { -- Optional

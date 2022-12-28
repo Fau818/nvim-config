@@ -112,10 +112,10 @@ local vertical = Terminal:new({
 	on_open = function() vim.cmd("startinsert!") end,
 })
 
-Fau_vim.terminal = {
-	lazygit = function() lazygit:toggle() end,
-	btop = function() btop:toggle() end,
-	float = function() float:toggle() end,
+Fau_vim.functions.terminal = {
+	lazygit    = function() lazygit:toggle()    end,
+	btop       = function() btop:toggle()       end,
+	float      = function() float:toggle()      end,
 	horizontal = function() horizontal:toggle() end,
-	vertical = function() vertical:toggle() end,
+	vertical   = function() vertical:toggle()   end,
 }

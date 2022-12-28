@@ -17,7 +17,7 @@ local config = {
 	modifiers = {
 		["-"] = function(steps, opts)
 			opts.split_pattern = " %-%- "
-			table.insert(steps.pre_justify, MiniAlign.gen_step.trim())
+			table.insert(steps.pre_justify, align.gen_step.trim())
 			opts.merge_delimiter = " "
 		end,
 	},
