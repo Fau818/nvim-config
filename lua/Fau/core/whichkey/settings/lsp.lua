@@ -45,7 +45,7 @@ return {
 			D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Workspace Diagnostics" },
 
 			-- Format
-			f = { "<CMD>lua Fau_vim.format()<CR>",     "Format Code" },
+			f = { "<CMD>lua Fau_vim.functions.format()<CR>",     "Format Code" },
 			F = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format Code (Force Formatter)" },
 
 			-- LSP Manager
@@ -68,7 +68,7 @@ return {
 		["<LEADER>l"] = {
 			name = "+LSP",
 			-- Format
-			f = { "<CMD>lua Fau_vim.format()<CR><ESC>",     "Format Code" },
+			f = { "<CMD>lua Fau_vim.functions.format()<CR><ESC>",     "Format Code" },
 			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>", "Format Code (Force Formatter)" },
 		},
 	},
