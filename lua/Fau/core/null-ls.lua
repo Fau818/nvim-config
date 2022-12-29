@@ -38,6 +38,12 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.flake8.with({
 			extra_args = { "--config", Fau_vim.config_path .. "/style/tox.ini" }
 		}),
+		-- null_ls.builtins.diagnostics.djlint.with({
+		-- 	filetypes = { "django", "jinja.html", "htmldjango", "html" }
+		-- })
+		null_ls.builtins.diagnostics.curlylint.with({
+			filetypes = { "jinja.html", "htmldjango", "html" }
+		})
 		-- null_ls.builtins.formatting.black,
 		-- null_ls.builtins.formatting.blue,
 	},

@@ -14,8 +14,8 @@ local config = {
 		enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
 		runtime = true, -- runtime path
 		types = true,   -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others [nice!]
-		plugins = false, -- installed opt or start plugins in packpath
-		-- plugins = { "nvim-lspconfig", "null-ls.nvim", },
+		-- plugins = false, -- installed opt or start plugins in packpath
+		plugins = { "nvim-lspconfig", "null-ls.nvim", "telescope" },
 	},
 	setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
 	-- override = function(root_dir, library)

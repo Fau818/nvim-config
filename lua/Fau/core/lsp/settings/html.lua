@@ -6,5 +6,7 @@ return {
 				templating = true,
 			},
 		}
-	}
+	},
+
+	filetypes = { "jinja.html", "html" }
 }
