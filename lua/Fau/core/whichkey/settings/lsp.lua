@@ -37,20 +37,24 @@ return {
 
 		["<LEADER>l"] = {
 			name = "+LSP",
-			r = { "<CMD>lua vim.lsp.buf.rename()<CR>", "Rename" },
+			r = { "<CMD>lua vim.lsp.buf.rename()<CR>",      "Rename" },
 			a = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
 
 			-- Diagnostic Info
 			d = { "<CMD>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Document Diagnostics" },
-			D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>", "Workspace Diagnostics" },
+			D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>",          "Workspace Diagnostics" },
+
+			-- Goto Prev/Next Diagnostics
+			p = { "<CMD>lua vim.diagnostic.goto_prev()<CR>", "Goto Prev Diagnostics" },
+			n = { "<CMD>lua vim.diagnostic.goto_next()<CR>", "Goto Next Diagnostics" },
 
 			-- Format
-			f = { "<CMD>lua Fau_vim.functions.format()<CR>",     "Format Code" },
-			F = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format Code (Force Formatter)" },
+			f = { "<CMD>lua Fau_vim.functions.format()<CR>", "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR>",       "Format Code (Force Formatter)" },
 
 			-- LSP Manager
 			i = { "<CMD>LspInfo<CR>", "LspInfo" },
-			I = { "<CMD>Mason<CR>", "Mason" },
+			I = { "<CMD>Mason<CR>",   "Mason" },
 
 			-- Symbols
 			s = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Buffer Symbols" },
@@ -68,8 +72,8 @@ return {
 		["<LEADER>l"] = {
 			name = "+LSP",
 			-- Format
-			f = { "<CMD>lua Fau_vim.functions.format()<CR><ESC>",     "Format Code" },
-			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>", "Format Code (Force Formatter)" },
+			f = { "<CMD>lua Fau_vim.functions.format()<CR><ESC>", "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>",       "Format Code (Force Formatter)" },
 		},
 	},
 
