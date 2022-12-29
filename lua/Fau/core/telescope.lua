@@ -137,6 +137,7 @@ local config = {
 			layout_strategy = "center",
 			sorting_strategy = "ascending",
 			hidden = true, -- show hidden files
+			previewer = false,
 		},
 
 		oldfiles = {

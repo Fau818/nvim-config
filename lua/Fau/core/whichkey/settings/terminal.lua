@@ -9,10 +9,10 @@ return {
 		terminal,
 
 		["<LEADER>"] = {
-			["gg"] = { "<CMD>lua Fau_vim.functions.terminal.lazygit()<CR>", "Toggle Lazygit" },
-			["lg"] = { "<CMD>lua Fau_vim.functions.terminal.lazygit()<CR>", "Toggle Lazygit" },
+			gg = { "<CMD>lua Fau_vim.functions.terminal.lazygit()<CR>", "Toggle Lazygit" },
+			lg = { "<CMD>lua Fau_vim.functions.terminal.lazygit()<CR>", "Toggle Lazygit" },
 
-			b = { "<CMD>lua Fau_vim.functions.terminal.btop()<CR>", "Toggle btop" },
+			gb = { "<CMD>lua Fau_vim.functions.terminal.btop()<CR>",    "Toggle btop" },
 		},
 	},
 

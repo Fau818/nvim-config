@@ -161,6 +161,11 @@ keymap({ "n", "t" }, "<A-down>",  "<CMD>wincmd j<CR>", opts)
 keymap({ "n", "t" }, "<A-up>",    "<CMD>wincmd k<CR>", opts)
 keymap({ "n", "t" }, "<A-right>", "<CMD>wincmd l<CR>", opts)
 
+keymap({ "n", "t" }, "<S-left>",  "<CMD>wincmd h<CR>", opts)
+keymap({ "n", "t" }, "<S-down>",  "<CMD>wincmd j<CR>", opts)
+keymap({ "n", "t" }, "<S-up>",    "<CMD>wincmd k<CR>", opts)
+keymap({ "n", "t" }, "<S-right>", "<CMD>wincmd l<CR>", opts)
+
 
 
 -- ===================================

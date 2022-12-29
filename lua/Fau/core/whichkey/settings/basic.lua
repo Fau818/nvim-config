@@ -95,12 +95,15 @@ return {
 		-- NvimTree
 		["<LEADER>e"] = { "<CMD>NvimTreeFindFileToggle<CR>", "Toggle NvimTree" },
 
-		-- Snippet
-		["<LEADER>s"] = { "<CMD>EditSnip<CR>", "Edit Snippet" },
+		-- Edit
+		["<LEADER>E"] = {
+			name = "+Edit",
+			["<LEADER>s"] = { "<CMD>EditSnip<CR>",  "Edit Snippet" },
+			["<LEADER>S"] = { "<CMD>EditStyle<CR>", "Edit Style" },
+		},
 
-		-- Style
-		["<LEADER>S"] = { "<CMD>EditStyle<CR>", "Edit Style" },
-
+		-- Dashboard
+		[";"] = { "<CMD>Alpha<CR>", "Dashboard" },
 
 
 		-- =============================================
@@ -167,6 +170,25 @@ return {
 		-- ["<LEADER>8"] = { "<CMD>BufferLineGoToBuffer 8<CR>", "which_key_ignore" },
 		-- ["<LEADER>9"] = { "<CMD>BufferLineGoToBuffer 9<CR>", "which_key_ignore" },
 		-- ["<LEADER>0"] = { "<CMD>BufferLineGoToBuffer -1<CR>", "Buffer Last" },
+
+
+		-- -----------------------------------
+		-- -------- TEST (from lunarvim)
+		-- -----------------------------------
+		["<LEADER>b"] = {
+			name = "+Buffer",
+			j = { "<CMD>BufferLinePick<CR>", "Buffer Pick" },
+		},
+
+
+		-- ["<LEADER>p"] = {
+		-- 	name = "+Packer",
+		-- 	c = { "<CMD>PackerCompile<CR>", "Packer Compile" },
+		-- 	i = { "<CMD>PackerInstall<CR>", "Packer Install" },
+		-- 	s = { "<CMD>PackerSync<CR>",    "Packer Sync" },
+		-- 	S = { "<CMD>PackerStatus<CR>",  "Packer Status" },
+		-- 	u = { "<CMD>PackerUpdate<CR>",  "Packer Update" },
+		-- },
 
 	},
 

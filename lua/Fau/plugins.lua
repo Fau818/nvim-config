@@ -161,6 +161,7 @@ return require("packer").startup(function(use)
 	-- ===================================
 	-- ======== new plugins [test]
 	-- ===================================
+	use "stevearc/aerial.nvim"  -- Symbol Outline
 
 
 

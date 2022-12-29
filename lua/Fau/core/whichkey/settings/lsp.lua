@@ -57,11 +57,15 @@ return {
 			I = { "<CMD>Mason<CR>",   "Mason" },
 
 			-- Symbols
-			s = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Buffer Symbols" },
+			s = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>",  "Buffer Symbols" },
 			S = { "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace Symbols" },
 
 			-- Virtual Text
-			v = { "<CMD>lua vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text})<CR>", "Toggle Diagnostic Virtual Text" },
+			v = { "<CMD>lua vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text})<CR>", "Toggle Virtual Text" },
+
+			-- Outline (Structure)
+			o = { "<CMD>AerialToggle<CR>",  "Toggle Outline" },
+			O = { "<CMD>AerialToggle!<CR>", "Toggle Outline (Unfocus)" },
 		},
 
 	},
