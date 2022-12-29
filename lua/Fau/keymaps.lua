@@ -114,9 +114,9 @@ keymap("x", "p", '"_dP', opts)
 -- =============================================
 -- ========== Move Line(s) (which-key will redefine them)
 -- =============================================
--- Normal Mode
-keymap("n", "<A-j>", "<CMD>move . +1<CR>", opts)
-keymap("n", "<A-k>", "<CMD>move . -2<CR>", opts)
+-- Normal and Insert Mode
+keymap({ "n", "i" }, "<A-j>", "<CMD>move . +1<CR>", opts)
+keymap({ "n", "i" }, "<A-k>", "<CMD>move . -2<CR>", opts)
 
 -- Visual Mode
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)

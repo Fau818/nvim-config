@@ -78,10 +78,16 @@ local range = {  -- xo
 }
 
 
+-- Move Line(s)
+local move_line = {  -- ni
+	["<A-j>"] = { "<CMD>MoveLine(1)<CR>", "Move Down" },
+	["<A-k>"] = { "<CMD>MoveLine(-1)<CR>", "Move Up" },
+}
+
 
 return {
 	n = {
-		basic, move, edit,
+		basic, move, edit, move_line,
 
 		-- =============================================
 		-- ========== Baisc
@@ -95,9 +101,6 @@ return {
 		-- Style
 		["<LEADER>S"] = { "<CMD>EditStyle<CR>", "Edit Style" },
 
-		-- Move Line(s)
-		["<A-j>"] = { ":MoveLine(1)<CR>",  "Move Down" },
-		["<A-k>"] = { ":MoveLine(-1)<CR>", "Move Up"   },
 
 
 		-- =============================================
@@ -181,5 +184,9 @@ return {
 
 
 
-	o = { move, range }
+	o = { move, range },
+
+
+
+	i = { move_line }
 }
