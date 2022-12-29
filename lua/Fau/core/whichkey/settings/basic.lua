@@ -98,8 +98,8 @@ return {
 		-- Edit
 		["<LEADER>E"] = {
 			name = "+Edit",
-			["<LEADER>s"] = { "<CMD>EditSnip<CR>",  "Edit Snippet" },
-			["<LEADER>S"] = { "<CMD>EditStyle<CR>", "Edit Style" },
+			["s"] = { "<CMD>EditSnip<CR>",  "Edit Snippet" },
+			["S"] = { "<CMD>EditStyle<CR>", "Edit Style" },
 		},
 
 		-- Dashboard
