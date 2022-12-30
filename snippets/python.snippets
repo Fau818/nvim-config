@@ -11,7 +11,16 @@ snippet docs
 	Description: ${0}
 	"""
 
-# if __name__ == '__main__':
 snippet main
 	if __name__ == '__main__':
 		${0:main()}
+
+snippet seccom #section comment
+	# =============================================
+	# ========== $1
+	# =============================================$0
+
+snippet subseccom #subsection comment
+	# -----------------------------------
+	# -------- $1
+	# -----------------------------------$0
