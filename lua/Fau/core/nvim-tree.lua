@@ -213,7 +213,7 @@ local config = {
 
 	filters = { -- Filtering options.
 		dotfiles = false, -- Whether show dotfiles. [Default Keymaps: H]
-		custom = { "^.git$", ".DS_Store" }, -- Custom list of vim regex for file/directory names that will not be shown.  [Default Keymaps: U]
+		custom = { "^.git$", ".DS_Store", "__pycache__" }, -- Custom list of vim regex for file/directory names that will not be shown.  [Default Keymaps: U]
 		exclude = {}, -- List of directories or files to exclude from filtering: always show them.
 	},
 

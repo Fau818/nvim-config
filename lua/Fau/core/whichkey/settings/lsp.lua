@@ -66,6 +66,9 @@ return {
 			-- Outline (Structure)
 			o = { "<CMD>AerialToggle<CR>",  "Toggle Outline" },
 			O = { "<CMD>AerialToggle!<CR>", "Toggle Outline (Unfocus)" },
+
+			-- Restart LSP
+			R = { "<CMD>LspRestart<CR>",  "Restart LSP in All Buffers" },
 		},
 
 	},
