@@ -8,5 +8,5 @@ return {
 		}
 	},
 
-	filetypes = { "jinja.html", "html" }
+	filetypes = { "html", "jinja.html", "htmldjango" }
 }
