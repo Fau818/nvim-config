@@ -163,7 +163,7 @@ return require("packer").startup(function(use)
 	-- ===================================
 	use "stevearc/aerial.nvim"  -- Symbol Outline
 
-
+	use 'keaising/im-select.nvim'  -- auto switch input method
 
 	-- DAP
 	-- use "mfussenegger/nvim-dap"

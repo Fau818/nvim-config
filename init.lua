@@ -54,6 +54,7 @@ require "Fau.core.autopairs"
 require "Fau.core.tabout"
 require "Fau.core.align"
 require "Fau.core.code_runner"
+require "Fau.core.im-select"
 
 -- parser
 require "Fau.core.treesitter"

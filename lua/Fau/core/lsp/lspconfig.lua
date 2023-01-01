@@ -66,6 +66,9 @@ Fau_vim.functions.set_client_by_ft = function()
 	if Fau_vim.configured_ft[filetype] then return end -- configured
 	Fau_vim.configured_ft[filetype] = true
 
+	-- TODO: need to be optimized
+	if filetype == "jinja.html" or filetype == "htmldjango" then filetype = "html" end
+
 	local clients = mlspconfig.get_available_servers({ filetype=filetype })
 
 	-- config current filetype LS
