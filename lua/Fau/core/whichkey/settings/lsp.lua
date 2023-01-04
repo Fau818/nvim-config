@@ -20,11 +20,16 @@ return {
 		g = {
 			name = "+LSP",
 			-- Definition
-			d = { "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>",       "Go To Definition" },
-			D = { "<CMD>lua require('telescope.builtin').lsp_type_definitions() <CR>", "Go To Type Definition (Declaration)" },
-			I = { "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>",   "Go To Implementation" },
+			-- d = { "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>",       "Go To Definition" },
+			-- D = { "<CMD>lua require('telescope.builtin').lsp_type_definitions() <CR>", "Go To Type Definition (Declaration)" },
+			-- I = { "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>",   "Go To Implementation" },
+			d = { "<CMD>Trouble lsp_definitions<CR>", "Go To Definition" },
+			D = { "<CMD>Trouble lsp_type_definitions<CR>", "Go To Type Definition (Declaration)" },
+			I = { "<CMD>Trouble lsp_implementations<CR>", "Go To Implementation" },
+
 			-- Reference
-			r = { "<CMD>lua require('telescope.builtin').lsp_references()<CR>", "Show References" },
+			-- r = { "<CMD>lua require('telescope.builtin').lsp_references()<CR>", "Show References" },
+			r = { "<CMD>Trouble lsp_references<CR>", "Show References" },
 
 			-- Diagnostic Info
 			l = { "<CMD>lua vim.diagnostic.open_float()<CR>", "Show Long Diagnostic Info" },
@@ -41,8 +46,10 @@ return {
 			a = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
 
 			-- Diagnostic Info
-			d = { "<CMD>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Document Diagnostics" },
-			D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>",          "Workspace Diagnostics" },
+			-- d = { "<CMD>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Document Diagnostics" },
+			-- D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>",          "Workspace Diagnostics" },
+			d = { "<CMD>Trouble document_diagnostics<CR>", "Document Diagnostics" },
+			D = { "<CMD>Trouble workspace_diagnostics<CR>", "Workspace Diagnostics" },
 
 			-- Goto Prev/Next Diagnostics
 			p = { "<CMD>lua vim.diagnostic.goto_prev()<CR>", "Goto Prev Diagnostics" },

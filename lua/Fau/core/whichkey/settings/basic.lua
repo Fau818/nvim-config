@@ -147,29 +147,29 @@ return {
 		-- ---------------------------------------------
 		-- By Meta Key
 		["<A-1~9>"] = "Switch to Buffer <1~9>",
-		["<A-1>"] = { "<CMD>BufferLineGoToBuffer 1<CR>", "which_key_ignore" },
-		["<A-2>"] = { "<CMD>BufferLineGoToBuffer 2<CR>", "which_key_ignore" },
-		["<A-3>"] = { "<CMD>BufferLineGoToBuffer 3<CR>", "which_key_ignore" },
-		["<A-4>"] = { "<CMD>BufferLineGoToBuffer 4<CR>", "which_key_ignore" },
-		["<A-5>"] = { "<CMD>BufferLineGoToBuffer 5<CR>", "which_key_ignore" },
-		["<A-6>"] = { "<CMD>BufferLineGoToBuffer 6<CR>", "which_key_ignore" },
-		["<A-7>"] = { "<CMD>BufferLineGoToBuffer 7<CR>", "which_key_ignore" },
-		["<A-8>"] = { "<CMD>BufferLineGoToBuffer 8<CR>", "which_key_ignore" },
-		["<A-9>"] = { "<CMD>BufferLineGoToBuffer 9<CR>", "which_key_ignore" },
+		["<A-1>"] = { "<CMD>BufferLineGoToBuffer 1<CR>",  "which_key_ignore" },
+		["<A-2>"] = { "<CMD>BufferLineGoToBuffer 2<CR>",  "which_key_ignore" },
+		["<A-3>"] = { "<CMD>BufferLineGoToBuffer 3<CR>",  "which_key_ignore" },
+		["<A-4>"] = { "<CMD>BufferLineGoToBuffer 4<CR>",  "which_key_ignore" },
+		["<A-5>"] = { "<CMD>BufferLineGoToBuffer 5<CR>",  "which_key_ignore" },
+		["<A-6>"] = { "<CMD>BufferLineGoToBuffer 6<CR>",  "which_key_ignore" },
+		["<A-7>"] = { "<CMD>BufferLineGoToBuffer 7<CR>",  "which_key_ignore" },
+		["<A-8>"] = { "<CMD>BufferLineGoToBuffer 8<CR>",  "which_key_ignore" },
+		["<A-9>"] = { "<CMD>BufferLineGoToBuffer 9<CR>",  "which_key_ignore" },
 		["<A-0>"] = { "<CMD>BufferLineGoToBuffer -1<CR>", "Buffer Last" },
 
-		-- -- By Leader Key
-		-- ["<LEADER><1~9>"] = "Switch to Buffer <1~9>",
-		-- ["<LEADER>1"] = { "<CMD>BufferLineGoToBuffer 1<CR>", "which_key_ignore" },
-		-- ["<LEADER>2"] = { "<CMD>BufferLineGoToBuffer 2<CR>", "which_key_ignore" },
-		-- ["<LEADER>3"] = { "<CMD>BufferLineGoToBuffer 3<CR>", "which_key_ignore" },
-		-- ["<LEADER>4"] = { "<CMD>BufferLineGoToBuffer 4<CR>", "which_key_ignore" },
-		-- ["<LEADER>5"] = { "<CMD>BufferLineGoToBuffer 5<CR>", "which_key_ignore" },
-		-- ["<LEADER>6"] = { "<CMD>BufferLineGoToBuffer 6<CR>", "which_key_ignore" },
-		-- ["<LEADER>7"] = { "<CMD>BufferLineGoToBuffer 7<CR>", "which_key_ignore" },
-		-- ["<LEADER>8"] = { "<CMD>BufferLineGoToBuffer 8<CR>", "which_key_ignore" },
-		-- ["<LEADER>9"] = { "<CMD>BufferLineGoToBuffer 9<CR>", "which_key_ignore" },
-		-- ["<LEADER>0"] = { "<CMD>BufferLineGoToBuffer -1<CR>", "Buffer Last" },
+		-- By Leader Key
+		["<LEADER><1~9>"] = "Switch to Buffer <1~9>",
+		["<LEADER>1"] = { "<CMD>BufferLineGoToBuffer 1<CR>",  "which_key_ignore" },
+		["<LEADER>2"] = { "<CMD>BufferLineGoToBuffer 2<CR>",  "which_key_ignore" },
+		["<LEADER>3"] = { "<CMD>BufferLineGoToBuffer 3<CR>",  "which_key_ignore" },
+		["<LEADER>4"] = { "<CMD>BufferLineGoToBuffer 4<CR>",  "which_key_ignore" },
+		["<LEADER>5"] = { "<CMD>BufferLineGoToBuffer 5<CR>",  "which_key_ignore" },
+		["<LEADER>6"] = { "<CMD>BufferLineGoToBuffer 6<CR>",  "which_key_ignore" },
+		["<LEADER>7"] = { "<CMD>BufferLineGoToBuffer 7<CR>",  "which_key_ignore" },
+		["<LEADER>8"] = { "<CMD>BufferLineGoToBuffer 8<CR>",  "which_key_ignore" },
+		["<LEADER>9"] = { "<CMD>BufferLineGoToBuffer 9<CR>",  "which_key_ignore" },
+		["<LEADER>0"] = { "<CMD>BufferLineGoToBuffer -1<CR>", "Buffer Last" },
 
 
 		-- -----------------------------------
@@ -177,7 +177,8 @@ return {
 		-- -----------------------------------
 		["<LEADER>b"] = {
 			name = "+Buffer",
-			j = { "<CMD>BufferLinePick<CR>", "Buffer Pick" },
+			j = { "<CMD>BufferLinePick<CR>",      "Buffer Pick" },
+			t = { "<CMD>BufferLineTogglePin<CR>", "Toggle Pin" },
 		},
 
 
