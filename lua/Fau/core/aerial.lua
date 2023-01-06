@@ -13,7 +13,7 @@ if aerial == nil then return end
 local config = { -- Call the setup function to change the default behavior
 	-- Priority list of preferred backends for aerial.
 	-- This can be a filetype map (see :help aerial-filetype-map)
-	backends = { "lsp", "treesitter", "markdown", "man" },
+	backends = { "treesitter", "lsp", "markdown", "man" },
 
 	layout = {
 		-- These control the width of the aerial window.
@@ -106,31 +106,32 @@ local config = { -- Call the setup function to change the default behavior
 	-- A list of all symbols to display. Set to false to display all symbols.
 	-- This can be a filetype map (see :help aerial-filetype-map)
 	-- To see all available values, see :help SymbolKind
-	filter_kind = {
-		"Class",
-		"Constant",
-		"Constructor",
-		"Enum",
-		"EnumMember",
-		"Event",
-		"Field",
-		"File",
-		"Function",
-		"Interface",
-		"Method",
-		"Module",
-		"Namespace",
-		"Null",
-		"Number",
-		"Object",
-		"Operator",
-		"Package",
-		"Property",
-		"String",
-		"Struct",
-		"TypeParameter",
-		"Variable",
-	},
+	-- filter_kind = {
+	-- 	"Class",
+	-- 	"Constant",
+	-- 	"Constructor",
+	-- 	"Enum",
+	-- 	"EnumMember",
+	-- 	"Event",
+	-- 	"Field",
+	-- 	"File",
+	-- 	"Function",
+	-- 	"Interface",
+	-- 	"Method",
+	-- 	"Module",
+	-- 	"Namespace",
+	-- 	"Null",
+	-- 	"Number",
+	-- 	"Object",
+	-- 	"Operator",
+	-- 	"Package",
+	-- 	"Property",
+	-- 	"String",
+	-- 	"Struct",
+	-- 	"TypeParameter",
+	-- 	"Variable",
+	-- },
+	filter_kind = false,
 
 
 	-- Determines line highlighting mode when multiple splits are visible.
@@ -270,11 +271,11 @@ local config = { -- Call the setup function to change the default behavior
 		height = nil,
 		min_height = { 8, 0.1 },
 
-		override = function(conf, source_winid)
-			-- This is the config that will be passed to nvim_open_win.
-			-- Change values here to customize the layout
-			return conf
-		end,
+		-- override = function(conf, source_winid)
+		-- 	-- This is the config that will be passed to nvim_open_win.
+		-- 	-- Change values here to customize the layout
+		-- 	return conf
+		-- end,
 	},
 
 	lsp = {

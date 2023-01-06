@@ -51,8 +51,8 @@ local function setup_server(server)
 	}
 
 	-- load custom settings
-	local require_ok, setting_opts = pcall(require, "Fau.core.lsp.settings." .. server)
-	if require_ok then opts = vim.tbl_deep_extend("force", opts, setting_opts) end
+	local settings_ok, setting_opts = pcall(require, "Fau.core.lsp.settings." .. server)
+	if settings_ok then opts = vim.tbl_deep_extend("force", opts, setting_opts) end
 
 	-- setup LSP
 	lspconfig[server].setup(opts)

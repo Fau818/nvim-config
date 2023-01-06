@@ -15,11 +15,11 @@ vim.api.nvim_create_user_command("EditSnip",
 
 
 -- -----------------------------------
--- -------- Edit Style
+-- -------- Edit Configuration
 -- -----------------------------------
-vim.api.nvim_create_user_command("EditStyle",
+vim.api.nvim_create_user_command("EditConfiguration",
 	function()
-		vim.api.nvim_command("edit " .. Fau_vim.config_path .. "/style")
+		vim.api.nvim_command("edit " .. Fau_vim.config_path .. "/configuration")
 	end, {}
 )
 
@@ -33,5 +33,15 @@ vim.api.nvim_create_user_command("FauvimConfig",
 		-- vim.api.nvim_command("NvimTreeToggle")
 		-- vim.api.nvim_command("Alpha")
 		-- vim.api.nvim_command("NvimTreeToggle")
+	end, {}
+)
+
+
+-- -----------------------------------
+-- -------- Copy pyproject.toml file
+-- -----------------------------------
+vim.api.nvim_create_user_command("GetpyprojectFile",
+	function()
+		vim.api.nvim_command("!cp " .. Fau_vim.config_path .. "/configuration/pyproject.toml" .. " .")
 	end, {}
 )
