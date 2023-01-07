@@ -43,21 +43,21 @@ local npairs_rule = require("nvim-autopairs.rule")
 -- -----------------------------------
 -- -------- Add Space Between Brackets
 -- -----------------------------------
-local brackets_single = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
+local brackets_basic = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
 npairs.add_rules {
 	npairs_rule(" ", " "):with_pair(
 		function(opts)
 			local pair = opts.line:sub(opts.col - 1, opts.col)
 			return vim.tbl_contains({
-				brackets_single[1][1] .. brackets_single[1][2],
-				brackets_single[2][1] .. brackets_single[2][2],
-				brackets_single[3][1] .. brackets_single[3][2],
+				brackets_basic[1][1] .. brackets_basic[1][2],
+				brackets_basic[2][1] .. brackets_basic[2][2],
+				brackets_basic[3][1] .. brackets_basic[3][2],
 			}, pair)
 		end
 	)
 }
 
-for _, bracket in pairs(brackets_single) do
+for _, bracket in pairs(brackets_basic) do
 	npairs.add_rules {
 		npairs_rule(bracket[1] .. " ", " " .. bracket[2])
 			:with_pair(function() return false end)
@@ -65,20 +65,6 @@ for _, bracket in pairs(brackets_single) do
 			:use_key(bracket[2])
 	}
 end
-
-
-local brackets_double = { { "{%", "%}" }, { "{#", "#}" } }
-npairs.add_rules {
-	npairs_rule(" ", " "):with_pair(
-		function(opts)
-			local pair = opts.line:sub(opts.col - 2, opts.col + 1)
-			return vim.tbl_contains({
-				brackets_double[1][1] .. brackets_double[1][2],
-				brackets_double[2][1] .. brackets_double[2][2],
-			}, pair)
-		end
-	)
-}
 
 
 -- -------------------------------------------
@@ -92,7 +78,7 @@ npairs.add_rules({
 
 
 -- -----------------------------------
--- -------- For Jinja2
+-- -------- For Jinja
 -- -----------------------------------
 npairs.add_rules({
 	npairs_rule("{%", "%}", "html")
@@ -114,3 +100,17 @@ npairs.add_rules({
 			end
 		)
 })
+
+
+local brackets_jinja = { { "{%", "%}" }, { "{#", "#}" } }
+npairs.add_rules {
+	npairs_rule(" ", " "):with_pair(
+		function(opts)
+			local pair = opts.line:sub(opts.col - 2, opts.col + 1)
+			return vim.tbl_contains({
+				brackets_jinja[1][1] .. brackets_jinja[1][2],
+				brackets_jinja[2][1] .. brackets_jinja[2][2],
+			}, pair)
+		end
+	)
+}
