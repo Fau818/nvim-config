@@ -50,9 +50,11 @@ local config = {
 		enable_autocmd = false,
 	},
 
-
 	-- nvim-ts-autotag plugin
 	autotag = { enable = true },
+
+	-- nvim-treesitter-endwise plugin
+	endwise = { enable = true },
 }
 
 

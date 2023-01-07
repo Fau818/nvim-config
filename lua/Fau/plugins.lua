@@ -149,6 +149,7 @@ return require("packer").startup(function(use)
 	use "echasnovski/mini.align" -- align text
 	use "fedepujol/move.nvim"    -- move line
 	use "windwp/nvim-ts-autotag" -- autotag
+	use "RRethy/nvim-treesitter-endwise" -- auto end
 
 
 	-- =============================================
