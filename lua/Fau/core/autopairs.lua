@@ -6,7 +6,6 @@ if npairs == nil then return end
 
 
 
-
 -- =============================================
 -- ========== Configuration
 -- =============================================
@@ -44,35 +43,74 @@ local npairs_rule = require("nvim-autopairs.rule")
 -- -----------------------------------
 -- -------- Add Space Between Brackets
 -- -----------------------------------
-local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
+local brackets_single = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
 npairs.add_rules {
 	npairs_rule(" ", " "):with_pair(
 		function(opts)
 			local pair = opts.line:sub(opts.col - 1, opts.col)
 			return vim.tbl_contains({
-				brackets[1][1] .. brackets[1][2],
-				brackets[2][1] .. brackets[2][2],
-				brackets[3][1] .. brackets[3][2],
-				}, pair)
+				brackets_single[1][1] .. brackets_single[1][2],
+				brackets_single[2][1] .. brackets_single[2][2],
+				brackets_single[3][1] .. brackets_single[3][2],
+			}, pair)
 		end
 	)
 }
 
-for _, bracket in pairs(brackets) do
+for _, bracket in pairs(brackets_single) do
 	npairs.add_rules {
 		npairs_rule(bracket[1] .. " ", " " .. bracket[2])
-				:with_pair(function() return false end)
-				:with_move(function(opts) return opts.prev_char:match(".%" .. bracket[2]) ~= nil end)
-				:use_key(bracket[2])
+			:with_pair(function() return false end)
+			:with_move(function(opts) return opts.prev_char:match(".%" .. bracket[2]) ~= nil end)
+			:use_key(bracket[2])
 	}
 end
 
 
+local brackets_double = { { "{%", "%}" }, { "{#", "#}" } }
+npairs.add_rules {
+	npairs_rule(" ", " "):with_pair(
+		function(opts)
+			local pair = opts.line:sub(opts.col - 2, opts.col + 1)
+			return vim.tbl_contains({
+				brackets_double[1][1] .. brackets_double[1][2],
+				brackets_double[2][1] .. brackets_double[2][2],
+			}, pair)
+		end
+	)
+}
+
+
 -- -------------------------------------------
--- -------- arrow key on javascript [test]
+-- -------- Arrow Key On Javascript [test]
 -- -------------------------------------------
 npairs.add_rules({
-  npairs_rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
-  :use_regex(true)
-  :set_end_pair_length(2)
+	npairs_rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
+		:use_regex(true)
+		:set_end_pair_length(2)
+})
+
+
+-- -----------------------------------
+-- -------- For Jinja2
+-- -----------------------------------
+npairs.add_rules({
+	npairs_rule("{%", "%}", "html")
+		:replace_endpair(
+			function(opts)
+				if opts.next_char == '}' then return "%" end
+				return "%}"
+			end
+		)
+})
+
+
+npairs.add_rules({
+	npairs_rule("{#", "#}", "html")
+		:replace_endpair(
+			function(opts)
+				if opts.next_char == '}' then return "#" end
+				return "#}"
+			end
+		)
 })

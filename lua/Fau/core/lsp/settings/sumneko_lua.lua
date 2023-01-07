@@ -33,14 +33,14 @@ return {
 				enable = true,  -- Enable code formatter.
 
 				defaultConfig = {
-					-- =============================================
-					-- ========== Basic
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Basic
+					-- -----------------------------------
 					max_line_length = "120",  -- if this is 'unset' then the line width is no longer checked
 
 					indent_style = "tab",  -- it doesn't work in neovim
 					indent_size = "2",     -- it doesn't work in neovim
-					tab_width = "2",       -- it doesn't work in neovim 
+					tab_width = "2",       -- it doesn't work in neovim
 					continuation_indent_size = "4",
 
 					detect_end_of_line = "false",
@@ -51,9 +51,9 @@ return {
 					insert_final_newline = "true",
 
 
-					-- =============================================
-					-- ========== Function
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Function
+					-- -----------------------------------
 					align_call_args = "true",  -- values: true|false
 					align_function_define_params = "true",
 
@@ -62,9 +62,9 @@ return {
 					call_arg_parentheses = "keep",  -- values: keep|remove|remove_table_only|remove_string_only|unambiguous_remove_string_only
 
 
-					-- =============================================
-					-- ========== Table
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Table
+					-- -----------------------------------
 					table_separator_style = "comma",  -- values: none|comma|semicolon
 					trailing_table_separator = "keep",  -- values: keep|never|always|smart
 					continuous_assign_table_field_align_to_equal_sign = "true",
@@ -72,9 +72,9 @@ return {
 					align_table_field_to_first_field = "false",  -- if indent_style is tab, this option is invalid
 
 
-					-- =============================================
-					-- ========== Statement
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Statement
+					-- -----------------------------------
 					align_chained_expression_statement = "false",
 					continuous_assign_statement_align_to_equal_sign = "true",
 					if_condition_align_with_each_other = "false",
@@ -85,18 +85,18 @@ return {
 					max_continuous_line_distance = "0",  -- This option indicates the definition of continuous lines, and its value determines the same continuous when the spacing between lines is less than or equal to how much.
 
 
-					-- =============================================
-					-- ========== Indentation
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Indentation
+					-- -----------------------------------
 					label_no_indent = "false",
 					do_statement_no_indent = "false",
 					if_condition_no_continuation_indent = "true",
 					if_branch_comments_after_block_no_indent = "true",
 
 
-					-- =============================================
-					-- ========== Space
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Space
+					-- -----------------------------------
 					table_append_expression_no_space = "true",  -- like [a+b] not [a + b]
 
 
@@ -114,13 +114,13 @@ return {
 					keep_one_space_between_namedef_and_attribute = "false",
 
 
-					-- =============================================
-					-- ========== row_layout
-					-- =============================================
+					-- -----------------------------------
+					-- -------- row_layout
+					-- -----------------------------------
 					--[[
 						The following configuration supports four expressions
-							minLine:${n}   
-							keepLine   
+							minLine:${n}
+							keepLine
 							keepLine:${n}
 							maxLine:${n}
 					--]]
@@ -134,9 +134,9 @@ return {
 					keep_line_after_expression_statement = "keepLine",
 
 
-					-- =============================================
-					-- ========== Diagnostic
-					-- =============================================
+					-- -----------------------------------
+					-- -------- Diagnostic
+					-- -----------------------------------
 					enable_check_codestyle = "false",
 					enable_name_style_check = "false",
 					-- https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/lua.template.editorconfig
