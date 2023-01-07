@@ -135,7 +135,7 @@ return {
 
 
 			-- check unexpected indent type
-			local space_pat, tab_pat = [[\v^ +]], [[\v^\t+]]
+			local space_pat, tab_pat = [[\v^  +]], [[\v^\t+]]
 			local space_indent_cnt = vim.fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
 			local tab_indent_cnt = vim.fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
 
@@ -148,7 +148,6 @@ return {
 
 
 			-- check mixed indent
-			-- TODO: avoid " *" pattern
 			local mixed_line = 0
 			if space_indent_cnt > 0 and tab_indent_cnt > 0 then -- get the mixed_line
 				if file_indent_type then mixed_line = vim.fn.search(tab_pat, "nwc")
