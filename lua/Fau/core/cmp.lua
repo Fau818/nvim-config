@@ -119,7 +119,7 @@ local config = {
 	},
 
 	sources = { -- The order of the sources determines their order in the completion results.
-		{ name = "nvim_lsp_signature_help" },
+		-- { name = "nvim_lsp_signature_help" },
 		{
 			name = "nvim_lsp",
 			-- disable snippets from LSP

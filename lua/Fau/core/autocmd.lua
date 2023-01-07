@@ -16,11 +16,11 @@ vim.cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 -- ========== FileType
 -- =============================================
 vim.cmd [[ augroup Fau_vim
-	autocmd FileType lua    setlocal smartindent tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-	autocmd FileType python setlocal smartindent tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-	autocmd FileType c      setlocal smartindent tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-	autocmd FileType cpp    setlocal smartindent tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-	autocmd FileType json   setlocal smartindent tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+	autocmd FileType lua    setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+	autocmd FileType python setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+	autocmd FileType c      setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+	autocmd FileType cpp    setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+	autocmd FileType json   setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
 augroup END ]]
 
 
