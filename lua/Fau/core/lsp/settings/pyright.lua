@@ -19,7 +19,7 @@ return {
 
 				-- logLevel = "Information",  -- values: Error|Warning|Information|Trace
 
-				typeCheckingMode = "basic", -- values: off|basic|strict
+				typeCheckingMode = "off", -- values: off|basic|strict
 
 				-- useLibraryCodeForTypes = false,  -- Note: If false, not the default behavior. [Don't know why]
 			}

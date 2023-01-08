@@ -48,7 +48,7 @@ null_ls.setup({
 		-- null_ls.builtins.diagnostics.mypy,
 		-- null_ls.builtins.diagnostics.vulture,
 
-		-- null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.black,
 		-- null_ls.builtins.formatting.blue,
 		-- null_ls.builtins.formatting.yapf,
 	},

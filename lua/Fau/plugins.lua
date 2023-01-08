@@ -121,15 +121,17 @@ return require("packer").startup(function(use)
 
 	use "stevearc/dressing.nvim"  -- a ui selector
 
-	use "kyazdani42/nvim-tree.lua"   -- a file explorer tree
-	use "nvim-lualine/lualine.nvim"  -- bottom status line
-	use "SmiteshP/nvim-navic"				 -- breadcrumb
-	use "akinsho/bufferline.nvim"    -- show the buffer tab
-	use "famiu/bufdelete.nvim"       -- close the buffer but don't affect the layout (like vim-bbye)
+	use "kyazdani42/nvim-tree.lua"  -- a file explorer tree
+	use "nvim-lualine/lualine.nvim" -- bottom status line
+	use "SmiteshP/nvim-navic"       -- breadcrumb
+	use "akinsho/bufferline.nvim"   -- show the buffer tab
+	use "famiu/bufdelete.nvim"      -- close the buffer but don't affect the layout (like vim-bbye)
+	use "stevearc/aerial.nvim"      -- Symbol Outline
 
 	use "lukas-reineke/indent-blankline.nvim" -- indent line
-	use "lewis6991/gitsigns.nvim"             -- show git status
-	use "folke/trouble.nvim"  -- for me, mainly used to show gitsigns quicklist
+
+	use "lewis6991/gitsigns.nvim" -- show git status
+	use "folke/trouble.nvim"      -- show gitsigns quicklist and LSP operations
 
 	use "akinsho/toggleterm.nvim"  -- toggle terminal
 
@@ -150,6 +152,7 @@ return require("packer").startup(function(use)
 	use "fedepujol/move.nvim"    -- move line
 	use "windwp/nvim-ts-autotag" -- autotag
 	use "RRethy/nvim-treesitter-endwise" -- auto end
+	use 'keaising/im-select.nvim'  -- auto switch input method
 
 
 	-- =============================================
@@ -162,9 +165,7 @@ return require("packer").startup(function(use)
 	-- ===================================
 	-- ======== new plugins [test]
 	-- ===================================
-	use "stevearc/aerial.nvim"  -- Symbol Outline
-
-	use 'keaising/im-select.nvim'  -- auto switch input method
+	use "pixelneo/vim-python-docstring"
 
 	-- DAP
 	-- use "mfussenegger/nvim-dap"

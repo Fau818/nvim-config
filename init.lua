@@ -55,6 +55,7 @@ require "Fau.core.tabout"
 require "Fau.core.align"
 require "Fau.core.code_runner"
 require "Fau.core.im-select"
+require "Fau.core.python-docstring"
 
 -- parser
 require "Fau.core.treesitter"

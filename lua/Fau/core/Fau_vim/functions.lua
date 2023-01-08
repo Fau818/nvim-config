@@ -82,6 +82,12 @@ return {
 	-- -----------------------------------
 	format = function()
 		local bufnr = vim.api.nvim_get_current_buf()
+		local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+
+		-- specific filetype
+		if filetype == "python" then return auto_indent() end
+
+		-- by lsp capability
 		local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
 		clients = vim.tbl_filter(function(client) return client.supports_method("textDocument/formatting") end, clients)
 
