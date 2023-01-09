@@ -19,14 +19,14 @@ local config = {
 		section_separators   = { left = Fau_vim.icons.ui.BoldDividerLeft, right = Fau_vim.icons.ui.BoldDividerRight },
 
 		disabled_filetypes = {  -- Filetypes to disable lualine for.
-			statusline = { "alpha", "aerial", "Trouble", "NvimTree" }, -- only ignores the ft for statusline.
-			winbar     = { "alpha", "aerial", "Trouble", "NvimTree" }, -- only ignores the ft for winbar.
+			statusline = { "alpha", }, -- only ignores the ft for statusline.
+			winbar     = { "alpha", }, -- only ignores the ft for winbar.
 		},
 
-		ignore_focus = { "help", "toggleterm" }, -- show as inactive
+		ignore_focus = { "help", "toggleterm", "Trouble", "NvimTree", "aerial" }, -- show as inactive
 
 		always_divide_middle = true,
-		globalstatus = false,
+		globalstatus = true,
 
 		refresh = {          -- sets how often lualine should refreash it's contents (in ms)
 			statusline = 1000, -- The refresh option sets minimum time that lualine tries
