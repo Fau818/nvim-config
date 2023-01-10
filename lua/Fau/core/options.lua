@@ -24,7 +24,7 @@ local options = {
 	pumheight = 8,   -- popup menu height
 
 	scrolloff = 10,     -- minimal number of lines to keep above and below the cursor
-	sidescrolloff = 10, -- minimal number of columns to keep left and right the cursor
+	sidescrolloff = 15, -- minimal number of columns to keep left and right the cursor
 
 	hlsearch = true,   -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns

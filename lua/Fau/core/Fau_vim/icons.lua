@@ -40,17 +40,19 @@ return {
 	},
 
 
-	git = { -- for lualine
+	git = {
 		LineAdded = "",
 		LineModified = "",
 		LineRemoved = "",
+
 		FileDeleted = "",
 		FileIgnored = "◌",
 		FileRenamed = "➜",
-		FileStaged = "S",
 		FileUnmerged = "",
-		FileUnstaged = "",
-		FileUntracked = "U",
+		FileStaged = "✓",
+		FileUnstaged = "✗",
+		FileUntracked = "★",
+
 		Diff = "",
 		Repo = "",
 		Octoface = "",
