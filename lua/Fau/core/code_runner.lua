@@ -73,6 +73,11 @@ local config = {
 			file_name = "app.py",
 			-- command = "export PYTHONPATH=$(pwd) && python"
 		},
+		["~/demo_project"] = {
+			name = "test project",
+			description = "test",
+			file_name = "test.py",
+		}
 	},
 
 

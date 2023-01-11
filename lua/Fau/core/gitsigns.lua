@@ -11,44 +11,12 @@ if gitsigns == nil then return end
 -- =============================================
 local config = {
 	signs = {
-		add = {
-			hl = "GitSignsAdd",
-			text = Fau_vim.icons.gitsigns.BoldLineLeft,
-			numhl = "GitSignsAddNr",
-			linehl = "GitSignsAddLn",
-			show_count = true
-		},
-		change = {
-			hl = "GitSignsChange",
-			text = Fau_vim.icons.gitsigns.BoldLineLeft,
-			numhl = "GitSignsChangeNr",
-			linehl = "GitSignsChangeLn",
-			show_count = true
-		},
-		delete = {
-			hl = "GitSignsDelete",
-			text = Fau_vim.icons.gitsigns.Triangle,
-			numhl = "GitSignsDeleteNr",
-			linehl = "GitSignsDeleteLn"
-		},
-		topdelete = {
-			hl = "GitSignsDelete",
-			text = Fau_vim.icons.gitsigns.Triangle,
-			numhl = "GitSignsDeleteNr",
-			linehl = "GitSignsDeleteLn"
-		},
-		changedelete = {
-			hl = "GitSignsChange",
-			text = Fau_vim.icons.gitsigns.BoldLineLeft,
-			numhl = "GitSignsChangeNr",
-			linehl = "GitSignsChangeLn"
-		},
-		untracked = {
-			hl = "GitSignsAdd",
-			text = Fau_vim.icons.gitsigns.Untracked,
-			numhl = "GitSignsAddNr",
-			linehl = "GitSignsAddLn"
-		},
+		add = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
+		change = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
+		delete = { text = Fau_vim.icons.gitsigns.Triangle, },
+		topdelete = { text = Fau_vim.icons.gitsigns.Triangle, },
+		changedelete = { text = Fau_vim.icons.gitsigns.BoldLineLeft, },
+		untracked = { text = Fau_vim.icons.gitsigns.Untracked, },
 	},
 
 	count_chars = {
