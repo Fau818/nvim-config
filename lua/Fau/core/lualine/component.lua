@@ -293,6 +293,7 @@ return {
 			end
 
 			return winbar
-		end
+		end,
+		color = { bg = "none" },
 	},
 }

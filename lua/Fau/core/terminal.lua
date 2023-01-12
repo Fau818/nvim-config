@@ -48,6 +48,12 @@ local config = {
 	winbar = {
 		enabled = false,
 	},
+
+	highlights = {
+		Normal = { guibg = "none", },
+		NormalFloat = { guibg = "none", },
+		FloatBorder = { guifg = "none", guibg = "none", },
+	},
 }
 
 
@@ -91,10 +97,11 @@ local float = Terminal:new({
 	dir = "git_dir",
 	direction = "float",
 	float_opts = {
-		border = "curved",
+		border = "none",
 		winblend = 5,
+		height = 888888,
+		width = 888888
 	},
-
 	on_open = function() vim.cmd("startinsert!") end,
 })
 

@@ -147,12 +147,13 @@ return require("packer").startup(function(use)
 	-- ===================================
 	-- ======== better writing
 	-- ===================================
-	use "abecodes/tabout.nvim"   -- type <TAB> could jump out of brakets
-	use "echasnovski/mini.align" -- align text
-	use "fedepujol/move.nvim"    -- move line
-	use "windwp/nvim-ts-autotag" -- autotag
+	use "abecodes/tabout.nvim"           -- type <TAB> could jump out of brakets
+	use "echasnovski/mini.align"         -- align text
+	use "fedepujol/move.nvim"            -- move line
+	use "windwp/nvim-ts-autotag"         -- autotag
 	use "RRethy/nvim-treesitter-endwise" -- auto end
-	use 'keaising/im-select.nvim'  -- auto switch input method
+	use 'keaising/im-select.nvim'        -- auto switch input method
+	use "pixelneo/vim-python-docstring"	 -- auto python docstring
 
 
 	-- =============================================
@@ -165,7 +166,7 @@ return require("packer").startup(function(use)
 	-- ===================================
 	-- ======== new plugins [test]
 	-- ===================================
-	use "pixelneo/vim-python-docstring"
+	use "xiyaowong/nvim-transparent"
 
 	-- DAP
 	-- use "mfussenegger/nvim-dap"

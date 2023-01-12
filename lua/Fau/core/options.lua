@@ -43,6 +43,7 @@ local options = {
 	softtabstop = 2,        -- set how many spaces will convert to a tab [expandtab=true]
 	expandtab = false,      -- convert tabs to spaces
 
+	wrap = false,
 	linebreak = true, -- line break after an entire word
 
 	mousemoveevent = true, -- for bufferline hover events

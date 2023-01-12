@@ -10,7 +10,7 @@ if notify == nil then return end
 -- ========== Configuration
 -- =============================================
 local config = {
-	background_colour = "Normal",
+	background_colour = "#D4D4D4",
 	fps = 30,
 	icons = {
 		DEBUG = Fau_vim.icons.diagnostics.Debug,

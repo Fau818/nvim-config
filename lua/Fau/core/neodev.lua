@@ -23,9 +23,8 @@ local config = {
 	-- 	library.plugins = true
 	-- end,
 	lspconfig = true, -- if true, Neodev will automatically setup your lua-language-server
+	pathStrict = true,
 }
 
 
 neodev.setup(config)
-
--- [TODO: A bug here, it can't access neovim config path. (which say it can't prompt the file name)]

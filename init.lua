@@ -31,6 +31,7 @@ require "Fau.core.navic"
 require "Fau.core.bufferline"
 require "Fau.core.indentline"
 require "Fau.core.gitsigns"
+require "Fau.core.aerial"
 
 -- surround and comment [better writing]
 require "Fau.core.comment"
@@ -69,4 +70,4 @@ require "Fau.core.terminal"
 -- =============================================
 -- ========== test
 -- =============================================
-require "Fau.core.aerial"
+require "Fau.core.transparent"
