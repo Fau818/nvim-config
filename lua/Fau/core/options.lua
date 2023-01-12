@@ -19,9 +19,10 @@ local options = {
 	numberwidth = 2,       -- set number column width to 2 (default: 4)
 	signcolumn = "yes",    -- always show the sign column
 
-	showtabline = 1, -- tab line config
-	cmdheight = 1,   -- commandline height
-	pumheight = 8,   -- popup menu height
+	showtabline = 1,  -- tab line config
+	cmdheight = 1,    -- commandline height
+	pumheight = 8,    -- popup menu height
+	showmode = false, -- do not show current mode in bottom-left
 
 	scrolloff = 10,     -- minimal number of lines to keep above and below the cursor
 	sidescrolloff = 15, -- minimal number of columns to keep left and right the cursor
