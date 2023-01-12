@@ -23,7 +23,7 @@ local config = {
 			winbar     = { "alpha", }, -- only ignores the ft for winbar.
 		},
 
-		ignore_focus = { "help", "toggleterm", "Trouble", "NvimTree", "aerial" }, -- show as inactive
+		ignore_focus = { "help", "toggleterm", "Trouble", "NvimTree", "aerial", }, -- show as inactive
 
 		always_divide_middle = true,
 		globalstatus = true,

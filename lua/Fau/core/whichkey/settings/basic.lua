@@ -105,6 +105,11 @@ return {
 		-- Dashboard
 		[";"] = { "<CMD>Alpha<CR>", "Dashboard" },
 
+		-- Twilight
+		["<LEADER><LEADER>t"] = { "<CMD>Twilight<CR>", "Toggle Twilight" },
+		["<LEADER><LEADER>z"] = { "<CMD>ZenMode<CR>", "Toggle ZenMode" },
+
+
 
 		-- =============================================
 		-- ========== Window Operations

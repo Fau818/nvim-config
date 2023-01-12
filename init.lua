@@ -71,3 +71,5 @@ require "Fau.core.terminal"
 -- ========== test
 -- =============================================
 require "Fau.core.transparent"
+require "Fau.core.twilight"
+require "Fau.core.zen-mode"

@@ -49,6 +49,7 @@ return require("packer").startup(function(use)
 	use "nvim-lua/popup.nvim"          -- an implementation of the Popup API from vim in Neovim.
 	use "kyazdani42/nvim-web-devicons" -- icons provider
 	use "lewis6991/impatient.nvim"     -- speed up the start time of neovim
+	use "MunifTanjim/nui.nvim"
 
 
 	-- ===================================
@@ -149,11 +150,11 @@ return require("packer").startup(function(use)
 	-- ===================================
 	use "abecodes/tabout.nvim"           -- type <TAB> could jump out of brakets
 	use "echasnovski/mini.align"         -- align text
-	use "fedepujol/move.nvim"            -- move line
+	use "Fau818/move.nvim"							 -- "fedepujol/move.nvim"  move lines
 	use "windwp/nvim-ts-autotag"         -- autotag
 	use "RRethy/nvim-treesitter-endwise" -- auto end
 	use 'keaising/im-select.nvim'        -- auto switch input method
-	use "pixelneo/vim-python-docstring"	 -- auto python docstring
+	use "pixelneo/vim-python-docstring"  -- auto python docstring
 
 
 	-- =============================================
@@ -167,6 +168,11 @@ return require("packer").startup(function(use)
 	-- ======== new plugins [test]
 	-- ===================================
 	use "xiyaowong/nvim-transparent"
+	use "folke/noice.nvim"
+	use "folke/twilight.nvim"
+	use "folke/zen-mode.nvim"
+
+
 
 	-- DAP
 	-- use "mfussenegger/nvim-dap"

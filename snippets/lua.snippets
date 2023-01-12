@@ -12,6 +12,25 @@ snippet load_plugin_by_Fau_vim #call Fau_vim.load_plugin templete
 	local $1 = Fau_vim.load_plugin("$2")
 	if $1 == nil then return end$0
 
+snippet plugin_init #plugin initialization
+	-- =============================================
+	-- ========== Plugin Loading
+	-- =============================================
+	local $1 = Fau_vim.load_plugin("$2")
+	if $1 == nil then return end
+
+
+
+	-- =============================================
+	-- ========== Configuration
+	-- =============================================
+	local config = {
+		$0
+	}
+
+
+	$1.setup(config)
+
 snippet #!
 	#!/usr/bin/env lua
 	$1
