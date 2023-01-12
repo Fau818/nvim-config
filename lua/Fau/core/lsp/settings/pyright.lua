@@ -21,7 +21,7 @@ return {
 
 				typeCheckingMode = "off", -- values: off|basic|strict
 
-				-- useLibraryCodeForTypes = false,  -- Note: If false, not the default behavior. [Don't know why]
+				-- useLibraryCodeForTypes = true,  -- Note: If false (default), not the default behavior. [Don't know why]
 			}
 		}
 	}

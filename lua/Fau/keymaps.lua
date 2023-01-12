@@ -33,6 +33,7 @@ keymap("n", "K", "5k", opts_remap) -- for telescope
 -- ========== Quick Save and Close
 -- =============================================
 keymap("n", "Q", "<CMD>q<CR>", opts)
+-- keymap("n", "<C-S-q>", "<CMD>xall<CR>", opts)
 keymap("n", "<C-S-q>", "<CMD>wall<CR><CMD>qall<CR>", opts)  -- `xall` doesn't work well when use toggle terminal
 
 
@@ -60,6 +61,9 @@ keymap("n", "<LEADER>n", "<CMD>nohlsearch<CR>", opts)
 
 -- Use '<LEADER>q' to Recording
 keymap("n", "<LEADER>q", "q", opts)
+
+-- Open File Folder
+keymap("n", "<C-f>", "<CMD>silent !open $(dirname %)<CR>", opts)
 
 
 
