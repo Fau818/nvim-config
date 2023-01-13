@@ -47,7 +47,7 @@ end
 -- ========== Private Functions
 -- =============================================
 local function auto_indent()
-	local mode = vim.api.nvim_get_mode().mode
+	local mode = vim.api.nvim_get_mode()["mode"]
 	if mode == "v" or mode == "V" then -- indent selected
 		vim.api.nvim_input("gv=")
 	else -- indent all buffer
@@ -85,7 +85,9 @@ return {
 		local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
 
 		-- specific filetype
-		if filetype == "python" then return auto_indent() end
+		if filetype == "python" then return auto_indent()
+		elseif filetype == "c" or filetype == "cpp" then return auto_indent()
+		end
 
 		-- by lsp capability
 		local clients = vim.lsp.get_active_clients({ bufnr = bufnr })

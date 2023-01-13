@@ -34,7 +34,7 @@ end
 
 local function server_attach(client, bufnr)
 	-- disable lsp formatting
-	-- client.server_capabilities.documentFormattingProvider = false
+	-- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
 	-- for highlight support
 	if illuminate then illuminate.on_attach(client) end
 	-- for inlayhints support

@@ -52,5 +52,13 @@ null_ls.setup({
 		-- null_ls.builtins.diagnostics.vulture,
 
 		null_ls.builtins.formatting.black,
+
+
+		-- -----------------------------------
+		-- -------- C++
+		-- -----------------------------------
+		-- null_ls.builtins.formatting.clang_format.with({
+		-- 	extra_args = { "--style", "file:" .. Fau_vim.config_path .. "/configuration/.clang-format" }
+		-- }),
 	},
 })
