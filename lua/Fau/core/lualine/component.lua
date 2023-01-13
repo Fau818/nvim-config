@@ -35,7 +35,7 @@ local on_click = {
 local condition = {
 	hide_in_width = function()
 		local window_width_limit = 100
-		return vim.o.columns > window_width_limit
+		return vim.o.columns >= window_width_limit
 	end,
 }
 

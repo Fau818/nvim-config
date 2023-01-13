@@ -2,21 +2,21 @@ return {
 	settings = {
 		Lua = {
 			completion = {  -- Settings that adjust how autocompletions are provided while typing.
-				enable = true,               -- Enable completion.
+				enable = true,              -- Enable completion.
 
-				autoRequire = false,         -- When the input looks like a file name, automatically require this file.
+				autoRequire = true,         -- When the input looks like a file name, automatically require this file.
 
-				callSnippet = "Disable",     -- Shows function call snippets. values: Disable|Both|Replace
-				keywordSnippet = "Disable",  -- Shows keyword syntax snippets. values: Disable|Both|Replace
-				postfix = "@",               -- The symbol used to trigger the postfix suggestion.  [??? how to add]
-				displayContext = 5,          -- Preview the line number of the relevant code snippet
+				callSnippet = "Disable",    -- Shows function call snippets. values: Disable|Both|Replace
+				keywordSnippet = "Disable", -- Shows keyword syntax snippets. values: Disable|Both|Replace
+				postfix = "@",              -- The symbol used to trigger the postfix suggestion.  [??? how to add]
+				displayContext = 5,         -- Preview the line number of the relevant code snippet
 
-				requireSeparator = '.',      -- The separator used when `require`.
+				requireSeparator = '.',     -- The separator used when `require`.
 
-				showParams = true,           -- Display parameters in completion list.
+				showParams = true,          -- Display parameters in completion list.
 
-				showWord = "Fallback",       -- Show contextual words in suggestions. values: Enable|Fallback|Disable
-				workspaceWord = true,        -- Whether the displayed context word contains the content of other files in the workspace.
+				showWord = "Fallback",      -- Show contextual words in suggestions. values: Enable|Fallback|Disable
+				workspaceWord = true,       -- Whether the displayed context word contains the content of other files in the workspace.
 			},
 
 

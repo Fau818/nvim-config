@@ -257,8 +257,8 @@ local config = {
 
 	modified = { -- Indicate which file have unsaved modification.
 		enable = true,
-		show_on_dirs = true,
-		show_on_open_dirs = true,
+		show_on_dirs = false,
+		show_on_open_dirs = false,
 	},
 
 	actions = { -- Configuration for various actions.
