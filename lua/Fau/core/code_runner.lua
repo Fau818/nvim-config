@@ -52,7 +52,7 @@ local config = {
 		-- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
 		python = "export PYTHONPATH=$(pwd) && python3 $dir/$fileName",
 		c = "cd $dir && clang $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
-		cpp = "cd $dir && clang $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+		cpp = "cd $dir && clang++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
 		-- typescript = "deno run",
 		-- rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt"
 	},

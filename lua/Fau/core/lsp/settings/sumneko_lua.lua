@@ -4,7 +4,7 @@ return {
 			completion = {  -- Settings that adjust how autocompletions are provided while typing.
 				enable = true,              -- Enable completion.
 
-				autoRequire = true,         -- When the input looks like a file name, automatically require this file.
+				autoRequire = false,         -- When the input looks like a file name, automatically require this file.
 
 				callSnippet = "Disable",    -- Shows function call snippets. values: Disable|Both|Replace
 				keywordSnippet = "Disable", -- Shows keyword syntax snippets. values: Disable|Both|Replace

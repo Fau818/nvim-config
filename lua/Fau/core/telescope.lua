@@ -134,6 +134,11 @@ local config = {
 		-- -----------------------------------
 		find_files = {
 			-- theme = "dropdown",  -- false(default), "ivy", "dropdown", "cursor"
+			-- layout_config = {  -- if want to DIY
+			-- 	height = 0.2,
+			-- 	width = 0.5
+			-- }
+
 			layout_strategy = "center",
 			sorting_strategy = "ascending",
 			hidden = true, -- show hidden files

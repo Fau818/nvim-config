@@ -10,8 +10,8 @@ if notify == nil then return end
 -- ========== Configuration
 -- =============================================
 local config = {
-	background_colour = "#D4D4D4",
-	fps = 30,
+	background_colour = "#000000",
+	fps = 60,
 	icons = {
 		DEBUG = Fau_vim.icons.diagnostics.Debug,
 		ERROR = Fau_vim.icons.diagnostics.BoldError,
@@ -20,10 +20,10 @@ local config = {
 		WARN  = Fau_vim.icons.diagnostics.BoldWarning,
 	},
 	level = 2,
-	minimum_width = 50,
+	minimum_width = 35,
 	render = "default",  -- values: default|minimal|simple
-	stages = "fade_in_slide_out",
-	timeout = 1500,
+	stages = "fade_in_slide_out",  -- values: fade_in_slide_out|fade|slide|static
+	timeout = 1000,
 	top_down = true
 }
 
