@@ -65,6 +65,8 @@ keymap("n", "<LEADER>q", "q", opts)
 -- Open File Folder
 keymap("n", "<C-f>", "<CMD>silent !open $(dirname %)<CR>", opts)
 
+-- Convert tab and space
+keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab<CR>", opts)
 
 
 -- =============================================
@@ -157,6 +159,7 @@ keymap({ "n", "t" }, "<C-RIGHT>", "<CMD>vertical resize +2<CR>", opts)
 keymap({ "n", "t" }, "<C-DOWN>",  "<CMD>resize -1<CR>",          opts)
 keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
 
+
 -- -----------------------------------
 -- -------- TEST windows
 -- -----------------------------------
@@ -172,9 +175,9 @@ keymap({ "n", "t" }, "<S-right>", "<CMD>wincmd l<CR>", opts)
 
 
 
--- ===================================
+-- =============================================
 -- ======== Buffer Operations
--- ===================================
+-- =============================================
 -- Save and Close Buffers
 keymap("n", "q",         "<CMD>update<CR>", opts)
 keymap("n", "<LEADER>w", "<CMD>wall<CR>",   opts)
@@ -182,6 +185,6 @@ keymap("n", "<LEADER>w", "<CMD>wall<CR>",   opts)
 
 
 -- =============================================
--- ========== Terminal [TEST]
+-- ========== Terminal
 -- =============================================
 keymap("t", "<C-r>", "<Nop>", opts)

@@ -1,5 +1,5 @@
 -- Basic (in keymaps)
-local basic = {
+local basic = {  -- n
 	["U"]     = "Undo",
 	["<A-u>"] = "Undo Line",
 
@@ -17,6 +17,8 @@ local basic = {
 
 	["<TAB>"]   = "Indent Line",
 	["<S-TAB>"] = "Unindent Line",
+
+	["<LEADER><LEADER>c"] = "Convert Tab and Space (indent)",
 }
 
 
@@ -203,6 +205,7 @@ return {
 	x = {
 		move, edit, range,
 
+		["<LEADER><LEADER>c"] = "Convert Tab and Space (indent)",
 
 		["<A-j>"] = { ":MoveBlock(1)<CR>",   "Move Down"  },
 		["<A-k>"] = { ":MoveBlock(-1)<CR>",  "Move Up"    },
