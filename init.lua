@@ -1,9 +1,7 @@
 -- =============================================
 -- ========== basic configuration
 -- =============================================
-require "Fau.core.options"
 require "Fau.core.Fau_vim"
-require "Fau.keymaps"
 require "Fau.plugins"
 
 
@@ -66,8 +64,10 @@ require "Fau.core.illuminate"
 -- terminal
 require "Fau.core.terminal"
 
+-- DAP
+require "Fau.core.dap"
+
 
 -- =============================================
 -- ========== test
 -- =============================================
-require "Fau.core.dap"

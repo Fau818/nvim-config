@@ -1,7 +1,8 @@
 -- =============================================
 -- ========== Initialization
 -- =============================================
-Fau_vim = {}
+require "Fau.core.Fau_vim.options"
+require "Fau.core.Fau_vim.keymaps"
 require "Fau.core.Fau_vim.Fau_vim"
 
 
