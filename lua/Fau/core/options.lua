@@ -34,7 +34,7 @@ local options = {
 	splitbelow = true, -- force all horizontal splits to go below current window
 	splitright = true, -- force all vertical splits to go to the right of current window
 
-	timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
+	timeoutlen = 225, -- time to wait for a mapped sequence to complete (in milliseconds)
 	updatetime = 250,
 
 	fileencoding = "utf-8", -- the encoding written to a file

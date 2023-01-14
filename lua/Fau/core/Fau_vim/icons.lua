@@ -100,11 +100,30 @@ return {
 
 		Tree = "",
 
+		BoldArrowRight = "",
+
+		BreakPoint = "🛑",
 		Bug = "",
 		Stacks = " ",
 		Scopes = "",
 		Watches = "",
 		DebugConsole = " ",
 	},
+
+
+	dapui = {
+		Expanded = "",
+		Collapsed = "",
+		Circular = "",
+
+		Pause     = "",
+		Play      = "",
+		StepInto  = "",
+		StepOver  = "",
+		StepOut   = "",
+		StepBack  = "",
+		RunLast   = "",
+		Terminate = "",
+	}
 
 }

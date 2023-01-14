@@ -2,17 +2,15 @@
 -- ========== basic configuration
 -- =============================================
 require "Fau.core.options"
+require "Fau.core.Fau_vim"
 require "Fau.keymaps"
 require "Fau.plugins"
-
 
 
 -- =============================================
 -- ========== personal configuration
 -- =============================================
-require "Fau.core.Fau_vim"
 require "Fau.core.autocmd"
-
 
 
 -- =============================================
@@ -32,6 +30,7 @@ require "Fau.core.bufferline"
 require "Fau.core.indentline"
 require "Fau.core.gitsigns"
 require "Fau.core.aerial"
+require "Fau.core.transparent"
 
 -- surround and comment [better writing]
 require "Fau.core.comment"
@@ -57,6 +56,8 @@ require "Fau.core.align"
 require "Fau.core.code_runner"
 require "Fau.core.im-select"
 require "Fau.core.python-docstring"
+require "Fau.core.twilight"
+require "Fau.core.zen-mode"
 
 -- parser
 require "Fau.core.treesitter"
@@ -66,10 +67,7 @@ require "Fau.core.illuminate"
 require "Fau.core.terminal"
 
 
-
 -- =============================================
 -- ========== test
 -- =============================================
-require "Fau.core.transparent"
-require "Fau.core.twilight"
-require "Fau.core.zen-mode"
+require "Fau.core.dap"

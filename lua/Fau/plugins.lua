@@ -42,9 +42,9 @@ packer.init({ display = { open_fn = require("packer.util").float }, git = { clon
 return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"  -- manange packer itself
 
-	-- ===================================
+	-- =============================================
 	-- ======== utility
-	-- ===================================
+	-- =============================================
 	use "nvim-lua/plenary.nvim"        -- a utility tools repo for lua
 	use "nvim-lua/popup.nvim"          -- an implementation of the Popup API from vim in Neovim.
 	use "kyazdani42/nvim-web-devicons" -- icons provider
@@ -52,24 +52,24 @@ return require("packer").startup(function(use)
 	use "MunifTanjim/nui.nvim"
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== colorscheme
-	-- ===================================
+	-- =============================================
 	use "folke/tokyonight.nvim"
 	use "lunarvim/darkplus.nvim"
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== surround and comment
-	-- ===================================
+	-- =============================================
 	use "kylechui/nvim-surround"  -- surround plugin
 	use "numToStr/Comment.nvim"   -- comment plugin
 	use 'JoosepAlviste/nvim-ts-context-commentstring'  -- for setting the commentstring based on the cursor location in a file
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== completion and LSP
-	-- ===================================
+	-- =============================================
 	use "hrsh7th/nvim-cmp"                    -- nvim completion core plugin
 	use "hrsh7th/cmp-buffer"                  -- buffer cmp for nvim-cmp
 	use "hrsh7th/cmp-path"                    -- path cmp for nvim-cmp
@@ -94,9 +94,9 @@ return require("packer").startup(function(use)
 	use "windwp/nvim-autopairs"  -- autopairs
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== fuzzy filter (Telescope)
-	-- ===================================
+	-- =============================================
 	use "nvim-telescope/telescope.nvim"    -- a powerful fuzzy filter
 	use {
 		"nvim-telescope/telescope-fzf-native.nvim",  -- for speeding up the fuzzy find
@@ -106,16 +106,16 @@ return require("packer").startup(function(use)
 	use "benfowler/telescope-luasnip.nvim" -- luasnip support for telescope
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== parser
-	-- ===================================
+	-- =============================================
 	use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }  -- a parser generator tool and an incremental parsing library
 	use "RRethy/vim-illuminate"  -- highlight code
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== pretty UI
-	-- ===================================
+	-- =============================================
 	use "rcarriga/nvim-notify"  -- a popup notice
 
 	use "folke/which-key.nvim"  -- show keymap help
@@ -138,16 +138,18 @@ return require("packer").startup(function(use)
 
 	use "goolord/alpha-nvim"  -- start page
 
+	use "xiyaowong/nvim-transparent"  -- transparent background
 
-	-- ===================================
+
+	-- =============================================
 	-- ======== workspace support
-	-- ===================================
+	-- =============================================
 	use "ahmedkhalf/project.nvim"  -- project support [better than 'telescope-project'] [support telescope]
 
 
-	-- ===================================
+	-- =============================================
 	-- ======== better writing
-	-- ===================================
+	-- =============================================
 	use "Fau818/move.nvim"							 -- "fedepujol/move.nvim"  move lines
 	use "abecodes/tabout.nvim"           -- type <TAB> could jump out of brakets
 	use "echasnovski/mini.align"         -- align text
@@ -159,8 +161,8 @@ return require("packer").startup(function(use)
 
 	use "pixelneo/vim-python-docstring"  -- auto python docstring
 
-	use "folke/twilight.nvim"
-	use "folke/zen-mode.nvim"
+	use "folke/twilight.nvim"  -- focus coding
+	use "folke/zen-mode.nvim"  -- zen-mode
 
 
 	-- =============================================
@@ -170,20 +172,21 @@ return require("packer").startup(function(use)
 	use "wakatime/vim-wakatime"    -- wakatime statistic
 
 
-	-- ===================================
+	-- =============================================
+	-- ========== DAP
+	-- =============================================
+	if Fau_vim.dap.enable then
+		use "mfussenegger/nvim-dap"
+		use "rcarriga/nvim-dap-ui"
+		use "theHamsta/nvim-dap-virtual-text"
+	end
+
+
+	-- =============================================
 	-- ======== new plugins [test]
-	-- ===================================
-	use "xiyaowong/nvim-transparent"
+	-- =============================================
 	use "folke/noice.nvim"
 
-
-
-	-- DAP
-	-- use "mfussenegger/nvim-dap"
-	-- use "rcarriga/nvim-dap-ui"
-
-	-- for future.
-	-- use "tamago324/nlsp-settings.nvim"  	-- for setting LSP
 
 	-- use "Tastyep/structlog.nvim"  -- enhance nvim log
 

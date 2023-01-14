@@ -34,6 +34,7 @@ end
 load("basic")
 load("telescope")
 load("lsp")
+load("dap")
 load("gitsigns")
 load("terminal")
 load("code_runner")
