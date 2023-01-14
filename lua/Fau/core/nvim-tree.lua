@@ -149,10 +149,10 @@ local config = {
 			inline_arrows = true, -- Display folder arrows in the same column as indent marker
 			icons = { -- Icons shown before the file/directory. Length 1.
 				corner = "└",
-				edge = "│",
-				item = "│",
+				edge   = "│",
+				item   = "│",
 				bottom = "─",
-				none = " ",
+				none   = " ",
 			},
 		},
 
@@ -169,17 +169,17 @@ local config = {
 			},
 
 			glyphs = { -- Configuration options for icon glyphs.
-				default = "", -- Glyph for files. Will be overridden by `nvim-web-devicons` if available.
-				symlink = "", -- Glyph for symlinks to files.
+				default  = "", -- Glyph for files. Will be overridden by `nvim-web-devicons` if available.
+				symlink  = "", -- Glyph for symlinks to files.
 				bookmark = "",
 				folder = { -- Glyphs for directories.
 					arrow_closed = "",
-					arrow_open = "",
-					default = "",
-					open = "",
-					empty = "",
-					empty_open = "",
-					symlink = "",
+					arrow_open   = "",
+					default      = "",
+					open         = "",
+					empty        = "",
+					empty_open   = "",
+					symlink      = "",
 					symlink_open = "",
 				},
 				git = { -- Glyphs for git status.
