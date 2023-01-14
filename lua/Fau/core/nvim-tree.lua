@@ -58,10 +58,10 @@ local config = {
 				{ key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
 				{ key = "<C-e>", action = "edit_in_place" },
 				{ key = "O", action = "edit_no_picker" },
-				{ key = { "<C-]>" }, action = "cd" },
+				{ key = { "<C-]>", "<2-RightMouse>" }, action = "cd" },
 
 				{ key = "<C-v>", action = "vsplit" },
-				{ key = "<C-s>", action = "split" },
+				{ key = "<C-x>", action = "split" },
 				{ key = "<C-t>", action = "tabnew" },
 
 				{ key = "<", action = "prev_sibling" },
@@ -69,19 +69,22 @@ local config = {
 
 				{ key = "P", action = "parent_node" },
 				{ key = "<BS>", action = "close_node" },
-				{ key = "<Tab>", action = "preview" },
+				{ key = "<TAB>", action = "preview" },
 
 				{ key = "H", action = "first_sibling" },
 				{ key = "L", action = "last_sibling" },
 
+				-- { key = "H", action = "toggle_dotfiles" },
 				{ key = "I", action = "toggle_git_ignored" },
 				{ key = "U", action = "toggle_custom" },
-				-- { key = "H",        action = "toggle_dotfiles" },
 
 				{ key = "R", action = "refresh" },
+
 				{ key = { "n", "a" }, action = "create" },
+
 				{ key = "d", action = "trash" },
 				{ key = "D", action = "remove" },
+
 				{ key = "r", action = "rename" },
 				{ key = "<C-r>", action = "full_rename" },
 
@@ -98,7 +101,7 @@ local config = {
 				{ key = "<LEADER>ln", action = "next_diag_item" },
 
 				{ key = "-", action = "dir_up" },
-				{ key = "S", action = "system_open" },
+				{ key = { "S", "<C-f>" }, action = "system_open" },
 				{ key = ".", action = "run_file_command" },
 
 				{ key = "f", action = "live_filter" },
@@ -114,8 +117,7 @@ local config = {
 				{ key = "m", action = "toggle_mark" },
 				{ key = "bmv", action = "bulk_move" },
 
-
-				{ key = "<ESC>", "<C-l>", action = "Lose Focus" },
+				{ key = "<ESC>", action = "Lose Focus" },
 			},
 		},
 
@@ -234,7 +236,7 @@ local config = {
 	},
 
 	filters = { -- Filtering options.
-		dotfiles = false, -- Whether show dotfiles. [Default Keymaps: H]
+		dotfiles  = false, -- Whether show dotfiles. [Default Keymaps: H]
 		git_clean = false,
 		no_buffer = false,
 		custom = { "^.git$", ".DS_Store", "__pycache__" }, -- Custom list of vim regex for file/directory names that will not be shown.  [Default Keymaps: U]
