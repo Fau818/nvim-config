@@ -20,12 +20,15 @@ local config = {
 
 		disabled_filetypes = {  -- Filetypes to disable lualine for.
 			statusline = { "alpha", }, -- only ignores the ft for statusline.
-			winbar     = { "alpha", "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console" }, -- only ignores the ft for winbar.
+			winbar     = {
+				"alpha", "NvimTree", "Trouble",
+				"dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
+			}, -- only ignores the ft for winbar.
 		},
 
 		ignore_focus = {
 			"help", "toggleterm", "Trouble", "NvimTree", "aerial",
-			"dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console"
+			"dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 		}, -- show as inactive
 
 		always_divide_middle = true,
@@ -57,7 +60,9 @@ local config = {
 	winbar = {
 		lualine_c = { component.breadcrumb },
 	},
-	inactive_winbar = {},
+	inactive_winbar = {
+		lualine_c = { component.breadcrumb },
+	},
 	extensions = {}
 }
 

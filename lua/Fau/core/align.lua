@@ -21,12 +21,12 @@ local config = {
 			opts.merge_delimiter = " "
 		end,
 
-    ['='] = function(steps, opts)
-      -- opts.split_pattern = '%p*=+[<>~]*'
+		["="] = function(steps, opts)
+			-- opts.split_pattern = '%p*=+[<>~]*'
 			opts.split_pattern = " = "
-      table.insert(steps.pre_justify, align.gen_step.trim())
-      opts.merge_delimiter = " "
-    end,
+			table.insert(steps.pre_justify, align.gen_step.trim())
+			opts.merge_delimiter = " "
+		end,
 	},
 }
 

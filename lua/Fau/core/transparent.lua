@@ -17,8 +17,34 @@ local config = {
 
 		"BufferLineFill",
 
+		"BufferLineBuffer",
+		"BufferLineBufferSelected",
+		"BufferLineBufferVisible",
+
+		"BufferLineCloseButtonSelected",
+
+		"BufferLineDevIconLua",
+		"BufferLineDevIconLuaSelected",
+		"BufferLineDevIconLuaInactive",
+
+		"BufferLineModified",
+		"BufferLineModifiedVisible",
+		"BufferLineModifiedSelected",
+
+		"BufferLineSeparator",
+
 		"NvimTreeNormal",
 		"NvimTreeWinSeparator",
+
+		"NormalFloat",
+		"FloatBorder",
+
+		"LspFloatWinNormal",
+
+		"TelescopeNormal",
+		"TelescopeBorder",
+
+		"WhichKeyFloat",
 	},
 	exclude = {  -- the plugin will disable the following by default.
 		-- "Normal",

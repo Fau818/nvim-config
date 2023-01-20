@@ -41,7 +41,7 @@ local config = {
 
 	indent = {
 		enable = true,
-		disable = { "python", "html" }
+		disable = { "python", "html", "cpp", "c" }
 	},
 
 	-- nvim-ts-context-commentstring plugin
