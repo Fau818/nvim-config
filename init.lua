@@ -28,7 +28,6 @@ require "Fau.core.bufferline"
 require "Fau.core.indentline"
 require "Fau.core.gitsigns"
 require "Fau.core.aerial"
-require "Fau.core.transparent"
 
 -- surround and comment [better writing]
 require "Fau.core.comment"
