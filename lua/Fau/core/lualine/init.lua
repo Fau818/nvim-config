@@ -21,7 +21,7 @@ local config = {
 		disabled_filetypes = {  -- Filetypes to disable lualine for.
 			statusline = { "alpha", }, -- only ignores the ft for statusline.
 			winbar     = {
-				"alpha", "NvimTree", "Trouble",
+				"alpha", "NvimTree", "Trouble", "toggleterm",
 				"dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 			}, -- only ignores the ft for winbar.
 		},

@@ -19,7 +19,7 @@ local config = {
 
 	hide_numbers = true, -- hide the number column in toggleterm buffers
 
-	shade_terminals = true,
+	shade_terminals = false,
 	shading_factor = 5, -- the degree by which to darken to terminal color
 
 	start_in_insert = true,
@@ -40,7 +40,7 @@ local config = {
 
 	float_opts = {
 		border = "curved", -- values: single | double | shadow | curved | none
-		winblend = 5,
+		winblend = 0,  -- keep this equal 0 if use transparent theme
 	},
 
 	on_open = function() vim.cmd("startinsert!") end,
@@ -50,9 +50,9 @@ local config = {
 	},
 
 	highlights = {
-		Normal = { guibg = "none", },
-		NormalFloat = { guibg = "none", },
-		FloatBorder = { guifg = "none", guibg = "none", },
+		Normal      = { link = "Normal", },
+		NormalFloat = { link = "NormalFloat", },
+		FloatBorder = { link = "FloatBorder" },
 	},
 }
 
@@ -98,7 +98,7 @@ local float = Terminal:new({
 	direction = "float",
 	float_opts = {
 		border = "none",
-		winblend = 5,
+		winblend = 0,
 		height = 888888,
 		width = 888888
 	},

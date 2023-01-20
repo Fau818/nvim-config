@@ -9,8 +9,8 @@ if string.sub(colorscheme, 1, 10) == "tokyonight" then
 
 
 	local config = {
-		style       = "moon",  -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-		light_style = "moon",  -- The theme is used when the background is set to light
+		style       = "moon",   -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+		light_style = "moon",   -- The theme is used when the background is set to light
 		transparent = true,     -- Enable this to disable setting the background color
 		terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
 		styles = {
@@ -28,10 +28,12 @@ if string.sub(colorscheme, 1, 10) == "tokyonight" then
 		dim_inactive = true, -- dims inactive windows
 		lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 
-		-- --- You can override specific color groups to use other groups or a hex color
-		-- --- function will be called with a ColorScheme table
-		-- ---@param colors ColorScheme
-		-- on_colors = function(colors) end,
+		--- You can override specific color groups to use other groups or a hex color
+		--- function will be called with a ColorScheme table
+		---@param colors ColorScheme
+		on_colors = function(colors)
+			colors.comment = "#666688"
+		end,
 
 		-- --- You can override specific highlights to use other groups or a hex color
 		-- --- function will be called with a Highlights and ColorScheme table
