@@ -9,13 +9,20 @@ if tokyonight == nil then return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+local function comment_style()
+	local terminal = os.getenv("TERM")
+	if terminal == "xterm-kitty" then return { italic = true, bold = true } end
+	return { italic = true }
+end
+
+
 local config = {
 	style       = "moon",   -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
 	light_style = "moon",   -- The theme is used when the background is set to light
 	transparent = true,     -- Enable this to disable setting the background color
 	terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
 	styles = {
-		comments  = { italic = false },
+		comments  = comment_style(),
 		keywords  = { italic = true },
 		functions = {},
 		variables = {},
@@ -33,7 +40,7 @@ local config = {
 	--- function will be called with a ColorScheme table
 	---@param colors ColorScheme
 	on_colors = function(colors)
-		colors.comment = "#666688"
+		colors.comment = "#6F737A"
 	end,
 
 	-- --- You can override specific highlights to use other groups or a hex color

@@ -164,6 +164,8 @@ return require("packer").startup(function(use)
 	use "folke/twilight.nvim"  -- focus coding
 	use "folke/zen-mode.nvim"  -- zen-mode
 
+	use "fladson/vim-kitty"  -- support highlight kitty config file
+
 
 	-- =============================================
 	-- ========== MISC
