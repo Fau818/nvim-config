@@ -40,14 +40,36 @@ local config = {
 	--- function will be called with a ColorScheme table
 	---@param colors ColorScheme
 	on_colors = function(colors)
-		colors.comment = "#6F737A"
+		colors.comment = "#636D8E"
 	end,
 
-	-- --- You can override specific highlights to use other groups or a hex color
-	-- --- function will be called with a Highlights and ColorScheme table
-	-- ---@param highlights Highlights
-	-- ---@param colors ColorScheme
-	-- on_highlights = function(highlights, colors) end,
+	--- You can override specific highlights to use other groups or a hex color
+	--- function will be called with a Highlights and ColorScheme table
+	---@param highlights Highlights
+	---@param colors ColorScheme
+	on_highlights = function(highlights, colors)
+
+		-- highlights.LspInlayHint = {
+		-- 	fg = ""
+		-- }
+
+		-- highlights.Constant = {
+		-- 	fg = "#F59C4E"
+		-- }
+
+		-- highlights.Number = {
+		-- 	fg = "#7DB9E1"
+		-- }
+		--
+		-- highlights.String = {
+		-- 	fg = "#C78B76"
+		-- }
+
+
+		-- highlights["@keyword"] = {
+		-- 	fg = "#00A9EF"
+		-- }
+	end,
 }
 
 

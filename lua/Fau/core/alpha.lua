@@ -42,13 +42,13 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", "Quit",   "<CMD>qa<CR>"),
 }
 
-local handle = io.popen("fortune")
-if handle == nil then return end
-local fortune = handle:read("*a")
-handle:close()
-dashboard.section.footer.val = fortune
-dashboard.config.opts.noautocmd = true
-vim.cmd [[autocmd User AlphaReady echo 'ready']]
+-- local handle = io.popen("fortune")
+-- if handle == nil then return end
+-- local fortune = handle:read("*a")
+-- handle:close()
+-- dashboard.section.footer.val = fortune
+-- dashboard.config.opts.noautocmd = true
+-- vim.cmd [[autocmd User AlphaReady echo 'ready']]
 
 
 alpha.setup(dashboard.config)
