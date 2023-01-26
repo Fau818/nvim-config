@@ -267,7 +267,7 @@ local config = {
 		use_system_clipboard = true, -- A boolean value that toggle the use of system clipboard when copy/paste function are invoked.
 		change_dir = { -- vim |current-directory| behaviour.
 			enable = true, -- Change the working directory when changing directories in the tree.
-			global = false, -- Use `:cd` instead of `:lcd` when changing directories.
+			global = true, -- Use `:cd` instead of `:lcd` when changing directories.
 			restrict_above_cwd = false, -- Restrict changing to a directory above the global current working directory.
 		},
 		expand_all = { -- Configuration for expand_all behaviour.
