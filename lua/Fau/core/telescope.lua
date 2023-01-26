@@ -94,29 +94,41 @@ local config = {
 
 		mappings = { -- Will allow you to completely remove all of telescope's default maps and use your own.
 			i = {
-				["<TAB>"] = actions.move_selection_worse,    -- move to next
+				["<TAB>"]   = actions.move_selection_worse,  -- move to next
 				["<S-TAB>"] = actions.move_selection_better, -- move to last
 
 				["<C-Down>"] = actions.cycle_history_next,
-				["<C-Up>"] = actions.cycle_history_prev,
+				["<C-Up>"]   = actions.cycle_history_prev,
+
+				["<C-p>"] = layout.toggle_preview,
 
 				["<C-l>"] = false,
-				["<C-p>"] = layout.toggle_preview,
 				["<C-n>"] = false,
-				["<PageUp>"] = false,
+
+				["<PageUp>"]   = false,
 				["<PageDown>"] = false,
+
 				["<A-q>"] = false,
+
+				-- ["C-/"] = actions.which_key,
 			},
 			n = {
-				["<TAB>"] = actions.move_selection_worse,    -- move to next
+				["<TAB>"]   = actions.move_selection_worse,  -- move to next
 				["<S-TAB>"] = actions.move_selection_better, -- move to last
+
+				["<Down>"] = actions.cycle_history_next,
+				["<Up>"]   = actions.cycle_history_prev,
 
 				["<C-p>"] = layout.toggle_preview,
 				["q"] = actions.close,
 
-				["<PageUp>"] = false,
+				["<PageUp>"]   = false,
 				["<PageDown>"] = false,
+
 				["<A-q>"] = false,
+
+				["H"] = false,
+				["L"] = false,
 			},
 		},
 		file_ignore_patterns = { ".git/", "plugin/packer_compiled.lua", "snippets/" },
