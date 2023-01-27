@@ -111,6 +111,9 @@ return {
 		["<LEADER><LEADER>t"] = { "<CMD>Twilight<CR>", "Toggle Twilight" },
 		["<LEADER><LEADER>z"] = { "<CMD>ZenMode<CR>", "Toggle ZenMode" },
 
+		-- Todo Comments
+		["<LEADER>t"] = { "<CMD>TodoTrouble<CR>", "Show Todo Comments" },
+
 
 
 		-- =============================================

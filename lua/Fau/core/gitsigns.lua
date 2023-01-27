@@ -11,12 +11,12 @@ if gitsigns == nil then return end
 -- =============================================
 local config = {
 	signs = {
-		add = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
-		change = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
-		delete = { text = Fau_vim.icons.gitsigns.Triangle, },
-		topdelete = { text = Fau_vim.icons.gitsigns.Triangle, },
+		add          = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
+		change       = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
+		delete       = { text = Fau_vim.icons.gitsigns.Triangle, },
+		topdelete    = { text = Fau_vim.icons.gitsigns.Triangle, },
 		changedelete = { text = Fau_vim.icons.gitsigns.BoldLineLeft, },
-		untracked = { text = Fau_vim.icons.gitsigns.Untracked, },
+		untracked    = { text = Fau_vim.icons.gitsigns.Untracked, },
 	},
 
 	count_chars = {
@@ -68,6 +68,7 @@ local config = {
 		row = 0,
 		col = 1
 	},
+
 	yadm = { enable = false },
 }
 

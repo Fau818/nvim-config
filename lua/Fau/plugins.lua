@@ -150,7 +150,7 @@ return require("packer").startup(function(use)
 	-- =============================================
 	-- ======== better writing
 	-- =============================================
-	use "Fau818/move.nvim"							 -- "fedepujol/move.nvim"  move lines
+	use "fedepujol/move.nvim"						 -- move lines
 	use "abecodes/tabout.nvim"           -- type <TAB> could jump out of brakets
 	use "echasnovski/mini.align"         -- align text
 
@@ -188,6 +188,7 @@ return require("packer").startup(function(use)
 	-- ======== new plugins [test]
 	-- =============================================
 	use "folke/noice.nvim"
+	use "folke/todo-comments.nvim"
 
 
 	-- use "Tastyep/structlog.nvim"  -- enhance nvim log

@@ -23,6 +23,7 @@ return {
 			l = { "<CMD>Telescope luasnip layout_strategy=vertical<CR>",      "Find Luasnip" },
 			n = { "<CMD>Telescope notify layout_strategy=vertical initial_mode=normal<CR>", "Show Notify" },
 			p = { "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>", "Open Projects" },
+			t = { "<CMD>TodoTelescope<CR>", "Find Todo Comments" },
 			r = { "<CMD>lua require('telescope.builtin').oldfiles()<CR>",    "Open Recent Files" },
 			s = { "<CMD>lua require('telescope.builtin').live_grep()<CR>",   "Find String" },
 			S = { "<CMD>lua require('telescope.builtin').live_grep({grep_open_files=true})<CR>",   "Find String in Opened Buffers" },

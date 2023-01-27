@@ -40,7 +40,7 @@ local config = {
 	},
 
 	indent = {
-		enable = true,
+		enable = false,
 		disable = { "python", "html", "cpp", "c" }
 	},
 
