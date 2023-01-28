@@ -26,12 +26,15 @@ local config = {
 		border = "rounded",
 
 		scope = "line", -- values: cursor|line|buffer
-		source = true,  -- values: boolean|"if_many"
+		source = true,  -- values: boolean|if_many
 
 		header = "",
 		prefix = "",
 
+		---@param diagnostic Diagnostic
+		---@return string Diagnostic message
 		format = function(diagnostic)  -- for show the error code
+
 			local code = diagnostic.code or (diagnostic.user_data and diagnostic.user_data.lsp.code)
 			if code then return string.format("%s [%s]", diagnostic.message, code) end
 			return diagnostic.message

@@ -35,10 +35,16 @@ end
 local function server_attach(client, bufnr)
 	-- disable lsp formatting
 	-- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
+
+	-- disable pyright diagnostic
+	if client.name == "pyright" then client.server_capabilities.diagnostic = false end
+
 	-- for highlight support
 	if illuminate then illuminate.on_attach(client) end
+
 	-- for inlayhints support
 	if inlayhints then inlayhints.on_attach(client, bufnr, false) end
+
 	-- for breadcrumb support
 	if navic then navic.attach(client, bufnr) end
 end

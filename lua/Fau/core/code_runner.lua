@@ -63,11 +63,11 @@ local config = {
 		-- file_name: Filename relative to root path
 		-- command: Command to run the project. It is possible to use variables exactly the same as we would in `CRFiletype`
 
-		-- ["~/Documents/Fau/Projects/PyCharm_Projects/Iris_Recognition.nosync"] = {
+		-- ["~/Documents/Fau/Projects/Python_Projects/Iris_Recognition.nosync"] = {
 		-- 	name = "Iris Recognition",
 		-- 	description = "Scientific Research",
 		-- },
-		["~/Documents/Fau/Projects/PyCharm_Projects/Flask_Book"] = {
+		["~/Documents/Fau/Projects/Python_Projects/Flask_Book"] = {
 			name = "Flask_Book",
 			description = "ZYW Book Manager",
 			file_name = "app.py",
