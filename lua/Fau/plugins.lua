@@ -110,7 +110,8 @@ return require("packer").startup(function(use)
 	-- ======== parser
 	-- =============================================
 	use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }  -- a parser generator tool and an incremental parsing library
-	use "nvim-treesitter/playground"
+	-- use "nvim-treesitter/playground"
+	-- use "nvim-treesitter/tree-sitter-query"
 	use "RRethy/vim-illuminate"  -- highlight code
 
 

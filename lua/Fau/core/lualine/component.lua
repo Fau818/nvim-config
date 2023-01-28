@@ -128,6 +128,7 @@ return {
 	searchcount = "searchcount",
 
 	indent = { -- detect the indenttype and check whether occur mixed indent
+		-- TODO: Check indent except comment lines
 		function()
 			-- get the indent width and indent type
 			local indent_width = vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -136,8 +137,8 @@ return {
 
 			-- check unexpected indent type
 			local space_pat, tab_pat = [[\v^  +]], [[\v^\t+]]
-			local space_indent_cnt = vim.fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
-			local tab_indent_cnt = vim.fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
+			local space_indent_cnt = vim.fn.searchcount({ pattern = space_pat, max_count = 5E2 }).total
+			local tab_indent_cnt   = vim.fn.searchcount({ pattern = tab_pat,   max_count = 5E2 }).total
 
 			local file_indent_type = space_indent_cnt > tab_indent_cnt  -- same as indent_type
 			if space_indent_cnt == tab_indent_cnt then file_indent_type = indent_type end
@@ -153,7 +154,7 @@ return {
 				if file_indent_type then mixed_line = vim.fn.search(tab_pat, "nwc")
 				else mixed_line = vim.fn.search(space_pat, "nwc") end
 			else -- check whether mixed in the same line, if true: get the line number
-				mixed_line = vim.fn.search([[\v^(\t+ | +\t)]], "nwc")
+				mixed_line = vim.fn.search([[\v^(\t+  |  +\t)]], "nwc")
 			end
 
 			if mixed_line > 0 then indent_show = indent_show .. " (MI:" .. mixed_line .. ")" end
