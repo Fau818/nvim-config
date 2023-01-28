@@ -29,7 +29,10 @@ local config = {
 
 notify.setup(config)
 
-
 -- replace vim.notify
 vim.notify = notify
-Fau_vim.notify = vim.notify
+
+---@param msg string
+---@param level string|number|nil
+---@param opts table<string, any>
+Fau_vim.notify = function(msg, level, opts) notify(msg, level, opts) end

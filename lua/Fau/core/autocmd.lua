@@ -26,6 +26,14 @@ augroup END
 ]]
 
 
+vim.cmd [[
+augroup Fau_vim
+	autocmd FileType qf nnoremap <buffer><CR> <CR>
+	autocmd FileType gitcommit highlight Comment gui=bold
+augroup END
+]]
+
+
 
 -- =============================================
 -- ========== Auto LSP
@@ -50,15 +58,3 @@ augroup END
 -- ========== Auto Trim Blank Lines and Spaces
 -- =============================================
 vim.cmd [[ autocmd BufWritePre * lua Fau_vim.functions.remove_blank_lines_and_spaces() ]]
-
-
-
--- =============================================
--- ========== TEST
--- =============================================
-vim.cmd [[
-augroup Fau_vim
-	autocmd FileType qf nnoremap <buffer><CR> <CR>
-	autocmd FileType gitcommit highlight Comment gui=bold
-augroup END
-]]

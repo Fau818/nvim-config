@@ -86,7 +86,7 @@ local config = {
 		-- These are passed into the telescope picker directly. Can be used like:
 		-- telescope = require('telescope.themes').get_ivy({...})
 		telescope = {
-			initial_mode = "normal",
+			initial_mode = "insert",
 			layout_strategy = "center",
 			sorting_strategy = "ascending",
 			previewer = false,

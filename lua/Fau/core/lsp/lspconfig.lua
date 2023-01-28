@@ -20,7 +20,7 @@ local navic = Fau_vim.load_plugin("nvim-navic")
 -- =============================================
 -- ========== Configuration
 -- =============================================
-local default_servers = { "sumneko_lua", "pyright", "clangd" }
+local default_servers = { "sumneko_lua" }
 if mlspconfig then mlspconfig.setup({ ensure_installed = default_servers, automatic_installation = true }) end
 
 
@@ -35,9 +35,6 @@ end
 local function server_attach(client, bufnr)
 	-- disable lsp formatting
 	-- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
-
-	-- disable pyright diagnostic
-	if client.name == "pyright" then client.server_capabilities.diagnostic = false end
 
 	-- for highlight support
 	if illuminate then illuminate.on_attach(client) end

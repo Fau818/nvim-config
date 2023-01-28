@@ -4,12 +4,10 @@
 -- -----------------------------------
 -- -------- load plugin function
 -- -----------------------------------
----@param plugin any
----@return any result
+---@param plugin string
 Fau_vim.load_plugin = function(plugin)
 	local status_ok, instance = pcall(require, plugin)
 	if not status_ok then
-		---@diagnostic disable-next-line: param-type-mismatch
 		vim.notify(plugin .. " not found!", "ERROR", { title = "Fau: Plugin Not Found" })
 		return nil
 	end

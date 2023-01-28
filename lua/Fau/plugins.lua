@@ -110,7 +110,7 @@ return require("packer").startup(function(use)
 	-- ======== parser
 	-- =============================================
 	use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }  -- a parser generator tool and an incremental parsing library
-	-- use "nvim-treesitter/playground"
+	use "nvim-treesitter/playground"
 	-- use "nvim-treesitter/tree-sitter-query"
 	use "RRethy/vim-illuminate"  -- highlight code
 
@@ -124,7 +124,7 @@ return require("packer").startup(function(use)
 
 	use "stevearc/dressing.nvim"  -- a ui selector
 
-	use "kyazdani42/nvim-tree.lua"  -- a file explorer tree
+	use {"nvim-tree/nvim-tree.lua", commit="9e87ee2d6e86f37ff09cb74ec7dcf2ac984a01e9"}   -- a file explorer tree
 	use "nvim-lualine/lualine.nvim" -- bottom status line
 	use "SmiteshP/nvim-navic"       -- breadcrumb
 	use "akinsho/bufferline.nvim"   -- show the buffer tab
@@ -141,6 +141,9 @@ return require("packer").startup(function(use)
 	use "goolord/alpha-nvim"  -- start page
 
 	use "xiyaowong/nvim-transparent"  -- transparent background
+
+	use "folke/todo-comments.nvim"  -- highlight TODO tags in comment
+	use "folke/paint.nvim"  -- for highlighting params in comment
 
 
 	-- =============================================
@@ -190,7 +193,7 @@ return require("packer").startup(function(use)
 	-- ======== new plugins [test]
 	-- =============================================
 	use "folke/noice.nvim"
-	use "folke/todo-comments.nvim"
+	-- use "glepnir/lspsaga.nvim"
 
 
 	-- use "Tastyep/structlog.nvim"  -- enhance nvim log

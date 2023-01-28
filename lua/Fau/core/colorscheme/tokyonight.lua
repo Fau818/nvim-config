@@ -61,11 +61,16 @@ local config = {
 			fg = colors.magenta,
 			style = { italic = true }
 		}
+		highlights["@keyword.operator"] = {
+			fg = colors.blue5,
+			style = { italic = true }
+		}
 
 		highlights["Statement"] = {
 			fg = colors.magenta,
 			style = { italic = true }
 		}
+
 	end,
 }
 
