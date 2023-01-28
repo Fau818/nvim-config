@@ -20,7 +20,7 @@ return {
 			h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>",    "Find Help" },
 			H = { "<CMD>lua require('telescope.builtin').highlights()<CR>",   "Find Highlights" },
 			k = { "<CMD>lua require('telescope.builtin').keymaps()<CR>",      "Find Keymaps" },
-			l = { "<CMD>Telescope luasnip layout_strategy=vertical<CR>",      "Find Luasnip" },
+			l = { "<CMD>Telescope luasnip layout_strategy=vertical initial_mode=normal<CR>", "Find Luasnip" },
 			n = { "<CMD>Telescope notify layout_strategy=vertical initial_mode=normal<CR>", "Show Notify" },
 			p = { "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>", "Open Projects" },
 			t = { "<CMD>TodoTelescope<CR>", "Find Todo Comments" },
