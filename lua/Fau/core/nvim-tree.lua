@@ -36,10 +36,13 @@ local config = {
 	select_prompts = true, -- using select-UI like dressing.nvim
 
 	view = { -- Window / buffer setup.
-		width = 25,
+		width = {
+			min = 15,
+			max = 25,
+			padding = 1
+		},
 		debounce_delay = 15,
 
-		adaptive_size        = false, -- Resize the window on each draw based on the longest line.
 		centralize_selection = false, -- When entering nvim-tree, reposition the view so that the current node is initially centralized, see |zz|.
 
 		side = "left",
