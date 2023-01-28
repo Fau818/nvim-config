@@ -212,7 +212,8 @@ return {
 			end
 
 
-			local sources = Fau_vim.load_plugin("null-ls.sources")
+			local sources_ok, sources = pcall(require, "null-ls.sources")
+			if not sources_ok then sources = nil end
 			if sources ~= nil then
 				local clients = sources.get_available(buf_ft)
 				for _, client in pairs(clients) do

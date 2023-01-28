@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local whichkey = Fau_vim.load_plugin("which-key")
-if whichkey == nil then return end
+local whichkey_ok, whichkey = pcall(require, "which-key")
+if not whichkey_ok then Fau_vim.load_plugin_error("which-key") return end
 
 
 

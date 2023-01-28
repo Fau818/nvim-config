@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local tabout = Fau_vim.load_plugin("tabout")
-if tabout == nil then return end
+local tabout_ok, tabout = pcall(require, "tabout")
+if not tabout_ok then Fau_vim.load_plugin_error("tabout") return end
 
 
 

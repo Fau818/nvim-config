@@ -1,13 +1,14 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local cmp = Fau_vim.load_plugin("cmp")
-if cmp == nil then return end
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok then Fau_vim.load_plugin_error("cmp") return end
 
-local luasnip = Fau_vim.load_plugin("luasnip")
-if luasnip == nil then return end
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_ok then Fau_vim.load_plugin_error("luasnip") return end
 
-local npairs = Fau_vim.load_plugin("nvim-autopairs.completion.cmp")
+local npairs_ok, npairs = pcall(require, "nvim-autopairs.completion.cmp")
+if not npairs_ok then npairs = nil end
 
 
 
@@ -17,7 +18,11 @@ local npairs = Fau_vim.load_plugin("nvim-autopairs.completion.cmp")
 -- -----------------------------------
 -- -------- Luasnip
 -- -----------------------------------
-local luasnip_config = { region_check_events = "InsertEnter", delete_check_events = "InsertLeave" }
+local luasnip_config = {
+	history = false,
+	region_check_events = "InsertEnter",
+	delete_check_events = "InsertLeave"
+}
 luasnip.setup(luasnip_config)
 
 -- require("luasnip/loaders/from_vscode").lazy_load()  -- for support friendly-snippets plugin

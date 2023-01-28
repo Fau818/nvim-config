@@ -9,8 +9,8 @@ vim.fn.sign_define("DapStopped", { text = Fau_vim.icons.ui.BoldArrowRight, texth
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local dapui = Fau_vim.load_plugin("dapui")
-if dapui == nil then return end
+local dapui_ok, dapui = pcall(require, "dapui")
+if not dapui_ok then Fau_vim.load_plugin_error("dapui") return end
 
 
 

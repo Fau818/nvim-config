@@ -8,25 +8,23 @@ snippet subseccom #subsection comment
 	-- -------- $1
 	-- -----------------------------------$0
 
-snippet load_plugin_by_Fau_vim #call Fau_vim.load_plugin templete
-	local $1 = Fau_vim.load_plugin("$2")
-	if $1 == nil then return end$0
+snippet load_plugin #load_plugin templete
+	local $1_ok, $1 = pcall(require, "$2")
+	if not $1_ok then Fau_vim.load_plugin_error("$2") return end$0
 
 snippet plugin_init #plugin initialization
 	-- =============================================
 	-- ========== Plugin Loading
 	-- =============================================
-	local $1 = Fau_vim.load_plugin("$2")
-	if $1 == nil then return end
+	local $1_ok, $1 = pcall(require, "$2")
+	if not $1_ok then Fau_vim.load_plugin_error("$2") return end
 
 
 
 	-- =============================================
 	-- ========== Configuration
 	-- =============================================
-	local config = {
-		$0
-	}
+	local config = $0
 
 
 	$1.setup(config)

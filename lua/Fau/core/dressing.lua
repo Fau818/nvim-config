@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local dressing = Fau_vim.load_plugin("dressing")
-if dressing == nil then return end
+local dressing_ok, dressing = pcall(require, "dressing")
+if not dressing_ok then Fau_vim.load_plugin_error("dressing") return end
 
 
 

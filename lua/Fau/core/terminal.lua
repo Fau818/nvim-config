@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local toggleterm = Fau_vim.load_plugin("toggleterm")
-if toggleterm == nil then return end
+local toggleterm_ok, toggleterm = pcall(require, "toggleterm")
+if not toggleterm_ok then Fau_vim.load_plugin_error("toggleterm") return end
 
 
 

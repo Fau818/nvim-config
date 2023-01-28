@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local align = Fau_vim.load_plugin("mini.align")
-if align == nil then return end
+local align_ok, align = pcall(require, "mini.align")
+if not align_ok then Fau_vim.load_plugin_error("mini.align") return end
 
 
 

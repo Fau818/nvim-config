@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local todo_comments = Fau_vim.load_plugin("todo-comments")
-if todo_comments == nil then return end
+local todo_comments_ok, todo_comments = pcall(require, "todo-comments")
+if not todo_comments_ok then Fau_vim.load_plugin_error("todo-comments") return end
 
 
 

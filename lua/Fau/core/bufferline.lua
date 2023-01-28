@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local bufferline = Fau_vim.load_plugin("bufferline")
-if bufferline == nil then return end
+local bufferline_ok, bufferline = pcall(require, "bufferline")
+if not bufferline_ok then Fau_vim.load_plugin_error("bufferline") return end
 
 
 

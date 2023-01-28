@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local navic = Fau_vim.load_plugin("nvim-navic")
-if navic == nil then return end
+local navic_ok, navic = pcall(require, "nvim-navic")
+if not navic_ok then Fau_vim.load_plugin_error("nvim-navic") return end
 
 
 

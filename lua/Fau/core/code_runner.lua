@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== plugin Loading
 -- =============================================
-local code_runner = Fau_vim.load_plugin("code_runner")
-if code_runner == nil then return end
+local code_runner_ok, code_runner = pcall(require, "code_runner")
+if not code_runner_ok then Fau_vim.load_plugin_error("code_runner") return end
 
 
 

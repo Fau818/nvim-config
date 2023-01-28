@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local tokyonight = Fau_vim.load_plugin("tokyonight")
-if tokyonight == nil then return end
+local tokyonight_ok, tokyonight = pcall(require, "tokyonight")
+if not tokyonight_ok then Fau_vim.load_plugin_error("tokyonight") return end
 
 
 

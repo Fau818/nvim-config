@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local zenmode = Fau_vim.load_plugin("zen-mode")
-if zenmode == nil then return end
+local zenmode_ok, zenmode = pcall(require, "zen-mode")
+if not zenmode_ok then Fau_vim.load_plugin_error("zen-mode") return end
 
 
 

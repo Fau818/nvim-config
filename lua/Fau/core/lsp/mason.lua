@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local mason = Fau_vim.load_plugin("mason")
-if mason == nil then return end
+local mason_ok, mason = pcall(require, "mason")
+if not mason_ok then Fau_vim.load_plugin_error("mason") return end
 
 
 

@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local surround = Fau_vim.load_plugin("nvim-surround")
-if surround == nil then return end
+local surround_ok, surround = pcall(require, "nvim-surround")
+if not surround_ok then Fau_vim.load_plugin_error("nvim-surround") return end
 
 
 

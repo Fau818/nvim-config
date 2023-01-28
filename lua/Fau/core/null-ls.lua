@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local null_ls = Fau_vim.load_plugin("null-ls")
-if null_ls == nil then return end
+local null_ls_ok, null_ls = pcall(require, "null-ls")
+if not null_ls_ok then Fau_vim.load_plugin_error("null-ls") return end
 
 
 

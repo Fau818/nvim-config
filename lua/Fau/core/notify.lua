@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local notify = Fau_vim.load_plugin("notify")
-if notify == nil then return end
+local notify_ok, notify = pcall(require, "notify")
+if not notify_ok then Fau_vim.load_plugin_error("notify") return end
 
 
 
@@ -27,12 +27,8 @@ local config = {
 	top_down = true
 }
 
+
 notify.setup(config)
 
 -- replace vim.notify
 vim.notify = notify
-
----@param msg string
----@param level string|number|nil
----@param opts table<string, any>
-Fau_vim.notify = function(msg, level, opts) notify(msg, level, opts) end

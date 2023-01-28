@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local comment = Fau_vim.load_plugin("Comment")
-if comment == nil then return end
+local comment_ok, comment = pcall(require, "Comment")
+if not comment_ok then Fau_vim.load_plugin_error("Comment") return end
 local comment_ft = require('Comment.ft')
 
 

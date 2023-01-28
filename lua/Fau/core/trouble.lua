@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local trouble = Fau_vim.load_plugin("trouble")
-if trouble == nil then return end
+local trouble_ok, trouble = pcall(require, "trouble")
+if not trouble_ok then Fau_vim.load_plugin_error("trouble") return end
 
 
 

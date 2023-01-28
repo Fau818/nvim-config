@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local alpha = Fau_vim.load_plugin("alpha")
-if alpha == nil then return end
+local alpha_ok, alpha = pcall(require, "alpha")
+if not alpha_ok then Fau_vim.load_plugin_error("alpha") return end
 
 
 

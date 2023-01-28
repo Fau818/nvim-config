@@ -124,7 +124,7 @@ return require("packer").startup(function(use)
 
 	use "stevearc/dressing.nvim"  -- a ui selector
 
-	use {"nvim-tree/nvim-tree.lua", commit="9e87ee2d6e86f37ff09cb74ec7dcf2ac984a01e9"}   -- a file explorer tree
+	use "nvim-tree/nvim-tree.lua"   -- a file explorer tree
 	use "nvim-lualine/lualine.nvim" -- bottom status line
 	use "SmiteshP/nvim-navic"       -- breadcrumb
 	use "akinsho/bufferline.nvim"   -- show the buffer tab

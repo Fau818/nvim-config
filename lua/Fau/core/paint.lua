@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local paint = Fau_vim.load_plugin("paint")
-if paint == nil then return end
+local paint_ok, paint = pcall(require, "paint")
+if not paint_ok then Fau_vim.load_plugin_error("paint") return end
 
 
 

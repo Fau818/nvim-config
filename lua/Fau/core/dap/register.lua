@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local dap = Fau_vim.load_plugin("dap")
-if dap == nil then return end
+local dap_ok, dap = pcall(require, "dap")
+if not dap_ok then Fau_vim.load_plugin_error("dap") return end
 
 
 

@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local transparent = Fau_vim.load_plugin("transparent")
-if transparent == nil then return end
+local transparent_ok, transparent = pcall(require, "transparent")
+if not transparent_ok then Fau_vim.load_plugin_error("transparent") return end
 
 
 

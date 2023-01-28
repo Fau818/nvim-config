@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local npairs = Fau_vim.load_plugin("nvim-autopairs")
-if npairs == nil then return end
+local npairs_ok, npairs = pcall(require, "nvim-autopairs")
+if not npairs_ok then Fau_vim.load_plugin_error("nvim-autopairs") return end
 
 
 

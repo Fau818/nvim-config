@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local aerial = Fau_vim.load_plugin("aerial")
-if aerial == nil then return end
+local aerial_ok, aerial = pcall(require, "aerial")
+if not aerial_ok then Fau_vim.load_plugin_error("aerial") return end
 
 
 

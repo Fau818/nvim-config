@@ -1,13 +1,11 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local telescope = Fau_vim.load_plugin("telescope")
-local actions   = Fau_vim.load_plugin("telescope.actions")
-local layout    = Fau_vim.load_plugin("telescope.actions.layout")
+local telescope_ok, telescope = pcall(require, "telescope")
+if not telescope_ok then Fau_vim.load_plugin_error("telescope") return end
 
-if telescope == nil then return end
-if actions   == nil then return end
-if layout    == nil then return end
+local actions = require("telescope.actions")
+local layout  = require("telescope.actions.layout")
 
 
 

@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local nvim_tree = Fau_vim.load_plugin("nvim-tree")
-if nvim_tree == nil then return end
+local nvim_tree_ok, nvim_tree = pcall(require, "nvim-tree")
+if not nvim_tree_ok then Fau_vim.load_plugin_error("nvim-tree") return end
 
 
 

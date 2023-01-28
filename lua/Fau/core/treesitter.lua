@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local treesitter = Fau_vim.load_plugin("nvim-treesitter.configs")
-if treesitter == nil then return end
+local treesitter_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+if not treesitter_ok then Fau_vim.load_plugin_error("nvim-treesitter.configs") return end
 
 
 

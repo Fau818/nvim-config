@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local im_select = Fau_vim.load_plugin("im_select")
-if im_select == nil then return end
+local im_select_ok, im_select = pcall(require, "im_select")
+if not im_select_ok then Fau_vim.load_plugin_error("im_select") return end
 
 
 

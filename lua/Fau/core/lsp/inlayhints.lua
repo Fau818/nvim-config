@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local inlayhints = Fau_vim.load_plugin("lsp-inlayhints")
-if inlayhints == nil then return end
+local inlayhints_ok, inlayhints = pcall(require, "lsp-inlayhints")
+if not inlayhints_ok then Fau_vim.load_plugin_error("lsp-inlayhints") return end
 
 
 

@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local project = Fau_vim.load_plugin("project_nvim")
-if project == nil then return end
+local project_ok, project = pcall(require, "project_nvim")
+if not project_ok then Fau_vim.load_plugin_error("project_nvim") return end
 
 
 

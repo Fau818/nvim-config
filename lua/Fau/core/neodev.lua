@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local neodev = Fau_vim.load_plugin("neodev")
-if neodev == nil then return end
+local neodev_ok, neodev = pcall(require, "neodev")
+if not neodev_ok then Fau_vim.load_plugin_error("neodev") return end
 
 
 

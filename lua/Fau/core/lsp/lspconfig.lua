@@ -1,19 +1,30 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local lspconfig = Fau_vim.load_plugin("lspconfig")
-if lspconfig == nil then return end
+-- -----------------------------------
+-- -------- Necessary
+-- -----------------------------------
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then Fau_vim.load_plugin_error("lspconfig") return end
 
-local cmp_nvim_lsp = Fau_vim.load_plugin("cmp_nvim_lsp")
-if cmp_nvim_lsp == nil then return end
+local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_ok then Fau_vim.load_plugin_error("cmp_nvim_lsp") return end
 
-local mlspconfig = Fau_vim.load_plugin("mason-lspconfig")
-if mlspconfig == nil then return end
+local mlspconfig_ok, mlspconfig = pcall(require, "mason-lspconfig")
+if not mlspconfig_ok then Fau_vim.load_plugin_error("mason-lspconfig") return end
 
 
-local illuminate = Fau_vim.load_plugin("illuminate")
-local inlayhints = Fau_vim.load_plugin("lsp-inlayhints")
-local navic = Fau_vim.load_plugin("nvim-navic")
+-- -----------------------------------
+-- -------- Unnecessary
+-- -----------------------------------
+local illuminate_ok, illuminate = pcall(require, "illuminate")
+if not illuminate_ok then illuminate = nil end
+
+local inlayhints_ok, inlayhints = pcall(require, "lsp-inlayhints")
+if not inlayhints_ok then inlayhints = nil end
+
+local navic_ok, navic = pcall(require, "nvim-navic")
+if not navic_ok then navic = nil end
 
 
 

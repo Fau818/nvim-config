@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local lualine = Fau_vim.load_plugin("lualine")
-if lualine == nil then return end
+local lualine_ok, lualine = pcall(require, "lualine")
+if not lualine_ok then Fau_vim.load_plugin_error("lualine") return end
 
 
 

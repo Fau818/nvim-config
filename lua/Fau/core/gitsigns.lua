@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local gitsigns = Fau_vim.load_plugin("gitsigns")
-if gitsigns == nil then return end
+local gitsigns_ok, gitsigns = pcall(require, "gitsigns")
+if not gitsigns_ok then Fau_vim.load_plugin_error("gitsigns") return end
 
 
 

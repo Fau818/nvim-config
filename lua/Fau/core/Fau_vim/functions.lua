@@ -2,16 +2,11 @@
 -- ========== Directly Called Funtions
 -- =============================================
 -- -----------------------------------
--- -------- load plugin function
+-- -------- show no plugin message
 -- -----------------------------------
 ---@param plugin string
-Fau_vim.load_plugin = function(plugin)
-	local status_ok, instance = pcall(require, plugin)
-	if not status_ok then
-		vim.notify(plugin .. " not found!", "ERROR", { title = "Fau: Plugin Not Found" })
-		return nil
-	end
-	return instance
+Fau_vim.load_plugin_error = function(plugin)
+	vim.notify(plugin .. " not found!", "ERROR", { title = "Fau: Plugin Not Found" })
 end
 
 

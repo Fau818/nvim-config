@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local twilight = Fau_vim.load_plugin("twilight")
-if twilight == nil then return end
+local twilight_ok, twilight = pcall(require, "twilight")
+if not twilight_ok then Fau_vim.load_plugin_error("twilight") return end
 
 
 

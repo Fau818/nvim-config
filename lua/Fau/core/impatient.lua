@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local impatient = Fau_vim.load_plugin("impatient")
-if impatient == nil then return end
+local impatient_ok, impatient = pcall(require, "impatient")
+if not impatient_ok then Fau_vim.load_plugin_error("impatient") return end
 
 
 impatient.enable_profile()

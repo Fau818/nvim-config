@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local indent_blankline = Fau_vim.load_plugin("indent_blankline")
-if indent_blankline == nil then return end
+local indent_blankline_ok, indent_blankline = pcall(require, "indent_blankline")
+if not indent_blankline_ok then Fau_vim.load_plugin_error("indent_blankline") return end
 
 
 

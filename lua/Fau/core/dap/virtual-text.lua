@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local dap_virtual_text = Fau_vim.load_plugin("nvim-dap-virtual-text")
-if dap_virtual_text == nil then return end
+local dap_virtual_text_ok, dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
+if not dap_virtual_text_ok then Fau_vim.load_plugin_error("nvim-dap-virtual-text") return end
 
 
 
