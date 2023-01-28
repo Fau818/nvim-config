@@ -114,6 +114,8 @@ return {
 		-- Todo Comments
 		["<LEADER>t"] = { "<CMD>TodoTrouble<CR>", "Show Todo Comments" },
 
+		-- Treesitter capture under cursor
+		["<LEADER><LEADER>c"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Under Cursor" },
 
 
 		-- =============================================

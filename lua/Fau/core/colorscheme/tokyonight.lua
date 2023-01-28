@@ -48,27 +48,24 @@ local config = {
 	---@param highlights Highlights
 	---@param colors ColorScheme
 	on_highlights = function(highlights, colors)
+		highlights["Include"] = {
+			fg = colors.cyan,
+			style = { italic = true }
+		}
+		highlights["Define"] = {
+			fg = colors.cyan,
+			style = { italic = true }
+		}
 
-		-- highlights.LspInlayHint = {
-		-- 	fg = ""
-		-- }
+		highlights["@keyword.function"] = {
+			fg = colors.magenta,
+			style = { italic = true }
+		}
 
-		-- highlights.Constant = {
-		-- 	fg = "#F59C4E"
-		-- }
-
-		-- highlights.Number = {
-		-- 	fg = "#7DB9E1"
-		-- }
-		--
-		-- highlights.String = {
-		-- 	fg = "#C78B76"
-		-- }
-
-
-		-- highlights["@keyword"] = {
-		-- 	fg = "#00A9EF"
-		-- }
+		highlights["Statement"] = {
+			fg = colors.magenta,
+			style = { italic = true }
+		}
 	end,
 }
 
