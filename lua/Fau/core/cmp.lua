@@ -112,9 +112,12 @@ local config = {
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
+
+				treesitter = "[Treesitter]",
 				buffer = "[Buffer]",
+
 				path = "[Path]",
-				nvim_lsp_signature_help = "[Param]"
+				-- nvim_lsp_signature_help = "[Param]",
 			})[entry.source.name]
 
 			-- limit the length of abbr
@@ -124,13 +127,13 @@ local config = {
 	},
 
 	sources = { -- The order of the sources determines their order in the completion results.
-		-- { name = "nvim_lsp_signature_help" },
 		{
 			name = "nvim_lsp",
 			-- disable snippets from LSP
 			-- entry_filter = function(entry) return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind() end
 		},
 		{ name = "luasnip" },
+		{ name = "treesitter" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
@@ -143,6 +146,7 @@ local config = {
 
 
 cmp.setup(config)
+
 
 -- for inserting '(' after select function or method item
 if npairs ~= nil then cmp.event:on("confirm_done", npairs.on_confirm_done()) end
@@ -169,8 +173,8 @@ cmp.setup.cmdline(":", {
 		),
 	},
 	sources = {
-		{ name = "path" },
 		{ name = "cmdline" },
+		{ name = "path" },
 	}
 })
 
@@ -191,5 +195,8 @@ cmp.setup.cmdline({ "/", "?" }, {
 			end, { "c" }
 		),
 	},
-	sources = { { name = "buffer" } }
+	sources = {
+		{ name = "buffer" },
+		{ name = "treesitter" },
+	}
 })

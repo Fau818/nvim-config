@@ -74,7 +74,7 @@ return require("packer").startup(function(use)
 	use "hrsh7th/cmp-buffer"                  -- buffer cmp for nvim-cmp
 	use "hrsh7th/cmp-path"                    -- path cmp for nvim-cmp
 	use "hrsh7th/cmp-cmdline"                 -- command line cmp for nvim-cmp
-	use "hrsh7th/cmp-nvim-lsp-signature-help" -- signature help cmp for nvim-cmp
+	-- use "hrsh7th/cmp-nvim-lsp-signature-help" -- signature help cmp for nvim-cmp
 	use "folke/neodev.nvim"                   -- lua cmp, including neovim builtin documents
 
 	use "L3MON4D3/LuaSnip"             -- code snippets engine
@@ -202,7 +202,9 @@ return require("packer").startup(function(use)
 	-- ======== new plugins [test]
 	-- =============================================
 	use "folke/noice.nvim"
-	-- use "glepnir/lspsaga.nvim"
+	use "ray-x/lsp_signature.nvim"
+	use "ray-x/cmp-treesitter"
+
 
 
 	-- use "Tastyep/structlog.nvim"  -- enhance nvim log

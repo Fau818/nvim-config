@@ -90,6 +90,8 @@ return {
 		Restore = "󰦛",
 		Exit = "󰿅",  -- 󰗼
 
+		Parameter = "",
+
 		Tab = "",
 		Space = "⎵",
 
