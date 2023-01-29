@@ -17,6 +17,7 @@ dashboard.section.header.val = {
 	[[]],
 	[[]],
 	[[]],
+	[[]],
 	[[ ________                               __               ]],
 	[[|        \                             |  \              ]],
 	[[| $$$$$$$$______   __    __  __     __  \$$ ______ ____  ]],
@@ -33,15 +34,22 @@ dashboard.section.header.val = {
 	[[]],
 }
 dashboard.section.buttons.val = {
-	dashboard.button("f", Fau_vim.icons.ui.FindFile .. "  Find File",     "<CMD>Telescope find_files<CR>"),
-	dashboard.button("n", Fau_vim.icons.ui.NewFile  .. "  New File",      "<CMD>ene!<CR>"),
-	dashboard.button("p", Fau_vim.icons.ui.Project  .. "  Projects ",     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR> "),
-	dashboard.button("r", Fau_vim.icons.ui.History  .. "  Recent files",  "<CMD>Telescope oldfiles<CR>"),
-	dashboard.button("t", Fau_vim.icons.ui.FindText .. "  Find Text",     "<CMD>Telescope live_grep<CR>"),
-	dashboard.button("c", Fau_vim.icons.ui.Gear     .. "  Configuration", "<CMD>FauvimConfig<CR>"),
-	dashboard.button("q", "Quit",   "<CMD>qa<CR>"),
+	dashboard.button("n", Fau_vim.icons.ui.NewFile .. "  New File", "<CMD>enew<CR>"),
+
+	dashboard.button("p", Fau_vim.icons.ui.Project  .. "  Projects",     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR> "),
+	dashboard.button("f", Fau_vim.icons.ui.FindFile .. "  Find Files",   "<CMD>Telescope find_files<CR>"),
+	dashboard.button("r", Fau_vim.icons.ui.History  .. "  Recent Files", "<CMD>Telescope oldfiles<CR>"),
+	dashboard.button("t", Fau_vim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>"),
+
+	dashboard.button("l", Fau_vim.icons.ui.Restore .. "  Load Session",      "<CMD>lua require('persistence').load()<CR>"),
+	dashboard.button("L", Fau_vim.icons.ui.Restore .. "  Load Last Session", "<CMD>lua require('persistence').load({ last = true })<CR>"),
+
+	dashboard.button("c", Fau_vim.icons.ui.Gear .. "  Configuration", "<CMD>FauvimConfig<CR>"),
+
+	dashboard.button("q", Fau_vim.icons.ui.Exit	.. "  Quit", "<CMD>qa<CR>"),
 }
 
+-- dashboard.config.opts.autostart = false
 -- local handle = io.popen("fortune")
 -- if handle == nil then return end
 -- local fortune = handle:read("*a")

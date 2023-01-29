@@ -87,6 +87,8 @@ return {
 		History = "",
 		FindText = "",
 		Gear = "",
+		Restore = "󰦛",
+		Exit = "󰿅",  -- 󰗼
 
 		Tab = "",
 		Space = "⎵",
