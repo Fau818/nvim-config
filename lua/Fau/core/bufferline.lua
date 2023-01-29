@@ -15,9 +15,9 @@ local config = {
 
 		numbers = "none", -- values: "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
 
-		close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
-		right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-		left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+		close_command        = "Bdelete %d", -- can be a string | function, see "Mouse actions"
+		right_mouse_command  = "Bdelete %d", -- can be a string | function, see "Mouse actions"
+		left_mouse_command   = "buffer %d",  -- can be a string | function, see "Mouse actions"
 		middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
 
 		indicator = {
@@ -31,7 +31,7 @@ local config = {
 		left_trunc_marker = "",  -- if too long
 		right_trunc_marker = "", -- if too long
 
-		always_show_bufferline = true, -- whether or not to show the bufferline if only one tab
+		always_show_bufferline = false, -- whether or not to show the bufferline if only one tab
 		enforce_regular_tabs = false,   -- prevent beyond the tab size and all tabs will be the same length
 
 		tab_size = 10,                -- the tab length
@@ -39,6 +39,10 @@ local config = {
 		max_prefix_length = 12,       -- prefix used when a buffer is de-duplicated
 		show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
 		truncate_names = true,        -- whether or not tab names should be truncated
+
+		custom_filter = function(buf_number, buf_numbers)
+			if vim.fn.bufname(buf_number) ~= "" then return true end
+		end,
 
 		diagnostics = "nvim_lsp", -- values: false | "nvim_lsp" | "coc"
 		diagnostics_update_in_insert = false,
@@ -61,7 +65,7 @@ local config = {
 		offsets = {
 			{
 				filetype = "NvimTree",
-				text = "ﴔ Workspace", -- values: string | function
+				text = "🚀Workspace",    -- values: string | function
 				text_align = "center", -- values: "left" | "center" | "right"
 				separator = true
 			}

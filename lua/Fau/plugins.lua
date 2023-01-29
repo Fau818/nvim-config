@@ -142,8 +142,8 @@ return require("packer").startup(function(use)
 
 	use "xiyaowong/nvim-transparent"  -- transparent background
 
-	use "folke/todo-comments.nvim"  -- highlight TODO tags in comment
-	use "folke/paint.nvim"  -- for highlighting params in comment
+	use "folke/todo-comments.nvim" -- highlight TODO tags in comment
+	use "folke/paint.nvim"         -- for highlighting params in comment
 
 
 	-- =============================================
