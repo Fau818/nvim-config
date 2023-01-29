@@ -12,6 +12,21 @@ local layout  = require("telescope.actions.layout")
 -- =============================================
 -- ========== Configuration
 -- =============================================
+-- -----------------------------------
+-- -------- Trouble
+-- -----------------------------------
+local trouble_ok, trouble = pcall(require, "trouble.providers.telescope")
+if not trouble_ok then trouble = nil end
+
+local function send_to_trouble()
+	if trouble then return trouble.open_with_trouble end
+	return actions.send_to_qflist + actions.open_qflist
+end
+
+
+-- -----------------------------------
+-- -------- Telescope
+-- -----------------------------------
 local config = {
 	defaults = {
 		-- Default configuration for telescope goes here:
@@ -100,6 +115,8 @@ local config = {
 
 				["<C-p>"] = layout.toggle_preview,
 
+				["<C-t>"] = send_to_trouble(),
+
 				["<C-l>"] = false,
 				["<C-n>"] = false,
 
@@ -111,6 +128,8 @@ local config = {
 				-- ["C-/"] = actions.which_key,
 			},
 			n = {
+				["q"] = actions.close,
+
 				["<TAB>"]   = actions.move_selection_worse,  -- move to next
 				["<S-TAB>"] = actions.move_selection_better, -- move to last
 
@@ -118,7 +137,8 @@ local config = {
 				["<Up>"]   = actions.cycle_history_prev,
 
 				["<C-p>"] = layout.toggle_preview,
-				["q"] = actions.close,
+
+				["<C-t>"] = send_to_trouble(),
 
 				["<PageUp>"]   = false,
 				["<PageDown>"] = false,

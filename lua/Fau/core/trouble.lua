@@ -15,32 +15,39 @@ local config = {
 	width = 50,          -- width of the list when position is left or right
 	icons = true,        -- use devicons for filenames
 
-	mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+	mode = "quickfix", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
 
 	fold_open = "",   -- icon used for open folds
 	fold_closed = "", -- icon used for closed folds
 
-	group = true,   -- group results by file
-	padding = true, -- add an extra new line on top of the list
+	group = true,    -- group results by file
+	padding = false, -- add an extra new line on top of the list
 
 	action_keys = { -- key mappings for actions in the trouble list
 		-- map to {} to remove a mapping, for example:
 		-- close = {},
-		close = { "q", "<esc>" },     -- close the list
-		cancel = {},                  -- cancel the preview and get back to your last window / buffer / cursor
+		cancel = { "<ESC>" },         -- cancel the preview and get back to your last window / buffer / cursor
+		close = { "q" },              -- close the list
+
+		jump = { "<TAB>" },           -- jump to the diagnostic or open / close folds
+		jump_close = { "<CR>" },			-- jump to the diagnostic and close the list
+
 		refresh = "r",                -- manually refresh
-		jump = { "<tab>" },           -- jump to the diagnostic or open / close folds
-		open_split = { "<c-x>" },     -- open buffer in new split
-		open_vsplit = { "<c-v>" },    -- open buffer in new vsplit
-		open_tab = { "<c-t>" },       -- open buffer in new tab
-		jump_close = { "<CR>" }, -- jump to the diagnostic and close the list
+
+		open_split  = { "<C-x>" },		-- open buffer in new split
+		open_vsplit = { "<C-v>" },		-- open buffer in new vsplit
+		open_tab    = { "<C-t>" },		-- open buffer in new tab
+
 		toggle_mode = "m",            -- toggle between "workspace" and "document" diagnostics mode
 		toggle_preview = "P",         -- toggle auto_preview
+
 		hover = "<C-d>",              -- opens a small popup with the full multiline message
 		preview = "p",                -- preview the diagnostic location
+
 		close_folds = { "zM", "zm" }, -- close all folds
-		open_folds = { "zR", "zr" },  -- open all folds
+		open_folds  = { "zR", "zr" }, -- open all folds
 		toggle_fold = { "zA", "za" }, -- toggle fold of current file
+
 		previous = "k",               -- previous item
 		next = "j"                    -- next item
 	},
