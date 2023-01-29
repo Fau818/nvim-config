@@ -40,9 +40,9 @@ augroup END
 -- =============================================
 Fau_vim.functions.initialize_vim = function()
 	vim.cmd [[
-		augroup Fau_vim
-			autocmd BufReadPost * lua Fau_vim.functions.set_client_by_ft()
-		augroup END
+	augroup Fau_vim
+		autocmd BufReadPost * lua Fau_vim.functions.set_client_by_ft()
+	augroup END
 	]]
 	Fau_vim.functions.set_client_by_ft()
 end
@@ -64,3 +64,9 @@ augroup Fau_vim
 	autocmd BufWritePre * lua Fau_vim.functions.remove_blank_lines_and_spaces()
 augroup END
 ]]
+
+
+
+-- =============================================
+-- ========== TEST
+-- =============================================

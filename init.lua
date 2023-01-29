@@ -30,6 +30,7 @@ require "Fau.core.gitsigns"
 require "Fau.core.aerial"
 require "Fau.core.todo-comments"
 require "Fau.core.paint"
+require "Fau.core.colorizer"
 
 -- surround and comment [better writing]
 require "Fau.core.comment"
