@@ -2,6 +2,11 @@
 -- ========== Fau_vim.icons
 -- =============================================
 return {
+	filetype = {
+		Lua = "",
+	},
+
+
 	kind = {
 		Array = "",
 		Boolean = "蘒",
@@ -95,9 +100,17 @@ return {
 		Tab = "",
 		Space = "⎵",
 
-		DividerLeft = "", -- DividerLeft = "",
-		DividerRight = "", -- DividerRight = "",
-		BoldDividerLeft = "", -- BoldDividerLeft = "",
+		Input = "",
+		Help = "",
+		Search = "",
+		Terminal = "",
+
+		LookDown = "",
+		LookUp   = "",
+
+		DividerLeft      = "",  -- DividerLeft      = "",
+		DividerRight     = "",  -- DividerRight     = "",
+		BoldDividerLeft  = "", -- BoldDividerLeft  = "",
 		BoldDividerRight = "", -- BoldDividerRight = "",
 
 		ChevronRight = ">",
@@ -106,7 +119,7 @@ return {
 
 		BoldArrowRight = "",
 
-		BreakPoint = "🛑",
+		BreakPoint = "",
 		Bug = "",
 		Stacks = " ",
 		Scopes = "",

@@ -18,7 +18,8 @@ local basic = {  -- n
 	["<TAB>"]   = "Indent Line",
 	["<S-TAB>"] = "Unindent Line",
 
-	["<LEADER><LEADER>c"] = "Convert Tab and Space (indent)",
+	["<LEADER><LEADER>c"] = "Convert Tab and Space",
+	["<LEADER><LEADER>C"] = "Convert Tab and Space (Force)",
 }
 
 
@@ -115,7 +116,7 @@ return {
 		["<LEADER>t"] = { "<CMD>TodoTrouble<CR>", "Show Todo Comments" },
 
 		-- Treesitter capture under cursor
-		["<LEADER><LEADER>c"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Under Cursor" },
+		["<LEADER><LEADER>u"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Under Cursor" },
 
 
 		-- =============================================

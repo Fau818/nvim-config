@@ -158,8 +158,7 @@ if npairs ~= nil then cmp.event:on("confirm_done", npairs.on_confirm_done()) end
 -- Use cmdline & path source for ':'
 cmp.setup.cmdline(":", {
 	completion = {
-		---@diagnostic disable-next-line: assign-type-mismatch
-		autocomplete = false,
+		autocomplete = {},  -- values: InsertEnter|TextChanged
 		completeopt = "menu, menuone, noselect"
 	},
 	mapping = {
@@ -182,7 +181,7 @@ cmp.setup.cmdline(":", {
 -- Use buffer source for `/` and `?`
 cmp.setup.cmdline({ "/", "?" }, {
 	completion = {
-		-- autocomplete = true,  -- if uncomment, no matter what value it is, will diable the auto popup menu
+		autocomplete = {},  -- values: InsertEnter|TextChanged
 		completeopt = "menu, menuone, noselect"
 	},
 	mapping = {

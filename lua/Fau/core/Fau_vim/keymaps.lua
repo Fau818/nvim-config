@@ -67,6 +67,7 @@ keymap("n", "<C-f>", "<CMD>silent !open $(dirname %)<CR>", opts)
 
 -- Convert tab and space
 keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab<CR>", opts)
+keymap({ "n", "x" }, "<LEADER><LEADER>C", ":retab!<CR>", opts)
 
 
 -- =============================================
