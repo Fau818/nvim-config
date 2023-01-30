@@ -46,7 +46,7 @@ require "Fau.core.project"
 require "Fau.core.cmp"
 require "Fau.core.neodev"  -- keep this before LSP
 require "Fau.core.lsp"
-require "Fau.core.lsp_signature"
+-- require "Fau.core.lsp_signature"
 require "Fau.core.null-ls"
 require "Fau.core.trouble"
 
@@ -71,6 +71,7 @@ require "Fau.core.terminal"
 require "Fau.core.dap"
 
 
+if Fau_vim.inc_rename.enable then require "Fau.core.inc_rename" end
 -- =============================================
 -- ========== test
 -- =============================================

@@ -11,6 +11,12 @@ local modifyer = {  -- ni
 }
 
 
+---@return string
+local function get_rename()
+	return Fau_vim.inc_rename.enable and ":IncRename " or "<CMD>lua vim.lsp.buf.rename()<CR>"
+end
+
+
 
 return {
 	n = {
@@ -42,7 +48,8 @@ return {
 
 		["<LEADER>l"] = {
 			name = "+LSP",
-			r = { "<CMD>lua vim.lsp.buf.rename()<CR>",      "Rename" },
+			r = { get_rename(), "Rename" },
+
 			a = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
 
 			-- Diagnostic Info

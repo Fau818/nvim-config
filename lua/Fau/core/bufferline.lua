@@ -65,7 +65,7 @@ local config = {
 		offsets = {
 			{
 				filetype = "NvimTree",
-				text = "🚀Workspace",    -- values: string | function
+				text = " Workspace",    -- values: string | function
 				text_align = "center", -- values: "left" | "center" | "right"
 				separator = true
 			}
