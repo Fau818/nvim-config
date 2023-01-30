@@ -113,7 +113,7 @@ local config = {
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
 
-				treesitter = "[Treesitter]",
+				-- treesitter = "[Treesitter]",
 				buffer = "[Buffer]",
 
 				path = "[Path]",
@@ -133,7 +133,7 @@ local config = {
 			-- entry_filter = function(entry) return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind() end
 		},
 		{ name = "luasnip" },
-		{ name = "treesitter" },
+		-- { name = "treesitter" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
@@ -195,8 +195,5 @@ cmp.setup.cmdline({ "/", "?" }, {
 			end, { "c" }
 		),
 	},
-	sources = {
-		{ name = "buffer" },
-		{ name = "treesitter" },
-	}
+	sources = { { name = "buffer" } }
 })

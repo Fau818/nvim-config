@@ -20,10 +20,6 @@ local config = {
 	hijack_cursor = true,                       -- Keeps the cursor on the first letter of the filename when moving in the tree.
 	hijack_unnamed_buffer_when_opening = false, -- Opens in place of the unnamed buffer if it's empty.
 
-	open_on_setup          = false, -- Will automatically open the tree and focus on it if startup buffer is a directory, is empty or is unnamed.
-	open_on_setup_file     = false, -- like the above one, if buffer is anything, but won't focus.
-	ignore_buffer_on_setup = false, -- Will ignore the buffer, when deciding to open the tree on setup.
-
 	sort_by = "name", -- files sorted method; value: `name`, `case_sensitive`, `modification_time`, `extension` or a function.
 
 	-- root_dirs = {},
@@ -213,8 +209,6 @@ local config = {
 		update_root = true, -- Update the root directory of the tree if the file is not under current root directory. It prefers vim's cwd and `root_dirs`.
 		ignore_list = {}, -- List of buffer names and filetypes that will not update the root dir of the tree if the file isn't found under the current root directory.
 	},
-
-	ignore_ft_on_setup = {},
 
 	system_open = { -- Configuration options for the system open command.
 		cmd = "", -- The command to run, leaving empty should work but useful if you want to override the default command with another one.

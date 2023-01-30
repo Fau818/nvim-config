@@ -204,7 +204,7 @@ return require("packer").startup(function(use)
 	-- =============================================
 	use "folke/noice.nvim"
 	use "ray-x/lsp_signature.nvim"
-	use "ray-x/cmp-treesitter"
+	-- use "ray-x/cmp-treesitter"
 
 
 
