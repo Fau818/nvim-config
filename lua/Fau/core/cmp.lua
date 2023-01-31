@@ -48,7 +48,7 @@ local config = {
 	},
 
 	mapping = { -- custom mapping
-		-- Note: the default mapping mode is 'insert'. like cmp.mapping(..., { "i" })
+		-- NOTE: the default mapping mode is 'insert'. like cmp.mapping(..., { "i" })
 
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c", "s" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c", "s" }),

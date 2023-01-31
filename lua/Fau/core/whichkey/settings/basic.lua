@@ -154,6 +154,9 @@ return {
 		["<A-w>"] = { "<CMD>update<CR><CMD>Bdelete<CR>", "Save and Close Current Buffer" },
 		["<A-q>"] = { "<CMD>Bdelete<CR>", "Close Current Buffer" },
 
+		["<A-left>"]  = { "<CMD>BufferLineMovePrev<CR>", "Move Buffer Prev" },
+		["<A-right>"] = { "<CMD>BufferLineMoveNext<CR>", "Move Buffer Next" },
+
 
 		-- ---------------------------------------------
 		-- -------- Select Buffers (relative position)

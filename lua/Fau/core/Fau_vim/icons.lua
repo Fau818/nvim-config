@@ -96,6 +96,7 @@ return {
 		Exit = "󰿅",  -- 󰗼
 
 		Parameter = "",
+		Signature = "󰷾",
 
 		Tab = "",
 		Space = "⎵",
