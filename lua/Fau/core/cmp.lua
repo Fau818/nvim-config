@@ -114,6 +114,7 @@ local config = {
 				luasnip = "[Snippet]",
 
 				-- treesitter = "[Treesitter]",
+				conventionalcommits = "[Git]",
 				buffer = "[Buffer]",
 
 				path = "[Path]",
@@ -136,6 +137,7 @@ local config = {
 		-- { name = "treesitter" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "conventionalcommits" }
 	},
 	window = {
 		completion = cmp.config.window.bordered(),
