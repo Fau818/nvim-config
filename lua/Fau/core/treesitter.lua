@@ -11,7 +11,11 @@ if not treesitter_ok then Fau_vim.load_plugin_error("nvim-treesitter.configs") r
 -- =============================================
 local config = {
 	-- A list of parser names, or "all"
-	ensure_installed = { "c", "lua", "python" },
+	ensure_installed = {
+		"vim", "help",
+		"c", "cpp", "lua", "python",
+		"regex", "bash", "markdown", "markdown_inline", "gitcommit"
+	},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,

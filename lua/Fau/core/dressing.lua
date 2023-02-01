@@ -33,7 +33,7 @@ local config = {
 		relative = "cursor",
 
 		-- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-		prefer_width = 40,
+		prefer_width = 25,
 		width = nil,
 		-- min_width and max_width can be a list of mixed types.
 		-- min_width = {20, 0.2} means "the greater of 20 columns or 20% of total"

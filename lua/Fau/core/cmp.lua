@@ -12,9 +12,7 @@ if not npairs_ok then npairs = nil end
 
 
 local cmp_zsh_ok, cmp_zsh = pcall(require, "cmp_zsh")
-if cmp_zsh_ok then
-	cmp_zsh.setup({ zshrc = true, filetypes = { "zsh" } })
-end
+if cmp_zsh_ok then cmp_zsh.setup({ zshrc = true, filetypes = { "zsh" } }) end
 
 
 

@@ -95,6 +95,7 @@ return {
 		Restore = "󰦛",
 		Exit = "󰿅",  -- 󰗼
 
+		Rename = "",
 		Parameter = "",
 		Signature = "󰷾",
 

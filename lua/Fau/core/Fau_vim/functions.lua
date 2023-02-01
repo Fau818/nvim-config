@@ -50,7 +50,7 @@ local function auto_indent()
 	end
 	Fau_vim.functions.remove_blank_lines_and_spaces()
 	vim.api.nvim_command("nohlsearch")
-	Fau_vim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal", timeout = 0 })
+	Fau_vim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal" })
 end
 
 

@@ -18,6 +18,8 @@ local config = {
 
 	-- Set to 1 if you don't want restore IM status when `InsertEnter`
 	disable_auto_restore = 1,
+
+	default_command = "im-select",
 }
 
 
