@@ -11,7 +11,7 @@ if not notify_ok then Fau_vim.load_plugin_error("notify") return end
 -- =============================================
 local config = {
 	background_colour = "#000000",
-	fps = 30,
+	fps = 60,
 	icons = {
 		DEBUG = Fau_vim.icons.diagnostics.Debug,
 		ERROR = Fau_vim.icons.diagnostics.BoldError,
@@ -22,10 +22,14 @@ local config = {
 	level = 2,
 	minimum_width = 30,
 	render = "default",  -- values: default|minimal|simple
-	stages = "static",  -- values: fade_in_slide_out|fade|slide|static
-	timeout = 1500,
+	stages = "fade_in_slide_out",  -- values: fade_in_slide_out|fade|slide|static
+	timeout = 500,
 	top_down = true
 }
 
 
 notify.setup(config)
+
+
+-- use notify to replace vim.notify
+vim.notify = notify

@@ -64,6 +64,7 @@ keymap("n", "<LEADER>q", "q", opts)
 
 -- Open File Folder
 keymap("n", "<C-f>", "<CMD>silent !open $(dirname %)<CR>", opts)
+keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 
 -- Convert tab and space
 keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab<CR>", opts)
