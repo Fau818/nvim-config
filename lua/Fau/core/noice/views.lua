@@ -1,34 +1,10 @@
 return {
-	popupmenu = {
-		relative = "editor",
-		zindex = 65,
-		position = "auto", -- when auto, then it will be positioned to the cmdline or cursor
-		size = {
-			width = "auto",
-			height = "auto",
-			max_height = 20,
-		},
-		win_options = {
-			cursorline = true,
-			cursorlineopt = "line",
-			winhighlight = {
-				Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
-				FloatBorder = "NoicePopupmenuBorder", -- border highlight
-				CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
-				PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
-			},
-		},
-		border = {
-			style = "rounded",
-			padding = { 0, 1 },
-		},
-	},
-
 	virtualtext = {
 		backend = "virtualtext",
 		format = { "{message}" },
 		hl_group = "NoiceVirtualText",
 	},
+
 
 	notify = {
 		backend = "notify",
@@ -40,6 +16,7 @@ return {
 		stages = "fade_in_slide_out",
 		render = "minimal",
 	},
+
 
 	split = {
 		backend = "split",
@@ -56,6 +33,11 @@ return {
 		},
 	},
 
+	vsplit = {
+		view = "split",
+		position = "right",
+	},
+
 	cmdline_output = {
 		format = "details",
 		view = "split",
@@ -66,10 +48,6 @@ return {
 		enter = true,
 	},
 
-	vsplit = {
-		view = "split",
-		position = "right",
-	},
 
 	popup = {
 		backend = "popup",
@@ -116,6 +94,7 @@ return {
 		},
 	},
 
+
 	cmdline = {
 		backend = "popup",
 		relative = "editor",
@@ -138,6 +117,7 @@ return {
 			},
 		},
 	},
+
 
 	mini = {
 		backend = "mini",
@@ -165,6 +145,7 @@ return {
 		},
 	},
 
+
 	cmdline_popup = {
 		backend = "popup",
 		relative = "editor",
@@ -176,8 +157,7 @@ return {
 			col = "50%",
 		},
 		size = {
-			min_width = 60,
-			width = "auto",
+			width = 60,
 			height = "auto",
 		},
 		border = {
@@ -192,6 +172,8 @@ return {
 				Search = "",
 			},
 			cursorline = false,
+			wrap = false,
+			linebreak = false,
 		},
 	},
 
@@ -220,6 +202,32 @@ return {
 				Normal = "NoiceConfirm",
 				FloatBorder = "NoiceConfirmBorder",
 			},
+		},
+	},
+
+
+	popupmenu = {
+		relative = "editor",
+		zindex = 65,
+		position = "auto", -- when auto, then it will be positioned to the cmdline or cursor
+		size = {
+			width = "auto",
+			height = "auto",
+			max_height = 20,
+		},
+		win_options = {
+			cursorline = true,
+			cursorlineopt = "line",
+			winhighlight = {
+				Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
+				FloatBorder = "NoicePopupmenuBorder", -- border highlight
+				CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
+				PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
+			},
+		},
+		border = {
+			style = "rounded",
+			padding = { 0, 1 },
 		},
 	},
 
@@ -257,34 +265,5 @@ return {
 		},
 	},
 
-	-- cmdline_popup_bottom = {
-	-- 	backend = "popup",
-	-- 	relative = "editor",
-	-- 	focusable = false,
-	-- 	enter = false,
-	-- 	zindex = 60,
-	-- 	position = {
-	-- 		row = -3,
-	-- 		col = "50%",
-	-- 	},
-	-- 	size = {
-	-- 		min_width = 60,
-	-- 		width = "auto",
-	-- 		height = "auto",
-	-- 	},
-	-- 	border = {
-	-- 		style = "rounded",
-	-- 		padding = { 0, 1 },
-	-- 	},
-	-- 	win_options = {
-	-- 		winhighlight = {
-	-- 			Normal = "NoiceCmdlinePopup",
-	-- 			FloatBorder = "NoiceCmdlinePopupBorder",
-	-- 			IncSearch = "",
-	-- 			Search = "",
-	-- 		},
-	-- 		cursorline = false,
-	-- 	},
-	-- },
 
 }

@@ -5,20 +5,25 @@ return {
 	-- -----------------------------------
 	-- -------- Cmdline
 	-- -----------------------------------
-	{
-		view = "cmdline_popup_top",
-		opts = { enter = true },  -- BUG: waiting for a fix
+	{  -- mini.align
+		view = "cmdline_popup",
 		filter = { event = "cmdline", find = "(mini.align)" },
+		opts = { enter = true },  -- BUG: waiting for a fix
 	},
 
 
 	-- -----------------------------------
 	-- -------- Messages
 	-- -----------------------------------
-	{
+	{  -- mini.align
 		view = "notify",
-		filter = { find = "(mini.align)" },
+		filter = { event = "msg_show", find = "(mini.align)" },
 		opts = { title = "mini.align" },
+	},
+
+	{  -- showmode
+		view = "mini",
+		filter = { event = "msg_showmode" },
 	},
 
 	{
