@@ -41,6 +41,9 @@ keymap("n", "<C-S-q>", "<CMD>wall<CR><CMD>qall<CR>", opts)  -- `xall` doesn't wo
 -- =============================================
 -- ========== Personal Preferences
 -- =============================================
+-- Escape and Clear Hlsearch
+keymap({ "n", "i" }, "<ESC>", "<CMD>nohlsearch<CR><ESC>", opts)
+
 -- Undo Preferences
 keymap("n", "U", "<C-r>", opts)
 keymap("n", "<A-u>", "U", opts)
@@ -50,7 +53,7 @@ keymap("n", "<A-m>", "J", opts)
 
 -- Default Visual-Block Mode
 keymap("n", "v", "<C-v>", opts)
-keymap("n", "<C-v>", "v", opts)
+-- keymap("n", "<C-v>", "v", opts)
 
 -- Use Enter Key to Break Line in Normal Mode
 keymap("n", "<CR>", "o<ESC>", opts)
@@ -160,6 +163,10 @@ keymap({ "n", "t" }, "<C-LEFT>",  "<CMD>vertical resize -2<CR>", opts)
 keymap({ "n", "t" }, "<C-RIGHT>", "<CMD>vertical resize +2<CR>", opts)
 keymap({ "n", "t" }, "<C-DOWN>",  "<CMD>resize -1<CR>",          opts)
 keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
+
+-- Split Window
+keymap("n", "<C-v>", "<CMD>vsplit<CR>", opts)
+keymap("n", "<C-x>", "<CMD>split<CR>",  opts)
 
 
 -- -----------------------------------

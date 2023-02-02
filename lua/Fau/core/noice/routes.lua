@@ -6,8 +6,8 @@ return {
 	-- -------- Cmdline
 	-- -----------------------------------
 	{
-		view = "hover",
-		opts = config.cmdline.opts,
+		view = "cmdline_popup_top",
+		opts = { enter = true },  -- BUG: waiting for a fix
 		filter = { event = "cmdline", find = "(mini.align)" },
 	},
 
@@ -15,6 +15,12 @@ return {
 	-- -----------------------------------
 	-- -------- Messages
 	-- -----------------------------------
+	{
+		view = "notify",
+		filter = { find = "(mini.align)" },
+		opts = { title = "mini.align" },
+	},
+
 	{
 		view = config.messages.view,
 		filter = {

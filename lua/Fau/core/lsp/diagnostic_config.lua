@@ -13,7 +13,7 @@ for _, sign in ipairs(signs) do vim.fn.sign_define(sign.name, { texthl = sign.na
 
 -- setting diagnostic config
 local config = {
-	-- virtual_text = { prefix="■" },
+	-- virtual_text = { prefix="●" },
 	virtual_text = false,
 	signs = true,
 
@@ -34,7 +34,7 @@ local config = {
 		---@param diagnostic Diagnostic
 		---@return string Diagnostic message
 		format = function(diagnostic)  -- for show the error code
-
+			---@diagnostic disable-next-line: undefined-field
 			local code = diagnostic.code or (diagnostic.user_data and diagnostic.user_data.lsp.code)
 			if code then return string.format("%s [%s]", diagnostic.message, code) end
 			return diagnostic.message

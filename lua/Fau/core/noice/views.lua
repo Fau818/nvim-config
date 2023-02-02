@@ -38,7 +38,7 @@ return {
 		merge = true,
 
 		stages = "fade_in_slide_out",
-		-- render = "minimal",
+		render = "minimal",
 	},
 
 	split = {
@@ -149,7 +149,6 @@ return {
 		position = {
 			row = -1,
 			col = "100%",
-			-- col = 0,
 		},
 		size = "auto",
 		border = {
@@ -157,7 +156,7 @@ return {
 		},
 		zindex = 60,
 		win_options = {
-			winblend = 30,
+			winblend = 0,
 			winhighlight = {
 				Normal = "NoiceMini",
 				IncSearch = "",
@@ -240,8 +239,7 @@ return {
 			col = "50%",
 		},
 		size = {
-			min_width = 60,
-			width = "auto",
+			width = 60,
 			height = "auto",
 		},
 		border = {
@@ -258,5 +256,35 @@ return {
 			cursorline = false,
 		},
 	},
+
+	-- cmdline_popup_bottom = {
+	-- 	backend = "popup",
+	-- 	relative = "editor",
+	-- 	focusable = false,
+	-- 	enter = false,
+	-- 	zindex = 60,
+	-- 	position = {
+	-- 		row = -3,
+	-- 		col = "50%",
+	-- 	},
+	-- 	size = {
+	-- 		min_width = 60,
+	-- 		width = "auto",
+	-- 		height = "auto",
+	-- 	},
+	-- 	border = {
+	-- 		style = "rounded",
+	-- 		padding = { 0, 1 },
+	-- 	},
+	-- 	win_options = {
+	-- 		winhighlight = {
+	-- 			Normal = "NoiceCmdlinePopup",
+	-- 			FloatBorder = "NoiceCmdlinePopupBorder",
+	-- 			IncSearch = "",
+	-- 			Search = "",
+	-- 		},
+	-- 		cursorline = false,
+	-- 	},
+	-- },
 
 }

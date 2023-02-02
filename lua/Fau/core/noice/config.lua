@@ -2,7 +2,7 @@ return {
 	cmdline = require("Fau.core.noice.cmdline"),
 
 	messages = {  -- if enabled, will also enable cmdline.
-		enabled = false, -- enables the Noice messages UI
+		enabled = true, -- enables the Noice messages UI
 		view = "notify", -- default view for messages
 		view_error = "notify", -- view for errors
 		view_warn = "notify", -- view for warnings
@@ -28,7 +28,7 @@ return {
 	---@type table<string, NoiceCommand>
 	commands = require("Fau.core.noice.commands"),
 
-	notify = { enabled = false, view = "notify" },
+	notify = { enabled = true, view = "notify" },
 
 	lsp = require("Fau.core.noice.lsp"),
 

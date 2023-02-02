@@ -72,12 +72,14 @@ local config = {
 		-- see :help dressing_get_config
 		get_config = nil,
 	},
+
+
 	select = {
 		-- Set to false to disable the vim.ui.select implementation
 		enabled = true,
 
 		-- Priority list of preferred vim.select implementations
-		backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+		backend = { "telescope", "nui", "fzf_lua", "fzf", "builtin", },
 
 		-- Trim trailing `:` from prompt
 		trim_prompt = true,
@@ -121,7 +123,7 @@ local config = {
 				filetype = "DressingSelect",
 			},
 			win_options = {
-				winblend = 10,
+				winblend = 0,
 			},
 			max_width = 80,
 			max_height = 40,

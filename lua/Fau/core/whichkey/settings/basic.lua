@@ -6,7 +6,7 @@ local basic = {  -- n
 	["<A-m>"] = "Merge Line",
 
 	["v"]     = "Visual-Block Mode",
-	["<C-v>"] = "Visual Mode",
+	-- ["<C-v>"] = "Visual Mode",
 
 	["<CR>"]         = "Add New Line",
 	["<LEADER><CR>"] = "Normal Enter Key",
@@ -20,6 +20,9 @@ local basic = {  -- n
 
 	["<LEADER><LEADER>c"] = "Convert Tab and Space",
 	["<LEADER><LEADER>C"] = "Convert Tab and Space (Force)",
+
+	["<C-v>"] = "Vertical Split",
+	["<C-x>"] = "Horizontal Split",
 }
 
 
@@ -81,16 +84,19 @@ local range = {  -- xo
 }
 
 
--- Move Line(s)
-local move_line = {  -- ni
+local normal_insert = {  -- ni
+	-- Move Line(s)
 	["<A-j>"] = { "<CMD>MoveLine(1)<CR>", "Move Down" },
 	["<A-k>"] = { "<CMD>MoveLine(-1)<CR>", "Move Up" },
+
+	-- Escape
+	["<ESC>"] = "Escape and Clear Hlsearch",
 }
 
 
 return {
 	n = {
-		basic, move, edit, move_line,
+		basic, move, edit, normal_insert,
 
 		-- =============================================
 		-- ========== Baisc
@@ -228,5 +234,5 @@ return {
 
 
 
-	i = { move_line }
+	i = { normal_insert }
 }
