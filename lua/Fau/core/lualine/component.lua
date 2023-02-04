@@ -25,6 +25,11 @@ local on_click = {
 		vim.api.nvim_command("TSBufToggle highlight")
 		require("lualine").refresh()
 	end,
+
+	indent = function()
+		Fau_vim.functions.cycle_indent()
+		require("lualine").refresh()
+	end,
 }
 
 
@@ -161,6 +166,8 @@ return {
 
 			return indent_show
 		end,
+
+		on_click = on_click.indent,
 	},
 
 

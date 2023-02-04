@@ -16,7 +16,7 @@ return {
 				showParams = true,          -- Display parameters in completion list.
 
 				showWord = "Fallback",      -- Show contextual words in suggestions. values: Enable|Fallback|Disable
-				workspaceWord = true,       -- Whether the displayed context word contains the content of other files in the workspace.
+				workspaceWord = false,      -- Whether the displayed context word contains the content of other files in the workspace.
 			},
 
 

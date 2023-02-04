@@ -74,8 +74,7 @@ end
 
 
 Fau_vim.functions.set_client_by_ft = function()
-	local bufferid = vim.api.nvim_get_current_buf()
-	local filetype = vim.api.nvim_buf_get_option(bufferid, "filetype")
+	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
 	if Fau_vim.configured_ft[filetype] then return end -- configured
 	Fau_vim.configured_ft[filetype] = true
