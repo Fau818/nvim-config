@@ -9,6 +9,7 @@ return {
 		vim.fn.setpos(".", save_cursor)
 	end,
 
+
 	-- -----------------------------------
 	-- -------- Smart Format
 	-- -----------------------------------
@@ -26,6 +27,7 @@ return {
 		vim.api.nvim_command("nohlsearch")
 		Fau_vim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal" })
 	end,
+
 
 	-- Smart format (if no lsp-formatter: use auto_indent)
 	smart_format = function()

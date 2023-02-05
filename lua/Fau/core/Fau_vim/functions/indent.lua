@@ -11,6 +11,7 @@ return {
 		vim.api.nvim_command(command)
 	end,
 
+
 	---@return Fau_vim_file_indent
 	__get_indent = function()
 		local filetype = vim.api.nvim_buf_get_option(0, "filetype")
@@ -25,10 +26,12 @@ return {
 		return Fau_vim.file_indent[filetype]
 	end,
 
+
 	set_indent = function()
 		local file_indent = Fau_vim.functions.indent.__get_indent()
 		Fau_vim.functions.indent.__use_indent(file_indent.indent_type, file_indent.indent_width)
 	end,
+
 
 	---Cycle indent in [tab2, space2, space4]
 	cycle_indent = function()

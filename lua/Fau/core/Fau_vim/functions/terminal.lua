@@ -61,7 +61,6 @@ local vertical = Terminal:new({
 })
 
 
-
 return {
 	lazygit    = function() lazygit:toggle()    end,
 	btop       = function() btop:toggle()       end,
