@@ -19,7 +19,7 @@ local config = {
 		TRACE = Fau_vim.icons.diagnostics.Trace,
 		WARN  = Fau_vim.icons.diagnostics.BoldWarning,
 	},
-	level = 2,
+	level = 0,
 	minimum_width = 30,
 	render = "default",  -- values: default|minimal|simple
 	stages = "fade_in_slide_out",  -- values: fade_in_slide_out|fade|slide|static
