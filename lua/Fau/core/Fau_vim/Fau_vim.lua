@@ -8,6 +8,7 @@ Fau_vim = {}
 -- =============================================
 -- ========== Fields
 -- =============================================
+-- TODO: unify fileds like Fau_vim.functions
 Fau_vim.dap = { enable = false }
 -- Fau_vim.inc_rename = { enable = pcall(require, "inc_rename") and pcall(require, "noice"), dressing = false }
 Fau_vim.inc_rename = { enable = false, dressing = false }

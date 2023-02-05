@@ -6,7 +6,7 @@
 -- -----------------------------------
 ---@param plugin string
 Fau_vim.load_plugin_error = function(plugin)
-	vim.notify(plugin .. " not found!", "ERROR", { title = "Fau: Plugin Not Found" })
+	vim.notify(plugin .. " not found!", "ERROR", { title = "Fau_vim: Plugin Not Found" })
 end
 
 

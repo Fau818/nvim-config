@@ -24,9 +24,10 @@ local config = {
 		TODO = { icon = " ", color = "info" },
 		HACK = { icon = " ", color = "warning" },
 		WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
-		PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+		PERF = { icon = " ", color = "warning", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
 		NOTE = { icon = " ", color = "default", alt = { "INFO", "HINT" } },
-		TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+		TEST = { icon = "⏲ ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
+		Fau  = { icon = "󰙽 ", color = "hint" }
 	},
 
 
@@ -35,7 +36,7 @@ local config = {
 		bg = "BOLD", -- The gui style to use for the bg highlight group.
 	},
 
-	merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+	merge_keywords = false, -- if false, only use defined in `keywords` option
 
 	highlight = {
 		multiline = true, -- enable multine todo comments
@@ -51,9 +52,9 @@ local config = {
 	},
 
 	colors = {
-		error   = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-		warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
 		info    = { "DiagnosticInfo", "#2563EB" },
+		warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+		error   = { "DiagnosticError", "ErrorMsg", "#DC2626" },
 		hint    = { "DiagnosticHint", "#10B981" },
 		default = { "Identifier", "#7C3AED" },
 		test    = { "Identifier", "#FF00FF" }

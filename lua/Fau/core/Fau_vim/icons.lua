@@ -85,17 +85,17 @@ return {
 
 
 	ui = {
-		File = "",
-		NewFile = "",
+		File     = "",
+		NewFile  = "",
 		FindFile = "",
-		Project = "",
-		History = "",
+		Project  = "",
+		History  = "",
 		FindText = "",
-		Gear = "",
-		Restore = "󰦛",
-		Exit = "󰿅",  -- 󰗼
+		Gear     = "",
+		Restore  = "󰦛",
+		Exit     = "󰿅",  -- 󰗼
 
-		Rename = "",
+		Rename    = "",
 		Parameter = "",
 		Signature = "󰷾",
 
@@ -123,10 +123,18 @@ return {
 
 		BreakPoint = "",
 		Bug = "",
-		Stacks = " ",
+		Stacks = "",
 		Scopes = "",
 		Watches = "",
-		DebugConsole = " ",
+		DebugConsole = "",
+
+		-- TODO = "",
+		-- HACK = "",
+		-- WARN = "",
+		-- PERF = "",
+		-- NOTE = "",
+		-- TEST = "⏲",
+		-- Fau  = "󰙽",
 	},
 
 
