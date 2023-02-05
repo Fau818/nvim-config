@@ -28,13 +28,11 @@ local config = {
 		-- },
 
 
-
 		{
 			filter = { filetype = "python" },
-			pattern = "%s*([%w_]+ :)",
+			pattern = "%s*([%w_]+[ ]+:)",
 			hl = "@parameter",
 		},
-
 
 		{
 			filter = { filetype = "python" },
@@ -44,15 +42,21 @@ local config = {
 
 		{
 			filter = { filetype = "python" },
+			pattern = "%-%-%-%-%-%-%-%-%-%-",
+			hl = "Identifier",
+		},
+
+		{
+			filter = { filetype = "python" },
 			pattern = "Returns",
 			hl = "Identifier",
 		},
 
-		-- {
-		-- 	filter = { filetype = "python" },
-		-- 	pattern = "-----+",
-		-- 	hl = "Identifier",
-		-- },
+		{
+			filter = { filetype = "python" },
+			pattern = "%-%-%-%-%-%-%-",
+			hl = "Identifier",
+		},
 
 	},
 }
