@@ -31,7 +31,7 @@ if not navic_ok then navic = nil end
 -- =============================================
 -- ========== Configuration
 -- =============================================
-local default_servers = { "sumneko_lua" }
+local default_servers = { "sumneko_lua", "pyright", "clangd"  }
 if mlspconfig then mlspconfig.setup({ ensure_installed = default_servers, automatic_installation = true }) end
 
 
@@ -73,7 +73,7 @@ local function setup_server(server)
 end
 
 
-Fau_vim.functions.set_client_by_ft = function()
+Fau_vim.functions.lsp.set_client_by_ft = function()
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
 	if Fau_vim.configured_ft[filetype] then return end -- configured

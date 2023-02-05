@@ -32,6 +32,10 @@ require "Fau.core.todo-comments"
 require "Fau.core.paint"
 require "Fau.core.colorizer"
 
+-- parser
+require "Fau.core.treesitter"
+require "Fau.core.illuminate"
+
 -- surround and comment [better writing]
 require "Fau.core.comment"
 require "Fau.core.surround"
@@ -59,10 +63,6 @@ require "Fau.core.im-select"
 require "Fau.core.python-docstring"
 require "Fau.core.twilight"
 require "Fau.core.zen-mode"
-
--- parser
-require "Fau.core.treesitter"
-require "Fau.core.illuminate"
 
 -- terminal
 require "Fau.core.terminal"

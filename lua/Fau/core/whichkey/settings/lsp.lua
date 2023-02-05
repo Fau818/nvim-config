@@ -63,8 +63,8 @@ return {
 			n = { "<CMD>lua vim.diagnostic.goto_next()<CR>", "Goto Next Diagnostics" },
 
 			-- Format
-			f = { "<CMD>lua Fau_vim.functions.format()<CR>", "Format Code" },
-			F = { "<CMD>lua vim.lsp.buf.format()<CR>",       "Format Code (Force Formatter)" },
+			f = { "<CMD>lua Fau_vim.functions.format.smart_format()<CR>", "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR>",                    "Format Code (Force Formatter)" },
 
 			-- LSP Manager
 			i = { "<CMD>LspInfo<CR>", "LspInfo" },
@@ -93,8 +93,8 @@ return {
 		["<LEADER>l"] = {
 			name = "+LSP",
 			-- Format
-			f = { "<CMD>lua Fau_vim.functions.format()<CR><ESC>", "Format Code" },
-			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>",       "Format Code (Force Formatter)" },
+			f = { "<CMD>lua Fau_vim.functions.format.smart_format()<CR><ESC>", "Format Code" },
+			F = { "<CMD>lua vim.lsp.buf.format()<CR><ESC>",                    "Format Code (Force Formatter)" },
 		},
 	},
 

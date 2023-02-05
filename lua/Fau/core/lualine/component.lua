@@ -27,7 +27,7 @@ local on_click = {
 	end,
 
 	indent = function()
-		Fau_vim.functions.cycle_indent()
+		Fau_vim.functions.indent.cycle_indent()
 		require("lualine").refresh()
 	end,
 }

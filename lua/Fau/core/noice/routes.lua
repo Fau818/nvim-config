@@ -28,10 +28,7 @@ return {
 
 	{
 		view = config.messages.view,
-		filter = {
-			event = "msg_show",
-			kind = { "", "echo", "echomsg" },
-		},
+		filter = { event = "msg_show" },
 		opts = { title = "Messages" }
 	},
 
@@ -63,8 +60,7 @@ return {
 			event = "noice",
 			kind = { "stats", "debug" },
 		},
-		opts = { lang = "lua", title = "Noice" },
+		opts = { lang = "lua", title = "Noice", level = vim.log.levels.DEBUG },
 	},
-
 
 }
