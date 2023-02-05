@@ -40,11 +40,23 @@ local config = {
 			hl = "Identifier",
 		},
 
-		-- {
-		-- 	filter = { filetype = "python" },
-		-- 	pattern = "%-%-%-%-%-%-%-%-%-%-",
-		-- 	hl = "Identifier",
-		-- },
+		{
+			filter = { filetype = "python" },
+			pattern = "Attributes",
+			hl = "Identifier",
+		},
+
+		{
+			filter = { filetype = "python" },
+			pattern = "References",
+			hl = "Identifier",
+		},
+
+		{
+			filter = { filetype = "python" },
+			pattern = "Examples",
+			hl = "Identifier",
+		},
 
 		{
 			filter = { filetype = "python" },
@@ -52,6 +64,12 @@ local config = {
 			hl = "Identifier",
 		},
 
+		-- {
+		-- 	filter = { filetype = "python" },
+		-- 	pattern = "%-%-%-%-%-%-%-%-%-%-",
+		-- 	hl = "Identifier",
+		-- },
+		--
 		-- {
 		-- 	filter = { filetype = "python" },
 		-- 	pattern = "%-%-%-%-%-%-%-",

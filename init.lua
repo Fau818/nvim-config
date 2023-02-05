@@ -28,9 +28,10 @@ require "Fau.core.bufferline"
 require "Fau.core.indentline"
 require "Fau.core.gitsigns"
 require "Fau.core.aerial"
+require "Fau.core.colorizer"
 require "Fau.core.todo-comments"
 require "Fau.core.paint"
-require "Fau.core.colorizer"
+require "Fau.core.noice"
 
 -- parser
 require "Fau.core.treesitter"
@@ -75,4 +76,3 @@ require "Fau.core.dap"
 -- ========== TEST
 -- =============================================
 if Fau_vim.inc_rename.enable then require "Fau.core.inc_rename" end
-require "Fau.core.noice"

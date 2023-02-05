@@ -145,9 +145,10 @@ return require("packer").startup(function(use)
 
 	use "xiyaowong/nvim-transparent"  -- transparent background
 
+	use "NvChad/nvim-colorizer.lua"  -- show color of code
 	use "folke/todo-comments.nvim" -- highlight TODO tags in comment
 	use "folke/paint.nvim"         -- for highlighting params in comment
-	use "NvChad/nvim-colorizer.lua"  -- show color of code
+	use "folke/noice.nvim"
 
 
 	-- =============================================
@@ -205,7 +206,6 @@ return require("packer").startup(function(use)
 	-- =============================================
 	-- ======== new plugins [test]
 	-- =============================================
-	use "folke/noice.nvim"
 	-- use "ray-x/lsp_signature.nvim"
 	-- use "smjonas/inc-rename.nvim"
 

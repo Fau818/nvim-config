@@ -81,7 +81,7 @@ return {
 			width = "auto",
 			height = "auto",
 			max_height = 20,
-			max_width = 120,
+			max_width = 100,
 		},
 		border = {
 			style = "rounded",
