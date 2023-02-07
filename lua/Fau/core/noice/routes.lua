@@ -8,7 +8,6 @@ return {
 	{  -- mini.align
 		view = "cmdline_popup",
 		filter = { event = "cmdline", find = "(mini.align)" },
-		opts = { enter = true },  -- BUG: waiting for a fix
 	},
 
 
