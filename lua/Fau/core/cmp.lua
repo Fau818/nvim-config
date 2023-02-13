@@ -127,7 +127,7 @@ local config = {
 			})[entry.source.name]
 
 			-- limit the length of abbr
-			-- vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, 30)
+			vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, 30)
 			return vim_item
 		end,
 	},
