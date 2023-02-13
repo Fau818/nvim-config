@@ -35,7 +35,7 @@ if not status_ok then vim.notify("packer does not work!", vim.log.error) return 
 
 
 -- Have packer use a popup window
-packer.init({ display = { open_fn = require("packer.util").float }, git = { clone_timeout = 180 } })
+packer.init({ display = { open_fn = require("packer.util").float }, git = { clone_timeout = 60 } })
 
 
 -- plugin install

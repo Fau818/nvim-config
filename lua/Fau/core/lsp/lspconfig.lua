@@ -31,7 +31,7 @@ if not navic_ok then navic = nil end
 -- =============================================
 -- ========== Configuration
 -- =============================================
-local default_servers = { "sumneko_lua", "pyright", "clangd"  }
+local default_servers = { "lua_ls", "pyright", "clangd" }
 if mlspconfig then mlspconfig.setup({ ensure_installed = default_servers, automatic_installation = true }) end
 
 
