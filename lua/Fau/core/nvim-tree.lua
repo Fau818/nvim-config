@@ -342,4 +342,5 @@ local config = {
 }
 
 
+-- FIXME: show git icon in normal size.
 nvim_tree.setup(config)

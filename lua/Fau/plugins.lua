@@ -208,7 +208,7 @@ return require("packer").startup(function(use)
 	-- =============================================
 	-- use "ray-x/lsp_signature.nvim"
 	-- use "smjonas/inc-rename.nvim"
-
+	use "nmac427/guess-indent.nvim"
 
 
 	-- use "Tastyep/structlog.nvim"  -- enhance nvim log

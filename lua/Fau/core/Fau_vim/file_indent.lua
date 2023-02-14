@@ -5,7 +5,7 @@
 
 ---@type Fau_vim_file_indent
 local default_config = {
-	indent_type = "tab",
+	indent_type = "space",
 	indent_width = 2,
 }
 
