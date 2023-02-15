@@ -25,7 +25,7 @@ return {
 		filter = { event = "msg_showmode" },
 	},
 
-  -- bad for showing search count
+	-- bad for showing search count
 	-- {
 	-- 	view = config.messages.view,
 	-- 	filter = { event = "msg_show" },

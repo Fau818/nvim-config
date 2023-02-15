@@ -16,8 +16,14 @@ vim.cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 vim.cmd [[
 	augroup Fau_vim
 		" autocmd FileType * lua Fau_vim.functions.indent.set_indent()
+
 		autocmd FileType qf nnoremap <buffer><CR> <CR>
-		autocmd FileType gitcommit highlight Comment gui=bold
+
+		autocmd FileType gitcommit highlight Comment gui=none
+		autocmd FileType gitcommit highlight Title gui=none
+		autocmd FileType gitcommit highlight @keyword gui=italic
+		autocmd FileType gitcommit highlight @punctuation.delimiter gui=bold
+		autocmd FileType gitcommit highlight @parameter gui=bold
 	augroup END
 ]]
 
