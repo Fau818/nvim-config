@@ -5,8 +5,8 @@
 
 ---@type Fau_vim_file_indent
 local default_config = {
-	indent_type = "space",
-	indent_width = 2,
+	indent_type  = vim.api.nvim_get_option("expandtab") and "space" or "tab",
+	indent_width = vim.api.nvim_get_option("tabstop"),
 }
 
 

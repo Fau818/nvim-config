@@ -25,11 +25,12 @@ return {
 		filter = { event = "msg_showmode" },
 	},
 
-	{
-		view = config.messages.view,
-		filter = { event = "msg_show" },
-		opts = { title = "Messages" }
-	},
+  -- bad for showing search count
+	-- {
+	-- 	view = config.messages.view,
+	-- 	filter = { event = "msg_show" },
+	-- 	opts = { title = "Messages" }
+	-- },
 
 	{
 		view = config.messages.view_warn,

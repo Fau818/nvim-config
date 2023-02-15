@@ -136,8 +136,8 @@ return {
 		-- TODO: Check indent except comment lines
 		function()
 			-- get the indent width and indent type
-			local indent_width = vim.api.nvim_buf_get_option(0, "shiftwidth")
-			local indent_type = vim.api.nvim_buf_get_option(0, "expandtab")  -- true: space, false: tab
+			local indent_width = vim.api.nvim_buf_get_option(0, "tabstop")
+			local indent_type  = vim.api.nvim_buf_get_option(0, "expandtab")  -- true: space, false: tab
 
 
 			-- check unexpected indent type

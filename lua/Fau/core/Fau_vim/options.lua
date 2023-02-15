@@ -38,11 +38,11 @@ local options = {
 	updatetime = 250,
 
 	fileencoding = "utf-8", -- the encoding written to a file
-	smartindent = true,     -- make indent smart
-	tabstop = 2,            -- insert x spaces for a tab
-	shiftwidth = 2,         -- the number of spaces inserted for each indentation
-	softtabstop = 2,        -- set how many spaces will convert to a tab [expandtab=true]
-	expandtab = false,      -- convert tabs to spaces
+	smartindent = true,     -- smart autoindenting when starting a new line.
+	tabstop = 2,            -- the width of a tab
+	softtabstop = -1,       -- how many spaces will be inserted when enter <tab> (if negative number, the shiftwidth value is used)
+	shiftwidth = 0,         -- the number of spaces inserted for each indentation (if zero, the tabstop value is used)
+	expandtab = true,       -- convert tab to spaces (indent_type: space if true else tab)
 
 	wrap = false,
 	linebreak = true, -- line break after an entire word

@@ -76,3 +76,4 @@ require "Fau.core.dap"
 -- ========== TEST
 -- =============================================
 if Fau_vim.inc_rename.enable then require "Fau.core.inc_rename" end
+-- require "Fau.core.guess-indent" -- DEPRECATED

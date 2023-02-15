@@ -1,3 +1,5 @@
+-- WARNING: This plugin is deprecated.
+
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
@@ -32,7 +34,6 @@ local config = {
     "prompt",
   }
 }
-
 
 
 guess_indent.setup(config)

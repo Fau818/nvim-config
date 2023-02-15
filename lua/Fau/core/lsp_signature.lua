@@ -1,3 +1,4 @@
+-- WARNING: This plugin is deprecated.
 
 -- =============================================
 -- ========== Plugin Loading

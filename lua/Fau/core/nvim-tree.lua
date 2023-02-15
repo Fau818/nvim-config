@@ -184,13 +184,13 @@ local config = {
 					symlink_open = "",
 				},
 				git = { -- Glyphs for git status.
-					unstaged  = Fau_vim.icons.git.FileUnstaged,
-					staged    = Fau_vim.icons.git.FileStaged,
-					unmerged  = Fau_vim.icons.git.FileUnmerged,
-					renamed   = Fau_vim.icons.git.FileRenamed,
+					unstaged	= Fau_vim.icons.git.FileUnstaged,
+					staged		= Fau_vim.icons.git.FileStaged,
+					unmerged	= Fau_vim.icons.git.FileUnmerged,
+					renamed		= Fau_vim.icons.git.FileRenamed,
 					untracked = Fau_vim.icons.git.FileUntracked,
-					deleted   = Fau_vim.icons.git.FileDeleted,
-					ignored   = Fau_vim.icons.git.FileIgnored,
+					deleted		= Fau_vim.icons.git.FileDeleted,
+					ignored		= Fau_vim.icons.git.FileIgnored,
 				},
 			},
 		},
@@ -342,5 +342,4 @@ local config = {
 }
 
 
--- FIXME: show git icon in normal size.
 nvim_tree.setup(config)
