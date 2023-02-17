@@ -64,6 +64,7 @@ require "Fau.core.im-select"
 require "Fau.core.python-docstring"
 require "Fau.core.twilight"
 require "Fau.core.zen-mode"
+require "Fau.core.sleuth"
 
 -- terminal
 require "Fau.core.terminal"

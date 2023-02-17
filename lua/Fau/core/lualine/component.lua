@@ -112,7 +112,11 @@ return {
 	-- =============================================
 	-- ========== basic
 	-- =============================================
-	mode = "mode",
+	mode = {
+    function() return " " .. Fau_vim.icons.ui.Target .. " " end,
+		-- "mode",
+		-- icon = Fau_vim.icons.ui.Target
+	},
 
 	filename = "filename",
 	filetype = "filetype",

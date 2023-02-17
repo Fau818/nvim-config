@@ -128,6 +128,8 @@ return {
 		Watches = "",
 		DebugConsole = "",
 
+    Target = "",
+
 		-- TODO = "",
 		-- HACK = "",
 		-- WARN = "",
