@@ -128,7 +128,7 @@ return {
 		Watches = "",
 		DebugConsole = "",
 
-    Target = "",
+		Target = "",
 
 		-- TODO = "",
 		-- HACK = "",

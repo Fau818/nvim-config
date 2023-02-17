@@ -43,5 +43,5 @@ return {
 	format   = require "Fau.core.Fau_vim.functions.format",
 	indent   = require "Fau.core.Fau_vim.functions.indent",
 	lsp      = require "Fau.core.Fau_vim.functions.lsp",
-	terminal = require "Fau.core.Fau_vim.functions.terminal",
+	terminal = nil,  -- lazy load in terminal.lua file
 }

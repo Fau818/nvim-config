@@ -48,3 +48,21 @@ vim.cmd [[
 		autocmd BufWritePre * lua Fau_vim.functions.format.remove_blank_lines_and_spaces()
 	augroup END
 ]]
+
+
+
+-- =============================================
+-- ========== TEST
+-- =============================================
+Fau_vim.functions.keep_file_indent = function()
+	if vim.bo.shiftwidth == 8 then
+		vim.bo.tabstop    = 2
+		vim.bo.shiftwidth = 0
+	end
+end
+
+vim.cmd [[
+augroup Fau_vim
+	autocmd BufReadPost * lua Fau_vim.functions.keep_file_indent()
+augroup END
+]]
