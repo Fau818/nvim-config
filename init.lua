@@ -14,12 +14,9 @@ require "Fau.core.autocmd"
 -- =============================================
 -- ========== plugins configuration
 -- =============================================
--- faster
-require "Fau.core.impatient"
-
 -- better UI
 require "Fau.core.notify"
-require "Fau.core.colorscheme"
+-- require "Fau.core.colorscheme"
 require "Fau.core.alpha"
 require "Fau.core.dressing"
 require "Fau.core.lualine"

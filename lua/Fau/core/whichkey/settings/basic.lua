@@ -124,6 +124,10 @@ return {
 		-- Treesitter capture under cursor
 		["<LEADER><LEADER>u"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Under Cursor" },
 
+		-- Lazy
+		["<LEADER>ll"] = { "<CMD>Lazy<CR>", "Open Lazy (Plugin Manager)" },
+
+
 
 		-- =============================================
 		-- ========== Window Operations
