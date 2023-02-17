@@ -48,6 +48,10 @@ local config = {
 	---@param highlights Highlights
 	---@param colors ColorScheme
 	on_highlights = function(highlights, colors)
+		highlights["NavicIconsPackage"] = {
+			fg = colors.magenta
+		}
+
 		highlights["Include"] = {
 			fg = colors.cyan,
 			style = { italic = true }
