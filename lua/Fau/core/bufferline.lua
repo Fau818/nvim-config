@@ -40,6 +40,7 @@ local config = {
 		show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
 		truncate_names = true,        -- whether or not tab names should be truncated
 
+		---@diagnostic disable-next-line: unused-local
 		custom_filter = function(buf_number, buf_numbers)
 			if vim.fn.bufname(buf_number) ~= "" then return true end
 		end,

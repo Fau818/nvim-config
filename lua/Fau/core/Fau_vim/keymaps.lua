@@ -73,6 +73,9 @@ keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab<CR>", opts)
 keymap({ "n", "x" }, "<LEADER><LEADER>C", ":retab!<CR>", opts)
 
+-- Open File Explore
+keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts)
+
 
 -- =============================================
 -- ========== Quick Range Operations
@@ -167,20 +170,6 @@ keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
 -- Split Window
 keymap("n", "<C-v>", "<CMD>vsplit<CR>", opts)
 keymap("n", "<C-x>", "<CMD>split<CR>",  opts)
-
-
--- -----------------------------------
--- -------- TEST windows
--- -----------------------------------
-keymap({ "n", "t" }, "<A-left>",  "<CMD>wincmd h<CR>", opts)
-keymap({ "n", "t" }, "<A-down>",  "<CMD>wincmd j<CR>", opts)
-keymap({ "n", "t" }, "<A-up>",    "<CMD>wincmd k<CR>", opts)
-keymap({ "n", "t" }, "<A-right>", "<CMD>wincmd l<CR>", opts)
-
-keymap({ "n", "t" }, "<S-left>",  "<CMD>wincmd h<CR>", opts)
-keymap({ "n", "t" }, "<S-down>",  "<CMD>wincmd j<CR>", opts)
-keymap({ "n", "t" }, "<S-up>",    "<CMD>wincmd k<CR>", opts)
-keymap({ "n", "t" }, "<S-right>", "<CMD>wincmd l<CR>", opts)
 
 
 
