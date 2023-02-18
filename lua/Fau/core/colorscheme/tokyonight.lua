@@ -52,6 +52,10 @@ local config = {
 			fg = colors.magenta
 		}
 
+		highlights["IndentBlanklineContextChar"] = {
+			fg = "#9999FF",
+		}
+
 		highlights["Include"] = {
 			fg = colors.cyan,
 			style = { italic = true }

@@ -25,7 +25,7 @@ local options = {
 	showmode = false, -- do not show current mode in bottom-left
 
 	scrolloff = 10,     -- minimal number of lines to keep above and below the cursor
-	sidescrolloff = 15, -- minimal number of columns to keep left and right the cursor
+	sidescrolloff = 8, -- minimal number of columns to keep left and right the cursor
 
 	hlsearch = true,   -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns

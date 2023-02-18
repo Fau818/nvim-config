@@ -130,6 +130,8 @@ return {
 
 		Target = "",
 
+		IndentLine = "▏", -- "▎"
+
 		-- TODO = "",
 		-- HACK = "",
 		-- WARN = "",

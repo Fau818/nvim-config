@@ -25,9 +25,10 @@ local config = {
 		HACK = { icon = " ", color = "warning" },
 		WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
 		PERF = { icon = " ", color = "warning", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-		NOTE = { icon = " ", color = "default", alt = { "INFO", "HINT" } },
+		NOTE = { icon = " ", color = "default", alt = { "INFO", "HINT", } },
 		TEST = { icon = "⏲ ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
-		Fau  = { icon = "󰙽 ", color = "hint" }
+		Fau  = { icon = "󰙽 ", color = "hint" },
+		DESC = { icon = " ", color = "desc" },
 	},
 
 
@@ -57,7 +58,8 @@ local config = {
 		error   = { "DiagnosticError", "ErrorMsg", "#DC2626" },
 		hint    = { "DiagnosticHint", "#10B981" },
 		default = { "Identifier", "#7C3AED" },
-		test    = { "Identifier", "#FF00FF" }
+		test    = { "Identifier", "#FF00FF" },
+		desc    = { "#a9b1d6" }
 	},
 
 	search = {
