@@ -122,7 +122,8 @@ return {
 		["<LEADER>t"] = { "<CMD>TodoTrouble keywords=TODO,PERF,TEST,Fau<CR>", "Show Todo Comments" },
 
 		-- Treesitter capture under cursor
-		["<LEADER><LEADER>u"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Under Cursor" },
+		["<LEADER><LEADER>u"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Highlight Under Cursor" },
+		["<LEADER><LEADER>n"] = { "<CMD>TSNodeUnderCursor<CR>",    "Treesitter Capture Node Under Cursor" },
 
 		-- Lazy
 		["<LEADER>ll"] = { "<CMD>Lazy<CR>", "Open Lazy (Plugin Manager)" },
