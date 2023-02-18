@@ -25,6 +25,7 @@ return {
 				enable = true,              -- Enable diagnostics.
 				disableScheme = { "git" },  -- Do not diagnose Lua files that use the following scheme.
 				globals = { "vim", "packer_bootstrap", "Fau_vim" },  -- Defined global variables.
+				workspaceDelay = -1,  -- disable workspace diagnostics
 			},
 
 

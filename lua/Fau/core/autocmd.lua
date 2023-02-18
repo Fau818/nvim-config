@@ -14,17 +14,17 @@ vim.cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 -- ========== FileType
 -- =============================================
 vim.cmd [[
-	augroup Fau_vim
-		" autocmd FileType * lua Fau_vim.functions.indent.set_indent()
+  augroup Fau_vim
+    " autocmd FileType * lua Fau_vim.functions.indent.set_indent()
 
-		autocmd FileType qf nnoremap <buffer><CR> <CR>
+    autocmd FileType qf nnoremap <buffer><CR> <CR>
 
-		autocmd FileType gitcommit highlight Comment gui=none
-		autocmd FileType gitcommit highlight Title gui=none
-		autocmd FileType gitcommit highlight @keyword gui=italic
-		autocmd FileType gitcommit highlight @punctuation.delimiter gui=bold
-		autocmd FileType gitcommit highlight @parameter gui=bold
-	augroup END
+    autocmd FileType gitcommit highlight Comment gui=none
+    autocmd FileType gitcommit highlight Title gui=none
+    autocmd FileType gitcommit highlight @keyword gui=italic
+    autocmd FileType gitcommit highlight @punctuation.delimiter gui=bold
+    autocmd FileType gitcommit highlight @parameter gui=bold
+  augroup END
 ]]
 
 
@@ -33,9 +33,9 @@ vim.cmd [[
 -- ========== Auto LSP
 -- =============================================
 vim.cmd [[
-	augroup Fau_vim
-		autocmd VimEnter * lua Fau_vim.functions.lsp.initialize_lsp()
-	augroup END
+  augroup Fau_vim
+    autocmd VimEnter * lua Fau_vim.functions.lsp.initialize_lsp()
+  augroup END
 ]]
 
 
@@ -44,9 +44,9 @@ vim.cmd [[
 -- ========== Auto Trim Blank Lines and Spaces
 -- =============================================
 vim.cmd [[
-	augroup Fau_vim
-		autocmd BufWritePre * lua Fau_vim.functions.format.remove_blank_lines_and_spaces()
-	augroup END
+  augroup Fau_vim
+    autocmd BufWritePre * lua Fau_vim.functions.format.remove_blank_lines_and_spaces()
+  augroup END
 ]]
 
 
@@ -55,14 +55,14 @@ vim.cmd [[
 -- ========== TEST
 -- =============================================
 Fau_vim.functions.keep_file_indent = function()
-	if vim.bo.shiftwidth == 8 then
-		vim.bo.tabstop    = 2
-		vim.bo.shiftwidth = 0
-	end
+  if vim.bo.shiftwidth == 8 then
+    vim.bo.tabstop    = 2
+    vim.bo.shiftwidth = 0
+  end
 end
 
 vim.cmd [[
-augroup Fau_vim
-	autocmd BufReadPost * lua Fau_vim.functions.keep_file_indent()
-augroup END
+  augroup Fau_vim
+    autocmd BufReadPost * lua Fau_vim.functions.keep_file_indent()
+  augroup END
 ]]

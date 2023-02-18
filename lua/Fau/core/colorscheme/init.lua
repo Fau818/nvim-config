@@ -1,3 +1,5 @@
+-- TODO: need to be refined, a API to change colorscheme.
+
 -- =============================================
 -- ========== Colorscheme Setting
 -- =============================================
