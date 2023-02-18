@@ -38,13 +38,6 @@ require('lspconfig.ui.windows').default_options.border = "double"
 
 
 -- -----------------------------------
--- -------- Default Servers
--- -----------------------------------
-local default_servers = { "lua_ls", "clangd", "pyright", }
-if mlspconfig then mlspconfig.setup({ ensure_installed = default_servers, automatic_installation = true }) end
-
-
--- -----------------------------------
 -- -------- Config Servers
 -- -----------------------------------
 -- Judge available servers
