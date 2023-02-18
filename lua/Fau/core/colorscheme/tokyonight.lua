@@ -53,7 +53,8 @@ local config = {
 		}
 
 		highlights["IndentBlanklineContextChar"] = {
-			fg = "#9999FF",
+			-- fg = "#9999FF",
+			fg = "#FFFF00",
 		}
 
 		highlights["Include"] = {

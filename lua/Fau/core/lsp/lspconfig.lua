@@ -31,18 +31,34 @@ if not navic_ok then navic = nil end
 -- =============================================
 -- ========== Configuration
 -- =============================================
-local default_servers = { "lua_ls", "pyright", "clangd" }
+-- -----------------------------------
+-- -------- Change LspInfo Window Border
+-- -----------------------------------
+require('lspconfig.ui.windows').default_options.border = "double"
+
+
+-- -----------------------------------
+-- -------- Default Servers
+-- -----------------------------------
+local default_servers = { "lua_ls", "clangd", "pyright", }
 if mlspconfig then mlspconfig.setup({ ensure_installed = default_servers, automatic_installation = true }) end
 
 
+-- -----------------------------------
+-- -------- Config Servers
+-- -----------------------------------
+-- Judge available servers
 local available_servers = mlspconfig.get_installed_servers()
 
 local function is_available(client_name)
-	for _, server_name in pairs(available_servers) do if server_name == client_name then return true end end
+	for _, server_name in pairs(available_servers) do
+		if server_name == client_name then return true end
+	end
 	return false
 end
 
 
+-- Attachments
 local function server_attach(client, bufnr)
 	-- disable lsp formatting
 	-- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
@@ -58,6 +74,7 @@ local function server_attach(client, bufnr)
 end
 
 
+-- Setup servers
 local function setup_server(server)
 	local opts = {
 		capabilities = cmp_nvim_lsp.default_capabilities(),
@@ -73,6 +90,7 @@ local function setup_server(server)
 end
 
 
+-- Implement set clients according to filetype (In Fau_vim)
 Fau_vim.functions.lsp.set_client_by_ft = function()
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
@@ -89,13 +107,3 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
 
 	vim.api.nvim_command("LspStart")
 end
-
-
--- =============================================
--- ========== Alternative Setup
--- =============================================
--- if mlspconfig then mlspconfig.setup_handlers({ function(server_name) setup_server(server_name) end })
--- else
--- 	-- Loading every server in servers list
--- 	for _, server in pairs(default_servers) do setup_server(server) end
--- end

@@ -28,7 +28,7 @@ local config = {
 		NOTE = { icon = " ", color = "default", alt = { "INFO", "HINT", } },
 		TEST = { icon = "⏲ ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
 		Fau  = { icon = "󰙽 ", color = "hint" },
-		DESC = { icon = " ", color = "desc" },
+		DESC = { color = "desc" },
 	},
 
 
