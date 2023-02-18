@@ -33,13 +33,9 @@ local config = {
 
   filetype_exclude = {
     "", "help", "man", "checkhealth", "alpha", "NvimTree", "Trouble",
-    "toggleterm", "aerial", "lspinfo", "notify", "noice",
+    "toggleterm", "aerial", "lspinfo", "notify", "noice", "TelescopePrompt",
     "packer", "lazy", "mason"
   },
 }
 
 indent_blankline.setup(config)
-
-
-vim.cmd [[
-]]

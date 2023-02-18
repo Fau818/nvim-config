@@ -4,7 +4,7 @@
 -- Disable in some file types
 local disable = {
   "", "checkhealth", "help", "gitcommit", "alpha", "NvimTree", "Trouble",
-  "toggleterm", "aerial", "lspinfo", "notify", "noice",
+  "toggleterm", "aerial", "lspinfo", "notify", "noice", "TelescopePrompt",
   "packer", "lazy", "mason"
 }
 

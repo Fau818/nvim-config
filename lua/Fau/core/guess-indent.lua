@@ -26,6 +26,9 @@ local config = {
     "Trouble",
     "noice",
     "notify",
+    "mason",
+    "packer",
+    "lazy",
   },
   buftype_exclude = { -- A list of buffer types for which the auto command gets disabled
     "help",
