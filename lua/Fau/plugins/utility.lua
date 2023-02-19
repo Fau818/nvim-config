@@ -21,4 +21,12 @@ return {
     "MunifTanjim/nui.nvim",
     lazy = true,
   },
+
+  {
+    -- DESC: detect file indentation automatically.
+    "tpope/vim-sleuth",
+    config = function() require("Fau.core.sleuth") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
 }

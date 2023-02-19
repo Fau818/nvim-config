@@ -50,7 +50,6 @@ return {
         enabled = false,
       },
 
-
       -- -----------------------------------
       -- -------- Snippets
       -- -----------------------------------
@@ -67,9 +66,8 @@ return {
         },
       },
 
-
       -- -----------------------------------
-      -- -------- Autopairs
+      -- -------- Autopairs and Autotags
       -- -----------------------------------
       {
         -- DESC: a super powerful autopair plugin for Neovim.
@@ -77,9 +75,22 @@ return {
         config = function() require("Fau.core.autopairs") end,
       },
 
+      {
+        -- DESC: auto close html tag.
+        "windwp/nvim-ts-autotag",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+      },
     },
     config = function() require("Fau.core.cmp") end,
     event = "InsertEnter",
+  },
+
+
+  {
+    -- DESC: smartly add `end` in lua, ruby, and etc.
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "lua", "ruby", "vim", "sh", "zsh", "elixir" }
   },
 
 }

@@ -172,7 +172,7 @@ keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
 
 -- Split Window
 keymap("n", "<C-v>", "<CMD>vsplit<CR>", opts)
-keymap("n", "<C-x>", "<CMD>split<CR>",  opts)
+-- keymap("n", "<C-x>", "<CMD>split<CR>",  opts)
 
 
 

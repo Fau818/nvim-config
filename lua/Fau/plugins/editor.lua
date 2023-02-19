@@ -1,15 +1,15 @@
 -- NOTE: This module is for enhancing editor, will be loaded in `VeryLazy` event.
--- also maybe in `BufReadPost` and `BufNewFile` events.
+-- also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
 
 return {
   -- =============================================
-  -- ========== Basic Editor UI
+  -- ========== Basic Editor
   -- =============================================
   {
     -- DESC: a file explorer tree for Neovim.
     "nvim-tree/nvim-tree.lua",
     config = function() require("Fau.core.nvim-tree") end,
-    event = { "BufReadPre", "VeryLazy" },
+    event = "VeryLazy",
   },
 
   {
@@ -20,14 +20,16 @@ return {
       "famiu/bufdelete.nvim"
     },
     config = function() require("Fau.core.bufferline") end,
-    event = { "BufReadPre", "VeryLazy" },
+    event = "VeryLazy",
+    priority = 998,
   },
 
   {
     -- DESC: a fancy and configurable statusline.
     "nvim-lualine/lualine.nvim",
     config = function() require("Fau.core.lualine") end,
-    event = { "BufReadPre", "VeryLazy" },
+    event = "VeryLazy",
+    priority = 998,
   },
 
 
@@ -44,6 +46,7 @@ return {
       -- -----------------------------------
       -- -------- Extensions
       -- -----------------------------------
+      "ahmedkhalf/project.nvim",  ---@see workspace.lua file
       {
         -- DESC: a fzf sorter for telescope.
         "nvim-telescope/telescope-fzf-native.nvim",  -- for speeding up the fuzzy find
@@ -99,7 +102,7 @@ return {
     -- DESC: highlight parameters in comments.
     "folke/paint.nvim",
     config = function() require("Fau.core.paint") end,
-    event = { "BufReadPost", "BufNewFile" },
+    -- event = { "BufReadPost", "BufNewFile" },
     ft = { "lua", "python" },
   },
   {
@@ -111,6 +114,12 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
   },
 
+  {
+    -- DESC: support highlighting in kitty config file.
+    "fladson/vim-kitty",
+    ft = "kitty",
+  },
+
   -- -----------------------------------
   -- -------- View Guide
   -- -----------------------------------
@@ -118,14 +127,14 @@ return {
     -- DESC: indent guides for Neovim.
     "lukas-reineke/indent-blankline.nvim",
     config = function() require("Fau.core.indentline") end,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
   },
 
   {
     -- DESC: git integration for buffer.
     "lewis6991/gitsigns.nvim",
     config = function() require("Fau.core.gitsigns") end,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
   },
 
   -- -----------------------------------
@@ -145,5 +154,32 @@ return {
     event = "VeryLazy",
   },
 
+  {
+    -- DESC: easily run code in Neovim.
+    "CRAG666/code_runner.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function() require("Fau.core.code_runner") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+
+
+  -- =============================================
+  -- ========== Immersive
+  -- =============================================
+  {
+    -- DESC: dim inactive portions of the code to focus on coding.
+    "folke/twilight.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function() require("Fau.core.twilight") end,
+    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
+  },
+
+  {
+    -- DESC: distraction-free coding for Neovim (zen-mode).
+    "folke/zen-mode.nvim",
+    config = function() require("Fau.core.zen-mode") end,
+    cmd = "ZenMode",
+  },
 
 }

@@ -1,4 +1,4 @@
--- NOTE: This module is for language server protocol, will be loaded in `BufReadPre` and `BufNewFile` events.
+-- NOTE: This module is for language server protocol, will be loaded in `BufReadPost` and `BufNewFile` events.
 
 return {
   -- =============================================
@@ -12,7 +12,7 @@ return {
       require("Fau.core.lsp.diagnostic_config")
       require("Fau.core.lsp.lspconfig")
     end,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
   },
 
   {
@@ -34,7 +34,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function() require("Fau.core.null-ls") end,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
   },
 
 

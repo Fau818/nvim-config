@@ -29,4 +29,14 @@ return {
     -- BUG: needed fix colorscheme
     cmd = { "TransparentToggle", "TransparentEnable", "TransparentDisable" },
   },
+
+  {
+    -- DESC: a fancy UI provider.
+    "folke/noice.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    config = function() require("Fau.core.noice") end,
+    event = "VeryLazy",
+    priority = 999, -- quciker than lualine
+  },
+
 }

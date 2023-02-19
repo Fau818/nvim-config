@@ -22,7 +22,7 @@ local basic = {  -- n
 	["<LEADER><LEADER>C"] = "Convert Tab and Space (Force)",
 
 	["<C-v>"] = "Vertical Split",
-	["<C-x>"] = "Horizontal Split",
+	-- ["<C-x>"] = "Horizontal Split",
 }
 
 

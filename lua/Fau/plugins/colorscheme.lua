@@ -4,7 +4,6 @@ return {
   {
     -- DESC: a snazzy colorscheme that can be customized.
     "folke/tokyonight.nvim",
-    lazy = false,
     priority = 1000,
     config = function() require("Fau.core.colorscheme") end,
   },

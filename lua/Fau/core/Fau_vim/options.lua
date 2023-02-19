@@ -50,6 +50,7 @@ local options = {
 	mousemoveevent = true, -- for bufferline hover events
 
 	laststatus = 0,  -- disable statusline (for alpha no blink)
+	ruler = false,   -- no position information in bottom-right
 }
 
 
