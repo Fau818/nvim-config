@@ -20,7 +20,7 @@ local config = {
   use_treesitter = true, -- use treesitter to calculate.
   use_treesitter_scope = true, -- use treesitter to calculate current context start
 
-  show_current_context = true, -- current indent block
+  show_current_context = false, -- current indent block
   show_current_context_start = false,
   show_current_context_start_on_current_line = true,  -- need `show_current_context_start`
 
@@ -37,5 +37,6 @@ local config = {
     "packer", "lazy", "mason"
   },
 }
+
 
 indent_blankline.setup(config)

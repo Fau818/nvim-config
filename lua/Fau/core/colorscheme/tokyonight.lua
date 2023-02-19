@@ -48,6 +48,7 @@ local config = {
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
+
     highlights["NavicIconsPackage"] = {
       fg = colors.magenta
     }
@@ -56,6 +57,10 @@ local config = {
       -- fg = "#9999FF",
       fg = "#FFFF00",
     }
+    -- highlights["MiniIndentscopeSymbol"] = {
+      -- fg = "#9999FF",
+      -- fg = "#FFFF00",
+    -- }
 
     highlights["Include"] = {
       fg = colors.cyan,
