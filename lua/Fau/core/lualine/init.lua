@@ -42,7 +42,7 @@ local config = {
 		}
 	},
 	sections = {
-		lualine_a = { component.mode },
+		lualine_a = { component.mode, component.lazy },
 		lualine_b = { component.branch, component.diff },
 		lualine_c = { component.diagnostics, component.python_env },
 		lualine_x = { component.lsp, component.treesitter },
@@ -69,3 +69,11 @@ local config = {
 
 
 lualine.setup(config)
+
+
+
+-- =============================================
+-- ========== Highlight Group
+-- =============================================
+-- vim.api.nvim_command("highlight lualine_c_normal guibg=none")
+-- vim.api.nvim_command("highlight lualine_c_inactive guibg=none")

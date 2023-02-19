@@ -71,7 +71,7 @@ local plugins = {
   {
     -- DESC: the darkplus colorscheme just like VSCode.
     "lunarvim/darkplus.nvim",
-    lazy = true,
+    lazy = true, -- when is used, will load automatically.
   },
 
 

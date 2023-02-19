@@ -113,7 +113,7 @@ return {
 	-- ========== basic
 	-- =============================================
 	mode = {
-    function() return " " .. Fau_vim.icons.ui.Target .. " " end,
+		function() return " " .. Fau_vim.icons.ui.Target .. " " end,
 		-- "mode",
 		-- icon = Fau_vim.icons.ui.Target
 	},
@@ -279,8 +279,8 @@ return {
 			if vim.bo.filetype == "python" then
 				local venv = os.getenv "CONDA_DEFAULT_ENV" or os.getenv "VIRTUAL_ENV"
 				if venv then
-					local icons = require "nvim-web-devicons"
-					local py_icon, _ = icons.get_icon ".py"
+					local icons = require("nvim-web-devicons")
+					local py_icon, _ = icons.get_icon(".py")
 					return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
 				end
 			end
@@ -308,5 +308,13 @@ return {
 			return winbar
 		end,
 		color = { bg = "none" },
+	},
+
+
+	lazy = {
+		require("lazy.status").updates,
+		cond = require("lazy.status").has_updates,
+		-- color = { fg = "#ff9e64" },
+		padding = { right = 1 },
 	},
 }

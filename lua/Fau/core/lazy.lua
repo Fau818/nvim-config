@@ -46,7 +46,7 @@ return {
     -- install missing plugins on startup. This doesn't increase startup time.
     missing = true,
     -- try to load one of these colorschemes when starting an installation during startup
-    colorscheme = { "habamax" },
+    colorscheme = { "tokyonight", "habamax" },
   },
 
   ui = {
@@ -84,6 +84,10 @@ return {
     browser = nil, ---@type string?
     throttle = 20, -- how frequently should the ui process render events
     custom_keys = {
+      -- open a terminal for the plugin dir
+      ["<localleader>T"] = function(plugin)
+        require("lazy.util").float_term(nil, { cwd = plugin.dir })
+      end,
     }
   },
 
