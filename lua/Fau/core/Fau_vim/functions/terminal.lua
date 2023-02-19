@@ -21,50 +21,50 @@ local full_screen = { border = "none", width  = 888888, height = 888888 }
 -- -------- Custom Terminal
 -- -----------------------------------
 local lazygit = Terminal:new({
-	cmd = "lazygit",
-	dir = "git_dir",
-	count = 101,
-	direction = "float",
-	float_opts = full_screen,
-	on_open = function() vim.cmd("startinsert!") end,
+  cmd = "lazygit",
+  dir = "git_dir",
+  count = 101,
+  direction = "float",
+  float_opts = full_screen,
+  on_open = function() vim.cmd("startinsert!") end,
 })
 
 local btop = Terminal:new({
-	cmd = "btop",
-	count = 102,
-	dir = "git_dir",
-	direction = "float",
-	float_opts = full_screen,
-	on_open = function() vim.cmd("startinsert!") end,
+  cmd = "btop",
+  count = 102,
+  dir = "git_dir",
+  direction = "float",
+  float_opts = full_screen,
+  on_open = function() vim.cmd("startinsert!") end,
 })
 
 local float = Terminal:new({
-	count = 1,
-	dir = "git_dir",
-	direction = "float",
-	float_opts = full_screen,
-	on_open = function() vim.cmd("startinsert!") end,
+  count = 1,
+  dir = "git_dir",
+  direction = "float",
+  float_opts = full_screen,
+  on_open = function() vim.cmd("startinsert!") end,
 })
 
 local horizontal = Terminal:new({
-	count = 2,
-	dir = "git_dir",
-	direction = "horizontal",
-	on_open = function() vim.cmd("startinsert!") end,
+  count = 2,
+  dir = "git_dir",
+  direction = "horizontal",
+  on_open = function() vim.cmd("startinsert!") end,
 })
 
 local vertical = Terminal:new({
-	count = 3,
-	dir = "git_dir",
-	direction = "vertical",
-	on_open = function() vim.cmd("startinsert!") end,
+  count = 3,
+  dir = "git_dir",
+  direction = "vertical",
+  on_open = function() vim.cmd("startinsert!") end,
 })
 
 
 return {
-	lazygit    = function() lazygit:toggle()    end,
-	btop       = function() btop:toggle()       end,
-	float      = function() float:toggle()      end,
-	horizontal = function() horizontal:toggle() end,
-	vertical   = function() vertical:toggle()   end,
+  lazygit    = function() lazygit:toggle()    end,
+  btop       = function() btop:toggle()       end,
+  float      = function() float:toggle()      end,
+  horizontal = function() horizontal:toggle() end,
+  vertical   = function() vertical:toggle()   end,
 }

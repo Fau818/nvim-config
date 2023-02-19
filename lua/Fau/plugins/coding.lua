@@ -2,9 +2,6 @@
 -- also maybe in `InsertEnter` event.
 
 return {
-  -- =============================================
-  -- ========== Surround and Comment
-  -- =============================================
   {
     -- DESC: quickly add, modify, and remove surround.
     "kylechui/nvim-surround",

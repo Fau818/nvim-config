@@ -23,42 +23,42 @@ local completion = null_ls.builtins.completion
 -- ========== Configuration
 -- =============================================
 null_ls.setup({
-	sources = {
-		-- formatting.stylua.with({
-		-- 	extra_args = { "--config-path", vim.fn.expand(Fau_vim.config_path .. "/configuration/stylua.toml") },
-		-- }),
+  sources = {
+    -- formatting.stylua.with({
+    --  extra_args = { "--config-path", vim.fn.expand(Fau_vim.config_path .. "/configuration/stylua.toml") },
+    -- }),
 
-		-- formatting.lua_format.with({
-		-- 	extra_args = { "--config", vim.fn.expand("~/.config/nvim/configuration/.lua-format") }
-		-- }),
+    -- formatting.lua_format.with({
+    --  extra_args = { "--config", vim.fn.expand("~/.config/nvim/configuration/.lua-format") }
+    -- }),
 
-		-- -----------------------------------
-		-- -------- Python
-		-- -----------------------------------
-		null_ls.builtins.diagnostics.flake8.with({
-			extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" }
-		}),
-		null_ls.builtins.diagnostics.pydocstyle.with({
-			extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" }
-		}),
+    -- -----------------------------------
+    -- -------- Python
+    -- -----------------------------------
+    null_ls.builtins.diagnostics.flake8.with({
+      extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" }
+    }),
+    null_ls.builtins.diagnostics.pydocstyle.with({
+      extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" }
+    }),
 
-		-- null_ls.builtins.diagnostics.djlint.with({
-		-- 	filetypes = { "django", "jinja.html", "htmldjango", "html" }
-		-- })
-		null_ls.builtins.diagnostics.curlylint.with({
-			filetypes = { "jinja.html", "htmldjango", "html" }
-		}),
-		-- null_ls.builtins.diagnostics.mypy,
-		-- null_ls.builtins.diagnostics.vulture,
+    -- null_ls.builtins.diagnostics.djlint.with({
+    --  filetypes = { "django", "jinja.html", "htmldjango", "html" }
+    -- })
+    null_ls.builtins.diagnostics.curlylint.with({
+      filetypes = { "jinja.html", "htmldjango", "html" }
+    }),
+    -- null_ls.builtins.diagnostics.mypy,
+    -- null_ls.builtins.diagnostics.vulture,
 
-		null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.black,
 
 
-		-- -----------------------------------
-		-- -------- C++
-		-- -----------------------------------
-		-- null_ls.builtins.formatting.clang_format.with({
-		-- 	extra_args = { "--style", "file:" .. Fau_vim.config_path .. "/configuration/.clang-format" }
-		-- }),
-	},
+    -- -----------------------------------
+    -- -------- C++
+    -- -----------------------------------
+    -- null_ls.builtins.formatting.clang_format.with({
+    --  extra_args = { "--style", "file:" .. Fau_vim.config_path .. "/configuration/.clang-format" }
+    -- }),
+  },
 })

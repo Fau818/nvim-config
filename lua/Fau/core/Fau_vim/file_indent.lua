@@ -1,3 +1,5 @@
+-- WARNING: This module is deprecated!
+
 ---@class Fau_vim_file_indent
 ---@field indent_type "tab"|"space"
 ---@field indent_width 2|4|8

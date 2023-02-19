@@ -1,5 +1,6 @@
 -- NOTE: This module is for treesitter, will be loaded in `BufReadPost` and `BufNewFile` event.
 -- for playground, will be loaded by its specific commands.
+
 return {
   {
     -- DESC: a parser generator tool and an incremental parsing library.

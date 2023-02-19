@@ -23,14 +23,14 @@ noice.setup(config)
 -- ========== Keymaps
 -- =============================================
 vim.keymap.set("n", "<C-f>", function()
-	if not require("noice.lsp").scroll(2) then
-		return "<CMD>silent !open $(dirname %)<CR>"
-	end
+  if not require("noice.lsp").scroll(2) then
+    return "<CMD>silent !open $(dirname %)<CR>"
+  end
 end, { silent = true, expr = true })
 
 
 vim.keymap.set({ "n", "i" }, "<C-b>", function()
-	if not require("noice.lsp").scroll(-2) then
-		return "<nop>"
-	end
+  if not require("noice.lsp").scroll(-2) then
+    return "<nop>"
+  end
 end, { silent = true, expr = true })

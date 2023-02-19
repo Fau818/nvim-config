@@ -5,9 +5,8 @@
 local disable = {
   "", "checkhealth", "help", "gitcommit", "alpha", "NvimTree", "Trouble",
   "toggleterm", "aerial", "lspinfo", "notify", "noice", "TelescopePrompt",
-  "packer", "lazy", "mason"
+  "packer", "lazy", "mason",
 }
-
 
 
 for _, filetype in ipairs(disable) do

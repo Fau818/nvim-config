@@ -22,9 +22,9 @@ Fau_vim.configured_ft = {}  -- for recording filetypes which have been configure
 ---@param level string|number|nil
 ---@param opts table<string, any>|nil
 Fau_vim.notify = function(msg, level, opts)
-	level = level or vim.log.levels.INFO
-	if not opts then opts = { title = "Fau_vim" }
-	elseif not opts.title then opts.title = "Fau_vim"
-	end
-	vim.notify(msg, level, opts)
+  level = level or vim.log.levels.INFO
+  if not opts then opts = { title = "Fau_vim" }
+  elseif not opts.title then opts.title = "Fau_vim"
+  end
+  vim.notify(msg, level, opts)
 end

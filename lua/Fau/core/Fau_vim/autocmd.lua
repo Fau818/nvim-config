@@ -52,7 +52,7 @@ vim.cmd [[
 
 
 -- =============================================
--- ========== TEST
+-- ========== Keep Indentation
 -- =============================================
 Fau_vim.functions.keep_file_indent = function()
   if vim.bo.shiftwidth == 8 then
@@ -66,3 +66,9 @@ vim.cmd [[
     autocmd BufReadPost * lua Fau_vim.functions.keep_file_indent()
   augroup END
 ]]
+
+
+
+-- =============================================
+-- ========== TEST
+-- =============================================

@@ -37,6 +37,16 @@ return {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+  {
+    -- DESC: a powerful lua completion tool for Neovim.
+    "folke/neodev.nvim",
+    config = function() require("Fau.core.neodev") end,
+    ft = "lua",
+    -- WARN: This plugin needs to load before lua_ls.
+    -- if use `ft = "lua"` for lazy loading, the function called
+    -- Fau_vim.functions.lsp.set_client_by_ft() will respect its order.
+  },
+
 
   -- =============================================
   -- ========== LSP Enhancement
@@ -53,7 +63,7 @@ return {
     "SmiteshP/nvim-navic",
     dependencies = { "neovim/nvim-lspconfig" },
     config = function() require("Fau.core.navic") end,
-    lazy = true,  -- will be called by lualine
+    lazy = true, -- loaded by lualine
   },
 
   {
@@ -63,6 +73,5 @@ return {
     config = function() require("Fau.core.aerial")end,
     cmd = "AerialToggle",
   },
-
 
 }

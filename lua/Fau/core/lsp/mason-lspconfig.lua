@@ -10,8 +10,8 @@ if not mlspconfig_ok then Fau_vim.load_plugin_error("mason-lspconfig") return en
 -- ========== Configuration
 -- =============================================
 local config = {
-	ensure_installed = { "lua_ls", "clangd", "pyright", },
-	automatic_installation = true
+  ensure_installed = { "lua_ls", "clangd", "pyright", },
+  automatic_installation = true
 }
 
 

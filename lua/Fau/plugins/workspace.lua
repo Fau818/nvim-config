@@ -9,7 +9,6 @@ return {
     "ahmedkhalf/project.nvim",
     config = function() require("Fau.core.project") end,
     event = "VeryLazy",
-    -- lazy = true,  -- loaded by telescope.
   },
 
   {

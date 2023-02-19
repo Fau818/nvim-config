@@ -14,7 +14,7 @@ return {
     -- DESC: an incremental LSP rename supporter, which has a preview feature.
     -- WARNING: This plugin is disabled.
     "smjonas/inc-rename.nvim",
-    enabled = false,
+    enabled = Fau_vim.inc_rename.enable,
     config = function() require("Fau.core.inc_rename") end,
     lazy = true,
   },

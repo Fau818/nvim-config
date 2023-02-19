@@ -10,65 +10,65 @@ if not transparent_ok then Fau_vim.load_plugin_error("transparent") return end
 -- ========== Configuration
 -- =============================================
 local config = {
-	enable = true,
-	extra_groups = {
-		"MsgArea",
-		"VertSplit",
+  enable = true,
+  extra_groups = {
+    "MsgArea",
+    "VertSplit",
 
-		"BufferLineFill",
+    "BufferLineFill",
 
-		"BufferLineBuffer",
-		"BufferLineBufferSelected",
-		"BufferLineBufferVisible",
+    "BufferLineBuffer",
+    "BufferLineBufferSelected",
+    "BufferLineBufferVisible",
 
-		"BufferLineCloseButtonSelected",
+    "BufferLineCloseButtonSelected",
 
-		"BufferLineDevIconLua",
-		"BufferLineDevIconLuaSelected",
-		"BufferLineDevIconLuaInactive",
+    "BufferLineDevIconLua",
+    "BufferLineDevIconLuaSelected",
+    "BufferLineDevIconLuaInactive",
 
-		"BufferLineModified",
-		"BufferLineModifiedVisible",
-		"BufferLineModifiedSelected",
+    "BufferLineModified",
+    "BufferLineModifiedVisible",
+    "BufferLineModifiedSelected",
 
-		"BufferLineSeparator",
+    "BufferLineSeparator",
 
-		"NvimTreeNormal",
-		"NvimTreeWinSeparator",
+    "NvimTreeNormal",
+    "NvimTreeWinSeparator",
 
-		"NormalFloat",
-		"FloatBorder",
+    "NormalFloat",
+    "FloatBorder",
 
-		"LspFloatWinNormal",
+    "LspFloatWinNormal",
 
-		"TelescopeNormal",
-		"TelescopeBorder",
+    "TelescopeNormal",
+    "TelescopeBorder",
 
-		"WhichKeyFloat",
-	},
-	exclude = {  -- the plugin will disable the following by default.
-		-- "Normal",
-		-- "NormalNC",
-		"Comment",
-		"Constant",
-		"Special",
-		"Identifier",
-		"Statement",
-		"PreProc",
-		"Type",
-		"Underlined",
-		"Todo",
-		"String",
-		"Function",
-		"Conditional",
-		"Repeat",
-		"Operator",
-		"Structure",
-		"LineNr",
-		"NonText",
-		-- "SignColumn",
-		"CursorLineNr",
-	},
+    "WhichKeyFloat",
+  },
+  exclude = {  -- the plugin will disable the following by default.
+    -- "Normal",
+    -- "NormalNC",
+    "Comment",
+    "Constant",
+    "Special",
+    "Identifier",
+    "Statement",
+    "PreProc",
+    "Type",
+    "Underlined",
+    "Todo",
+    "String",
+    "Function",
+    "Conditional",
+    "Repeat",
+    "Operator",
+    "Structure",
+    "LineNr",
+    "NonText",
+    -- "SignColumn",
+    "CursorLineNr",
+  },
 }
 
 

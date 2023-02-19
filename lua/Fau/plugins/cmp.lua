@@ -27,7 +27,6 @@ return {
         -- DESC: command line completion source for nvim-cmp.
         "hrsh7th/cmp-cmdline",
       },
-
       {
         -- DESC: L3MON4D3/LuaSnip plugin completion source for nvim-cmp.
         "saadparwaiz1/cmp_luasnip",
@@ -82,7 +81,7 @@ return {
       },
     },
     config = function() require("Fau.core.cmp") end,
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
   },
 
 
