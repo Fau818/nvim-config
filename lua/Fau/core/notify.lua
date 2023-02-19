@@ -23,7 +23,7 @@ local config = {
 	minimum_width = 30,
 	render = "default",  -- values: default|minimal|simple
 	stages = "fade_in_slide_out",  -- values: fade_in_slide_out|fade|slide|static
-	timeout = 500,
+	timeout = 750,
 	top_down = true
 }
 

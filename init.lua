@@ -1,18 +1,18 @@
 -- =============================================
--- ========== basic configuration
+-- ========== Basic Configuration
 -- =============================================
 require "Fau.core.Fau_vim"
-require "Fau.plugins"
+require "Fau.config"
 
 
 -- =============================================
--- ========== personal configuration
+-- ========== Personal Configuration
 -- =============================================
 require "Fau.core.autocmd"
 
 
 -- =============================================
--- ========== plugins configuration
+-- ========== Plugins Configuration
 -- =============================================
 -- better UI
 -- require "Fau.core.notify"

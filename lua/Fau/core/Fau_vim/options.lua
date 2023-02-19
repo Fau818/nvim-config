@@ -48,6 +48,8 @@ local options = {
 	linebreak = true, -- line break after an entire word
 
 	mousemoveevent = true, -- for bufferline hover events
+
+	laststatus = 0,  -- disable statusline (for alpha no blink)
 }
 
 

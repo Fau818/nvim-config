@@ -292,6 +292,7 @@ local config = {
 
 telescope.setup(config)
 
+-- TODO: Let grep_string/live_grep like center (layout_strategy)
 
 
 -- =============================================

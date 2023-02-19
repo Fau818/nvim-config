@@ -46,15 +46,6 @@ dashboard.section.buttons.val = {
 	dashboard.button("q", Fau_vim.icons.ui.Exit	.. "  Quit", "<CMD>qa<CR>"),
 }
 
--- dashboard.config.opts.autostart = false
--- local handle = io.popen("fortune")
--- if handle == nil then return end
--- local fortune = handle:read("*a")
--- handle:close()
--- dashboard.section.footer.val = fortune
--- dashboard.config.opts.noautocmd = true
--- vim.cmd [[autocmd User AlphaReady echo 'ready']]
-
 
 -- -----------------------------------
 -- -------- Lazy Display
