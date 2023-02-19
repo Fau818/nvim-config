@@ -13,7 +13,7 @@ return {
 		replace = true,
 		merge = true,
 
-		stages = "fade_in_slide_out",
+		-- stages = "fade_in_slide_out",
 		render = "minimal",
 	},
 

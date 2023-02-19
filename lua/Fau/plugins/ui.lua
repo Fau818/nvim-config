@@ -2,13 +2,6 @@
 
 return {
   {
-    -- DESC: a fancy notification manager for Neovim.
-    "rcarriga/nvim-notify",
-    config = function() require("Fau.core.notify") end,
-    event = "VeryLazy",
-  },
-
-  {
     -- DESC: a ui selector and receiver.
     "stevearc/dressing.nvim",
     config = function() require("Fau.core.dressing") end,
@@ -33,7 +26,14 @@ return {
   {
     -- DESC: a fancy UI provider.
     "folke/noice.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        -- DESC: a fancy notification manager for Neovim.
+        "rcarriga/nvim-notify",
+        config = function() require("Fau.core.notify") end,
+      },
+    },
     config = function() require("Fau.core.noice") end,
     event = "VeryLazy",
     priority = 999, -- quciker than lualine

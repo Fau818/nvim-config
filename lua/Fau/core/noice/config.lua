@@ -28,7 +28,8 @@ return {
 	---@type table<string, NoiceCommand>
 	commands = require("Fau.core.noice.commands"),
 
-	notify = { enabled = true, view = "notify" },
+	-- NOTE: does not render. (bug?)
+	notify = { enabled = false, view = "notify" },
 
 	lsp = require("Fau.core.noice.lsp"),
 
