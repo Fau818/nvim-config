@@ -3,11 +3,11 @@
 
 # include = ["src"]
 exclude = [
-	"**/.idea",
-	"**/.vscode",
-	"**/__pycache__",
-	"**/.git",
-	"**/venv",
+  "**/.idea",
+  "**/.vscode",
+  "**/__pycache__",
+  "**/.git",
+  "**/venv",
 ]
 # defineConstant = { DEBUG = true }
 pythonPlatform = "Linux"  # values: "Windows" | "Darwin" | "Linux" | "All"

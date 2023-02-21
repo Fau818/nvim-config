@@ -128,6 +128,9 @@ return {
     -- Lazy
     ["<LEADER>ll"] = { "<CMD>Lazy<CR>", "Open Lazy (Plugin Manager)" },
 
+    -- TEST: Toggle indent
+    ["<LEADER><LEADER>i"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width()<CR>", "Toggle Indent Width" },
+
 
 
     -- =============================================
@@ -162,8 +165,9 @@ return {
     ["q"]         = "Save Current Buffer",
     ["<LEADER>w"] = "Save All Buffers",
 
+    -- TODO: move lines and close buffers be a command with fallback
     ["<A-w>"] = "Save All Buffers",
-    ["<A-q>"] = { "<CMD>Bdelete<CR>", "Close Current Buffer" },
+    ["<A-q>"] = { Fau_vim.functions.buf_remove, "Close Current Buffer" },
 
     ["<A-left>"]  = { "<CMD>BufferLineMovePrev<CR>", "Move Buffer Prev" },
     ["<A-right>"] = { "<CMD>BufferLineMoveNext<CR>", "Move Buffer Next" },

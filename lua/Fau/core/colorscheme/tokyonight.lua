@@ -53,14 +53,13 @@ local config = {
       fg = colors.magenta
     }
 
-    highlights["IndentBlanklineContextChar"] = {
+    -- Deprecated
+    -- highlights["IndentBlanklineContextChar"] = { fg = "#FFFF00" }
+
+    highlights["MiniIndentscopeSymbol"] = {
       -- fg = "#9999FF",
       fg = "#FFFF00",
     }
-    -- highlights["MiniIndentscopeSymbol"] = {
-      -- fg = "#9999FF",
-      -- fg = "#FFFF00",
-    -- }
 
     highlights["Include"] = {
       fg = colors.cyan,

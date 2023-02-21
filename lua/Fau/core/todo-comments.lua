@@ -59,7 +59,7 @@ local config = {
     error   = { "DiagnosticError", "ErrorMsg", "#DC2626" },
     hint    = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
-    test    = { "Identifier", "#FF00FF" },
+    test    = { "#FFC8E1" },
     desc    = { "#a9b1d6" }
   },
 
