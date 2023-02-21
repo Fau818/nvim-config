@@ -70,5 +70,9 @@ vim.cmd [[
 
 
 -- =============================================
--- ========== TEST
+-- ========== Lock Options
 -- =============================================
+vim.cmd [[
+  autocmd OptionSet softtabstop setlocal sts=-1
+  autocmd OptionSet shiftwidth setlocal sw=0
+]]
