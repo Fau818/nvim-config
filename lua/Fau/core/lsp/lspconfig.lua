@@ -85,7 +85,7 @@ end
 
 -- Implement set clients according to filetype (In Fau_vim)
 Fau_vim.functions.lsp.set_client_by_ft = function()
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  local filetype = vim.bo.filetype
 
   if Fau_vim.configured_ft[filetype] then return end -- configured
   Fau_vim.configured_ft[filetype] = true

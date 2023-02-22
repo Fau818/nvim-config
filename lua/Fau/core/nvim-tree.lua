@@ -29,6 +29,8 @@ local config = {
 
   respect_buf_cwd = false, -- Will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 
+  remove_keymaps = false, -- This can be used to remove the default mappings in the tree.
+
   select_prompts = true, -- using select-UI like dressing.nvim
 
   view = { -- Window / buffer setup.

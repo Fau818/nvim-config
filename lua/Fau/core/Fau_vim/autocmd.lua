@@ -2,11 +2,11 @@
 -- ========== Baisc
 -- =============================================
 -- let `-` be a keyword
-vim.cmd [[set iskeyword+=-]]
+vim.cmd [[ set iskeyword+=- ]]
 -- highlight the yank area
-vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank{}]]
+vim.cmd [[ au TextYankPost * silent! lua vim.highlight.on_yank{} ]]
 -- keep cursor on last closed position when enter an opened file
-vim.cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
+vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 
 
 
@@ -76,3 +76,26 @@ vim.cmd [[
   autocmd OptionSet softtabstop setlocal sts=-1
   autocmd OptionSet shiftwidth setlocal sw=0
 ]]
+
+
+
+-- =============================================
+-- ========== nvim-tree [TEST]
+-- =============================================
+local function open_nvim_tree(data)
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not directory then return end
+
+  vim.cmd.enew()
+  vim.cmd.bw(data.buf)
+  vim.cmd.cd(data.file)
+  require("nvim-tree.api").tree.open()
+end
+
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = "Fau_vim",
+  desc = "Open nvim-tree when open a directory.",
+  callback = open_nvim_tree
+})
