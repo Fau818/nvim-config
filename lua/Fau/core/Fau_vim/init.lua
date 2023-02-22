@@ -21,3 +21,10 @@ Fau_vim.functions   = require "Fau.core.Fau_vim.functions"
 -- =============================================
 require "Fau.core.Fau_vim.commands"
 require "Fau.core.Fau_vim.autocmd"
+
+
+
+-- =============================================
+-- ========== Startup Neovim
+-- =============================================
+require "Fau.config"

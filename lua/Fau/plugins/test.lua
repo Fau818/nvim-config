@@ -6,7 +6,7 @@ return {
     -- WARNING: This plugin is disabled.
     "ray-x/lsp_signature.nvim",
     enabled = false,
-    config = function() require("Fau.core.lsp_signature") end,
+    config = function() require("Fau.core.lsp.lsp_signature") end,
     lazy = true,
   },
 
