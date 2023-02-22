@@ -9,8 +9,6 @@ return {
     local indent_width = vim.bo.tabstop
     local new_width = indent_width == 2 and indent_type == "space" and 4 or 2
 
-    print(indent_type, indent_width)
-
     if indent_type == "space" then
       vim.bo.expandtab = false
       vim.api.nvim_command("retab!")

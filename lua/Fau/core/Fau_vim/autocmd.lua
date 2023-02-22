@@ -32,11 +32,12 @@ vim.cmd [[
 -- =============================================
 -- ========== Auto LSP
 -- =============================================
-vim.cmd [[
-  augroup Fau_vim
-    autocmd VimEnter * lua Fau_vim.functions.lsp.initialize_lsp()
-  augroup END
-]]
+vim.api.nvim_create_autocmd("User", {
+  group = "Fau_vim",
+  desc = "Start Auto LSP.",
+  pattern = "AutoLsp",
+  callback = Fau_vim.functions.lsp.initialization,
+})
 
 
 

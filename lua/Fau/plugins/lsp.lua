@@ -12,7 +12,7 @@ return {
       require("Fau.core.lsp.diagnostic_config")
       require("Fau.core.lsp.lspconfig")
     end,
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
   },
 
   {

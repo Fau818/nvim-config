@@ -1,13 +1,13 @@
 return {
-  initialize_lsp = function()
-    vim.cmd [[
-      augroup Fau_vim
-        autocmd BufReadPost * lua Fau_vim.functions.lsp.set_client_by_ft()
-      augroup END
-    ]]
-    Fau_vim.functions.lsp.set_client_by_ft()
+  initialization = function()
+    vim.api.nvim_create_autocmd("BufReadPost", {
+      group = "Fau_vim",
+      desc = "Auto Setting LSP Initialization.",
+      pattern = "*",
+      callback = Fau_vim.functions.lsp.set_client_by_ft,
+    })
   end,
 
 
-  set_client_by_ft = function() end,  -- Implement in lspconfig.lua file.
+  set_client_by_ft = function() Fau_vim.notify("Called an uninitialized function.") end,  -- Implement in lspconfig.lua file.
 }
