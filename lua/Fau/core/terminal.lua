@@ -17,17 +17,18 @@ local config = {
   end,
   open_mapping = [[<C-t>]],
 
-  hide_numbers = true, -- hide the number column in toggleterm buffers
+  autochdir = false,  -- when neovim changes it current directory the terminal will change it's own when next it's opened
 
   shade_terminals = false,
   shading_factor = 5, -- the degree by which to darken to terminal color
 
   start_in_insert = true,
+  hide_numbers = true, -- hide the number column in toggleterm buffers
 
   insert_mappings = true,   -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 
-  direction = "float", -- string, values: vertical | horizontal | tab | float
+  direction = "float", -- string, values: vertical|horizontal|tab|float
 
   persist_mode = true,  -- if set to true (default) the previous terminal mode will be remembered
   persist_size = false, -- if set tot true, the previous terminal window size will be remembered (for horizontal and vertical)
@@ -39,7 +40,7 @@ local config = {
   auto_scroll = true, -- automatically scroll to the bottom on terminal output
 
   float_opts = {
-    border = "curved", -- values: single | double | shadow | curved | none
+    border = "rounded", -- values: single|double|shadow|curved|none
     winblend = 0,  -- keep this equal 0 if use transparent theme
   },
 
@@ -47,6 +48,8 @@ local config = {
 
   winbar = {
     enabled = false,
+    ---@param term Terminal
+    name_formatter = function(term) return term.name end
   },
 
   highlights = {
