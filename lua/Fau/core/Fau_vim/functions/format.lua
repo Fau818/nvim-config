@@ -2,7 +2,7 @@ return {
   -- -----------------------------------
   -- -------- Trim Blank Lines and Spaces
   -- -----------------------------------
-  remove_blank_lines_and_spaces = function()
+  remove_blank_lines_and_spaces = function()  -- will be overwrite in mini.trailspace
     local save_cursor = vim.fn.getpos(".")
     vim.api.nvim_command([[silent! %s#\($\n\s*\)\+\%$##]])
     vim.api.nvim_command([[silent! %s/\s\+$//e]])

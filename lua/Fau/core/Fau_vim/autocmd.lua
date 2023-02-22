@@ -11,78 +11,89 @@ vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 
 -- =============================================
--- ========== FileType
+-- ========== Fau_vim
 -- =============================================
-vim.cmd [[
-  augroup Fau_vim
-    " autocmd FileType * lua Fau_vim.functions.indent.set_indent()
-
-    autocmd FileType qf nnoremap <buffer><CR> <CR>
-
-    autocmd FileType gitcommit highlight Comment gui=none
-    autocmd FileType gitcommit highlight Title gui=none
-    autocmd FileType gitcommit highlight @keyword gui=italic
-    autocmd FileType gitcommit highlight @punctuation.delimiter gui=bold
-    autocmd FileType gitcommit highlight @parameter gui=bold
-  augroup END
-]]
+-- Group Initialization
+vim.api.nvim_create_augroup("Fau_vim", { clear = true })
 
 
+-- -----------------------------------
+-- -------- FileType
+-- -----------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Fix keymap in qf filetype.",
+  pattern = "qf",
+  callback = function() vim.keymap.set("n", "<CR>", "<CR>", { silent=true, buffer=true }) end
+})
 
--- =============================================
--- ========== Auto LSP
--- =============================================
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Adjust highlight for gitcommit filetype.",
+  pattern = "gitcommit",
+  callback = function()
+    -- TODO: With Lua code, and only affect on gitcommit filetype.
+    vim.cmd [[
+      autocmd FileType gitcommit highlight Comment gui=none
+      autocmd FileType gitcommit highlight Title gui=none
+      autocmd FileType gitcommit highlight @keyword gui=italic
+      autocmd FileType gitcommit highlight @punctuation.delimiter gui=bold
+      autocmd FileType gitcommit highlight @parameter gui=bold
+    ]]
+  end
+})
+
+
+-- -----------------------------------
+-- -------- Auto LSP
+-- -----------------------------------
 vim.api.nvim_create_autocmd("User", {
   group = "Fau_vim",
-  desc = "Start Auto LSP.",
+  desc = "Automatically set LSP by filetype initialization.",
   pattern = "AutoLsp",
   callback = Fau_vim.functions.lsp.initialization,
 })
 
 
-
--- =============================================
--- ========== Auto Trim Blank Lines and Spaces
--- =============================================
-vim.cmd [[
-  augroup Fau_vim
-    autocmd BufWritePre * lua Fau_vim.functions.format.remove_blank_lines_and_spaces()
-  augroup END
-]]
-
-
-
--- =============================================
--- ========== Keep Indentation
--- =============================================
-Fau_vim.functions.keep_file_indent = function()
-  if vim.bo.shiftwidth == 8 then
-    vim.bo.tabstop    = 2
-    vim.bo.shiftwidth = 0
-  end
-end
-
-vim.cmd [[
-  augroup Fau_vim
-    autocmd BufReadPost * lua Fau_vim.functions.keep_file_indent()
-  augroup END
-]]
+-- -------------------------------------------
+-- -------- Auto Trim Blank Lines and Spaces
+-- -------------------------------------------
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = "Fau_vim",
+  desc = "Trim blank lines and spaces before buffer written.",
+  pattern = "*",
+  callback = function() Fau_vim.functions.format.remove_blank_lines_and_spaces() end,
+})
 
 
+-- -----------------------------------
+-- -------- Keep Indentation
+-- -----------------------------------
+vim.api.nvim_create_autocmd("OptionSet", {
+  group = "Fau_vim",
+  desc = "Tabstop will be reset to 2 if tabstop >= 8.",
+  pattern = "tabstop",
+  callback = function() if vim.bo.tabstop >= 8 then vim.bo.tabstop = 2 end end,
+})
 
--- =============================================
--- ========== Lock Options
--- =============================================
-vim.cmd [[
-  autocmd OptionSet softtabstop setlocal sts=-1
-  autocmd OptionSet shiftwidth setlocal sw=0
-]]
+vim.api.nvim_create_autocmd("OptionSet", {
+  group = "Fau_vim",
+  desc = "Lock shiftwidth to 0",
+  pattern = "shiftwidth",
+  callback = function() vim.bo.shiftwidth = 0 end,
+})
+
+vim.api.nvim_create_autocmd("OptionSet", {
+  group = "Fau_vim",
+  desc = "Lock softtabstop to -1",
+  pattern = "softtabstop",
+  callback = function() vim.bo.softtabstop = -1 end,
+})
 
 
-
--- =============================================
--- ========== nvim-tree [TEST]
--- =============================================
+-- -----------------------------------
+-- -------- Open Dir by nvim-tree
+-- -----------------------------------
 local function open_nvim_tree(data)
   local directory = vim.fn.isdirectory(data.file) == 1
 
@@ -94,9 +105,9 @@ local function open_nvim_tree(data)
   require("nvim-tree.api").tree.open()
 end
 
-
 vim.api.nvim_create_autocmd("VimEnter", {
   group = "Fau_vim",
   desc = "Open nvim-tree when open a directory.",
+  pattern = "*",
   callback = open_nvim_tree
 })

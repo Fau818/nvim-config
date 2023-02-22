@@ -40,7 +40,13 @@ return {
     -- DESC: align text interactively.
     "echasnovski/mini.align",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("Fau.core.align") end,
+    config = function() require("Fau.core.mini.align") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+  {
+    "echasnovski/mini.trailspace",
+    config = function() require("Fau.core.mini.trailspace") end,
     event = { "BufReadPost", "BufNewFile" },
   },
 

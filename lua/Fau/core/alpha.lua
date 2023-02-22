@@ -55,9 +55,7 @@ if vim.o.filetype == "lazy" then
   vim.cmd.close()
   vim.api.nvim_create_autocmd("User", {
     pattern = "AlphaReady",
-    callback = function()
-      require("lazy").show()
-    end,
+    callback = function() require("lazy").show() end,
   })
 end
 

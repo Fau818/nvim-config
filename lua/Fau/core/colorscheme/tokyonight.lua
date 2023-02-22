@@ -48,13 +48,9 @@ local config = {
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
+    highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
 
-    highlights["NavicIconsPackage"] = {
-      fg = colors.magenta
-    }
-
-    -- Deprecated
-    -- highlights["IndentBlanklineContextChar"] = { fg = "#FFFF00" }
+    highlights["NavicIconsPackage"] = { fg = colors.magenta }
 
     highlights["MiniIndentscopeSymbol"] = {
       -- fg = "#9999FF",
