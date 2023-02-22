@@ -13,23 +13,8 @@ if not guess_indent_ok then Fau_vim.load_plugin_error("guess-indent") return end
 -- =============================================
 local config = {
   auto_cmd = true,
-  filetype_exclude = { -- A list of filetypes for which the auto command gets disabled
-    "netrw",
-    "tutor",
-
-    "NvimTree",
-    "TelescopePrompt",
-    "alpha",
-    "aerial",
-    "lspinfo",
-    "toggleterm",
-    "Trouble",
-    "noice",
-    "notify",
-    "mason",
-    "packer",
-    "lazy",
-  },
+  -- A list of filetypes for which the auto command gets disabled
+  filetype_exclude = Fau_vim.disabled_filetypes,
   buftype_exclude = { -- A list of buffer types for which the auto command gets disabled
     "help",
     "nofile",

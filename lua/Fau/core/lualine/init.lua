@@ -20,11 +20,7 @@ local config = {
 
     disabled_filetypes = {  -- Filetypes to disable lualine for.
       statusline = { "alpha" }, -- only ignores the ft for statusline.
-      winbar     = {
-        "alpha", "NvimTree", "Trouble", "toggleterm", "aerial", "lspinfo", "notify", "noice", "packer", "lazy",
-        "mason",
-        "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
-      }, -- only ignores the ft for winbar.
+      winbar     = Fau_vim.disabled_filetypes, -- only ignores the ft for winbar.
     },
 
     ignore_focus = {

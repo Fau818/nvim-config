@@ -18,6 +18,22 @@ Fau_vim.config_path = vim.fn.stdpath("config")
 
 Fau_vim.configured_ft = {}  -- for recording filetypes which have been configured LSP
 
+Fau_vim.disabled_filetypes = {
+  "", "checkhealth", "help", "netrw", "tutor",
+  "alpha",
+  "aerial",
+  "gitcommit",
+  "lspinfo", "mason",
+  "notify", "noice",
+  "NvimTree",
+  "toggleterm",
+  "Trouble",
+  "TelescopePrompt",
+  "packer", "lazy",
+
+  "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
+}
+
 ---@param msg string
 ---@param level string|number|nil
 ---@param opts table<string, any>|nil

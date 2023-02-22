@@ -16,8 +16,10 @@ return {
     -- DESC: a snazzy tabline to show opened buffers.
     "akinsho/bufferline.nvim",
     dependencies = {
-      -- DESC: close the buffer but don't affect the layout (like vim-bbye).
-      "famiu/bufdelete.nvim"
+      {
+        "echasnovski/mini.bufremove",
+        config = function() require("mini.bufremove").setup() end,
+      }
     },
     config = function() require("Fau.core.bufferline") end,
     event = "VeryLazy",
@@ -127,6 +129,12 @@ return {
     -- DESC: indent guides for Neovim.
     "lukas-reineke/indent-blankline.nvim",
     config = function() require("Fau.core.indentline") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    -- DESC: an indent guide line with animation.
+    "echasnovski/mini.indentscope",
+    config = function() require("Fau.core.mini.indentscope") end,
     event = { "BufReadPost", "BufNewFile" },
   },
 

@@ -2,11 +2,7 @@
 -- ========== Configuration
 -- =============================================
 -- Disable in some file types
-local disable = {
-  "", "checkhealth", "help", "gitcommit", "alpha", "NvimTree", "Trouble",
-  "toggleterm", "aerial", "lspinfo", "notify", "noice", "TelescopePrompt",
-  "packer", "lazy", "mason",
-}
+local disable = Fau_vim.disabled_filetypes
 
 
 for _, filetype in ipairs(disable) do
