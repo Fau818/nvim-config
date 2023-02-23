@@ -52,7 +52,7 @@ local config = {
     -- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
     python = "export PYTHONPATH=$(pwd) && python3 $dir/$fileName",
     c   = "cd $dir && clang   $fileName -o $fileNameWithoutExt -w && ./$fileNameWithoutExt",
-    cpp = "cd $dir && clang++ $fileName -o $fileNameWithoutExt -w && ./$fileNameWithoutExt",
+    cpp = "cd $dir && clang++ -std=c++17 $fileName -o $fileNameWithoutExt -w && ./$fileNameWithoutExt",
     -- typescript = "deno run",
     -- rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt"
   },
@@ -73,11 +73,11 @@ local config = {
       file_name = "app.py",
       -- command = "export PYTHONPATH=$(pwd) && python"
     },
-    ["~/demo_project"] = {
-      name = "test project",
-      description = "test",
-      file_name = "test.py",
-    }
+    -- ["~/demo_project"] = {
+    --   name = "test project",
+    --   description = "test",
+    --   file_name = "test.py",
+    -- }
   },
 
 

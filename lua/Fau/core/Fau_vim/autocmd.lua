@@ -29,6 +29,13 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
+  desc = "Type q to close notify float window.",
+  pattern = "notify",
+  callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
   desc = "Adjust highlight for gitcommit filetype.",
   pattern = "gitcommit",
   callback = function()

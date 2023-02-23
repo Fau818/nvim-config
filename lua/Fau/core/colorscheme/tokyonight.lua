@@ -49,13 +49,16 @@ local config = {
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
     highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
+    highlights["MiniIndentscopeSymbol"] = { fg = "#FFFF00", }
 
     highlights["NavicIconsPackage"] = { fg = colors.magenta }
 
-    highlights["MiniIndentscopeSymbol"] = {
-      -- fg = "#9999FF",
-      fg = "#FFFF00",
-    }
+    highlights["FloatBorder"] = { fg = "#9999FF" }
+    highlights["LspInfoBorder"] = { fg = "#9999FF" }
+
+    highlights["TelescopeBorder"] = { fg = "#9999FF" }
+    highlights["TelescopePromptPrefix"] = { fg = "#FFFF00" }
+    -- highlights["TelescopeMatching"] = { fg = "#9999FF" }
 
     highlights["Include"] = {
       fg = colors.cyan,
