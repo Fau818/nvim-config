@@ -29,7 +29,7 @@ local config = {
   -- Options which control scope computation
   options = {
     -- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
-    border = "top",  -- for python
+    border = "both",
     indent_at_cursor = true,
     try_as_border = true,
   },

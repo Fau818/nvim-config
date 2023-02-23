@@ -111,3 +111,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
   pattern = "*",
   callback = open_nvim_tree
 })
+
+
+-- -----------------------------------
+-- -------- indentscope for python [TEST]
+-- -----------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Config indentscope plugin for python.",
+  pattern = "python",
+  callback = function()
+    vim.b.miniindentscope_config = { options = { border = "top" } }
+  end
+})
