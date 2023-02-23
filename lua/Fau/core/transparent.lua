@@ -69,6 +69,9 @@ local config = {
     -- "SignColumn",
     "CursorLineNr",
   },
+
+  ---@type boolean don't clear a group that links to another group
+  ignore_linked_group = true,
 }
 
 

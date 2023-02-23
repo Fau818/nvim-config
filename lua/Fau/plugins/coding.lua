@@ -24,8 +24,8 @@ return {
   },
 
   {
-    -- DESC: move lines smartly.
-    "fedepujol/move.nvim",
+    "echasnovski/mini.move",
+    config = function() require("Fau.core.mini.move") end,
     event = { "BufReadPost", "BufNewFile" },
   },
 

@@ -29,8 +29,8 @@ local basic = {  -- n
 -- Quick Move
 local move = {  -- nxo
   ["H"] = "Line Begin",
-  ["J"] = "Five Line Down",
-  ["K"] = "Five Line Up",
+  ["J"] = "Five Lines Down",
+  ["K"] = "Five Lines Up",
   ["L"] = "Line End",
 }
 
@@ -84,13 +84,12 @@ local range = {  -- xo
 }
 
 
-local normal_insert = {  -- ni
-  -- Move Line(s)
-  ["<A-j>"] = { "<CMD>MoveLine(1)<CR>", "Move Down" },
-  ["<A-k>"] = { "<CMD>MoveLine(-1)<CR>", "Move Up" },
-
+local normal_insert = {
   -- Escape
   ["<ESC>"] = "Escape and Clear Hlsearch",
+
+  ["<A-j>"] = "Move Line Down",
+  ["<A-k>"] = "Move Line Up",
 }
 
 
@@ -212,16 +211,6 @@ return {
       t = { "<CMD>BufferLineTogglePin<CR>", "Toggle Pin" },
     },
 
-
-    -- ["<LEADER>p"] = {
-    --  name = "+Packer",
-    --  c = { "<CMD>PackerCompile<CR>", "Packer Compile" },
-    --  i = { "<CMD>PackerInstall<CR>", "Packer Install" },
-    --  s = { "<CMD>PackerSync<CR>",    "Packer Sync" },
-    --  S = { "<CMD>PackerStatus<CR>",  "Packer Status" },
-    --  u = { "<CMD>PackerUpdate<CR>",  "Packer Update" },
-    -- },
-
   },
 
 
@@ -231,10 +220,10 @@ return {
 
     ["<LEADER><LEADER>c"] = "Convert Tab and Space (indent)",
 
-    ["<A-j>"] = { ":MoveBlock(1)<CR>",   "Move Down"  },
-    ["<A-k>"] = { ":MoveBlock(-1)<CR>",  "Move Up"    },
-    ["<A-h>"] = { ":MoveHBlock(-1)<CR>", "Move Left"  },
-    ["<A-l>"] = { ":MoveHBlock(1)<CR>",  "Move Right" },
+    ["<A-j>"] = "Move Block Down",
+    ["<A-k>"] = "Move Block Up",
+    ["<A-h>"] = "Move Block Left",
+    ["<A-l>"] = "Move Block Right",
   },
 
 
