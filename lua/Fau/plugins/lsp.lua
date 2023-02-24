@@ -26,6 +26,7 @@ return {
     -- DESC: a powerful manager for LSP, DAP, Linter and Formatter.
     "williamboman/mason.nvim",
     config = function() require("Fau.core.lsp.mason") end,
+    cmd = "Mason",
     lazy = true, -- loaded by mason-lspconfig.nvim
   },
 

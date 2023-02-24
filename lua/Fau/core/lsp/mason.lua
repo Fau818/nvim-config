@@ -21,6 +21,8 @@ local config = {
   PATH = "prepend",
 
   pip = {
+    -- Whether to upgrade pip to the latest version in the virtual environment before installing packages.
+    upgrade_pip = false,
     -- These args will be added to `pip install` calls. Note that setting extra args might impact intended behavior
     -- and is not recommended.
     --
@@ -51,6 +53,9 @@ local config = {
 
     -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
     border = "double",
+
+    width  = 0.9,
+    height = 0.85,
 
     icons = {
       -- The list icon to use for installed packages.

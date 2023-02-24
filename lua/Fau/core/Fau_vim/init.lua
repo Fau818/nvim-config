@@ -27,4 +27,4 @@ require "Fau.core.Fau_vim.autocmd"
 -- =============================================
 -- ========== Startup Neovim
 -- =============================================
-require "Fau.config"
+require "Fau.lazy"
