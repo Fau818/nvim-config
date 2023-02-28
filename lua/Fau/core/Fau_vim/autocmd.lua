@@ -131,3 +131,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.b.miniindentscope_config = { options = { border = "top" } }
   end
 })
+
+
+-- -----------------------------------
+-- -------- Disable noice hover document keymaps
+-- -----------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Config indentscope plugin for python.",
+  pattern = "noice",
+  callback = function() vim.b.markdown_keys = true end,
+})
