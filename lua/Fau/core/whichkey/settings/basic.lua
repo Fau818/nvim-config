@@ -23,6 +23,11 @@ local basic = {  -- n
 
   ["<C-v>"] = "Vertical Split",
   -- ["<C-x>"] = "Horizontal Split",
+
+  ["<C-f>"] = "Open in System Explorer and Scroll Down",
+  ["<C-b>"] = "Scroll Up",
+
+  ["<MouseMove>"] = "which_key_ignore"
 }
 
 
@@ -127,8 +132,9 @@ return {
     -- Lazy
     ["<LEADER>ll"] = { "<CMD>Lazy<CR>", "Open Lazy (Plugin Manager)" },
 
-    -- TEST: Toggle indent
+    -- Toggle indent
     ["<LEADER><LEADER>i"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width()<CR>", "Toggle Indent Width" },
+
 
 
 

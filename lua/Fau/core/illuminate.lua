@@ -58,3 +58,9 @@ local config = {
 
 
 illuminate.configure(config)
+
+
+-- -----------------------------------
+-- -------- Unmap
+-- -----------------------------------
+vim.keymap.del("v", "<A-i>")

@@ -121,7 +121,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 
 -- -----------------------------------
--- -------- indentscope for python [TEST]
+-- -------- Indentscope for Python [TEST]
 -- -----------------------------------
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
@@ -134,7 +134,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 -- -----------------------------------
--- -------- Disable noice hover document keymaps
+-- -------- Disable Noice Hover Document Keymaps
 -- -----------------------------------
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
