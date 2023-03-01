@@ -200,7 +200,7 @@ return {
     win_options = {
       winhighlight = {
         Normal = "NoiceConfirm",
-        FloatBorder = "NoiceConfirmBorder",
+        FloatBorder = "FloatBorder",  -- NoiceConfirmBorder
       },
     },
   },

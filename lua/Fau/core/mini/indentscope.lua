@@ -12,7 +12,7 @@ if not indentscope_ok then Fau_vim.load_plugin_error("mini.indentscope") return 
 local config = {
   draw = {
     delay = 100,
-    animation = require("mini.indentscope").gen_animation.quadratic({ easing="in-out", duration=20, unit="step" })
+    -- animation = require("mini.indentscope").gen_animation.quadratic({ easing="in-out", duration=20, unit="step" })
   },
 
   -- Module mappings. Use `''` (empty string) to disable one.

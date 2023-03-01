@@ -22,6 +22,7 @@ Fau_vim.disabled_filetypes = {
   "", "checkhealth", "help", "netrw", "tutor",
   "alpha",
   "aerial",
+  "crunner",
   "gitcommit",
   "lspinfo", "mason",
   "notify", "noice",
