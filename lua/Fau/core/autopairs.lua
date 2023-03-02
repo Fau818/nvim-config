@@ -10,7 +10,7 @@ if not npairs_ok then Fau_vim.load_plugin_error("nvim-autopairs") return end
 -- ========== Configuration
 -- =============================================
 local config = {
-  disable_filetype = { "TelescopePrompt" },
+  disable_filetype = { "TelescopePrompt", "spectre_panel" },
   disable_in_macro = false,         -- disable when recording or executing a macro
   disable_in_visualblock = false,   -- disable when insert after visual block mode
   disable_in_replace_mode = true,
