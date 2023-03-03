@@ -51,8 +51,6 @@ local config = {
     highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
     highlights["MiniIndentscopeSymbol"] = { fg = "#FFFF00", }
 
-    highlights["NavicIconsPackage"] = { fg = colors.magenta }
-
     highlights["FloatBorder"] = { fg = "#9999FF" }
     highlights["LspInfoBorder"] = { fg = "#9999FF" }
 

@@ -60,11 +60,20 @@ return {
   },
 
   {
-    -- DESC: a fancy winbar to show breadcrumb combining with lualine.
+    -- DESC: a fancy winbar plugin combining with LSP.
     "SmiteshP/nvim-navic",
     dependencies = { "neovim/nvim-lspconfig" },
     config = function() require("Fau.core.navic") end,
-    lazy = true, -- loaded by lualine
+    lazy = true, -- loaded by barbecue
+  },
+
+  {
+    -- DESC: a powerful breadcrumb plugin based on navic.
+    "utilyre/barbecue.nvim",
+    dependencies = { "SmiteshP/nvim-navic", "kyazdani42/nvim-web-devicons" },
+    config = function() require("Fau.core.barbecue") end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = "Barbecue",
   },
 
   {

@@ -41,7 +41,7 @@ Fau_vim.disabled_filetypes = {
 Fau_vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO
   if not opts then opts = { title = "Fau_vim" }
-  elseif not opts.title then opts.title = "Fau_vim"
+  elseif not opts.title or opts.title == "" then opts.title = "Fau_vim"
   end
   vim.notify(msg, level, opts)
 end

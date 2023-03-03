@@ -1,6 +1,7 @@
 -- =============================================
 -- ========== Fau_vim.icons
 -- =============================================
+-- TODO: Add space to show the full icons.
 return {
   filetype = {
     Lua = "",
@@ -8,76 +9,76 @@ return {
 
 
   kind = {
-    Array = "",
-    Boolean = "蘒",
-    Class = "",
-    Color = "",
-    Constant = "",
-    Constructor = "",
-    Enum = "",
-    EnumMember = "",
-    Event = "",
-    Field = "",
-    File = "",
-    Folder = "",
-    Function = "",
-    Interface = "",
-    Key = "",
-    Keyword = "",
-    Method = "",
-    Module = "",
-    Namespace = "",
-    Null = "ﳠ",
-    Number = "",
-    Object = "",
-    Operator = "",
-    Package = "",
-    Property = "",
-    Reference = "",
-    Snippet = "",
-    String = "",
-    Struct = "",
-    Text = "",
-    TypeParameter = "",
-    Unit = "",
-    Value = "",
-    Variable = "",
+    Array         = " ", -- "󰅨 "
+    Boolean       = " ", -- " "
+    Class         = " ",
+    Color         = " ", -- " "
+    Constant      = " ",
+    Constructor   = " ", -- " "
+    Enum          = " ",
+    EnumMember    = " ", -- " "
+    Event         = "",  -- ""
+    Field         = " ",
+    File          = " ", -- " "
+    Folder        = " ", -- " "
+    Function      = "󰊕",
+    Interface     = " ", -- " "
+    Key           = " ", -- " "
+    Keyword       = " ",
+    Method        = " ",
+    Module        = " ",
+    Namespace     = " ",
+    Null          = "󰟢 ",
+    Number        = " ", -- " "
+    Object        = " ",
+    Operator      = " ", -- " "
+    Package       = " ",
+    Property      = " ", -- " "
+    Reference     = " ", -- " "
+    Snippet       = " ",
+    String        = " ", -- " "
+    Struct        = " ", -- " "
+    Text          = " ",
+    TypeParameter = " ", -- ""
+    Unit          = " ",
+    Value         = " ",
+    Variable      = " ",
   },
 
 
   git = {
-    LineAdded = "",
+    LineAdded    = "",
     LineModified = "",
-    LineRemoved = "",
+    LineRemoved  = "",
 
-    FileDeleted = "",
-    FileIgnored = "◌",
-    FileRenamed = "➜",
-    FileUnmerged = "",
-    FileStaged = "✓",
-    FileUnstaged = "✗",
+    FileDeleted   = "",
+    FileIgnored   = "◌",
+    FileRenamed   = "➜",
+    FileUnmerged  = "",
+    FileStaged    = "✓",
+    FileUnstaged  = "✗",
     FileUntracked = "★",
 
-    Diff = "",
-    Repo = "",
+    Diff     = "",
+    Repo     = "",
     Octoface = "",
-    Branch = "",
+    Branch   = "",
   },
 
 
   gitsigns = { -- for gitsigns
-    LineLeft = "│",
+    LineLeft     = "│",
     BoldLineLeft = "▎",
-    Triangle = "契",
-    Untracked = "┆",
+    Triangle     = "契",
+    Untracked    = "┆",
   },
 
 
   diagnostics = {
-    BoldError = "", Error = "",
-    BoldWarning = "", Warning = "",
+    BoldError       = "", Error       = "",
+    BoldWarning     = "", Warning     = "",
     BoldInformation = "", Information = "",
-    BoldHint = "", Hint = "",
+    BoldHint        = "", Hint        = "",
     -- BoldQuestion = "", Question = "",  -- unused
     Debug = "",
     Trace = "✎",
@@ -99,12 +100,12 @@ return {
     Parameter = "",
     Signature = "󰷾",
 
-    Tab = "",
+    Tab   = "",
     Space = "⎵",
 
-    Input = "",
-    Help = "",
-    Search = "",
+    Input    = "",
+    Help     = "",
+    Search   = "",
     Terminal = "",
 
     LookDown = "",
@@ -121,16 +122,21 @@ return {
 
     BoldArrowRight = "",
 
-    BreakPoint = "",
-    Bug = "",
-    Stacks = "",
-    Scopes = "",
-    Watches = "",
+    BreakPoint   = "",
+    Bug          = "",
+    Stacks       = "",
+    Scopes       = "",
+    Watches      = "",
     DebugConsole = "",
 
     Target = "",
 
     IndentLine = "▏", -- "▎"
+
+    Bread = "󰳯 ", BoldBread = "󰳮 ",
+    Separator = "",
+    Ellipsis  = "…",
+    Modify    = "●",
 
     -- TODO = "",
     -- HACK = "",
@@ -143,9 +149,9 @@ return {
 
 
   dapui = {
-    Expanded = "",
+    Expanded  = "",
     Collapsed = "",
-    Circular = "",
+    Circular  = "",
 
     Pause     = "",
     Play      = "",

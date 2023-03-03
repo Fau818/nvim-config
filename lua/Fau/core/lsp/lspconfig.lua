@@ -23,9 +23,6 @@ if not illuminate_ok then illuminate = nil end
 local inlayhints_ok, inlayhints = pcall(require, "lsp-inlayhints")
 if not inlayhints_ok then inlayhints = nil end
 
-local navic_ok, navic = pcall(require, "nvim-navic")
-if not navic_ok then navic = nil end
-
 
 
 -- =============================================
@@ -61,9 +58,6 @@ local function server_attach(client, bufnr)
 
   -- for inlayhints support
   if inlayhints then inlayhints.on_attach(client, bufnr, false) end
-
-  -- for breadcrumb support
-  if navic then navic.attach(client, bufnr) end
 end
 
 

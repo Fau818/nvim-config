@@ -54,12 +54,8 @@ local config = {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {
-    lualine_c = { component.breadcrumb },
-  },
-  inactive_winbar = {
-    lualine_c = { component.breadcrumb },
-  },
+  winbar = {},
+  inactive_winbar = {},
   extensions = {}
 }
 

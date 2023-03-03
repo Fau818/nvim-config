@@ -29,6 +29,7 @@ ViewConfig.keys.hover = "<C-d>"
 -- -----------------------------------
 -- -------- Options
 -- -----------------------------------
+---@type LazyConfig
 local config = {
   root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
   defaults = {
@@ -108,6 +109,13 @@ local config = {
       -- open a terminal for the plugin dir
       ["<localleader>T"] = function(plugin)
         require("lazy.util").float_term(nil, { cwd = plugin.dir })
+      end,
+
+      -- open lazygit log
+      ["<localleader>L"] = function(plugin)
+        require("lazy.util").float_term({ "lazygit", "log" }, {
+          cwd = plugin.dir,
+        })
       end,
     }
   },
