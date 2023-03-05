@@ -35,7 +35,7 @@ load("basic")
 load("telescope")
 load("lsp")
 if Fau_vim.dap then load("dap") end
-load("gitsigns")
+load("git")
 load("terminal")
 load("code_runner")
 load("python-docstring")

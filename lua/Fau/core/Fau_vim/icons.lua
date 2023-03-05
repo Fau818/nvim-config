@@ -86,6 +86,10 @@ return {
 
 
   ui = {
+    FolderClosed = "",
+    FolderOpened = "",
+    EmptyFolderClosed = "",
+    EmptyFolderOpened = "",
     File     = "",
     NewFile  = "",
     FindFile = "",
@@ -95,6 +99,9 @@ return {
     Gear     = "",
     Restore  = "󰦛",
     Exit     = "󰿅",  -- 󰗼
+
+    FoldClosed = "",
+    FoldOpened = "",
 
     Rename    = "",
     Parameter = "",

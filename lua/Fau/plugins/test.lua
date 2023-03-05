@@ -19,12 +19,6 @@ return {
     lazy = true,
   },
 
-  {
-    -- DESC: single tabpage interface for easily cycling through diffs for all modified files for any git rev.
-    "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" },
-    event = "VeryLazy",
-  },
 
   -- {
   --   -- DESC: Maybe in the future.

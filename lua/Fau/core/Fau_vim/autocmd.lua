@@ -7,6 +7,8 @@ vim.cmd [[ set iskeyword+=- ]]
 vim.cmd [[ au TextYankPost * silent! lua vim.highlight.on_yank{} ]]
 -- keep cursor on last closed position when enter an opened file
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+-- use diagonal lines in place of deleted lines
+vim.cmd [[ set fillchars+=diff:╱ ]]
 
 
 
@@ -29,8 +31,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
-  desc = "Type q to close notify float window.",
-  pattern = "notify",
+  desc = "Type q to close float window.",
+  pattern = { "notify", "git" },
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 

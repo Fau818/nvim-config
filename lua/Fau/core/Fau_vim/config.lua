@@ -23,6 +23,7 @@ Fau_vim.disabled_filetypes = {
   "alpha",
   "aerial",
   "crunner",
+  "DiffviewFiles",
   "gitcommit",
   "lspinfo", "mason",
   "notify", "noice",

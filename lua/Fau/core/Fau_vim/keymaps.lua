@@ -8,6 +8,13 @@ local opts_remap = { remap  = true, silent = true }
 
 
 
+local function close_editor()
+  local tabs_count = vim.fn.tabpagenr("$")
+
+  -- `xall` doesn't work well when use toggle terminal
+  if tabs_count == 1 then vim.cmd("wall") vim.cmd("qall") end
+  return vim.cmd("tabclose")
+end
 -- =============================================
 -- ========== Set Leader key
 -- =============================================
@@ -35,8 +42,7 @@ keymap("n", "K", "5k", opts_remap) -- for telescope
 keymap("n", "<A-w>", "<CMD>wall<CR>", opts)
 keymap("n", "<A-q>", "<CMD>bdelete<CR>", opts)
 
--- keymap("n", "<C-S-q>", "<CMD>xall<CR>", opts)
-keymap("n", "<C-S-q>", "<CMD>wall<CR><CMD>qall<CR>", opts)  -- `xall` doesn't work well when use toggle terminal
+keymap("n", "<C-S-q>", close_editor, opts)
 keymap("n", "Q", "<CMD>q<CR>", opts)
 
 

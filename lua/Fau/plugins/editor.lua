@@ -170,6 +170,15 @@ return {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+  {
+    -- DESC: single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" },
+    config = function() require("Fau.core.diffview") end,
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" }
+  },
+
+
 
   -- =============================================
   -- ========== Immersive

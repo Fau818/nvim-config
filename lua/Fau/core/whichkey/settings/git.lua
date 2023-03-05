@@ -16,8 +16,8 @@ local gitsigns = {
       },
     },
 
-    -- Show File Diff
-    D = { "<CMD>Gitsigns diffthis<CR>", "Show the File Diff" },
+    -- -- Show File Diff
+    -- D = { "<CMD>Gitsigns diffthis<CR>", "Show the File Diff" },
 
     -- Preview the current hunk
     c = { "<CMD>Gitsigns preview_hunk_inline<CR>", "Show Current Hunk Changes Inline" },
@@ -38,6 +38,10 @@ local gitsigns = {
     R = { "<CMD>Gitsigns reset_buffer<CR>",    "Reset Current Buffer" },
 
     u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk"      },
+
+    -- Diffview
+    d = { "<CMD>DiffviewOpen<CR>",        "Open Diffview" },
+    D = { "<CMD>DiffviewFileHistory<CR>", "Open Diffview" },
   },
 }
 

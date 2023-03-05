@@ -31,11 +31,7 @@ local config = {
   char_priority = 1,
   context_start_priority = 10000,
 
-  filetype_exclude = {
-    "", "help", "man", "checkhealth", "alpha", "NvimTree", "Trouble",
-    "toggleterm", "aerial", "lspinfo", "notify", "noice", "TelescopePrompt",
-    "packer", "lazy", "mason"
-  },
+  filetype_exclude = Fau_vim.disabled_filetypes,
 }
 
 
