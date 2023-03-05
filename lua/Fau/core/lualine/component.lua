@@ -274,7 +274,8 @@ return {
   },
 
 
-  python_env = { -- [test]
+  -- TEST: Copied from Lunarvim.
+  python_env = {
     function()
       if vim.bo.filetype == "python" then
         local venv = os.getenv "CONDA_DEFAULT_ENV" or os.getenv "VIRTUAL_ENV"
@@ -291,6 +292,7 @@ return {
   },
 
 
+  -- WARNING: This component is deprecated.
   breadcrumb = {
     function()
       local winbar = utils.get_filename()

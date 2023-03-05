@@ -13,6 +13,7 @@ local config = {
   draw = {
     delay = 100,
     -- animation = require("mini.indentscope").gen_animation.quadratic({ easing="in-out", duration=20, unit="step" })
+    priority = 2,
   },
 
   -- Module mappings. Use `''` (empty string) to disable one.
