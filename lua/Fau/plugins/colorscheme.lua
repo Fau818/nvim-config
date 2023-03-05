@@ -12,6 +12,7 @@ return {
   {
     -- DESC: the darkplus colorscheme just like VSCode.
     "lunarvim/darkplus.nvim",
+    priority = 1000,
     lazy = true, -- when is used, will load automatically.
   },
 }

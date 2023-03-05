@@ -54,7 +54,8 @@ return {
     -- DESC: auto switch input method.
     "keaising/im-select.nvim",
     config = function() require("Fau.core.im-select") end,
-    event = "InsertEnter"
+    event = "InsertEnter",
+    enabled = not Fau_vim.on_server,
   },
 
   {
