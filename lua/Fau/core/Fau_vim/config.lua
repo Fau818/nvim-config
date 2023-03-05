@@ -8,7 +8,7 @@ Fau_vim = {}
 -- =============================================
 -- ========== Fields
 -- =============================================
-Fau_vim.on_server = os.getenv("FAU_ON_SERVER") == 1
+Fau_vim.on_server = os.getenv("FAU_ON_SERVER") == "1"
 -- TODO: unify fileds like Fau_vim.functions
 Fau_vim.dap = { enable = false }
 -- Fau_vim.inc_rename = { enable = pcall(require, "inc_rename") and pcall(require, "noice"), dressing = false }

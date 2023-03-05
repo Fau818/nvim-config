@@ -5,6 +5,7 @@ return {
     -- DESC: a snazzy colorscheme that can be customized.
     "folke/tokyonight.nvim",
     priority = 1000,
+    dependencies = { "xiyaowong/nvim-transparent" },
     config = function() require("Fau.core.colorscheme") end,
   },
 
