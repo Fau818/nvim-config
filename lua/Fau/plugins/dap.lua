@@ -1,6 +1,7 @@
 -- NOTE: This module is for debug adapter protocol, will be lazy-loaded.
 
-return {
+---@type LazySpec[]
+local dap = {
   {
     -- DESC: debug adapter protocol client implementation for Neovim.
     "mfussenegger/nvim-dap",
@@ -24,3 +25,6 @@ return {
     lazy = true,
   }
 }
+
+
+return dap

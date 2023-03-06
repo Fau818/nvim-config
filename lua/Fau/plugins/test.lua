@@ -1,6 +1,7 @@
 -- NOTE: This module is for testing new plugins.
 
-return {
+---@type LazySpec[]
+local test = {
   {
     -- DESC: a LSP signature hinter.
     -- WARNING: This plugin is disabled.
@@ -27,3 +28,6 @@ return {
 
 
 }
+
+
+return test

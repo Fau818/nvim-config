@@ -9,6 +9,7 @@ if not tabout_ok then Fau_vim.load_plugin_error("tabout") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type TaboutOptions
 local config = {
   tabkey = "<TAB>",                -- key to trigger tabout, set to an empty string to disable
   backwards_tabkey = "<S-TAB>",    -- key to trigger backwards tabout, set to an empty string to disable

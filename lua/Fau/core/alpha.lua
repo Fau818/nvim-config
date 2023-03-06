@@ -71,4 +71,4 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 
-require("alpha").setup(dashboard.opts)
+alpha.setup(dashboard.opts)

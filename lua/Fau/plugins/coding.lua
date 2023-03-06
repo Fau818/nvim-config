@@ -1,7 +1,8 @@
 -- NOTE: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` events.
 -- also maybe in `InsertEnter` event.
 
-return {
+---@type LazySpec[]
+local coding = {
   {
     -- DESC: quickly add, modify, and remove surround.
     "kylechui/nvim-surround",
@@ -66,3 +67,6 @@ return {
   },
 
 }
+
+
+return coding

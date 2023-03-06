@@ -1,7 +1,8 @@
 -- NOTE: This module is for enhancing editor, will be loaded in `VeryLazy` event.
 -- also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
 
-return {
+---@type LazySpec[]
+local editor = {
   -- =============================================
   -- ========== Basic Editor
   -- =============================================
@@ -199,3 +200,6 @@ return {
   },
 
 }
+
+
+return editor

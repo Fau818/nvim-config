@@ -1,6 +1,7 @@
 -- NOTE: This module is for code completion, will be loaded in `InsertEnter` event.
 
-return {
+---@type LazySpec[]
+local cmp = {
   -- =============================================
   -- ========== Completion
   -- =============================================
@@ -93,3 +94,6 @@ return {
   },
 
 }
+
+
+return cmp

@@ -1,7 +1,8 @@
 local config = require("Fau.core.noice.config")
 
 
-return {
+---@type NoiceRouteConfig[]
+local routes = {
   -- -----------------------------------
   -- -------- Cmdline
   -- -----------------------------------
@@ -50,10 +51,15 @@ return {
   {
     view = config.notify.view,
     filter = {
+      ---@diagnostic disable-next-line: assign-type-mismatch
       event = "noice",
+      ---@diagnostic disable-next-line: assign-type-mismatch
       kind = { "stats", "debug" },
     },
     opts = { lang = "lua", title = "Noice", level = vim.log.levels.DEBUG },
   },
 
 }
+
+
+return routes

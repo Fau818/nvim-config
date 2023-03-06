@@ -1,4 +1,5 @@
-return {
+---@type NoiceConfigViews
+local views = {
   virtualtext = {
     backend = "virtualtext",
     format = { "{message}" },
@@ -264,6 +265,7 @@ return {
       cursorline = false,
     },
   },
-
-
 }
+
+
+return views

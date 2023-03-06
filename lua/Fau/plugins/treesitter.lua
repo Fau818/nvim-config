@@ -1,7 +1,8 @@
 -- NOTE: This module is for treesitter, will be loaded in `BufReadPost` and `BufNewFile` event.
 -- for playground, will be loaded by its specific commands.
 
-return {
+---@type LazySpec[]
+local treesitter = {
   {
     -- DESC: a parser generator tool and an incremental parsing library.
     "nvim-treesitter/nvim-treesitter",
@@ -17,3 +18,6 @@ return {
     cmd = { "TSCaptureUnderCursor", "TSNodeUnderCursor" },
   },
 }
+
+
+return treesitter

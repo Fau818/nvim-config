@@ -1,6 +1,7 @@
 -- NOTE: This module is for pretty UI, most of them should be loaded in `VeryLazy` event.
 
-return {
+---@type LazySpec[]
+local ui = {
   {
     -- DESC: a ui selector and receiver.
     "stevearc/dressing.nvim",
@@ -16,11 +17,13 @@ return {
   },
 
   {
+    -- WARNING: Deprecated.
     -- DESC: make background transparent.
     "xiyaowong/nvim-transparent",
     config = function() require("Fau.core.transparent") end,
     -- BUG: needed fix colorscheme
     cmd = { "TransparentToggle", "TransparentEnable", "TransparentDisable" },
+    enabled = false,
   },
 
   {
@@ -40,3 +43,6 @@ return {
   },
 
 }
+
+
+return ui

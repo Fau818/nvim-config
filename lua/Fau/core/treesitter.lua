@@ -9,6 +9,7 @@ if not treesitter_ok then Fau_vim.load_plugin_error("nvim-treesitter.configs") r
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type TSConfig
 local config = {
   -- A list of parser names, or "all"
   ensure_installed = {

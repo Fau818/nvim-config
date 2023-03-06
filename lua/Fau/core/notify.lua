@@ -9,6 +9,7 @@ if not notify_ok then Fau_vim.load_plugin_error("notify") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type notify.Config
 local config = {
   background_colour = "#000000",
   fps = 60,

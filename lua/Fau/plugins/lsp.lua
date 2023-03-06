@@ -1,6 +1,7 @@
 -- NOTE: This module is for language server protocol, will be loaded in `BufReadPost` and `BufNewFile` events.
 
-return {
+---@type LazySpec[]
+local lsp = {
   -- =============================================
   -- ========== LSP Manager
   -- =============================================
@@ -43,6 +44,7 @@ return {
     "folke/neodev.nvim",
     config = function() require("Fau.core.neodev") end,
     ft = "lua",
+    -- TODO: not right? no plugin
     -- WARN: This plugin needs to load before lua_ls.
     -- if use `ft = "lua"` for lazy loading, the function called
     -- Fau_vim.functions.lsp.set_client_by_ft() will respect its order.
@@ -85,3 +87,6 @@ return {
   },
 
 }
+
+
+return lsp

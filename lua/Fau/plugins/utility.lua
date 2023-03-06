@@ -1,6 +1,7 @@
 -- NOTE: This is a utility tool module, will be lazy-loaded.
 
-return {
+---@type LazySpec[]
+local utility = {
   {
     -- DESC: a utility tool repo written by lua.
     "nvim-lua/plenary.nvim",
@@ -30,3 +31,6 @@ return {
   },
 
 }
+
+
+return utility

@@ -1,6 +1,7 @@
 -- NOTE: misc plugins.
 
-return {
+---@type LazySpec[]
+local misc = {
   {
     -- DESC: coding time tracker (for wakatime statistics).
     "wakatime/vim-wakatime",
@@ -8,3 +9,6 @@ return {
     enabled = not Fau_vim.on_server,
   },
 }
+
+
+return misc

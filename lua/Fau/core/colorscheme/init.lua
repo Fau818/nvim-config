@@ -10,9 +10,7 @@ local colorscheme = Fau_vim.on_server and "darkplus" or "tokyonight"
 -- =============================================
 -- ========== Configuration
 -- =============================================
-if colorscheme == "tokyonight" then require "Fau.core.colorscheme.tokyonight"
--- else require "Fau.core.transparent"
-end
+if colorscheme == "tokyonight" then require "Fau.core.colorscheme.tokyonight" end
 
 
 

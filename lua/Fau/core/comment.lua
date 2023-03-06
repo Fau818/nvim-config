@@ -10,13 +10,14 @@ local comment_ft = require('Comment.ft')
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type CommentConfig
 local config = {
   ---Add a space b/w comment and the line
   padding = true,
   ---Whether the cursor should stay at its position
   sticky = true,
   ---Lines to be ignored while (un)comment
-  ignore = nil,
+  -- ignore = nil,
   ---LHS of toggle mappings in NORMAL mode
   toggler = {
     ---Line-comment toggle keymap
@@ -51,7 +52,7 @@ local config = {
   ---Function to call before (un)comment
   pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
   ---Function to call after (un)comment
-  post_hook = nil,
+  -- post_hook = nil,
 }
 
 

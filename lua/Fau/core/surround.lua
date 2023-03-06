@@ -9,6 +9,7 @@ if not surround_ok then Fau_vim.load_plugin_error("nvim-surround") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type user_options
 local config = {
   keymaps = {
     insert = false,

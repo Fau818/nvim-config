@@ -1,4 +1,5 @@
-return {
+---@type NoiceConfig
+local config = {
   cmdline = require("Fau.core.noice.cmdline"),
 
   messages = {  -- if enabled, will also enable cmdline.
@@ -77,3 +78,6 @@ return {
   ---@type NoiceFormatOptions
   format = {}, --- @see section on formatting
 }
+
+
+return config

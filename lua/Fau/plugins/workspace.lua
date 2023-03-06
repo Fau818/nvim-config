@@ -1,6 +1,7 @@
 -- NOTE: This module is for workspace(project) support.
 
-return {
+---@type LazySpec[]
+local workspace = {
   -- =============================================
   -- ========== Workspace Support
   -- =============================================
@@ -18,3 +19,6 @@ return {
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
   },
 }
+
+
+return workspace

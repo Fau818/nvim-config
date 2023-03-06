@@ -9,6 +9,7 @@ if not paint_ok then Fau_vim.load_plugin_error("paint") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type PaintOptions
 local config = {
   ---@type PaintHighlight[]
   highlights = {

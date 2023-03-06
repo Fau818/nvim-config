@@ -9,6 +9,7 @@ if not mason_ok then Fau_vim.load_plugin_error("mason") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type MasonSettings
 local config = {
   -- The directory in which to install packages.
   -- install_root_dir = path.concat { vim.fn.stdpath "data", "mason" },

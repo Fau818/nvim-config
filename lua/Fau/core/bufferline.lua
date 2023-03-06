@@ -95,7 +95,7 @@ local config = {
       items = {
         {
           name = "Docs",
-          highlight = { undercurl = false, sp = "green" },
+          highlight = { undercurl = true, sp = "green" },
           priority = 2, -- determines where it will appear relative to other groups (Optional)
           icon = Fau_vim.icons.ui.File, -- Optional
           auto_close = false, -- whether or not close this group if it doesn't contain the current buffer

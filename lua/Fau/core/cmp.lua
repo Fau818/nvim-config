@@ -36,6 +36,7 @@ require("luasnip.loaders.from_snipmate").lazy_load()  -- for snipmate snippets
 -- -----------------------------------
 -- -------- cmp
 -- -----------------------------------
+---@type cmp.ConfigSchema
 local config = {
   enable = true,  -- Toggles the plugin on and off.
   snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
@@ -150,22 +151,15 @@ local config = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  experimental = { ghost_text = true },
+  experimental = { ghost_text = {} },
 }
-
-
-cmp.setup(config)
-
-
--- for inserting '(' after select function or method item
-if npairs ~= nil then cmp.event:on("confirm_done", npairs.on_confirm_done()) end
 
 
 -- -----------------------------------
 -- -------- cmp-cmdline
 -- -----------------------------------
--- Use cmdline & path source for ':'
-cmp.setup.cmdline(":", {
+---@type cmp.ConfigSchema
+local config_cmdline_command = {
   completion = {
     autocomplete = {},  -- values: InsertEnter|TextChanged
     completeopt = "menu, menuone, noselect"
@@ -184,11 +178,10 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
     { name = "path" },
   }
-})
+}
 
 
--- Use buffer source for `/` and `?`
-cmp.setup.cmdline({ "/", "?" }, {
+local config_cmdline_search = {
   completion = {
     autocomplete = {},  -- values: InsertEnter|TextChanged
     completeopt = "menu, menuone, noselect"
@@ -204,4 +197,18 @@ cmp.setup.cmdline({ "/", "?" }, {
     ),
   },
   sources = { { name = "buffer" } }
-})
+}
+
+
+cmp.setup(config)
+-- Use cmdline & path source for ':'
+cmp.setup.cmdline(":", config_cmdline_command)
+-- Use buffer source for `/` and `?`
+cmp.setup.cmdline({ "/", "?" }, config_cmdline_search)
+
+
+-- -----------------------------------
+-- -------- Autopairs
+-- -----------------------------------
+-- for inserting '(' after select function or method item
+if npairs ~= nil then cmp.event:on("confirm_done", npairs.on_confirm_done()) end
