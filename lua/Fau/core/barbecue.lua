@@ -64,7 +64,7 @@ local config = {
   ---Get leading custom section contents.
   ---NOTE: This function shouldn't do any expensive actions as it is run on each render.
   ---@type fun(bufnr: number): barbecue.Config.custom_section
-  lead_custom_section = function() return Fau_vim.icons.ui.BoldBread end,
+  lead_custom_section = function() return Fau_vim.icons.ui.BoldBread .. " " end,
 
   ---Get custom section contents.
   ---NOTE: This function shouldn't do any expensive actions as it is run on each render.

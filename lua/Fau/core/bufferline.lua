@@ -60,7 +60,7 @@ local config = {
       for diagnostics, cou in pairs(diagnostics_dict) do
         local icon = (diagnostics == "error" and Fau_vim.icons.diagnostics.Error) or
             (diagnostics == "warning" and Fau_vim.icons.diagnostics.Warning)
-        if icon then show = show .. icon .. cou .. " " end
+        if icon then show = show .. icon .. " " .. cou .. " " end
       end
       return show
     end,

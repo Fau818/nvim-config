@@ -1,50 +1,49 @@
 -- =============================================
 -- ========== Fau_vim.icons
 -- =============================================
--- TODO: Add space to show the full icons.
 return {
   kind = {
-    Array         = " ", -- "󰅨 "
-    Boolean       = " ", -- " "
-    Class         = " ",
-    Color         = " ", -- " "
-    Constant      = " ",
-    Constructor   = " ", -- " "
-    Enum          = " ",
-    EnumMember    = " ", -- " "
-    Event         = "",  -- ""
-    Field         = " ",
-    File          = " ", -- " "
-    Folder        = " ", -- " "
-    Function      = "󰊕",
-    Interface     = " ", -- " "
-    Key           = " ", -- " "
-    Keyword       = " ",
-    Method        = " ",
-    Module        = " ",
-    Namespace     = " ",
-    Null          = "󰟢 ",
-    Number        = " ", -- " "
-    Object        = " ",
-    Operator      = " ", -- " "
-    Package       = " ",
-    Property      = " ", -- " "
-    Reference     = " ", -- " "
-    Snippet       = " ",
-    String        = " ", -- " "
-    Struct        = " ", -- " "
-    Text          = " ",
-    TypeParameter = " ", -- ""
-    Unit          = " ",
-    Value         = " ",
-    Variable      = " ",
+    Array         = "", -- "󰅨"
+    Boolean       = "", -- ""
+    Class         = "",
+    Color         = "", -- ""
+    Constant      = "",
+    Constructor   = "", -- ""
+    Enum          = "",
+    EnumMember    = "", -- ""
+    Event         = "", -- ""
+    Field         = "",
+    File          = "", -- ""
+    Folder        = "", -- ""
+    Function      = "󰊕", -- "󰡱"
+    Interface     = "", -- ""
+    Key           = "", -- ""
+    Keyword       = "",
+    Method        = "",
+    Module        = "",
+    Namespace     = "",
+    Null          = "󰟢",
+    Number        = "", -- ""
+    Object        = "",
+    Operator      = "", -- ""
+    Package       = "",
+    Property      = "", -- ""
+    Reference     = "", -- ""
+    Snippet       = "",
+    String        = "", -- ""
+    Struct        = "", -- ""
+    Text          = "",
+    TypeParameter = "", -- ""
+    Unit          = "",
+    Value         = "",
+    Variable      = "",
   },
 
 
   git = {
-    LineAdded    = " ",
-    LineModified = " ",
-    LineRemoved  = " ",
+    LineAdded    = "",
+    LineModified = "",
+    LineRemoved  = "",
 
     FileDeleted   = "",
     FileIgnored   = "◌",
@@ -54,9 +53,9 @@ return {
     FileUnstaged  = "✗",
     FileUntracked = "★",
 
-    -- Diff     = " ",
-    -- Repo     = " ",
-    Octoface = " ",
+    -- Diff     = "",
+    -- Repo     = "",
+    Octoface = "",
     Branch   = "",
   },
 
@@ -64,19 +63,19 @@ return {
   gitsigns = { -- for gitsigns
     -- LineLeft     = "│",
     BoldLineLeft = "▎",
-    Triangle     = "契",
+    Triangle     = "",
     Untracked    = "┆",
   },
 
 
   diagnostics = {
-    BoldError       = " ", Error       = " ",
-    BoldWarning     = " ", Warning     = " ",
-    BoldInformation = " ", Information = " ",
-    BoldHint        = " ", Hint        = " ",
-    -- BoldQuestion = " ", Question = " ",  -- unused
-    Debug = " ",
-    Trace = "✎ ",
+    BoldError       = "", Error       = "",
+    BoldWarning     = "", Warning     = "",
+    BoldInformation = "", Information = "",
+    BoldHint        = "", Hint        = "",
+    -- BoldQuestion = "", Question = "",  -- unused
+    Debug = "",
+    Trace = "✎",
   },
 
 
@@ -86,24 +85,24 @@ return {
     EmptyFolderClosed = "",
     EmptyFolderOpened = "",
     File     = "",
-    NewFile  = " ",
-    FindFile = " ",
-    Project  = " ",
-    History  = " ",
-    FindText = " ",
-    Gear     = " ",
-    Restore  = "󰦛 ",
-    Exit     = "󰿅 ",
+    NewFile  = "",
+    FindFile = "",
+    Project  = "",
+    History  = "",
+    FindText = "",
+    Gear     = "",
+    Restore  = "󰦛",
+    Exit     = "󰿅",
 
     FoldClosed = "",
     FoldOpened = "",
 
-    -- Rename    = " ",
-    -- Parameter = " ",
-    -- Signature = "󰷾 ",
+    -- Rename    = "",
+    -- Parameter = "",
+    -- Signature = "󰷾",
 
-    Tab   = " ",
-    Space = "⎵ ",
+    Tab   = "",
+    Space = "⎵",
 
     -- noice, no space is better
     Input    = "",
@@ -121,22 +120,22 @@ return {
 
     ChevronRight = ">",
 
-    Tree = " ",
+    Tree = "",
 
-    BoldArrowRight = " ",
+    BoldArrowRight = "",
 
-    BreakPoint   = " ",
-    Bug          = " ",
-    Stacks       = " ",
-    Scopes       = " ",
-    Watches      = " ",
-    DebugConsole = " ",
+    BreakPoint   = "",
+    Bug          = "",
+    Stacks       = "",
+    Scopes       = "",
+    Watches      = "",
+    DebugConsole = "",
 
-    Target = " ",
+    Target = "",
 
     IndentLine = "▏", -- "▎"
 
-    Bread = "󰳯 ", BoldBread = "󰳮 ",
+    Bread = "󰳯", BoldBread = "󰳮",
     Separator = "",
     Ellipsis  = "…",
     Modify    = "●",
