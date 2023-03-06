@@ -1,6 +1,7 @@
 # Fau
 .DS_Store
 plugin/
+lazy-lock.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -134,4 +135,3 @@ dmypy.json
 
 # Generated data
 tests/data/*.json
-
