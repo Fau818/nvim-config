@@ -107,6 +107,24 @@ local config = {
       }
     }
   },
+
+  highlights = {
+    -- selected filename in curlycue
+    buffer_selected     = { fg = "#9999FF", bold = false },
+    numbers_selected    = { fg = "#9999FF", bold = false },
+    diagnostic_selected = { bold = false },
+    hint_selected    = { bold = false },
+    info_selected    = { bold = false },
+    warning_selected = { bold = false },
+    error_selected   = { bold = false },
+
+
+    -- the path name in italic
+    duplicate          = { bold = true, italic = true },
+    duplicate_visible  = { bold = true, italic = true },
+    duplicate_selected = { bold = true, italic = true },
+
+  }
 }
 
 

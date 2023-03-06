@@ -82,11 +82,15 @@ local config = {
       style = { italic = true }
     }
 
+    highlights["@function.builtin"] = {
+      fg = colors.blue1,
+      style = { italic = true }
+    }
+
     -- highlights["@type.builtin"] = {
     --  fg = colors.blue1,
     --  style = { italic = true }
     -- }
-    --
     -- highlights["@type.qualifier"] = {
     --  fg = colors.blue1,
     --  style = { italic = true }
