@@ -113,7 +113,7 @@ return {
   -- ========== basic
   -- =============================================
   mode = {
-    function() return " " .. Fau_vim.icons.ui.Target .. " " end,
+    function() return " " .. Fau_vim.icons.ui.Target end,
     -- "mode",
     -- icon = Fau_vim.icons.ui.Target
   },
@@ -153,7 +153,7 @@ return {
       if space_indent_cnt == tab_indent_cnt then file_indent_type = indent_type end
 
       local indent_icon = file_indent_type and Fau_vim.icons.ui.Space or Fau_vim.icons.ui.Tab
-      local indent_show = indent_icon .. " " .. indent_width  -- show
+      local indent_show = indent_icon .. indent_width  -- show
       if file_indent_type ~= indent_type then indent_show = "*" .. indent_show end -- unexpected indent type
 
 
@@ -187,9 +187,9 @@ return {
     "diff",
     source = source.diff,
     symbols = {
-      added = Fau_vim.icons.git.LineAdded .. " ",
-      modified = Fau_vim.icons.git.LineModified .. " ",
-      removed = Fau_vim.icons.git.LineRemoved .. " ",
+      added    = Fau_vim.icons.git.LineAdded,
+      modified = Fau_vim.icons.git.LineModified,
+      removed  = Fau_vim.icons.git.LineRemoved,
     },
     -- padding = { left = 2, right = 1 },
     diff_color = {
@@ -237,7 +237,7 @@ return {
       local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
 
       if copilot_active then language_servers = language_servers ..
-        "%#SLCopilot#" .. " " .. Fau_vim.icons.git.Octoface .. "%*" end
+        "%#SLCopilot#" .. Fau_vim.icons.git.Octoface .. "%*" end
 
       -- if empty
       if language_servers == "[]" then language_servers = "LS Empty" end
@@ -253,10 +253,10 @@ return {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     symbols = {
-      error = Fau_vim.icons.diagnostics.Error .. " ",
-      warn  = Fau_vim.icons.diagnostics.Warning .. " ",
-      info  = Fau_vim.icons.diagnostics.Information .. " ",
-      hint  = Fau_vim.icons.diagnostics.Hint .. " ",
+      error = Fau_vim.icons.diagnostics.Error,
+      warn  = Fau_vim.icons.diagnostics.Warning,
+      info  = Fau_vim.icons.diagnostics.Information,
+      hint  = Fau_vim.icons.diagnostics.Hint,
     },
   },
 

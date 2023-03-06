@@ -36,7 +36,7 @@ dashboard.section.buttons.val = {
   dashboard.button("p", Fau_vim.icons.ui.Project  .. "  Projects",     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>"),
   dashboard.button("f", Fau_vim.icons.ui.FindFile .. "  Find Files",   "<CMD>Telescope find_files<CR>"),
   dashboard.button("r", Fau_vim.icons.ui.History  .. "  Recent Files", "<CMD>Telescope oldfiles<CR>"),
-  dashboard.button("t", Fau_vim.icons.ui.FindText .. "  Find Text",    "<CMD>Telescope live_grep<CR>"),
+  dashboard.button("s", Fau_vim.icons.ui.FindText .. "  Search Text",    "<CMD>Telescope live_grep<CR>"),
 
   dashboard.button("l", Fau_vim.icons.ui.Restore .. "  Load Session",      "<CMD>lua require('persistence').load()<CR>"),
   dashboard.button("L", Fau_vim.icons.ui.Restore .. "  Load Last Session", "<CMD>lua require('persistence').load({ last = true })<CR>"),

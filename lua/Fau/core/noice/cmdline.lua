@@ -28,14 +28,15 @@ return {
       icon = Fau_vim.icons.ui.Search .. " " .. Fau_vim.icons.ui.LookUp,
       lang = "regex"
     },
-    zsh = {
+    filter = {
+      title = " ZSH ",
       pattern = "^:%s*!",
       icon = Fau_vim.icons.ui.Terminal,
       lang = "bash"
     },
     lua = {
       pattern = "^:%s*lua%s+",
-      icon = Fau_vim.icons.filetype.Lua,
+      icon = Fau_vim.icons.ui.Lua,
       lang = "lua"
     },
     help = {

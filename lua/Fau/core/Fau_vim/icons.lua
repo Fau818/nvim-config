@@ -3,11 +3,6 @@
 -- =============================================
 -- TODO: Add space to show the full icons.
 return {
-  filetype = {
-    Lua = "",
-  },
-
-
   kind = {
     Array         = " ", -- "󰅨 "
     Boolean       = " ", -- " "
@@ -47,27 +42,27 @@ return {
 
 
   git = {
-    LineAdded    = "",
-    LineModified = "",
-    LineRemoved  = "",
+    LineAdded    = " ",
+    LineModified = " ",
+    LineRemoved  = " ",
 
     FileDeleted   = "",
     FileIgnored   = "◌",
     FileRenamed   = "➜",
-    FileUnmerged  = "",
+    FileUnmerged  = "",
     FileStaged    = "✓",
     FileUnstaged  = "✗",
     FileUntracked = "★",
 
-    Diff     = "",
-    Repo     = "",
-    Octoface = "",
+    -- Diff     = " ",
+    -- Repo     = " ",
+    Octoface = " ",
     Branch   = "",
   },
 
 
   gitsigns = { -- for gitsigns
-    LineLeft     = "│",
+    -- LineLeft     = "│",
     BoldLineLeft = "▎",
     Triangle     = "契",
     Untracked    = "┆",
@@ -75,13 +70,13 @@ return {
 
 
   diagnostics = {
-    BoldError       = "", Error       = "",
-    BoldWarning     = "", Warning     = "",
-    BoldInformation = "", Information = "",
-    BoldHint        = "", Hint        = "",
-    -- BoldQuestion = "", Question = "",  -- unused
-    Debug = "",
-    Trace = "✎",
+    BoldError       = " ", Error       = " ",
+    BoldWarning     = " ", Warning     = " ",
+    BoldInformation = " ", Information = " ",
+    BoldHint        = " ", Hint        = " ",
+    -- BoldQuestion = " ", Question = " ",  -- unused
+    Debug = " ",
+    Trace = "✎ ",
   },
 
 
@@ -91,30 +86,31 @@ return {
     EmptyFolderClosed = "",
     EmptyFolderOpened = "",
     File     = "",
-    NewFile  = "",
-    FindFile = "",
-    Project  = "",
-    History  = "",
-    FindText = "",
-    Gear     = "",
-    Restore  = "󰦛",
-    Exit     = "󰿅",  -- 󰗼
+    NewFile  = " ",
+    FindFile = " ",
+    Project  = " ",
+    History  = " ",
+    FindText = " ",
+    Gear     = " ",
+    Restore  = "󰦛 ",
+    Exit     = "󰿅 ",
 
     FoldClosed = "",
     FoldOpened = "",
 
-    Rename    = "",
-    Parameter = "",
-    Signature = "󰷾",
+    -- Rename    = " ",
+    -- Parameter = " ",
+    -- Signature = "󰷾 ",
 
-    Tab   = "",
-    Space = "⎵",
+    Tab   = " ",
+    Space = "⎵ ",
 
+    -- noice, no space is better
     Input    = "",
     Help     = "",
     Search   = "",
     Terminal = "",
-
+    Lua      = "",
     LookDown = "",
     LookUp   = "",
 
@@ -125,18 +121,18 @@ return {
 
     ChevronRight = ">",
 
-    Tree = "",
+    Tree = " ",
 
-    BoldArrowRight = "",
+    BoldArrowRight = " ",
 
-    BreakPoint   = "",
-    Bug          = "",
-    Stacks       = "",
-    Scopes       = "",
-    Watches      = "",
-    DebugConsole = "",
+    BreakPoint   = " ",
+    Bug          = " ",
+    Stacks       = " ",
+    Scopes       = " ",
+    Watches      = " ",
+    DebugConsole = " ",
 
-    Target = "",
+    Target = " ",
 
     IndentLine = "▏", -- "▎"
 
