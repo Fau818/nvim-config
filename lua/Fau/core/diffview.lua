@@ -146,9 +146,9 @@ local config = {
       { "n", "o",             actions.select_entry,        { desc = "Open the diff for the selected entry." } },
       { "n", "<2-LeftMouse>", actions.select_entry,        { desc = "Open the diff for the selected entry." } },
 
-      { "n", "s",            actions.toggle_stage_entry,  { desc = "Stage / unstage the selected entry." } },
-      { "n", "S",            actions.stage_all,           { desc = "Stage all entries." } },
-      { "n", "U",            actions.unstage_all,         { desc = "Unstage all entries." } },
+      { "n", "s",             actions.toggle_stage_entry,  { desc = "Stage / unstage the selected entry." } },
+      { "n", "S",             actions.stage_all,           { desc = "Stage all entries." } },
+      { "n", "U",             actions.unstage_all,         { desc = "Unstage all entries." } },
 
       { "n", "X",             actions.restore_entry,       { desc = "Restore entry to the state on the left side." } },
       { "n", "L",             actions.open_commit_log,     { desc = "Open the commit log panel." } },
@@ -169,11 +169,13 @@ local config = {
 
       { "n", "<leader>e",     actions.toggle_files,        { desc = "Toggle the file panel." } },
 
-      -- { "n", "g<C-x>",        actions.cycle_layout,        { desc = "Cycle available layouts" } },
-      { "n", "p",            actions.prev_conflict,       { desc = "Go to the previous conflict" } },
-      { "n", "n",            actions.next_conflict,       { desc = "Go to the next conflict" } },
+      { "n", "p",             actions.prev_conflict,       { desc = "Go to the previous conflict" } },
+      { "n", "n",             actions.next_conflict,       { desc = "Go to the next conflict" } },
 
       { "n", "g?",            actions.help("file_panel"),  { desc = "Open the help panel" } },
+
+      -- { "n", "g<C-x>",        actions.cycle_layout,        { desc = "Cycle available layouts" } },
+      { "n", "q",             "<CMD>tabclose<CR>",                  { desc = "Close" } },
     },
 
     file_history_panel = {
@@ -208,8 +210,10 @@ local config = {
 
       { "n", "<leader>e",     actions.toggle_files,               { desc = "Toggle the file panel." } },
 
-      -- { "n", "g<C-x>",        actions.cycle_layout,               { desc = "Cycle available layouts" } },
       { "n", "g?",            actions.help("file_history_panel"), { desc = "Open the help panel" } },
+
+      -- { "n", "g<C-x>",        actions.cycle_layout,               { desc = "Cycle available layouts" } },
+      { "n", "q",             "<CMD>tabclose<CR>",                { desc = "Close" } },
     },
 
     option_panel = {

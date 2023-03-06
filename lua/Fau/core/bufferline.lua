@@ -9,6 +9,7 @@ if not bufferline_ok then Fau_vim.load_plugin_error("bufferline") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type BufferlineConfig
 local config = {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
@@ -43,6 +44,7 @@ local config = {
     ---@diagnostic disable-next-line: unused-local
     custom_filter = function(buf_number, buf_numbers)
       if vim.fn.bufname(buf_number) ~= "" then return true end
+      return false
     end,
 
     diagnostics = "nvim_lsp", -- values: false | "nvim_lsp" | "coc"
@@ -81,7 +83,7 @@ local config = {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 
     -- can also be a table containing 2 custom separators [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thin", -- "slant" | "padded_slant" | "thick" | "thin" | { 'any', 'any' },
+    separator_style = { "", "" }, -- "slant" | "padded_slant" | "thick" | "thin" | { 'any', 'any' },
 
     hover = { enabled = true, delay = 50, reveal = { "close" } },
     sort_by = "insert_after_current", -- values: 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b) return buffer_a.modified > buffer_b.modified end
@@ -104,8 +106,7 @@ local config = {
         }
       }
     }
-
-  }
+  },
 }
 
 
