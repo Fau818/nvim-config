@@ -32,5 +32,14 @@ local config = {
 notify.setup(config)
 
 
--- use notify to replace vim.notify
-vim.notify = notify
+--- use notify to replace vim.notify
+---@param msg string
+---@param level string|number|nil
+---@param opts table<string, any>|nil
+vim.notify = function(msg, level, opts)
+  level = level or vim.log.levels.INFO
+  if not opts then opts = { title = "Fau_vim" }
+  elseif not opts.title or opts.title == "" then opts.title = "Fau_vim"
+  end
+  notify(msg, level, opts)
+end

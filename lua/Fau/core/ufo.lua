@@ -81,17 +81,27 @@ ufo.setup(config)
 -- ========== Extra
 -- =============================================
 --- For saving the fold status
--- vim.cmd [[
---   augroup remember_folds
---     autocmd!
---     autocmd BufWinLeave *.* mkview
---     autocmd BufWinEnter *.* silent! loadview
---   augroup END
--- ]]
+vim.cmd [[
+  augroup remember_folds
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* silent! loadview
+  augroup END
+]]
+
+
+-- vim.api.nvim_create_autocmd("OptionSet", {
+--   group = "Fau_vim",
+--   desc = "Lock foldlevel to 99",
+--   pattern = "foldlevel",
+--   callback = function()
+--     print("change to " .. vim.o.foldlevel)
+--     vim.o.foldlevel = 99
+--   end,
+-- })
 
 
 -- Vim options
-vim.o.foldcolumn     = "1" -- '0' is not bad
+vim.o.foldcolumn     = "auto" -- '0' is not bad
 vim.o.foldlevel      = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = -1
 vim.o.foldenable     = true
