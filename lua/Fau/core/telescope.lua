@@ -149,9 +149,10 @@ local config = {
         ["L"] = false,
       },
     },
-    file_ignore_patterns = { ".git/", "plugin/packer_compiled.lua", "snippets/" },
 
+    file_ignore_patterns = { ".git/", "plugin/packer_compiled.lua", "snippets/", ".DS_Store" },
   },
+
   pickers = {
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {

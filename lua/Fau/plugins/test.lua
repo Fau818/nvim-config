@@ -27,6 +27,24 @@ local test = {
   -- },
 
 
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function() require("Fau.core.statuscol") end,
+    lazy = true,  -- loaded by nvim-ufo
+  },
+
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      "luukvbaal/statuscol.nvim",
+    },
+    config = function() require("Fau.core.ufo") end,
+    event = { "BufReadPost", "BufNewFile" },
+  }
+
+
+
 }
 
 

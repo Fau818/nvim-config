@@ -37,14 +37,16 @@ local config = {
     header = "",
     prefix = "",
 
-    ---@param diagnostic Diagnostic
-    ---@return string Diagnostic message
-    format = function(diagnostic)  -- for show the error code
-      ---@diagnostic disable-next-line: undefined-field
-      local code = diagnostic.code or (diagnostic.user_data and diagnostic.user_data.lsp.code)
-      if code then return string.format("%s [%s]", diagnostic.message, code) end
-      return diagnostic.message
-    end,
+    -- ---@param diagnostic Diagnostic
+    -- ---@return string Diagnostic message
+    -- format = function(diagnostic)  -- for show the error code
+    --   local code = nil
+    --   if string.sub(diagnostic.source, 1, 3) ~= "Lua" then
+    --     code = diagnostic.code or (diagnostic.user_data and diagnostic.user_data.lsp.code)
+    --   end
+    --   if code then return string.format("%s [%s]", diagnostic.message, code) end
+    --   return diagnostic.message
+    -- end,
   },
 
 }
