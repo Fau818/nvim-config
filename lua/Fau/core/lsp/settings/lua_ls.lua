@@ -7,7 +7,7 @@ return {
         autoRequire = false,        -- When the input looks like a file name, automatically require this file.
 
         callSnippet = "Disable",    -- Shows function call snippets. values: Disable|Both|Replace
-        keywordSnippet = "Disable", -- Shows keyword syntax snippets. values: Disable|Both|Replace
+        keywordSnippet = "Both", -- Shows keyword syntax snippets. values: Disable|Both|Replace
         postfix = "@",              -- The symbol used to trigger the postfix suggestion.  [??? how to add]
         displayContext = 5,         -- Preview the line number of the relevant code snippet
 

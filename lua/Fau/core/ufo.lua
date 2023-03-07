@@ -59,14 +59,14 @@ local config = {
     mappings = {
       scrollB = "",
       scrollF = "",
-      scrollU = "",
-      scrollD = "",
-      scrollE = "j",
-      scrollY = "k",
+      scrollU = "<C-b>",
+      scrollD = "<C-f>",
+      scrollE = "",
+      scrollY = "",
       jumpTop = "",
       jumpBot = "",
-      close   = "<ESC>",
-      switch  = "<TAB>",
+      close   = "q",
+      switch  = "<C-d>",
       trace   = "<CR>"
     }
   }
@@ -113,4 +113,7 @@ vim.keymap.set("n", "zr", ufo.openFoldsExceptKinds)
 vim.keymap.set("n", "zm", ufo.closeFoldsWith)
 vim.keymap.set("n", "zR", ufo.openAllFolds)
 vim.keymap.set("n", "zM", ufo.closeAllFolds)
-vim.keymap.set("n", "zd", ufo.peekFoldedLinesUnderCursor)
+vim.keymap.set("n", "<C-d>", function()
+  local winid = ufo.peekFoldedLinesUnderCursor()
+  if not winid then vim.lsp.buf.hover() end
+end)

@@ -50,6 +50,7 @@ local cmp = {
         enabled = false,
       },
 
+
       -- -----------------------------------
       -- -------- Snippets
       -- -----------------------------------
@@ -65,6 +66,7 @@ local cmp = {
           },
         },
       },
+
 
       -- -----------------------------------
       -- -------- Autopairs and Autotags
@@ -84,7 +86,6 @@ local cmp = {
     config = function() require("Fau.core.cmp") end,
     event = { "InsertEnter", "CmdlineEnter" },
   },
-
 
   {
     -- DESC: smartly add `end` in lua, ruby, and etc.

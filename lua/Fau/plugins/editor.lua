@@ -36,6 +36,7 @@ local editor = {
   },
 
 
+
   -- =============================================
   -- ========== Fuzzy Finder (Telescope)
   -- =============================================
@@ -71,6 +72,7 @@ local editor = {
   },
 
 
+
   -- =============================================
   -- ========== Enhancement
   -- =============================================
@@ -83,6 +85,7 @@ local editor = {
     config = function() require("Fau.core.whichkey") end,
     event = "VeryLazy",
   },
+
 
   -- -----------------------------------
   -- -------- Text
@@ -123,6 +126,7 @@ local editor = {
     ft = "kitty",
   },
 
+
   -- -----------------------------------
   -- -------- View Guide
   -- -----------------------------------
@@ -145,6 +149,25 @@ local editor = {
     config = function() require("Fau.core.gitsigns") end,
     event = { "BufReadPost", "BufNewFile" },
   },
+
+  {
+    -- DESC: a statusline enhancement plugin.
+    "luukvbaal/statuscol.nvim",
+    config = function() require("Fau.core.statuscol") end,
+    lazy = true,  -- loaded by nvim-ufo
+  },
+
+  {
+    -- DESC: a modern fold plugin.
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      "luukvbaal/statuscol.nvim",
+    },
+    config = function() require("Fau.core.ufo") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
 
   -- -----------------------------------
   -- -------- Powerful Window
@@ -177,6 +200,23 @@ local editor = {
     dependencies = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" },
     config = function() require("Fau.core.diffview") end,
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
+  },
+
+
+  -- -----------------------------------
+  -- -------- Jump
+  -- -----------------------------------
+  {
+    "ggandor/leap.nvim",
+    dependencies = { "ggandor/flit.nvim" },
+    config = function() require("Fau.core.leap") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+  {
+    "ggandor/flit.nvim",
+    config = function() require("Fau.core.flit") end,
+    lazy = true  -- loaded by leap
   },
 
 
