@@ -3,7 +3,7 @@
 -- =============================================
 -- ========== Colorscheme Setting
 -- =============================================
-local colorscheme = Fau_vim.on_server and "darkplus" or "tokyonight"
+local colorscheme = "tokyonight"
 
 
 

@@ -155,6 +155,7 @@ local editor = {
     "luukvbaal/statuscol.nvim",
     config = function() require("Fau.core.statuscol") end,
     lazy = true,  -- loaded by nvim-ufo
+    enabled = vim.fn.has("nvim-0.9") == 1,
   },
 
   {
@@ -162,6 +163,7 @@ local editor = {
     "kevinhwang91/nvim-ufo",
     dependencies = {
       "kevinhwang91/promise-async",
+      "nvim-treesitter/nvim-treesitter",
       "luukvbaal/statuscol.nvim",
     },
     config = function() require("Fau.core.ufo") end,
