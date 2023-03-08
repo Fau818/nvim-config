@@ -209,6 +209,7 @@ local editor = {
   -- -------- Jump
   -- -----------------------------------
   {
+    -- DESC: a quick global jumper.
     "ggandor/leap.nvim",
     dependencies = { "ggandor/flit.nvim" },
     config = function() require("Fau.core.leap") end,
@@ -216,6 +217,7 @@ local editor = {
   },
 
   {
+    -- DESC: an enhancer for f/t motion.
     "ggandor/flit.nvim",
     config = function() require("Fau.core.flit") end,
     lazy = true  -- loaded by leap

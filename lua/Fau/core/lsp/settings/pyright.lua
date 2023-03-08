@@ -10,7 +10,7 @@ return {
         autoImportCompletions = true,
         autoSearchPaths = true,
 
-        diagnosticMode = "workspace", -- values: workspace|openFilesOnly
+        diagnosticMode = "openFilesOnly", -- values: workspace|openFilesOnly
         -- diagnosticSeverityOverrides = {},
 
         -- extraPaths = {},

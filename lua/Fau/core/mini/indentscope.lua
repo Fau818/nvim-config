@@ -19,12 +19,12 @@ local config = {
   -- Module mappings. Use `''` (empty string) to disable one.
   mappings = {
     -- Textobjects
-    object_scope = 'ii',
-    object_scope_with_border = 'ai',
+    object_scope = "ii",
+    object_scope_with_border = "ai",
 
     -- Motions (jump to respective border line; if not present - body line)
-    goto_top = '[i',
-    goto_bottom = ']i',
+    goto_top = "[i",
+    goto_bottom = "]i",
   },
 
   -- Options which control scope computation
@@ -34,9 +34,23 @@ local config = {
     indent_at_cursor = true,
     try_as_border = true,
   },
-
   symbol = Fau_vim.icons.ui.IndentLine,
 }
+
+
+
+-- =============================================
+-- ========== Autocmd
+-- =============================================
+-- Special for python
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Config indentscope plugin for python.",
+  pattern = "python",
+  callback = function()
+    vim.b.miniindentscope_config = { options = { border = "top" } }
+  end
+})
 
 
 -- Disable indentscope in some filetype

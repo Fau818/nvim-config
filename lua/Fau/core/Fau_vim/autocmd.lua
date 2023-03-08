@@ -123,19 +123,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 
 -- -----------------------------------
--- -------- Indentscope for Python [TEST]
--- -----------------------------------
-vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
-  desc = "Config indentscope plugin for python.",
-  pattern = "python",
-  callback = function()
-    vim.b.miniindentscope_config = { options = { border = "top" } }
-  end
-})
-
-
--- -----------------------------------
 -- -------- Disable Noice Hover Document Keymaps
 -- -----------------------------------
 vim.api.nvim_create_autocmd("FileType", {
