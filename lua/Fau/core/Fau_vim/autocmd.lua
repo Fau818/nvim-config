@@ -2,13 +2,17 @@
 -- ========== Baisc
 -- =============================================
 -- let `-` be a keyword
-vim.cmd [[ set iskeyword+=- ]]
+vim.opt.iskeyword:append("-")
 -- highlight the yank area
-vim.cmd [[ au TextYankPost * silent! lua vim.highlight.on_yank{} ]]
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight the yank section.",
+  pattern = { "*" },
+  callback = function() vim.highlight.on_yank() end
+})
 -- keep cursor on last closed position when enter an opened file
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 -- use diagonal lines in place of deleted lines
-vim.cmd [[ set fillchars+=diff:╱ ]]
+vim.opt.fillchars:append { diff = "╱" }
 
 
 
@@ -22,6 +26,7 @@ vim.api.nvim_create_augroup("Fau_vim", { clear = true })
 -- -----------------------------------
 -- -------- FileType
 -- -----------------------------------
+--- Fix keymap in qf filetype.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
   desc = "Fix keymap in qf filetype.",
@@ -29,6 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "<CR>", "<CR>", { silent=true, buffer=true }) end
 })
 
+--- Type q to close float window.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
   desc = "Type q to close float window.",
@@ -36,6 +42,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 
+--- Adjust highlight for gitcommit filetype.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
   desc = "Adjust highlight for gitcommit filetype.",
@@ -56,6 +63,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- -----------------------------------
 -- -------- Auto LSP
 -- -----------------------------------
+--- Automatically set LSP by filetype initialization.
 vim.api.nvim_create_autocmd("User", {
   group = "Fau_vim",
   desc = "Automatically set LSP by filetype initialization.",
@@ -67,6 +75,7 @@ vim.api.nvim_create_autocmd("User", {
 -- -------------------------------------------
 -- -------- Auto Trim Blank Lines and Spaces
 -- -------------------------------------------
+--- Trim blank lines and spaces before buffer written.
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = "Fau_vim",
   desc = "Trim blank lines and spaces before buffer written.",
@@ -78,6 +87,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- -----------------------------------
 -- -------- Keep Indentation
 -- -----------------------------------
+--- Tabstop will be reset to 2 if tabstop >= 8.
 vim.api.nvim_create_autocmd("OptionSet", {
   group = "Fau_vim",
   desc = "Tabstop will be reset to 2 if tabstop >= 8.",
@@ -85,6 +95,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
   callback = function() if vim.bo.tabstop >= 8 then vim.bo.tabstop = 2 end end,
 })
 
+--- Lock shiftwidth to 0
 vim.api.nvim_create_autocmd("OptionSet", {
   group = "Fau_vim",
   desc = "Lock shiftwidth to 0",
@@ -92,6 +103,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
   callback = function() vim.bo.shiftwidth = 0 end,
 })
 
+--- Lock softtabstop to -1
 vim.api.nvim_create_autocmd("OptionSet", {
   group = "Fau_vim",
   desc = "Lock softtabstop to -1",

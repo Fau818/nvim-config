@@ -13,6 +13,7 @@ local lsp = {
       require("Fau.core.lsp.diagnostic_config")
       require("Fau.core.lsp.lspconfig")
     end,
+    cmd = "LspInfo",
     event = { "BufReadPre", "BufNewFile" },
   },
 

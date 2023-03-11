@@ -107,7 +107,7 @@ local config = {
     throttle = 20, -- how frequently should the ui process render events
     custom_keys = {
       -- open a terminal for the plugin dir
-      ["<localleader>T"] = function(plugin)
+      ["<localleader>D"] = function(plugin)
         require("lazy.util").float_term(nil, { cwd = plugin.dir })
       end,
 

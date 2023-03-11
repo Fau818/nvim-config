@@ -30,7 +30,7 @@ local config = {
 
   direction = "float", -- string, values: vertical|horizontal|tab|float
 
-  persist_mode = true,  -- if set to true (default) the previous terminal mode will be remembered
+  persist_mode = false, -- if set to true (default) the previous terminal mode will be remembered
   persist_size = false, -- if set tot true, the previous terminal window size will be remembered (for horizontal and vertical)
 
   close_on_exit = true, -- close the terminal window when the process exits

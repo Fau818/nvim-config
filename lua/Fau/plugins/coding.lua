@@ -57,7 +57,7 @@ local coding = {
     config = function() require("Fau.core.im-select") end,
     event = "InsertEnter",
     -- enabled = not Fau_vim.on_server,
-    enabled = false,  -- BUG: delay in telescope
+    enabled = vim.fn.executable("im-select") and false,  -- BUG: delay in telescope
   },
 
   {
