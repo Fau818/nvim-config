@@ -19,7 +19,21 @@ end
 -- -------- Diagnostics
 -- -----------------------------------
 local config = {
-  virtual_text = { prefix="●", spacing = 4 },
+  virtual_text = {
+    prefix="●", spacing = 4,
+
+    ---@param diagnostic Diagnostic
+    ---@return string|nil #Diagnostic message
+    format = function(diagnostic)  -- for show the error code
+      -- Remove `xxx is not accessed` in Pyright
+      if diagnostic.source == "Pyright" then
+        local pattern = "accessed"
+        if string.sub(diagnostic.message, -string.len(pattern)) == pattern then return nil end
+      end
+      return diagnostic.message
+    end,
+  },
+
   -- virtual_text = false,
   signs = true,
 

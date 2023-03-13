@@ -10,7 +10,7 @@ local lsp = {
     "neovim/nvim-lspconfig",
     dependencies = { "williamboman/mason-lspconfig.nvim", "lvimuser/lsp-inlayhints.nvim" },
     config = function()
-      require("Fau.core.lsp.diagnostic_config")
+      require("Fau.core.lsp.diagnostics_config")
       require("Fau.core.lsp.lspconfig")
     end,
     cmd = "LspInfo",
