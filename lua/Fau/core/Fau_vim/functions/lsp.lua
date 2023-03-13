@@ -1,6 +1,6 @@
 return {
   initialization = function()
-    vim.api.nvim_create_autocmd("BufReadPost", {
+    vim.api.nvim_create_autocmd({ "BufReadPost", "VimEnter" }, {
       group = "Fau_vim",
       desc = "Auto Setting LSP Initialization.",
       pattern = "*",
