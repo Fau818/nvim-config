@@ -47,10 +47,17 @@ local config = {
   },
 
   completion = {
-    completeopt = "menu, menuone, noinsert",
-    keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
-    keyword_length = 1,
+    -- autocomplete = false,
+    completeopt = "menu,menuone,noinsert",
+    -- keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+    -- keyword_length = 1,
   },
+
+  confirmation = {
+    default_behavior = "insert",
+  },
+
+  preselect = "item",
 
   mapping = { -- custom mapping
     -- NOTE: the default mapping mode is 'insert'. like cmp.mapping(..., { "i" })
@@ -147,10 +154,20 @@ local config = {
     { name = "buffer" },
     { name = "path" },
   },
+
+  matching = {
+    disallow_fuzzy_matching = false,
+    disallow_fullfuzzy_matching = false,
+    disallow_partial_fuzzy_matching = false,
+    disallow_partial_matching = false,
+    disallow_prefix_unmatching = false,
+  },
+
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
+
   experimental = { ghost_text = {} },
 }
 
@@ -162,8 +179,10 @@ local config = {
 local config_cmdline_command = {
   completion = {
     autocomplete = {},  -- values: InsertEnter|TextChanged
-    completeopt = "menu, menuone, noselect"
+    completeopt = "menu,menuone,noselect",
   },
+  preselect = "None",
+
   mapping = {
     ["<TAB>"] = cmp.mapping(
       function(fallback)
@@ -184,13 +203,15 @@ local config_cmdline_command = {
 local config_cmdline_search = {
   completion = {
     autocomplete = {},  -- values: InsertEnter|TextChanged
-    completeopt = "menu, menuone, noselect"
+    completeopt = "menu,menuone,noselect",
   },
+  preselect = "None",
+
   mapping = {
     ["<TAB>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then cmp.select_next_item()
-        elseif not cmp.visible() then cmp.complete(); cmp.select_next_item()
+        elseif not cmp.visible() then cmp.complete();
         else fallback()
         end
       end, { "c" }

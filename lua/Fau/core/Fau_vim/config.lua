@@ -20,7 +20,7 @@ Fau_vim.config_path = vim.fn.stdpath("config")
 Fau_vim.configured_ft = {}  -- for recording filetypes which have been configured LSP
 
 Fau_vim.disabled_filetypes = {
-  "", "checkhealth", "help", "netrw", "tutor",
+  "", "checkhealth", "help", "netrw", "tutor", "man",
   "alpha",
   "aerial",
   "crunner",
