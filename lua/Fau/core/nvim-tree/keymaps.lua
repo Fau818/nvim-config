@@ -1,15 +1,63 @@
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
+
+  -- =============================================
+  -- ========== Custom Functions
+  -- =============================================
+  ---Judge whether a file is a binary file.
+  ---@return number status_code
+  local function is_binary()
+    -- Need `file` and `test` binary file.
+    if vim.fn.executable("file") ~= 1 then return -1 end
+
+    local node = require("nvim-tree.lib").get_node_at_cursor()
+    if not node then Fau_vim.notify("An Unexcepted Result in nvim-tree hyper_open().", vim.log.levels.ERROR) return -1 end
+
+    -- Get the absolute path.
+    local abs_path = node.absolute_path
+    -- If it is a folder path, the folder should not be treated as a binary file.
+    local is_folder = vim.loop.fs_stat(abs_path).type == "directory"
+    if is_folder then return 0 end
+
+    -- Run `file` command
+    local command = [[!file --mime-encoding -b ]] .. abs_path  -- if a binary file, will return `binary`.
+    local result = vim.fn.execute(command)
+
+    if string.find(result, "binary") ~= nil then return 1
+    else return 0
+    end
+  end
+
+  --- A smart open function
+  --- For the binary file, will use the `system open`; else will use `edit`
+  local function smart_open()
+    if is_binary() == 1 then api.node.run.system()
+    else api.node.open.edit()
+    end
+  end
+
+  --- A smart preview function
+  --- For the binary file, will use the `system open`; else will use `preview`
+  local function smart_preview()
+    if is_binary() == 1 then api.node.run.system()
+    else api.node.open.preview()
+    end
+  end
+
   local function opts(desc)
     return { desc="nvim-tree: " .. desc, buffer=bufnr, noremap=true, silent=true, nowait=true }
   end
 
-  vim.keymap.set("n", "<CR>",           api.node.open.edit,                 opts("Open"))
-  vim.keymap.set("n", "o",              api.node.open.edit,                 opts("Open"))
-  vim.keymap.set("n", "<2-LeftMouse>",  api.node.open.edit,                 opts("Open"))
+
+  -- =============================================
+  -- ========== Keymap Bindings
+  -- =============================================
+  vim.keymap.set("n", "<CR>",           smart_open,                         opts("Smart Open"))
+  vim.keymap.set("n", "o",              smart_open,                         opts("Smart Open"))
+  vim.keymap.set("n", "<2-LeftMouse>",  smart_open,                         opts("Smart Open"))
   vim.keymap.set("n", "O",              api.node.open.no_window_picker,     opts("Open: No Window Picker"))
-  vim.keymap.set("n", "<Tab>",          api.node.open.preview,              opts("Open Preview"))
+  vim.keymap.set("n", "<Tab>",          smart_preview,                      opts("Smart Preview"))
 
   vim.keymap.set("n", "<C-t>",          api.node.open.tab,                  opts("Open: New Tab"))
   vim.keymap.set("n", "<C-v>",          api.node.open.vertical,             opts("Open: Vertical Split"))
