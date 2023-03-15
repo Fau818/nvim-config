@@ -55,14 +55,14 @@ return {
       ["]S"] = { query = "@scope", query_group = "locals",      desc = "Next Scope End" },
     },
     goto_previous_start = {
-      ["[]"] = { query = { "@function.outer", "@class.outer" }, desc = "Prev Code Block Start" },
+      ["[["] = { query = { "@function.outer", "@class.outer" }, desc = "Prev Code Block Start" },
       ["[f"] = { query = "@function.outer",                     desc = "Prev Function Start" },
       ["[c"] = { query = "@class.outer",                        desc = "Prev Class Start" },
       ["[z"] = { query = "@fold", query_group = "folds",        desc = "Prev Fold Start" },
       ["[s"] = { query = "@scope", query_group = "locals",      desc = "Prev Scope Start" },
     },
     goto_previous_end = {
-      ["[}"] = { query = { "@function.outer", "@class.outer" }, desc = "Prev Code Block End" },
+      ["[{"] = { query = { "@function.outer", "@class.outer" }, desc = "Prev Code Block End" },
       ["[F"] = { query = "@function.outer",                     desc = "Prev Function End" },
       ["[C"] = { query = "@class.outer",                        desc = "Prev Class End" },
       ["[Z"] = { query = "@fold", query_group = "folds",        desc = "Prev Fold End" },
