@@ -14,9 +14,18 @@ local treesitter = {
   {
     -- DESC: a viewer for treesitter, which can show treesitter information directly in Neovim.
     "nvim-treesitter/playground",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     cmd = { "TSCaptureUnderCursor", "TSNodeUnderCursor" },
   },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function() require("Fau.core.context") end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" }
+  },
+
 }
 
 
