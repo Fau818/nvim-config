@@ -135,6 +135,9 @@ return {
 
     IndentLine = "▏", -- "▎"
 
+    MethodSeparator = "─",
+    MethodSeparatorHeavy = "━",
+
     Bread = "󰳯", BoldBread = "󰳮",
     Separator = "",
     Ellipsis  = "…",

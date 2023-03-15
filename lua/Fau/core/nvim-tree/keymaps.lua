@@ -14,13 +14,20 @@ local function on_attach(bufnr)
     local node = require("nvim-tree.lib").get_node_at_cursor()
     if not node then Fau_vim.notify("An Unexcepted Result in nvim-tree hyper_open().", vim.log.levels.ERROR) return -1 end
 
-    -- Get the absolute path.
+    -- Read file and Get file information.
     local abs_path = node.absolute_path
+    local file_info = vim.loop.fs_stat(abs_path)
+    if not file_info then Fau_vim.notify("An Unexcepted Result in nvim-tree hyper_open().", vim.log.levels.ERROR) return -1 end
+
     -- If it is a folder path, the folder should not be treated as a binary file.
-    local is_folder = vim.loop.fs_stat(abs_path).type == "directory"
+    local is_folder = file_info.type == "directory"
     if is_folder then return 0 end
 
-    -- Run `file` command
+    -- If it is an empty file, not treat it as a binary file.
+    local is_empty = file_info.size == 0
+    if is_empty then return 0 end
+
+    -- Run `file` command.
     local command = [[!file --mime-encoding -b ]] .. abs_path  -- if a binary file, will return `binary`.
     local result = vim.fn.execute(command)
 
