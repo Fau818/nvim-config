@@ -15,15 +15,23 @@ local treesitter = {
     -- DESC: a viewer for treesitter, which can show treesitter information directly in Neovim.
     "nvim-treesitter/playground",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    cmd = { "TSCaptureUnderCursor", "TSNodeUnderCursor" },
+    cmd = { "TSPlaygroundToggle", "TSCaptureUnderCursor", "TSNodeUnderCursor" },
   },
 
   {
+    -- DESC: a plugin to show the context of the current buffer contents.
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function() require("Fau.core.context") end,
+    config = function() require("Fau.core.treesitter.context") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" }
+  },
+
+  {
+    -- DESC: a plugin to enhance textobjects.
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    requires = "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
   },
 
 }
