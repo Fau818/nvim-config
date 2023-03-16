@@ -35,7 +35,8 @@ notify.setup(config)
 --- use notify to replace vim.notify
 ---@param msg string
 ---@param level string|number|nil
----@param opts table<string, any>|nil
+---@param opts notify.Options|nil
+---@diagnostic disable-next-line: duplicate-set-field
 vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO
   if not opts then opts = { title = "Fau_vim" }

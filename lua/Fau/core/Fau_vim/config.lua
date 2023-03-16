@@ -40,7 +40,7 @@ Fau_vim.disabled_filetypes = {
 
 ---@param msg string
 ---@param level string|number|nil
----@param opts table<string, any>|nil
+---@param opts table|notify.Options|nil
 Fau_vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO
   if not opts then opts = { title = "Fau_vim" }

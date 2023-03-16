@@ -77,6 +77,7 @@ local lsp = {
     config = function() require("Fau.core.barbecue") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = "Barbecue",
+    branch = "fix/E36"
   },
 
   {
