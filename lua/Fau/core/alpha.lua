@@ -54,6 +54,7 @@ dashboard.section.buttons.val = {
 if vim.o.filetype == "lazy" then
   vim.cmd.close()
   vim.api.nvim_create_autocmd("User", {
+    group = "Fau_vim",
     pattern = "AlphaReady",
     callback = function() require("lazy").show() end,
   })
@@ -61,6 +62,7 @@ end
 
 
 vim.api.nvim_create_autocmd("User", {
+  group = "Fau_vim",
   pattern = "LazyVimStarted",
   callback = function()
     local stats = require("lazy").stats()

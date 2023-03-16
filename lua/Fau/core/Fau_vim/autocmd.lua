@@ -1,3 +1,8 @@
+-- Group Initialization
+vim.api.nvim_create_augroup("Fau_vim", { clear = true })
+
+
+
 -- =============================================
 -- ========== Baisc
 -- =============================================
@@ -5,6 +10,7 @@
 vim.opt.iskeyword:append("-")
 -- highlight the yank area
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = "Fau_vim",
   desc = "Highlight the yank section.",
   pattern = { "*" },
   callback = function() vim.highlight.on_yank() end
@@ -19,10 +25,6 @@ vim.opt.fillchars:append { diff = "╱" }
 -- =============================================
 -- ========== Fau_vim
 -- =============================================
--- Group Initialization
-vim.api.nvim_create_augroup("Fau_vim", { clear = true })
-
-
 -- -----------------------------------
 -- -------- FileType
 -- -----------------------------------
@@ -142,4 +144,37 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Config indentscope plugin for python.",
   pattern = "noice",
   callback = function() vim.b.markdown_keys = true end,
+})
+
+
+-- -----------------------------------
+-- -------- test
+-- -----------------------------------
+-- Disable in the large file.
+vim.api.nvim_create_autocmd("BufReadPre", {
+  group = "Fau_vim",
+  desc = "Disable some features in large file.",
+  pattern = "*",
+  callback = function()
+    local buffer = vim.api.nvim_get_current_buf()
+    local status_ok, file_status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buffer))
+    if not status_ok or not file_status then return end
+
+    if file_status.size <= Fau_vim.large_file_size then return end
+
+    ---Large file!!
+    local illuminate_ok, illuminate = pcall(require, "illuminate.engine")
+    if not illuminate_ok then illuminate = nil end
+
+    if illuminate then
+      vim.api.nvim_command("TSBufDisable highlight")
+      illuminate.stop_buf(buffer)
+    end
+
+    vim.b.minitrailspace_disable = true
+    vim.b.miniindentscope_disable = true
+
+    vim.bo.undofile   = false
+    vim.bo.modifiable = false
+  end,
 })

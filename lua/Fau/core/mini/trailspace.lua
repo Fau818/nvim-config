@@ -23,3 +23,16 @@ trailspace.setup(config)
 Fau_vim.functions.format.remove_blank_lines_and_spaces = function()
   MiniTrailspace.trim_last_lines(); MiniTrailspace.trim()
 end
+
+
+
+-- =============================================
+-- ========== Autocmd
+-- =============================================
+-- Disable trailspace in some filetype
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Disable trailspace in some filetypes.",
+  pattern = Fau_vim.disabled_filetypes,
+  callback = function() vim.b.minitrailspace_disable = true end,
+})

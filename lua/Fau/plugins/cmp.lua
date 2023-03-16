@@ -85,6 +85,8 @@ local cmp = {
     },
     config = function() require("Fau.core.cmp") end,
     event = { "InsertEnter", "CmdlineEnter" },
+    -- BUG: If open a large file, a huge dalay occur in the first time entering the insert mode.
+    -- BUG: Open command to enter having huge delay. and if scroll many lines, it occurs again.
   },
 
   {

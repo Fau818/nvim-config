@@ -14,7 +14,7 @@ local builtin = require("statuscol.builtin")
 local config = {
   -- Builtin line number string options for ScLn() segment
   thousands   = false, -- or line number thousands separator string ("." / ",")
-  relculright = false, -- whether to right-align the cursor line number with 'relativenumber' set
+  relculright = true,  -- whether to right-align the cursor line number with 'relativenumber' set
 
   -- Builtin 'statuscolumn' options
   setopt = true,         -- whether to set the 'statuscolumn', providing builtin click actions

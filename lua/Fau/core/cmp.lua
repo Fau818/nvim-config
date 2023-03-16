@@ -151,7 +151,20 @@ local config = {
     { name = "conventionalcommits" },
     { name = "zsh" },
 
-    { name = "buffer" },
+    {
+      name = "buffer",
+      option = {
+        indexing_interval = 100,
+        indexing_batch_size = 1024,
+        max_indexed_line_length = 2048,
+        get_bufnrs = function()
+          local buf = vim.api.nvim_get_current_buf()
+          local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+          if byte_size > Fau_vim.large_file_size then return {} end
+          return { buf }
+        end,
+      }
+    },
     { name = "path" },
   },
 
@@ -217,7 +230,22 @@ local config_cmdline_search = {
       end, { "c" }
     ),
   },
-  sources = { { name = "buffer" } }
+  sources = {
+    {
+      name = "buffer",
+      option = {
+        indexing_interval = 100,
+        indexing_batch_size = 1024,
+        max_indexed_line_length = 2048,
+        get_bufnrs = function()
+          local buf = vim.api.nvim_get_current_buf()
+          local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+          if byte_size > Fau_vim.large_file_size then return {} end
+          return { buf }
+        end,
+      }
+    },
+  }
 }
 
 
