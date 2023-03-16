@@ -13,6 +13,9 @@ return {
 
       ["aC"] = { query = "@comment.outer", desc = "Around Comment" },
       ["iC"] = { query = "@comment.inner", desc = "Inside Comment" },
+
+      ["as"] = { query = "@block.outer", desc = "Around Section" },
+      ["is"] = { query = "@block.inner", desc = "Inside Section" },
     },
 
     selection_modes = {
