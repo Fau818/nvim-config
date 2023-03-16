@@ -5,63 +5,79 @@ local function on_attach(bufnr)
   -- =============================================
   -- ========== Custom Functions
   -- =============================================
-  ---Judge whether a file is a binary file.
+  ---@return table|unknown|nil
+  local function __get_cursor_node()
+    local node = require("nvim-tree.lib").get_node_at_cursor()
+    if not node then Fau_vim.notify("An Unexcepted Result in nvim-tree get_cursor_node().", vim.log.levels.ERROR) end
+    return node
+  end
+
+
+  ---Get the file type.
+  ---return values: -1, 0, 1, 2 -> error, normal file, binary file, folder
+  ---@param abs_path string
   ---@return number status_code
-  local function __is_binary()
-    -- Need `file` and `test` binary file.
+  local function __get_file_type(abs_path)
+    -- Need `file` binary file.
     if vim.fn.executable("file") ~= 1 then return -1 end
 
-    local node = require("nvim-tree.lib").get_node_at_cursor()
-    if not node then Fau_vim.notify("An Unexcepted Result in nvim-tree hyper_open().", vim.log.levels.ERROR) return -1 end
-
     -- Read file and Get file information.
-    local abs_path = node.absolute_path
     local file_info = vim.loop.fs_stat(abs_path)
-    if not file_info then Fau_vim.notify("An Unexcepted Result in nvim-tree hyper_open().", vim.log.levels.ERROR) return -1 end
+    if not file_info then Fau_vim.notify("Not found file in given abs_path.", vim.log.levels.ERROR) return -1 end
 
     -- If it is a folder path, the folder should not be treated as a binary file.
     local is_folder = file_info.type == "directory"
-    if is_folder then return 0 end
+    if is_folder then return 2 end
 
     -- If it is an empty file, not treat it as a binary file.
     local is_empty = file_info.size == 0
     if is_empty then return 0 end
 
     -- Run `file` command.
-    local command = [[!file --mime-encoding -b ']] .. abs_path .. "'"  -- if a binary file, will return `binary`.
-    local result = vim.fn.execute(command)
+    local command = [[file --mime-encoding -b ']] .. abs_path .. "'"  -- if a binary file, will return `binary`.
+    local result = vim.fn.system(command):sub(1, -2)  -- trim line break char
 
-    if string.find(result, "binary") ~= nil then return 1
+    if result == "binary" then return 1
     else return 0
     end
   end
 
-  --- A smart open function
-  --- For the binary file, will use the `system open`; else will use `edit`
-  local function smart_open()
-    if __is_binary() == 1 then api.node.run.system()
-    else api.node.open.edit()
+
+  ---Open binary file will use system open; Disable to open huge folder.
+  ---@param default_method function if not a binary and folder file, will use default_method to open it.
+  local function __hyper_open(default_method)
+    -- Get basic information.
+    local node = __get_cursor_node()
+    if not node then return end  -- error notified in get_cursor_node().
+    local abs_path = node.absolute_path
+    local file_type = __get_file_type(abs_path)
+
+    if file_type == 1 then  -- binary file
+      api.node.run.system(node)
+      Fau_vim.notify("A binary file, use system open to edit it. (Use `o` to force edit it in neovim.)")
+    elseif file_type == 2 then  -- folder
+      local command = [[ls -1 ']] .. abs_path .. "'" .. [[ | wc -l]]
+      local file_number = tonumber(vim.fn.system(command))
+
+      if file_number >= 1000 then Fau_vim.notify("A large folder. (Use `o` to force expand it.)", vim.log.levels.WARN, { render="minimal" })
+      else default_method(node) end
+    else default_method(node)
     end
   end
 
-  --- A smart preview function
-  --- For the binary file, will use the `system open`; else will use `preview`
-  local function smart_preview()
-    if __is_binary() == 1 then api.node.run.system()
-    else api.node.open.preview()
-    end
-  end
 
-  local function opts(desc)
-    return { desc="nvim-tree: " .. desc, buffer=bufnr, noremap=true, silent=true, nowait=true }
-  end
+  local function smart_open() __hyper_open(api.node.open.edit) end
+  local function smart_preview() __hyper_open(api.node.open.preview) end
+
+
+  local function opts(desc) return { desc="nvim-tree: " .. desc, buffer=bufnr, noremap=true, silent=true, nowait=true } end
 
 
   -- =============================================
   -- ========== Keymap Bindings
   -- =============================================
   vim.keymap.set("n", "<CR>",           smart_open,                         opts("Smart Open"))
-  vim.keymap.set("n", "o",              smart_open,                         opts("Smart Open"))
+  vim.keymap.set("n", "o",              api.node.open.edit,                 opts("Open"))
   vim.keymap.set("n", "<2-LeftMouse>",  smart_open,                         opts("Smart Open"))
   vim.keymap.set("n", "O",              api.node.open.no_window_picker,     opts("Open: No Window Picker"))
   vim.keymap.set("n", "<Tab>",          smart_preview,                      opts("Smart Preview"))
