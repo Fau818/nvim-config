@@ -7,7 +7,7 @@ local function on_attach(bufnr)
   -- =============================================
   ---Judge whether a file is a binary file.
   ---@return number status_code
-  local function is_binary()
+  local function __is_binary()
     -- Need `file` and `test` binary file.
     if vim.fn.executable("file") ~= 1 then return -1 end
 
@@ -28,7 +28,7 @@ local function on_attach(bufnr)
     if is_empty then return 0 end
 
     -- Run `file` command.
-    local command = [[!file --mime-encoding -b ]] .. abs_path  -- if a binary file, will return `binary`.
+    local command = [[!file --mime-encoding -b ']] .. abs_path .. "'"  -- if a binary file, will return `binary`.
     local result = vim.fn.execute(command)
 
     if string.find(result, "binary") ~= nil then return 1
@@ -39,7 +39,7 @@ local function on_attach(bufnr)
   --- A smart open function
   --- For the binary file, will use the `system open`; else will use `edit`
   local function smart_open()
-    if is_binary() == 1 then api.node.run.system()
+    if __is_binary() == 1 then api.node.run.system()
     else api.node.open.edit()
     end
   end
@@ -47,7 +47,7 @@ local function on_attach(bufnr)
   --- A smart preview function
   --- For the binary file, will use the `system open`; else will use `preview`
   local function smart_preview()
-    if is_binary() == 1 then api.node.run.system()
+    if __is_binary() == 1 then api.node.run.system()
     else api.node.open.preview()
     end
   end
