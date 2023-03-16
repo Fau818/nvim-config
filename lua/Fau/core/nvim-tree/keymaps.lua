@@ -54,7 +54,7 @@ local function on_attach(bufnr)
 
     if file_type == 1 then  -- binary file
       api.node.run.system(node)
-      Fau_vim.notify("A binary file, use system open to edit it. (Use `o` to force edit it in neovim.)")
+      Fau_vim.notify("A binary file, use system open to edit it. (Use `o` to force edit it in neovim.)", vim.log.levels.INFO, { render="minimal" })
     elseif file_type == 2 then  -- folder
       local command = [[ls -1 ']] .. abs_path .. "'" .. [[ | wc -l]]
       local file_number = tonumber(vim.fn.system(command))
