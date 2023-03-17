@@ -168,7 +168,7 @@ local config = {
     dotfiles  = false, -- Whether show dotfiles. [Default Keymaps: H]
     git_clean = false,
     no_buffer = false,
-    custom = { "^.git$", ".DS_Store", "__pycache__" }, -- Custom list of vim regex for file/directory names that will not be shown.  [Default Keymaps: U]
+    custom = { "^.git$", ".DS_Store", "__pycache__", ".idea", ".mypy_cache" }, -- Custom list of vim regex for file/directory names that will not be shown.  [Default Keymaps: U]
     exclude = {}, -- List of directories or files to exclude from filtering: always show them.
   },
 
@@ -201,7 +201,7 @@ local config = {
     },
     expand_all = { -- Configuration for expand_all behaviour.
       max_folder_discovery = 50, -- Limit the number of folders being explored when expanding every folders.
-      exclude = { ".git", "target", "build" }, -- A list of directories that should not be expanded automatically.
+      exclude = { ".git", "target", "build", }, -- A list of directories that should not be expanded automatically.
     },
     file_popup = { -- Configuration for file_popup behaviour (file_info)
       open_win_config = {

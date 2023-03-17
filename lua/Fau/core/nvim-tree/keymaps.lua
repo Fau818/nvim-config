@@ -1,3 +1,4 @@
+-- TODO: Expand all folders to filter huge directories.
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
