@@ -10,7 +10,8 @@ return {
         autoImportCompletions = true,
         autoSearchPaths = true,
 
-        diagnosticMode = "openFilesOnly", -- values: workspace|openFilesOnly
+        ---@type "workspace"|"openFilesOnly"
+        diagnosticMode = "openFilesOnly",
         -- diagnosticSeverityOverrides = {},
 
         -- extraPaths = {},
@@ -21,7 +22,7 @@ return {
 
         typeCheckingMode = "off", -- values: off|basic|strict
 
-        -- useLibraryCodeForTypes = true,  -- Note: If false (default), not the default behavior. [Don't know why]
+        useLibraryCodeForTypes = false,  -- SLOOOOOOOOOOOOOOOOOWLY!!!
       }
     }
   }
