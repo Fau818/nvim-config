@@ -25,11 +25,8 @@ local config = {
     ---@param diagnostic Diagnostic
     ---@return string|nil #Diagnostic message
     format = function(diagnostic)  -- for show the error code
-      -- Remove `xxx is not accessed` in Pyright
-      if diagnostic.source == "Pyright" then
-        local pattern = "accessed"
-        if string.sub(diagnostic.message, -string.len(pattern)) == pattern then return nil end
-      end
+      -- Remove Pyright diagnostics
+      if diagnostic.source == "Pyright" then return nil end
       return diagnostic.message
     end,
   },
