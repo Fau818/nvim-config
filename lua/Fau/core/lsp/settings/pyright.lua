@@ -22,7 +22,7 @@ return {
 
         typeCheckingMode = "off", -- values: off|basic|strict
 
-        useLibraryCodeForTypes = false,  -- SLOOOOOOOOOOOOOOOOOWLY!!!
+        useLibraryCodeForTypes = true,
       }
     }
   }

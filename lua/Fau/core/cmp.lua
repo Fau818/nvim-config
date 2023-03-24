@@ -47,10 +47,10 @@ local config = {
   },
 
   completion = {
-    -- autocomplete = false,
+    autocomplete = { "InsertEnter", "TextChanged" },
     completeopt = "menu,menuone,noinsert",
-    -- keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
-    -- keyword_length = 1,
+    keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+    keyword_length = 1,
   },
 
   confirmation = {

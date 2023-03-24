@@ -35,7 +35,7 @@ return {
       lang = "bash"
     },
     lua = {
-      pattern = "^:%s*lua%s+",
+      pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
       icon = Fau_vim.icons.ui.Lua,
       lang = "lua"
     },
