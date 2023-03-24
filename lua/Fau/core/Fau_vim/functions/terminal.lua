@@ -39,7 +39,7 @@ local btop = Terminal:new({
 })
 
 local float = Terminal:new({
-  count = 1,
+  count = 11,
   dir = "git_dir",
   direction = "float",
   float_opts = full_screen,
@@ -47,14 +47,14 @@ local float = Terminal:new({
 })
 
 local horizontal = Terminal:new({
-  count = 2,
+  count = 12,
   dir = "git_dir",
   direction = "horizontal",
   on_open = function() vim.cmd("startinsert!") end,
 })
 
 local vertical = Terminal:new({
-  count = 3,
+  count = 13,
   dir = "git_dir",
   direction = "vertical",
   on_open = function() vim.cmd("startinsert!") end,

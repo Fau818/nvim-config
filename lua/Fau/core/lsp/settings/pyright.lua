@@ -16,7 +16,7 @@ return {
 
         -- extraPaths = {},
         -- typeshedPaths = {},
-        -- stubPath = "",
+        stubPath = "typings",
 
         -- logLevel = "Information",  -- values: Error|Warning|Information|Trace
 

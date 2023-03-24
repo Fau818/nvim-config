@@ -28,6 +28,11 @@ local config = {
     --  hl = "@parameter",
     -- },
 
+    {
+      filter = { filetype = "python" },
+      pattern = "% %[%w+%]",
+      hl = "CommentReview",
+    },
 
     {
       filter = { filetype = "python" },

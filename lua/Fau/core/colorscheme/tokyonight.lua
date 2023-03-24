@@ -87,6 +87,13 @@ local config = {
       style = { italic = true }
     }
 
+    -- -----------------------------------
+    -- -------- Custom
+    -- -----------------------------------
+    highlights["CommentReview"] = {
+      fg = "#25A322",
+    }
+
     -- highlights["@type.builtin"] = {
     --  fg = colors.blue1,
     --  style = { italic = true }
