@@ -52,12 +52,16 @@ local config = {
     -- [','] = --<function: enhanced setup for ','>,
     -- [' '] = --<function: enhanced setup for ' '>,
   },
+
   -- Default options controlling alignment process
   options = {
     split_pattern = '',
     justify_side = 'left',
     merge_delimiter = '',
   },
+
+  -- Whether to disable showing non-error feedback
+  silent = false,
 }
 
 align.setup(config)
