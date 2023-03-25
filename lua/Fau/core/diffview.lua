@@ -2,10 +2,7 @@
 -- ========== Plugin Loading
 -- =============================================
 local diffview_ok, diffview = pcall(require, "diffview")
-if not diffview_ok then
-  Fau_vim.load_plugin_error("")
-  return
-end
+if not diffview_ok then Fau_vim.load_plugin_error("diffview") return end
 
 -- Lua
 local actions = require("diffview.actions")

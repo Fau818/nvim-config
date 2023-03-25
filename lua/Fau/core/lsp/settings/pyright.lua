@@ -3,7 +3,7 @@ return {
   settings = {
     pyright = {
       disableLanguageServices = false,
-      disableOrganizeImports = false,
+      disableOrganizeImports = true,
     },
     python = {
       analysis = {
@@ -11,7 +11,7 @@ return {
         autoSearchPaths = true,
 
         ---@type "workspace"|"openFilesOnly"
-        diagnosticMode = "openFilesOnly",
+        diagnosticMode = "workspace",
         -- diagnosticSeverityOverrides = {},
 
         -- extraPaths = {},
