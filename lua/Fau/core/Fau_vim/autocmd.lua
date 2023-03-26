@@ -19,6 +19,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 -- use diagonal lines in place of deleted lines
 vim.opt.fillchars:append { diff = "╱" }
+-- Turn off the ftplugin
+vim.api.nvim_command("filetype plugin off")
 
 
 
