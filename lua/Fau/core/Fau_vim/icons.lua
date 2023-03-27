@@ -12,7 +12,7 @@ return {
     Enum          = "",
     EnumMember    = "", -- ""
     Event         = "", -- ""
-    Field         = "",
+    Field         = "", -- ""
     File          = "", -- ""
     Folder        = "", -- ""
     Function      = "󰊕", -- "󰡱"
@@ -20,16 +20,16 @@ return {
     Key           = "", -- ""
     Keyword       = "",
     Method        = "",
-    Module        = "",
+    Module        = "", -- ""
     Namespace     = "",
     Null          = "󰟢",
-    Number        = "", -- ""
+    Number        = "", -- "" ""
     Object        = "",
     Operator      = "", -- ""
     Package       = "",
     Property      = "", -- ""
     Reference     = "", -- ""
-    Snippet       = "",
+    Snippet       = "", -- ""
     String        = "", -- ""
     Struct        = "", -- ""
     Text          = "",
@@ -69,11 +69,12 @@ return {
 
 
   diagnostics = {
-    BoldError       = "", Error       = "",
-    BoldWarning     = "", Warning     = "",
-    BoldInformation = "", Information = "",
+    BoldError       = "", Error       = "",
+    BoldWarning     = "", Warning     = "",
+    BoldInformation = "", Information = "",
     BoldHint        = "", Hint        = "",
     -- BoldQuestion = "", Question = "",  -- unused
+    -- Other = "",
     Debug = "",
     Trace = "✎",
   },
@@ -106,7 +107,7 @@ return {
 
     -- noice, no space is better
     Input    = "",
-    Help     = "",
+    Help     = "",
     Search   = "",
     Terminal = "",
     Lua      = "",
@@ -143,13 +144,23 @@ return {
     Ellipsis  = "…",
     Modify    = "●",
 
-    -- TODO = "",
-    -- HACK = "",
-    -- WARN = "",
-    -- PERF = "",
-    -- NOTE = "",
-    -- TEST = "⏲",
-    -- Fau  = "󰙽",
+    Done = "",
+    Undone = "",
+
+    EndLine = "",
+
+  },
+
+
+  todo = {
+    TODO = " ",
+    HACK = " ",
+    WARN = " ",
+    PERF = " ", -- " "
+    NOTE = " ",
+    TEST = "⏲ ",
+    Fau  = "󰙽 ",
+    DESC = " ", -- "󰆉 "
   },
 
 
@@ -166,6 +177,7 @@ return {
     StepBack  = "",
     RunLast   = "",
     Terminate = "",
-  }
+  },
+
 
 }

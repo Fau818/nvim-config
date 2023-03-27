@@ -21,14 +21,15 @@ local config = {
       alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO = { icon = " ", color = "todo" },
-    HACK = { icon = " ", color = "warning" },
-    WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
-    PERF = { icon = " ", color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE = { icon = " ", color = "info", alt = { "INFO", "HINT", } },
-    TEST = { icon = "⏲ ", color = "test",    alt = { "TESTING", "PASSED", "FAILED" } },
-    Fau  = { icon = "󰙽 ", color = "hint" },
-    DESC = { icon = "󰆉 ", color = "desc" },
+
+    TODO = { icon = Fau_vim.icons.todo.TODO, color = "todo" },
+    HACK = { icon = Fau_vim.icons.todo.HACK, color = "warning" },
+    WARN = { icon = Fau_vim.icons.todo.WARN, color = "warning", alt = { "WARNING" } },
+    PERF = { icon = Fau_vim.icons.todo.PERF, color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { icon = Fau_vim.icons.todo.NOTE, color = "info", alt = { "INFO", "HINT", } },
+    TEST = { icon = Fau_vim.icons.todo.TEST, color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+    Fau  = { icon = Fau_vim.icons.todo.Fau,  color = "hint" },
+    DESC = { icon = Fau_vim.icons.todo.DESC, color = "desc" },
   },
 
 
