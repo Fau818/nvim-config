@@ -16,28 +16,25 @@ return {
         yapf = { enabled = false },
 
         jedi = {
-          auto_import_modules = {
-            "os", "time",
-            "numpy", "pandas"
-          },
-          -- extra_paths = {},
-          -- env_vars = ,
-          -- environment = "",
+          auto_import_modules = {},
+          extra_paths = { "/usr/local/lib/python3.10/site-packages" },
+          env_vars = nil,
+          environment = nil,
         },
 
         jedi_completion = {
-          enabled = false,
-          include_params = true,
+          enabled = true,
+          include_params = false,
           include_class_objects = true,
           include_function_objects = true,
           fuzzy = true,
           eager = true,
-          -- resolve_at_most = 25,
-          -- cache_for = {},
+          resolve_at_most = 25,
+          cache_for = {},
         },
 
         jedi_definition = {
-          enabled = false,
+          enabled = true,
           follow_imports = true,
           follow_builtin_imports = true,
           follow_builtin_definitions = true,

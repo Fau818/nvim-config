@@ -11,7 +11,7 @@ return {
         autoSearchPaths = true,
 
         ---@type "workspace"|"openFilesOnly"
-        diagnosticMode = "openFilesOnly",
+        diagnosticMode = "workspace",
         -- diagnosticSeverityOverrides = {},
 
         -- extraPaths = {},
