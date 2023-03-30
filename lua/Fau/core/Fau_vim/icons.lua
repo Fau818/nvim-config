@@ -2,6 +2,7 @@
 -- ========== Fau_vim.icons
 -- =============================================
 return {
+  ---@type table<string, string>
   kind = {
     Array         = "", -- "󰅨"
     Boolean       = "", -- ""

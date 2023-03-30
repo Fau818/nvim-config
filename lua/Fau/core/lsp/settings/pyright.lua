@@ -3,7 +3,7 @@ return {
   settings = {
     pyright = {
       disableLanguageServices = false,
-      disableOrganizeImports = true,
+      disableOrganizeImports = false,
     },
     python = {
       analysis = {

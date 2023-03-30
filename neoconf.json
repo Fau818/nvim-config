@@ -1,0 +1,19 @@
+{
+  "lspconfig": {
+    "pyright": {
+      "pyright.disableOrganizeImports": false,
+      "pyright.disableLanguageServices": false,
+
+      "python.analysis.autoImportCompletions": true,
+      "python.analysis.autoSearchPaths": true,
+
+      "python.analysis.extraPaths": ["/usr/local/lib/python3.10/site-packages/"],
+      "python.analysis.stubPath": "typings",
+
+      "python.analysis.typeCheckingMode": "off",
+      "python.analysis.diagnosticMode": "workspace",
+
+      "python.analysis.useLibraryCodeForTypes": true
+    }
+  }
+}

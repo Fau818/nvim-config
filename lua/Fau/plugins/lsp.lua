@@ -8,7 +8,11 @@ local lsp = {
   {
     -- DESC: quickstart config LSP in Neovim.
     "neovim/nvim-lspconfig",
-    dependencies = { "williamboman/mason-lspconfig.nvim", "lvimuser/lsp-inlayhints.nvim" },
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "lvimuser/lsp-inlayhints.nvim",
+      -- "folke/neoconf.nvim",
+    },
     config = function()
       require("Fau.core.lsp.diagnostics_config")
       require("Fau.core.lsp.lspconfig")
