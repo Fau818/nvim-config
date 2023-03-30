@@ -134,7 +134,19 @@ return {
   progress = "progress",
   location = "location",
 
-  searchcount = "searchcount",
+  datetime = {
+    "datetime",
+    -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+    style = "default"
+  },
+
+  searchcount = {
+    "searchcount",
+    maxcount = 999,
+    timeout = 500,
+  },
+  selectioncount = { "selectioncount" },
+
 
   indent = { -- detect the indenttype and check whether occur mixed indent
     -- TODO: Check indent except comment lines
