@@ -7,15 +7,15 @@ return {
     },
     python = {
       analysis = {
-        autoImportCompletions = true,
+        autoImportCompletions = false,
         autoSearchPaths = true,
 
         ---@type "workspace"|"openFilesOnly"
         diagnosticMode = "workspace",
         -- diagnosticSeverityOverrides = {},
 
-        -- extraPaths = {},
-        -- typeshedPaths = {},
+        -- extraPaths = { "/usr/local/lib/python3.10/site-packages/" },
+        -- typeshedPaths = { "/usr/local/lib/python3.10/site-packages/" },
         stubPath = "typings",
 
         -- logLevel = "Information",  -- values: Error|Warning|Information|Trace

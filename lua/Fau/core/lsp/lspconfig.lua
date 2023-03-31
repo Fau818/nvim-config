@@ -63,6 +63,7 @@ end
 
 -- Setup servers
 local function setup_server(server)
+  if server == "pylsp" then return end
   local opts = {
     capabilities = cmp_nvim_lsp.default_capabilities(),
     on_attach = server_attach,
