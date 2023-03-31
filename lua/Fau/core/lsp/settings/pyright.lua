@@ -16,7 +16,7 @@ return {
 
         -- extraPaths = { "/usr/local/lib/python3.10/site-packages/" },
         -- typeshedPaths = { "/usr/local/lib/python3.10/site-packages/" },
-        stubPath = "typings",
+        stubPath = "/usr/local/lib/python3.10/site-packages/typings",
 
         -- logLevel = "Information",  -- values: Error|Warning|Information|Trace
 

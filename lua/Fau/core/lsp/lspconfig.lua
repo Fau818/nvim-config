@@ -7,9 +7,6 @@
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_ok then Fau_vim.load_plugin_error("lspconfig") return end
 
-local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_ok then Fau_vim.load_plugin_error("cmp_nvim_lsp") return end
-
 local mlspconfig_ok, mlspconfig = pcall(require, "mason-lspconfig")
 if not mlspconfig_ok then Fau_vim.load_plugin_error("mason-lspconfig") return end
 
@@ -23,6 +20,8 @@ if not illuminate_ok then illuminate = nil end
 local inlayhints_ok, inlayhints = pcall(require, "lsp-inlayhints")
 if not inlayhints_ok then inlayhints = nil end
 
+local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_ok then cmp_nvim_lsp = nil end
 
 
 -- =============================================
@@ -63,9 +62,8 @@ end
 
 -- Setup servers
 local function setup_server(server)
-  if server == "pylsp" then return end
   local opts = {
-    capabilities = cmp_nvim_lsp.default_capabilities(),
+    capabilities = cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities(),
     on_attach = server_attach,
   }
 
