@@ -7,7 +7,7 @@ return {
     },
     python = {
       analysis = {
-        autoImportCompletions = false,
+        autoImportCompletions = true,
         autoSearchPaths = true,
 
         ---@type "workspace"|"openFilesOnly"
