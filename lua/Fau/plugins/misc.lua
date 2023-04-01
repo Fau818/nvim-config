@@ -8,6 +8,13 @@ local misc = {
     event = "VeryLazy",
     enabled = not Fau_vim.on_server,
   },
+
+
+  {
+    -- DESC: a python stub library.
+    "microsoft/python-type-stubs",
+    cond = false
+  }
 }
 
 

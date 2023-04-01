@@ -17,16 +17,6 @@ local ui = {
   },
 
   {
-    -- WARNING: Deprecated.
-    -- DESC: make background transparent.
-    "xiyaowong/nvim-transparent",
-    config = function() require("Fau.core.transparent") end,
-    -- BUG: needed fix colorscheme
-    cmd = { "TransparentToggle", "TransparentEnable", "TransparentDisable" },
-    enabled = false,
-  },
-
-  {
     -- DESC: a fancy UI provider.
     "folke/noice.nvim",
     dependencies = {

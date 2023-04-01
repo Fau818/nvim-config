@@ -70,9 +70,9 @@ local test = {
 
       require("neoconf").setup(config)
     end,
-    enabled = false,
+    cond = false,
     lazy = true,
-  }
+  },
 
 }
 

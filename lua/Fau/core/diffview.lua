@@ -144,6 +144,7 @@ local config = {
       { "n", "<2-LeftMouse>", actions.select_entry,        { desc = "Open the diff for the selected entry." } },
 
       { "n", "s",             actions.toggle_stage_entry,  { desc = "Stage / unstage the selected entry." } },
+      { "n", "<space>",       actions.toggle_stage_entry,  { desc = "Stage / unstage the selected entry." } },
       { "n", "S",             actions.stage_all,           { desc = "Stage all entries." } },
       { "n", "U",             actions.unstage_all,         { desc = "Unstage all entries." } },
 

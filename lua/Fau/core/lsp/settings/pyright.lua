@@ -12,13 +12,10 @@ return {
 
         ---@type "workspace"|"openFilesOnly"
         diagnosticMode = "workspace",
-        -- diagnosticSeverityOverrides = {},
 
-        -- extraPaths = { "/usr/local/lib/python3.10/site-packages/" },
-        -- typeshedPaths = { "/usr/local/lib/python3.10/site-packages/" },
-        stubPath = "/usr/local/lib/python3.10/site-packages/typings",
-
-        -- logLevel = "Information",  -- values: Error|Warning|Information|Trace
+        -- extraPaths = {},
+        -- typeshedPaths = {},
+        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
 
         typeCheckingMode = "off", -- values: off|basic|strict
 
