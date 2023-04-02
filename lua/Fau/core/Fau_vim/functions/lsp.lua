@@ -10,4 +10,15 @@ return {
 
 
   set_client_by_ft = function() Fau_vim.notify("Called an uninitialized function.") end,  -- Implement in lspconfig.lua file.
+
+
+  restart_lsp = function()
+    local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+    if not lspconfig_ok then return end
+
+    local client_list = vim.lsp.get_active_clients({ bufnr=0 })
+    for _, client in ipairs(client_list) do
+      if client.name ~= "null-ls" then vim.api.nvim_command("LspRestart " .. client.id) end
+    end
+  end
 }

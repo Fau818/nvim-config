@@ -134,9 +134,9 @@ local config = {
     },
 
     file_panel = {
-      { "n", "j",             actions.next_entry,          { desc = "Bring the cursor to the next file entry" } },
+      { "n", "j",             actions.select_next_entry,   { desc = "Open the diff for the next file" } },
+      { "n", "k",             actions.select_prev_entry,   { desc = "Open the diff for the previous file" } },
       { "n", "<down>",        actions.next_entry,          { desc = "Bring the cursor to the next file entry" } },
-      { "n", "k",             actions.prev_entry,          { desc = "Bring the cursor to the previous file entry." } },
       { "n", "<up>",          actions.prev_entry,          { desc = "Bring the cursor to the previous file entry." } },
 
       { "n", "<cr>",          actions.select_entry,        { desc = "Open the diff for the selected entry." } },

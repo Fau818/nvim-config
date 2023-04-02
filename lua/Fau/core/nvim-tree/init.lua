@@ -27,9 +27,9 @@ local config = {
   sync_root_with_cwd = true, -- Changes the tree root directory on `DirChanged` and refreshes the tree.
   reload_on_bufenter = true, -- Automatically reloads the tree on `BufEnter` nvim-tree.
 
-  respect_buf_cwd = false, -- Will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
+  respect_buf_cwd = true, -- Will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 
-  remove_keymaps = false, -- This can be used to remove the default mappings in the tree.
+  remove_keymaps = true, -- This can be used to remove the default mappings in the tree.
 
   select_prompts = true, -- using select-UI like dressing.nvim
 

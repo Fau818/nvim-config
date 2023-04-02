@@ -133,8 +133,8 @@ local config = {
         ["<TAB>"]   = actions.move_selection_worse,  -- move to next
         ["<S-TAB>"] = actions.move_selection_better, -- move to last
 
-        ["<Down>"] = actions.cycle_history_next,
-        ["<Up>"]   = actions.cycle_history_prev,
+        ["<C-Down>"] = actions.cycle_history_next,
+        ["<C-Up>"]   = actions.cycle_history_prev,
 
         ["<C-p>"] = layout.toggle_preview,
 
@@ -287,6 +287,9 @@ local config = {
     emoji = { layout_strategy = "vertical" },
     -- notify = { layout_strategy = "vertical", initial_mode = "normal" },
     -- luasnip = { theme = "ivy" },
+    conda = {
+      anaconda_path = "/usr/local/Caskroom/miniconda/base",
+    },
   }
 }
 

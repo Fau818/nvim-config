@@ -35,9 +35,9 @@ local on_click = {
 
 
 -- =============================================
--- ========== condition
+-- ========== conditions
 -- =============================================
-local condition = {
+local conditions = {
   hide_in_width = function()
     local window_width_limit = 100
     return vim.o.columns >= window_width_limit
@@ -120,11 +120,11 @@ return {
 
   filename = "filename",
   filetype = "filetype",
-  fileformat = { "fileformat", cond = condition.hide_in_width }, -- win / linux / mac
+  fileformat = { "fileformat", cond = conditions.hide_in_width }, -- win / linux / mac
   encoding = {
     "encoding",
     fmt = string.upper,
-    cond = condition.hide_in_width,
+    cond = conditions.hide_in_width,
   },
 
   buffers = "buffers",
@@ -257,7 +257,7 @@ return {
       return language_servers
     end,
     color = { gui = "bold" },
-    cond = condition.hide_in_width,
+    cond = conditions.hide_in_width,
   },
 
 
@@ -300,7 +300,7 @@ return {
       return ""
     end,
     color = { fg = colors.green },
-    cond = condition.hide_in_width,
+    cond = conditions.hide_in_width,
   },
 
 

@@ -2,16 +2,18 @@
 -- ========== Plugin Loading
 -- =============================================
 local leap_ok, leap = pcall(require, "leap")
-if not leap_ok then
-  Fau_vim.load_plugin_error("leap")
-  return
-end
+if not leap_ok then Fau_vim.load_plugin_error("leap") return end
 
 
 
 -- =============================================
 -- ========== Configuration
 -- =============================================
+-- remove `s`
+table.remove(leap.opts.safe_labels, 1)
+table.remove(leap.opts.labels, 1)
+
+
 vim.keymap.set(
   { "n", "x", "o" }, "<LEADER>s",
   function()

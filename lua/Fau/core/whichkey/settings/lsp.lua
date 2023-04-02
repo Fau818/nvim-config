@@ -82,7 +82,7 @@ return {
       O = { "<CMD>AerialToggle!<CR>", "Toggle Outline (Unfocus)" },
 
       -- Restart LSP
-      R = { "<CMD>LspRestart<CR>",  "Restart LSP in All Buffers" },
+      R = { Fau_vim.functions.lsp.restart_lsp,  "Restart LSP in All Buffers" },
     },
 
   },

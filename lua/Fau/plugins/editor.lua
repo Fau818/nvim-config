@@ -66,6 +66,10 @@ local editor = {
         "benfowler/telescope-luasnip.nvim",
         dependencies = { "L3MON4D3/LuaSnip" },
       },
+      {
+        -- DESC: an extension to switch conda environments.
+        "IllustratedMan-code/telescope-conda.nvim",
+      }
     },
     config = function() require("Fau.core.telescope") end,
     cmd = "Telescope",
