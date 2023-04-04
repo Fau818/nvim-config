@@ -65,3 +65,4 @@ comment.setup(config)
 -- =============================================
 comment_ft.set("dosini", "# %s")
 comment_ft.set("zsh", "# %s")
+comment_ft.set("kitty", "# %s")

@@ -78,6 +78,7 @@ end
 
 -- Implement set clients according to filetype (In Fau_vim)
 Fau_vim.functions.lsp.set_client_by_ft = function()
+  if Fau_vim.functions.test.is_large_file() then return end
   local filetype = vim.bo.filetype
 
   if Fau_vim.configured_ft[filetype] then return end -- configured

@@ -24,7 +24,7 @@ local treesitter = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.core.treesitter.context") end,
     event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" }
+    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
   },
 
   {

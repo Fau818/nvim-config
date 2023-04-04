@@ -2,10 +2,7 @@
 -- ========== Plugin Loading
 -- =============================================
 local ufo_ok, ufo = pcall(require, "ufo")
-if not ufo_ok then
-  Fau_vim.load_plugin_error("ufo")
-  return
-end
+if not ufo_ok then Fau_vim.load_plugin_error("ufo") return end
 
 
 

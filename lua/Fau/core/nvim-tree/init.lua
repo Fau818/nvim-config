@@ -272,6 +272,8 @@ local config = {
     },
   },
 
+  experimental = { git = { async = true, }, },
+
   on_attach = require("Fau.core.nvim-tree.keymaps")
 }
 

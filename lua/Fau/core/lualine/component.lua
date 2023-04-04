@@ -151,6 +151,7 @@ return {
   indent = { -- detect the indenttype and check whether occur mixed indent
     -- TODO: Check indent except comment lines
     function()
+      if Fau_vim.functions.test.is_large_file() then return "LF" end
       -- get the indent width and indent type
       local indent_width = vim.api.nvim_buf_get_option(0, "tabstop")
       local indent_type  = vim.api.nvim_buf_get_option(0, "expandtab")  -- true: space, false: tab

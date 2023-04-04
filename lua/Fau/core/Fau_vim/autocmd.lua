@@ -156,26 +156,31 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufReadPre", {
   group = "Fau_vim",
   desc = "Disable some features in large file.",
-  pattern = "*",
+  pattern = "*.*",
   callback = function()
     local buffer = vim.api.nvim_get_current_buf()
-    local status_ok, file_status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buffer))
-    if not status_ok or not file_status then return end
-
-    if file_status.size <= Fau_vim.large_file_size then return end
+    if not Fau_vim.functions.test.is_large_file(buffer) then return end
 
     ---Large file!!
     local illuminate_ok, illuminate = pcall(require, "illuminate.engine")
     if not illuminate_ok then illuminate = nil end
+    if illuminate then illuminate.stop_buf(buffer) end
 
-    if illuminate then
-      vim.api.nvim_command("TSBufDisable highlight")
-      illuminate.stop_buf(buffer)
-    end
+    -- Disable context
+    vim.api.nvim_command("TSContextDisable")
 
+    -- Disable fold
+    local ufo_ok, ufo = pcall(require, "ufo")
+    if not ufo_ok then Fau_vim.notify("UFO error") end
+    if ufo then ufo.detach(buffer) end
+    vim.wo.foldenable = false
+    vim.wo.foldcolumn = "0"
+
+    -- Disable mini
     vim.b.minitrailspace_disable = true
     vim.b.miniindentscope_disable = true
 
+    -- Disable edit
     vim.bo.undofile   = false
     vim.bo.modifiable = false
   end,

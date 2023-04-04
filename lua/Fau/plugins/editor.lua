@@ -172,6 +172,7 @@ local editor = {
     },
     config = function() require("Fau.core.ufo") end,
     event = { "BufReadPost", "BufNewFile" },
+    cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
   },
 
 
