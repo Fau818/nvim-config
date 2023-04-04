@@ -167,6 +167,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     if illuminate then illuminate.stop_buf(buffer) end
 
     -- Disable context
+    -- BUG: Can't disable for a single buffer.
     vim.api.nvim_command("TSContextDisable")
 
     -- Disable fold

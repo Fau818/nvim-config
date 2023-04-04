@@ -152,6 +152,9 @@ return {
     -- TODO: Check indent except comment lines
     function()
       if Fau_vim.functions.test.is_large_file() then return "LF" end
+
+      local TIMEOUT = 5
+
       -- get the indent width and indent type
       local indent_width = vim.api.nvim_buf_get_option(0, "tabstop")
       local indent_type  = vim.api.nvim_buf_get_option(0, "expandtab")  -- true: space, false: tab
@@ -159,8 +162,8 @@ return {
 
       -- check unexpected indent type
       local space_pat, tab_pat = [[\v^  +]], [[\v^\t+]]
-      local space_indent_cnt = vim.fn.searchcount({ pattern = space_pat, max_count = 5E2 }).total
-      local tab_indent_cnt   = vim.fn.searchcount({ pattern = tab_pat,   max_count = 5E2 }).total
+      local space_indent_cnt = vim.fn.searchcount({ pattern=space_pat, max_count=5E2, timeout=TIMEOUT }).total
+      local tab_indent_cnt   = vim.fn.searchcount({ pattern=tab_pat,   max_count=5E2, timeout=TIMEOUT }).total
 
       local file_indent_type = space_indent_cnt > tab_indent_cnt  -- same as indent_type
       if space_indent_cnt == tab_indent_cnt then file_indent_type = indent_type end
@@ -174,9 +177,9 @@ return {
       local mixed_line = 0
       if space_indent_cnt > 0 and tab_indent_cnt > 0 then -- get the mixed_line
         if file_indent_type then mixed_line = vim.fn.search(tab_pat, "nwc")
-        else mixed_line = vim.fn.search(space_pat, "nwc") end
+        else mixed_line = vim.fn.search(space_pat, "nwc", nil, TIMEOUT) end
       else -- check whether mixed in the same line, if true: get the line number
-        mixed_line = vim.fn.search([[\v^(\t+  |  +\t)]], "nwc")
+        mixed_line = vim.fn.search([[\v^(\t+  |  +\t)]], "nwc", nil, TIMEOUT)
       end
 
       if mixed_line > 0 then indent_show = indent_show .. " (MI:" .. mixed_line .. ")" end
