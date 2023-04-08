@@ -46,7 +46,7 @@ local config = {
   },
 
   indent = {
-    enable = true,
+    enable = true,  -- wait for fixing in python
   },
 
   -- nvim-ts-context-commentstring plugin

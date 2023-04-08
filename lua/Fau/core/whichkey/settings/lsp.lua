@@ -78,8 +78,8 @@ return {
       v = { "<CMD>lua vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text})<CR>", "Toggle Virtual Text" },
 
       -- Outline (Structure)
-      o = { "<CMD>AerialToggle<CR>",  "Toggle Outline" },
-      O = { "<CMD>AerialToggle!<CR>", "Toggle Outline (Unfocus)" },
+      o = { "<CMD>AerialToggle<CR>",    "Toggle Outline" },
+      O = { "<CMD>AerialNavToggle<CR>", "Toggle Outline Navigation" },
 
       -- Restart LSP
       R = { Fau_vim.functions.lsp.restart_lsp,  "Restart LSP in All Buffers" },

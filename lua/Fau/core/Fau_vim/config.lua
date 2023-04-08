@@ -26,7 +26,7 @@ Fau_vim.disabled_filetypes = {
 
   "", "checkhealth", "help", "netrw", "tutor", "man",
   "alpha",
-  "aerial",
+  "aerial", "aerial-nav",
   "crunner",
   "DiffviewFiles",
   "DressingInput",

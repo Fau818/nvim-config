@@ -21,7 +21,7 @@ local config = { -- Call the setup function to change the default behavior
     -- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
     max_width = { 40, 0.2 },
     width = nil,
-    min_width = 10,
+    min_width = 15,
 
     -- key-value pairs of window-local options for aerial window (e.g. winhl)
     -- win_opts = {},
@@ -58,36 +58,47 @@ local config = { -- Call the setup function to change the default behavior
   -- it will use the mapping at require("aerial.action").<name>
   -- Set to `false` to remove a keymap
   keymaps = {
-    ["?"] = "actions.show_help",
+    ["?"]  = "actions.show_help",
     ["g?"] = "actions.show_help",
-    ["<CR>"] = "actions.jump",
+
+    ["<CR>"]          = "actions.jump",
     ["<2-LeftMouse>"] = "actions.jump",
+
     ["<C-v>"] = "actions.jump_vsplit",
     ["<C-s>"] = "actions.jump_split",
-    ["p"] = "actions.scroll",
-    ["<C-j>"] = "actions.down_and_scroll",
-    ["<C-k>"] = "actions.up_and_scroll",
-    ["{"] = "actions.prev",
-    ["}"] = "actions.next",
+
+    ["<TAB>"]  = "actions.scroll",
+    ["<Down>"] = "actions.down_and_scroll",
+    ["<Up>"]   = "actions.up_and_scroll",
+
+    ["{"]  = "actions.prev",
+    ["}"]  = "actions.next",
     ["[["] = "actions.prev_up",
     ["]]"] = "actions.next_up",
-    ["q"] = "actions.close",
-    ["o"] = "actions.tree_toggle",
+
+    ["q"]     = "actions.close",
+    ["<ESC>"] = "actions.close",
+
+    ["o"]  = "actions.tree_toggle",
     ["za"] = "actions.tree_toggle",
-    ["O"] = "actions.tree_toggle_recursive",
+    ["O"]  = "actions.tree_toggle_recursive",
     ["zA"] = "actions.tree_toggle_recursive",
-    ["l"] = "actions.tree_open",
+
+    ["l"]  = "actions.tree_open",
     ["zo"] = "actions.tree_open",
-    ["L"] = "actions.tree_open_recursive",
+    ["L"]  = "actions.tree_open_recursive",
     ["zO"] = "actions.tree_open_recursive",
-    ["h"] = "actions.tree_close",
+    ["h"]  = "actions.tree_close",
     ["zc"] = "actions.tree_close",
-    ["H"] = "actions.tree_close_recursive",
+    ["H"]  = "actions.tree_close_recursive",
     ["zC"] = "actions.tree_close_recursive",
+
     ["zr"] = "actions.tree_increase_fold_level",
     ["zR"] = "actions.tree_open_all",
+
     ["zm"] = "actions.tree_decrease_fold_level",
     ["zM"] = "actions.tree_close_all",
+
     ["zx"] = "actions.tree_sync_folds",
     ["zX"] = "actions.tree_sync_folds",
   },
@@ -100,37 +111,39 @@ local config = { -- Call the setup function to change the default behavior
   disable_max_lines = 10000,
 
   -- Disable aerial on files this size or larger (in bytes)
-  disable_max_size = 2000000, -- Default 2MB
+  disable_max_size = Fau_vim.large_file_size, -- Default 2MB
 
   -- A list of all symbols to display. Set to false to display all symbols.
   -- This can be a filetype map (see :help aerial-filetype-map)
   -- To see all available values, see :help SymbolKind
-  -- filter_kind = {
-  --  "Class",
-  --  "Constant",
-  --  "Constructor",
-  --  "Enum",
-  --  "EnumMember",
-  --  "Event",
-  --  "Field",
-  --  "File",
-  --  "Function",
-  --  "Interface",
-  --  "Method",
-  --  "Module",
-  --  "Namespace",
-  --  "Null",
-  --  "Number",
-  --  "Object",
-  --  "Operator",
-  --  "Package",
-  --  "Property",
-  --  "String",
-  --  "Struct",
-  --  "TypeParameter",
-  --  "Variable",
-  -- },
-  filter_kind = false,
+  filter_kind = {
+    -- "Array",
+    -- "Boolean",
+    "Class",
+    -- "Constant",
+    "Constructor",
+    "Enum",
+    -- "EnumMember",
+    "Event",
+    -- "Field",
+    "File",
+    "Function",
+    "Interface",
+    -- "Key",
+    "Method",
+    "Module",
+    "Namespace",
+    -- "Null",
+    -- "Number",
+    "Object",
+    "Operator",
+    "Package",
+    "Property",
+    -- "String",
+    "Struct",
+    "TypeParameter",
+    -- "Variable",
+  },
 
 
   -- Determines line highlighting mode when multiple splits are visible.
@@ -152,14 +165,8 @@ local config = { -- Call the setup function to change the default behavior
 
   -- When jumping to a symbol, highlight the line for this many ms.
   -- Set to false to disable
-  highlight_on_jump = 300,
+  highlight_on_jump = 100,
 
-  -- Define symbol icons. You can also specify "<Symbol>Collapsed" to change the
-  -- icon when the tree is collapsed at that symbol, or "Collapsed" to specify a
-  -- default collapsed icon. The default icon set is determined by the
-  -- "nerd_font" option below.
-  -- If you have lspkind-nvim installed, it will be the default icon set.
-  -- This can be a filetype map (see :help aerial-filetype-map)
   icons = Fau_vim.icons.kind,
 
   -- Control which windows and buffers aerial should ignore.
@@ -203,15 +210,15 @@ local config = { -- Call the setup function to change the default behavior
   -- Use symbol tree for folding. Set to true or false to enable/disable
   -- Set to "auto" to manage folds if your previous foldmethod was 'manual'
   -- This can be a filetype map (see :help aerial-filetype-map)
-  manage_folds = false,
+  manage_folds = "auto",
 
   -- When you fold code with za, zo, or zc, update the aerial tree as well.
   -- Only works when manage_folds = true
-  link_folds_to_tree = false,
+  link_folds_to_tree = true,
 
   -- Fold code when you open/collapse symbols in the tree.
   -- Only works when manage_folds = true
-  link_tree_to_folds = true,
+  link_tree_to_folds = false,
 
   -- Set default symbol icons to use patched font icons (see https://www.nerdfonts.com/)
   -- "auto" will set it to true if nvim-web-devicons or lspkind-nvim is installed.
@@ -230,6 +237,33 @@ local config = { -- Call the setup function to change the default behavior
   -- Run this command after jumping to a symbol (false will disable)
   post_jump_cmd = "normal! zz",
 
+  -- Invoked after each symbol is parsed, can be used to modify the parsed item,
+  -- or to filter it by returning false.
+  --
+  -- bufnr: a neovim buffer number
+  -- item: of type aerial.Symbol
+  -- ctx: a record containing the following fields:
+  --   * backend_name: treesitter, lsp, man...
+  --   * lang: info about the language
+  --   * symbols?: specific to the lsp backend
+  --   * symbol?: specific to the lsp backend
+  --   * syntax_tree?: specific to the treesitter backend
+  --   * match?: specific to the treesitter backend, TS query match
+  -- post_parse_symbol = function(bufnr, item, ctx) return true end,
+
+  -- Invoked after all symbols have been parsed and post-processed,
+  -- allows to modify the symbol structure before final display
+  --
+  -- bufnr: a neovim buffer number
+  -- items: a collection of aerial.Symbol items, organized in a tree,
+  --        with 'parent' and 'children' fields
+  -- ctx: a record containing the following fields:
+  --   * backend_name: treesitter, lsp, man...
+  --   * lang: info about the language
+  --   * symbols?: specific to the lsp backend
+  --   * syntax_tree?: specific to the treesitter backend
+  -- post_add_all_symbols = function(bufnr, items, ctx) return items end,
+
   -- When true, aerial will automatically close after jumping to a symbol
   close_on_select = false,
 
@@ -237,8 +271,7 @@ local config = { -- Call the setup function to change the default behavior
   update_events = "TextChanged,InsertLeave",
 
   -- Show box drawing characters for the tree hierarchy
-  show_guides = false,
-
+  show_guides = true,
   -- Customize the characters used when show_guides = true
   guides = {
     -- When the child item has a sibling below it
@@ -250,6 +283,12 @@ local config = { -- Call the setup function to change the default behavior
     -- Raw indentation
     whitespace = "  ",
   },
+
+  -- Set this function to override the highlight groups for certain symbols
+  -- get_highlight = function(symbol, is_icon)
+  --   -- return "MyHighlight" .. symbol.kind
+  -- end,
+
 
   -- Options for opening aerial in a floating win
   float = {
@@ -277,6 +316,32 @@ local config = { -- Call the setup function to change the default behavior
     -- end,
   },
 
+  -- Options for the floating nav windows
+  nav = {
+    border = "rounded",
+    max_height = 0.9,
+    min_height = { 10, 0.1 },
+    max_width = 0.5,
+    min_width = { 0.2, 20 },
+    win_opts = {},
+    -- Jump to symbol in source window when the cursor moves
+    autojump = false,
+    -- Keymaps in the nav window
+    keymaps = {
+      ["<CR>"]          = "actions.jump",
+      ["<2-LeftMouse>"] = "actions.jump",
+
+      ["q"]     = "actions.close",
+      ["<ESC>"] = "actions.close",
+
+      ["h"] = "actions.left",
+      ["l"] = "actions.right",
+
+      ["<C-v>"] = "actions.jump_vsplit",
+      ["<C-s>"] = "actions.jump_split",
+    }
+  },
+
   lsp = {
     -- Fetch document symbols when LSP diagnostics update.
     -- If false, will update on buffer changes.
@@ -288,6 +353,13 @@ local config = { -- Call the setup function to change the default behavior
     -- How long to wait (in ms) after a buffer change before updating
     -- Only used when diagnostics_trigger_update = false
     update_delay = 300,
+
+    -- Map of LSP client name to priority. Default value is 10.
+    -- Clients with higher (larger) priority will be used before those with lower priority.
+    -- Set to -1 to never use the client.
+    priority = {
+      -- pyright = 10,
+    },
   },
 
   treesitter = {
