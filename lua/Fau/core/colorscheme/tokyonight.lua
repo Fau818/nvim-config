@@ -51,8 +51,10 @@ local config = {
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    highlights["@include"] = { fg = Fau_vim.colors.blue, style = { italic=true } }
-    highlights["@define"]  = { fg = Fau_vim.colors.gray, style = { italic = true } }
+    highlights["Include"]   = { fg = Fau_vim.colors.blue, style = { italic=true } }
+    highlights["Define"]    = { fg = Fau_vim.colors.gray, style = { italic=true } }
+    highlights["Statement"] = { fg = colors.magenta, style      = { italic=true } }
+    highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, style = { italic=true } }
 
     highlights["@number"] = { fg = Fau_vim.colors.light_blue }
     highlights["@string"] = { fg = Fau_vim.colors.light_green }
@@ -62,13 +64,9 @@ local config = {
 
     highlights["MatchParen"] = { fg = Fau_vim.colors.yellow, style = { bold=true } }
 
-    highlights["@punctuation.special"] = { fg = Fau_vim.colors.light_pink }
-
     highlights["@function.builtin"] = { fg = Fau_vim.colors.purple_blue, style = { italic=true } }
 
     highlights["@string.documentation"] = { fg = Fau_vim.colors.cyan_gray }
-
-    -- highlights["Statement"] = { fg = colors.magenta, style = { italic=true } }
 
 
     -- -----------------------------------
