@@ -35,6 +35,7 @@ Fau_vim.disabled_filetypes = {
   "notify", "noice",
   "NvimTree",
   "toggleterm",
+  "tsplayground",
   "Trouble",
   "TelescopePrompt",
   "packer", "lazy",
