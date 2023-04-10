@@ -113,9 +113,7 @@ local config = {
 
       -- open lazygit log
       ["<localleader>L"] = function(plugin)
-        require("lazy.util").float_term({ "lazygit", "log" }, {
-          cwd = plugin.dir,
-        })
+        require("lazy.util").float_term({ "lazygit", "log" }, { cwd = plugin.dir, })
       end,
     }
   },
