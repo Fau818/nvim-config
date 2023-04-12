@@ -39,6 +39,8 @@ local config = {
     blend = 0,
   },
 
+  before_run_filetype = function() vim.cmd(":update") end,
+
 
   -- -----------------------------------
   -- -------- Configure by Lua

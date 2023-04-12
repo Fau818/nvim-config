@@ -22,7 +22,6 @@ local config = {
   bf_ignore = nil,
 
   segments = {
-    -- { text = { "%C" }, click = "v:lua.ScFa" },
     { text = { "%s" }, click = "v:lua.ScSa" },
 
     {
@@ -33,6 +32,8 @@ local config = {
 
     { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
   },
+
+  clickmod = "c",  -- "a" for Alt, "c" for Ctrl and "m" for Meta.
 
   clickhandlers = {
     Lnum                   = builtin.lnum_click,
@@ -49,6 +50,7 @@ local config = {
     GitSignsTopdelete      = builtin.gitsigns_click,
     GitSignsUntracked      = builtin.gitsigns_click,
     GitSignsAdd            = builtin.gitsigns_click,
+    GitSignsChange         = builtin.gitsigns_click,
     GitSignsChangedelete   = builtin.gitsigns_click,
     GitSignsDelete         = builtin.gitsigns_click,
   }

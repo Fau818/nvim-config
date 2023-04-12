@@ -5,13 +5,13 @@ return {
     ["<LEADER>r"] = {
       name = "+Runcode",
 
-      t = { "<CMD>update<CR><CMD>RunFile term<CR>",   "Run File in Terminal" },
-      T = { "<CMD>update<CR><CMD>RunFile toggle<CR>", "Run File Toggle" },
-      f = { "<CMD>update<CR><CMD>RunFile float<CR>",  "Run File in Float" },
+      t = { "<CMD>RunFile term<CR>",   "Run File in Terminal" },
+      T = { "<CMD>RunFile toggle<CR>", "Run File Toggle" },
+      f = { "<CMD>RunFile float<CR>",  "Run File in Float" },
 
       c = { "<CMD>RunClose<CR>", "Run Close" },
 
-      p = { "<CMD>update<CR><CMD>RunProject toggleterm<CR>", "Run Project in Toggleterm" },
+      p = { "<CMD>RunProject toggleterm<CR>", "Run Project in Toggleterm" },
 
 
       e = {
