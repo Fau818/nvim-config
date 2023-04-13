@@ -22,7 +22,11 @@ local config = {
   bf_ignore = nil,
 
   segments = {
-    { text = { "%s" }, click = "v:lua.ScSa" },
+    {
+      text = { "%s" },
+      click = "v:lua.ScSa",
+    },
+
 
     {
       text = { builtin.lnumfunc, " " },

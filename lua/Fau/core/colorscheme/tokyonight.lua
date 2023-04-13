@@ -51,7 +51,7 @@ local config = {
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    highlights["Include"]   = { fg = Fau_vim.colors.blue, style = { italic=true } }
+    -- highlights["Include"]   = { fg = Fau_vim.colors.blue, style = { italic=true } }
     highlights["Define"]    = { fg = Fau_vim.colors.gray, style = { italic=true } }
     highlights["Statement"] = { fg = colors.magenta, style      = { italic=true } }
     highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, style = { italic=true } }
@@ -80,7 +80,7 @@ local config = {
     highlights["LspInfoBorder"] = { fg = Fau_vim.colors.cobalt }
 
     highlights["TelescopeBorder"]       = { fg = Fau_vim.colors.cobalt }
-    highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.yellow }
+    highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
   end,
 }
 

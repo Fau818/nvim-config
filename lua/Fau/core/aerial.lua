@@ -214,7 +214,7 @@ local config = { -- Call the setup function to change the default behavior
 
   -- When you fold code with za, zo, or zc, update the aerial tree as well.
   -- Only works when manage_folds = true
-  link_folds_to_tree = true,
+  link_folds_to_tree = false,
 
   -- Fold code when you open/collapse symbols in the tree.
   -- Only works when manage_folds = true
@@ -271,7 +271,7 @@ local config = { -- Call the setup function to change the default behavior
   update_events = "TextChanged,InsertLeave",
 
   -- Show box drawing characters for the tree hierarchy
-  show_guides = true,
+  show_guides = false,
   -- Customize the characters used when show_guides = true
   guides = {
     -- When the child item has a sibling below it
