@@ -138,6 +138,7 @@ local editor = {
     -- DESC: indent guides for Neovim.
     "lukas-reineke/indent-blankline.nvim",
     config = function() require("Fau.core.indentline") end,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = { "BufReadPost", "BufNewFile" },
   },
   {

@@ -1,6 +1,6 @@
 return {
   n = {
-    ["<C-r>"] = { "<CMD>update<CR><CMD>RunFile toggleterm<CR>", "Run File in Toggleterm" },
+    ["<C-r>"] = { "<CMD>RunFile toggleterm<CR>", "Run File in Toggleterm" },
 
     ["<LEADER>r"] = {
       name = "+Runcode",
