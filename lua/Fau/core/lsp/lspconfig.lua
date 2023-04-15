@@ -41,7 +41,7 @@ local available_servers = mlspconfig.get_installed_servers()
 
 local function is_available(client_name)
   for _, server_name in pairs(available_servers) do
-    if server_name == client_name then return true end
+    if server_name == client_name or vim.fn.executable(server_name) == 1 then return true end
   end
   return false
 end
