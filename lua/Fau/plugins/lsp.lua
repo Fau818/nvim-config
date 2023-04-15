@@ -11,7 +11,12 @@ local lsp = {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "lvimuser/lsp-inlayhints.nvim",
-      -- "folke/neoconf.nvim",
+      {
+        -- DESC: config LSP in json file.
+        "folke/neoconf.nvim",
+        config = function() require("Fau.core.lsp.neoconf") end,
+        cond = false,
+      },
     },
     config = function()
       require("Fau.core.lsp.diagnostics_config")

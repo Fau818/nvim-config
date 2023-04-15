@@ -2,22 +2,22 @@ return {
   settings = {
     clangd = {
       -- arguments = { },
-      checkUpdates = false,
-      detectExtensionConflicts = true,
-      -- fallbackFlags = {  },
-      onConfigChanged = "prompt",  -- values: prompt|restart|ignore  (if clangd 12+, will be ignored)
       -- path = "clangd",
+
+      checkUpdates = false,
       restartAfterCrash = true,  -- Auto restart clangd (up to 4 times) if it crashes.
+
+      onConfigChanged = "prompt",  -- values: prompt|restart|ignore  (if clangd 12+, will be ignored)
       semanticHighlighting = true,  -- Enable semantic highlighting in clangd.
       serverCompletionRanking = true,
-      -- trace = ""
+
+      detectExtensionConflicts = true,
     }
   },
 
   cmd = {
     "clangd",
 
-    -- "--all-scopes-completion=false"
     "--header-insertion=never",
 
     "--clang-tidy",
