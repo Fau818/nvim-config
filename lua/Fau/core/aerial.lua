@@ -323,9 +323,11 @@ local config = { -- Call the setup function to change the default behavior
     min_height = { 10, 0.1 },
     max_width = 0.5,
     min_width = { 0.2, 20 },
-    win_opts = {},
+    win_opts = { winblend = 0 },
     -- Jump to symbol in source window when the cursor moves
     autojump = false,
+    -- Show a preview of the code in the right column, when there are no child symbols
+    preview = false,
     -- Keymaps in the nav window
     keymaps = {
       ["<CR>"]          = "actions.jump",

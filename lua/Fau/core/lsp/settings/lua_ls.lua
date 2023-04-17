@@ -170,11 +170,11 @@ return {
 
         library = {  -- An array of abosolute or workspace-relative paths that will be added to the workspace diagnosis
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
         },
 
         useGitIgnore = true,  -- Whether files that are in .gitignore should be ignored by the language server when performing workspace diagnosis.
-          -- userThirdParty = {},  -- An array of paths to custom third party libraries.
+        -- userThirdParty = {},  -- An array of paths to custom third party libraries.
       },
 
     }

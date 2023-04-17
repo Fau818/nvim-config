@@ -29,7 +29,7 @@ vim.keymap.set("n", "<C-f>", function()
 end, { silent = true, expr = true })
 
 
-vim.keymap.set({ "n", "i" }, "<C-b>", function()
+vim.keymap.set("n", "<C-b>", function()
   if not require("noice.lsp").scroll(-2) then
     return "<nop>"
   end

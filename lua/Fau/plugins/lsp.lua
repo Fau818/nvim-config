@@ -93,7 +93,7 @@ local lsp = {
     "stevearc/aerial.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
     config = function() require("Fau.core.aerial")end,
-    cmd = "AerialToggle",
+    cmd = { "AerialToggle", "AerialNavToggle" },
   },
 
 }

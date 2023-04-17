@@ -40,12 +40,12 @@ local config = {
       ["%[.-%]%((%S-)%)"] = require("noice.util").open, -- markdown links
     },
     highlights = {
-      ["|%S-|"] = "@text.reference",
-      ["@%S+"] = "@parameter",
+      ["|%S-|"]             = "@text.reference",
+      ["@%S+"]              = "@parameter",
       ["^%s*(Parameters:)"] = "@text.title",
-      ["^%s*(Return:)"] = "@text.title",
-      ["^%s*(See also:)"] = "@text.title",
-      ["{%S-}"] = "@parameter",
+      ["^%s*(Return:)"]     = "@text.title",
+      ["^%s*(See also:)"]   = "@text.title",
+      ["{%S-}"]             = "@parameter",
     },
   },
 
