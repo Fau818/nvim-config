@@ -51,6 +51,10 @@ local function on_attach(bufnr)
     local node = __get_cursor_node()
     if not node then return end  -- error notified in get_cursor_node().
     local abs_path = node.absolute_path
+
+    -- NOTE: for go back to the previous directory
+    if abs_path == nil then default_method(node) return end
+
     local file_type = __get_file_type(abs_path)
 
     if file_type == 1 then  -- binary file
