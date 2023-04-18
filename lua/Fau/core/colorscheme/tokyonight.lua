@@ -44,6 +44,7 @@ local config = {
   ---@param colors ColorScheme
   on_colors = function(colors)
     colors.comment = Fau_vim.colors.gray
+    colors.terminal_black = Fau_vim.colors.gray
   end,
 
   --- You can override specific highlights to use other groups or a hex color
