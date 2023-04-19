@@ -69,7 +69,7 @@ keymap("n", "<CR>", "o<ESC>", opts)
 keymap("n", "<LEADER><CR>", "<CR>", opts)
 
 -- No Highlight Search
-keymap("n", "<LEADER>n", "<CMD>nohlsearch<CR>", opts)
+keymap("n", "<LEADER>N", "<CMD>nohlsearch<CR>", opts)
 
 -- Use '<LEADER>q' to Recording
 keymap("n", "<LEADER>q", "q", opts)

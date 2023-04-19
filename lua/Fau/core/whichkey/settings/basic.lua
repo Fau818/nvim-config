@@ -13,7 +13,7 @@ local basic = {  -- n
 
   ["<LEADER>q"] = "Recording",
 
-  ["<LEADER>n"] = "No Highlight Search",
+  ["<LEADER>N"] = "No Highlight Search",
 
   ["<TAB>"]   = "Indent Line",
   ["<S-TAB>"] = "Unindent Line",
@@ -137,6 +137,7 @@ return {
 
     -- Split and Join
     ["sj"] = { "<CMD>TSJToggle<CR>", "Split and Join" },
+    ["<LEADER>n"] = { require("ts-node-action").node_action, "Split and Join" },
 
 
 

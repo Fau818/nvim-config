@@ -74,7 +74,14 @@ local coding = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.core.treesj") end,
     cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
-  }
+  },
+
+  {
+    -- DESC: a plugin for running code action on nodes(code).
+    "ckolkey/ts-node-action",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = { "BufReadPost", "BufNewFile" },
+  },
 
 }
 
