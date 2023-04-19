@@ -49,6 +49,10 @@ local cmp = {
         "hrsh7th/cmp-nvim-lsp-signature-help",
         enabled = false,
       },
+      {
+        -- DESC: calculation source for nvim-cmp.
+        "hrsh7th/cmp-calc"
+      },
 
 
       -- -----------------------------------

@@ -128,6 +128,7 @@ local config = {
         -- treesitter = "[Treesitter]",
         conventionalcommits = "[Git]",
         zsh = "[ZSH]",
+        calc = "[Calc]",
 
         buffer = "[Buffer]",
         path = "[Path]",
@@ -150,6 +151,7 @@ local config = {
     -- { name = "treesitter" },
     { name = "conventionalcommits" },
     { name = "zsh" },
+    { name = "calc" },
 
     {
       name = "buffer",
