@@ -135,6 +135,9 @@ return {
     -- Toggle indent
     ["<LEADER><LEADER>i"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width()<CR>", "Toggle Indent Width" },
 
+    -- Split and Join
+    ["sj"] = { "<CMD>TSJToggle<CR>", "Split and Join" },
+
 
 
     -- =============================================

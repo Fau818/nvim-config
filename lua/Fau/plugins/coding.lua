@@ -67,6 +67,15 @@ local coding = {
     ft = "python",
   },
 
+  {
+    -- DESC: a plugin for splitting and joining block of code.
+    "Wansmer/treesj",
+    -- keys = { '<space>m', '<space>j', '<space>s' },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function() require("Fau.core.treesj") end,
+    cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
+  }
+
 }
 
 
