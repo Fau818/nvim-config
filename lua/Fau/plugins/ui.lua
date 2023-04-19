@@ -32,6 +32,14 @@ local ui = {
     priority = 999, -- quciker than lualine
   },
 
+  {
+    -- DESC: a colorful window separator.
+    "nvim-zh/colorful-winsep.nvim",
+    config = function() require("Fau.core.winsep") end,
+    event = { "WinNew" },
+  },
+
+
 }
 
 
