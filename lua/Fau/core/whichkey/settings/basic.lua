@@ -137,7 +137,7 @@ return {
 
     -- Split and Join
     ["sj"] = { "<CMD>TSJToggle<CR>", "Split and Join" },
-    ["<LEADER>n"] = { require("ts-node-action").node_action, "Split and Join" },
+    ["<LEADER>n"] = { "<CMD>require('ts-node-action').node_action()<CR>", "Split and Join" },
 
 
 

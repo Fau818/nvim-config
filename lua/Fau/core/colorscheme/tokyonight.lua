@@ -74,6 +74,7 @@ local config = {
     -- -----------------------------------
     -- -------- Plugin
     -- -----------------------------------
+    highlights["NvimTreeWinSeparator"] = { fg = Fau_vim.colors.dark_purple }
     highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
     highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 

@@ -1,8 +1,8 @@
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
-local winsep_ok, winsep = pcall(require, "winsep")
-if not winsep_ok then Fau_vim.load_plugin_error("winsep") return end
+local winsep_ok, winsep = pcall(require, "colorful-winsep")
+if not winsep_ok then Fau_vim.load_plugin_error("colorful-winsep") return end
 
 
 

@@ -85,6 +85,10 @@ local config = {
       }
     },
 
+    preview = {
+      filesize_limit = Fau_vim.large_file_size / (1024 * 1024),
+    },
+
     winblend = 0,         -- Configure winblend for telescope floating windows. values: [0, 100]
     wrap_results = false, -- Word wrap the search results
 
