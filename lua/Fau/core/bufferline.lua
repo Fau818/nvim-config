@@ -9,10 +9,12 @@ if not bufferline_ok then Fau_vim.load_plugin_error("bufferline") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
----@type BufferlineConfig
+---@type bufferline.Config
 local config = {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
+    style_preset = bufferline.style_preset.minimal,
+    themable = true, -- allows highlight groups to be overriden i.e. sets highlights as defaultq
 
     numbers = "none", -- values: "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
 
@@ -110,8 +112,8 @@ local config = {
 
   highlights = {
     -- selected filename in curlycue
-    buffer_selected     = { fg = "#9999FF", bold = false },
-    numbers_selected    = { fg = "#9999FF", bold = false },
+    buffer_selected     = { fg = Fau_vim.colors.cobalt, bold = false },
+    numbers_selected    = { fg = Fau_vim.colors.cobalt, bold = false },
     diagnostic_selected = { bold = false },
     hint_selected    = { bold = false },
     info_selected    = { bold = false },

@@ -67,10 +67,10 @@ local config = {
   },
 
   renderer = { -- UI rendering setup
-    add_trailing  = true, -- Appends a trailing slash to folder names.
-    group_empty   = true, -- Compact folders that only contain a single folder into one node in the file tree.
-    highlight_git = true, -- Enable file highlight for git attributes using `NvimTreeGit` highlight groups.
-    full_name     = true, -- Display node whose name length is wider than the width of nvim-tree window in floating window.
+    add_trailing  = true,  -- Appends a trailing slash to folder names.
+    group_empty   = false, -- Compact folders that only contain a single folder into one node in the file tree.
+    highlight_git = true,  -- Enable file highlight for git attributes using `NvimTreeGit` highlight groups.
+    full_name     = true,  -- Display node whose name length is wider than the width of nvim-tree window in floating window.
 
     highlight_opened_files = "name", -- Highlight icons and/or names for opened files. value: `none`, `icon`, `name` or `all`
 
