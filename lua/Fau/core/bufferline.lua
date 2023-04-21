@@ -79,7 +79,12 @@ local config = {
     color_icons = true,              -- whether or not to add the filetype icon highlights
     show_buffer_icons = true,        -- whether or not to disable filetype icons for buffers
     show_buffer_close_icons = true,
-    show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
+    get_element_icon = function(element)
+      -- element consists of {filetype: string, path: string, extension: string, directory: string}
+      -- This can be used to change how bufferline fetches the icon for an element e.g. a buffer or a tab.
+      local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype, { default = false })
+      return icon, hl
+    end,
     show_close_icon = true,
 
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
@@ -101,7 +106,7 @@ local config = {
           priority = 2, -- determines where it will appear relative to other groups (Optional)
           icon = Fau_vim.icons.ui.File, -- Optional
           auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
-          matcher = function(buf) return buf.filename:match("%.md") or buf.filename:match("%.txt") end,
+          -- matcher = function(buf) return buf.filename:match("%.md") or buf.filename:match("%.txt") end,
           separator = { -- Optional
             style = require("bufferline.groups").separator.tab
           },
