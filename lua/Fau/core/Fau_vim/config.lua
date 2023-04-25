@@ -32,7 +32,7 @@ Fau_vim.disabled_filetypes = {
   "DressingInput",
   "gitcommit",
   "lspinfo", "mason",
-  "notify", "noice",
+  "notify", "noice", "netrw",
   "NvimTree",
   "toggleterm",
   "tsplayground",
