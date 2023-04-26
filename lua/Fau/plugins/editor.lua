@@ -69,7 +69,11 @@ local editor = {
       {
         -- DESC: an extension to switch conda environments.
         "IllustratedMan-code/telescope-conda.nvim",
-      }
+      },
+      {
+        -- DESC: an extension to manage the docker containers.
+        "lpoto/telescope-docker.nvim",
+      },
     },
     config = function() require("Fau.core.telescope") end,
     cmd = "Telescope",

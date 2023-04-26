@@ -294,6 +294,14 @@ local config = {
     conda = {
       anaconda_path = "/usr/local/Caskroom/miniconda/base",
     },
+    docker = {
+      binary = "docker",
+      log_level = vim.log.levels.WARN,
+      layout_strategy = "center",
+      sorting_strategy = "ascending",
+      init_term = "split new",  -- values: "vsplit new"|"split new"|"tabnew"
+      initial_mode = "normal",
+    },
   }
 }
 
@@ -312,3 +320,4 @@ telescope.load_extension("projects")
 telescope.load_extension("emoji")
 telescope.load_extension("luasnip")
 telescope.load_extension("noice")
+telescope.load_extension("docker")

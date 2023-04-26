@@ -15,6 +15,7 @@ return {
       a = { "<CMD>lua require('telescope.builtin').autocommands()<CR>", "Find Autocommands" },
       b = { "<CMD>lua require('telescope.builtin').buffers()<CR>",      "Find Buffers" },
       c = { "<CMD>lua require('telescope.builtin').commands()<CR>",     "Find Commands" },
+      d = { "<CMD>Telescope docker<CR>",     "Find Docker" },
       e = { "<CMD>lua require('telescope').extensions.conda.conda({ layout_strategy='center', initial_mode='normal', sorting_strategy='ascending' })<CR>", "Find Conda Env" },
       E = { "<CMD>Telescope emoji<CR>",                                 "Find Emoji" },
       f = { "<CMD>lua require('telescope.builtin').find_files()<CR>",   "Find Files" },
