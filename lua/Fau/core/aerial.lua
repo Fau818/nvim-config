@@ -167,6 +167,8 @@ local config = { -- Call the setup function to change the default behavior
   -- Set to false to disable
   highlight_on_jump = 100,
 
+  autojump = false,
+
   icons = Fau_vim.icons.kind,
 
   -- Control which windows and buffers aerial should ignore.
