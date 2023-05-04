@@ -214,6 +214,18 @@ local editor = {
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
   },
 
+  {
+    -- DESC: ChatGPT in Neovim!
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function() require("Fau.core.chatgpt") end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+
 
   -- -----------------------------------
   -- -------- Jump
