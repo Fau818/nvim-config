@@ -39,4 +39,5 @@ load("git")
 load("terminal")
 load("code_runner")
 load("python-docstring")
+load("chatgpt")
 -- TODO: split this file, loading keymaps when the plugin is loading.
