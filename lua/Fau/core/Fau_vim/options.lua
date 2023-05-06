@@ -12,7 +12,7 @@ local options = {
 
   termguicolors = true,      -- set term gui colors
   cursorline = true,         -- highlight the current line
-  clipboard = vim.fn.has("clipboard") and "unnamedplus", -- allows neovim to access the system clipboard
+  clipboard = vim.fn.has("clipboard") == 1 and "unnamedplus", -- allows neovim to access the system clipboard
 
   number = true,         -- set numbered lines
   relativenumber = true, -- set relative numbered lines
