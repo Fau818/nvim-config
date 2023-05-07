@@ -28,6 +28,14 @@ local utility = {
     "tpope/vim-sleuth",
     config = function() require("Fau.core.sleuth") end,
     event = { "BufReadPost", "BufNewFile" },
+    cond = false,
+  },
+
+  {
+    -- DESC: detect file indentation automatically.
+    "nmac427/guess-indent.nvim",
+    config = function() require("Fau.core.guess-indent") end,
+    event = { "BufReadPost", "BufNewFile" },
   },
 
 }

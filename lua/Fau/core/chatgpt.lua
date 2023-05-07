@@ -10,6 +10,7 @@ if not chatgpt_ok then Fau_vim.load_plugin_error("chatgpt") return end
 -- ========== Configuration
 -- =============================================
 local config = {
+  api_key_cmd = nil,
   yank_register = "+",
 
   edit_with_instructions = {
