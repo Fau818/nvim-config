@@ -48,12 +48,15 @@ local config = {
       yank_last_code = "<C-k>",
       scroll_up = "<C-b>",
       scroll_down = "<C-f>",
-      toggle_settings = "<C-o>",
       new_session = "<C-n>",
       cycle_windows = "<Tab>",
       select_session = "<Space>",
       rename_session = "r",
       delete_session = "d",
+      toggle_settings = "<C-o>",
+      draft_message = "<C-d>",
+      toggle_message_role = "<C-r>",
+      toggle_system_role_open = "<C-s>",
     },
   },
 
@@ -76,7 +79,28 @@ local config = {
       },
     },
     win_options = {
+      wrap = true,
+      linebreak = true,
+      foldcolumn = "1",
       winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
+    buf_options = {
+      filetype = "markdown",
+    },
+    system_window = {
+      border = {
+        highlight = "FloatBorder",
+        style = "rounded",
+        text = {
+          top = " SYSTEM ",
+        },
+      },
+      win_options = {
+        wrap = true,
+        linebreak = true,
+        foldcolumn = "2",
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+      },
     },
   },
 
