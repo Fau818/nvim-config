@@ -71,8 +71,9 @@ return {
       I = { "<CMD>Mason<CR>",   "Mason" },
 
       -- Symbols
-      s = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>",  "Buffer Symbols" },
-      S = { "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace Symbols" },
+      s = { "<CMD>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", "Dynamic Workspace Symbols" },
+      -- s = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>",  "Buffer Symbols" },
+      -- S = { "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace Symbols" },
 
       -- Virtual Text
       v = { "<CMD>lua vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text})<CR>", "Toggle Virtual Text" },
