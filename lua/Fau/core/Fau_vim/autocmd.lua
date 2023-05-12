@@ -166,10 +166,6 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     if not illuminate_ok then illuminate = nil end
     if illuminate then illuminate.stop_buf(buffer) end
 
-    -- Disable context
-    -- BUG: Can't disable for a single buffer.
-    vim.api.nvim_command("TSContextDisable")
-
     -- Disable fold
     local ufo_ok, ufo = pcall(require, "ufo")
     if not ufo_ok then Fau_vim.notify("UFO error") end
