@@ -64,7 +64,7 @@ local test = {
 
 
   {
-    "echasnovski/mini.nvim",
+    "echasnovski/mini.completion",
     config = function()
       local completion = require("mini.completion")
 
@@ -121,6 +121,7 @@ local test = {
 
       completion.setup(config)
     end,
+    event = { "InsertEnter", "CmdlineEnter" },
   }
 
 
