@@ -14,6 +14,7 @@ local test = {
   {
     -- DESC: an incremental LSP rename supporter, which has a preview feature.
     -- WARNING: This plugin is disabled.
+    -- Doesn't support input mode switch.
     "smjonas/inc-rename.nvim",
     config = function() require("Fau.core.inc_rename") end,
     enabled = Fau_vim.inc_rename.enable,

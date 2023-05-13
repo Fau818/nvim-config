@@ -99,7 +99,7 @@ return {
     FoldClosed = "",
     FoldOpened = "",
 
-    -- Rename    = "",
+    Rename    = "",
     -- Parameter = "",
     Signature = "󰷾",
 

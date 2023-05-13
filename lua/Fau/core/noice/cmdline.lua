@@ -48,5 +48,14 @@ return {
       icon = Fau_vim.icons.ui.Input,
       lang = "regex",
     },
+    IncRename = {
+      pattern = "^:%s*IncRename%s+",
+      icon = Fau_vim.icons.ui.Rename .. " ",
+      opts = {
+        relative = "cursor",
+        size = { width = 30 },
+        position = { row = -2, col = 0 },
+      },
+    },
   },
 }
