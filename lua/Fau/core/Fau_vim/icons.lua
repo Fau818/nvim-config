@@ -101,7 +101,7 @@ return {
 
     -- Rename    = "",
     -- Parameter = "",
-    -- Signature = "󰷾",
+    Signature = "󰷾",
 
     Tab   = "",
     Space = "⎵",

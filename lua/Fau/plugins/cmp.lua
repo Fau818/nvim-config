@@ -100,6 +100,14 @@ local cmp = {
     ft = { "lua", "ruby", "vim", "sh", "zsh", "elixir" }
   },
 
+  {
+    -- DESC: show signature help in a small pop window.
+    "echasnovski/mini.completion",
+    config = function() require("Fau.core.mini.completion") end,
+    event = { "InsertEnter" },
+  },
+
+
 }
 
 
