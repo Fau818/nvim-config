@@ -151,7 +151,7 @@ return {
   indent = { -- detect the indenttype and check whether occur mixed indent
     -- TODO: Check indent except comment lines
     function()
-      if Fau_vim.functions.test.is_large_file() then return "LF" end
+      if Fau_vim.functions.utils.is_large_file() then return "LF" end
 
       local TIMEOUT = 5
 

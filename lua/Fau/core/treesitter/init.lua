@@ -36,7 +36,7 @@ local config = {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = function() return Fau_vim.functions.test.is_large_file() end,
+    disable = function() return Fau_vim.functions.utils.is_large_file() end,
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).

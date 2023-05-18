@@ -18,8 +18,8 @@ local config = {
 
     numbers = "none", -- values: "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
 
-    close_command        = Fau_vim.functions.test.buf_remove, -- can be a string | function, see "Mouse actions"
-    right_mouse_command  = Fau_vim.functions.test.buf_remove, -- can be a string | function, see "Mouse actions"
+    close_command        = Fau_vim.functions.utils.buf_remove, -- can be a string | function, see "Mouse actions"
+    right_mouse_command  = Fau_vim.functions.utils.buf_remove, -- can be a string | function, see "Mouse actions"
     left_mouse_command   = "buffer %d",  -- can be a string | function, see "Mouse actions"
     middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
 

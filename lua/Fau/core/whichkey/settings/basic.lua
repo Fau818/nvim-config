@@ -19,7 +19,6 @@ local basic = {  -- n
   ["<S-TAB>"] = "Unindent Line",
 
   ["<LEADER><LEADER>c"] = "Convert Tab and Space",
-  ["<LEADER><LEADER>C"] = "Convert Tab and Space (Force)",
 
   ["<C-v>"] = "Vertical Split",
   -- ["<C-x>"] = "Horizontal Split",
@@ -134,6 +133,8 @@ return {
 
     -- Toggle indent
     ["<LEADER><LEADER>i"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width()<CR>", "Toggle Indent Width" },
+    -- NOTE: I don't think this is helpful.
+    ["<LEADER><LEADER>I"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width({force=true})<CR>", "Toggle Indent Width (Force)" },
 
     -- Split and Join
     ["sj"] = { "<CMD>TSJToggle<CR>", "Split and Join" },
@@ -175,7 +176,7 @@ return {
 
     -- TODO: move lines and close buffers be a command with fallback
     ["<A-w>"] = "Save All Buffers",
-    ["<A-q>"] = { Fau_vim.functions.buf_remove, "Close Current Buffer" },
+    ["<A-q>"] = { Fau_vim.functions.utils.buf_remove, "Close Current Buffer" },
 
     ["<A-left>"]  = { "<CMD>BufferLineMovePrev<CR>", "Move Buffer Prev" },
     ["<A-right>"] = { "<CMD>BufferLineMoveNext<CR>", "Move Buffer Next" },

@@ -159,7 +159,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   pattern = "*.*",
   callback = function()
     local buffer = vim.api.nvim_get_current_buf()
-    if not Fau_vim.functions.test.is_large_file(buffer) then return end
+    if not Fau_vim.functions.utils.is_large_file(buffer) then return end
 
     ---Large file!!
     local illuminate_ok, illuminate = pcall(require, "illuminate.engine")

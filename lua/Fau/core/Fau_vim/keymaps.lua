@@ -79,8 +79,7 @@ keymap("n", "<C-f>", "<CMD>silent !open $(dirname %)<CR>", opts)
 keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 
 -- Convert tab and space
-keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab<CR>", opts)
-keymap({ "n", "x" }, "<LEADER><LEADER>C", ":retab!<CR>", opts)
+keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab!<CR>", opts)
 
 -- Open File Explore
 keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts)
