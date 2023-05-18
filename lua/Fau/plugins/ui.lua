@@ -37,6 +37,7 @@ local ui = {
     "nvim-zh/colorful-winsep.nvim",
     config = function() require("Fau.core.winsep") end,
     event = { "WinNew" },
+    cond = false,  -- doesn't work nicely.
   },
 
 
