@@ -27,7 +27,7 @@ local config = {
   -- Way of how module does LSP completion
   lsp_completion = {
     -- `source_func` should be one of 'completefunc' or 'omnifunc'.
-    source_func = "omnifunc",
+    source_func = "completefunc",
 
     -- `auto_setup` should be boolean indicating if LSP completion is set up
     -- on every `BufEnter` event.
