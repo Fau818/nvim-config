@@ -21,7 +21,7 @@ local config = {
   -- - `border` defines border (as in `nvim_open_win()`).
   window = {
     info = { height = 25, width = 80, border = "none" },
-    signature = { height = 25, width = 80, border = "none" },
+    signature = { height = 25, width = 80, border = "single" },
   },
 
   -- Way of how module does LSP completion
