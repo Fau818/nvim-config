@@ -57,9 +57,9 @@ local config = {
     highlights["Statement"] = { fg = colors.magenta, style      = { italic=true } }
     highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, style = { italic=true } }
 
-    highlights["@number"]  = { fg = Fau_vim.colors.light_blue }
-    highlights["@string"]  = { fg = Fau_vim.colors.light_green }
-    highlights["@boolean"] = { fg = colors.orange, style = { italic=true } }
+    highlights["Number"]  = { fg = Fau_vim.colors.light_blue }
+    highlights["String"]  = { fg = Fau_vim.colors.light_green }
+    highlights["Boolean"] = { fg = colors.orange, style = { italic=true } }
 
     highlights["@keyword.function"] = { fg = Fau_vim.colors.purple, style = { italic=true } }
     highlights["@keyword.operator"] = { fg = colors.blue5, style = { italic=true } }
