@@ -1,9 +1,9 @@
 local modifyer = {  -- ni
   -- Document
-  ["<C-d>"] = { "<CMD>lua vim.lsp.buf.hover()<CR>", "Show Document" },
+  ["<C-d>"] = { vim.lsp.buf.hover, "Show Document" },
 
   -- Signature
-  ["<C-p>"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Show Signature" },
+  ["<C-p>"] = { vim.lsp.buf.signature_help(), "Show Signature" },
 
   -- Prev/Next Reference
   ["<A-p>"] = { "<CMD>lua require('illuminate').next_reference{reverse=true,wrap=true}<CR>", "Prev Reference" },
@@ -11,10 +11,25 @@ local modifyer = {  -- ni
 }
 
 
----@return string
-local function get_rename()
-  return Fau_vim.inc_rename.enable and ":IncRename " or "<CMD>lua vim.lsp.buf.rename()<CR>"
+---@return string|function
+local function get_rename_method()
+  return Fau_vim.inc_rename.enable and ":IncRename " or vim.lsp.buf.rename
 end
+
+
+local builtin = require("telescope.builtin")
+
+
+local functions = {
+  find_symbols = function()
+    local config = {
+      symbols = { "class", "function" },
+      layout_strategy = "center",
+      sorting_strategy = "ascending",
+    }
+    builtin.lsp_dynamic_workspace_symbols(config)
+  end,
+}
 
 
 
@@ -29,9 +44,9 @@ return {
       -- d = { "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>",       "Go To Definition" },
       -- D = { "<CMD>lua require('telescope.builtin').lsp_type_definitions() <CR>", "Go To Type Definition (Declaration)" },
       -- I = { "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>",   "Go To Implementation" },
-      d = { "<CMD>Trouble lsp_definitions<CR>", "Go To Definition" },
+      d = { "<CMD>Trouble lsp_definitions<CR>",      "Go To Definition" },
       D = { "<CMD>Trouble lsp_type_definitions<CR>", "Go To Type Definition (Declaration)" },
-      I = { "<CMD>Trouble lsp_implementations<CR>", "Go To Implementation" },
+      I = { "<CMD>Trouble lsp_implementations<CR>",  "Go To Implementation" },
 
       -- Reference
       -- r = { "<CMD>lua require('telescope.builtin').lsp_references()<CR>", "Show References" },
@@ -41,16 +56,16 @@ return {
       l = { "<CMD>lua vim.diagnostic.open_float()<CR>", "Show Long Diagnostic Info" },
 
       -- Call
-      i = { "<CMD>lua require('telescope.builtin').lsp_incoming_calls()<CR>", "Show Incoming Calls" },
-      o = { "<CMD>lua require('telescope.builtin').lsp_outgoing_calls()<CR>", "Show Outgoing Calls" },
+      i = { builtin.lsp_incoming_calls, "Show Incoming Calls" },
+      o = { builtin.lsp_outgoing_calls, "Show Outgoing Calls" },
     },
 
 
     ["<LEADER>l"] = {
       name = "+LSP",
-      r = { get_rename(), "Rename" },
+      r = { get_rename_method(), "Rename" },
 
-      a = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+      a = { vim.lsp.buf.code_action, "Code Action" },
 
       -- Diagnostic Info
       -- d = { "<CMD>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Document Diagnostics" },
@@ -59,19 +74,19 @@ return {
       D = { "<CMD>Trouble workspace_diagnostics<CR>", "Workspace Diagnostics" },
 
       -- Goto Prev/Next Diagnostics
-      p = { "<CMD>lua vim.diagnostic.goto_prev()<CR>", "Goto Prev Diagnostics" },
-      n = { "<CMD>lua vim.diagnostic.goto_next()<CR>", "Goto Next Diagnostics" },
+      p = { vim.diagnostic.goto_prev, "Goto Prev Diagnostics" },
+      n = { vim.diagnostic.goto_next, "Goto Next Diagnostics" },
 
       -- Format
-      f = { "<CMD>lua Fau_vim.functions.format.smart_format()<CR>", "Format Code" },
-      F = { "<CMD>lua vim.lsp.buf.format()<CR>",                    "Format Code (Force Formatter)" },
+      f = { Fau_vim.functions.format.smart_format, "Format Code" },
+      F = { vim.lsp.buf.format,                    "Format Code (Force Formatter)" },
 
       -- LSP Manager
       i = { "<CMD>LspInfo<CR>", "LspInfo" },
       I = { "<CMD>Mason<CR>",   "Mason" },
 
       -- Symbols
-      s = { "<CMD>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", "Dynamic Workspace Symbols" },
+      s = { functions.find_symbols, "Dynamic Workspace Symbols" },
       -- s = { "<CMD>lua require('telescope.builtin').lsp_document_symbols()<CR>",  "Buffer Symbols" },
       -- S = { "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace Symbols" },
 

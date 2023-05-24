@@ -11,6 +11,7 @@ local editor = {
     "nvim-tree/nvim-tree.lua",
     config = function() require("Fau.core.nvim-tree") end,
     event = "VeryLazy",
+    priority = 950,
   },
 
   {
@@ -24,7 +25,7 @@ local editor = {
     },
     config = function() require("Fau.core.bufferline") end,
     event = "VeryLazy",
-    priority = 998,
+    priority = 900,
   },
 
   {
@@ -32,7 +33,7 @@ local editor = {
     "nvim-lualine/lualine.nvim",
     config = function() require("Fau.core.lualine") end,
     event = "VeryLazy",
-    priority = 998,
+    priority = 900,
   },
 
 
@@ -76,7 +77,7 @@ local editor = {
       },
     },
     config = function() require("Fau.core.telescope") end,
-    cmd = "Telescope",
+    cmd = "Telescope",  -- hard to be so lazy since which-key used this.
   },
 
 

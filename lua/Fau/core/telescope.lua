@@ -82,7 +82,7 @@ local config = {
         preview_cutoff = 40,
         width = 0.5,
         preview_width = 0.7,
-      }
+      },
     },
 
     preview = {

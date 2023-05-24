@@ -1,36 +1,75 @@
+-- =============================================
+-- ========== Pickers Definition
+-- =============================================
+local builtin = require("telescope.builtin")
+local extensions = require("telescope").extensions
+
+
+local functions = {
+  conda = function()
+    local config = { layout_strategy='center', initial_mode='normal', sorting_strategy='ascending' }
+    extensions.conda.conda(config)
+  end,
+
+  docker = function() extensions.docker.docker() end,
+
+  emoji = function() extensions.emoji.emoji() end,
+
+  luasnip = function()
+    local config = { layout_strategy = "vertical", initial_mode = "normal" }
+    extensions.luasnip.luasnip(config)
+  end,
+
+  notify = function()
+    local config = { layout_strategy = "vertical", initial_mode = "normal" }
+    extensions.notify.notify(config)
+  end,
+
+  projects = function()
+    local config = { layout_strategy = "center", sorting_strategy = "ascending", initial_mode = "normal" }
+    extensions.projects.projects(config)
+  end,
+
+  builtin = {
+    live_grep_in_opened_files = function() builtin.live_grep({grep_open_files=true}) end,
+    grep_string_in_opened_files = function() builtin.grep_string({grep_open_files=true}) end,
+  }
+}
+
+
+
 return {
   n = {
-    -- =============================================
-    -- ========== Open Telescope Directly
-    -- =============================================
+    -- -----------------------------------
+    -- -------- Open Telescope Directly
+    -- -----------------------------------
     ["<LEADER>F"] = { "<CMD>Telescope<CR>", "Telescope" },
 
 
-
-    -- =============================================
-    -- ========== Vim Pickers
-    -- =============================================
+    -- -----------------------------------
+    -- -------- Vim Pickers
+    -- -----------------------------------
     ["<LEADER>f"] = {
       name = "+Telescope",
-      a = { "<CMD>lua require('telescope.builtin').autocommands()<CR>", "Find Autocommands" },
-      b = { "<CMD>lua require('telescope.builtin').buffers()<CR>",      "Find Buffers" },
-      c = { "<CMD>lua require('telescope.builtin').commands()<CR>",     "Find Commands" },
-      d = { "<CMD>Telescope docker<CR>",     "Find Docker" },
-      e = { "<CMD>lua require('telescope').extensions.conda.conda({ layout_strategy='center', initial_mode='normal', sorting_strategy='ascending' })<CR>", "Find Conda Env" },
-      E = { "<CMD>Telescope emoji<CR>",                                 "Find Emoji" },
-      f = { "<CMD>lua require('telescope.builtin').find_files()<CR>",   "Find Files" },
-      h = { "<CMD>lua require('telescope.builtin').help_tags()<CR>",    "Find Help" },
-      H = { "<CMD>lua require('telescope.builtin').highlights()<CR>",   "Find Highlights" },
-      k = { "<CMD>lua require('telescope.builtin').keymaps()<CR>",      "Find Keymaps" },
-      l = { "<CMD>Telescope luasnip layout_strategy=vertical initial_mode=normal<CR>", "Find Luasnip" },
-      n = { "<CMD>Telescope notify layout_strategy=vertical initial_mode=normal<CR>", "Show Notify" },
-      p = { "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>", "Open Projects" },
-      t = { "<CMD>TodoTelescope<CR>", "Find Todo Comments" },
-      r = { "<CMD>lua require('telescope.builtin').oldfiles()<CR>",    "Open Recent Files" },
-      s = { "<CMD>lua require('telescope.builtin').live_grep()<CR>",   "Find String" },
-      S = { "<CMD>lua require('telescope.builtin').live_grep({grep_open_files=true})<CR>",   "Find String in Opened Buffers" },
-      w = { "<CMD>lua require('telescope.builtin').grep_string()<CR>", "Find Word Under Cursor" },
-      W = { "<CMD>lua require('telescope.builtin').grep_string({grep_open_files=true})<CR>", "Find Word Under Cursor in Opened Buffers" },
+      a = { builtin.autocommands,                          "Find Autocommands" },
+      b = { builtin.buffers,                               "Find Buffers" },
+      c = { builtin.commands,                              "Find Commands" },
+      d = { functions.docker,                              "Find Docker" },
+      e = { functions.conda,                               "Find Conda Environments" },
+      E = { functions.emoji,                               "Find Emoji" },
+      f = { builtin.find_files,                            "Find Files" },
+      h = { builtin.help_tags,                             "Find Help" },
+      H = { builtin.highlights,                            "Find Highlights" },
+      k = { builtin.keymaps,                               "Find Keymaps" },
+      l = { functions.luasnip,                             "Find Luasnip" },
+      n = { functions.notify,                              "Show Notify" },
+      p = { functions.projects,                            "Open Projects" },
+      t = { "<CMD>TodoTelescope<CR>",                      "Find Todo Comments" },
+      r = { builtin.oldfiles,                              "Open Recent Files" },
+      s = { builtin.live_grep,                             "Find String" },
+      S = { functions.builtin.live_grep_in_opened_files,   "Find String in Opened Buffers" },
+      w = { builtin.grep_string,                           "Find Word Under Cursor" },
+      W = { functions.builtin.grep_string_in_opened_files, "Find Word Under Cursor in Opened Buffers" },
     },
   }
 }

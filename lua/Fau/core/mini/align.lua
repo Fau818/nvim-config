@@ -64,4 +64,6 @@ local config = {
   silent = false,
 }
 
+
 align.setup(config)
+-- TODO: A PR or issue to toggle pre-step
