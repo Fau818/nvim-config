@@ -13,6 +13,7 @@ local misc = {
   {
     -- DESC: a python stub library.
     "microsoft/python-type-stubs",
+    commit = "03c65909aa1023b9aa6ed7b6c4f2eff26f5bc9b8",
     cond = false
   }
 }
