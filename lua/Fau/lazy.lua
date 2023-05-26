@@ -42,7 +42,7 @@ local config = {
   -- spec = nil, ---@type LazySpec
   spec = "Fau.plugins",
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
-  concurrency = 5, ---@type number limit the maximum amount of concurrent tasks
+  concurrency = 20, ---@type number limit the maximum amount of concurrent tasks
 
   git = {
     -- defaults for the `Lazy log` command
