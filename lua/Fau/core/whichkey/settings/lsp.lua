@@ -3,7 +3,7 @@ local modifyer = {  -- ni
   ["<C-d>"] = { vim.lsp.buf.hover, "Show Document" },
 
   -- Signature
-  ["<C-p>"] = { vim.lsp.buf.signature_help(), "Show Signature" },
+  ["<C-p>"] = { vim.lsp.buf.signature_help, "Show Signature" },
 
   -- Prev/Next Reference
   ["<A-p>"] = { "<CMD>lua require('illuminate').next_reference{reverse=true,wrap=true}<CR>", "Prev Reference" },
