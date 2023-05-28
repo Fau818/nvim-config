@@ -53,6 +53,11 @@ local cmp = {
         -- DESC: calculation source for nvim-cmp.
         "hrsh7th/cmp-calc"
       },
+      {
+        -- DESC: Copilot source for nvim-cmp.
+        "hrsh7th/cmp-copilot",
+        dependencies = { "github/copilot.vim" },
+      },
 
 
       -- -----------------------------------

@@ -44,6 +44,8 @@ local config = {
     debounce = 60,          -- popup menu delay
     throttle = 30,          -- refresh delay
     fetching_timeout = 500, -- fetching timeout
+    async_budget = 30,
+    max_view_entries = 200,
   },
 
   completion = {
@@ -132,6 +134,8 @@ local config = {
 
         buffer = "[Buffer]",
         path = "[Path]",
+
+        copilot = "[Copilot]",
         -- nvim_lsp_signature_help = "[Param]",
       })[entry.source.name]
 
@@ -147,6 +151,7 @@ local config = {
       -- disable snippets from LSP
       -- entry_filter = function(entry) return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind() end
     },
+    { name = "copilot" },
     { name = "luasnip" },
     -- { name = "treesitter" },
     { name = "conventionalcommits" },
