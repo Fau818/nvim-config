@@ -146,12 +146,12 @@ local config = {
   },
 
   sources = { -- The order of the sources determines their order in the completion results.
+    { name = "copilot" },
     {
       name = "nvim_lsp",
       -- disable snippets from LSP
       -- entry_filter = function(entry) return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind() end
     },
-    { name = "copilot" },
     { name = "luasnip" },
     -- { name = "treesitter" },
     { name = "conventionalcommits" },
