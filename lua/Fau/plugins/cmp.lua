@@ -54,10 +54,25 @@ local cmp = {
         "hrsh7th/cmp-calc"
       },
       {
-        -- DESC: Copilot source for nvim-cmp.
-        "hrsh7th/cmp-copilot",
-        dependencies = { "github/copilot.vim" },
+        -- DESC: copilot source for nvim-cmp
+        "zbirenbaum/copilot-cmp",
+        dependencies = {
+          {
+            -- DESC: a plugin for config copilot.
+            "zbirenbaum/copilot.lua",
+            config = function() require("Fau.core.copilot") end,
+            cmd = { "Copilot" },
+          },
+        },
+        config = function()
+          local config = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+          }
+          require("copilot_cmp").setup(config)
+        end,
       },
+
 
 
       -- -----------------------------------

@@ -124,19 +124,16 @@ local config = {
     format = function(entry, vim_item)   -- The function used to customize the appearance of the completion menu.
       vim_item.kind = Fau_vim.icons.kind[vim_item.kind]
       vim_item.menu = ({
+        copilot = "[Copilot]",
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
 
-        -- treesitter = "[Treesitter]",
         conventionalcommits = "[Git]",
         zsh = "[ZSH]",
         calc = "[Calc]",
 
         buffer = "[Buffer]",
         path = "[Path]",
-
-        copilot = "[Copilot]",
-        -- nvim_lsp_signature_help = "[Param]",
       })[entry.source.name]
 
       -- limit the length of abbr
@@ -153,7 +150,6 @@ local config = {
       -- entry_filter = function(entry) return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind() end
     },
     { name = "luasnip" },
-    -- { name = "treesitter" },
     { name = "conventionalcommits" },
     { name = "zsh" },
     { name = "calc" },

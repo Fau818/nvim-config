@@ -83,6 +83,11 @@ local config = {
 
     highlights["TelescopeBorder"]       = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
+
+    -- -----------------------------------
+    -- -------- test
+    -- -----------------------------------
+    highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
   end,
 }
 

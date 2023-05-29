@@ -10,6 +10,7 @@ return {
     Color         = "", -- ""
     Constant      = "",
     Constructor   = "", -- ""
+    Copilot       = "",
     Enum          = "",
     EnumMember    = "", -- ""
     Event         = "", -- ""
@@ -56,7 +57,7 @@ return {
 
     -- Diff     = "",
     -- Repo     = "",
-    Octoface = "",
+    Octoface = "",
     Branch   = "",
   },
 
