@@ -41,10 +41,10 @@ local config = {
   enable = true,  -- Toggles the plugin on and off.
   snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
   performance = {
-    debounce = 60,          -- popup menu delay
-    throttle = 30,          -- refresh delay
+    debounce = 100,         -- popup menu delay
+    throttle = 50,          -- refresh delay
     fetching_timeout = 500, -- fetching timeout
-    async_budget = 30,
+    async_budget = 50,
     max_view_entries = 200,
   },
 
