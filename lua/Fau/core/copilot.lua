@@ -39,6 +39,7 @@ local config = {
     },
   },
   filetypes = {
+    gitcommit = true,
     -- help = false,
     -- ["*"] = false,
   },
