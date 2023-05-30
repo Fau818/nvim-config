@@ -40,6 +40,7 @@ local config = {
   },
   filetypes = {
     gitcommit = true,
+    ["*"] = function() return not Fau_vim.functions.utils.is_large_file() end,
     -- help = false,
     -- ["*"] = false,
   },

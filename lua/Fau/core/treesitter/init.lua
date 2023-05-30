@@ -46,7 +46,8 @@ local config = {
   },
 
   indent = {
-    enable = true,  -- wait for fixing in python
+    enable = true,
+    disable = function() return Fau_vim.functions.utils.is_large_file() end,
   },
 
   -- nvim-ts-context-commentstring plugin

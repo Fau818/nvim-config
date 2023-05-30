@@ -162,14 +162,21 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     if not Fau_vim.functions.utils.is_large_file(buffer) then return end
 
     ---Large file!!
+    -- Disable illuminate
     local illuminate_ok, illuminate = pcall(require, "illuminate.engine")
     if illuminate_ok then illuminate.stop_buf(buffer) end
+    vim.api.nvim_command("syntax off")
 
     -- Disable fold
     local ufo_ok, ufo = pcall(require, "ufo")
     if ufo_ok then ufo.detach(buffer) end
     vim.wo.foldenable = false
     vim.wo.foldcolumn = "0"
+
+    -- Disable IndentLine
+    local indent_blankline_ok, indent_blankline = pcall(require, "indent_blankline")
+    if indent_blankline_ok then vim.api.nvim_command("IndentBlanklineDisable") end
+
 
     -- Disable mini
     vim.b.minitrailspace_disable = true
@@ -178,5 +185,10 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     -- Disable edit
     vim.bo.undofile   = false
     vim.bo.modifiable = false
+
+    -- extra ...
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = false
+    vim.opt_local.mousemoveevent = false
   end,
 })

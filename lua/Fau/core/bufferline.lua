@@ -9,7 +9,7 @@ if not bufferline_ok then Fau_vim.load_plugin_error("bufferline") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
----@type bufferline.Config
+---@type bufferline.UserConfig
 local config = {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead

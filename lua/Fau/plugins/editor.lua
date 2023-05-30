@@ -144,7 +144,7 @@ local editor = {
     "lukas-reineke/indent-blankline.nvim",
     config = function() require("Fau.core.indentline") end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "BufReadPost", "BufNewFile" },
+    event = "BufReadPre",
   },
   {
     -- DESC: an indent guide line with animation.

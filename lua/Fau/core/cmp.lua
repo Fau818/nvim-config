@@ -10,7 +10,6 @@ if not luasnip_ok then Fau_vim.load_plugin_error("luasnip") return end
 local npairs_ok, npairs = pcall(require, "nvim-autopairs.completion.cmp")
 if not npairs_ok then npairs = nil end
 
-
 local cmp_zsh_ok, cmp_zsh = pcall(require, "cmp_zsh")
 if cmp_zsh_ok then cmp_zsh.setup({ zshrc = true, filetypes = { "zsh" } }) end
 
@@ -38,43 +37,47 @@ require("luasnip.loaders.from_snipmate").lazy_load()  -- for snipmate snippets
 -- -----------------------------------
 ---@type cmp.ConfigSchema
 local config = {
-  enable = true,  -- Toggles the plugin on and off.
+  enabled = function() return not Fau_vim.functions.utils.is_large_file() end,
+
   snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
+
   performance = {
     debounce = 100,         -- popup menu delay
     throttle = 50,          -- refresh delay
     fetching_timeout = 500, -- fetching timeout
-    async_budget = 50,
-    max_view_entries = 200,
+    async_budget = 250,
+    max_view_entries = 100,
   },
+
+  view = { entries = "custom" },
 
   completion = {
     autocomplete = { "InsertEnter", "TextChanged" },
     completeopt = "menu,menuone,noinsert",
-    keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
-    keyword_length = 1,
+    -- keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
+    -- keyword_length = 1,
+    -- get_commit_characters = function() end,
   },
 
   confirmation = {
+    -- default_behavior = "insert",
     default_behavior = "insert",
+    -- get_commit_characters = ...,
   },
-
-  preselect = "item",
+  preselect = cmp.PreselectMode.item,
 
   mapping = { -- custom mapping
-    -- NOTE: the default mapping mode is 'insert'. like cmp.mapping(..., { "i" })
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "s" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "s" }),
 
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c", "s" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c", "s" }),
-
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c", "s" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c", "s" }),
 
     ["<ESC>"] = cmp.mapping(cmp.mapping.close(), { "i", "s" }),
     ["<C-c>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c", "s" }),
 
     ["<TAB>"] = cmp.mapping(
       function(fallback)
-        if cmp.visible() then cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert })
+        if cmp.visible() then cmp.confirm({ select=true, behavior=cmp.ConfirmBehavior.Insert })
         elseif luasnip.jumpable(1) then luasnip.jump(1)
         else fallback()
         end
@@ -142,45 +145,33 @@ local config = {
     end,
   },
 
+  matching = {
+    disallow_fuzzy_matching         = false,
+    disallow_fullfuzzy_matching     = false,
+    disallow_partial_fuzzy_matching = false,
+    disallow_partial_matching       = false,
+    disallow_prefix_unmatching      = false,
+  },
+
+  -- sorting = {
+  --   comparators = ...,
+  --   priority_weight = ...,
+  -- },
+
   sources = { -- The order of the sources determines their order in the completion results.
-    { name = "copilot" },
-    {
-      name = "nvim_lsp",
-      -- disable snippets from LSP
-      -- entry_filter = function(entry) return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind() end
-    },
+    { name = "copilot", keyword_length = 2 },
+    { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "conventionalcommits" },
     { name = "zsh" },
     { name = "calc" },
 
-    {
-      name = "buffer",
-      option = {
-        indexing_interval = 100,
-        indexing_batch_size = 1024,
-        max_indexed_line_length = 2048,
-        get_bufnrs = function()
-          local buf = vim.api.nvim_get_current_buf()
-          local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-          if byte_size >= Fau_vim.large_file_size then return {} end
-          return { buf }
-        end,
-      }
-    },
+    { name = "buffer" },
     { name = "path" },
   },
 
-  matching = {
-    disallow_fuzzy_matching = false,
-    disallow_fullfuzzy_matching = false,
-    disallow_partial_fuzzy_matching = false,
-    disallow_partial_matching = false,
-    disallow_prefix_unmatching = false,
-  },
-
   window = {
-    completion = cmp.config.window.bordered(),
+    completion    = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
 
@@ -193,11 +184,11 @@ local config = {
 -- -----------------------------------
 ---@type cmp.ConfigSchema
 local config_cmdline_command = {
+  enabled = true,
   completion = {
-    autocomplete = {},  -- values: InsertEnter|TextChanged
+    autocomplete = {},
     completeopt = "menu,menuone,noselect",
   },
-  preselect = "None",
 
   mapping = {
     ["<TAB>"] = cmp.mapping(
@@ -216,38 +207,25 @@ local config_cmdline_command = {
 }
 
 
+---@type cmp.ConfigSchema
 local config_cmdline_search = {
   completion = {
-    autocomplete = {},  -- values: InsertEnter|TextChanged
+    autocomplete = {},
     completeopt = "menu,menuone,noselect",
   },
-  preselect = "None",
 
   mapping = {
     ["<TAB>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then cmp.select_next_item()
-        elseif not cmp.visible() then cmp.complete();
+        elseif not cmp.visible() then cmp.complete()
         else fallback()
         end
       end, { "c" }
     ),
   },
   sources = {
-    {
-      name = "buffer",
-      option = {
-        indexing_interval = 100,
-        indexing_batch_size = 1024,
-        max_indexed_line_length = 2048,
-        get_bufnrs = function()
-          local buf = vim.api.nvim_get_current_buf()
-          local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-          if byte_size >= Fau_vim.large_file_size then return {} end
-          return { buf }
-        end,
-      }
-    },
+    { name = "buffer" },
   }
 }
 

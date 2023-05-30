@@ -35,7 +35,7 @@ local utility = {
     -- DESC: detect file indentation automatically.
     "nmac427/guess-indent.nvim",
     config = function() require("Fau.core.guess-indent") end,
-    event = { "BufReadPre" },
+    event = "BufReadPre",
   },
 
 }
