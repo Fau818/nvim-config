@@ -72,6 +72,11 @@ local cmp = {
           require("copilot_cmp").setup(config)
         end,
       },
+      -- {
+      --   -- DESC: Copilot source for nvim-cmp.
+      --   "hrsh7th/cmp-copilot",
+      --   dependencies = { "github/copilot.vim" },
+      -- },
 
 
       -- -----------------------------------
