@@ -19,7 +19,7 @@ local config = {
   mode = "topline",               -- Line used to calculate context. Choices: 'cursor', 'topline'
   separator = nil,
   zindex = 20,                    -- The Z-index of the context window
-  on_attach = function() Fau_vim.functions.utils.is_large_file() end,
+  on_attach = function(buffer) return not Fau_vim.functions.utils.is_large_file(buffer) end,
 }
 
 

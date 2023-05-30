@@ -163,13 +163,11 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
     ---Large file!!
     local illuminate_ok, illuminate = pcall(require, "illuminate.engine")
-    if not illuminate_ok then illuminate = nil end
-    if illuminate then illuminate.stop_buf(buffer) end
+    if illuminate_ok then illuminate.stop_buf(buffer) end
 
     -- Disable fold
     local ufo_ok, ufo = pcall(require, "ufo")
-    if not ufo_ok then Fau_vim.notify("UFO error") end
-    if ufo then ufo.detach(buffer) end
+    if ufo_ok then ufo.detach(buffer) end
     vim.wo.foldenable = false
     vim.wo.foldcolumn = "0"
 

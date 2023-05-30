@@ -86,7 +86,8 @@ local config = {
     },
 
     preview = {
-      filesize_limit = Fau_vim.large_file_size / (1024 * 1024),
+      -- BUG: If set to 1, an 1MB file will be previewd.
+      filesize_limit = Fau_vim.large_file_size / (1024 * 1024) / 8,
     },
 
     winblend = 0,         -- Configure winblend for telescope floating windows. values: [0, 100]

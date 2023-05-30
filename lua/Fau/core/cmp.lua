@@ -163,7 +163,7 @@ local config = {
         get_bufnrs = function()
           local buf = vim.api.nvim_get_current_buf()
           local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-          if byte_size > Fau_vim.large_file_size then return {} end
+          if byte_size >= Fau_vim.large_file_size then return {} end
           return { buf }
         end,
       }
@@ -243,7 +243,7 @@ local config_cmdline_search = {
         get_bufnrs = function()
           local buf = vim.api.nvim_get_current_buf()
           local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-          if byte_size > Fau_vim.large_file_size then return {} end
+          if byte_size >= Fau_vim.large_file_size then return {} end
           return { buf }
         end,
       }
