@@ -57,7 +57,6 @@ return {
 
     -- Diff     = "",
     -- Repo     = "",
-    Octoface = "",
     Branch   = "",
   },
 

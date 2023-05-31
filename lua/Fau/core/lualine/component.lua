@@ -20,14 +20,13 @@ local on_click = {
   -- - number of clicks incase of multiple clicks
   -- - mouse button used (l(left)/r(right)/m(middle)/...)
   -- - modifiers pressed (s(shift)/c(ctrl)/a(alt)/m(meta)...)
-
   treesitter = function()
     vim.api.nvim_command("TSBufToggle highlight")
     require("lualine").refresh()
   end,
 
   indent = function()
-    Fau_vim.functions.indent.cycle_indent()
+    Fau_vim.functions.indent.toggle_indent_width()
     require("lualine").refresh()
   end,
 }
@@ -38,8 +37,8 @@ local on_click = {
 -- ========== conditions
 -- =============================================
 local conditions = {
-  hide_in_width = function()
-    local window_width_limit = 100
+  hide_in_width = function(window_width_limit)
+    window_width_limit = window_width_limit or 100
     return vim.o.columns >= window_width_limit
   end,
 }
@@ -58,29 +57,6 @@ local utils = {
     end
     return venv
   end,
-
-
-  get_filename = function()
-    local filename = vim.fn.expand "%:t"
-    local extension = vim.fn.expand "%:e"
-
-    if #filename == 0 then return "" end
-
-    local file_icon, hl_group = require("nvim-web-devicons").get_icon(filename, extension, { default = true })
-    local buf_ft = vim.bo.filetype
-
-    if buf_ft == "dapui_breakpoints" then file_icon = Fau_vim.icons.ui.Bug
-    elseif buf_ft == "dapui_stacks"  then file_icon = Fau_vim.icons.ui.Stacks
-    elseif buf_ft == "dapui_scopes"  then file_icon = Fau_vim.icons.ui.Scopes
-    elseif buf_ft == "dapui_watches" then file_icon = Fau_vim.icons.ui.Watches
-    elseif buf_ft == "dapui_console" then file_icon = Fau_vim.icons.ui.DebugConsole
-    end
-
-    local navic_text = vim.api.nvim_get_hl_by_name("Normal", true)
-    vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
-
-    return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
-  end,
 }
 
 
@@ -89,18 +65,18 @@ local utils = {
 -- ========== colors
 -- =============================================
 local colors = {
-  bg = "#202328",
-  fg = "#bbc2cf",
-  yellow = "#ECBE7B",
-  cyan = "#008080",
+  bg       = "#202328",
+  fg       = "#bbc2cf",
+  yellow   = "#ECBE7B",
+  cyan     = "#008080",
   darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  purple = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
+  green    = "#98be65",
+  orange   = "#FF8800",
+  violet   = "#a9a1e1",
+  magenta  = "#c678dd",
+  purple   = "#c678dd",
+  blue     = "#51afef",
+  red      = "#ec5f67",
 }
 
 
@@ -253,7 +229,7 @@ return {
       local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
 
       if copilot_active then
-        language_servers = language_servers .. "%#SLCopilot#" .. " " .. Fau_vim.icons.git.Octoface .. "%*"
+        language_servers = language_servers .. "%#SLCopilot#" .. " " .. Fau_vim.icons.kind.Copilot .. "%*"
       end
 
       -- if empty
@@ -279,9 +255,7 @@ return {
 
 
   treesitter = {
-    function()
-      return Fau_vim.icons.ui.Tree
-    end,
+    function() return Fau_vim.icons.ui.Tree end,
     color = function()
       local buf = vim.api.nvim_get_current_buf()
       local ts = vim.treesitter.highlighter.active[buf]
@@ -295,7 +269,7 @@ return {
   python_env = {
     function()
       if vim.bo.filetype == "python" then
-        local venv = os.getenv "CONDA_DEFAULT_ENV" or os.getenv "VIRTUAL_ENV"
+        local venv = os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
         if venv then
           local icons = require("nvim-web-devicons")
           local py_icon, _ = icons.get_icon(".py")
@@ -306,27 +280,6 @@ return {
     end,
     color = { fg = colors.green },
     cond = conditions.hide_in_width,
-  },
-
-
-  -- WARNING: This component is deprecated.
-  breadcrumb = {
-    function()
-      local winbar = utils.get_filename()
-
-      local status_ok, navic = pcall(require, "nvim-navic")
-      if not status_ok then return winbar end
-
-      if navic.is_available() then
-        local navic_string = navic.get_location()
-        if #navic_string ~= 0 then
-          winbar = winbar .. " " .. "%#NavicSeparator#" .. Fau_vim.icons.ui.ChevronRight .. "%* " .. navic_string
-        end
-      end
-
-      return winbar
-    end,
-    color = { bg = "none" },
   },
 
 

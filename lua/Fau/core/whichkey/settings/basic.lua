@@ -129,12 +129,12 @@ return {
     ["<LEADER><LEADER>n"] = { "<CMD>TSNodeUnderCursor<CR>",    "Treesitter Capture Node Under Cursor" },
 
     -- Lazy
-    ["<LEADER>ll"] = { "<CMD>Lazy<CR>", "Open Lazy (Plugin Manager)" },
+    ["<LEADER>ll"] = { require("lazy").home, "Open Lazy (Plugin Manager)" },
 
     -- Toggle indent
-    ["<LEADER><LEADER>i"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width()<CR>", "Toggle Indent Width" },
+    ["<LEADER><LEADER>i"] = { Fau_vim.functions.indent.toggle_indent_width, "Toggle Indent Width" },
     -- NOTE: I don't think this is helpful.
-    ["<LEADER><LEADER>I"] = { "<CMD>lua Fau_vim.functions.test.toggle_indent_width({force=true})<CR>", "Toggle Indent Width (Force)" },
+    ["<LEADER><LEADER>I"] = { "<CMD>lua Fau_vim.functions.indent.toggle_indent_width(true)<CR>", "Toggle Indent Width (Force)" },
 
     -- Split and Join
     ["sj"] = { "<CMD>TSJToggle<CR>", "Split and Join" },
