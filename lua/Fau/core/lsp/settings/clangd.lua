@@ -1,3 +1,16 @@
+local util = require('lspconfig.util')
+
+
+local root_files = {
+  '.clangd',
+  '.clang-tidy',
+  '.clang-format',
+  'compile_commands.json',
+  'compile_flags.txt',
+  'configure.ac', -- AutoTools
+}
+
+
 return {
   settings = {
     clangd = {
@@ -28,6 +41,13 @@ return {
     "--function-arg-placeholders=false",
 
     "--header-insertion-decorators",
+
+    "--offset-encoding=utf-16",
   },
 
+  root_dir = function(fname)
+    local root = util.root_pattern(unpack(root_files))(fname)
+    if root and root ~= vim.env.HOME then return root end
+    return util.find_git_ancestor(fname)
+  end,
 }
