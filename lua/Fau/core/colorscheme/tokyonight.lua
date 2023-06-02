@@ -88,6 +88,7 @@ local config = {
     -- -------- test
     -- -----------------------------------
     highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
+    highlights["LspInlayHint"] = { fg = "#697391" }
   end,
 }
 

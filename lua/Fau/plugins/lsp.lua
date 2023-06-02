@@ -67,6 +67,7 @@ local lsp = {
   {
     -- DESC: LSP inlay hints supporter.
     "lvimuser/lsp-inlayhints.nvim",
+    branch = "anticonceal",
     config = function() require("Fau.core.lsp.inlayhints") end,
     lazy = true, -- loaded by nvim-lspconfig
   },
