@@ -74,6 +74,7 @@ local editor = {
       {
         -- DESC: an extension to manage the docker containers.
         "lpoto/telescope-docker.nvim",
+        cond = vim.fn.executable("docker") == 1,
       },
     },
     config = function() require("Fau.core.telescope") end,

@@ -88,6 +88,7 @@ local config = {
     show_close_icon = true,
 
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+    move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
 
     -- can also be a table containing 2 custom separators [focused and unfocused]. eg: { '|', '|' }
     separator_style = { "", "" }, -- "slant" | "padded_slant" | "thick" | "thin" | "slope" | "padded_slope" | { 'any', 'any' },

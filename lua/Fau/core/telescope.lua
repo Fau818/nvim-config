@@ -321,4 +321,4 @@ telescope.load_extension("projects")
 telescope.load_extension("emoji")
 telescope.load_extension("luasnip")
 telescope.load_extension("noice")
-telescope.load_extension("docker")
+if vim.fn.executable("docker") == 1 then telescope.load_extension("docker") end
