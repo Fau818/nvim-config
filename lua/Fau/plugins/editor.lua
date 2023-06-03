@@ -70,11 +70,12 @@ local editor = {
       {
         -- DESC: an extension to switch conda environments.
         "IllustratedMan-code/telescope-conda.nvim",
+        enabled = vim.fn.executable("conda") == 1,
       },
       {
         -- DESC: an extension to manage the docker containers.
         "lpoto/telescope-docker.nvim",
-        cond = vim.fn.executable("docker") == 1,
+        enabled = vim.fn.executable("docker") == 1,
       },
     },
     config = function() require("Fau.core.telescope") end,
