@@ -21,7 +21,7 @@ trailspace.setup(config)
 
 -- Overwrite function
 Fau_vim.functions.format.remove_blank_lines_and_spaces = function()
-  MiniTrailspace.trim_last_lines(); MiniTrailspace.trim()
+  trailspace.trim_last_lines(); trailspace.trim()
 end
 
 

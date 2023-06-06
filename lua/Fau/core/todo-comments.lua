@@ -41,7 +41,7 @@ local config = {
   merge_keywords = false, -- if false, only use defined in `keywords` option
 
   highlight = {
-    multiline = true, -- enable multine todo comments
+    multiline = false, -- enable multine todo comments
     multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
     multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
     before  = "", -- "fg" or "bg" or empty
@@ -49,7 +49,7 @@ local config = {
     after   = "fg", -- "fg" or "bg" or empty
     pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
     comments_only = true, -- uses treesitter to match keywords in comments only
-    max_line_len = 400, -- ignore lines longer than this
+    max_line_len = 25, -- ignore lines longer than this
     exclude = {}, -- list of file types to exclude highlighting
   },
 
@@ -61,7 +61,7 @@ local config = {
     hint    = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
     test    = { "#FFC8E1" },
-    desc    = { "#a9b1d6" }
+    desc    = { "#A9B1D6" }
   },
 
   search = {

@@ -183,6 +183,7 @@ local config = {
     ignore = false, -- Ignore files based on `.gitignore`.
     show_on_dirs = true, -- Show status icons of children when directory itself has no status icon.
     show_on_open_dirs = true,
+    disable_for_dirs = {},
     timeout = 500, -- Kills the git process after some time if it takes too long.
   },
 
