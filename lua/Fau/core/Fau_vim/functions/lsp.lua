@@ -18,7 +18,9 @@ return {
 
     local client_list = vim.lsp.get_active_clients({ bufnr=0 })
     for _, client in ipairs(client_list) do
-      if client.name ~= "null-ls" then vim.api.nvim_command("LspRestart " .. client.id) end
+      if client.name ~= "null-ls" and client.name ~= "copilot" then
+        vim.api.nvim_command("LspRestart " .. client.id)
+      end
     end
   end
 }

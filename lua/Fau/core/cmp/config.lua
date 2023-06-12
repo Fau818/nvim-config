@@ -94,7 +94,7 @@ return {
       documentation = cmp.config.window.bordered(),
     },
 
-    experimental = { ghost_text = {} },
+    experimental = { ghost_text = true },
   },
 
 
