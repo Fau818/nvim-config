@@ -11,6 +11,7 @@ local editor = {
     "nvim-tree/nvim-tree.lua",
     config = function() require("Fau.core.nvim-tree") end,
     event = "VeryLazy",
+    keys = "<LEADER>e",
     priority = 950,
   },
 
