@@ -11,8 +11,7 @@ local editor = {
     "nvim-tree/nvim-tree.lua",
     config = function() require("Fau.core.nvim-tree") end,
     event = "VeryLazy",
-    keys = "<LEADER>e",
-    priority = 950,
+    cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
   },
 
   {
@@ -96,6 +95,7 @@ local editor = {
     "folke/which-key.nvim",
     config = function() require("Fau.core.whichkey") end,
     event = "VeryLazy",
+    keys = "<LEADER>e",
   },
 
 
