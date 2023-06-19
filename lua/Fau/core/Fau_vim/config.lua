@@ -22,8 +22,6 @@ Fau_vim.large_file_size = 1024 * 1024
 Fau_vim.configured_ft = {}  -- for recording filetypes which have been configured LSP
 
 Fau_vim.disabled_filetypes = {
-  "csv",
-
   "", "checkhealth", "help", "netrw", "tutor", "man",
   "alpha",
   "aerial", "aerial-nav",

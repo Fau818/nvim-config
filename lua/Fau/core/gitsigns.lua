@@ -9,6 +9,7 @@ if not gitsigns_ok then Fau_vim.load_plugin_error("gitsigns") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type Gitsigns.Config
 local config = {
   signs = {
     add          = { text = Fau_vim.icons.gitsigns.BoldLineLeft, show_count = true },
@@ -32,6 +33,12 @@ local config = {
     ["+"] = "+",  -- '>'  '₊'
   },
 
+  on_attach = function(bufnr)
+    ---@diagnostic disable-next-line: redundant-return-value
+    if Fau_vim.functions.utils.is_large_file(bufnr) then return false end
+    -- TODO: call which-key binding.
+  end,
+
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
   numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
@@ -40,7 +47,7 @@ local config = {
   watch_gitdir = {
     enable = true,
     interval = 1000,
-    follow_files = true, -- If a file is moved with `git mv`, switch the buffer to the new location.
+    follow_files = true,
   },
 
   attach_to_untracked = true, -- Attach to untracked files.
@@ -57,8 +64,7 @@ local config = {
 
   sign_priority = 9,  -- set 12 to cover diagnostic
   update_debounce = 100,
-  status_formatter = nil,  -- Use default
-  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  max_file_length = 5000, -- Disable if file is longer than this (in lines)
 
   preview_config = {
     -- Options passed to nvim_open_win

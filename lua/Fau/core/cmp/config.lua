@@ -105,7 +105,7 @@ return {
   cmdline = {
     enabled = true,
     completion = {
-      autocomplete = {},
+      autocomplete = false,
       completeopt = "menu,menuone,noselect",
     },
 
@@ -123,7 +123,7 @@ return {
   ---@type cmp.ConfigSchema
   search = {
     completion = {
-      autocomplete = {},
+      autocomplete = false,
       completeopt = "menu,menuone,noselect",
     },
 

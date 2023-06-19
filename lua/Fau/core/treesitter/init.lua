@@ -57,7 +57,12 @@ local config = {
   },
 
   -- nvim-ts-autotag plugin
-  autotag = { enable = true },
+  autotag = {
+    enable = true,
+    enable_rename = true,
+    enable_close = true,
+    enable_close_on_slash = true,
+  },
 
   -- nvim-treesitter-endwise plugin
   endwise = { enable = true },

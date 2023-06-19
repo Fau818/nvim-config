@@ -17,8 +17,8 @@ local config = {
 
   space_char_blankline = " ",
 
-  use_treesitter = true, -- use treesitter to calculate.
-  use_treesitter_scope = true, -- use treesitter to calculate current context start
+  use_treesitter = false, -- use treesitter to calculate.
+  use_treesitter_scope = false, -- use treesitter to calculate current context start
 
   show_current_context = false, -- current indent block
   show_current_context_start = false,

@@ -150,9 +150,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 -- -----------------------------------
--- -------- test
+-- -------- Optimize in large file
 -- -----------------------------------
--- Disable in the large file.
 vim.api.nvim_create_autocmd("BufReadPre", {
   group = "Fau_vim",
   desc = "Disable some features in large file.",
