@@ -6,8 +6,8 @@ local modifyer = {  -- ni
   ["<C-p>"] = { vim.lsp.buf.signature_help, "Show Signature" },
 
   -- Prev/Next Reference
-  ["<A-p>"] = { "<CMD>lua require('illuminate').next_reference{reverse=true,wrap=true}<CR>", "Prev Reference" },
-  ["<A-n>"] = { "<CMD>lua require('illuminate').next_reference{wrap=true}<CR>",              "Next Reference" },
+  ["<A-p>"] = { function() require('illuminate').next_reference({reverse=true, wrap=true}) end, "Prev Reference" },
+  ["<A-n>"] = { function() require('illuminate').next_reference({wrap=true}) end              , "Next Reference" },
 }
 
 
@@ -53,7 +53,7 @@ return {
       r = { "<CMD>Trouble lsp_references<CR>", "Show References" },
 
       -- Diagnostic Info
-      l = { "<CMD>lua vim.diagnostic.open_float()<CR>", "Show Long Diagnostic Info" },
+      l = { vim.diagnostic.open_float, "Show Long Diagnostic Info" },
 
       -- Call
       i = { builtin.lsp_incoming_calls, "Show Incoming Calls" },
@@ -91,7 +91,7 @@ return {
       -- S = { "<CMD>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "Workspace Symbols" },
 
       -- Virtual Text
-      v = { "<CMD>lua vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text})<CR>", "Toggle Virtual Text" },
+      v = { function() vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text}) end, "Toggle Virtual Text" },
 
       -- Outline (Structure)
       o = { "<CMD>AerialToggle<CR>",    "Toggle Outline" },

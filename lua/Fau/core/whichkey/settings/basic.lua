@@ -134,7 +134,7 @@ return {
     -- Toggle indent
     ["<LEADER><LEADER>i"] = { Fau_vim.functions.indent.toggle_indent_width, "Toggle Indent Width" },
     -- NOTE: I don't think this is helpful.
-    ["<LEADER><LEADER>I"] = { "<CMD>lua Fau_vim.functions.indent.toggle_indent_width(true)<CR>", "Toggle Indent Width (Force)" },
+    ["<LEADER><LEADER>I"] = { function() Fau_vim.functions.indent.toggle_indent_width(true) end, "Toggle Indent Width (Force)" },
 
     -- Split and Join
     ["sj"] = { "<CMD>TSJToggle<CR>", "Split and Join" },

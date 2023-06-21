@@ -1,7 +1,7 @@
 local terminal = {
-  ["<F1>"] = { "<CMD>lua Fau_vim.functions.terminal.float()<CR>",      "Toggle Float Terminal" },
-  ["<F2>"] = { "<CMD>lua Fau_vim.functions.terminal.horizontal()<CR>", "Toggle Horizontal Terminal" },
-  ["<F3>"] = { "<CMD>lua Fau_vim.functions.terminal.vertical()<CR>",   "Toggle Vertical Terminal" },
+  ["<F1>"] = { Fau_vim.functions.terminal.float,      "Toggle Float Terminal" },
+  ["<F2>"] = { Fau_vim.functions.terminal.horizontal, "Toggle Horizontal Terminal" },
+  ["<F3>"] = { Fau_vim.functions.terminal.vertical,   "Toggle Vertical Terminal" },
 }
 
 return {
@@ -9,10 +9,10 @@ return {
     terminal,
 
     ["<LEADER>"] = {
-      gg = { "<CMD>lua Fau_vim.functions.terminal.lazygit()<CR>", "Toggle Lazygit" },
-      lg = { "<CMD>lua Fau_vim.functions.terminal.lazygit()<CR>", "Toggle Lazygit" },
+      gg = { Fau_vim.functions.terminal.lazygit, "Toggle Lazygit" },
+      lg = { Fau_vim.functions.terminal.lazygit, "Toggle Lazygit" },
 
-      gb = { "<CMD>lua Fau_vim.functions.terminal.btop()<CR>",    "Toggle btop" },
+      gb = { Fau_vim.functions.terminal.btop,    "Toggle btop" },
     },
   },
 

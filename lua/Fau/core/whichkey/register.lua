@@ -34,7 +34,7 @@ end
 load("basic")
 load("telescope")
 load("lsp")
-if Fau_vim.dap then load("dap") end
+if Fau_vim.dap.enable then load("dap") end
 load("git")
 load("terminal")
 load("code_runner")

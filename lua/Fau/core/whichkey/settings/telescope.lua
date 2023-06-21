@@ -43,7 +43,7 @@ return {
     -- -----------------------------------
     -- -------- Open Telescope Directly
     -- -----------------------------------
-    ["<LEADER>F"] = { "<CMD>Telescope<CR>", "Telescope" },
+    ["<LEADER>F"] = { require("telescope.builtin").builtin, "Telescope" },
 
 
     -- -----------------------------------
