@@ -61,7 +61,3 @@ local config = {
 
 
 toggleterm.setup(config)
-
-
--- Load custom functions
-Fau_vim.functions.terminal = require("Fau.core.Fau_vim.functions.terminal")

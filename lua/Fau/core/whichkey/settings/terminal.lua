@@ -1,25 +1,29 @@
-local terminal = {
-  ["<F1>"] = { Fau_vim.functions.terminal.float,      "Toggle Float Terminal" },
-  ["<F2>"] = { Fau_vim.functions.terminal.horizontal, "Toggle Horizontal Terminal" },
-  ["<F3>"] = { Fau_vim.functions.terminal.vertical,   "Toggle Vertical Terminal" },
+local terminal = require("Fau.core.terminal.custom_terminal")
+if not terminal then Fau_vim.notify("Load custom terminal error!", vim.log.levels.ERROR) return end
+
+
+local terminal_qaq = {
+  ["<F1>"] = { terminal.float,      "Toggle Float Terminal" },
+  ["<F2>"] = { terminal.horizontal, "Toggle Horizontal Terminal" },
+  ["<F3>"] = { terminal.vertical,   "Toggle Vertical Terminal" },
 }
+
 
 return {
   n = {
-    terminal,
+    terminal_qaq,
 
     ["<LEADER>"] = {
-      gg = { Fau_vim.functions.terminal.lazygit, "Toggle Lazygit" },
-      lg = { Fau_vim.functions.terminal.lazygit, "Toggle Lazygit" },
+      gg = { terminal.lazygit, "Toggle Lazygit" },
+      lg = { terminal.lazygit, "Toggle Lazygit" },
 
-      gb = { Fau_vim.functions.terminal.btop,    "Toggle btop" },
+      gb = { terminal.btop,    "Toggle btop" },
     },
   },
 
 
-
   t = {
-    terminal,
+    terminal_qaq,
 
     -- ["<ESC>"] = { "<C-\\><C-n>", "Normal Mode" }
   }

@@ -100,7 +100,7 @@ return {
 
     -- TODO: cycle indent auto convert indent_type and indent_width
     -- TIPS: This need to ensure original indent is correct.
-    --
+
     -- TODO: future: popup a menu to select indent options.
 
     Fau_vim.functions.indent.set_indent()

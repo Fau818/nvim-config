@@ -42,7 +42,7 @@ local test = {
           diagnostic = {
             enable = true,
             signs = { "-", "=", "≡" },
-            min_severity = vim.diagnostic.severity.HINT,
+            min_severity = vim.diagnostic.severity.WARN,
           },
           gitsigns = {
             enable = true,

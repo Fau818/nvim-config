@@ -43,7 +43,6 @@ return {
   format   = require "Fau.core.Fau_vim.functions.format",
   indent   = require "Fau.core.Fau_vim.functions.indent",
   lsp      = require "Fau.core.Fau_vim.functions.lsp",
-  terminal = nil,  -- lazy load in terminal.lua file
   utils    = require "Fau.core.Fau_vim.functions.utils",
   test     = require "Fau.core.Fau_vim.functions.test"
 }

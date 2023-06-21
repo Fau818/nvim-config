@@ -1,5 +1,5 @@
 -- NOTE: This module is for enhancing editor, will be loaded in `VeryLazy` event.
--- also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
+-- \     also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
 
 ---@type LazySpec[]
 local editor = {
@@ -199,7 +199,7 @@ local editor = {
     -- DESC: a powerful terminal provider in Neovim.
     "akinsho/toggleterm.nvim",
     config = function() require("Fau.core.terminal") end,
-    event = "VeryLazy",
+    lazy = true,
   },
 
   {

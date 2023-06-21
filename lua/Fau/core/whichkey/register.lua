@@ -21,7 +21,7 @@ local register = function(keymaps) for mode, keymap in pairs(keymaps) do whichke
 
 local load = function(name)
   local status, p_keymaps = pcall(require, "Fau.core.whichkey.settings." .. name)
-  if not status then Fau_vim.notify("Fau which-key register: not found [" .. name .. "] keymap.") return end
+  if not status then Fau_vim.notify("Fau which-key register: load [" .. name .. "] keymap error.", vim.log.levels.ERROR) return end
 
   register(p_keymaps)
 end
