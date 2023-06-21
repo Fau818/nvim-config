@@ -59,8 +59,7 @@ local test = {
         },
       }
     end,
-    -- cond = vim.fn.has("nvim-0.10") == 1,
-    cond = false
+    cond = vim.fn.has("nvim-0.10") == 1,
   },
 
 
