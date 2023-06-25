@@ -60,6 +60,7 @@ local test = {
       }
     end,
     cond = vim.fn.has("nvim-0.10") == 1,
+    event = { "BufReadPost", "BufNewFile" },
   },
 
 

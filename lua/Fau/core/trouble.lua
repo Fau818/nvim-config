@@ -9,6 +9,7 @@ if not trouble_ok then Fau_vim.load_plugin_error("trouble") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type TroubleOptions
 local config = {
   position = "bottom", -- position of the list can be: bottom, top, left, right
   height = 10,         -- height of the trouble list when position is top or bottom
@@ -22,6 +23,7 @@ local config = {
 
   group = true,    -- group results by file
   padding = false, -- add an extra new line on top of the list
+  cycle_results = false,  -- cycle item list when reaching beginning or end of list
 
   action_keys = { -- key mappings for actions in the trouble list
     -- map to {} to remove a mapping, for example:
