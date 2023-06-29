@@ -11,7 +11,7 @@ return {
     Constant      = "",
     Constructor   = "", -- ""
     Copilot       = "",
-    Enum          = "",
+    Enum          = "", -- "󰕘"
     EnumMember    = "", -- ""
     Event         = "", -- ""
     Field         = "", -- ""

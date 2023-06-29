@@ -36,6 +36,9 @@ local test = {
         excluded_filetypes = Fau_vim.disabled_filetypes,
         width = 2,
         handlers = {
+          cursor = {
+            enable = true,
+          },
           search = {
             enable = true,
           },
