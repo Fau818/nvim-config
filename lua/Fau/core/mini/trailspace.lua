@@ -36,3 +36,12 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = Fau_vim.disabled_filetypes,
   callback = function() vim.b.minitrailspace_disable = true end,
 })
+
+
+-- BUG: Maybe a bug in `mini.trailspace`, it isn't disabled in lazy.
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Disable trailspace in some filetypes.",
+  pattern = "lazy",
+  callback = function() MiniTrailspace.unhighlight() end
+})
