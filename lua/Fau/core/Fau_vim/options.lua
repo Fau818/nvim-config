@@ -5,9 +5,9 @@
 
 
 local options = {
-  undofile = true,     -- enable persistent undo
-  swapfile = false,    -- create a swapfile
-  backup = false,      -- create a backup file
+  undofile    = true,  -- enable persistent undo
+  swapfile    = false, -- create a swapfile
+  backup      = false, -- create a backup file
   writebackup = false, -- create a backup file when written
 
   termguicolors = true,      -- set term gui colors
@@ -24,12 +24,12 @@ local options = {
   pumheight = 8,    -- popup menu height
   showmode = false, -- do not show current mode in bottom-left
 
-  scrolloff = 10,     -- minimal number of lines to keep above and below the cursor
-  sidescrolloff = 8, -- minimal number of columns to keep left and right the cursor
+  scrolloff     = 10, -- minimal number of lines to keep above and below the cursor
+  sidescrolloff = 8,  -- minimal number of columns to keep left and right the cursor
 
-  hlsearch = true,   -- highlight all matches on previous search pattern
+  hlsearch   = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
-  smartcase = true,  -- smart case
+  smartcase  = true, -- smart case
 
   splitbelow = true, -- force all horizontal splits to go below current window
   splitright = true, -- force all vertical splits to go to the right of current window
@@ -39,10 +39,11 @@ local options = {
 
   fileencoding = "utf-8", -- the encoding written to a file
   smartindent = true,     -- smart autoindenting when starting a new line.
-  tabstop = 2,            -- the width of a tab
-  softtabstop = -1,       -- how many spaces will be inserted when enter <tab> (if negative number, the shiftwidth value is used)
-  shiftwidth = 0,         -- the number of spaces inserted for each indentation (if zero, the tabstop value is used)
-  expandtab = true,       -- convert tab to spaces (indent_type: space if true else tab)
+
+  tabstop     = 2,    -- the width of a tab
+  softtabstop = -1,   -- how many spaces will be inserted when enter <tab> (if negative number, the shiftwidth value is used)
+  shiftwidth  = 0,    -- the number of spaces inserted for each indentation (if zero, the tabstop value is used)
+  expandtab   = true, -- convert tab to spaces (indent_type: space if true else tab)
 
   wrap = false,
   linebreak = true, -- line break after an entire word
@@ -50,7 +51,10 @@ local options = {
   mousemoveevent = true, -- for bufferline hover events
 
   laststatus = 0,  -- disable statusline (for alpha no blink)
+
   ruler = false,   -- no position information in bottom-right
+
+  colorcolumn = "150",
 }
 
 

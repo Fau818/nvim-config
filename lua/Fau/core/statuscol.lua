@@ -11,30 +11,56 @@ if not statuscol_ok then Fau_vim.load_plugin_error("statuscol") return end
 -- =============================================
 local builtin = require("statuscol.builtin")
 
+local function foldfunc(args)
+  local fold_string = builtin.foldfunc(args)
+  if type(fold_string) == "string" and fold_string:len() > 0 then fold_string = fold_string .. " " end
+  return fold_string
+end
+
 local config = {
+  -- Builtin 'statuscolumn' options
+  setopt = true, -- whether to set the 'statuscolumn', providing builtin click actions
+
   -- Builtin line number string options for ScLn() segment
   thousands   = false, -- or line number thousands separator string ("." / ",")
   relculright = true,  -- whether to right-align the cursor line number with 'relativenumber' set
 
-  -- Builtin 'statuscolumn' options
-  setopt = true,         -- whether to set the 'statuscolumn', providing builtin click actions
-  ft_ignore = nil,       -- lua table with filetypes for which 'statuscolumn' will be unset
+  ft_ignore = Fau_vim.disabled_filetypes,  -- lua table with filetypes for which 'statuscolumn' will be unset
   bf_ignore = nil,
 
   segments = {
-    {
-      text = { "%s" },
+    {  -- git signs
       click = "v:lua.ScSa",
+      sign = {
+        name = { "GitSign" },
+        maxwidth = 1,
+        colwidth = 2,
+        -- auto = true,
+      }
     },
 
+    {  -- diagnostics
+      click = "v:lua.ScSa",
+      sign = {
+        name = { "Diagnostic" },
+        maxwidth = 1,
+        colwidth = 2,
+        auto = true,
+      }
+    },
 
-    {
+    {  -- line number
       text = { builtin.lnumfunc, " " },
-      condition = { true, builtin.not_empty },
+      -- NOTE: `builtin.not_empty` works like always be true
+      -- condition = { true, builtin.not_empty },
       click = "v:lua.ScLa",
     },
 
-    { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+    {
+      text = { foldfunc },
+      click = "v:lua.ScFa",
+      sign = { auto = true },
+    },
   },
 
   clickmod = "c",  -- "a" for Alt, "c" for Ctrl and "m" for Meta.
