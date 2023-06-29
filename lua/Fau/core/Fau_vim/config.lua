@@ -13,6 +13,7 @@ Fau_vim.on_server = os.getenv("FAU_ON_SERVER") == "1"
 Fau_vim.dap = { enable = false }
 -- Fau_vim.inc_rename = { enable = pcall(require, "inc_rename") and pcall(require, "noice"), dressing = false }
 Fau_vim.inc_rename = { enable = false, dressing = false }
+Fau_vim.copilot = { enable = false }
 
 
 Fau_vim.config_path = vim.fn.stdpath("config")

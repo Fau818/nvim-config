@@ -71,6 +71,7 @@ local cmp = {
           }
           require("copilot_cmp").setup(config)
         end,
+        enabled = Fau_vim.copilot.enable,
       },
       -- {
       --   -- DESC: Copilot source for nvim-cmp.
