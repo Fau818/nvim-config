@@ -17,6 +17,14 @@ local function foldfunc(args)
   return fold_string
 end
 
+local function empty_gitsigns_and_diagnostics()
+  ---@diagnostic disable-next-line: undefined-field
+  if vim.b.gitsigns_status == nil or vim.b.gitsigns_status == "" then
+    if vim.diagnostic.get_next_pos() == false then return true end
+  end
+  return false
+end
+
 local config = {
   -- Builtin 'statuscolumn' options
   setopt = true, -- whether to set the 'statuscolumn', providing builtin click actions
@@ -29,13 +37,18 @@ local config = {
   bf_ignore = nil,
 
   segments = {
+    {
+      text = { "  " },
+      condition = { empty_gitsigns_and_diagnostics },
+    },
+
     {  -- git signs
       click = "v:lua.ScSa",
       sign = {
         name = { "GitSign" },
         maxwidth = 1,
         colwidth = 2,
-        -- auto = true,
+        auto = true,
       }
     },
 
