@@ -20,7 +20,7 @@ end
 local function empty_gitsigns_and_diagnostics()
   ---@diagnostic disable-next-line: undefined-field
   if vim.b.gitsigns_status == nil or vim.b.gitsigns_status == "" then
-    if vim.diagnostic.get_next_pos() == false then return true end
+    return vim.diagnostic.get_next_pos() == false
   end
   return false
 end
