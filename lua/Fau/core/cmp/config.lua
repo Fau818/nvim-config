@@ -9,7 +9,10 @@ return {
   -- -----------------------------------
   ---@type cmp.ConfigSchema
   global = {
-    enabled = function() return not Fau_vim.functions.utils.is_large_file() end,
+    enabled = function()
+      if vim.bo.filetype == "TelescopePrompt" then return false end
+      return not Fau_vim.functions.utils.is_large_file()
+    end,
 
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
 
