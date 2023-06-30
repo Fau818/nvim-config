@@ -39,36 +39,52 @@ npairs.setup(config)
 -- ========== Rules
 -- =============================================
 local npairs_rule = require("nvim-autopairs.rule")
+local npairs_cond = require("nvim-autopairs.conds")
 
 -- -----------------------------------
 -- -------- Add Space Between Brackets
 -- -----------------------------------
 local brackets_basic = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
 npairs.add_rules {
-  npairs_rule(" ", " "):with_pair(
-    function(opts)
-      local pair = opts.line:sub(opts.col - 1, opts.col)
-      return vim.tbl_contains({
-        brackets_basic[1][1] .. brackets_basic[1][2],
-        brackets_basic[2][1] .. brackets_basic[2][2],
-        brackets_basic[3][1] .. brackets_basic[3][2],
-      }, pair)
-    end
-  )
+  npairs_rule(" ", " ")
+    :with_pair(
+      function(opts)
+        local pair = opts.line:sub(opts.col - 1, opts.col)
+        local valid_pairs = {}
+        for _, bracket in ipairs(brackets_basic) do table.insert(valid_pairs, table.concat(bracket)) end
+
+        return vim.tbl_contains(valid_pairs, pair)
+      end
+    )
+    :with_move(npairs_cond.none())
+    :with_cr(npairs_cond.none())
+    :with_del(function(opts)
+      local context = opts.line:sub(opts.col - 1, opts.col + 2)
+      local valid_contexts = {}
+      for _, bracket in ipairs(brackets_basic) do table.insert(valid_contexts, table.concat(bracket, "  ")) end
+
+      return vim.tbl_contains(valid_contexts, context)
+    end)
 }
 
-for _, bracket in pairs(brackets_basic) do
+
+-- -----------------------------------
+-- -------- Skip Comma and Semicolon
+-- -----------------------------------
+for _,punct in pairs { ",", ";" } do
   npairs.add_rules {
-    npairs_rule(bracket[1] .. " ", " " .. bracket[2])
+    npairs_rule("", punct)
+      :with_move(function(opts) return opts.char == punct end)
       :with_pair(function() return false end)
-      :with_move(function(opts) return opts.prev_char:match(".%" .. bracket[2]) ~= nil end)
-      :use_key(bracket[2])
+      :with_del(function() return false end)
+      :with_cr(function() return false end)
+      :use_key(punct)
   }
 end
 
 
 -- -------------------------------------------
--- -------- Arrow Key On Javascript [test]
+-- -------- Arrow Key on Javascript [TEST]
 -- -------------------------------------------
 npairs.add_rules({
   npairs_rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
@@ -80,37 +96,37 @@ npairs.add_rules({
 -- -----------------------------------
 -- -------- For Jinja
 -- -----------------------------------
-npairs.add_rules({
-  npairs_rule("{%", "%}", "html")
-    :replace_endpair(
-      function(opts)
-        if opts.next_char == '}' then return "%" end
-        return "%}"
-      end
-    )
-})
+-- npairs.add_rules({
+--   npairs_rule("{%", "%}", "html")
+--     :replace_endpair(
+--       function(opts)
+--         if opts.next_char == '}' then return "%" end
+--         return "%}"
+--       end
+--     )
+-- })
 
 
-npairs.add_rules({
-  npairs_rule("{#", "#}", "html")
-    :replace_endpair(
-      function(opts)
-        if opts.next_char == '}' then return "#" end
-        return "#}"
-      end
-    )
-})
+-- npairs.add_rules({
+--   npairs_rule("{#", "#}", "html")
+--     :replace_endpair(
+--       function(opts)
+--         if opts.next_char == '}' then return "#" end
+--         return "#}"
+--       end
+--     )
+-- })
 
 
-local brackets_jinja = { { "{%", "%}" }, { "{#", "#}" } }
-npairs.add_rules {
-  npairs_rule(" ", " "):with_pair(
-    function(opts)
-      local pair = opts.line:sub(opts.col - 2, opts.col + 1)
-      return vim.tbl_contains({
-        brackets_jinja[1][1] .. brackets_jinja[1][2],
-        brackets_jinja[2][1] .. brackets_jinja[2][2],
-      }, pair)
-    end
-  )
-}
+-- local brackets_jinja = { { "{%", "%}" }, { "{#", "#}" } }
+-- npairs.add_rules {
+--   npairs_rule(" ", " "):with_pair(
+--     function(opts)
+--       local pair = opts.line:sub(opts.col - 2, opts.col + 1)
+--       return vim.tbl_contains({
+--         brackets_jinja[1][1] .. brackets_jinja[1][2],
+--         brackets_jinja[2][1] .. brackets_jinja[2][2],
+--       }, pair)
+--     end
+--   )
+-- }
