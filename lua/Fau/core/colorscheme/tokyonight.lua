@@ -46,22 +46,22 @@ local config = {
     colors.comment = Fau_vim.colors.gray
     colors.terminal_black = Fau_vim.colors.gray
 
-    vim.g.terminal_color_0  = "#000000"
-    vim.g.terminal_color_8  = "#666666"
-    vim.g.terminal_color_1  = "#FF5555"
-    vim.g.terminal_color_9  = "#FF6E67"
-    vim.g.terminal_color_2  = "#1ABB5C"
-    vim.g.terminal_color_10 = "#3AE77E"
-    vim.g.terminal_color_3  = "#F8FE6D"
-    vim.g.terminal_color_11 = "#FFFF5C"
-    vim.g.terminal_color_4  = "#007DFF"
-    vim.g.terminal_color_12 = "#0096FF"
-    vim.g.terminal_color_5  = "#BD93F9"
-    vim.g.terminal_color_13 = "#CAA9FA"
-    vim.g.terminal_color_6  = "#5AE0E5"
-    vim.g.terminal_color_14 = "#7AE9FD"
-    vim.g.terminal_color_7  = "#C7C7C7"
-    vim.g.terminal_color_15 = "#FFFFFF"
+    -- vim.g.terminal_color_0  = "#000000"
+    -- vim.g.terminal_color_8  = "#666666"
+    -- vim.g.terminal_color_1  = "#FF5555"
+    -- vim.g.terminal_color_9  = "#FF6E67"
+    -- vim.g.terminal_color_2  = "#1ABB5C"
+    -- vim.g.terminal_color_10 = "#3AE77E"
+    -- vim.g.terminal_color_3  = "#F8FE6D"
+    -- vim.g.terminal_color_11 = "#FFFF5C"
+    -- vim.g.terminal_color_4  = "#007DFF"
+    -- vim.g.terminal_color_12 = "#0096FF"
+    -- vim.g.terminal_color_5  = "#BD93F9"
+    -- vim.g.terminal_color_13 = "#CAA9FA"
+    -- vim.g.terminal_color_6  = "#5AE0E5"
+    -- vim.g.terminal_color_14 = "#7AE9FD"
+    -- vim.g.terminal_color_7  = "#C7C7C7"
+    -- vim.g.terminal_color_15 = "#FFFFFF"
   end,
 
   --- You can override specific highlights to use other groups or a hex color

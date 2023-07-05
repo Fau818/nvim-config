@@ -31,6 +31,8 @@ return {
   cmd = {
     "clangd",
 
+    "--enable-config=true",
+
     "--header-insertion=never",
 
     "--clang-tidy",

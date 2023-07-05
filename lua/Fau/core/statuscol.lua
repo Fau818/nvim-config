@@ -33,7 +33,7 @@ local config = {
   thousands   = false, -- or line number thousands separator string ("." / ",")
   relculright = true,  -- whether to right-align the cursor line number with 'relativenumber' set
 
-  ft_ignore = nil,  -- lua table with filetypes for which 'statuscolumn' will be unset
+  ft_ignore = nil,
   bf_ignore = nil,
 
   segments = {
