@@ -14,7 +14,13 @@ local misc = {
     -- DESC: a python stub library.
     "microsoft/python-type-stubs",
     cond = false
-  }
+  },
+
+  {
+    -- DESC: a plugin just for fun.
+    "eandrju/cellular-automaton.nvim",
+    cmd = "CellularAutomaton",
+  },
 }
 
 

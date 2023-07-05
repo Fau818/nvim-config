@@ -42,7 +42,8 @@ local config = {
   -- spec = nil, ---@type LazySpec
   spec = "Fau.plugins",
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
-  concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or nil, ---@type number limit the maximum amount of concurrent tasks
+  ---@type number limit the maximum amount of concurrent tasks
+  concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or nil,
 
   git = {
     -- defaults for the `Lazy log` command
