@@ -38,10 +38,9 @@ local test = {
         handlers = {
           cursor = {
             enable = true,
+            symbols = { '⎺', '⎻', '⎼', '⎽' }
           },
-          search = {
-            enable = true,
-          },
+          search = { enable = true },
           diagnostic = {
             enable = true,
             signs = { "-", "=", "≡" },
@@ -58,7 +57,9 @@ local test = {
           marks = {
             enable = true,
             show_builtins = false, -- shows the builtin marks like [ ] < >
+            key = "m",
           },
+          quickfix = { signs = { '-', '=', '≡' } }
         },
       }
     end,

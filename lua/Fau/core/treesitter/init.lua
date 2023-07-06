@@ -46,7 +46,7 @@ local config = {
   },
 
   indent = {
-    enable = true,
+    enable = false,
     disable = function() return Fau_vim.functions.utils.is_large_file() end,
   },
 
