@@ -26,45 +26,57 @@ local test = {
   --   -- mini.doc
   -- },
 
+
   {
-    "lewis6991/satellite.nvim",
+    "nosduco/remote-sshfs.nvim",
     config = function()
-      require("satellite").setup {
-        current_only = false,
-        winblend = 0,
-        zindex = 40,
-        excluded_filetypes = Fau_vim.disabled_filetypes,
-        width = 2,
+      local config = {
+        connections = {
+          ssh_configs = { -- which ssh configs to parse for hosts list
+            vim.fn.expand "$HOME" .. "/.ssh/config",
+            -- "/etc/ssh/ssh_config",
+            -- "/path/to/custom/ssh_config"
+          },
+          sshfs_args = { -- arguments to pass to the sshfs command
+            "-o reconnect",
+            "-o ConnectTimeout=5",
+          },
+        },
+        mounts = {
+          base_dir = vim.fn.expand "$HOME" .. "/.sshfs/", -- base directory for mount points
+          unmount_on_exit = true,                     -- run sshfs as foreground, will unmount on vim exit
+        },
         handlers = {
-          cursor = {
-            enable = true,
-            symbols = { '⎺', '⎻', '⎼', '⎽' }
+          on_connect = {
+            change_dir = true, -- when connected change vim working directory to mount point
           },
-          search = { enable = true },
-          diagnostic = {
-            enable = true,
-            signs = { "-", "=", "≡" },
-            min_severity = vim.diagnostic.severity.WARN,
+          on_disconnect = {
+            clean_mount_folders = false, -- remove mount point folder on disconnect/unmount
           },
-          gitsigns = {
-            enable = true,
-            signs = { -- can only be a single character (multibyte is okay)
-              add = "│",
-              change = "│",
-              delete = "-",
-            },
+          on_edit = {},              -- not yet implemented
+        },
+        ui = {
+          select_prompts = false, -- not yet implemented
+          confirm = {
+            connect = true,   -- prompt y/n when host is selected to connect to
+            change_dir = false, -- prompt y/n to change working directory on connection (only applicable if handlers.on_connect.change_dir is enabled)
           },
-          marks = {
-            enable = true,
-            show_builtins = false, -- shows the builtin marks like [ ] < >
-            key = "m",
+        },
+        log = {
+          enable = false, -- enable logging
+          truncate = false, -- truncate logs
+          types = {     -- enabled log types
+            all = false,
+            util = false,
+            handler = false,
+            sshfs = false,
           },
-          quickfix = { signs = { '-', '=', '≡' } }
         },
       }
+      require("remote-sshfs").setup(config)
     end,
-    cond = vim.fn.has("nvim-0.10") == 1,
-    event = { "BufReadPost", "BufNewFile" },
+
+    enabled = false
   },
 
 

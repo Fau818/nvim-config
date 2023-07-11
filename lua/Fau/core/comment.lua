@@ -63,8 +63,9 @@ comment.setup(config)
 -- =============================================
 -- ========== Specific Filetype
 -- =============================================
-comment_ft.set("dosini",    "# %s")
-comment_ft.set("zsh",       "# %s")
-comment_ft.set("kitty",     "# %s")
-comment_ft.set("sshconfig", "# %s")
-comment_ft.set("xmodmap",   "! %s")
+comment_ft.set("dosini",     "# %s")
+comment_ft.set("zsh",        "# %s")
+comment_ft.set("kitty",      "# %s")
+comment_ft.set("sshconfig",  "# %s")
+comment_ft.set("sshdconfig", "# %s")
+comment_ft.set("xmodmap",    "! %s")

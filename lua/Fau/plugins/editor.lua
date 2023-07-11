@@ -36,6 +36,14 @@ local editor = {
     priority = 900,
   },
 
+  {
+    -- DESC: a nice scrollbar.
+    "lewis6991/satellite.nvim",
+    config = function() require("Fau.core.satellite") end,
+    cond = vim.fn.has("nvim-0.10") == 1,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
 
 
   -- =============================================

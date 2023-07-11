@@ -13,7 +13,7 @@ local misc = {
   {
     -- DESC: a python stub library.
     "microsoft/python-type-stubs",
-    event = "User OnlyManaged"
+    lazy = true,
   },
 
   {
