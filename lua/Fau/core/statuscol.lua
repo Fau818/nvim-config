@@ -37,29 +37,39 @@ local config = {
   bf_ignore = nil,
 
   segments = {
+    -- {
+    --   text = { "  " },
+    --   condition = { empty_gitsigns_and_diagnostics },
+    -- },
+
+    -- {  -- git signs
+    --   click = "v:lua.ScSa",
+    --   sign = {
+    --     name = { "GitSign" },
+    --     maxwidth = 1,
+    --     colwidth = 2,
+    --     auto = true,
+    --   }
+    -- },
+
+    -- {  -- diagnostics
+    --   click = "v:lua.ScSa",
+    --   sign = {
+    --     name = { "Diagnostic" },
+    --     maxwidth = 1,
+    --     colwidth = 2,
+    --     auto = true,
+    --   }
+    -- },
+
     {
-      text = { "  " },
-      condition = { empty_gitsigns_and_diagnostics },
-    },
-
-    {  -- git signs
+      text = { "%s" },
       click = "v:lua.ScSa",
       sign = {
-        name = { "GitSign" },
         maxwidth = 1,
         colwidth = 2,
         auto = true,
-      }
-    },
-
-    {  -- diagnostics
-      click = "v:lua.ScSa",
-      sign = {
-        name = { "Diagnostic" },
-        maxwidth = 1,
-        colwidth = 2,
-        auto = true,
-      }
+      },
     },
 
     {  -- line number

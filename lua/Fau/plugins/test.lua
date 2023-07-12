@@ -80,6 +80,14 @@ local test = {
   },
 
 
+  {
+    "Bekaboo/dropbar.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function() require("Fau.core.dropbar") end,
+    enabled = false,
+  },
+
+
 
 }
 

@@ -73,17 +73,17 @@ local lsp = {
   },
 
   {
-    -- DESC: a fancy winbar plugin combining with LSP.
-    "SmiteshP/nvim-navic",
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function() require("Fau.core.navic") end,
-    lazy = true, -- loaded by barbecue
-  },
-
-  {
     -- DESC: a powerful breadcrumb plugin based on navic.
     "utilyre/barbecue.nvim",
-    dependencies = { "SmiteshP/nvim-navic", "kyazdani42/nvim-web-devicons" },
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+      {
+        -- DESC: a fancy winbar plugin combining with LSP.
+        "SmiteshP/nvim-navic",
+        dependencies = { "neovim/nvim-lspconfig" },
+        config = function() require("Fau.core.navic") end,
+      },
+    },
     config = function() require("Fau.core.barbecue") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = "Barbecue",
