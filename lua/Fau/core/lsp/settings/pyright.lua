@@ -1,4 +1,18 @@
 -- https://github.com/microsoft/pyright/blob/main/docs/settings.md
+local util = require('lspconfig.util')
+
+
+local root_files = {
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+  'Pipfile',
+  'pyrightconfig.json',
+  '.git',
+}
+
+
 return {
   settings = {
     pyright = {
@@ -22,5 +36,11 @@ return {
         useLibraryCodeForTypes = true,
       }
     }
-  }
+  },
+
+  root_dir = function(fname)
+    local root = util.root_pattern(unpack(root_files))(fname)
+    if root and root ~= vim.env.HOME then return root end
+    return util.find_git_ancestor(fname)
+  end,
 }
