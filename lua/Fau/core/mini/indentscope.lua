@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable indentscope in some filetype
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
-  desc = "Disable indentscope in some filetypes.",
+  desc = "Disabled indentscope in some filetypes.",
   pattern = Fau_vim.disabled_filetypes,
   callback = function() vim.b.miniindentscope_disable = true end,
 })
