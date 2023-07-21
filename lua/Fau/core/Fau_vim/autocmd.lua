@@ -46,23 +46,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 
---- Adjust highlight for gitcommit filetype.
-vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
-  desc = "Adjust highlight for gitcommit filetype.",
-  pattern = "gitcommit",
-  callback = function()
-    -- TODO: With Lua code, and only affect on gitcommit filetype.
-    vim.cmd [[
-      autocmd FileType gitcommit highlight Comment gui=none
-      autocmd FileType gitcommit highlight Title gui=none
-      autocmd FileType gitcommit highlight @keyword gui=italic
-      autocmd FileType gitcommit highlight @punctuation.delimiter gui=bold
-      autocmd FileType gitcommit highlight @parameter gui=bold
-    ]]
-  end
-})
-
 
 -- -----------------------------------
 -- -------- Auto LSP

@@ -9,7 +9,9 @@ if not toggleterm_ok then Fau_vim.load_plugin_error("toggleterm") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type ToggleTermConfig
 local config = {
+---@diagnostic disable-next-line: assign-type-mismatch
   size = function(term)
     if term.direction == "horizontal" then return 10
     elseif term.direction == "vertical" then return vim.o.columns * 0.3

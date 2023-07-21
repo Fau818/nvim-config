@@ -10,8 +10,10 @@ if not tokyonight_ok then Fau_vim.load_plugin_error("tokyonight") return end
 -- ========== Configuration
 -- =============================================
 local function comment_style()
-  local terminal = os.getenv("TERM")
-  if terminal == "xterm-kitty" then return { italic = true, bold = true } end
+  local term_type = os.getenv("TERM")
+  if term_type == "xterm-kitty" or os.getenv("KITTY_PID") then
+    return { italic = true, bold = true }
+  end
   return { italic = true }
 end
 
@@ -30,7 +32,7 @@ local config = {
     functions = {},
     variables = {},
     -- Background styles. Can be "dark", "transparent" or "normal"
-    sidebars = "transparent", -- style for sidebars, see below
+    sidebars = "transparent", -- style for sidebars
     floats   = "transparent", -- style for floating windows
   },
   sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
@@ -69,21 +71,21 @@ local config = {
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    -- highlights["Include"]   = { fg = Fau_vim.colors.blue, style = { italic=true } }
-    highlights["Define"]    = { fg = Fau_vim.colors.gray, style = { italic=true } }
-    highlights["Statement"] = { fg = colors.magenta, style      = { italic=true } }
-    highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, style = { italic=true } }
+    -- highlights["Include"]   = { fg = Fau_vim.colors.blue, italic=true }
+    highlights["Define"] = { fg = Fau_vim.colors.gray, italic = true }
+    highlights["Statement"] = { fg = colors.magenta, italic = true }
+    highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, italic = true }
 
     highlights["Number"]  = { fg = Fau_vim.colors.light_blue }
     highlights["String"]  = { fg = Fau_vim.colors.light_green }
-    highlights["Boolean"] = { fg = colors.orange, style = { italic=true } }
+    highlights["Boolean"] = { fg = colors.orange, italic = true }
 
-    highlights["@keyword.function"] = { fg = Fau_vim.colors.purple, style = { italic=true } }
-    highlights["@keyword.operator"] = { fg = colors.blue5, style = { italic=true } }
+    highlights["@keyword.function"] = { fg = Fau_vim.colors.purple, italic = true }
+    highlights["@keyword.operator"] = { fg = colors.blue5, italic = true }
 
-    highlights["MatchParen"] = { fg = Fau_vim.colors.yellow, style = { bold=true } }
+    highlights["MatchParen"] = { fg = Fau_vim.colors.yellow, bold = true }
 
-    highlights["@function.builtin"] = { fg = Fau_vim.colors.purple_blue, style = { italic=true } }
+    highlights["@function.builtin"] = { fg = Fau_vim.colors.purple_blue, italic = true }
 
     highlights["@string.documentation"] = { fg = Fau_vim.colors.cyan_gray }
 
@@ -106,6 +108,7 @@ local config = {
     -- -----------------------------------
     highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
     highlights["LspInlayHint"] = { fg = colors.dark3 }
+    highlights["@keyword"] = { fg = colors.purple, italic = true, nocombine = true }
   end,
 }
 
