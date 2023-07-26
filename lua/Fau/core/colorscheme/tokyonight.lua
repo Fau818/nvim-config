@@ -18,8 +18,6 @@ local function comment_style()
 end
 
 
-
-
 ---@type Config
 local config = {
   style       = "moon",   -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`

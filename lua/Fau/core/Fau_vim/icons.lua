@@ -88,7 +88,7 @@ return {
     EmptyFolderOpened = "",
     File     = "",
     NewFile  = "",
-    FindFile = "",
+    FindFile = "󰮗",
     Project  = "",
     History  = "",
     FindText = "",
