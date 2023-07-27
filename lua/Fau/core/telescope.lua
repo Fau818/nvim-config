@@ -25,6 +25,22 @@ end
 
 
 -- -----------------------------------
+-- -------- Docker
+-- -----------------------------------
+local function get_conda_path()
+  local command = "brew --prefix"
+  local handle = io.popen(command)
+  if handle == nil then return os.getenv("CONDA_ROOT") or "/usr/local/Caskroom/miniconda/base" end
+  local output = handle:read("*a")
+  handle:close()
+
+  local brew_prefix = output:match("^%s*(.-)%s*$")  -- Trim leading/trailing whitespace
+  local conda_env_path = brew_prefix .. "/Caskroom/miniconda/base"
+  return conda_env_path
+end
+
+
+-- -----------------------------------
 -- -------- Telescope
 -- -----------------------------------
 local config = {
@@ -293,7 +309,7 @@ local config = {
     -- notify = { layout_strategy = "vertical", initial_mode = "normal" },
     -- luasnip = { theme = "ivy" },
     conda = {
-      anaconda_path = "/usr/local/Caskroom/miniconda/base",
+      anaconda_path = get_conda_path(),
     },
     docker = {
       binary = "docker",
