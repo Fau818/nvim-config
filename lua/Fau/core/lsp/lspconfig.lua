@@ -44,9 +44,7 @@ local function is_available(client_name)
     if server_name == client_name then return true end
   end
 
-  -- NOTE: Special handle for clangd
-  if client_name == "clangd" and vim.fn.executable(client_name) == 1 then return true end
-
+  if vim.fn.executable(client_name) == 1 then return true end
   return false
 end
 
@@ -89,7 +87,7 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
   Fau_vim.configured_ft[filetype] = true
 
   -- TODO: need to be optimized
-  -- if filetype == "jinja.html" or filetype == "htmldjango" then filetype = "html" end
+  if filetype == "zsh" then filetype = "sh" end
 
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
 
