@@ -86,12 +86,9 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
   if Fau_vim.configured_ft[filetype] then return end -- configured
   Fau_vim.configured_ft[filetype] = true
 
-  -- TODO: need to be optimized
-  if filetype == "zsh" then filetype = "sh" end
-
+  -- Get servers for specific filetype.
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
-
-  -- config current filetype LS
+  -- Config LS for current filetype.
   for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
 
   vim.api.nvim_command("LspStart")
