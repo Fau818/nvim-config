@@ -56,7 +56,6 @@ local coding = {
     "keaising/im-select.nvim",
     config = function() require("Fau.core.im-select") end,
     event = "InsertEnter",
-    -- enabled = not Fau_vim.on_server,
     enabled = vim.fn.executable("im-select") == 1 and false,  -- BUG: delay in telescope
   },
 
