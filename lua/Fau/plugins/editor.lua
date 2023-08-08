@@ -249,13 +249,22 @@ local editor = {
     dependencies = { "ggandor/flit.nvim" },
     config = function() require("Fau.core.leap") end,
     event = { "BufReadPost", "BufNewFile" },
+    enabled = false,
   },
 
   {
     -- DESC: an enhancer for f/t motion.
     "ggandor/flit.nvim",
     config = function() require("Fau.core.flit") end,
-    lazy = true  -- loaded by leap
+    lazy = true,  -- loaded by leap
+    enabled = false,
+  },
+
+  {
+    -- DESC: a snazzy jump plugin.
+    "folke/flash.nvim",
+    config = function() require("Fau.core.flash") end,
+    event = "VeryLazy",
   },
 
 
