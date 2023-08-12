@@ -9,9 +9,10 @@ if not copilot_ok then Fau_vim.load_plugin_error("copilot") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type copilot_config
 local config = {
   panel = {
-    enabled = true,
+    enabled = false,
     auto_refresh = true,
     keymap = {
       jump_prev = "[[",
@@ -21,12 +22,12 @@ local config = {
       open = "<M-CR>"
     },
     layout = {
-      position = "bottom",  -- | top | left | right
+      position = "bottom",  -- values: top|left|right
       ratio = 0.35
     },
   },
   suggestion = {
-    enabled = true,
+    enabled = false,
     auto_trigger = false,
     debounce = 75,
     keymap = {
@@ -40,9 +41,8 @@ local config = {
   },
   filetypes = {
     gitcommit = true,
-    ["*"] = function() return not Fau_vim.functions.utils.is_large_file() end,
+    ["*"] = true,
     -- help = false,
-    -- ["*"] = false,
   },
   copilot_node_command = "node",       -- Node.js version must be > 16.x
   server_opts_overrides = {},
