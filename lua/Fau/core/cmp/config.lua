@@ -81,7 +81,7 @@ return {
     -- },
 
     sources = { -- The order of the sources determines their order in the completion results.
-      { name = "copilot", keyword_length = 2 },
+      { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "conventionalcommits" },

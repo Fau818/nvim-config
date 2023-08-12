@@ -20,24 +20,24 @@ return {
     Function      = "󰊕", -- "󰡱"
     Interface     = "", -- ""
     Key           = "", -- ""
-    Keyword       = "",
-    Method        = "",
-    Module        = "", -- ""
-    Namespace     = "",
+    Keyword       = "",
+    Method        = "󰆧",
+    Module        = "",
+    Namespace     = "",
     Null          = "󰟢",
     Number        = "", -- "" ""
-    Object        = "",
-    Operator      = "", -- ""
-    Package       = "",
+    Object        = "󰅩",
+    Operator      = "",
+    Package       = "",
     Property      = "", -- ""
     Reference     = "", -- ""
-    Snippet       = "", -- ""
+    Snippet       = "", -- ""
     String        = "", -- ""
     Struct        = "", -- ""
-    Text          = "",
-    TypeParameter = "", -- ""
+    Text          = "",
+    TypeParameter = "",
     Unit          = "",
-    Value         = "",
+    Value         = "",
     Variable      = "",
   },
 
@@ -47,13 +47,13 @@ return {
     LineModified = "",
     LineRemoved  = "",
 
-    FileDeleted   = "",
+    FileDeleted   = "",
     FileIgnored   = "◌",
-    FileRenamed   = "➜",
+    FileRenamed   = "",
     FileUnmerged  = "",
     FileStaged    = "✓",
     FileUnstaged  = "✗",
-    FileUntracked = "★",
+    FileUntracked = "",
 
     -- Diff     = "",
     -- Repo     = "",
@@ -64,7 +64,7 @@ return {
   gitsigns = { -- for gitsigns
     -- LineLeft     = "│",
     BoldLineLeft = "▎",
-    Triangle     = "",
+    Triangle     = "",
     Untracked    = "┆",
   },
 
@@ -73,10 +73,10 @@ return {
     BoldError       = "", Error       = "",
     BoldWarning     = "", Warning     = "",
     BoldInformation = "", Information = "",
-    BoldHint        = "", Hint        = "",
-    -- BoldQuestion = "", Question = "",  -- unused
-    -- Other = "",
-    Debug = "",
+    BoldHint        = "󰌵", Hint        = "󰌶",
+    -- BoldQuestion = "", Question = "",  -- unused
+    -- Other = "",
+    Debug = "",
     Trace = "✎",
   },
 
@@ -86,24 +86,24 @@ return {
     FolderOpened = "",
     EmptyFolderClosed = "",
     EmptyFolderOpened = "",
-    File     = "",
-    NewFile  = "",
+    File     = "",
+    NewFile  = "",
     FindFile = "󰮗",
-    Project  = "",
-    History  = "",
-    FindText = "",
+    Project  = "",
+    History  = "",
+    FindText = "",
     Gear     = "",
     Restore  = "󰦛",
     Exit     = "󰿅",
 
-    FoldClosed = "",
-    FoldOpened = "",
+    FoldClosed = "",
+    FoldOpened = "",
 
     Rename    = "",
     -- Parameter = "",
     Signature = "󰷾",
 
-    Tab   = "",
+    Tab   = "",
     Space = "⎵",
 
     -- noice, no space is better
@@ -120,20 +120,20 @@ return {
     BoldDividerLeft  = "", -- BoldDividerLeft  = "",
     BoldDividerRight = "", -- BoldDividerRight = "",
 
-    ChevronRight = ">",
+    ChevronRight = "",
 
     Tree = "",
 
     BoldArrowRight = "",
 
     BreakPoint   = "",
-    Bug          = "",
+    Bug          = "",
     Stacks       = "",
-    Scopes       = "",
-    Watches      = "",
+    Scopes       = "󰙔",
+    Watches      = "󰂥",
     DebugConsole = "",
 
-    Target = "",
+    Target = "",
 
     IndentLine = "▏", -- "▎"
 
@@ -149,19 +149,18 @@ return {
     Undone = "",
 
     EndLine = "",
-
   },
 
 
   todo = {
     TODO = " ",
-    HACK = " ",
+    HACK = " ",
     WARN = " ",
-    PERF = " ", -- " "
-    NOTE = " ",
-    TEST = "⏲ ",
+    PERF = " ",
+    NOTE = " ",
+    TEST = "󰅒 ",
     Fau  = "󰙽 ",
-    DESC = " ", -- "󰆉 "
+    DESC = "󰈚 ",
   },
 
 

@@ -27,7 +27,8 @@ local config = {
       icon = "▎",     -- this should be omitted if indicator style is not 'icon'
       style = "icon", -- values: 'icon' | 'underline' | 'none'
     },
-    buffer_close_icon = "",
+    -- TODO: add these kinds to icons
+    buffer_close_icon = "",
     modified_icon = "●",
     close_icon = "",
 
