@@ -75,7 +75,7 @@ keymap("n", "<LEADER>N", "<CMD>nohlsearch<CR>", opts)
 keymap("n", "<LEADER>q", "q", opts)
 
 -- Open File Folder
-keymap("n", "<C-f>", "<CMD>silent !open $(dirname %)<CR>", opts)
+keymap("n", "<C-f>", "<CMD>silent !open '%:h'<CR>", opts)
 keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 
 -- Convert tab and space

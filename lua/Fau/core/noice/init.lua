@@ -24,7 +24,7 @@ noice.setup(config)
 -- =============================================
 vim.keymap.set("n", "<C-f>", function()
   if not require("noice.lsp").scroll(2) then
-    return "<CMD>silent !open $(dirname %)<CR>"
+    return "<CMD>silent !open '%:h'<CR>"
   end
 end, { silent = true, expr = true })
 
