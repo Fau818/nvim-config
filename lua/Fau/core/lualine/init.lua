@@ -43,7 +43,7 @@ local config = {
     lualine_c = { component.diagnostics, component.python_env },
     lualine_x = { component.lsp, component.treesitter },
     lualine_y = { component.filetype, component.indent, component.encoding, component.fileformat },
-    lualine_z = { component.progress, component.location }
+    lualine_z = { component.progress, component.location, component.selectioncount }
   },
   inactive_sections = {
     lualine_a = {},
