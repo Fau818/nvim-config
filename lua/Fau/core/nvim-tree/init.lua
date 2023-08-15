@@ -20,6 +20,8 @@ local config = {
   hijack_cursor = true,                       -- Keeps the cursor on the first letter of the filename when moving in the tree.
   hijack_unnamed_buffer_when_opening = false, -- Opens in place of the unnamed buffer if it's empty.
 
+  on_attach = require("Fau.core.nvim-tree.keymaps"),
+
   sort_by = "name", -- files sorted method; value: `name`, `case_sensitive`, `modification_time`, `extension` or a function.
 
   -- root_dirs = {},
@@ -28,8 +30,6 @@ local config = {
   reload_on_bufenter = true, -- Automatically reloads the tree on `BufEnter` nvim-tree.
 
   respect_buf_cwd = true, -- Will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
-
-  remove_keymaps = true, -- This can be used to remove the default mappings in the tree.
 
   select_prompts = true, -- using select-UI like dressing.nvim
 
@@ -73,6 +73,7 @@ local config = {
     full_name     = true,  -- Display node whose name length is wider than the width of nvim-tree window in floating window.
 
     highlight_opened_files = "name", -- Highlight icons and/or names for opened files. value: `none`, `icon`, `name` or `all`
+    highlight_modified = "name",
 
     root_folder_label = ":~:s?$?/..?", -- :help filename-modifiers
 
@@ -92,6 +93,7 @@ local config = {
     icons = { -- Place where the git icons will be rendered.
       webdev_colors = true, -- Use the webdev icon colors, otherwise `NvimTreeFileIcon`.
       git_placement = "before", -- Place where the git icons will be rendered. value: `after` or `before`
+      modified_placement = "after",
       padding = " ", -- Inserted between icon and filename.
       symlink_arrow = " ➛ ", -- Used as a separator between symlinks' source and target.
       show = { -- Configuration options for showing icon types.
@@ -102,9 +104,10 @@ local config = {
       },
 
       glyphs = { -- Configuration options for icon glyphs.
-        default  = "", -- Glyph for files. Will be overridden by `nvim-web-devicons` if available.
-        symlink  = "", -- Glyph for symlinks to files.
-        bookmark = "",
+        default  = Fau_vim.icons.ui.File, -- Glyph for files. Will be overridden by `nvim-web-devicons` if available.
+        symlink  = Fau_vim.icons.ui.Symlink, -- Glyph for symlinks to files.
+        bookmark = Fau_vim.icons.ui.Bookmark,
+        modified = Fau_vim.icons.ui.Modified,
         folder = { -- Glyphs for directories.
           arrow_closed = Fau_vim.icons.ui.FoldClosed,
           arrow_open   = Fau_vim.icons.ui.FoldOpened,
@@ -112,8 +115,8 @@ local config = {
           open         = Fau_vim.icons.ui.FolderOpened,
           empty        = Fau_vim.icons.ui.EmptyFolderClosed,
           empty_open   = Fau_vim.icons.ui.EmptyFolderOpened,
-          symlink      = "",
-          symlink_open = "",
+          symlink      = Fau_vim.icons.ui.SymlinkFolder,
+          symlink_open = Fau_vim.icons.ui.SymlinkFolder,
         },
         git = { -- Glyphs for git status.
           unstaged  = Fau_vim.icons.git.FileUnstaged,
@@ -127,7 +130,7 @@ local config = {
       },
     },
 
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml" }, -- A list of filenames that gets highlighted with `NvimTreeSpecialFile`.
+    special_files = Fau_vim.special_files,
     symlink_destination = true, -- Whether to show the destination of the symlink.
   },
 
@@ -153,7 +156,7 @@ local config = {
     show_on_open_dirs = false,
     debounce_delay = 50, -- Idle milliseconds between diagnostic event and update.
     severity = {
-      min = vim.diagnostic.severity.HINT,
+      min = vim.diagnostic.severity.WARN,
       max = vim.diagnostic.severity.ERROR,
     },
     icons = {
@@ -168,7 +171,7 @@ local config = {
     dotfiles  = false, -- Whether show dotfiles. [Default Keymaps: H]
     git_clean = false,
     no_buffer = false,
-    custom = { "^.git$", ".DS_Store", "__pycache__", ".idea", ".mypy_cache" }, -- Custom list of vim regex for file/directory names that will not be shown.  [Default Keymaps: U]
+    custom = Fau_vim.ignored_files,
     exclude = {}, -- List of directories or files to exclude from filtering: always show them.
   },
 
@@ -180,7 +183,6 @@ local config = {
 
   git = { -- Git integration with icons and colors.
     enable = true, -- Enable / disable the feature.
-    ignore = false, -- Ignore files based on `.gitignore`.
     show_on_dirs = true, -- Show status icons of children when directory itself has no status icon.
     show_on_open_dirs = true,
     disable_for_dirs = {},
@@ -202,7 +204,7 @@ local config = {
     },
     expand_all = { -- Configuration for expand_all behaviour.
       max_folder_discovery = 50, -- Limit the number of folders being explored when expanding every folders.
-      exclude = { ".git", "target", "build", }, -- A list of directories that should not be expanded automatically.
+      exclude = {}, -- A list of directories that should not be expanded automatically.
     },
     file_popup = { -- Configuration for file_popup behaviour (file_info)
       open_win_config = {
@@ -215,6 +217,7 @@ local config = {
     },
     open_file = { -- Configuration options for opening a file from nvim-tree.
       quit_on_open = false, -- Closes the explorer when opening a file.
+      eject = true,
       resize_window = true, -- Resizes the tree when opening a file.
       window_picker = {
         enable = true, -- If the feature is not enabled, files will open in window from which you last opened the tree.
@@ -231,12 +234,12 @@ local config = {
   },
 
   trash = { -- Configuration options for trashing.
-    cmd = "gio trash", -- The command used to trash items.  default needs `glib2` package.
+    cmd = "trash", -- The command used to trash items.  default needs `glib2` package.
   },
 
   live_filter = { -- Configurations for the live_filtering feature.
     prefix = "[FILTER]: ", -- Prefix of the filter displayed in the buffer.
-    always_show_folders = false, -- Whether to filter folders or not.
+    always_show_folders = true, -- Whether to filter folders or not.
   },
 
   tab = { -- Configuration for tab behaviour.
@@ -247,16 +250,9 @@ local config = {
     },
   },
 
-  notify = {
-    threshold = vim.log.levels.INFO,
-  },
+  notify = { threshold = vim.log.levels.INFO, absolute_path = true },
 
-  ui = {
-    confirm = {
-      remove = true,
-      trash = true,
-    },
-  },
+  ui = { confirm = { remove = true, trash = true } },
 
   log = { -- Configuration for diagnostic logging.
     enable = false,   -- Enable logging to a file `$XDG_CACHE_HOME/nvim/nvim-tree.log`
@@ -273,9 +269,7 @@ local config = {
     },
   },
 
-  experimental = { git = { async = true, }, },
-
-  on_attach = require("Fau.core.nvim-tree.keymaps")
+  experimental = {},
 }
 
 

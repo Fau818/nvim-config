@@ -31,7 +31,7 @@ dashboard.section.header.val = {
   [[]],
 }
 dashboard.section.buttons.val = {
-  dashboard.button("n", Fau_vim.icons.ui.NewFile .. "  New File", "<CMD>enew<CR>"),
+  dashboard.button("n", Fau_vim.icons.ui.File .. "  New File", "<CMD>enew<CR>"),
 
   dashboard.button("p", Fau_vim.icons.ui.Project  .. "  Projects",     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>"),
   dashboard.button("f", Fau_vim.icons.ui.FindFile .. "  Find Files",   "<CMD>Telescope find_files<CR>"),

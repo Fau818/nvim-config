@@ -86,8 +86,9 @@ return {
     FolderOpened = "",
     EmptyFolderClosed = "",
     EmptyFolderOpened = "",
-    File     = "",
-    NewFile  = "",
+    SymlinkFolder = "",
+    File  = "",
+    Symlink  = "",
     FindFile = "󰮗",
     Project  = "",
     History  = "",
@@ -143,7 +144,9 @@ return {
     Bread = "󰳯", BoldBread = "󰳮",
     Separator = "",
     Ellipsis  = "…",
-    Modify    = "●",
+
+    Modified = "●",
+    Bookmark = "󰆤",  -- ""
 
     Done = "",
     Undone = "",

@@ -40,6 +40,10 @@ Fau_vim.disabled_filetypes = {
   "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 }
 
+Fau_vim.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml" }
+
+Fau_vim.ignored_files = { "^.git$", ".DS_Store", "__pycache__", ".idea", ".mypy_cache" }
+
 ---@param msg string
 ---@param level string|number|nil
 ---@param opts table|notify.Options|nil

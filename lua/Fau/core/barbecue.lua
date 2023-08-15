@@ -82,7 +82,7 @@ local config = {
   symbols = {
     ---Modification indicator.
     ---@type string
-    modified = Fau_vim.icons.ui.Modify,
+    modified = Fau_vim.icons.ui.Modified,
 
     ---Truncation indicator.
     ---@type string
