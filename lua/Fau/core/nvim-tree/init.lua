@@ -168,6 +168,7 @@ local config = {
   },
 
   filters = { -- Filtering options.
+    git_ignored = false,
     dotfiles  = false, -- Whether show dotfiles. [Default Keymaps: H]
     git_clean = false,
     no_buffer = false,
