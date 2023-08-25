@@ -30,7 +30,5 @@ end, { silent = true, expr = true })
 
 
 vim.keymap.set("n", "<C-b>", function()
-  if not require("noice.lsp").scroll(-2) then
-    return "<nop>"
-  end
+  if not require("noice.lsp").scroll(-2) then return nil end
 end, { silent = true, expr = true })
