@@ -22,7 +22,11 @@ local config = {
 
   on_attach = require("Fau.core.nvim-tree.keymaps"),
 
-  sort_by = "name", -- files sorted method; value: `name`, `case_sensitive`, `modification_time`, `extension` or a function.
+  sort = {
+    sorter        = "name",
+    folders_first = true,
+    files_first   = false,
+  },
 
   -- root_dirs = {},
   -- prefer_startup_root = false,
@@ -67,7 +71,7 @@ local config = {
   },
 
   renderer = { -- UI rendering setup
-    add_trailing  = true,  -- Appends a trailing slash to folder names.
+    add_trailing  = false,  -- Appends a trailing slash to folder names.
     group_empty   = false, -- Compact folders that only contain a single folder into one node in the file tree.
     highlight_git = true,  -- Enable file highlight for git attributes using `NvimTreeGit` highlight groups.
     full_name     = true,  -- Display node whose name length is wider than the width of nvim-tree window in floating window.
@@ -91,7 +95,10 @@ local config = {
     },
 
     icons = { -- Place where the git icons will be rendered.
-      webdev_colors = true, -- Use the webdev icon colors, otherwise `NvimTreeFileIcon`.
+      web_devicons = {
+        file   = { enable = true, color = true },
+        folder = { enable = false, color = true },
+      },
       git_placement = "before", -- Place where the git icons will be rendered. value: `after` or `before`
       modified_placement = "after",
       padding = " ", -- Inserted between icon and filename.
@@ -101,6 +108,7 @@ local config = {
         folder = true, -- Show an icon before the folder name.
         folder_arrow = true, -- Show a small arrow before the folder node. Arrow will be a part of the node when using |renderer.indent_markers|.
         git = true, -- Show a git status icon, see |renderer.icons.git_placement|
+        modified = true,
       },
 
       glyphs = { -- Configuration options for icon glyphs.
