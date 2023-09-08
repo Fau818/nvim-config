@@ -17,7 +17,7 @@ return {
         -- typeshedPaths = {},
         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",
 
-        typeCheckingMode = "off", -- values: off|basic|strict
+        typeCheckingMode = "off",  -- values: off | basic | strict
 
         useLibraryCodeForTypes = true,
       }

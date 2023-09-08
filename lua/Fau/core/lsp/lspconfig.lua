@@ -86,6 +86,11 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
   if Fau_vim.configured_ft[filetype] then return end -- configured
   Fau_vim.configured_ft[filetype] = true
 
+  -- HACK: Special for pylance
+  if filetype == "python" and vim.fn.executable("pylance") == 1 then
+    setup_server("pylance")
+  end
+
   -- Get servers for specific filetype.
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
   -- Config LS for current filetype.
