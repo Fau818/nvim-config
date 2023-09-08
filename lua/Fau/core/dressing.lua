@@ -136,6 +136,8 @@ local config = {
 
     -- Options for built-in selector
     builtin = {
+      -- Display numbers for options and set up keymaps
+      show_numbers = true,
       border = "rounded",
       -- 'editor' and 'win' will default to being centered
       relative = "editor",

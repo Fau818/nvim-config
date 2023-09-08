@@ -74,6 +74,7 @@ local config = {
     add_trailing  = false,  -- Appends a trailing slash to folder names.
     group_empty   = false, -- Compact folders that only contain a single folder into one node in the file tree.
     highlight_git = true,  -- Enable file highlight for git attributes using `NvimTreeGit` highlight groups.
+    highlight_diagnostics = false,
     full_name     = true,  -- Display node whose name length is wider than the width of nvim-tree window in floating window.
 
     highlight_opened_files = "name", -- Highlight icons and/or names for opened files. value: `none`, `icon`, `name` or `all`
@@ -100,6 +101,7 @@ local config = {
         folder = { enable = false, color = true },
       },
       git_placement = "before", -- Place where the git icons will be rendered. value: `after` or `before`
+      diagnostics_placement = "signcolumn",
       modified_placement = "after",
       padding = " ", -- Inserted between icon and filename.
       symlink_arrow = " ➛ ", -- Used as a separator between symlinks' source and target.
@@ -108,6 +110,7 @@ local config = {
         folder = true, -- Show an icon before the folder name.
         folder_arrow = true, -- Show a small arrow before the folder node. Arrow will be a part of the node when using |renderer.indent_markers|.
         git = true, -- Show a git status icon, see |renderer.icons.git_placement|
+        diagnostics = true,
         modified = true,
       },
 
