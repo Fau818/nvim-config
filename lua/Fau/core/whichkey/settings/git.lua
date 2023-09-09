@@ -31,13 +31,13 @@ local gitsigns = {
     q = { "<CMD>Gitsigns setqflist<CR>", "Show in Quickfix" },
 
     -- Stage and Reset
-    s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage Current Hunk"   },
-    S = { "<CMD>Gitsigns stage_buffer<CR>",    "Stage Current Buffer" },
+    s = { ":Gitsigns stage_hunk<CR>",       "Stage Current Hunk"   },
+    S = { "<CMD>Gitsigns stage_buffer<CR>", "Stage Current Buffer" },
 
-    r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset Current Hunk"   },
-    R = { "<CMD>Gitsigns reset_buffer<CR>",    "Reset Current Buffer" },
+    r = { ":Gitsigns reset_hunk<CR>",       "Reset Current Hunk"   },
+    R = { "<CMD>Gitsigns reset_buffer<CR>", "Reset Current Buffer" },
 
-    u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk"      },
+    u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk" },
 
     -- Diffview
     d = { "<CMD>DiffviewOpen<CR>",        "Open Diffview" },
