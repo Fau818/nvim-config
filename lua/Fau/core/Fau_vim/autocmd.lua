@@ -46,14 +46,26 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 
---- Treat `zsh` as `bash`
+--- Treat `zsh` as `bash`.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
-  desc = "Change `zsh` filetype to `sh(bash)`",
+  desc = "Change `zsh` filetype to `sh(bash)`.",
   pattern = { "zsh" },
   callback = function() vim.bo.filetype = "sh" end
 })
 
+-- Set table mode options in markdown.
+vim.api.nvim_create_autocmd("FileType", {
+  group = "Fau_vim",
+  desc = "Set table mode options in markdown.",
+  pattern = { "markdown" },
+  callback = function()
+    vim.g.table_mode_corner = "|"
+    vim.g.table_mode_map_prefix = "<LEADER>T"
+    vim.keymap.set("n", "<LEADER>rf", "<CMD>Glow<CR>", { silent=true, buffer=true })
+    vim.keymap.set("n", "<C-r>", "<CMD>MarkdownPreview<CR>", { silent=true, buffer=true })
+  end,
+})
 
 -- -----------------------------------
 -- -------- Auto LSP

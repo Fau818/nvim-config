@@ -49,6 +49,8 @@ npairs.add_rules {
   npairs_rule(" ", " ")
     :with_pair(
       function(opts)
+        -- NOTE: Disable auto pairs in markdown ft.
+        if vim.bo.filetype == "markdown" then return false end
         local pair = opts.line:sub(opts.col - 1, opts.col)
         local valid_pairs = {}
         for _, bracket in ipairs(brackets_basic) do table.insert(valid_pairs, table.concat(bracket)) end
