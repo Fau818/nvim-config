@@ -164,9 +164,6 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     if not Fau_vim.functions.utils.is_large_file(buffer) then return end
 
     ---Large file!!
-    -- Disable illuminate
-    local illuminate_ok, illuminate = pcall(require, "illuminate.engine")
-    if illuminate_ok then illuminate.stop_buf(buffer) end
     vim.api.nvim_command("syntax off")
 
     -- Disable fold

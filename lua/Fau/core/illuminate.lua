@@ -54,6 +54,12 @@ local config = {
   large_file_overrides = nil,
   -- min_count_to_highlight: minimum number of matches required to perform highlighting
   min_count_to_highlight = 1,
+  -- should_enable: a callback that overrides all other settings to
+  -- enable/disable illumination. This will be called a lot so don't do
+  -- anything expensive in it.
+  should_enable = function(bufnr) return not Fau_vim.functions.utils.is_large_file(bufnr) end,
+  -- case_insensitive_regex: sets regex case sensitivity
+  case_insensitive_regex = false,
 }
 
 
