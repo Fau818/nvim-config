@@ -20,6 +20,7 @@ local markdown = {
       }
       require("glow").setup(config)
     end,
+    ft = "markdown",
     cmd = "Glow",
   },
 
@@ -30,6 +31,7 @@ local markdown = {
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_echo_preview_url = 1
     end,
+    ft = "markdown",
     cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },
   },
 
@@ -60,6 +62,7 @@ local markdown = {
         -- that has to pass before starting new render
       })
     end,
+    ft = "markdown",
     lazy = true,  -- BUG: This is not working.
   }
 
