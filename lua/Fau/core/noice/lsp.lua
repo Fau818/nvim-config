@@ -57,7 +57,7 @@ return {
       replace = true,
       render = "plain",
       format = { "{message}" },
-      win_options = { concealcursor = "n", conceallevel = 0 },
+      win_options = { concealcursor = "n", conceallevel = 3 },
     },
   },
 }

@@ -79,6 +79,7 @@ local config = {
 
     highlight_opened_files = "name", -- Highlight icons and/or names for opened files. value: `none`, `icon`, `name` or `all`
     highlight_modified = "name",
+    highlight_clipboard = "name",
 
     root_folder_label = ":~:s?$?/..?", -- :help filename-modifiers
 

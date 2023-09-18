@@ -105,6 +105,8 @@ local function on_attach(bufnr)
 
   vim.keymap.set("n", "m",              api.marks.toggle,                   opts("Toggle Bookmark"))
   vim.keymap.set("n", "bmv",            api.marks.bulk.move,                opts("Move Bookmarked"))
+  vim.keymap.set("n", "bt",             api.marks.bulk.trash,                opts("Move Bookmarked"))
+  vim.keymap.set("n", "bd",             api.marks.bulk.delete,                opts("Move Bookmarked"))
 
   vim.keymap.set("n", "a",              api.fs.create,                      opts("Create"))
   vim.keymap.set("n", "x",              api.fs.cut,                         opts("Cut"))
