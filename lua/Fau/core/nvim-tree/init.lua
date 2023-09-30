@@ -41,7 +41,8 @@ local config = {
     width = {
       min = 15,
       max = 25,
-      padding = 1
+      -- BUG: field warning
+      -- padding = 1,
     },
     debounce_delay = 15,
 
@@ -49,7 +50,6 @@ local config = {
 
     side = "left",
     cursorline = true,
-    hide_root_folder = false,
     preserve_window_proportions = false,
 
     number         = false,
@@ -103,6 +103,7 @@ local config = {
       },
       git_placement = "before", -- Place where the git icons will be rendered. value: `after` or `before`
       diagnostics_placement = "signcolumn",
+      bookmarks_placement = "signcolumn",
       modified_placement = "after",
       padding = " ", -- Inserted between icon and filename.
       symlink_arrow = " ➛ ", -- Used as a separator between symlinks' source and target.
@@ -111,8 +112,9 @@ local config = {
         folder = true, -- Show an icon before the folder name.
         folder_arrow = true, -- Show a small arrow before the folder node. Arrow will be a part of the node when using |renderer.indent_markers|.
         git = true, -- Show a git status icon, see |renderer.icons.git_placement|
-        diagnostics = true,
         modified = true,
+        diagnostics = true,
+        bookmarks = true,
       },
 
       glyphs = { -- Configuration options for icon glyphs.
