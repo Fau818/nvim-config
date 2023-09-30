@@ -20,7 +20,7 @@ local config = {
 
   -- viewport_buffer = {},
   whitespace = {},
-  scope = {},
+  scope = { enabled = false },
 
   exclude = { filetype = Fau_vim.disabled_filetypes },
 }
