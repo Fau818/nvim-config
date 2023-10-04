@@ -70,6 +70,12 @@ local config = {
       hl = "Identifier",
     },
 
+    {
+      filter = { filetype = "python" },
+      pattern = "Raises",
+      hl = "Identifier",
+    },
+
     -- {
     --  filter = { filetype = "python" },
     --  pattern = "%-%-%-%-%-%-%-%-%-%-",
