@@ -30,10 +30,6 @@ local markdown = {
     config = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_echo_preview_url = 1
-      vim.g.table_mode_corner = "|"
-      vim.g.table_mode_map_prefix = "<LEADER>T"
-      vim.keymap.set("n", "<LEADER>rf", "<CMD>Glow<CR>", { silent=true, buffer=true })
-      vim.keymap.set("n", "<C-r>", "<CMD>MarkdownPreview<CR>", { silent=true, buffer=true })
     end,
     ft = "markdown",
     cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },
