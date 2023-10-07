@@ -41,8 +41,7 @@ local config = {
     width = {
       min = 15,
       max = 25,
-      -- BUG: field warning
-      -- padding = 1,
+      padding = 1,
     },
     debounce_delay = 15,
 
