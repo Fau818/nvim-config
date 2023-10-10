@@ -33,9 +33,8 @@ ViewConfig.keys.hover = "<C-d>"
 local config = {
   root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
   defaults = {
-    lazy = false, -- should plugins be lazy-loaded?
-    version = nil,
-    -- version = "*", -- enable this to try installing the latest stable versions of plugins
+    lazy = false,
+    cond = not vim.g.vscode,
   },
 
   -- leave nil when passing the spec as the first argument to setup()
@@ -43,7 +42,7 @@ local config = {
   spec = "Fau.plugins",
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
   ---@type number limit the maximum amount of concurrent tasks
-  concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or nil,
+  concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or 25,
 
   git = {
     -- defaults for the `Lazy log` command
@@ -78,29 +77,7 @@ local config = {
     wrap = true, -- wrap the lines in the ui
     -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
     border = "double",
-    icons = {
-      cmd = " ",
-      config = "",
-      event = "",
-      ft = " ",
-      init = " ",
-      import = " ",
-      keys = " ",
-      lazy = "󰒲 ",
-      loaded = "●",
-      not_loaded = "○",
-      plugin = " ",
-      runtime = " ",
-      source = " ",
-      start = "",
-      task = "✔ ",
-      list = {
-        "●",
-        "➜",
-        "★",
-        "‒",
-      },
-    },
+    icons = nil,  -- Fau: use defaults
 
     -- leave nil, to automatically select a browser depending on your OS.
     -- If you want to use a specific browser, you can define it here

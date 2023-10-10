@@ -15,7 +15,7 @@ local lsp = {
         -- DESC: config LSP in json file.
         "folke/neoconf.nvim",
         config = function() require("Fau.core.lsp.neoconf") end,
-        cond = false,
+        enabled = false,
       },
     },
     config = function()

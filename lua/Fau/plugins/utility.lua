@@ -28,7 +28,7 @@ local utility = {
     "tpope/vim-sleuth",
     config = function() require("Fau.core.sleuth") end,
     event = { "BufReadPost", "BufNewFile" },
-    cond = false,
+    enabled = false,
   },
 
   {

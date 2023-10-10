@@ -8,7 +8,6 @@ local test = {
     "ray-x/lsp_signature.nvim",
     config = function() require("Fau.core.lsp.lsp_signature") end,
     enabled = false,
-    -- cond = false
   },
 
   {
@@ -85,7 +84,7 @@ local test = {
     event = { "BufReadPost", "BufNewFile" },
     config = function() require("Fau.core.dropbar") end,
     lazy = true,  -- disabled
-    cond = false,
+    enabled = false,
   },
 
 

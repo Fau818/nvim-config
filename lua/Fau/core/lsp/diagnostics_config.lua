@@ -26,7 +26,7 @@ local config = {
     ---@return string|nil #Diagnostic message
     format = function(diagnostic)  -- for show the error code
       -- Remove Pyright diagnostics
-      if diagnostic.source == "Pyright" then return nil
+      if diagnostic.source == "Pyright" or "Pylance" then return nil
       elseif diagnostic.source == "clang" then if diagnostic.message:sub(1, 6) == "Unused" then return nil end
       end
 
