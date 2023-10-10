@@ -54,7 +54,7 @@ local options = {
 
   ruler = false,   -- no position information in bottom-right
 
-  colorcolumn = "150",
+  -- colorcolumn = "150",
 
   conceallevel = 2,
 }

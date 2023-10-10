@@ -122,7 +122,9 @@ return {
     ["<LEADER><LEADER>z"] = { "<CMD>ZenMode<CR>", "Toggle ZenMode" },
 
     -- Todo Comments
-    ["<LEADER>t"] = { "<CMD>TodoTrouble keywords=TODO,PERF,TEST,Fau<CR>", "Show Todo Comments" },
+    -- ["<LEADER>t"] = { "<CMD>TodoTrouble keywords=TODO,PERF,TEST,Fau<CR>", "Show Todo Comments" },
+    -- Trouble
+    ["<LEADER>t"] = { "<CMD>Trouble<CR>", "Show Trouble" },
 
     -- Treesitter capture under cursor
     ["<LEADER><LEADER>u"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Highlight Under Cursor" },
