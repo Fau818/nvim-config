@@ -8,6 +8,7 @@ local coding = {
     "kylechui/nvim-surround",
     config = function() require("Fau.core.surround") end,
     event = { "BufReadPost", "BufNewFile" },
+    cond = true,
   },
 
   {
@@ -22,6 +23,7 @@ local coding = {
     },
     config = function() require("Fau.core.comment") end,
     event = { "BufReadPost", "BufNewFile" },
+    cond = true,
   },
 
   {
@@ -34,7 +36,7 @@ local coding = {
     -- DESC: type <TAB> could jump out of brakets.
     "abecodes/tabout.nvim",
     config = function() require("Fau.core.tabout") end,
-    event = "InsertEnter"
+    event = "InsertEnter",
   },
 
   {
@@ -43,6 +45,7 @@ local coding = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.core.mini.align") end,
     event = { "BufReadPost", "BufNewFile" },
+    cond = true,  -- FIX: Whether can use vscode's plugin.
   },
 
   {

@@ -50,7 +50,8 @@ local config = {
     extra = false,
   },
   ---Function to call before (un)comment
-  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+---@diagnostic disable-next-line: assign-type-mismatch
+  pre_hook = not vim.g.vscode and require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook() or nil,
   ---Function to call after (un)comment
   -- post_hook = nil,
 }

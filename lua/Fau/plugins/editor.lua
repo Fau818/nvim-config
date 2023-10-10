@@ -103,7 +103,6 @@ local editor = {
     "folke/which-key.nvim",
     config = function() require("Fau.core.whichkey") end,
     event = "VeryLazy",
-    keys = "<LEADER>e",
   },
 
 
@@ -265,6 +264,7 @@ local editor = {
     "folke/flash.nvim",
     config = function() require("Fau.core.flash") end,
     event = "VeryLazy",
+    cond = true,
   },
 
 
