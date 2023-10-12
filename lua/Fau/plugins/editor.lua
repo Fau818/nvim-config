@@ -103,6 +103,7 @@ local editor = {
     "folke/which-key.nvim",
     config = function() require("Fau.core.whichkey") end,
     event = "VeryLazy",
+    keys = "<LEADER>e", -- NOTE: Ensure open nvim-tree.
   },
 
 
