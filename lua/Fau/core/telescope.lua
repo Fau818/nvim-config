@@ -25,18 +25,22 @@ end
 
 
 -- -----------------------------------
--- -------- Docker
+-- -------- Conda
 -- -----------------------------------
 local function get_conda_path()
-  local command = "brew --prefix"
-  local handle = io.popen(command)
-  if handle == nil then return os.getenv("CONDA_ROOT") or "/usr/local/Caskroom/miniconda/base" end
-  local output = handle:read("*a")
-  handle:close()
+  local conda_root = os.getenv("CONDA_ROOT")
+  if conda_root then return conda_root end
 
-  local brew_prefix = output:match("^%s*(.-)%s*$")  -- Trim leading/trailing whitespace
-  local conda_env_path = brew_prefix .. "/Caskroom/miniconda/base"
-  return conda_env_path
+  local guess_paths = {
+    "/usr/local/miniconda3",                 -- Server installation position
+    "/usr/local/Caskroom/miniconda/base",    -- Homebrew for Intel mac
+    "/opt/homebrew/Caskroom/miniconda/base", -- Homebrew for ARM mac
+    os.getenv("HOME") .. "/miniconda3",      -- Linux default position
+  }
+
+  for _, path in ipairs(guess_paths) do
+    if Fau_vim.functions.utils.exist_path(path) then return path end
+  end
 end
 
 

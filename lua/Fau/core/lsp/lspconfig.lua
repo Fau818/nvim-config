@@ -89,6 +89,8 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
   -- HACK: Special for pylance
   if filetype == "python" and vim.fn.executable("pylance") == 1 then
     setup_server("pylance")
+    vim.api.nvim_command("LspStart")
+    return nil
   end
 
   -- Get servers for specific filetype.

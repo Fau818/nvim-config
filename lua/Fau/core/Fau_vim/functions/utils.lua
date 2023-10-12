@@ -11,4 +11,11 @@ return {
     if file_status.size < Fau_vim.large_file_size then return false end
     return true
   end,
+
+
+  -- TODO: to a new class
+  exist_path = function(path)
+    local file_info = vim.loop.fs_stat(path)
+    return file_info ~= nil
+  end,
 }

@@ -26,7 +26,7 @@ return {
 
           autoSearchPaths = true,
 
-          completeFunctionParens = true,
+          completeFunctionParens = false,
 
           autoImportCompletions = true,
           exactMatchOnly        = true,
