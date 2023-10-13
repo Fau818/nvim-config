@@ -132,8 +132,8 @@ return {
       local TIMEOUT = 5
 
       -- get the indent width and indent type
-      local indent_width = vim.api.nvim_buf_get_option(0, "tabstop")
-      local indent_type  = vim.api.nvim_buf_get_option(0, "expandtab")  -- true: space, false: tab
+      local indent_width = vim.bo.tabstop
+      local indent_type  = vim.bo.expandtab  -- true: space, false: tab
 
 
       -- check unexpected indent type

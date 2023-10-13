@@ -31,8 +31,7 @@ return {
 
   -- Smart format (if no lsp-formatter: use auto_indent)
   smart_format = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+    local filetype = vim.bo.filetype
 
     -- specific filetype
     if filetype == "python" then return Fau_vim.functions.format.__auto_indent()
@@ -40,10 +39,10 @@ return {
     end
 
     -- by lsp capability
-    local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+    local clients = vim.lsp.get_clients({ bufnr=0 })
     clients = vim.tbl_filter(function(client) return client.supports_method("textDocument/formatting") end, clients)
 
-    if #clients == 0 then Fau_vim.functions.format.__auto_indent()
-    else vim.lsp.buf.format() end
+    if #clients == 0 then return Fau_vim.functions.format.__auto_indent()
+    else return vim.lsp.buf.format() end
   end,
 }

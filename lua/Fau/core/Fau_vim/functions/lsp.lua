@@ -16,7 +16,7 @@ return {
     local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
     if not lspconfig_ok then Fau_vim.notify("Restart LSP error! Not found nvim-lspconfig plugin.", vim.log.levels.ERROR) return end
 
-    local client_list = vim.lsp.get_active_clients({ bufnr=0 })
+    local client_list = vim.lsp.get_clients({ bufnr=0 })
     for _, client in ipairs(client_list) do
       if client.name ~= "null-ls" and client.name ~= "copilot" then
         vim.api.nvim_command("LspRestart " .. client.id)
