@@ -127,12 +127,10 @@ local config = {
     warning_selected = { bold = false },
     error_selected   = { bold = false },
 
-
     -- the path name in italic
     duplicate          = { bold = true, italic = true },
     duplicate_visible  = { bold = true, italic = true },
     duplicate_selected = { bold = true, italic = true },
-
   }
 }
 

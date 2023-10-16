@@ -32,7 +32,7 @@ return {
           exactMatchOnly        = true,
           importFormat          = "absolute",  -- values: absolute | relative
 
-          diagnosticMode = "workspace",  -- values: workspace | openFilesOnly
+          diagnosticMode = "openFilesOnly",  -- values: workspace | openFilesOnly
 
           enablePytestExtra = false,
           enablePytestSupport = true,
