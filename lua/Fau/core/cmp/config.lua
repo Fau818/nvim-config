@@ -125,6 +125,7 @@ return {
   -- -----------------------------------
   ---@type cmp.ConfigSchema
   search = {
+    enabled = true,
     completion = {
       autocomplete = false,
       completeopt = "menu,menuone,noselect",

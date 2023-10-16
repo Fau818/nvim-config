@@ -91,7 +91,7 @@ local config = {
     -- -----------------------------------
     -- -------- Plugin
     -- -----------------------------------
-    highlights["NvimTreeWinSeparator"] = { fg = "#589ed7" }
+    highlights["NvimTreeWinSeparator"] = { fg = Fau_vim.colors.light_blue }
     highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
     highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 
@@ -104,6 +104,7 @@ local config = {
     -- -----------------------------------
     -- -------- test
     -- -----------------------------------
+    highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
     highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
     highlights["LspInlayHint"] = { fg = colors.dark3 }
     highlights["@keyword"] = { fg = colors.purple, italic = true, nocombine = true }

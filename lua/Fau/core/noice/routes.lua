@@ -1,31 +1,11 @@
-local config = require("Fau.core.noice.config")
+local config = require("noice.config").defaults()
 
 
 ---@type NoiceRouteConfig[]
 local routes = {
   -- -----------------------------------
-  -- -------- Cmdline
+  -- -------- Basic Info
   -- -----------------------------------
-  {  -- mini.align
-    view = "cmdline_popup",
-    filter = { event = "cmdline", find = "(mini.align)" },
-  },
-
-
-  -- -----------------------------------
-  -- -------- Messages
-  -- -----------------------------------
-  {  -- mini.align
-    view = "notify",
-    filter = { event = "msg_show", find = "(mini.align)" },
-    opts = { title = "mini.align" },
-  },
-
-  {  -- showmode
-    view = "mini",
-    filter = { event = "msg_showmode" },
-  },
-
   {
     view = config.messages.view_warn,
     filter = { warning = true },
@@ -40,23 +20,12 @@ local routes = {
 
 
   -- -----------------------------------
-  -- -------- Notify
+  -- -------- Mini Align
   -- -----------------------------------
   {
-    view = config.notify.view,
-    filter = { event = "notify" },
-    opts = { title = "Notify" }
-  },
-
-  {
-    view = config.notify.view,
-    filter = {
-      ---@diagnostic disable-next-line: assign-type-mismatch
-      event = "noice",
-      ---@diagnostic disable-next-line: assign-type-mismatch
-      kind = { "stats", "debug" },
-    },
-    opts = { lang = "lua", title = "Noice", level = vim.log.levels.DEBUG },
+    view = "notify",
+    filter = { event = "msg_show", find = "(mini.align)" },
+    opts = { title = "mini.align" },
   },
 
 }

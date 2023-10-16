@@ -45,7 +45,7 @@ return {
     -- Messages shown by lsp servers
     enabled = true,
     view = "notify",
-    opts = { title = "LSP" },
+    opts = { title = "Noice: LSP" },
   },
 
   -- defaults for hover and signature help

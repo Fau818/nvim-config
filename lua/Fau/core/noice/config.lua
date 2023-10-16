@@ -2,23 +2,9 @@
 local config = {
   cmdline = require("Fau.core.noice.cmdline"),
 
-  messages = {  -- if enabled, will also enable cmdline.
-    enabled      = true, -- enables the Noice messages UI
-    view         = "notify", -- default view for messages
-    view_error   = "notify", -- view for errors
-    view_warn    = "notify", -- view for warnings
-    view_history = "messages", -- view for :messages
-    view_search  = "virtualtext", -- view for search count messages. Set to `false` to disable
-  },
+  messages = require("Fau.core.noice.messages"),
 
-  popupmenu = { -- config by cmp
-    enabled = false, -- enables the Noice popupmenu UI
-    ---@type 'nui'|'cmp'
-    backend = "nui", -- backend to use to show regular cmdline completions
-    ---@type NoicePopupmenuItemKind|false
-    -- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
-    kind_icons = Fau_vim.icons.kind, -- set to `false` to disable icons
-  },
+  popupmenu = require("Fau.core.noice.popupmenu"),
 
   -- default options for require('noice').redirect
   -- see the section on Command Redirection
@@ -29,25 +15,11 @@ local config = {
   ---@type table<string, NoiceCommand>
   commands = require("Fau.core.noice.commands"),
 
-  -- NOTE: does not render. (bug?)
   notify = { enabled = false, view = "notify" },
 
   lsp = require("Fau.core.noice.lsp"),
 
-  markdown = {
-    hover = {
-      ["|(%S-)|"] = vim.cmd.help, -- vim help links
-      ["%[.-%]%((%S-)%)"] = require("noice.util").open, -- markdown links
-    },
-    highlights = {
-      ["|%S-|"]             = "@text.reference",
-      ["@%S+"]              = "@parameter",
-      ["^%s*(Parameters:)"] = "@text.title",
-      ["^%s*(Return:)"]     = "@text.title",
-      ["^%s*(See also:)"]   = "@text.title",
-      ["{%S-}"]             = "@parameter",
-    },
-  },
+  markdown = require("Fau.core.noice.markdown"),
 
   health = { checker = true },
 
@@ -59,20 +31,14 @@ local config = {
   },
 
   ---@type NoicePresets
-  presets = {
-    bottom_search = false, -- use a classic bottom cmdline for search
-    command_palette = false, -- position the cmdline and popupmenu together
-    long_message_to_split = false, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim [entrust in cmdline.lua file]
-    lsp_doc_border = true, -- add a border to hover docs and signature help
-  },
+  presets = require("Fau.core.noice.presets"),
 
   throttle = 1000 / 30, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
 
   ---@type NoiceConfigViews
-  views  = {}, ---@see section on views
+  views  = require("Fau.core.noice.views"), ---@see section on views
   ---@type NoiceRouteConfig[]
-  routes = {}, --- @see section on routes
+  routes = require("Fau.core.noice.routes"), --- @see section on routes
   ---@type table<string, NoiceFilter>
   status = {}, --- @see section on statusline components
   ---@type NoiceFormatOptions
