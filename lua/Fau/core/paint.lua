@@ -23,65 +23,59 @@ local config = {
     },
 
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = " %[%w+%]",
-    --   hl = "TodoFgTODO",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = " %[%w+%]",
+      hl = "TodoFgTODO",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  *([%w_]+[ ]+:)",
-    --   hl = "@parameter",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  *([%w_]+[ ]+:)",
+      hl = "@parameter",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  Parameters",
-    --   hl = "Identifier",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  Parameters",
+      hl = "Identifier",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  Attributes",
-    --   hl = "Identifier",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  Attributes",
+      hl = "Identifier",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  References",
-    --   hl = "Identifier",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  References",
+      hl = "Identifier",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  Examples",
-    --   hl = "Identifier",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  Examples",
+      hl = "Identifier",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  Returns",
-    --   hl = "Identifier",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  Returns",
+      hl = "Identifier",
+    },
 
-    -- {
-    --   filter = { filetype = "python" },
-    --   pattern = "  Raises",
-    --   hl = "Identifier",
-    -- },
+    {
+      filter = { filetype = "python" },
+      pattern = "  Raises",
+      hl = "Identifier",
+    },
 
-    -- {
-    --  filter = { filetype = "python" },
-    --  pattern = "%-%-%-%-%-%-%-%-%-%-",
-    --  hl = "Identifier",
-    -- },
-    --
-    -- {
-    --  filter = { filetype = "python" },
-    --  pattern = "%-%-%-%-%-%-%-",
-    --  hl = "Identifier",
-    -- },
+    {
+     filter = { filetype = "python" },
+     pattern = "  %-%-%-%-%-*%-",
+     hl = "PaintSeparator",
+    },
 
   },
 }

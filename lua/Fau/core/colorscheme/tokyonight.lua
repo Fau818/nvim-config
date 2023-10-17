@@ -18,7 +18,6 @@ local function comment_style()
 end
 
 
----@type Config
 local config = {
   style       = "moon",   -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   light_style = "moon",   -- The theme is used when the background is set to light
@@ -43,7 +42,7 @@ local config = {
   --- function will be called with a ColorScheme table
   ---@param colors ColorScheme
   on_colors = function(colors)
-    colors.comment = Fau_vim.colors.gray
+    colors.comment        = Fau_vim.colors.gray
     colors.terminal_black = Fau_vim.colors.gray
 
     -- vim.g.terminal_color_0  = "#000000"
@@ -69,7 +68,9 @@ local config = {
   ---@param highlights Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    -- highlights["Include"]   = { fg = Fau_vim.colors.blue, italic=true }
+    -- -----------------------------------
+    -- -------- Syntax
+    -- -----------------------------------
     highlights["Define"] = { fg = Fau_vim.colors.gray, italic = true }
     highlights["Statement"] = { fg = colors.magenta, italic = true }
     highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, italic = true }
@@ -78,6 +79,7 @@ local config = {
     highlights["String"]  = { fg = Fau_vim.colors.light_green }
     highlights["Boolean"] = { fg = colors.orange, italic = true }
 
+    highlights["@keyword"] = { fg = colors.purple, italic = true, nocombine = true }
     highlights["@keyword.function"] = { fg = Fau_vim.colors.purple, italic = true }
     highlights["@keyword.operator"] = { fg = colors.blue5, italic = true }
 
@@ -87,9 +89,11 @@ local config = {
 
     highlights["@string.documentation"] = { fg = Fau_vim.colors.cyan_gray }
 
+    highlights["PaintSeparator"] = { fg = "#483D8B" }
+
 
     -- -----------------------------------
-    -- -------- Plugin
+    -- -------- Custom
     -- -----------------------------------
     highlights["NvimTreeWinSeparator"] = { fg = Fau_vim.colors.light_blue }
     highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
@@ -97,17 +101,14 @@ local config = {
 
     highlights["FloatBorder"]   = { fg = Fau_vim.colors.cobalt }
     highlights["LspInfoBorder"] = { fg = Fau_vim.colors.cobalt }
+    highlights["LspInlayHint"] = { fg = colors.dark3 }
 
     highlights["TelescopeBorder"]       = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
 
-    -- -----------------------------------
-    -- -------- test
-    -- -----------------------------------
-    highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
     highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
-    highlights["LspInlayHint"] = { fg = colors.dark3 }
-    highlights["@keyword"] = { fg = colors.purple, italic = true, nocombine = true }
+
+    highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
   end,
 }
 

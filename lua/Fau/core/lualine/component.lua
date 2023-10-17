@@ -89,9 +89,11 @@ return {
   -- ========== basic
   -- =============================================
   mode = {
-    function() return " " .. Fau_vim.icons.ui.Target .. " " end,
-    -- "mode",
-    -- icon = Fau_vim.icons.ui.Target
+    function()
+      local mode = vim.api.nvim_get_mode()["mode"]:sub(1, 1):lower()
+      local icon = Fau_vim.icons.mode[mode] or Fau_vim.icons.mode.vim
+      return " " .. icon .. " "
+    end,
   },
 
   filename = "filename",

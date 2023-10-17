@@ -134,8 +134,6 @@ return {
     Watches      = "󰂥",
     DebugConsole = "",
 
-    Target = "",
-
     IndentLine = "▏", -- "▎"
 
     MethodSeparator = "─",
@@ -182,5 +180,20 @@ return {
     Terminate = "",
   },
 
+
+  mode = {
+    n = "",
+    i = "",
+
+    v = "󰈈",
+    s = "󰈈",
+
+    t = "",
+    c = "",
+
+    r = "",
+
+    vim = "",
+  },
 
 }
