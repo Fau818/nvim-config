@@ -35,8 +35,8 @@ local function on_attach(bufnr)
     if is_empty then return 0 end
 
     -- Run `file` command.
-    local command = [[file --mime-encoding -b ']] .. abs_path .. "'"  -- if a binary file, will return `binary`.
-    local result = vim.fn.system(command):sub(1, -2)  -- trim line break char
+    -- if a binary file, will return `binary`.
+    local result = vim.fn.system({ "file", "--mime-encoding", "-b", abs_path }):sub(1, -2)  -- trim line break char
 
     if result == "binary" then return 1
     else return 0
@@ -61,7 +61,7 @@ local function on_attach(bufnr)
       api.node.run.system(node)
       Fau_vim.notify("A binary file, use system open to edit it. (Use `o` to force edit it in neovim.)", vim.log.levels.INFO, { render="minimal" })
     elseif file_type == 2 then  -- folder
-      local command = [[ls -1 ']] .. abs_path .. "'" .. [[ | wc -l]]
+      local command = string.format([[ls -1 "%s" | wc -l]], abs_path)
       local file_number = tonumber(vim.fn.system(command))
 
       if file_number >= 1000 then Fau_vim.notify("A large folder. (Use `o` to force expand it.)", vim.log.levels.WARN, { render="minimal" })
