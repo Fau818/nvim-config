@@ -266,6 +266,8 @@ local config = {
 
   notify = { threshold = vim.log.levels.INFO, absolute_path = true },
 
+  help = { sort_by = "key" },
+
   ui = { confirm = { remove = true, trash = true } },
 
   log = { -- Configuration for diagnostic logging.
