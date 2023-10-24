@@ -41,7 +41,9 @@ local gitsigns = {
 
     -- Diffview
     d = { "<CMD>DiffviewOpen<CR>",        "Open Diffview" },
-    D = { "<CMD>DiffviewFileHistory<CR>", "Open Diffview" },
+
+    f = { "<CMD>DiffviewFileHistory %<CR>", "Open Diffview" },
+    F = { "<CMD>DiffviewFileHistory<CR>", "Open Diffview" },
   },
 }
 

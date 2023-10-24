@@ -53,7 +53,7 @@ return {
           nvim_lsp = "[LSP]",
           luasnip = "[Snippet]",
 
-          conventionalcommits = "[Git]",
+          gitcommit = "[Git]",
           zsh = "[ZSH]",
           calc = "[Calc]",
 
@@ -84,7 +84,7 @@ return {
       { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "luasnip" },
-      { name = "conventionalcommits" },
+      { name = "gitcommit" },
       { name = "zsh" },
       { name = "calc" },
 

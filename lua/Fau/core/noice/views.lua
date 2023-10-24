@@ -11,7 +11,10 @@ local views = {
     render = "minimal",
   },
 
-  hover = { border = { padding = { 0, 1 }, }, },
+  hover = {
+    size = { max_width = 100 },
+    border = { padding = { 0, 1 }, },
+  },
 
   cmdline_popup = { size = { width = 60 } },
 

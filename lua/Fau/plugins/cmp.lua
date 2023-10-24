@@ -37,6 +37,7 @@ local cmp = {
         -- DESC: gitcommit completion source for nvim-cmp.
         "davidsierradz/cmp-conventionalcommits",
         ft = "gitcommit",
+        enabled = false,  -- BUG: this plugin is not working.
       },
       {
         -- DESC: zsh completion source for nvim-cmp.
@@ -72,6 +73,13 @@ local cmp = {
           require("copilot_cmp").setup(config)
         end,
         enabled = Fau_vim.copilot.enable,
+      },
+      {
+        -- DESC: gitcommit completion source for nvim-cmp.
+        "Cassin01/cmp-gitcommit",
+        config = function() require("cmp-gitcommit").setup() end,
+        ft = "gitcommit",
+        enabled = false,  -- BUG: this plugin is not working.
       },
 
 

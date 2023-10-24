@@ -29,6 +29,7 @@ return {
       ["@comment.inner"] = "V",
     },
 
+    -- include_surrounding_whitespace = function(query_string, selection_modes) end,
     include_surrounding_whitespace = false,
   },
 
