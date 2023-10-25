@@ -35,7 +35,6 @@ return {
     },
 
     confirmation = {
-      -- default_behavior = "insert",
       default_behavior = "insert",
       -- get_commit_characters = ...,
     },
@@ -49,20 +48,21 @@ return {
       format = function(entry, vim_item)   -- The function used to customize the appearance of the completion menu.
         vim_item.kind = Fau_vim.icons.kind[vim_item.kind]
         vim_item.menu = ({
-          copilot = "[Copilot]",
+          copilot  = "[Copilot]",
           nvim_lsp = "[LSP]",
-          luasnip = "[Snippet]",
+          luasnip  = "[Snippet]",
 
-          gitcommit = "[Git]",
+          conventionalcommits = "[Git]",
+          gitcommit           = "[Git]",
           zsh = "[ZSH]",
           calc = "[Calc]",
 
           buffer = "[Buffer]",
-          path = "[Path]",
+          path   = "[Path]",
         })[entry.source.name]
 
         -- limit the length of abbr
-        vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, 30)
+        vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, 35)
         return vim_item
       end,
     },
@@ -80,10 +80,12 @@ return {
     --   priority_weight = ...,
     -- },
 
-    sources = { -- The order of the sources determines their order in the completion results.
+    sources = {
       { name = "copilot" },
       { name = "nvim_lsp" },
       { name = "luasnip" },
+
+      { name = "conventionalcommits" },
       { name = "gitcommit" },
       { name = "zsh" },
       { name = "calc" },

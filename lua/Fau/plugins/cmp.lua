@@ -42,11 +42,10 @@ local cmp = {
       {
         -- DESC: zsh completion source for nvim-cmp.
         "tamago324/cmp-zsh",
-        ft = "zsh",
       },
       {
         -- DESC: signature help completion source for nvim-cmp.
-        -- WARNING: This plugin is disabled.
+        -- WARNING: This plugin is deprecated.
         "hrsh7th/cmp-nvim-lsp-signature-help",
         enabled = false,
       },

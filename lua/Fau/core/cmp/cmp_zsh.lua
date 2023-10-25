@@ -9,7 +9,7 @@ if not cmp_zsh_ok then Fau_vim.load_plugin_error("cmp_zsh") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
-local config = { zshrc = true, filetypes = { "zsh" } }
+local config = { zshrc = true, filetypes = { "zsh", "sh" } }
 
 
 cmp_zsh.setup(config)
