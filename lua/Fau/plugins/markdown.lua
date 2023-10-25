@@ -26,7 +26,7 @@ local markdown = {
 
   {
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
+    build = "cd app && yarn install",
     config = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_echo_preview_url = 1
