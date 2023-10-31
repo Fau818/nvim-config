@@ -268,7 +268,7 @@ local config = {
 
   help = { sort_by = "key" },
 
-  ui = { confirm = { remove = true, trash = true } },
+  ui = { confirm = { remove = true, trash = true, default_yes = true } },
 
   log = { -- Configuration for diagnostic logging.
     enable = false,   -- Enable logging to a file `$XDG_CACHE_HOME/nvim/nvim-tree.log`
