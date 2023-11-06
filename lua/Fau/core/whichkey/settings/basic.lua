@@ -23,7 +23,7 @@ local basic = {  -- n
   ["<C-v>"] = "Vertical Split",
   -- ["<C-x>"] = "Horizontal Split",
 
-  ["<C-f>"] = "Open in System Explorer and Scroll Down",
+  ["<C-f>"] = "Reveal file or Scroll Down",
   ["<C-b>"] = "Scroll Up",
 
   ["<MouseMove>"] = "which_key_ignore"

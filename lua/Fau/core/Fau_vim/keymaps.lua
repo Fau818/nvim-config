@@ -74,8 +74,9 @@ keymap("n", "<LEADER>N", "<CMD>nohlsearch<CR>", opts)
 -- Use '<LEADER>q' to Recording
 keymap("n", "<LEADER>q", "q", opts)
 
--- Open File Folder
-keymap("n", "<C-f>", "<CMD>silent !open '%:h'<CR>", opts)
+-- Reveal File
+-- TODO: Compatible with multiple platforms [see yazi "opener" section]
+keymap("n", "<C-f>", "<CMD>silent !open -R '%'<CR>", opts)
 keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 
 -- Convert tab and space
