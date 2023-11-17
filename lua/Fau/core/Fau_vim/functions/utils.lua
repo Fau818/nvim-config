@@ -18,4 +18,9 @@ return {
     local file_info = vim.loop.fs_stat(path)
     return file_info ~= nil
   end,
+
+  reveal_in_finder = function(path)
+    if path == nil then path = vim.fn.expand('%') end
+    return string.format("<CMD>!open -R '%s'<CR>", path)
+  end,
 }

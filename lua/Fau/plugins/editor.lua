@@ -64,7 +64,7 @@ local editor = {
         -- DESC: a fzf sorter for telescope.
         "nvim-telescope/telescope-fzf-native.nvim",  -- for speeding up the fuzzy find
         build = "make",
-        -- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+        -- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       },
       {
         -- DESC: an emoji searcher for telescope

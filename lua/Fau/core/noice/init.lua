@@ -19,7 +19,7 @@ noice.setup(config)
 -- =============================================
 vim.keymap.set("n", "<C-f>", function()
   if not require("noice.lsp").scroll(2) then
-    return "<CMD>silent !open -R '%'<CR>"
+    return Fau_vim.functions.utils.reveal_in_finder()
   end
 end, { silent = true, expr = true })
 

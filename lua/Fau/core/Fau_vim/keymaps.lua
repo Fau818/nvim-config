@@ -76,7 +76,7 @@ keymap("n", "<LEADER>q", "q", opts)
 
 -- Reveal File
 -- TODO: Compatible with multiple platforms [see yazi "opener" section]
-keymap("n", "<C-f>", "<CMD>silent !open -R '%'<CR>", opts)
+keymap("n", "<C-f>", "<CMD>!open -R '%'<CR>", opts)
 keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 
 -- Convert tab and space
