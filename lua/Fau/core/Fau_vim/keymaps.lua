@@ -4,7 +4,7 @@
 local keymap  = vim.keymap.set
 local del_map = vim.keymap.del
 local opts       = { silent = true }
-local opts_remap = { remap  = true, silent = true }
+local opts_remap = { silent = true, remap = true }
 
 
 

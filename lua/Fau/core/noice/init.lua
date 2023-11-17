@@ -19,7 +19,7 @@ noice.setup(config)
 -- =============================================
 vim.keymap.set("n", "<C-f>", function()
   if not require("noice.lsp").scroll(2) then
-    return Fau_vim.functions.utils.reveal_in_finder()
+    return Fau_vim.functions.utils.reveal_in_system()
   end
 end, { silent = true, expr = true })
 

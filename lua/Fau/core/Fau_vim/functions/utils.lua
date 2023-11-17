@@ -19,8 +19,8 @@ return {
     return file_info ~= nil
   end,
 
-  reveal_in_finder = function(path)
+  reveal_in_system = function(path)
     if path == nil then path = vim.fn.expand('%') end
-    return string.format("<CMD>!open -R '%s'<CR>", path)
+    return string.format("<CMD>silent !open -R '%s'<CR>", path)
   end,
 }

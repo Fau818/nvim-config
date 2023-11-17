@@ -73,15 +73,16 @@ local function on_attach(bufnr)
 
   local function smart_open() __hyper_open(api.node.open.edit) end
   local function smart_preview() __hyper_open(api.node.open.preview) end
-  local function reveal_in_finder()
+  local function reveal_in_system()
     local node = __get_cursor_node()
     if not node then return end  -- error notified in get_cursor_node().
     local abs_path = node.absolute_path
-    return Fau_vim.functions.utils.reveal_in_finder(abs_path)
+    print(string.format("Reveal %s in system.", abs_path))
+    return Fau_vim.functions.utils.reveal_in_system(abs_path)
   end
 
 
-  local function opts(desc) return { desc="nvim-tree: " .. desc, buffer=bufnr, noremap=true, nowait=true, expr=true } end
+  local function opts(desc) return { desc="nvim-tree: " .. desc, buffer=bufnr, noremap=true, nowait=true } end
 
 
   -- =============================================
@@ -92,7 +93,7 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "<2-LeftMouse>",  smart_open,                         opts("Smart Open"))
   vim.keymap.set("n", "O",              api.node.open.no_window_picker,     opts("Open: No Window Picker"))
   vim.keymap.set("n", "<Tab>",          smart_preview,                      opts("Smart Preview"))
-  vim.keymap.set("n", "<C-f>",          reveal_in_finder,                   opts("Reveal in System"))
+  vim.keymap.set("n", "<C-f>",          reveal_in_system,                   vim.tbl_extend("error", opts("Reveal in System"), { expr=true }))
 
   vim.keymap.set("n", "<C-t>",          api.node.open.tab,                  opts("Open: New Tab"))
   vim.keymap.set("n", "<C-v>",          api.node.open.vertical,             opts("Open: Vertical Split"))
