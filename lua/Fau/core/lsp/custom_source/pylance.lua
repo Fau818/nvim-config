@@ -7,36 +7,28 @@ if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settin
 
 
 local function installer(ctx)
-  local get_pylance = [[
+  local script = [[
     curl -s -c cookies.txt 'https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance' > /dev/null &&
-    curl -s 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/latest/vspackage'
-      -j -b cookies.txt --compressed --output 'pylance.vsix' &&
-    unzip pylance.vsix > /dev/null
+    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2023.11.10/vspackage"
+         -j -b cookies.txt --compressed --output "pylance.vsix"
   ]]
-
-  local get_patcher = [[git clone https://github.com/MyFedora/pyspeer.git]]
-
-  local patch_pylance = [[
-    cd pyspeer && yarn --emoji=false && yarn --emoji=false rollup -c &&
-    cd ../extension/dist &&
-    cat ../../pyspeer/dist/pyspeer.min.js server.bundle.js > magic.js
-  ]]
-
-  local patch_pylance_tail = [[cd extension/dist && node magic.js > server.bundle.js || true]]  -- NOTE: will return 1, so || true
-
-  get_pylance = get_pylance:gsub("\n", " ")
-  get_patcher = get_patcher:gsub("\n", " ")
-  patch_pylance = patch_pylance:gsub("\n", " ")
-  patch_pylance_tail = patch_pylance_tail:gsub("\n", " ")
-
   ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
+  ctx.spawn.bash({ "-c", script:gsub("\n", " ") })
+  ctx.spawn.unzip({ "pylance.vsix" })
 
-  ctx.spawn.bash({ "-c", get_pylance })
-  ctx.spawn.bash({ "-c", get_patcher })
-  ctx.spawn.bash({ "-c", patch_pylance })
-  ctx.spawn.bash({ "-c", patch_pylance_tail })
-
-  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat { "extension", "dist", "server.bundle.js" }))
+  local sed_binary = Fau_vim.os_name == "Darwin" and "gsed" or "sed"
+  ctx.spawn.bash({
+    "-c",
+    sed_binary .. [[ -i "0,/\(if(\!process\[[^] ]*\]\[[^] ]*\])return\!0x\)1/ s//\10/" extension/dist/server.bundle.js]],
+  })
+  ctx.spawn.bash({
+    "-c",
+    sed_binary .. [[ -i -E "s/;_0x[0-9a-f]+\['verifyClie'\+'nt'\]=function\(_0x[0-9a-f]+\)\{/&return;/" extension/dist/server.bundle.js]],
+  })
+  ctx:link_bin(
+    "pylance",
+    ctx:write_node_exec_wrapper("pylance", path.concat({ "extension", "dist", "server.bundle.js" }))
+  )
 end
 
 
