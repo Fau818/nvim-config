@@ -19,8 +19,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 -- use diagonal lines in place of deleted lines
 vim.opt.fillchars:append { diff = "╱" }
--- Turn off the ftplugin
-vim.api.nvim_command("filetype plugin off")
 
 
 
@@ -173,9 +171,8 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     vim.wo.foldcolumn = "0"
 
     -- Disable IndentLine
-    local indent_blankline_ok, indent_blankline = pcall(require, "indent_blankline")
-    if indent_blankline_ok then vim.api.nvim_command("IndentBlanklineDisable") end
-
+    local indent_blankline_ok, indent_blankline = pcall(require, "ibl")
+    if indent_blankline_ok then indent_blankline.setup_buffer(buffer, { enabled = false }) end
 
     -- Disable mini
     vim.b.minitrailspace_disable = true

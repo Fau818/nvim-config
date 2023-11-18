@@ -22,23 +22,24 @@ return {
     settings = {
       python = {
         analysis = {
-          autoFormatStrings = true,
+          addImport = { exactMatchOnly = true },
 
-          autoSearchPaths = true,
-
-          completeFunctionParens = false,
-
+          autoFormatStrings     = true,
           autoImportCompletions = true,
-          exactMatchOnly        = true,
-          importFormat          = "absolute",  -- values: absolute | relative
+          autoSearchPaths       = true,
+
+          completeFunctionParens = true,
 
           diagnosticMode = "openFilesOnly",  -- values: workspace | openFilesOnly
 
-          enablePytestExtra = false,
+          enablePytestExtra   = false,
           enablePytestSupport = true,
+          enableSyncServer    = false,
+          extraCommitChars    = true,
 
           gotoDefinitionInStringLiteral = true,
 
+          importFormat = "absolute", -- values: absolute | relative
           indexing = true,
 
           inlayHints= {
