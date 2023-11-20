@@ -18,7 +18,10 @@ local coding = {
       {
         -- DESC: set the commentstring based on the context.
         "JoosepAlviste/nvim-ts-context-commentstring",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+          vim.g.skip_ts_context_commentstring_module = true
+          require('ts_context_commentstring').setup({ enable_autocmd = true })
+        end,
       },
     },
     config = function() require("Fau.core.comment") end,

@@ -50,12 +50,6 @@ local config = {
     disable = function() return Fau_vim.functions.utils.is_large_file() end,
   },
 
-  -- nvim-ts-context-commentstring plugin
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
-
   -- nvim-ts-autotag plugin
   autotag = {
     enable = true,
