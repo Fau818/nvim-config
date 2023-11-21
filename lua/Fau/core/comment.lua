@@ -3,7 +3,6 @@
 -- =============================================
 local comment_ok, comment = pcall(require, "Comment")
 if not comment_ok then Fau_vim.load_plugin_error("Comment") return end
-local comment_ft = require('Comment.ft')
 
 
 
@@ -64,9 +63,10 @@ comment.setup(config)
 -- =============================================
 -- ========== Specific Filetype
 -- =============================================
-comment_ft.set("dosini",     "# %s")
-comment_ft.set("zsh",        "# %s")
-comment_ft.set("kitty",      "# %s")
-comment_ft.set("sshconfig",  "# %s")
-comment_ft.set("sshdconfig", "# %s")
-comment_ft.set("xmodmap",    "! %s")
+-- local comment_ft = require('Comment.ft')
+-- comment_ft.set("dosini",     "# %s")
+-- comment_ft.set("zsh",        "# %s")
+-- comment_ft.set("kitty",      "# %s")
+-- comment_ft.set("sshconfig",  "# %s")
+-- comment_ft.set("sshdconfig", "# %s")
+-- comment_ft.set("xmodmap",    "! %s")

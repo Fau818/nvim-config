@@ -17,13 +17,13 @@ local function foldfunc(args)
   return fold_string
 end
 
-local function empty_gitsigns_and_diagnostics()
-  ---@diagnostic disable-next-line: undefined-field
-  if vim.b.gitsigns_status == nil or vim.b.gitsigns_status == "" then
-    return vim.diagnostic.get_next_pos() == false
-  end
-  return false
-end
+-- local function empty_gitsigns_and_diagnostics()
+--   ---@diagnostic disable-next-line: undefined-field
+--   if vim.b.gitsigns_status == nil or vim.b.gitsigns_status == "" then
+--     return vim.diagnostic.get_next_pos() == false
+--   end
+--   return false
+-- end
 
 local config = {
   -- Builtin 'statuscolumn' options
