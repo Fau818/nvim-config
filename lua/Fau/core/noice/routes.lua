@@ -18,6 +18,11 @@ local routes = {
     opts = { title = "Error", level = vim.log.levels.ERROR }
   },
 
+  {
+    view = "mini",
+    filter = { event = "msg_showmode" },  -- show @recording
+  },
+
 
   -- -----------------------------------
   -- -------- Mini Align

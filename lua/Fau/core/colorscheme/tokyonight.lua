@@ -3,7 +3,7 @@
 -- =============================================
 local tokyonight_ok, tokyonight = pcall(require, "tokyonight")
 if not tokyonight_ok then Fau_vim.load_plugin_error("tokyonight") return end
-
+Fau_vim.colors.tokyonight = require("tokyonight.colors").moon()
 
 
 -- =============================================
@@ -44,23 +44,6 @@ local config = {
   on_colors = function(colors)
     colors.comment        = Fau_vim.colors.gray
     colors.terminal_black = Fau_vim.colors.gray
-
-    -- vim.g.terminal_color_0  = "#000000"
-    -- vim.g.terminal_color_8  = "#666666"
-    -- vim.g.terminal_color_1  = "#C91B00"
-    -- vim.g.terminal_color_9  = "#E50000"
-    -- vim.g.terminal_color_2  = "#00C800"
-    -- vim.g.terminal_color_10 = "#00DC00"
-    -- vim.g.terminal_color_3  = "#DBDB22"
-    -- vim.g.terminal_color_11 = "#EEEE55"
-    -- vim.g.terminal_color_4  = "#007DFF"
-    -- vim.g.terminal_color_12 = "#0096FF"
-    -- vim.g.terminal_color_5  = "#AD83E9"
-    -- vim.g.terminal_color_13 = "#BA99FA"
-    -- vim.g.terminal_color_6  = "#10C5EA"
-    -- vim.g.terminal_color_14 = "#30E1FD"
-    -- vim.g.terminal_color_7  = "#C7C7C7"
-    -- vim.g.terminal_color_15 = "#FFFFFF"
   end,
 
   --- You can override specific highlights to use other groups or a hex color
@@ -109,6 +92,13 @@ local config = {
     highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
 
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
+
+
+    -- -----------------------------------
+    -- -------- Cover BufferLine
+    -- -----------------------------------
+    highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false }
+
   end,
 }
 

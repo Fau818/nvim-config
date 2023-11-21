@@ -135,6 +135,7 @@ return {
     DebugConsole = "",
 
     IndentLine = "▏", -- "▎"
+    Indicator  = "▎",
 
     MethodSeparator = "─",
     MethodSeparatorHeavy = "━",
@@ -143,8 +144,13 @@ return {
     Separator = "",
     Ellipsis  = "…",
 
-    Modified = "●",
-    Bookmark = "󰆤",  -- ""
+    Modified  = "●",
+    Close     = "",
+    CloseBold = "",
+    Bookmark  = "󰆤",  -- ""
+
+    ExpandLeft  = "",
+    ExpandRight = "",
 
     Done = "",
     Undone = "",

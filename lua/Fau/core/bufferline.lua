@@ -14,7 +14,7 @@ local config = {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
     style_preset = bufferline.style_preset.minimal,
-    themable = true, -- allows highlight groups to be overriden i.e. sets highlights as defaultq
+    themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
 
     numbers = "none", -- values: "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
 
@@ -24,25 +24,33 @@ local config = {
     middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
 
     indicator = {
-      icon = "▎",     -- this should be omitted if indicator style is not 'icon'
+      icon = Fau_vim.icons.ui.Indicator,     -- this should be omitted if indicator style is not 'icon'
       style = "icon", -- values: 'icon' | 'underline' | 'none'
     },
-    -- TODO: add these kinds to icons
-    buffer_close_icon = "",
-    modified_icon = "●",
-    close_icon = "",
 
-    left_trunc_marker = "",  -- if too long
-    right_trunc_marker = "", -- if too long
+    buffer_close_icon = Fau_vim.icons.ui.Close,
+    modified_icon     = Fau_vim.icons.ui.Modified,
+    close_icon        = Fau_vim.icons.ui.CloseBold,
+
+    left_trunc_marker  = Fau_vim.icons.ui.ExpandLeft,
+    right_trunc_marker = Fau_vim.icons.ui.ExpandRight,
 
     always_show_bufferline = true,  -- whether or not to show the bufferline if only one tab
-    enforce_regular_tabs = false,   -- prevent beyond the tab size and all tabs will be the same length
+    enforce_regular_tabs   = false, -- prevent beyond the tab size and all tabs will be the same length
 
-    tab_size = 10,                -- the tab length
-    max_name_length = 15,
-    max_prefix_length = 12,       -- prefix used when a buffer is de-duplicated
-    show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
-    truncate_names = true,        -- whether or not tab names should be truncated
+    -- name_formatter = function(buf)  -- buf contains:
+    --   -- name                | str        | the basename of the active file
+    --   -- path                | str        | the full path of the active file
+    --   -- bufnr (buffer only) | int        | the number of the active buffer
+    --   -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
+    --   -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
+    -- end,
+
+    tab_size              = 10,    -- the tab length
+    max_name_length       = 15,
+    max_prefix_length     = 12,    -- prefix used when a buffer is de-duplicated
+    show_duplicate_prefix = true,  -- whether to show duplicate buffer prefix
+    truncate_names        = true,  -- whether or not tab names should be truncated
 
     ---@diagnostic disable-next-line: unused-local
     custom_filter = function(buf_number, buf_numbers)
@@ -70,67 +78,104 @@ local config = {
 
     offsets = {
       {
-        filetype = "NvimTree",
-        text = " Workspace",    -- values: string | function
-        text_align = "center", -- values: "left" | "center" | "right"
-        separator = true
+        filetype   = "NvimTree",
+        text       = " Workspace",
+        text_align = "center",  -- values: "left" | "center" | "right"
+        separator  = true
       }
     },
 
-    color_icons = true,              -- whether or not to add the filetype icon highlights
-    show_buffer_icons = true,        -- whether or not to disable filetype icons for buffers
-    show_buffer_close_icons = true,
+    color_icons = true,
     get_element_icon = function(element)
       -- element consists of {filetype: string, path: string, extension: string, directory: string}
       -- This can be used to change how bufferline fetches the icon for an element e.g. a buffer or a tab.
       local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype, { default = false })
       return icon, hl
     end,
-    show_close_icon = true,
+
+    show_buffer_icons       = true,
+    show_buffer_close_icons = true,
+    show_close_icon         = true,
+    show_tab_indicators     = true,
 
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
 
     -- can also be a table containing 2 custom separators [focused and unfocused]. eg: { '|', '|' }
-    separator_style = { "", "" }, -- "slant" | "padded_slant" | "thick" | "thin" | "slope" | "padded_slope" | { 'any', 'any' },
+    separator_style = { "▎", "▎" }, -- "slant" | "padded_slant" | "thick" | "thin" | "slope" | "padded_slope" | { 'any', 'any' },
 
     hover = { enabled = true, delay = 50, reveal = { "close" } },
     sort_by = "insert_after_current", -- values: 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b) return buffer_a.modified > buffer_b.modified end
-
-    groups = {
-      options = {
-        toggle_hidden_on_enter = true -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
-      },
-      items = {
-        {
-          name = "Docs",
-          highlight = { undercurl = true, sp = "green" },
-          priority = 2, -- determines where it will appear relative to other groups (Optional)
-          icon = Fau_vim.icons.ui.File, -- Optional
-          auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
-          -- matcher = function(buf) return buf.filename:match("%.md") or buf.filename:match("%.txt") end,
-          separator = { -- Optional
-            style = require("bufferline.groups").separator.tab
-          },
-        }
-      }
-    }
   },
 
   highlights = {
     -- selected filename in curlycue
-    buffer_selected     = { fg = Fau_vim.colors.cobalt, bold = false },
-    numbers_selected    = { fg = Fau_vim.colors.cobalt, bold = false },
-    diagnostic_selected = { bold = false },
-    hint_selected    = { bold = false },
-    info_selected    = { bold = false },
-    warning_selected = { bold = false },
-    error_selected   = { bold = false },
+    fill       = { bg = Fau_vim.colors.bufferline_bg },
+    background = { bg = Fau_vim.colors.bufferline_bg },
+
+    tab                    = { bg = Fau_vim.colors.bufferline_bg },
+    tab_selected           = { bg = Fau_vim.colors.bufferline_bg },
+    tab_separator          = { bg = Fau_vim.colors.bufferline_bg },
+    tab_separator_selected = { bg = Fau_vim.colors.bufferline_bg },
+    tab_close              = { bg = Fau_vim.colors.bufferline_bg },
+
+    buffer_visible   = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cobalt, bold = false, italic = true },
+    buffer_selected  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cobalt, bold = false, italic = true },
+
+    hint                     = { bg = Fau_vim.colors.bufferline_bg },
+    hint_visible             = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.teal, bold = false, italic = true },
+    hint_selected            = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.teal, bold = false, italic = true },
+    hint_diagnostic          = { bg = Fau_vim.colors.bufferline_bg },
+    hint_diagnostic_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.teal, bold = false, italic = false },
+    hint_diagnostic_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.teal, bold = false, italic = false },
+
+    info                     = { bg = Fau_vim.colors.bufferline_bg },
+    info_visible             = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.blue2, bold = false, italic = true },
+    info_selected            = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.blue2, bold = false, italic = true },
+    info_diagnostic          = { bg = Fau_vim.colors.bufferline_bg },
+    info_diagnostic_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.blue2, bold = false, italic = false },
+    info_diagnostic_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.blue2, bold = false, italic = false },
+
+    warning                     = { bg = Fau_vim.colors.bufferline_bg },
+    warning_visible             = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.yellow, bold = false, italic = true },
+    warning_selected            = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.yellow, bold = false, italic = true },
+    warning_diagnostic          = { bg = Fau_vim.colors.bufferline_bg },
+    warning_diagnostic_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.yellow, bold = false, italic = false },
+    warning_diagnostic_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.yellow, bold = false, italic = false },
+
+    error                     = { bg = Fau_vim.colors.bufferline_bg },
+    error_visible             = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.red1, bold = false, italic = true },
+    error_selected            = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.red1, bold = false, italic = true },
+    error_diagnostic          = { bg = Fau_vim.colors.bufferline_bg },
+    error_diagnostic_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.red1, bold = false, italic = false },
+    error_diagnostic_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.tokyonight.red1, bold = false, italic = false },
 
     -- the path name in italic
-    duplicate          = { bold = true, italic = true },
-    duplicate_visible  = { bold = true, italic = true },
-    duplicate_selected = { bold = true, italic = true },
+    duplicate          = { bg = Fau_vim.colors.bufferline_bg, bold = true, italic = true },
+    duplicate_visible  = { bg = Fau_vim.colors.bufferline_bg, bold = true, italic = true },
+    duplicate_selected = { bg = Fau_vim.colors.bufferline_bg, bold = false, italic = true },
+
+    modified          = { bg = Fau_vim.colors.bufferline_bg },
+    modified_visible  = { bg = Fau_vim.colors.bufferline_bg },
+    modified_selected = { bg = Fau_vim.colors.bufferline_bg },
+
+    close_button          = { bg = Fau_vim.colors.bufferline_bg },
+    close_button_visible  = { bg = Fau_vim.colors.bufferline_bg },
+    close_button_selected = { bg = Fau_vim.colors.bufferline_bg },
+
+    separator          = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cyan_gray },
+    separator_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cyan_gray },
+    separator_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cyan_gray },
+
+    indicator_visible = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false },
+    -- indicator_selected = { },  -- Controlled by tokyonight,
+
+    pick          = { bg = Fau_vim.colors.bufferline_bg },
+    pick_visible  = { bg = Fau_vim.colors.bufferline_bg },
+    pick_selected = { bg = Fau_vim.colors.bufferline_bg },
+
+    offset_separator = { bg = Fau_vim.colors.bufferline_bg },
+    trunc_marker     = { bg = Fau_vim.colors.bufferline_bg }
   }
 }
 

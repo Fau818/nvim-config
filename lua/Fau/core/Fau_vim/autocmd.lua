@@ -44,13 +44,13 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 
---- Treat `zsh` as `bash`.
-vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
-  desc = "Change `zsh` filetype to `sh(bash)`.",
-  pattern = { "zsh" },
-  callback = function() vim.bo.filetype = "sh" end
-})
+-- --- Treat `zsh` as `bash`.
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = "Fau_vim",
+--   desc = "Change `zsh` filetype to `sh(bash)`.",
+--   pattern = { "zsh" },
+--   callback = function() vim.bo.filetype = "sh" end
+-- })
 
 -- Set table mode options in markdown.
 vim.api.nvim_create_autocmd("FileType", {

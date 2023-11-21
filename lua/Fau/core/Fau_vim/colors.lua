@@ -27,4 +27,6 @@ return {
 
   gray        = "#697391",
   cyan_gray   = "#7D96AF",
+
+  bufferline_bg = "#232323",
 }
