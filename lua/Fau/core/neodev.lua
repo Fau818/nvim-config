@@ -18,7 +18,7 @@ local config = {
     plugins = true,  -- installed opt or start plugins in packpath
     -- plugins = { "nvim-lspconfig", "null-ls.nvim", "telescope" },
   },
-  setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
+  setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
   -- override = function(root_dir, library)
   --  library.enabled = true
   --  library.plugins = true

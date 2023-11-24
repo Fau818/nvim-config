@@ -11,12 +11,7 @@ local lsp = {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "lvimuser/lsp-inlayhints.nvim",
-      {
-        -- DESC: config LSP in json file.
-        "folke/neoconf.nvim",
-        config = function() require("Fau.core.lsp.neoconf") end,
-        enabled = false,
-      },
+      "folke/neoconf.nvim",
     },
     config = function()
       require("Fau.core.lsp.diagnostics_config")
@@ -29,16 +24,16 @@ local lsp = {
   {
     -- DESC: a bridge between lspconfig and mason.nvim for making things easier.
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
+    dependencies = {
+      {
+        -- DESC: a powerful manager for LSP, DAP, Linter and Formatter.
+        "williamboman/mason.nvim",
+        config = function() require("Fau.core.lsp.mason") end,
+        cmd = "Mason",
+      },
+    },
     config = function() require("Fau.core.lsp.mason-lspconfig") end,
     lazy = true, -- loaded by nvim-lspconfig
-  },
-  {
-    -- DESC: a powerful manager for LSP, DAP, Linter and Formatter.
-    "williamboman/mason.nvim",
-    config = function() require("Fau.core.lsp.mason") end,
-    cmd = "Mason",
-    lazy = true, -- loaded by mason-lspconfig.nvim
   },
 
   {
@@ -54,12 +49,15 @@ local lsp = {
     "folke/neodev.nvim",
     config = function() require("Fau.core.neodev") end,
     ft = "lua",
-    -- WARN: This plugin needs to load before lua_ls.
-    -- if use `ft = "lua"` for lazy loading, the function called
-    -- Fau_vim.functions.lsp.set_client_by_ft() will respect its order.
   },
 
-
+  {
+    -- DESC: config LSP in json file.
+    "folke/neoconf.nvim",
+    config = function() require("Fau.core.lsp.neoconf") end,
+    cmd = "Neoconf",
+    lazy = true,  -- loaded by nvim-lspconfig
+  },
 
   -- =============================================
   -- ========== LSP Enhancement

@@ -33,9 +33,7 @@ local config = {
     -- - lua settings passed in lspconfig setup
     -- - global json settings
     -- - local json settings
-    lspconfig = {
-      enabled = true,
-    },
+    lspconfig = { enabled = true },
     -- configures jsonls to get completion in .nvim.settings.json files
     jsonls = {
       enabled = true,
