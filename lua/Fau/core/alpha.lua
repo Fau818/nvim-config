@@ -47,6 +47,9 @@ dashboard.section.buttons.val = {
 }
 
 
+alpha.setup(dashboard.opts)
+
+
 -- -----------------------------------
 -- -------- Lazy Display
 -- -----------------------------------
@@ -71,6 +74,3 @@ vim.api.nvim_create_autocmd("User", {
     pcall(vim.cmd.AlphaRedraw)
   end,
 })
-
-
-alpha.setup(dashboard.opts)
