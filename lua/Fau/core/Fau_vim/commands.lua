@@ -30,7 +30,7 @@ vim.api.nvim_create_user_command("EditConfiguration",
 vim.api.nvim_create_user_command("FauvimConfig",
   function()
     vim.api.nvim_command("chdir " .. Fau_vim.config_path)
-    require("nvim-tree").focus()
+    require("nvim-tree.api").tree.focus()
   end, {}
 )
 

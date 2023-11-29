@@ -125,7 +125,7 @@ local function open_nvim_tree(data)
   if not directory then return end
 
   vim.cmd.enew()
-  vim.cmd.bw(data.buf)
+  vim.cmd.bd(data.buf)  -- BUG: https://github.com/folke/lazy.nvim/issues/1192
   vim.cmd.cd(data.file)
   require("nvim-tree.api").tree.open()
 end
