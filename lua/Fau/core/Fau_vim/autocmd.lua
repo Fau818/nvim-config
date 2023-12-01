@@ -52,7 +52,16 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.bo.filetype = "sh" end
 })
 
--- Set table mode options in markdown.
+--- Identify docker-compose file
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+  group = "Fau_vim",
+  desc = "Treat docker-compose.yaml and docker-compose.yml to docker-compose filetype.",
+  pattern = { "docker-compose.yaml", "docker-compose.yml" },
+  callback = function() vim.opt_local.filetype = "yaml.docker-compose" end
+})
+
+
+--- Set table mode options in markdown.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
   desc = "Set table mode options in markdown.",
