@@ -1,1 +1,1 @@
-vim.opt_local.formatoptions = "tcqj"
+vim.cmd.runtime("after/ftplugin/all.lua")

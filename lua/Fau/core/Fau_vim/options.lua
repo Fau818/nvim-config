@@ -1,9 +1,3 @@
--- disable the default file tree
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
-
-
 local options = {
   undofile    = true,  -- enable persistent undo
   swapfile    = false, -- create a swapfile
