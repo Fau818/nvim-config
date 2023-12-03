@@ -34,21 +34,15 @@ local config = {
   },
 
   on_attach = function(bufnr)
-    ---@diagnostic disable-next-line: redundant-return-value
-    if Fau_vim.functions.utils.is_large_file(bufnr) then return false end
     -- TODO: call which-key binding.
   end,
 
-  signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-  numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
-  linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
-  word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  signcolumn = true,   -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false,  -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false,  -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false,  -- Toggle with `:Gitsigns toggle_word_diff`
 
-  watch_gitdir = {
-    enable = true,
-    interval = 1000,
-    follow_files = true,
-  },
+  watch_gitdir = { follow_files = true },
 
   attach_to_untracked = true, -- Attach to untracked files.
 
@@ -57,7 +51,7 @@ local config = {
     virt_text = true,
     virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
     virt_text_priority = 100,
-    delay = 1000,
+    delay = 500,
     ignore_whitespace = true, -- whether to ignore the whitespace when checking
   },
   current_line_blame_formatter = "<author>, <author_time:%Y/%m/%d>, <committer_time:%H:%M> • <summary>",
@@ -68,11 +62,11 @@ local config = {
 
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "single",
-    style = "minimal",
+    border   = "single",
+    style    = "minimal",
     relative = "cursor",
     row = 0,
-    col = 1
+    col = 1,
   },
 
   yadm = { enable = false },
