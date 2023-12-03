@@ -45,6 +45,16 @@ local config = {
     additional_vim_regex_highlighting = false,
   },
 
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection    = false, -- set to `false` to disable one of the mappings
+      node_incremental  = "<C-=>",
+      node_decremental  = "<C-->",
+      scope_incremental = false,
+    },
+  },
+
   indent = {
     enable = true,
     disable = function() return Fau_vim.functions.utils.is_large_file() end,

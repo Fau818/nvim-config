@@ -70,10 +70,10 @@ return {
 
 
   diagnostics = {
-    BoldError       = "", Error       = "",
-    BoldWarning     = "", Warning     = "",
-    BoldInformation = "", Information = "",
-    BoldHint        = "󰌵", Hint        = "󰌶",
+    BoldError   = "", Error   = "",
+    BoldWarning = "", Warning = "",
+    BoldInfo    = "", Info    = "",
+    BoldHint    = "󰌵", Hint    = "󰌶",
     -- BoldQuestion = "", Question = "",  -- unused
     -- Other = "",
     Debug = "",

@@ -174,7 +174,7 @@ local config = {
     },
     icons = {
       hint    = Fau_vim.icons.diagnostics.BoldHint,
-      info    = Fau_vim.icons.diagnostics.BoldInformation,
+      info    = Fau_vim.icons.diagnostics.BoldInfo,
       warning = Fau_vim.icons.diagnostics.BoldWarning,
       error   = Fau_vim.icons.diagnostics.BoldError,
     },

@@ -16,7 +16,7 @@ local config = {
   icons = {
     DEBUG = Fau_vim.icons.diagnostics.Debug,
     ERROR = Fau_vim.icons.diagnostics.BoldError,
-    INFO  = Fau_vim.icons.diagnostics.BoldInformation,
+    INFO  = Fau_vim.icons.diagnostics.BoldInfo,
     TRACE = Fau_vim.icons.diagnostics.Trace,
     WARN  = Fau_vim.icons.diagnostics.BoldWarning,
   },
