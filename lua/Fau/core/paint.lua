@@ -25,7 +25,12 @@ local config = {
 
     {
       filter = { filetype = "python" },
-      pattern = " %[%w+%]",
+      pattern = " %[([Tt][Oo][Dd][Oo])%]",
+      hl = "TodoFgTODO",
+    },
+    {
+      filter = { filetype = "python" },
+      pattern = " %[([Tt][Ee][Ss][Tt])%]",
       hl = "TodoFgTODO",
     },
 
