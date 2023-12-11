@@ -91,7 +91,8 @@ local coding = {
   {
     -- DESC: a plugin to auto change normal string to template string.
     "axelvc/template-string.nvim",
-    config = function() require("Fau.core.template-string") end
+    config = function() require("Fau.core.template-string") end,
+    event = { "BufReadPost", "BufNewFile" },
   },
 
 }

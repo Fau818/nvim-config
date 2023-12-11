@@ -40,6 +40,21 @@ local ui = {
     enabled = false,  -- doesn't work nicely.
   },
 
+  {
+    -- DESC: add animation to neovim.
+    "echasnovski/mini.animate",
+    config = function() require("Fau.core.mini.animate") end,
+    event = "UIEnter",
+  },
+
+  {
+    -- DESC: add window animation to neovim.
+    "anuvyklack/windows.nvim",
+    dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
+    config = function() require("Fau.core.windows") end,
+    event = { "WinNew" },
+  },
+
 
 }
 

@@ -22,7 +22,7 @@ local config = {
 
   -- All the patterns used to detect root dir, when **"pattern"** is in
   -- detection_methods
-  patterns = { ".git", "package.json", ".gitignore" },
+  patterns = { ".git", ".gitignore", "package.json", },
 
   -- Table of lsp clients to ignore by name
   -- eg: { "efm", ... }
