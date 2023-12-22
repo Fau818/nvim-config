@@ -141,8 +141,8 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "H",              api.node.navigate.sibling.first,    opts("First Sibling"))
   vim.keymap.set("n", "L",              api.node.navigate.sibling.last,     opts("Last Sibling"))
 
-  vim.keymap.set("n", "gp",             api.node.navigate.git.prev,         opts("Prev Git"))
-  vim.keymap.set("n", "gn",             api.node.navigate.git.next,         opts("Next Git"))
+  vim.keymap.set("n", "gp",             api.node.navigate.git.prev_skip_gitignored,         opts("Prev Git"))
+  vim.keymap.set("n", "gn",             api.node.navigate.git.next_skip_gitignored,         opts("Next Git"))
 
   vim.keymap.set("n", "lp",             api.node.navigate.diagnostics.prev, opts("Prev Diagnostic"))
   vim.keymap.set("n", "ln",             api.node.navigate.diagnostics.next, opts("Next Diagnostic"))

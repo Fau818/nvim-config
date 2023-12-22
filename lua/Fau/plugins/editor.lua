@@ -177,7 +177,6 @@ local editor = {
     config = function() require("Fau.core.statuscol") end,
     lazy = true,  -- loaded by nvim-ufo
     enabled = vim.fn.has("nvim-0.9") == 1,
-    branch = "0.10", -- BUG: ...
   },
 
   {
