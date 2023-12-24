@@ -103,10 +103,11 @@ local config = {
     -- -----------------------------------
     -- -------- Diagnostics
     -- -----------------------------------
-    -- highlights["ErrorLine"]   = { bg = "#2c1418" }
-    -- highlights["WarningLine"] = { bg = "#362716" }
+    highlights["ErrorLine"]   = { bg = "#2c1418" }
+    highlights["WarningLine"] = { bg = "#362716" }
     -- highlights["InfoLine"]    = { bg = "#182a3a" }
     -- highlights["HintLine"]    = { bg = "#1b251d" }
+
     highlights["DiagnosticFloatingError"] = { link = "DiagnosticError" }
     highlights["DiagnosticFloatingWarn"]  = { link = "DiagnosticWarn" }
     highlights["DiagnosticFloatingInfo"]  = { link = "DiagnosticInfo" }

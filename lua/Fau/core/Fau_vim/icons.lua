@@ -104,7 +104,7 @@ return {
     -- Parameter = "",
     Signature = "󰷾",
 
-    Tab   = "",
+    Tab   = "󰌒",
     Space = "⎵",
 
     -- noice, no space is better

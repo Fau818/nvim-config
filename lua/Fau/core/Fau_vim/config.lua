@@ -45,6 +45,17 @@ Fau_vim.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "p
 
 Fau_vim.ignored_files = { "^.git$", ".DS_Store", "__pycache__", ".idea", ".mypy_cache" }
 
+Fau_vim.packages = {
+  lua    = { "lua-language-server" },
+  python = { "pylance", "flake8", "pydocstyle" },
+  json   = { "json-lsp" },
+  sh     = { "bash-language-server" },
+  yaml   = { "yaml-language-server" },
+  docker = { "dockerfile-language-server" },
+  go     = { "gopls" },
+  html   = { "html-lsp" },
+}
+
 ---@param msg string
 ---@param level string|number|nil
 ---@param opts table|notify.Options|nil
