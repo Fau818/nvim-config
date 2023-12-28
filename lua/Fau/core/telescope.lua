@@ -210,10 +210,12 @@ local config = {
     grep_string = {
       layout_strategy = "vertical",
       initial_mode = "normal",
+      additional_args = { "--hidden" },
     },
 
     live_grep = {
       layout_strategy = "vertical",
+      additional_args = { "--hidden" },
     },
 
     buffers = {
