@@ -54,6 +54,7 @@ Fau_vim.packages = {
   docker = { "dockerfile-language-server" },
   go     = { "gopls" },
   html   = { "html-lsp" },
+  dockerfile = { "dockerfile-language-server" },
 }
 
 ---@param msg string

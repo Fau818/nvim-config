@@ -36,10 +36,8 @@ require('lspconfig.ui.windows').default_options.border = "double"
 -- -----------------------------------
 -- -------- Config Servers
 -- -----------------------------------
--- Judge available servers
-local available_servers = mlspconfig.get_installed_servers()
-
 local function is_available(client_name)
+  local available_servers = mlspconfig.get_installed_servers()
   for _, server_name in pairs(available_servers) do
     if server_name == client_name then return true end
   end
@@ -96,9 +94,9 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
 
   -- Config LS for current filetype.
+  for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
   -- HACK: Special for pylance
   if filetype == "python" and vim.fn.executable("pylance") == 1 then setup_server("pylance") end
-  for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
 
   vim.api.nvim_command("LspStart")
 end
