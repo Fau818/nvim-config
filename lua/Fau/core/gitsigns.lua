@@ -33,6 +33,8 @@ local config = {
     ["+"] = "+",  -- '>'  '₊'
   },
 
+  auto_attach = true,
+  attach_to_untracked = true, -- Attach to untracked files.
   on_attach = function(bufnr)
     -- TODO: call which-key binding.
   end,
@@ -43,8 +45,6 @@ local config = {
   word_diff  = false,  -- Toggle with `:Gitsigns toggle_word_diff`
 
   watch_gitdir = { follow_files = true },
-
-  attach_to_untracked = true, -- Attach to untracked files.
 
   current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
