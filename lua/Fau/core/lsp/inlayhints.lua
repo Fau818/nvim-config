@@ -1,4 +1,5 @@
 -- WARN: This module is deprecated! (Neovim supports inlay hints natively now!)
+-- \ OK...  For neovim 0.9 version ...
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================
