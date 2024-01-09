@@ -21,7 +21,7 @@ return {
 
     settings = {
       python = {
-        pythonPath = "python3",
+        -- pythonPath = "python3",
         analysis = {
           addImport = { exactMatchOnly = true },
 

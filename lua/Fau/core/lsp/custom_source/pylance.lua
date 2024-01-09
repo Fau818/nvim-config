@@ -15,20 +15,14 @@ local function installer(ctx)
   ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
   ctx.spawn.bash({ "-c", script:gsub("\n", " ") })
   ctx.spawn.unzip({ "pylance.vsix" })
-
-  local sed_binary = Fau_vim.os_name == "Darwin" and "gsed" or "sed"
   ctx.spawn.bash({
     "-c",
-    sed_binary .. [[ -i "0,/\(if(\!process\[[^] ]*\]\[[^] ]*\])return\!0x\)1/ s//\10/" extension/dist/server.bundle.js]],
+    [[
+      awk 'BEGIN{RS=ORS=";"} /if\(!process/ && !found {sub(/return!0x1/, "return!0x0"); found=1} 1' extension/dist/server.bundle.js |
+      awk 'BEGIN{RS=ORS=";"} /throw new/ && !found {sub(/throw new/, ""); found=1} 1' > extension/dist/server_nvim.js
+    ]]
   })
-  ctx.spawn.bash({
-    "-c",
-    sed_binary .. [[ -i -E "s/;_0x[0-9a-f]+\[.*\+'nt'\]=function\(_0x[0-9a-f]+\)\{/&return;/" extension/dist/server.bundle.js ]],
-  })
-  ctx:link_bin(
-    "pylance",
-    ctx:write_node_exec_wrapper("pylance", path.concat({ "extension", "dist", "server.bundle.js" }))
-  )
+  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat({ "extension", "dist", "server_nvim.js" })))
 end
 
 
