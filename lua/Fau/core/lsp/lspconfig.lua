@@ -76,10 +76,11 @@ local function setup_server(server)
 end
 
 
--- Implement set clients according to filetype (In Fau_vim)
-Fau_vim.functions.lsp.set_client_by_ft = function()
+--- Implement set clients according to filetype (In Fau_vim)
+---@param filetype string? filetype
+Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   if Fau_vim.functions.utils.is_large_file() then return end
-  local filetype = vim.bo.filetype
+  filetype = filetype or vim.bo.filetype
 
   if Fau_vim.configured_ft[filetype] then return end -- configured
   Fau_vim.configured_ft[filetype] = true
@@ -92,11 +93,13 @@ Fau_vim.functions.lsp.set_client_by_ft = function()
 
   -- Get servers for specific filetype.
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
+  -- HACK: Special for pylance
+  if filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance") end
+  -- HACK: Special for zsh
+  if filetype == "zsh" then Fau_vim.functions.lsp.set_client_by_ft("sh") end
 
   -- Config LS for current filetype.
   for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
-  -- HACK: Special for pylance
-  if filetype == "python" and vim.fn.executable("pylance") == 1 then setup_server("pylance") end
 
   vim.api.nvim_command("LspStart")
 end

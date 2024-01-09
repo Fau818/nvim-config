@@ -4,7 +4,7 @@ return {
       group = "Fau_vim",
       desc = "Auto Setting LSP Initialization.",
       pattern = "*",
-      callback = Fau_vim.functions.lsp.set_client_by_ft,
+      callback = function() Fau_vim.functions.lsp.set_client_by_ft() end,
     })
   end,
 
@@ -14,8 +14,10 @@ return {
 
   restart_lsp = function()
     -- LSP is not configured.
-    if Fau_vim.configured_ft[vim.bo.filetype] == false then
-      Fau_vim.functions.lsp.set_client_by_ft()
+    local filetype = vim.bo.filetype
+    if Fau_vim.configured_ft[filetype] ~= true then  -- NOTE: Not configured might false|nil.
+      Fau_vim.notify("Starting LSP server for " .. filetype .. "...")
+      Fau_vim.functions.lsp.set_client_by_ft(filetype)
       return
     end
 

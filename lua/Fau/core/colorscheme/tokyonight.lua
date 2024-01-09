@@ -113,6 +113,11 @@ local config = {
     highlights["DiagnosticFloatingInfo"]  = { link = "DiagnosticInfo" }
     highlights["DiagnosticFloatingHint"]  = { link = "DiagnosticHint" }
 
+
+    -- -----------------------------------
+    -- -------- ChatGPT
+    -- -----------------------------------
+    highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold=true }
   end,
 }
 

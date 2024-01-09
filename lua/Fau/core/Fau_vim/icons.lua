@@ -156,6 +156,8 @@ return {
     Undone = "",
 
     EndLine = "",
+
+    Prompt = "",
   },
 
 

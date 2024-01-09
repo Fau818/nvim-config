@@ -25,7 +25,7 @@ return {
   orange      = "#F59C4E", -- #FF966C
   nacarat     = "#C78B76",
 
-  gray        = "#697391",
+  gray        = "#6F7A9A", -- #697391
   cyan_gray   = "#7D96AF",
 
   bufferline_bg = "#232323",
