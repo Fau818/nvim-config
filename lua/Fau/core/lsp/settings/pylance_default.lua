@@ -21,7 +21,7 @@ return {
 
     settings = {
       python = {
-        pythonPath = "Enjoy the Inlay Hints!",
+        pythonPath = "python3",
         analysis = {
           addImport = { exactMatchOnly = true },
 
