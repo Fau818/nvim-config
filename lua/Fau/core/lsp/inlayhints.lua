@@ -1,3 +1,4 @@
+-- WARN: This module is deprecated! (Neovim supports inlay hints natively now!)
 -- =============================================
 -- ========== Plugin Loading
 -- =============================================

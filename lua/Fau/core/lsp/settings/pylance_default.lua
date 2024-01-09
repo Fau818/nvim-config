@@ -21,6 +21,7 @@ return {
 
     settings = {
       python = {
+        pythonPath = "Enjoy the Inlay Hints!",
         analysis = {
           addImport = { exactMatchOnly = true },
 
@@ -28,7 +29,7 @@ return {
           autoImportCompletions = true,
           autoSearchPaths       = true,
 
-          completeFunctionParens = true,
+          completeFunctionParens = false,
 
           diagnosticMode = "openFilesOnly",  -- values: workspace | openFilesOnly
 

@@ -68,6 +68,7 @@ local lsp = {
     branch = vim.fn.has("nvim-0.10") == 1 and "anticonceal" or "main",
     config = function() require("Fau.core.lsp.inlayhints") end,
     lazy = true, -- loaded by nvim-lspconfig
+    enabled = false
   },
 
   {

@@ -3,7 +3,7 @@ local path    = require("mason-core.path")
 local configs = require("lspconfig.configs")
 
 
-if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settings.pylance") end
+if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settings.pylance_default") end
 
 
 local function installer(ctx)
