@@ -75,7 +75,6 @@ local coding = {
   {
     -- DESC: a plugin for splitting and joining block of code.
     "Wansmer/treesj",
-    -- keys = { '<space>m', '<space>j', '<space>s' },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.core.treesj") end,
     cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
@@ -95,6 +94,20 @@ local coding = {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+  {
+    -- DESC: Convert text case in Neovim.
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function() require("Fau.core.textcase") end,
+    keys = {
+      {
+        "<LEADER>tc",
+        "<CMD>Telescope textcase initial_mode=normal layout_strategy=center sorting_strategy=ascending<CR>",
+        mode = { "n", "v" },
+        desc = "Conver Text Case",
+      },
+    },
+  },
 }
 
 

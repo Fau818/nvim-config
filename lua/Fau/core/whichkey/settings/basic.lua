@@ -124,7 +124,7 @@ return {
     -- Todo Comments
     -- ["<LEADER>t"] = { "<CMD>TodoTrouble keywords=TODO,PERF,TEST,Fau<CR>", "Show Todo Comments" },
     -- Trouble
-    ["<LEADER>t"] = { "<CMD>Trouble<CR>", "Show Trouble" },
+    ["<LEADER>tt"] = { "<CMD>Trouble<CR>", "Show Trouble" },
 
     -- Treesitter capture under cursor
     ["<LEADER><LEADER>u"] = { "<CMD>TSCaptureUnderCursor<CR>", "Treesitter Capture Highlight Under Cursor" },
