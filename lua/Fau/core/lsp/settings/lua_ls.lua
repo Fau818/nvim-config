@@ -25,7 +25,7 @@ return {
         enable = true,              -- Enable diagnostics.
         disableScheme = { "git" },  -- Do not diagnose Lua files that use the following scheme.
         disable = { "missing-fields", "inject-field" },
-        globals = { "vim", "Fau_vim" },  -- Defined global variables.
+        globals = { "vim" },  -- Defined global variables.
         workspaceDelay = -1,  -- disable workspace diagnostics
       },
 

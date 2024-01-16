@@ -27,17 +27,3 @@ local config = {
 
 
 indent_blankline.setup(config)
-
-
--- TEST: Disabled in Sep 29, 2023.
--- -- BUG: The indentline will disappear when scroll vertically.
--- -- A temporary solution:
--- vim.api.nvim_create_augroup("IndentBlankLineFix", {})
--- vim.api.nvim_create_autocmd("WinScrolled", {
---   group = "IndentBlankLineFix",
---   callback = function()
---     if vim.v.event.all.leftcol ~= 0 then
---       vim.cmd("silent! IndentBlanklineRefresh")
---     end
---   end,
--- })

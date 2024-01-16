@@ -15,7 +15,10 @@ local config = {
     enabled = true,
 
     -- Default prompt string
-    default_prompt = "Input:",
+    default_prompt = "Input",
+
+    -- Trim trailing `:` from prompt
+    trim_prompt = true,
 
     -- Can be 'left', 'right', or 'center'
     prompt_align = "left",
