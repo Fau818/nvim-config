@@ -64,13 +64,7 @@ local cmp = {
             cmd = { "Copilot" },
           },
         },
-        config = function()
-          local config = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-          }
-          require("copilot_cmp").setup(config)
-        end,
+        config = function() require("copilot_cmp").setup() end,
         enabled = Fau_vim.copilot.enable,
       },
       {

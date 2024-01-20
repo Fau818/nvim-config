@@ -39,12 +39,8 @@ local config = {
       dismiss = "<C-]>",
     },
   },
-  filetypes = {
-    gitcommit = true,
-    ["*"] = true,
-    -- help = false,
-  },
-  copilot_node_command = "node",       -- Node.js version must be > 16.x
+  filetypes = { ["*"] = true },
+  copilot_node_command = "node",
   server_opts_overrides = {},
 }
 
