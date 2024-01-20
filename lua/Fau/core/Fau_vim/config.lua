@@ -41,9 +41,9 @@ Fau_vim.disabled_filetypes = {
   "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 }
 
-Fau_vim.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml" }
+Fau_vim.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
 
-Fau_vim.ignored_files = { "^.git$", ".DS_Store", "__pycache__", ".idea", ".mypy_cache" }
+Fau_vim.ignored_files = { "^.git$", ".DS_Store", "^__pycache__$", "^.idea$", "^.mypy_cache$" }
 
 Fau_vim.packages = {
   lua    = { "lua-language-server" },
