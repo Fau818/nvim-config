@@ -95,7 +95,7 @@ local coding = {
   },
 
   {
-    -- DESC: Convert text case in Neovim.
+    -- DESC: convert text case in Neovim.
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function() require("Fau.core.textcase") end,
@@ -103,11 +103,34 @@ local coding = {
       {
         "<LEADER>tc",
         "<CMD>Telescope textcase initial_mode=normal layout_strategy=center sorting_strategy=ascending<CR>",
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Conver Text Case",
       },
     },
   },
+
+  {
+    -- DESC: multi-cursor support in Neovim.
+    "smoka7/multicursors.nvim",
+    dependencies = { "smoka7/hydra.nvim" },
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+    keys = {
+      {
+        mode = { "n", "x" },
+        "<LEADER>m",
+        "<CMD>MCstart<CR>",
+        desc = "Create a selection for selected word under the cursor",
+      },
+      {
+        mode = { "n", "x" },
+        "<LEADER>M",
+        "<CMD>MCunderCursor<CR>",
+        desc = "Create a selection for selected text under the cursor",
+      }
+    },
+    config = function() require("Fau.core.multicursor") end
+  }
+
 }
 
 
