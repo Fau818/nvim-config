@@ -38,7 +38,6 @@ local config = {
   },
 
   -- leave nil when passing the spec as the first argument to setup()
-  -- spec = nil, ---@type LazySpec
   spec = "Fau.plugins",
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
   ---@type number limit the maximum amount of concurrent tasks
@@ -75,10 +74,12 @@ local config = {
     -- a number <1 is a percentage., >1 is a fixed size
     size = { width = 0.9, height = 0.85 },
     wrap = true, -- wrap the lines in the ui
-    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
     border = "double",
+    title = nil, ---@type string only works when border is not "none"
+    title_pos = "center", ---@type "center" | "left" | "right"
+    -- Show pills on top of the Lazy window
+    pills = true, ---@type boolean
     icons = nil,  -- Fau: use defaults
-
     -- leave nil, to automatically select a browser depending on your OS.
     -- If you want to use a specific browser, you can define it here
     browser = nil, ---@type string?
@@ -110,8 +111,9 @@ local config = {
     -- automatically check for plugin updates
     enabled = true,
     concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-    notify = false, -- get a notification when new updates are found
+    notify = true, -- get a notification when new updates are found
     frequency = 3600, -- check for updates every hour
+    check_pinned = false,
   },
 
   change_detection = {
@@ -128,9 +130,7 @@ local config = {
       ---@type string[]
       paths = {}, -- add any custom paths here that you want to includes in the rtp
       ---@type string[] list any plugins you want to disable here
-      disabled_plugins = {
-        -- "plugin_name",
-      },
+      disabled_plugins = {},
     },
   },
 
@@ -144,7 +144,19 @@ local config = {
     -- only generate markdown helptags for plugins that dont have docs
     skip_if_doc_exists = true,
   },
+
   state = vim.fn.stdpath("state") .. "/lazy/state.json", -- state info for checker and other things
+  build = { warn_on_override = true },
+
+  -- Enable profiling of lazy.nvim. This will add some overhead,
+  -- so only enable this when you are debugging lazy.nvim
+  profiling = {
+    -- Enables extra stats on the debug tab related to the loader cache.
+    -- Additionally gathers stats about all package.loaders
+    loader = false,
+    -- Track each new require in the Lazy profiling tab
+    require = false,
+  },
 }
 
 
