@@ -43,7 +43,7 @@ Fau_vim.disabled_filetypes = {
 
 Fau_vim.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
 
-Fau_vim.ignored_files = { "^.git$", ".DS_Store", "^__pycache__$", "^.idea$", "^.mypy_cache$" }
+Fau_vim.ignored_files = { "^.git$", ".DS_Store", "^__pycache__$", "^.vscode$", "^.idea$", "^.mypy_cache$" }
 
 Fau_vim.packages = {
   lua    = { "lua-language-server" },

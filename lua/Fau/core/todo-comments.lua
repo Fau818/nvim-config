@@ -9,6 +9,7 @@ if not todo_comments_ok then Fau_vim.load_plugin_error("todo-comments") return e
 -- =============================================
 -- ========== Configuration
 -- =============================================
+---@type TodoConfig
 local config = {
   signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
@@ -30,6 +31,7 @@ local config = {
     TEST = { icon = Fau_vim.icons.todo.TEST, color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
     Fau  = { icon = Fau_vim.icons.todo.Fau,  color = "hint" },
     DESC = { icon = Fau_vim.icons.todo.DESC, color = "desc" },
+    SEE  = { icon = Fau_vim.icons.todo.BOOK, color = "see" }
   },
 
 
@@ -62,7 +64,8 @@ local config = {
     hint    = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
     test    = { "#FFC8E1" },
-    desc    = { "#A9B1D6" }
+    desc    = { "#A9B1D6" },
+    see     = { "#87CEEB", "#4169E1", "#1E90FF" },
   },
 
   search = {
