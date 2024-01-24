@@ -1,6 +1,5 @@
 local util = require("lspconfig.util")
 
-
 local root_files = {
   "pyproject.toml",
   "setup.py",
@@ -8,15 +7,17 @@ local root_files = {
   "requirements.txt",
   "Pipfile",
   "pyrightconfig.json",
-  ".git",
 }
-
 
 return {
   default_config = {
     cmd = { "pylance", "--stdio" },
     filetypes = { "python" },
-    root_dir = function(fname) return util.root_pattern(unpack(root_files))(fname) end,
+    root_dir = function(fname)
+      local root = util.root_pattern(unpack(root_files))(fname)
+      if root and root ~= vim.env.HOME then return root end
+      return util.find_git_ancestor(fname)
+    end,
     single_file_support = true,
 
     settings = {
