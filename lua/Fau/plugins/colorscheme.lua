@@ -15,6 +15,7 @@ local colorscheme = {
     "lunarvim/darkplus.nvim",
     priority = 1000,
     lazy = true, -- when is used, will load automatically.
+    enabled = false,
   },
 }
 

@@ -16,13 +16,9 @@ local config = {
     runtime = true,  -- runtime path
     types   = true,  -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others [nice!]
     plugins = true,  -- installed opt or start plugins in packpath
-    -- plugins = { "nvim-lspconfig", "null-ls.nvim", "telescope" },
   },
-  setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-  -- override = function(root_dir, library)
-  --  library.enabled = true
-  --  library.plugins = true
-  -- end,
+  setup_jsonls = true,  -- configures jsonls to provide completion for project specific .luarc.json files
+  -- override = function(root_dir, library) end,
   lspconfig = true, -- if true, Neodev will automatically setup your lua-language-server
   pathStrict = true,
 }
