@@ -81,9 +81,9 @@ return {
     -- },
 
     sources = {
+      { name = "luasnip" },
       { name = "copilot" },
       { name = "nvim_lsp" },
-      { name = "luasnip" },
 
       { name = "conventionalcommits" },
       { name = "gitcommit" },

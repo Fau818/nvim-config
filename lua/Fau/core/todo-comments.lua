@@ -31,7 +31,8 @@ local config = {
     TEST = { icon = Fau_vim.icons.todo.TEST, color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
     Fau  = { icon = Fau_vim.icons.todo.Fau,  color = "hint" },
     DESC = { icon = Fau_vim.icons.todo.DESC, color = "desc" },
-    SEE  = { icon = Fau_vim.icons.todo.BOOK, color = "see" }
+    SEE  = { icon = Fau_vim.icons.todo.BOOK, color = "see" },
+    EXIT = { icon = Fau_vim.icons.todo.EXIT, color = "exit" },
   },
 
 
@@ -66,6 +67,7 @@ local config = {
     test    = { "#FFC8E1" },
     desc    = { "#A9B1D6" },
     see     = { "#87CEEB", "#4169E1", "#1E90FF" },
+    exit    = { "#4169E1" },
   },
 
   search = {

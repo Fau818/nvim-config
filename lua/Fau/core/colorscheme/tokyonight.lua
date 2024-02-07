@@ -78,7 +78,6 @@ local config = {
     -- -----------------------------------
     -- -------- Custom
     -- -----------------------------------
-    highlights["NvimTreeWinSeparator"] = { fg = Fau_vim.colors.light_blue }
     highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
     highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 
@@ -90,6 +89,8 @@ local config = {
     highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
 
     highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
+    highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
+    highlights["CmpItemKindText"] = { fg = Fau_vim.colors.light_blue }
 
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
 
@@ -118,6 +119,14 @@ local config = {
     -- -------- ChatGPT
     -- -----------------------------------
     highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold=true }
+
+
+    -- -----------------------------------
+    -- -------- NvimTree
+    -- -----------------------------------
+    highlights["NvimTreeWinSeparator"] = { fg = Fau_vim.colors.light_blue }
+    highlights["NvimTreeExecFile"]     = { link = "DevIconExe" }
+
   end,
 }
 

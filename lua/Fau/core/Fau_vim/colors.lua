@@ -1,6 +1,6 @@
 return {
   blue        = "#00A9EF",
-  light_blue  = "#65bcff",
+  light_blue  = "#65BCFF",
   purple_blue = "#82AAFF",
 
   cyan1       = "#32C8C8",
