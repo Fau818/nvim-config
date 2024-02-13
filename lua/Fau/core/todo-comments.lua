@@ -33,6 +33,7 @@ local config = {
     DESC = { icon = Fau_vim.icons.todo.DESC, color = "desc" },
     SEE  = { icon = Fau_vim.icons.todo.BOOK, color = "see" },
     EXIT = { icon = Fau_vim.icons.todo.EXIT, color = "exit" },
+    CASE = { icon = Fau_vim.icons.todo.CASE, color = "case" },
   },
 
 
@@ -51,7 +52,7 @@ local config = {
     keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
     after   = "fg", -- "fg" or "bg" or empty
     -- pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
-    pattern = [[\ (KEYWORDS)\s*:]],
+    pattern = [[\ (KEYWORDS)\s*\d*:]],
     comments_only = true, -- uses treesitter to match keywords in comments only
     max_line_len = 400, -- ignore lines longer than this
     exclude = {}, -- list of file types to exclude highlighting
@@ -59,15 +60,16 @@ local config = {
 
   colors = {
     todo    = { "#39CC8F" },
-    info    = { "DiagnosticInfo", "#2563EB" },
+    info    = { "DiagnosticInfo" },
     warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
     error   = { "DiagnosticError", "ErrorMsg", "#DC2626" },
     hint    = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
     test    = { "#FFC8E1" },
     desc    = { "#A9B1D6" },
-    see     = { "#87CEEB", "#4169E1", "#1E90FF" },
+    see     = { "#87CEEB" },
     exit    = { "#4169E1" },
+    case    = { "#2563EB" },
   },
 
   search = {
