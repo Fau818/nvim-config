@@ -6,8 +6,8 @@ vim.api.nvim_create_augroup("Fau_vim", { clear = true })
 -- =============================================
 -- ========== Baisc
 -- =============================================
--- let `-` be a keyword
-vim.opt.iskeyword:append("-")
+-- let `-` and `$` be keywords
+vim.opt.iskeyword:append({ "-", "$" })
 -- highlight the yank area
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = "Fau_vim",
