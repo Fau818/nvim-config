@@ -162,17 +162,18 @@ return {
 
 
   todo = {
-    TODO = " ",
-    HACK = " ",
-    WARN = " ",
-    PERF = " ",
-    NOTE = " ",
-    TEST = "󰅒 ",
-    Fau  = "󰙽 ",
-    DESC = "󰈚 ",
-    BOOK = " ",  -- " "
-    EXIT = "󰗼 ",
-    CASE = " ",
+    TODO   = " ",
+    HACK   = " ",
+    WARN   = " ",
+    PERF   = " ",
+    NOTE   = " ",
+    TEST   = "󰅒 ",
+    Fau    = "󰙽 ",
+    DESC   = "󰈚 ",
+    BOOK   = " ",  -- " "
+    EXIT   = "󰗼 ",
+    CASE   = " ",
+    ASSERT = "󰞏 ",
   },
 
 
