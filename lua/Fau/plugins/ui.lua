@@ -23,9 +23,7 @@ local ui = {
       "MunifTanjim/nui.nvim",
       {
         -- DESC: a fancy notification manager for Neovim.
-        -- TEMP: waiting for the PR to be merged.
-        -- "rcarriga/nvim-notify",
-        "ls-devs/nvim-notify",
+        "rcarriga/nvim-notify",
         config = function() require("Fau.core.notify") end,
       },
     },

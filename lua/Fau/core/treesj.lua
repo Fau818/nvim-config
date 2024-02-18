@@ -33,6 +33,8 @@ local config = {
 
   -- Use `dot` for repeat action
   dot_repeat = true,
+
+  langs = { json = { join = { space_in_brackets = true } } },
 }
 
 
