@@ -29,6 +29,7 @@ Fau_vim.disabled_filetypes = {
   "DiffviewFiles",
   "DressingInput",
   "gitcommit",
+  "glowpreview",
   "lspinfo", "mason",
   "notify", "noice", "netrw",
   "NvimTree",

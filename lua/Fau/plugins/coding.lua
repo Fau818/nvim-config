@@ -99,6 +99,7 @@ local coding = {
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function() require("Fau.core.textcase") end,
+    cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
     keys = {
       {
         "<LEADER>tc",
