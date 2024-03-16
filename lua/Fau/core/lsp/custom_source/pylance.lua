@@ -9,7 +9,7 @@ if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settin
 local function installer(ctx)
   local script = [[
     curl -s -c cookies.txt 'https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance' > /dev/null &&
-    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/latest/vspackage"
+    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2024.3.1/vspackage"
          -j -b cookies.txt --compressed --output "pylance.vsix"
   ]]
   ctx.receipt:with_primary_source(ctx.receipt.unmanaged)

@@ -43,7 +43,7 @@ end
 local config = {
   open_fold_hl_timeout = 500,
   provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
-  close_fold_kinds = {},
+  close_fold_kinds_for_ft = {},
   fold_virt_text_handler = handler,
   enable_get_fold_virt_text = false,
   preview = {

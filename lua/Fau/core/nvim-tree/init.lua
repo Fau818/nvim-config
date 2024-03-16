@@ -181,12 +181,13 @@ local config = {
   },
 
   filters = { -- Filtering options.
+    enable      = true,
     git_ignored = false,
-    dotfiles  = false, -- Whether show dotfiles. [Default Keymaps: H]
-    git_clean = false,
-    no_buffer = false,
-    custom = Fau_vim.ignored_files,
-    exclude = {}, -- List of directories or files to exclude from filtering: always show them.
+    dotfiles    = false, -- Whether show dotfiles. [Default Keymaps: H]
+    git_clean   = false,
+    no_buffer   = false,
+    custom      = Fau_vim.ignored_files,
+    exclude     = {}, -- List of directories or files to exclude from filtering: always show them.
   },
 
   filesystem_watchers = { -- Will use file system watcher to watch the filesystem for changes.

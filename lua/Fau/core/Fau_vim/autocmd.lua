@@ -145,7 +145,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -- -----------------------------------
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
-  desc = "Config indentscope plugin for python.",
+  desc = "Disable Noice Hover Document Keymaps.",
   pattern = "noice",
   callback = function() vim.b.markdown_keys = true end,
 })
