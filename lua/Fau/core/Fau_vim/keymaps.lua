@@ -28,11 +28,9 @@ vim.g.maplocalleader = " "
 -- ========== Quick Move
 -- =============================================
 keymap({ "n", "x", "o" }, "H", "^", opts)
-keymap({ "x", "o" }, "J", "5j", opts)
-keymap({ "x", "o" }, "K", "5k", opts)
+keymap({ "n", "x", "o" }, "J", "5j", opts)
+keymap({ "n", "x", "o" }, "K", "5k", opts)
 keymap({ "n", "x", "o" }, "L", "<END>", opts)
-keymap("n", "J", "5j", opts_remap) -- for telescope
-keymap("n", "K", "5k", opts_remap) -- for telescope
 
 
 
