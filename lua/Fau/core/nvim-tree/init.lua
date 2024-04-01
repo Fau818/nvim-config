@@ -154,7 +154,11 @@ local config = {
 
   update_focused_file = { -- Update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file.
     enable = false, -- Enable this feature.
-    update_root = true, -- Update the root directory of the tree if the file is not under current root directory. It prefers vim's cwd and `root_dirs`.
+    update_root = {
+      enable = false,
+      ignore_list = {},
+    },
+    exclude = false,
     ignore_list = {}, -- List of buffer names and filetypes that will not update the root dir of the tree if the file isn't found under the current root directory.
   },
 

@@ -17,7 +17,7 @@ Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 
 Fau_vim.config_path = vim.fn.stdpath("config")
 
-Fau_vim.large_file_size = 1024 * 1024
+Fau_vim.large_file_size = 1024 * 128  -- 128KiB
 
 Fau_vim.configured_ft = {}  -- for recording filetypes which have been configured LSP
 

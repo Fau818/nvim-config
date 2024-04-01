@@ -127,6 +127,12 @@ local config = {
     highlights["NvimTreeWinSeparator"] = { fg = Fau_vim.colors.light_blue }
     highlights["NvimTreeExecFile"]     = { link = "DevIconExe" }
 
+    -- -----------------------------------
+    -- -------- Gitcommit
+    -- -----------------------------------
+    -- TEST: WIP
+    highlights["gitcommitFirstLine"] = { link = "Title" }
+    highlights["gitcommitSummary"] = { link = "Title" }
   end,
 }
 
