@@ -56,7 +56,10 @@ local config = {
   },
 
   indent = {
-    enable = true,
+    -- NOTE: Bad indentation performance in Python function block.
+    -- \ e.g.: for i in range(10): print(i)
+    -- \ if you hit the <ENTER> key, an indentation will continuously persist (even if you delete it and hit the <ENTER> again).
+    enable = false,
     disable = function() return Fau_vim.functions.utils.is_large_file() end,
   },
 
