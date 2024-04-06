@@ -7,22 +7,23 @@ if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settin
 
 
 local function installer(ctx)
+  local sed_binary = Fau_vim.os_name == "Darwin" and "gsed" or "sed"
+  -- Download
   local script = [[
     curl -s -c cookies.txt 'https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance' > /dev/null &&
-    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2024.3.1/vspackage"
+    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/latest/vspackage"
          -j -b cookies.txt --compressed --output "pylance.vsix"
   ]]
   ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
   ctx.spawn.bash({ "-c", script:gsub("\n", " ") })
   ctx.spawn.unzip({ "pylance.vsix" })
-  ctx.spawn.bash({
-    "-c",
-    [[
-      awk 'BEGIN{RS=ORS=";"} /if\(!process/ && !found {sub(/return!0x1/, "return!0x0"); found=1} 1' extension/dist/server.bundle.js |
-      awk 'BEGIN{RS=ORS=";"} /throw new/ && !found {sub(/throw new/, ""); found=1} 1' > extension/dist/server_nvim.js
-    ]]
-  })
-  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat({ "extension", "dist", "server_nvim.js" })))
+  -- Patch
+  ctx.spawn.bash { "-c", sed_binary .. [[ -i "0,/\(if(\!process\[[^] ]*\]\[[^] ]*\])return\!0x\)1/ s//\10/" extension/dist/server.bundle.js]] }
+  ctx.spawn.bash { "-c", sed_binary .. [[ -i "0,/\(if(\!process\[.*\]\[.*\])return\!\)\[\]/ s//\10x0/" extension/dist/server.bundle.js]] }
+  ctx.spawn.bash { "-c", sed_binary .. [[ -i -E "s/;_0x[0-9a-f]+\[.*\+'nt'\]=function\(_0x[0-9a-f]+\)\{/&return;/" extension/dist/server.bundle.js]] }
+  ctx.spawn.bash { "-c", sed_binary .. [[ -i "0,/\(throw new Error(.*);}\)/ s//return;\1/" extension/dist/server.bundle.js]] }
+  -- Link
+  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat { "extension", "dist", "server.bundle.js" }))
 end
 
 

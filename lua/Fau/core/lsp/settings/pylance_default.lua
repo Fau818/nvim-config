@@ -45,7 +45,7 @@ return {
           indexing = true,
 
           inlayHints= {
-            callArgumentNames   = true,
+            callArgumentNames   = "partial",
             functionReturnTypes = true,
             pytestParameters    = true,
             variableTypes       = true,
