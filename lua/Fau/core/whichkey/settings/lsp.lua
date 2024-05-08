@@ -59,6 +59,7 @@ return {
       i = { builtin.lsp_incoming_calls, "Show Incoming Calls" },
       o = { builtin.lsp_outgoing_calls, "Show Outgoing Calls" },
 
+      -- TODO: move this.
       h = { function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "Toggle Inlay Hints" }
     },
 

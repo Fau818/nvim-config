@@ -109,7 +109,7 @@ local config = {
   },
 
   highlights = {
-    -- fill       = { bg = Fau_vim.colors.bufferline_bg },
+    fill       = { bg = Fau_vim.colors.bufferline_bg },
     background = { bg = Fau_vim.colors.bufferline_bg },
 
     tab                    = { bg = Fau_vim.colors.bufferline_bg },
