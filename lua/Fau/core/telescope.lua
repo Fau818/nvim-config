@@ -107,7 +107,7 @@ local config = {
 
     preview = {
       -- BUG: If set to 1, an 1MB file will be previewd.
-      filesize_limit = Fau_vim.large_file_size / (1024 * 1024) / 8,
+      filesize_limit = Fau_vim.large_file_size / (1024 * 1024) / 2,
     },
 
     winblend = 0,         -- Configure winblend for telescope floating windows. values: [0, 100]
@@ -175,7 +175,7 @@ local config = {
       },
     },
 
-    file_ignore_patterns = { ".git/", "plugin/packer_compiled.lua", "snippets/", ".DS_Store" },
+    file_ignore_patterns = { ".git/", "plugin/packer_compiled.lua", ".DS_Store" },
   },
 
   pickers = {

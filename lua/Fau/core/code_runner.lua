@@ -52,7 +52,7 @@ local config = {
     -- $dir                -- path of directory to file opened
 
     -- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    python = "export PYTHONPATH=$(pwd) && python3 $dir/$fileName",
+    python = [[PYTHONPATH=$(pwd):${PYTHONPATH} python3 $dir/$fileName]],
     c   = "cd $dir && clang $fileName -o $fileNameWithoutExt -w && ./$fileNameWithoutExt",
     cpp = "cd $dir && clang++ " .. (os.getenv("CPPFLAGS_FAU") or "") .. " $fileName -o $fileNameWithoutExt -w && ./$fileNameWithoutExt",
     -- typescript = "deno run",

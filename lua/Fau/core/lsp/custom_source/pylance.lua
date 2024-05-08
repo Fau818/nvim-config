@@ -11,7 +11,7 @@ local function installer(ctx)
   -- Download
   local script = [[
     curl -s -c cookies.txt 'https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance' > /dev/null &&
-    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/latest/vspackage"
+    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2024.4.100/vspackage"
          -j -b cookies.txt --compressed --output "pylance.vsix"
   ]]
   ctx.receipt:with_primary_source(ctx.receipt.unmanaged)

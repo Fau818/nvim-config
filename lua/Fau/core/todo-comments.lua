@@ -35,6 +35,7 @@ local config = {
     EXIT   = { icon = Fau_vim.icons.todo.EXIT,   color = "exit",    alt = { "RETURN" } },
     CASE   = { icon = Fau_vim.icons.todo.CASE,   color = "case" },
     ASSERT = { icon = Fau_vim.icons.todo.ASSERT, color = "assert" },
+    IMPORTANT = { icon = "󱈸", color = "#DC2626" },
   },
 
 

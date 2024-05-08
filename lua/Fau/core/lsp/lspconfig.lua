@@ -56,7 +56,7 @@ local function server_attach(client, bufnr)
   if illuminate then illuminate.on_attach(client) end
 
   -- for inlayhints support
-  if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(0, true)
+  if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(true)
   elseif inlayhints then inlayhints.on_attach(client, bufnr, false)
   end
 end

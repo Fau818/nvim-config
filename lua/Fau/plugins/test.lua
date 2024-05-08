@@ -20,65 +20,6 @@ local test = {
   },
 
 
-  -- {
-  --   -- DESC: Maybe in the future.
-  --   -- mini.doc
-  -- },
-
-
-  {
-    "nosduco/remote-sshfs.nvim",
-    config = function()
-      local config = {
-        connections = {
-          ssh_configs = { -- which ssh configs to parse for hosts list
-            vim.fn.expand "$HOME" .. "/.ssh/config",
-            -- "/etc/ssh/ssh_config",
-            -- "/path/to/custom/ssh_config"
-          },
-          sshfs_args = { -- arguments to pass to the sshfs command
-            "-o reconnect",
-            "-o ConnectTimeout=5",
-          },
-        },
-        mounts = {
-          base_dir = vim.fn.expand "$HOME" .. "/.sshfs/", -- base directory for mount points
-          unmount_on_exit = true,                     -- run sshfs as foreground, will unmount on vim exit
-        },
-        handlers = {
-          on_connect = {
-            change_dir = true, -- when connected change vim working directory to mount point
-          },
-          on_disconnect = {
-            clean_mount_folders = false, -- remove mount point folder on disconnect/unmount
-          },
-          on_edit = {},              -- not yet implemented
-        },
-        ui = {
-          select_prompts = false, -- not yet implemented
-          confirm = {
-            connect = true,   -- prompt y/n when host is selected to connect to
-            change_dir = false, -- prompt y/n to change working directory on connection (only applicable if handlers.on_connect.change_dir is enabled)
-          },
-        },
-        log = {
-          enable = false, -- enable logging
-          truncate = false, -- truncate logs
-          types = {     -- enabled log types
-            all = false,
-            util = false,
-            handler = false,
-            sshfs = false,
-          },
-        },
-      }
-      require("remote-sshfs").setup(config)
-    end,
-
-    enabled = false
-  },
-
-
   {
     "Bekaboo/dropbar.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -88,6 +29,86 @@ local test = {
   },
 
 
+  {
+    "xeluxee/competitest.nvim",
+    dependencies = "MunifTanjim/nui.nvim",
+    config = function() require("competitest").setup() end,
+    enabled = false,
+  },
+
+
+  {
+    "Wansmer/symbol-usage.nvim",
+    event = "BufReadPre",  -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+    config = function()
+      local function h(name) return vim.api.nvim_get_hl(0, { name = name }) end
+
+      -- hl-groups can have any name
+      vim.api.nvim_set_hl(0, 'SymbolUsageRounding', { fg = h('CursorLine').bg, italic = true })
+      vim.api.nvim_set_hl(0, 'SymbolUsageContent', { bg = h('CursorLine').bg, fg = h('Comment').fg, italic = true })
+      vim.api.nvim_set_hl(0, 'SymbolUsageRef', { fg = h('Function').fg, bg = h('CursorLine').bg, italic = true })
+      vim.api.nvim_set_hl(0, 'SymbolUsageDef', { fg = h('Type').fg, bg = h('CursorLine').bg, italic = true })
+      vim.api.nvim_set_hl(0, 'SymbolUsageImpl', { fg = h('@keyword').fg, bg = h('CursorLine').bg, italic = true })
+
+      local function text_format(symbol)
+        local res = {}
+
+        local round_start = { '', 'SymbolUsageRounding' }
+        local round_end = { '', 'SymbolUsageRounding' }
+
+        -- Indicator that shows if there are any other symbols in the same line
+        local stacked_functions_content = symbol.stacked_count > 0
+        and ("+%s"):format(symbol.stacked_count)
+        or ''
+
+        if symbol.references then
+          local usage = symbol.references <= 1 and 'usage' or 'usages'
+          local num = symbol.references == 0 and 'no' or symbol.references
+          table.insert(res, round_start)
+          table.insert(res, { '󰌹 ', 'SymbolUsageRef' })
+          table.insert(res, { ('%s %s'):format(num, usage), 'SymbolUsageContent' })
+          table.insert(res, round_end)
+        end
+
+        if symbol.definition then
+          if #res > 0 then
+            table.insert(res, { ' ', 'NonText' })
+          end
+          table.insert(res, round_start)
+          table.insert(res, { '󰳽 ', 'SymbolUsageDef' })
+          table.insert(res, { symbol.definition .. ' defs', 'SymbolUsageContent' })
+          table.insert(res, round_end)
+        end
+
+        if symbol.implementation then
+          if #res > 0 then
+            table.insert(res, { ' ', 'NonText' })
+          end
+          table.insert(res, round_start)
+          table.insert(res, { '󰡱 ', 'SymbolUsageImpl' })
+          table.insert(res, { symbol.implementation .. ' impls', 'SymbolUsageContent' })
+          table.insert(res, round_end)
+        end
+
+        if stacked_functions_content ~= '' then
+          if #res > 0 then
+            table.insert(res, { ' ', 'NonText' })
+          end
+          table.insert(res, round_start)
+          table.insert(res, { ' ', 'SymbolUsageImpl' })
+          table.insert(res, { stacked_functions_content, 'SymbolUsageContent' })
+          table.insert(res, round_end)
+        end
+
+        return res
+      end
+
+      require('symbol-usage').setup({
+        text_format = text_format,
+      })
+    end,
+    enabled = false,
+  },
 }
 
 

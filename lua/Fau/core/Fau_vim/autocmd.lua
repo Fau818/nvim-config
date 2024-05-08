@@ -28,6 +28,13 @@ vim.opt.fillchars:append { diff = "╱" }
 -- -----------------------------------
 -- -------- FileType
 -- -----------------------------------
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+  group = "Fau_vim",
+  desc = "Fix keymap in qf filetype.",
+  pattern = "*.dconf",
+  callback = function() vim.opt_local.filetype = "conf" end
+})
+
 --- Fix keymap in qf filetype.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
@@ -164,12 +171,14 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
     ---Large file!!
     vim.api.nvim_command("syntax off")
+    vim.opt_local.filetype = ""
 
     -- Disable fold
     local ufo_ok, ufo = pcall(require, "ufo")
     if ufo_ok then ufo.detach(buffer) end
-    vim.wo.foldenable = false
-    vim.wo.foldcolumn = "0"
+    vim.opt_local.foldenable = false
+    vim.opt_local.foldcolumn = "0"
+    vim.opt_local.foldmethod = "manual"
 
     -- Disable IndentLine
     local indent_blankline_ok, indent_blankline = pcall(require, "ibl")
@@ -180,8 +189,10 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     vim.b.miniindentscope_disable = true
 
     -- Disable edit
-    vim.bo.undofile   = false
-    vim.bo.modifiable = false
+    vim.opt_local.undofile   = false
+    vim.opt_local.undolevels = -1
+    vim.opt_local.undoreload = 0
+    vim.opt_local.modifiable = false
 
     -- extra ...
     vim.opt_local.wrap = true
