@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
   group = "Fau_vim",
   desc = "Tabstop will be reset to 2 if tabstop >= 8.",
   pattern = "tabstop",
-  callback = function() if vim.opt_local.tabstop >= 8 then vim.opt_local.tabstop = 2 end end,
+  callback = function() if vim.bo.tabstop >= 8 then vim.bo.tabstop = 2 end end,
 })
 
 --- Lock `shiftwidth` to 0.
@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
   group = "Fau_vim",
   desc = "Lock shiftwidth to 0",
   pattern = "shiftwidth",
-  callback = function() vim.opt_local.shiftwidth = 0 end,
+  callback = function() vim.bo.shiftwidth = 0 end,
 })
 
 --- Lock `softtabstop` to -1.
@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
   group = "Fau_vim",
   desc = "Lock softtabstop to -1",
   pattern = "softtabstop",
-  callback = function() vim.opt_local.softtabstop = -1 end,
+  callback = function() vim.bo.softtabstop = -1 end,
 })
 
 
