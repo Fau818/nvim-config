@@ -1,5 +1,5 @@
 -- Initializaiton
-Fau_vim = {}
+Fau_vim = { plugin = {}, file = {}, lsp = {} }
 
 
 
@@ -10,6 +10,7 @@ Fau_vim = {}
 -- -----------------------------------
 -- -------- General
 -- -----------------------------------
+Fau_vim.colorscheme = "tokyonight"
 Fau_vim.config_path = vim.fn.stdpath("config")
 Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 

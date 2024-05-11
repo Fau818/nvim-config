@@ -34,7 +34,7 @@ return {
   ensure_installed = function(filetype)
     filetype = filetype or vim.bo.filetype
 
-    local package_list = Fau_vim.packages[filetype]
+    local package_list = Fau_vim.lsp.packages[filetype]
     if package_list == nil then return false end
 
     local flag = false

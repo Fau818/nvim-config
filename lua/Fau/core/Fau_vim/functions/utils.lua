@@ -23,4 +23,14 @@ return {
     if path == nil then path = vim.fn.expand('%') end
     return string.format("<CMD>silent !open -R '%s'<CR>", path)
   end,
+
+
+  set_colorscheme = function(colorscheme)
+    --- Configuration
+    colorscheme = colorscheme or Fau_vim.colorscheme
+    pcall(require, "Fau.core.colorscheme." .. colorscheme)
+    --- Loading
+    local status_ok, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
+    if not status_ok then Fau_vim.notify("colorscheme [" .. colorscheme .. "] not found!", "error") return end
+  end,
 }
