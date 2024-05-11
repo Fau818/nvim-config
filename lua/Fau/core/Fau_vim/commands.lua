@@ -3,13 +3,12 @@
 -- -----------------------------------
 vim.api.nvim_create_user_command("EditSnip",
   function()
-    require("luasnip.loaders").edit_snippet_files {
+    require("luasnip.loaders").edit_snippet_files({
       extend = function(ft, paths)
-        if #paths == 0 then return { { ft .. ".snippets",
-          string.format("%s/snippets/%s.snippets", Fau_vim.config_path, ft) } } end
+        if #paths == 0 then return { { ft .. ".snippets", string.format("%s/snippets/%s.snippets", Fau_vim.config_path, ft) } } end
         return {}
       end
-    }
+    })
   end, {}
 )
 
@@ -19,7 +18,7 @@ vim.api.nvim_create_user_command("EditSnip",
 -- -----------------------------------
 vim.api.nvim_create_user_command("EditConfiguration",
   function()
-    vim.api.nvim_command("edit " .. Fau_vim.config_path .. "/configuration")
+    vim.api.nvim_command(string.format("edit %s/configuration", Fau_vim.config_path))
   end, {}
 )
 
@@ -38,7 +37,7 @@ vim.api.nvim_create_user_command("FauvimConfig",
 -- -----------------------------------
 -- -------- Copy pyproject.toml file
 -- -----------------------------------
-vim.api.nvim_create_user_command("GetpyprojectFile",
+vim.api.nvim_create_user_command("GetPyprojectFile",
   function()
     vim.api.nvim_command("!cp " .. Fau_vim.config_path .. "/configuration/pyproject.toml" .. " .")
   end, {}

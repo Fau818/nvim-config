@@ -20,7 +20,7 @@ local config = {
   interval = 1000,
 
   -- This plugin will not be activated for filetype in the following table.
-  no_exec_files = Fau_vim.disabled_filetypes,
+  no_exec_files = Fau_vim.file.disabled_filetypes,
 
   -- Symbols for separator lines, the order: horizontal, vertical, top left, top right, bottom left, bottom right.
   symbols = { "━", "┃", "┏", "┓", "┗", "┛" },

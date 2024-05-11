@@ -1,6 +1,4 @@
--- =============================================
--- ========== Initialization
--- =============================================
+-- Initializaiton
 Fau_vim = {}
 
 
@@ -9,19 +7,42 @@ Fau_vim = {}
 -- ========== Fields
 -- =============================================
 -- TODO: unify fileds like Fau_vim.functions
-Fau_vim.dap = { enable = false }
--- Fau_vim.inc_rename = { enable = pcall(require, "inc_rename") and pcall(require, "noice"), dressing = false }
-Fau_vim.inc_rename = { enable = false, dressing = false }
-Fau_vim.copilot = { enable = os.getenv("COPILOT_ENABLE") == "1" }
+-- -----------------------------------
+-- -------- General
+-- -----------------------------------
+Fau_vim.config_path = vim.fn.stdpath("config")
 Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 
-Fau_vim.config_path = vim.fn.stdpath("config")
 
-Fau_vim.large_file_size = 1024 * 128  -- 128KiB
+-- -----------------------------------
+-- -------- Plugin
+-- -----------------------------------
+Fau_vim.plugin.copilot = { enable = os.getenv("COPILOT_ENABLE") == "1" }
+Fau_vim.plugin.dap = { enable = false }
 
-Fau_vim.configured_ft = {}  -- for recording filetypes which have been configured LSP
 
-Fau_vim.disabled_filetypes = {
+-- -----------------------------------
+-- -------- LSP
+-- -----------------------------------
+Fau_vim.lsp.configured_ft = {}
+Fau_vim.lsp.packages = {
+  lua    = { "lua-language-server" },
+  python = { "pylance", "flake8", "pydocstyle" },
+  json   = { "json-lsp" },
+  sh     = { "bash-language-server" },
+  yaml   = { "yaml-language-server" },
+  docker = { "dockerfile-language-server" },
+  go     = { "gopls" },
+  html   = { "html-lsp" },
+  dockerfile = { "dockerfile-language-server" },
+}
+
+
+-- -----------------------------------
+-- -------- File
+-- -----------------------------------
+Fau_vim.file.large_file_size = 1024 * 128  -- 128KiB
+Fau_vim.file.disabled_filetypes = {
   "", "checkhealth", "help", "netrw", "tutor", "man",
   "alpha",
   "aerial", "aerial-nav",
@@ -38,26 +59,22 @@ Fau_vim.disabled_filetypes = {
   "Trouble",
   "TelescopePrompt",
   "packer", "lazy",
-
   "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 }
+Fau_vim.file.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
+Fau_vim.file.ignored_files = { "^.DS_Store$", "^.git$", "^__pycache__$", "^.vscode$", "^.idea$", "^.mypy_cache$" }
 
-Fau_vim.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
 
-Fau_vim.ignored_files = { "^.git$", ".DS_Store", "^__pycache__$", "^.vscode$", "^.idea$", "^.mypy_cache$" }
+-- -----------------------------------
+-- -------- Deprecated
+-- -----------------------------------
+Fau_vim.plugin.inc_rename = { enable = false, dressing = false }
 
-Fau_vim.packages = {
-  lua    = { "lua-language-server" },
-  python = { "pylance", "flake8", "pydocstyle" },
-  json   = { "json-lsp" },
-  sh     = { "bash-language-server" },
-  yaml   = { "yaml-language-server" },
-  docker = { "dockerfile-language-server" },
-  go     = { "gopls" },
-  html   = { "html-lsp" },
-  dockerfile = { "dockerfile-language-server" },
-}
 
+
+-- =============================================
+-- ========== Functions
+-- =============================================
 ---@param msg string
 ---@param level string|number|nil
 ---@param opts table|notify.Options|nil

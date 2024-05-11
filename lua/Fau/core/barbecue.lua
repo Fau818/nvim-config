@@ -25,7 +25,7 @@ local config = {
 
   ---Filetypes not to enable winbar in.
   ---@type string[]
-  exclude_filetypes = Fau_vim.disabled_filetypes,
+  exclude_filetypes = Fau_vim.file.disabled_filetypes,
 
   modifiers = {
     ---Filename modifiers applied to dirname.

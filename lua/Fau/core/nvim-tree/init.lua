@@ -143,7 +143,7 @@ local config = {
       },
     },
 
-    special_files = Fau_vim.special_files,
+    special_files = Fau_vim.file.special_files,
     symlink_destination = true, -- Whether to show the destination of the symlink.
   },
 
@@ -190,7 +190,7 @@ local config = {
     dotfiles    = false, -- Whether show dotfiles. [Default Keymaps: H]
     git_clean   = false,
     no_buffer   = false,
-    custom      = Fau_vim.ignored_files,
+    custom      = Fau_vim.file.ignored_files,
     exclude     = {}, -- List of directories or files to exclude from filtering: always show them.
   },
 

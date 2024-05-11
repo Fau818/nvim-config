@@ -17,9 +17,5 @@ if colorscheme == "tokyonight" then require "Fau.core.colorscheme.tokyonight" en
 -- =============================================
 -- ========== Colorscheme Applying
 -- =============================================
----@diagnostic disable-next-line: param-type-mismatch
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-  Fau_vim.notify("colorscheme [" .. colorscheme .. "] not found!", "error")
-  return
-end
+local status_ok, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
+if not status_ok then Fau_vim.notify("colorscheme [" .. colorscheme .. "] not found!", "error") return end

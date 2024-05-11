@@ -4,7 +4,7 @@
 -- ========== Configuration
 -- =============================================
 -- Disable in some file types
-local disable = Fau_vim.disabled_filetypes
+local disable = Fau_vim.file.disabled_filetypes
 
 
 for _, filetype in ipairs(disable) do

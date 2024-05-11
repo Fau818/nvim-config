@@ -86,13 +86,13 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   if Fau_vim.functions.utils.is_large_file() then return end
   filetype = filetype or vim.bo.filetype
 
-  if Fau_vim.configured_ft[filetype] then return end -- configured
-  Fau_vim.configured_ft[filetype] = true
+  if Fau_vim.lsp.configured_ft[filetype] then return end -- configured
+  Fau_vim.lsp.configured_ft[filetype] = true
 
   -- Ensure servers installed.
   if Fau_vim.functions.lsp.ensure_installed(filetype) then
     -- Set configured_ft to false for restarting LSP.
-    Fau_vim.configured_ft[filetype] = false
+    Fau_vim.lsp.configured_ft[filetype] = false
   end
 
   -- Get servers for specific filetype.

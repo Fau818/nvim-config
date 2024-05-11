@@ -15,7 +15,7 @@ return {
   restart_lsp = function()
     -- LSP is not configured.
     local filetype = vim.bo.filetype
-    if Fau_vim.configured_ft[filetype] ~= true then  -- NOTE: Not configured might false|nil.
+    if Fau_vim.lsp.configured_ft[filetype] ~= true then  -- NOTE: Not configured might false|nil.
       Fau_vim.notify("Starting LSP server for " .. filetype .. "...")
       Fau_vim.functions.lsp.set_client_by_ft(filetype)
       return

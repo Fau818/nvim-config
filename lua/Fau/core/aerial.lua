@@ -114,7 +114,7 @@ local config = { -- Call the setup function to change the default behavior
   disable_max_lines = 10000,
 
   -- Disable aerial on files this size or larger (in bytes)
-  disable_max_size = Fau_vim.large_file_size,
+  disable_max_size = Fau_vim.file.large_file_size,
 
   -- A list of all symbols to display. Set to false to display all symbols.
   -- This can be a filetype map (see :help aerial-filetype-map)
@@ -187,7 +187,7 @@ local config = { -- Call the setup function to change the default behavior
     unlisted_buffers = true,
 
     -- List of filetypes to ignore.
-    filetypes = Fau_vim.disabled_filetypes,
+    filetypes = Fau_vim.file.disabled_filetypes,
 
     -- Ignored buftypes.
     -- Can be one of the following:

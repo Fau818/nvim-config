@@ -11,7 +11,7 @@ if not flash_ok then Fau_vim.load_plugin_error("flash") return end
 -- =============================================
 ---@type Flash.Config
 local config = {
-  labels = "asfghjklqwetuiopzvbnm",
+  labels = "asfghjklqwetuiopzbnm",
   search = {
     multi_window = true,
     forward = true,

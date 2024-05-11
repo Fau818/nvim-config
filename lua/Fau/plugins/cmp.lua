@@ -65,7 +65,7 @@ local cmp = {
           },
         },
         config = function() require("copilot_cmp").setup() end,
-        enabled = Fau_vim.copilot.enable,
+        enabled = Fau_vim.plugin.copilot.enable,
       },
       {
         -- DESC: gitcommit completion source for nvim-cmp.

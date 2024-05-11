@@ -29,7 +29,7 @@ local config = {
     { open = "<", close = ">" },
   },
   ignore_beginning = true, -- if the cursor is at the beginning of a filled element it will rather tab out than shift the content
-  exclude = Fau_vim.disabled_filetypes -- tabout will ignore these filetypes
+  exclude = Fau_vim.file.disabled_filetypes -- tabout will ignore these filetypes
 }
 
 

@@ -16,7 +16,7 @@ local test = {
     -- Doesn't support input mode switch.
     "smjonas/inc-rename.nvim",
     config = function() require("Fau.core.inc_rename") end,
-    enabled = Fau_vim.inc_rename.enable,
+    enabled = Fau_vim.plugin.inc_rename.enable,
   },
 
 

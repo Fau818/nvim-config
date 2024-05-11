@@ -22,7 +22,7 @@ local config = {
   },
   ignore = {
     -- buftype = {  },
-    filetype = Fau_vim.disabled_filetypes,
+    filetype = Fau_vim.file.disabled_filetypes,
   },
   animation = {
     enable = true,

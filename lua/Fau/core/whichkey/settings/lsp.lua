@@ -13,7 +13,7 @@ local modifyer = {  -- ni
 
 ---@return string|function
 local function get_rename_method()
-  return Fau_vim.inc_rename.enable and ":IncRename " or vim.lsp.buf.rename
+  return Fau_vim.plugin.inc_rename.enable and ":IncRename " or vim.lsp.buf.rename
 end
 
 
