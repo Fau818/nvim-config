@@ -1,3 +1,6 @@
+-- =============================================
+-- ========== Functions: Indent
+-- =============================================
 return {
   ---@param force? boolean Whether to use guess-indent to detect indent.
   toggle_indent_width = function(force)

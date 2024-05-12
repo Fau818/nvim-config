@@ -70,19 +70,3 @@ Fau_vim.file.ignored_files = { "^.DS_Store$", "^.git$", "^__pycache__$", "^.vsco
 -- -------- Deprecated
 -- -----------------------------------
 Fau_vim.plugin.inc_rename = { enable = false, dressing = false }
-
-
-
--- =============================================
--- ========== Functions
--- =============================================
----@param msg string
----@param level string|number|nil
----@param opts table|notify.Options|nil
-Fau_vim.notify = function(msg, level, opts)
-  level = level or vim.log.levels.INFO
-  if not opts then opts = { title = "Fau_vim" }
-  elseif not opts.title or opts.title == "" then opts.title = "Fau_vim"
-  end
-  vim.notify(msg, level, opts)
-end

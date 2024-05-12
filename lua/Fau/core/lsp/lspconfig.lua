@@ -107,5 +107,8 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
 end
 
 
--- Setup Auto LSP
-vim.api.nvim_exec_autocmds("User", { pattern="AutoLsp" })
+
+-- =============================================
+-- ========== Auto LSP
+-- =============================================
+Fau_vim.functions.lsp.initialization()

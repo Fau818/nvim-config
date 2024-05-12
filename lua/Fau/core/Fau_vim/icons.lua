@@ -174,6 +174,8 @@ return {
     EXIT   = "󰗼 ",
     CASE   = " ",
     ASSERT = "󰞏 ",
+    IMPORTANT = "󱈸 ",
+    SPEC = "󰅳 ",
   },
 
 

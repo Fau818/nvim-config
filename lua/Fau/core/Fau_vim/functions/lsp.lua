@@ -1,3 +1,6 @@
+-- =============================================
+-- ========== Functions: LSP
+-- =============================================
 return {
   initialization = function()
     vim.api.nvim_create_autocmd({ "BufReadPost" }, {
@@ -9,7 +12,7 @@ return {
   end,
 
 
-  set_client_by_ft = function() Fau_vim.notify("Called an uninitialized function.") end,  -- Implement in lspconfig.lua file.
+  set_client_by_ft = function() Fau_vim.notify("Called an uninitialized function `set_client_by_ft`.") end,  -- Implement in lspconfig.lua file.
 
 
   restart_lsp = function()
