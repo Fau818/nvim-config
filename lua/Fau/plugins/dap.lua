@@ -7,7 +7,7 @@ local dap = {
     "mfussenegger/nvim-dap",
     dependencies = {
       {
-        -- DESC: a UI supporter for nvim-dap.
+        -- DESC: UI supporter for nvim-dap.
         "rcarriga/nvim-dap-ui",
         config = function() require("Fau.core.dap.dapui") end,
         enabled = Fau_vim.plugin.dap.enable,

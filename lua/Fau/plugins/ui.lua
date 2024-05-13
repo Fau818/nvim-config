@@ -14,6 +14,7 @@ local ui = {
     "goolord/alpha-nvim",
     config = function() require("Fau.core.alpha") end,
     event = "VimEnter",
+    keys = { { ";", "<CMD>Alpha<CR>", desc = "Dashboard" } }
   },
 
   {

@@ -12,13 +12,14 @@ Fau_vim = { plugin = {}, file = {}, lsp = {} }
 -- -----------------------------------
 Fau_vim.colorscheme = "tokyonight"
 Fau_vim.config_path = vim.fn.stdpath("config")
+Fau_vim.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or vim.fn.expand("~/.config")
 Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 
 
 -- -----------------------------------
 -- -------- Plugin
 -- -----------------------------------
-Fau_vim.plugin.copilot = { enable = os.getenv("COPILOT_ENABLE") == "1" }
+Fau_vim.plugin.copilot = { enable = vim.loop.fs_stat(string.format("%s/github-copilot/hosts.json", Fau_vim.xdg_config_home)) and true or false }
 Fau_vim.plugin.dap = { enable = false }
 
 

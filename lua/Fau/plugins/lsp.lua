@@ -89,7 +89,7 @@ local lsp = {
   },
 
   {
-    -- DESC: a plugin to show symbol outline.
+    -- DESC: Show symbol outline.
     "stevearc/aerial.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
     config = function() require("Fau.core.aerial")end,

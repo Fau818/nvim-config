@@ -4,7 +4,7 @@
 local keymap  = vim.keymap.set
 local del_map = vim.keymap.del
 local opts       = { silent = true }
-local opts_remap = { silent = true, remap = true }
+-- local opts_remap = { silent = true, remap = true }
 
 
 
@@ -62,7 +62,6 @@ keymap("n", "<A-m>", "J", opts)
 
 -- Default Visual-Block Mode
 keymap("n", "v", "<C-v>", opts)
--- keymap("n", "<C-v>", "v", opts)
 
 -- Use Enter Key to Break Line in Normal Mode
 keymap("n", "<CR>", "o<ESC>", opts)

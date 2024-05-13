@@ -6,59 +6,47 @@ local cmp = {
   -- ========== Completion
   -- =============================================
   {
-    -- DESC: neovim code completion core plugin.
+    -- DESC: Neovim code completion core plugin.
     "hrsh7th/nvim-cmp",
     dependencies = {
       -- -----------------------------------
       -- -------- Completion Sources
       -- -----------------------------------
       {
-        -- DESC: buffer completion source for nvim-cmp.
-        "hrsh7th/cmp-buffer",
-      },
-      {
-        -- DESC: language server protocol completion source for nvim-cmp.
+        -- DESC: Language server protocol completion source for nvim-cmp.
         "hrsh7th/cmp-nvim-lsp",
       },
       {
-        -- DESC: path completion source for nvim-cmp.
+        -- DESC: Buffer completion source for nvim-cmp.
+        "hrsh7th/cmp-buffer",
+      },
+      {
+        -- DESC: Path completion source for nvim-cmp.
         "hrsh7th/cmp-path",
       },
       {
-        -- DESC: command line completion source for nvim-cmp.
+        -- DESC: Command line completion source for nvim-cmp.
         "hrsh7th/cmp-cmdline",
       },
       {
-        -- DESC: L3MON4D3/LuaSnip plugin completion source for nvim-cmp.
+        -- DESC: Calculation source for nvim-cmp.
+        "hrsh7th/cmp-calc"
+      },
+      {
+        -- DESC: Zsh completion source for nvim-cmp.
+        "tamago324/cmp-zsh",
+      },
+      {
+        -- DESC: `L3MON4D3/LuaSnip` code snippets completion source for nvim-cmp.
         "saadparwaiz1/cmp_luasnip",
         dependencies = { "L3MON4D3/LuaSnip" }
       },
       {
-        -- DESC: gitcommit completion source for nvim-cmp.
-        "davidsierradz/cmp-conventionalcommits",
-        ft = "gitcommit",
-        enabled = false,  -- BUG: this plugin is not working.
-      },
-      {
-        -- DESC: zsh completion source for nvim-cmp.
-        "tamago324/cmp-zsh",
-      },
-      {
-        -- DESC: signature help completion source for nvim-cmp.
-        -- WARNING: This plugin is deprecated.
-        "hrsh7th/cmp-nvim-lsp-signature-help",
-        enabled = false,
-      },
-      {
-        -- DESC: calculation source for nvim-cmp.
-        "hrsh7th/cmp-calc"
-      },
-      {
-        -- DESC: copilot source for nvim-cmp
+        -- DESC: Github copilot source for nvim-cmp.
         "zbirenbaum/copilot-cmp",
         dependencies = {
           {
-            -- DESC: a plugin for config copilot.
+            -- DESC: Github copilot supporter.
             "zbirenbaum/copilot.lua",
             config = function() require("Fau.core.copilot") end,
             cmd = { "Copilot" },
@@ -67,29 +55,15 @@ local cmp = {
         config = function() require("copilot_cmp").setup() end,
         enabled = Fau_vim.plugin.copilot.enable,
       },
-      {
-        -- DESC: gitcommit completion source for nvim-cmp.
-        "Cassin01/cmp-gitcommit",
-        config = function() require("cmp-gitcommit").setup() end,
-        ft = "gitcommit",
-        enabled = false,  -- BUG: this plugin is not working.
-      },
 
 
       -- -----------------------------------
       -- -------- Snippets
       -- -----------------------------------
       {
-        -- DESC: a powerful code snippets engine.
+        -- DESC: Code snippets engine.
         "L3MON4D3/LuaSnip",
-        dependencies = {
-          {
-            -- DESC: an abundant code snippet repository (can be loaded into LuaSnip).
-            -- WARNING: This plugin is disabled.
-            "rafamadriz/friendly-snippets",
-            enabled = false,
-          },
-        },
+        lazy = true,
       },
 
 
@@ -97,13 +71,13 @@ local cmp = {
       -- -------- Autopairs and Autotags
       -- -----------------------------------
       {
-        -- DESC: a super powerful autopair plugin for Neovim.
+        -- DESC: A super powerful autopair plugin for Neovim.
         "windwp/nvim-autopairs",
         config = function() require("Fau.core.autopairs") end,
       },
 
       {
-        -- DESC: auto close html tag.
+        -- DESC: Auto close html tag.
         "windwp/nvim-ts-autotag",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
       },
@@ -115,14 +89,14 @@ local cmp = {
   },
 
   {
-    -- DESC: smartly add `end` in lua, ruby, and etc.
+    -- DESC: Smartly add `end` in lua, ruby, and etc.
     "RRethy/nvim-treesitter-endwise",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    ft = { "lua", "ruby", "vim", "sh", "zsh", "elixir", "julia" }
+    event = { "InsertEnter" },
   },
 
   {
-    -- DESC: show signature help in a small pop window.
+    -- DESC: Show signature help in a small pop window.
     "echasnovski/mini.completion",
     config = function() require("Fau.core.mini.completion") end,
     event = { "InsertEnter" },

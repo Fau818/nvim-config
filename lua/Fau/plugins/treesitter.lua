@@ -16,10 +16,14 @@ local treesitter = {
     "nvim-treesitter/playground",
     dependencies = "nvim-treesitter/nvim-treesitter",
     cmd = { "TSPlaygroundToggle", "TSCaptureUnderCursor", "TSNodeUnderCursor" },
+    keys = {
+      { "<LEADER><LEADER>u", "<CMD>TSCaptureUnderCursor<CR>", desc = "Capture Highlight Group Under Cursor" },
+      { "<LEADER><LEADER>n", "<CMD>TSNodeUnderCursor<CR>",    desc = "Capture Node Under Cursor" }
+    },
   },
 
   {
-    -- DESC: a plugin to show the context of the current buffer contents.
+    -- DESC: Show context of the current buffer contents.
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.core.treesitter.context") end,
@@ -28,7 +32,7 @@ local treesitter = {
   },
 
   {
-    -- DESC: a plugin to enhance textobjects.
+    -- DESC: Enhance textobjects.
     "nvim-treesitter/nvim-treesitter-textobjects",
     requires = "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },

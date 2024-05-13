@@ -18,7 +18,7 @@ local misc = {
   },
 
   {
-    -- DESC: a plugin just for fun.
+    -- DESC: Just for fun.
     "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton",
   },

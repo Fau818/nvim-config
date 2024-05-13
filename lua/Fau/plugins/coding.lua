@@ -1,10 +1,9 @@
--- NOTE: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` events.
--- also maybe in `InsertEnter` event.
+-- NOTE: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` (Rarely loaded in `InsertEnter` and `BufWritePre`) events
 
 ---@type LazySpec[]
 local coding = {
   {
-    -- DESC: quickly add, modify, and remove surround.
+    -- DESC: Quickly add, modify, and remove surround.
     "kylechui/nvim-surround",
     config = function() require("Fau.core.surround") end,
     event = { "BufReadPost", "BufNewFile" },
@@ -12,11 +11,11 @@ local coding = {
   },
 
   {
-    -- DESC: quick comment.
+    -- DESC: Powerful comment plugin for Neovim.
     "numToStr/Comment.nvim",
     dependencies = {
       {
-        -- DESC: set the commentstring based on the context.
+        -- DESC: Set the commentstring based on the context.
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
           vim.g.skip_ts_context_commentstring_module = true
@@ -30,72 +29,88 @@ local coding = {
   },
 
   {
+    -- DESC: Smartly move lines or selections.
     "echasnovski/mini.move",
     config = function() require("Fau.core.mini.move") end,
-    event = { "BufReadPost", "BufNewFile" },
+    -- event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { "<A-h>", mode = "x", desc = "Move Selections left" },
+      { "<A-l>", mode = "x", desc = "Move Selections right" },
+      { "<A-j>", mode = { "n", "x" }, desc = "Move lines Down" },
+      { "<A-k>", mode = { "n", "x" }, desc = "Move lines Up" },
+    },
+    cond = true,
   },
 
   {
-    -- DESC: type <TAB> could jump out of brakets.
+    -- DESC: Press <TAB> to jump out of brakets.
     "abecodes/tabout.nvim",
     config = function() require("Fau.core.tabout") end,
-    event = "InsertEnter",
+    event = { "InsertEnter" },
+    cond = true,
   },
 
   {
-    -- DESC: align text interactively.
+    -- DESC: Align text interactively.
     "echasnovski/mini.align",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.core.mini.align") end,
-    event = { "BufReadPost", "BufNewFile" },
-    cond = true,  -- FIX: Whether can use vscode's plugin.
+    -- event = { "BufReadPost", "BufNewFile" },
+    keys = { { "<LEADER>a", mode = "x" }, { "<LEADER>A", mode = "x" } },
+    cond = true,  -- Fau: Whether can use vscode's plugin.
   },
 
   {
+    -- DESC: Auto remove trailing whitespaces and empty lines.
     "echasnovski/mini.trailspace",
     config = function() require("Fau.core.mini.trailspace") end,
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufWritePre" },
   },
 
   {
-    -- DESC: auto switch input method.
+    -- DESC: Auto switch input method.
     "keaising/im-select.nvim",
     config = function() require("Fau.core.im-select") end,
-    event = "InsertEnter",
-    enabled = vim.fn.executable("im-select") == 1 and false,  -- BUG: delay in telescope
+    event = { "InsertEnter" },
+    enabled = vim.fn.executable("im-select") == 1 and true or false,
+    cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
   {
-    -- DESC: auto generate python docstring.
+    -- DESC: Auto generate python docstring.
     "pixelneo/vim-python-docstring",
     config = function() require("Fau.core.python-docstring") end,
     ft = "python",
+    cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
   {
-    -- DESC: a plugin for splitting and joining block of code.
-    "Wansmer/treesj",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("Fau.core.treesj") end,
-    cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
-  },
-
-  {
-    -- DESC: a plugin for running code action on nodes(code).
-    "ckolkey/ts-node-action",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "BufReadPost", "BufNewFile" },
-  },
-
-  {
-    -- DESC: a plugin to auto change normal string to template string.
+    -- DESC: Auto change normal string to template string.
+    -- Fau: Used to automatically convert string to f-string in python.q
     "axelvc/template-string.nvim",
     config = function() require("Fau.core.template-string") end,
     event = { "BufReadPost", "BufNewFile" },
   },
 
   {
-    -- DESC: convert text case in Neovim.
+    -- DESC: Splitting and joining block of code.
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function() require("Fau.core.treesj") end,
+    cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
+    keys = { { "<LEADER>sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Split and Join" } },
+  },
+
+  {
+    -- DESC: Running code action on nodes(code).
+    "ckolkey/ts-node-action",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    -- event = { "BufReadPost", "BufNewFile" },
+    keys = { { "<LEADER>n", [[<CMD>lua require("ts-node-action").node_action()<CR>]], mode = "n", desc = "Node Action" } }
+  },
+
+  {
+    -- DESC: Convert text case in Neovim.
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function() require("Fau.core.textcase") end,
@@ -111,7 +126,7 @@ local coding = {
   },
 
   {
-    -- DESC: multi-cursor support in Neovim.
+    -- DESC: Multi-cursor support in Neovim.
     "smoka7/multicursors.nvim",
     dependencies = { "smoka7/hydra.nvim" },
     cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
@@ -130,7 +145,7 @@ local coding = {
       }
     },
     config = function() require("Fau.core.multicursor") end
-  }
+  },
 
 }
 

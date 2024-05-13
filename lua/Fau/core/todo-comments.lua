@@ -22,14 +22,13 @@ local config = {
       alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-
     TODO      = { icon = Fau_vim.icons.todo.TODO,      color = "todo" },
     HACK      = { icon = Fau_vim.icons.todo.HACK,      color = "warning" },
     WARN      = { icon = Fau_vim.icons.todo.WARN,      color = "warning", alt = { "WARNING" } },
     PERF      = { icon = Fau_vim.icons.todo.PERF,      color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE      = { icon = Fau_vim.icons.todo.NOTE,      color = "info", alt = { "INFO", "HINT" } },
     TEST      = { icon = Fau_vim.icons.todo.TEST,      color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-    Fau       = { icon = Fau_vim.icons.todo.Fau,       color = "hint" },
+    Fau       = { icon = Fau_vim.icons.todo.Fau,       color = Fau_vim.colors.cobalt },
     DESC      = { icon = Fau_vim.icons.todo.DESC,      color = "desc" },
     SEE       = { icon = Fau_vim.icons.todo.BOOK,      color = "see" },
     EXIT      = { icon = Fau_vim.icons.todo.EXIT,      color = "exit", alt = { "RETURN" } },
@@ -67,7 +66,7 @@ local config = {
     warning   = { "DiagnosticWarn", "WarningMsg" },
     error     = { "DiagnosticError", "ErrorMsg", "#DC2626" },
     hint      = { "DiagnosticHint", "#10B981" },
-    default   = { "Identifier", "#7C3AED" },
+    default   = { "Identifier" },
     test      = { "#FFC8E1" },
     desc      = { "#A9B1D6" },
     see       = { "#87CEEB" },
