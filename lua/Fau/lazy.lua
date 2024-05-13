@@ -2,7 +2,7 @@
 -- ========== Lazy Install
 -- =============================================
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -49,15 +49,12 @@ local config = {
     log = { "--since=3 days ago" }, -- show commits from the last 3 days
     timeout = 120, -- kill processes that take more than 2 minutes
     url_format = "https://github.com/%s.git",
-    -- lazy.nvim requires git >=2.19.0. If you really want to use lazy with an older version,
-    -- then set the below to false. This is should work, but is NOT supported and will
-    -- increase downloads a lot.
     filter = true,
   },
 
   dev = {
     -- directory where you store your local plugin projects
-    path = vim.fn.stdpath("config") .. "/projects",
+    path = "~/projects",
     ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
     patterns = {}, -- For example {"folke"}
     fallback = false, -- Fallback to git when local plugin doesn't exist
@@ -85,15 +82,10 @@ local config = {
     browser = nil, ---@type string?
     throttle = 20, -- how frequently should the ui process render events
     custom_keys = {
-      -- open a terminal for the plugin dir
-      ["<localleader>D"] = function(plugin)
-        require("lazy.util").float_term(nil, { cwd = plugin.dir })
-      end,
-
-      -- open lazygit log
-      ["<localleader>L"] = function(plugin)
-        require("lazy.util").float_term({ "lazygit", "log" }, { cwd = plugin.dir, })
-      end,
+      -- Open a terminal for the plugin dir
+      ["<localleader>D"] = function(plugin) require("lazy.util").float_term(nil, { cwd = plugin.dir }) end,
+      -- Open lazygit log
+      ["<localleader>L"] = function(plugin) require("lazy.util").float_term({ "lazygit", "log" }, { cwd = plugin.dir }) end,
     }
   },
 
@@ -104,7 +96,7 @@ local config = {
     -- * git: will run git diff and open a buffer with filetype git
     -- * terminal_git: will open a pseudo terminal with git diff
     -- * diffview.nvim: will open Diffview to show the diff
-    cmd = "diffview.nvim",
+    cmd = Fau_vim.os_name == "Darwin" and "browser" or "diffview.nvim",
   },
 
   checker = {

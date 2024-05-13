@@ -37,6 +37,8 @@ keymap({ "n", "x", "o" }, "L", "<END>", opts)
 -- =============================================
 -- ========== Quick Save and Close
 -- =============================================
+keymap("n", "q",         "<CMD>update<CR>", opts)
+keymap("n", "<LEADER>w", "<CMD>wall<CR>",   opts)
 keymap("n", "<A-w>", "<CMD>wall<CR>", opts)
 keymap("n", "<A-q>", "<CMD>bdelete<CR>", opts)
 
@@ -77,7 +79,7 @@ keymap("n", "<LEADER>q", "q", opts)
 keymap("n", "<C-f>", "<CMD>!open -R '%'<CR>", opts)
 keymap("n", "<C-b>", "<NOP>", opts)  -- nop
 
--- Convert tab and space
+-- Convert tabs and spaces interchangeably
 keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab!<CR>", opts)
 
 -- Open File Explore
@@ -124,7 +126,7 @@ keymap({ "n", "x" }, "<LEADER>y", '""y', opts)
 keymap({ "n", "x" }, "<LEADER>p", '""p', opts)
 keymap({ "n", "x" }, "<LEADER>P", '""P', opts)
 
--- Delete Neovim Default Keymap Y -> Y$ [TEST]
+-- Delete Neovim Default Keymap Y -> Y$
 del_map("n", "Y")
 
 -- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
@@ -177,15 +179,6 @@ keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts)
 -- Split Window
 keymap("n", "<C-v>", "<CMD>vsplit<CR>", opts)
 -- keymap("n", "<C-x>", "<CMD>split<CR>",  opts)
-
-
-
--- =============================================
--- ======== Buffer Operations
--- =============================================
--- Save and Close Buffers
-keymap("n", "q",         "<CMD>update<CR>", opts)
-keymap("n", "<LEADER>w", "<CMD>wall<CR>",   opts)
 
 
 
