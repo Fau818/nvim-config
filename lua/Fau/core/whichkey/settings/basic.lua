@@ -1,3 +1,5 @@
+-- NOTE: This is a annotation file for `Fau_vim.keymaps` with a spot of additional overwrite and new key bindings.
+
 -- Quick Move
 local move = {  -- nxo
   ["H"] = "Line Begin",
@@ -125,7 +127,7 @@ return {
     basic, move, edit, move_lines, windows_terminal,
 
     -- -----------------------------------
-    -- -------- MISC
+    -- -------- Extra
     -- -----------------------------------
     -- Edit
     ["<LEADER>E"] = {
@@ -144,12 +146,10 @@ return {
 
 
     -- -----------------------------------
-    -- -------- Buffer Navigation
+    -- -------- Buffer Navigation (By `akinsho/bufferline.nvim`)
     -- -----------------------------------
     ["<A-1~9>"]       = "Switch to Buffer <1~9>",
     ["<LEADER><1~9>"] = "Switch to Buffer <1~9>",
-
-
   },
 
 
