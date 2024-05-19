@@ -96,6 +96,13 @@ local lsp = {
     cmd = { "AerialToggle", "AerialNavToggle" },
   },
 
+  {
+    -- DESC: Show references, definitions and implementations of symbols.
+    "Wansmer/symbol-usage.nvim",
+    config = function() require("Fau.core.symbol-usage") end,
+    event = vim.fn.has("nvim-0.10") == 1 and "LspAttach" or "BufReadPre",
+  },
+
 }
 
 

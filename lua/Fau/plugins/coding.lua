@@ -98,7 +98,7 @@ local coding = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.core.treesj") end,
     cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
-    keys = { { "<LEADER>sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Split and Join" } },
+    keys = { { "sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Split and Join" } },
   },
 
   {
