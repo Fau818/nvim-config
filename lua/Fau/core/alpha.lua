@@ -31,23 +31,22 @@ dashboard.section.header.val = {
   [[]],
 }
 dashboard.section.buttons.val = {
-  dashboard.button("n", Fau_vim.icons.ui.File .. "  New File", "<CMD>enew<CR>"),
+  dashboard.button("n", ("%s  New File"):format(Fau_vim.icons.ui.File), "<CMD>enew<CR>"),
 
-  dashboard.button("p", Fau_vim.icons.ui.Project  .. "  Projects",     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>"),
-  dashboard.button("f", Fau_vim.icons.ui.FindFile .. "  Find Files",   "<CMD>Telescope find_files<CR>"),
-  dashboard.button("r", Fau_vim.icons.ui.History  .. "  Recent Files", "<CMD>Telescope oldfiles<CR>"),
-  dashboard.button("s", Fau_vim.icons.ui.FindText .. "  Search Text",  "<CMD>Telescope live_grep<CR>"),
+  dashboard.button("p", ("%s  Projects"):format(Fau_vim.icons.ui.Project),     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>"),
+  dashboard.button("f", ("%s  Find Files"):format(Fau_vim.icons.ui.FindFile),  "<CMD>Telescope find_files<CR>"),
+  dashboard.button("r", ("%s  Recent Files"):format(Fau_vim.icons.ui.History), "<CMD>Telescope oldfiles<CR>"),
 
-  dashboard.button("l", Fau_vim.icons.ui.Restore .. "  Load Session",      "<CMD>lua require('persistence').load()<CR>"),
-  dashboard.button("L", Fau_vim.icons.ui.Restore .. "  Load Last Session", "<CMD>lua require('persistence').load({ last = true })<CR>"),
+  dashboard.button("l", ("%s  Load Session"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").load() end),
+  dashboard.button("L", ("%s  Load Last Session"):format(Fau_vim.icons.ui.Restore), function() require("persistence").load({ last = true }) end),
 
-  dashboard.button("c", Fau_vim.icons.ui.Gear .. "  Configuration", "<CMD>FauvimConfig<CR>"),
+  dashboard.button("c", ("%s  Config Neovim"):format(Fau_vim.icons.ui.Gear), "<CMD>FauvimConfig<CR>"),
 
-  dashboard.button("q", Fau_vim.icons.ui.Exit .. "  Quit", "<CMD>qa<CR>"),
+  dashboard.button("q", ("%s  Quit Neovim"):format(Fau_vim.icons.ui.Exit), "<CMD>qall<CR>"),
 }
 
 
-alpha.setup(dashboard.opts)
+alpha.setup(dashboard.config)
 
 
 -- -----------------------------------
@@ -70,7 +69,7 @@ vim.api.nvim_create_autocmd("User", {
   callback = function()
     local stats = require("lazy").stats()
     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-    dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+    dashboard.section.footer.val =  "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
     pcall(vim.cmd.AlphaRedraw)
   end,
 })

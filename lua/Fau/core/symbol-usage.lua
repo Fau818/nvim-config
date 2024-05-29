@@ -74,6 +74,7 @@ local config = {
   text_format = text_format,
 
   disable = {
+    lsp = { "bashls" },
     cond = {
       function()
         local clients = vim.lsp.get_clients({ bufnr = 0 })
