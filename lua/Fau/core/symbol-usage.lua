@@ -74,12 +74,12 @@ local config = {
   text_format = text_format,
 
   disable = {
-    lsp = { "bashls" },
     cond = {
       function()
         local clients = vim.lsp.get_clients({ bufnr = 0 })
         for _, client in ipairs(clients) do
-          if client.name ~= "copilot" then return vim.fn.expand("%:p"):find(client.root_dir, 1, true) == nil end
+          -- if client.name ~= "copilot" then return vim.fn.expand("%:p"):find(client.root_dir, 1, true) == nil end
+          if client.name == "lua_ls" then return vim.fn.expand("%:p"):find(client.root_dir, 1, true) == nil end
         end
       end,
     },

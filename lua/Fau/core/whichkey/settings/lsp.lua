@@ -59,8 +59,6 @@ return {
       i = { builtin.lsp_incoming_calls, "Show Incoming Calls" },
       o = { builtin.lsp_outgoing_calls, "Show Outgoing Calls" },
 
-      -- TODO: move this.
-      h = { function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "Toggle Inlay Hints" }
     },
 
 
@@ -95,6 +93,10 @@ return {
 
       -- Virtual Text
       v = { function() vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text}) end, "Toggle Virtual Text" },
+      -- Inlay Hints
+      h = { function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })) end, "Toggle Inlay Hints" },
+      -- LSP Lines
+      L = "Toggle LSP Lines",
 
       -- Outline (Structure)
       o = { "<CMD>AerialToggle<CR>",    "Toggle Outline" },

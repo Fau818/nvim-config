@@ -59,6 +59,8 @@ local lsp = {
     lazy = true,  -- loaded by nvim-lspconfig
   },
 
+
+
   -- =============================================
   -- ========== LSP Enhancement
   -- =============================================
@@ -102,6 +104,32 @@ local lsp = {
     config = function() require("Fau.core.symbol-usage") end,
     event = vim.fn.has("nvim-0.10") == 1 and "LspAttach" or "BufReadPre",
   },
+
+  {
+    -- DESC: Render LSP diagnostics with virtual lines.
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+      vim.diagnostic.config({ virtual_lines = false })
+      vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+    end,
+    keys = {
+      {
+        "<LEADER>lL",
+        function()
+          ---@diagnostic disable-next-line: undefined-field
+          local virtual_lines = vim.diagnostic.config().virtual_lines
+          local lines_on = virtual_lines ~= nil and virtual_lines ~= false
+          if lines_on then vim.diagnostic.config({ virtual_lines = false })
+          else vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+          end
+        end,
+        desc = "Toggle LSP Lines",
+      }
+    },
+    event = "LspAttach",
+  }
+
 
 }
 
