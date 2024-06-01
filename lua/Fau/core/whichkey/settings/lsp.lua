@@ -69,10 +69,8 @@ return {
       a = { vim.lsp.buf.code_action, "Code Action" },
 
       -- Diagnostic Info
-      -- d = { "<CMD>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>", "Document Diagnostics" },
-      -- D = { "<CMD>lua require('telescope.builtin').diagnostics()<CR>",          "Workspace Diagnostics" },
-      d = { "<CMD>Trouble document_diagnostics<CR>", "Document Diagnostics" },
-      D = { "<CMD>Trouble workspace_diagnostics<CR>", "Workspace Diagnostics" },
+      d = { "<CMD>Trouble diagnostics toggle focus=false filter.buf=0<CR>", "Buffer Diagnostics" },
+      D = { "<CMD>Trouble diagnostics toggle<CR>", "Workspace Diagnostics" },
 
       -- Goto Prev/Next Diagnostics
       p = { vim.diagnostic.goto_prev, "Goto Prev Diagnostics" },

@@ -5,16 +5,16 @@ return {
   ---@type table<string, string>
   kind = {
     Array         = "", -- "󰅨"
-    Boolean       = "", -- ""
+    Boolean       = "󰨙", -- ""
     Class         = "",
     Color         = "", -- ""
-    Constant      = "",
-    Constructor   = "", -- ""
+    Constant      = "󰏿", -- ""
+    Constructor   = "", -- "", ""
     Copilot       = "",
     Enum          = "", -- "󰕘"
-    EnumMember    = "", -- ""
+    EnumMember    = "", -- ""
     Event         = "", -- ""
-    Field         = "", -- ""
+    Field         = "", -- "", ""
     File          = "", -- ""
     Folder        = "", -- ""
     Function      = "󰊕", -- "󰡱"
@@ -22,23 +22,23 @@ return {
     Key           = "", -- ""
     Keyword       = "",
     Method        = "󰆧",
-    Module        = "",
-    Namespace     = "",
-    Null          = "󰟢",
-    Number        = "", -- "" ""
+    Module        = "", -- ""
+    Namespace     = "", -- "󰦮"
+    Null          = "󰟢", -- ""
+    Number        = "󰎠", -- "" ""
     Object        = "󰅩",
     Operator      = "",
-    Package       = "",
+    Package       = "", -- ""
     Property      = "", -- ""
     Reference     = "", -- ""
     Snippet       = "", -- ""
-    String        = "", -- ""
-    Struct        = "", -- ""
+    String        = "", -- "", ""
+    Struct        = "󰆼", -- "", ""
     Text          = "",
     TypeParameter = "",
     Unit          = "",
     Value         = "",
-    Variable      = "",
+    Variable      = "", -- "󰀫"
   },
 
 

@@ -58,7 +58,7 @@ Fau_vim.file.disabled_filetypes = {
   "NvimTree",
   "toggleterm",
   "tsplayground",
-  "Trouble",
+  "trouble",
   "TelescopePrompt",
   "packer", "lazy",
   "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",

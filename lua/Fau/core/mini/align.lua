@@ -18,14 +18,14 @@ local config = {
   -- Modifiers changing alignment steps and/or options
   modifiers = {
     ["-"] = function(steps, opts)
-      opts.split_pattern = " %-%- "
+      opts.split_pattern = "%s+%-%-.*"
       table.insert(steps.pre_justify, align.gen_step.trim())
-      opts.merge_delimiter = " "
+      opts.merge_delimiter = "  "
     end,
 
     ["="] = function(steps, opts)
       -- opts.split_pattern = '%p*=+[<>~]*'
-      opts.split_pattern = " = "
+      opts.split_pattern = "%s+=%s+"
       table.insert(steps.pre_justify, align.gen_step.trim())
       opts.merge_delimiter = " "
     end,
@@ -66,4 +66,3 @@ local config = {
 
 
 align.setup(config)
--- TODO: A PR or issue to toggle pre-step

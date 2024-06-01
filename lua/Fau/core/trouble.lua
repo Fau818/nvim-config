@@ -9,75 +9,115 @@ if not trouble_ok then Fau_vim.load_plugin_error("trouble") return end
 -- =============================================
 -- ========== Configuration
 -- =============================================
----@type TroubleOptions
+---@type trouble.Config
 local config = {
-  position = "bottom", -- position of the list can be: bottom, top, left, right
-  height = 10,         -- height of the trouble list when position is top or bottom
-  width = 50,          -- width of the list when position is left or right
-  icons = true,        -- use devicons for filenames
+  auto_close   = false,  -- auto close when there are no items
+  auto_open    = false,  -- auto open when there are items
+  auto_preview = true,   -- automatically open preview when on an item
+  auto_refresh = false,  -- auto refresh when open
+  auto_jump    = false,  -- auto jump to the item when there's only one
 
-  mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-  severity = nil,    -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
+  focus   = true,  -- Focus the window when opened
+  restore = true,  -- restores the last location in the list when opening
+  follow  = true,  -- Follow the current item
 
-  fold_open = "",   -- icon used for open folds
-  fold_closed = "", -- icon used for closed folds
+  indent_guides = true,  -- show indent guides
+  max_items = 200,       -- limit number of items that can be displayed per section
+  multiline = true,      -- render multi-line messages
+  pinned = false,        -- When pinned, the opened trouble window will be bound to the current buffer
 
-  group = true,    -- group results by file
-  padding = false, -- add an extra new line on top of the list
-  cycle_results = false,  -- cycle item list when reaching beginning or end of list
+  warn_no_results = true,   -- show a warning when there are no results
+  open_no_results = false,  -- open the trouble window when there are no results
 
-  action_keys = { -- key mappings for actions in the trouble list
-    -- map to {} to remove a mapping, for example:
-    -- close = {},
-    cancel = { "<ESC>" },         -- cancel the preview and get back to your last window / buffer / cursor
-    close = { "q" },              -- close the list
+  ---@type trouble.Window.opts
+  win = { border = "double", minimal = true }, -- window options for the results window. Can be a split or a floating window.
 
-    jump = { "<TAB>" },           -- jump to the diagnostic or open / close folds
-    jump_close = { "<CR>" },      -- jump to the diagnostic and close the list
-
-    refresh = "r",                -- manually refresh
-
-    open_split  = { "<C-x>" },    -- open buffer in new split
-    open_vsplit = { "<C-v>" },    -- open buffer in new vsplit
-    open_tab    = { "<C-t>" },    -- open buffer in new tab
-
-    toggle_mode = "m",            -- toggle between "workspace" and "document" diagnostics mode
-    toggle_preview = "P",         -- toggle auto_preview
-
-    hover = "<C-d>",              -- opens a small popup with the full multiline message
-    preview = "p",                -- preview the diagnostic location
-
-    close_folds = { "zM", "zm" }, -- close all folds
-    open_folds  = { "zR", "zr" }, -- open all folds
-    toggle_fold = { "zA", "za" }, -- toggle fold of current file
-
-    previous = "k",               -- previous item
-    next = "j",                   -- next item
-
-    help = "?", -- help menu
+  -- Window options for the preview window. Can be a split, floating window, or `main` to show the preview in the main editor window.
+  ---@type trouble.Window.opts
+  preview = {
+    type = "main",
+    -- when a buffer is not yet loaded, the preview window will be created
+    -- in a scratch buffer with only syntax highlighting enabled.
+    -- Set to false, if you want the preview to always be a real loaded buffer.
+    scratch = true,
   },
 
-  win_config = { border = "single" }, -- window configuration for floating windows. See |nvim_open_win()|.
-  multiline = true, -- render multi-line messages
-  indent_lines = true, -- add an indent guide below the fold icons
+  -- Throttle/Debounce settings. Should usually not be changed.
+  ---@type table<string, number|{ms:number, debounce?:boolean}>
+  throttle = {
+    refresh = 20,   -- fetches new data when needed
+    update  = 10,   -- updates the window
+    render  = 10,   -- renders the window
+    follow  = 100,  -- follows the current item
+    preview = { ms = 100, debounce = true },  -- shows the preview for the current item
+  },
 
-  auto_open = false,   -- automatically open the list when you have diagnostics
-  auto_close = false,  -- automatically close the list when you have no diagnostics
-  auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
-  auto_fold = false,   -- automatically fold a file trouble list at creation
-  auto_jump = {},      -- for the given modes, automatically jump if there is only a single result
+  -- Key mappings can be set to the name of a builtin action,
+  -- or you can define your own custom action.
+  ---@type table<string, string|trouble.Action>
+  keys = {
+    ["?"] = "help",
 
-  use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
-  include_declaration = { "lsp_references", "lsp_implementations", "lsp_definitions"  }, -- for the given modes, include the declaration of the current symbol in the results
+    q = "close",
+    r = "refresh",
+    R = "toggle_refresh",
 
-  -- signs = {
-  --  -- icons / text used for a diagnostic
-  --  error = "",
-  --  warning = "",
-  --  hint = "",
-  --  information = "",
-  --  other = "﫠"
-  -- },
+    ["<ESC>"] = "cancel",
+    ["<TAB>"] = "jump",
+    ["<CR>"]  = "jump_close",
+
+    ["<2-leftmouse>"] = "jump",
+    ["<C-s>"] = "jump_split",
+    ["<C-v>"] = "jump_vsplit",
+
+    ["<Down>"] = "next",
+    ["<Up>"]   = "prev",
+
+    i = "inspect",
+
+    p = "preview",
+    P = "toggle_preview",
+
+    zo = "fold_open",
+    zO = "fold_open_recursive",
+    zc = "fold_close",
+    zC = "fold_close_recursive",
+    za = "fold_toggle",
+    zA = "fold_toggle_recursive",
+    zm = "fold_more",
+    zM = "fold_close_all",
+    zr = "fold_reduce",
+    zR = "fold_open_all",
+    zx = "fold_update",
+    zX = "fold_update_all",
+    zn = "fold_disable",
+    zN = "fold_enable",
+    zi = "fold_toggle_enable",
+
+    s = {  -- example of a custom action that toggles the severity
+      action = function(view)
+        local f = view:get_filter("severity")
+        local severity = ((f and f.filter.severity or 0) + 1) % 5
+        view:filter({ severity = severity }, {
+          id = "severity",
+          template = "{hl:Title}Filter:{hl} {severity}",
+          del = severity == 0,
+        })
+      end,
+      desc = "Toggle Severity Filter",
+    },
+  },
+
+  ---@type table<string, trouble.Mode>
+  modes = nil,
+
+  icons = {
+    ---@type trouble.Indent.symbols
+    indent = nil,
+    folder_closed = nil,
+    folder_open   = nil,
+    kinds = Fau_vim.icons.kind,
+  },
 }
 
 

@@ -15,11 +15,10 @@ local layout  = require("telescope.actions.layout")
 -- -----------------------------------
 -- -------- Trouble
 -- -----------------------------------
-local trouble_ok, trouble = pcall(require, "trouble.providers.telescope")
-if not trouble_ok then trouble = nil end
+local trouble_ok, trouble = pcall(require, "trouble.sources.telescope")
 
 local function send_to_trouble()
-  if trouble then return trouble.open_with_trouble end
+  if trouble_ok then return trouble.open end
   return actions.send_to_qflist + actions.open_qflist
 end
 

@@ -238,7 +238,7 @@ local editor = {
     -- DESC: Quickfix list enhancer.
     "folke/trouble.nvim",
     config = function() require("Fau.core.trouble") end,
-    cmd = { "TroubleToggle", "Trouble" },
+    cmd = "Trouble",
     keys = { { "<LEADER>tt", "<CMD>Trouble<CR>", desc = "Show Trouble" } },
   },
 

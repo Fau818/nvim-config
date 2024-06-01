@@ -24,7 +24,7 @@ local config = {
     },
 
     ignore_focus = {
-      "help", "Trouble", "NvimTree", "aerial", "DiffviewFiles",
+      "help", "trouble", "NvimTree", "aerial", "DiffviewFiles",
       "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
     }, -- show as inactive
 

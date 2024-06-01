@@ -112,6 +112,17 @@ local lsp = {
       require("lsp_lines").setup()
       vim.diagnostic.config({ virtual_lines = false })
       vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+
+      -- TODO:  move to other place
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "lazy",
+        callback = function()
+          ---@diagnostic disable-next-line: undefined-field
+          local virtual_lines = vim.diagnostic.config().virtual_lines
+          local lines_on = virtual_lines ~= nil and virtual_lines ~= false
+          if lines_on then vim.diagnostic.config({ virtual_lines = false }) end
+        end
+      })
     end,
     keys = {
       {
