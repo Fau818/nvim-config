@@ -17,10 +17,10 @@ return {
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
 
     performance = {
-      debounce = 100,         -- popup menu delay
-      throttle = 50,          -- refresh delay
-      fetching_timeout = 500, -- fetching timeout
-      async_budget = 250,
+      debounce         = 100,  -- popup menu delay
+      throttle         = 75,   -- refresh delay
+      fetching_timeout = 500,  -- fetching timeout
+      async_budget     = 250,
       max_view_entries = 100,
     },
 

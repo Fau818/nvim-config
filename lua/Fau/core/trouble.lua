@@ -70,8 +70,8 @@ local config = {
     ["<C-s>"] = "jump_split",
     ["<C-v>"] = "jump_vsplit",
 
-    ["<Down>"] = "next",
-    ["<Up>"]   = "prev",
+    ["j"] = "next",
+    ["k"] = "prev",
 
     i = "inspect",
 

@@ -45,11 +45,13 @@ local lsp = {
   },
 
   {
-    -- DESC: a powerful lua completion tool for Neovim.
-    "folke/neodev.nvim",
-    config = function() require("Fau.core.neodev") end,
+    -- DESC: Faster LuaLS setup for Neovim.
+    "folke/lazydev.nvim",
+    config = true,
+    opts = { library = { vim.env.LAZY } },
     ft = "lua",
   },
+  { "Bilal2453/luvit-meta", lazy = true },
 
   {
     -- DESC: config LSP in json file.
@@ -140,7 +142,6 @@ local lsp = {
     },
     event = "LspAttach",
   }
-
 
 }
 

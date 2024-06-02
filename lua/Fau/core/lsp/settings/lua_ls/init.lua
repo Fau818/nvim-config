@@ -87,7 +87,7 @@ return {
       },
 
       -- misc = {},
-      -- runtime = {},
+      runtime = { version = "LuaJIT" },
 
       semantic = {
         enable     = true,  -- Whether semantic colouring should be enabled.
