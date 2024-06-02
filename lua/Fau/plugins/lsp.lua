@@ -54,7 +54,6 @@ local lsp = {
         local path = ("%s/%s"):format(vim.env.LAZY, plugin)
         table.insert(lib_path, path)
       end
-      Fau_vim.show(lib_path)
       require("lazydev").setup({ library = lib_path })
     end,
     ft = "lua",

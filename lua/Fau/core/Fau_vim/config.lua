@@ -60,7 +60,7 @@ Fau_vim.file.disabled_filetypes = {
   "tsplayground",
   "trouble",
   "TelescopePrompt",
-  "packer", "lazy",
+  "packer", "lazy", "yazi",
   "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 }
 Fau_vim.file.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }

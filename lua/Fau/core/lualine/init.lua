@@ -13,29 +13,25 @@ local component = require("Fau.core.lualine.component")
 local config = {
   options = {
     icons_enabled = true,
-    theme = "auto", -- lualine theme
+    theme = "auto",
 
     component_separators = { left = Fau_vim.icons.ui.DividerLeft,     right = Fau_vim.icons.ui.DividerRight },
     section_separators   = { left = Fau_vim.icons.ui.BoldDividerLeft, right = Fau_vim.icons.ui.BoldDividerRight },
 
     disabled_filetypes = {  -- Filetypes to disable lualine for.
       statusline = { "alpha" }, -- only ignores the ft for statusline.
-      winbar     = Fau_vim.file.disabled_filetypes, -- only ignores the ft for winbar.
+      winbar     = { }, -- only ignores the ft for winbar.
     },
 
-    ignore_focus = {
-      "help", "trouble", "NvimTree", "aerial", "DiffviewFiles",
+    ignore_focus = {  -- show as inactive
+      "help", "trouble", "NvimTree", "aerial", "DiffviewFiles", "yazi",
       "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
-    }, -- show as inactive
+    },
 
     always_divide_middle = true,
     globalstatus = true,
 
-    refresh = {          -- sets how often lualine should refreash it's contents (in ms)
-      statusline = 1000, -- The refresh option sets minimum time that lualine tries
-      tabline = 1000,    -- to maintain between refresh. It's not guarantied if situation
-      winbar = 1000      -- arises that lualine needs to refresh itself before this time
-    }
+    refresh = { statusline = 1000, tabline = 1000, winbar = 1000 }
   },
   sections = {
     lualine_a = { component.mode, component.lazy },
