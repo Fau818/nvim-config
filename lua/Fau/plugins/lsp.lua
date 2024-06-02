@@ -47,8 +47,16 @@ local lsp = {
   {
     -- DESC: Faster LuaLS setup for Neovim.
     "folke/lazydev.nvim",
-    config = true,
-    opts = { library = { vim.env.LAZY } },
+    config = function()
+      local plugins = { "lazy.nvim", "lazydev.nvim", "luvit-meta/library", "nvim-lspconfig", "nvim-notify", "telescope.nvim" }
+      local lib_path = {}
+      for _, plugin in ipairs(plugins) do
+        local path = ("%s/%s"):format(vim.env.LAZY, plugin)
+        table.insert(lib_path, path)
+      end
+      Fau_vim.show(lib_path)
+      require("lazydev").setup({ library = lib_path })
+    end,
     ft = "lua",
   },
   { "Bilal2453/luvit-meta", lazy = true },
