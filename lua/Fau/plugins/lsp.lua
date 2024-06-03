@@ -49,12 +49,7 @@ local lsp = {
     "folke/lazydev.nvim",
     config = function()
       local plugins = { "lazy.nvim", "lazydev.nvim", "luvit-meta/library", "nvim-lspconfig", "nvim-notify", "telescope.nvim" }
-      local lib_path = {}
-      for _, plugin in ipairs(plugins) do
-        local path = ("%s/%s"):format(vim.env.LAZY, plugin)
-        table.insert(lib_path, path)
-      end
-      require("lazydev").setup({ library = lib_path })
+      require("lazydev").setup({ library = plugins })
     end,
     ft = "lua",
   },
