@@ -33,13 +33,12 @@ local cmp = {
         "hrsh7th/cmp-calc"
       },
       {
-        -- DESC: Zsh completion source for nvim-cmp.
-        "tamago324/cmp-zsh",
-      },
-      {
         -- DESC: `L3MON4D3/LuaSnip` code snippets completion source for nvim-cmp.
         "saadparwaiz1/cmp_luasnip",
-        dependencies = { "L3MON4D3/LuaSnip" }
+        dependencies = {
+          "L3MON4D3/LuaSnip",
+          config = function() require("Fau.core.cmp.luasnip") end,
+        }
       },
       {
         -- DESC: Github copilot source for nvim-cmp.
@@ -58,50 +57,39 @@ local cmp = {
 
 
       -- -----------------------------------
-      -- -------- Snippets
-      -- -----------------------------------
-      {
-        -- DESC: Code snippets engine.
-        "L3MON4D3/LuaSnip",
-        lazy = true,
-      },
-
-
-      -- -----------------------------------
       -- -------- Autopairs and Autotags
       -- -----------------------------------
       {
-        -- DESC: A super powerful autopair plugin for Neovim.
+        -- DESC: Autopair plugin for Neovim.
         "windwp/nvim-autopairs",
-        config = function() require("Fau.core.autopairs") end,
+        config = function() require("Fau.core.cmp.autopairs") end,
       },
 
       {
-        -- DESC: Auto close html tag.
+        -- DESC: Auto close html tag in Neovim.
         "windwp/nvim-ts-autotag",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function() require("Fau.core.cmp.autotag") end,
       },
     },
     config = function() require("Fau.core.cmp") end,
     event = { "InsertEnter", "CmdlineEnter" },
     -- BUG: If open a large file, a huge dalay occur in the first time entering the insert mode.
-    -- BUG: Open command to enter having huge delay. and if scroll many lines, it occurs again.
+    -- \    Open command to enter having huge delay. and if scroll many lines, it occurs again.
   },
 
   {
     -- DESC: Smartly add `end` in lua, ruby, and etc.
     "RRethy/nvim-treesitter-endwise",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "InsertEnter" },
+    event = "InsertEnter",
   },
 
   {
     -- DESC: Show signature help in a small pop window.
     "echasnovski/mini.completion",
     config = function() require("Fau.core.mini.completion") end,
-    event = { "InsertEnter" },
+    event = "InsertEnter",
   },
-
 
 }
 

@@ -52,9 +52,6 @@ return {
           nvim_lsp = "[LSP]",
           luasnip  = "[Snippet]",
 
-          conventionalcommits = "[Git]",
-          gitcommit           = "[Git]",
-          zsh = "[ZSH]",
           calc = "[Calc]",
 
           buffer = "[Buffer]",
