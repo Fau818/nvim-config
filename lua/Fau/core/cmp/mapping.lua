@@ -17,7 +17,7 @@ return {
 
     ["<TAB>"] = cmp.mapping(
       function(fallback)
-        if cmp.visible() then cmp.confirm({ select=true, behavior=cmp.ConfirmBehavior.Insert })
+        if cmp.visible() then cmp.confirm({ select=true })
         elseif luasnip.jumpable(1) then luasnip.jump(1)
         else fallback()
         end
@@ -39,7 +39,7 @@ return {
     ),
     ["<C-Enter>"] = cmp.mapping(
       function(fallback)
-        if cmp.visible() then cmp.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
+        if cmp.visible() then cmp.confirm({ select=true })
         else fallback()
         end
       end, { "i", "s" }
@@ -69,8 +69,7 @@ return {
     ["<TAB>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then cmp.select_next_item()
-        elseif not cmp.visible() then cmp.complete(); cmp.select_next_item()
-        else fallback()
+        else cmp.complete(); cmp.select_next_item()
         end
       end, { "c" }
     ),
@@ -84,11 +83,11 @@ return {
     ["<TAB>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then cmp.select_next_item()
-        elseif not cmp.visible() then cmp.complete()
-        else fallback()
+        else cmp.complete()
         end
       end, { "c" }
     ),
+    ["<UP>"] = cmp.mapping(function(fallback) fallback() end, { "c" }),
+    ["<DOWN>"] = cmp.mapping(function(fallback) fallback() end, { "c" }),
   },
-
 }

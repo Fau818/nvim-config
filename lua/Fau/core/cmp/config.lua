@@ -16,26 +16,15 @@ return {
 
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
 
-    performance = {
-      debounce         = 100,  -- popup menu delay
-      throttle         = 75,   -- refresh delay
-      fetching_timeout = 500,  -- fetching timeout
-      async_budget     = 250,
-      max_view_entries = 100,
-    },
-
-    view = { entries = "custom" },
+    performance = nil,
 
     completion = {
       autocomplete = { "InsertEnter", "TextChanged" },
       completeopt = "menu,menuone,noinsert",
-      -- keyword_pattern = [[\%(-\?\d\+\%(\.\d\+\)\?\|\h\w*\%(-\w*\)*\)]],
-      -- keyword_length = 1,
-      -- get_commit_characters = function() end,
     },
 
     confirmation = {
-      default_behavior = "insert",
+      default_behavior = cmp.ConfirmBehavior.Insert,
       -- get_commit_characters = ...,
     },
     preselect = cmp.PreselectMode.item,
@@ -48,9 +37,11 @@ return {
       format = function(entry, vim_item)   -- The function used to customize the appearance of the completion menu.
         vim_item.kind = Fau_vim.icons.kind[vim_item.kind]
         vim_item.menu = ({
+          luasnip  = "[Snippet]",
           copilot  = "[Copilot]",
           nvim_lsp = "[LSP]",
-          luasnip  = "[Snippet]",
+
+          conventionalcommits = "[Git]",
 
           calc = "[Calc]",
 
@@ -64,18 +55,7 @@ return {
       end,
     },
 
-    matching = {
-      disallow_fuzzy_matching         = false,
-      disallow_fullfuzzy_matching     = false,
-      disallow_partial_fuzzy_matching = false,
-      disallow_partial_matching       = false,
-      disallow_prefix_unmatching      = false,
-    },
-
-    -- sorting = {
-    --   comparators = ...,
-    --   priority_weight = ...,
-    -- },
+    matching = nil,
 
     sources = {
       { name = "luasnip" },
@@ -83,8 +63,7 @@ return {
       { name = "nvim_lsp" },
 
       { name = "conventionalcommits" },
-      { name = "gitcommit" },
-      { name = "zsh" },
+
       { name = "calc" },
 
       { name = "buffer" },
@@ -112,10 +91,7 @@ return {
     },
 
     mapping = mapping.cmdline,
-    sources = {
-      { name = "cmdline" },
-      { name = "path" },
-    }
+    sources = { { name = "cmdline" }, { name = "path" } }
   },
 
 
@@ -126,12 +102,12 @@ return {
   search = {
     enabled = true,
     completion = {
-      autocomplete = false,
+      autocomplete = { "InsertEnter", "TextChanged" },
       completeopt = "menu,menuone,noselect",
     },
 
     mapping = mapping.search,
-    sources = { { name = "buffer" }, }
+    sources = { { name = "buffer" } }
   },
 
 }
