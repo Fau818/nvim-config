@@ -92,18 +92,21 @@ local cmp = {
   -- -----------------------------------
   {
     -- DESC: Github copilot source for nvim-cmp.
-    "zbirenbaum/copilot-cmp",
+    -- TEST: Use a fork
+    "mystilleef/copilot-cmp",
     dependencies = {
       { "hrsh7th/nvim-cmp" },
       {
         -- DESC: Github copilot supporter.
-        "zbirenbaum/copilot.lua",
+        -- TEST: Use a fork
+        "Kelo007/copilot.lua",
         config = function() require("Fau.core.copilot") end,
         cmd = { "Copilot" },
       }
     },
     config = function() require("copilot_cmp").setup() end,
-    event = "InsertEnter",
+    -- BUG: If open a file and quick enter the Insert mode, the copilot source will not be available.
+    event = { "BufReadPre" },
     enabled = Fau_vim.plugin.copilot.enable,
   },
 

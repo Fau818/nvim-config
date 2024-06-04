@@ -27,7 +27,7 @@ local config = {
     },
   },
   suggestion = {
-    enabled = false,
+    enabled = false,  -- NOTE: Use as cmp source, so keep it disabled.
     auto_trigger = true,
     debounce = 75,
     keymap = {
