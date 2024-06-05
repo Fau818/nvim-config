@@ -11,7 +11,7 @@ local cmp = require("cmp")
 -- -----------------------------------
 -- -------- Setup
 -- -----------------------------------
-local config = require("Fau.core.cmp.config")
+local config = require("Fau.configs.completion.cmp.config")
 
 cmp.setup(config.global)
 cmp.setup.cmdline(":", config.cmdline)

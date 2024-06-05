@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local copilot_ok, copilot = pcall(require, "copilot")
-if not copilot_ok then Fau_vim.load_plugin_error("copilot") return end
+local copilot = require("copilot")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type copilot_config
 local config = {
   panel = {

@@ -1,6 +1,6 @@
 local cmp     = require("cmp")
 local luasnip = require("luasnip")
-local mapping = require("Fau.core.cmp.mapping")
+local mapping = require("Fau.configs.completion.cmp.mapping")
 
 
 return {

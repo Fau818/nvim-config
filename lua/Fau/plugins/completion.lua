@@ -17,16 +17,16 @@ local cmp = {
       {
         -- DESC: Autopair plugin for Neovim.
         "windwp/nvim-autopairs",
-        config = function() require("Fau.core.cmp.autopairs") end,
+        config = function() require("Fau.configs.completion.autopairs") end,
       },
 
       {
         -- DESC: Auto close html tag in Neovim.
         "windwp/nvim-ts-autotag",
-        config = function() require("Fau.core.cmp.autotag") end,
+        config = function() require("Fau.configs.completion.autotag") end,
       },
     },
-    config = function() require("Fau.core.cmp") end,
+    config = function() require("Fau.configs.completion.cmp") end,
     lazy = true,
   },
 
@@ -74,7 +74,7 @@ local cmp = {
     "saadparwaiz1/cmp_luasnip",
     dependencies = {
       { "hrsh7th/nvim-cmp" },
-      { "L3MON4D3/LuaSnip", config = function() require("Fau.core.cmp.luasnip") end },
+      { "L3MON4D3/LuaSnip", config = function() require("Fau.configs.completion.luasnip") end },
     },
     event = "InsertEnter",
   },
@@ -106,8 +106,9 @@ local cmp = {
         -- DESC: Github copilot supporter.
         -- TEST: Use a fork
         "Kelo007/copilot.lua",
-        config = function() require("Fau.core.copilot") end,
+        config = function() require("Fau.configs.completion.copilot") end,
         cmd = { "Copilot" },
+        event = { "VeryLazy", "BufNewFile" },
       }
     },
     config = function() require("copilot_cmp").setup() end,
