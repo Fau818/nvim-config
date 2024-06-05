@@ -93,8 +93,6 @@ return {
       v = { function() vim.diagnostic.config({virtual_text=not vim.diagnostic.config().virtual_text}) end, "Toggle Virtual Text" },
       -- Inlay Hints
       h = { function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })) end, "Toggle Inlay Hints" },
-      -- LSP Lines
-      L = "Toggle LSP Lines",
 
       -- Outline (Structure)
       o = { "<CMD>AerialToggle<CR>",    "Toggle Outline" },

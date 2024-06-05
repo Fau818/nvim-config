@@ -143,6 +143,7 @@ local lsp = {
       }
     },
     event = "LspAttach",
+    enabled = false,  -- TEMP: Disabled
   }
 
 }

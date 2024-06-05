@@ -172,7 +172,7 @@ return {
     DESC   = "󰈚 ",
     BOOK   = " ",  -- " "
     EXIT   = "󰗼 ",
-    CASE   = " ",
+    -- CASE   = " ",
     ASSERT = "󰞏 ",
     IMPORTANT = "󱈸 ",
     SPEC = "󰅳 ",
