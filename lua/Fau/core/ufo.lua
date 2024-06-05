@@ -86,17 +86,6 @@ vim.cmd [[
 ]]
 
 
--- vim.api.nvim_create_autocmd("OptionSet", {
---   group = "Fau_vim",
---   desc = "Lock foldlevel to 99",
---   pattern = "foldlevel",
---   callback = function()
---     print("change to " .. vim.o.foldlevel)
---     vim.o.foldlevel = 99
---   end,
--- })
-
-
 -- Vim options
 vim.o.foldcolumn     = "auto" -- '0' is not bad
 vim.o.foldlevel      = 99 -- Using ufo provider need a large value, feel free to decrease the value

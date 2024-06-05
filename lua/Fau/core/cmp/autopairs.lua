@@ -1,35 +1,31 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local npairs_ok, npairs = pcall(require, "nvim-autopairs")
-if not npairs_ok then Fau_vim.load_plugin_error("nvim-autopairs") return end
+local npairs = require("nvim-autopairs")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   disable_filetype = Fau_vim.file.disabled_filetypes,
-  disable_in_macro = false,         -- disable when recording or executing a macro
-  disable_in_visualblock = false,   -- disable when insert after visual block mode
+  disable_in_macro        = false,  -- disable when recording or executing a macro
+  disable_in_visualblock  = false,  -- disable when insert after visual block mode
   disable_in_replace_mode = true,
 
-  ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
+  ignored_next_char = nil,  -- Use default.
 
-  enable_moveright = true,          -- if true: (*) -> ()*  else: (*) -> ()*)
-  enable_afterquote = true,         -- add bracket pairs after quote
-  enable_check_bracket_line = true, -- check bracket in same line
-  enable_bracket_in_quote = true,
-  enable_abbr = false,              -- trigger abbreviation
-  break_undo = true,                -- switch for basic rule break undo sequence
-  check_ts = false,
-  map_cr = true,   -- map the <CR> key
-  map_bs = true,   -- map the <BS> key
-  map_c_h = false, -- map the <C-h> key to delete a pair
-  map_c_w = false, -- map <c-w> to delete a pair if possible
+  enable_moveright          = true,  -- if true: (|) -> ()|  else: (|) -> ()|)
+  enable_afterquote         = true,  -- add bracket pairs after quote
+  enable_check_bracket_line = true,  -- check bracket in same line
+  enable_bracket_in_quote   = true,
+  enable_abbr               = false,  -- trigger abbreviation
+
+  break_undo = true,  -- Switch for basic rule break undo sequence
+  -- TEST: Enabled in June 5, 2024
+  check_ts = true,  -- Use treesitter to check the pair.
+
+  map_cr  = true,   -- map the <CR> key
+  map_bs  = true,   -- map the <BS> key
+  map_c_h = false,  -- map the <C-h> key to delete a pair
+  map_c_w = false,  -- map <c-w> to delete a pair if possible
 }
-
 
 npairs.setup(config)
 
@@ -49,8 +45,8 @@ npairs.add_rules {
   npairs_rule(" ", " ")
     :with_pair(
       function(opts)
-        -- NOTE: Disable auto pairs in markdown ft.
-        if vim.bo.filetype == "markdown" then return false end
+        -- -- NOTE: Disable auto pairs in markdown ft.
+        -- if vim.bo.filetype == "markdown" then return false end
         local pair = opts.line:sub(opts.col - 1, opts.col)
         local valid_pairs = {}
         for _, bracket in ipairs(brackets_basic) do table.insert(valid_pairs, table.concat(bracket)) end

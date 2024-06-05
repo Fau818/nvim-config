@@ -86,6 +86,12 @@ local cmp = {
     ft = "gitcommit",
   },
 
+  {
+    "ray-x/cmp-treesitter",
+    dependencies = { "hrsh7th/nvim-cmp" },
+    event = "InsertEnter",
+  },
+
 
   -- -----------------------------------
   -- -------- Copilot
@@ -106,7 +112,7 @@ local cmp = {
     },
     config = function() require("copilot_cmp").setup() end,
     -- BUG: If open a file and quick enter the Insert mode, the copilot source will not be available.
-    event = { "BufReadPre" },
+    event = "InsertEnter",
     enabled = Fau_vim.plugin.copilot.enable,
   },
 

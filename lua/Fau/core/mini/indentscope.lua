@@ -44,18 +44,14 @@ local config = {
 -- =============================================
 -- Special for python
 vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
   desc = "Config indentscope plugin for python.",
   pattern = "python",
-  callback = function()
-    vim.b.miniindentscope_config = { options = { border = "top" } }
-  end
+  callback = function() vim.b.miniindentscope_config = { options = { border = "top" } } end
 })
 
 
 -- Disable indentscope in some filetype
 vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
   desc = "Disabled indentscope in some filetypes.",
   pattern = Fau_vim.file.disabled_filetypes,
   callback = function() vim.b.miniindentscope_disable = true end,

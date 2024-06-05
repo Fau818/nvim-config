@@ -16,7 +16,7 @@ return {
 
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
 
-    performance = nil,
+    performance = { async_budget = 20 },
 
     completion = {
       autocomplete = { "InsertEnter", "TextChanged" },
@@ -35,7 +35,7 @@ return {
       expandable_indicator = true,         -- Boolean to show the `~` expandable indicator in cmp's floating window.
       fields = { "kind", "abbr", "menu" }, -- An array of completion fields to specify their order.
       format = function(entry, vim_item)   -- The function used to customize the appearance of the completion menu.
-        vim_item.kind = Fau_vim.icons.kind[vim_item.kind]
+        vim_item.kind = Fau_vim.icons.kind[vim_item.kind] or Fau_vim.icons.kind.Text
         vim_item.menu = ({
           luasnip  = "[Snippet]",
           copilot  = "[Copilot]",
@@ -45,6 +45,7 @@ return {
 
           calc = "[Calc]",
 
+          treesitter = "[Treesitter]",
           buffer = "[Buffer]",
           path   = "[Path]",
         })[entry.source.name]
@@ -66,7 +67,8 @@ return {
 
       { name = "calc" },
 
-      { name = "buffer" },
+      { name = "treesitter", max_item_count = 10 },
+      { name = "buffer", max_item_count = 10 },
       { name = "path" },
     },
 

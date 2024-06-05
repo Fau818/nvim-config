@@ -86,7 +86,7 @@ local coding = {
 
   {
     -- DESC: Auto change normal string to template string.
-    -- Fau: Used to automatically convert string to f-string in python.q
+    -- Fau: Used to automatically convert string to f-string in python.
     "axelvc/template-string.nvim",
     config = function() require("Fau.core.template-string") end,
     event = { "BufReadPost", "BufNewFile" },

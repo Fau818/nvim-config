@@ -14,17 +14,10 @@ snippet load_plugin # load_plugin templete
 
 snippet plugin_init # plugin initialization
 	-- =============================================
-	-- ========== Plugin Loading
+	-- ========== Plugin Configurations
 	-- =============================================
-	local $1_ok, $1 = pcall(require, "$2")
-	if not $1_ok then Fau_vim.load_plugin_error("$2") return end
+	local ${1:pname} = require("${2:plugin}")
 
+	local config = ${0:nil}
 
-
-	-- =============================================
-	-- ========== Configuration
-	-- =============================================
-	local config = $0
-
-
-	$1.setup(config)
+	${1:pname}.setup(config)
