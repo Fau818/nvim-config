@@ -214,7 +214,7 @@ local editor = {
     "luukvbaal/statuscol.nvim",
     config = function() require("Fau.core.statuscol") end,
     lazy = true,  -- loaded by nvim-ufo
-    enabled = vim.fn.has("nvim-0.9") == 1,
+    enabled = vim.fn.has("nvim-0.10") == 1,
   },
 
   {

@@ -99,7 +99,7 @@ local cmp = {
   {
     -- DESC: Github copilot source for nvim-cmp.
     -- TEST: Use a fork
-    "mystilleef/copilot-cmp",
+    "tris203/copilot-cmp",
     dependencies = {
       { "hrsh7th/nvim-cmp" },
       {
@@ -108,7 +108,6 @@ local cmp = {
         "Kelo007/copilot.lua",
         config = function() require("Fau.configs.completion.copilot") end,
         cmd = { "Copilot" },
-        event = { "VeryLazy", "BufNewFile" },
       }
     },
     config = function() require("copilot_cmp").setup() end,

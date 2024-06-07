@@ -73,6 +73,9 @@ local config = {
     ["j"] = "next",
     ["k"] = "prev",
 
+    dd = "delete",
+    d = { action = "delete", mode = "v" },
+
     i = "inspect",
 
     p = "preview",
