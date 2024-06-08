@@ -72,8 +72,9 @@ local coding = {
     "keaising/im-select.nvim",
     config = function() require("Fau.core.im-select") end,
     event = { "InsertEnter" },
-    enabled = vim.fn.executable("im-select") == 1 and true or false,
+    -- enabled = vim.fn.executable("im-select") == 1 and true or false,
     cond = true,  -- TESTING: Not TESTED in VSCode.
+    enalbed = false,
   },
 
   {

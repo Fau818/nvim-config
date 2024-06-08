@@ -12,6 +12,7 @@ local editor = {
     config = function() require("Fau.core.nvim-tree") end,
     event = "VeryLazy",
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
+    -- BUG: Show file tree in iCloud folder leads delay.
   },
 
   {
@@ -77,8 +78,9 @@ local editor = {
     -- DESC: A nice scrollbar.
     "lewis6991/satellite.nvim",
     config = function() require("Fau.core.satellite") end,
-    enabled = vim.fn.has("nvim-0.10") == 1,
     event = { "BufReadPost", "BufNewFile" },
+    -- enabled = vim.fn.has("nvim-0.10") == 1,
+    enabled = false,
   },
 
 
