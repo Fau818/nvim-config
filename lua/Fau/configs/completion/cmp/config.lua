@@ -10,7 +10,7 @@ return {
   ---@type cmp.ConfigSchema
   global = {
     enabled = function()
-      if vim.bo.filetype == "TelescopePrompt" then return false end
+      if vim.bo.filetype == "" or vim.bo.filetype == "TelescopePrompt" then return false end
       return not Fau_vim.functions.utils.is_large_file()
     end,
 

@@ -194,6 +194,7 @@ local config = {
       --  width = 0.5
       -- }
 
+      -- find_command = { "fd", "--type", "f", "--exclude", "Library" },
       layout_strategy = "center",
       sorting_strategy = "ascending",
       hidden = true, -- show hidden files
@@ -342,5 +343,4 @@ telescope.load_extension("projects")
 telescope.load_extension("emoji")
 telescope.load_extension("luasnip")
 telescope.load_extension("noice")
-telescope.load_extension("textcase")
 if vim.fn.executable("docker") == 1 then telescope.load_extension("docker") end

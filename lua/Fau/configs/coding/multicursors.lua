@@ -1,18 +1,12 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local multicursor_ok, multicursor = pcall(require, "multicursors")
-if not multicursor_ok then Fau_vim.load_plugin_error("multicursors") return end
+local multicursors = require("multicursors")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   DEBUG_MODE = false,
   create_commands = true, -- create Multicursor user commands
-  updatetime = nil,
+  -- updatetime = nil,
   nowait = true,
   mode_keys = {
     append = "a",
@@ -21,7 +15,6 @@ local config = {
     insert = "i",
   },
   -- set bindings to start these modes
-
   -- normal_keys = normal_keys,
   -- insert_keys = insert_keys,
   -- extend_keys = extend_keys,
@@ -34,9 +27,4 @@ local config = {
   },
 }
 
-require("multicursors").setup(config)
-
-
-
-
-multicursor.setup(config)
+multicursors.setup(config)

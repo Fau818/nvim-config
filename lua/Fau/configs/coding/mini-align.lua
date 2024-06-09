@@ -1,18 +1,12 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local align_ok, align = pcall(require, "mini.align")
-if not align_ok then Fau_vim.load_plugin_error("mini.align") return end
+local align = require("mini.align")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   -- Module mappings. Use `''` (empty string) to disable one.
   mappings = {
-    start = "<LEADER>A",
+    start              = "<LEADER>A",
     start_with_preview = "<LEADER>a",
   },
   -- Modifiers changing alignment steps and/or options
@@ -55,14 +49,23 @@ local config = {
 
   -- Default options controlling alignment process
   options = {
-    split_pattern = '',
-    justify_side = 'left',
-    merge_delimiter = '',
+    split_pattern = "",
+    justify_side = "left",
+    merge_delimiter = "",
+  },
+
+  -- Default steps performing alignment (if `nil`, default is used)
+  steps = {
+    pre_split   = {},
+    split       = nil,
+    pre_justify = {},
+    justify     = nil,
+    pre_merge   = {},
+    merge       = nil,
   },
 
   -- Whether to disable showing non-error feedback
   silent = false,
 }
-
 
 align.setup(config)

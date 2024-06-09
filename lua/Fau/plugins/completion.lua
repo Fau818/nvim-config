@@ -130,7 +130,7 @@ local cmp = {
   {
     -- DESC: Show signature help in a small pop window.
     "echasnovski/mini.completion",
-    config = function() require("Fau.core.mini.completion") end,
+    config = function() require("Fau.configs.completion.mini-completion") end,
     event = "InsertEnter",
   },
 

@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local comment_ok, comment = pcall(require, "Comment")
-if not comment_ok then Fau_vim.load_plugin_error("Comment") return end
+local comment = require("Comment")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type CommentConfig
 local config = {
   ---Add a space b/w comment and the line
@@ -20,25 +14,25 @@ local config = {
   ---LHS of toggle mappings in NORMAL mode
   toggler = {
     ---Line-comment toggle keymap
-    line = 'gcc',
+    line = "gcc",
     ---Block-comment toggle keymap
-    block = 'gbc',
+    block = "gbc",
   },
   ---LHS of operator-pending mappings in NORMAL and VISUAL mode
   opleader = {
     ---Line-comment keymap
-    line = 'gc',
+    line = "gc",
     ---Block-comment keymap
-    block = 'gb',
+    block = "gb",
   },
   ---LHS of extra mappings
   extra = {
     ---Add comment on the line above
-    above = 'gcO',
+    above = "gcO",
     ---Add comment on the line below
-    below = 'gco',
+    below = "gco",
     ---Add comment at the end of line
-    eol = 'gcA',
+    eol = "gcA",
   },
   ---Enable keybindings
   ---NOTE: If given `false` then the plugin won't create any mappings
@@ -49,12 +43,10 @@ local config = {
     extra = false,
   },
   ---Function to call before (un)comment
----@diagnostic disable-next-line: assign-type-mismatch
-  pre_hook = not vim.g.vscode and require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook() or nil,
+  pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
   ---Function to call after (un)comment
   -- post_hook = nil,
 }
-
 
 comment.setup(config)
 
@@ -63,7 +55,7 @@ comment.setup(config)
 -- =============================================
 -- ========== Specific Filetype
 -- =============================================
--- local comment_ft = require('Comment.ft')
+-- local comment_ft = require("Comment.ft")
 -- comment_ft.set("dosini",     "# %s")
 -- comment_ft.set("zsh",        "# %s")
 -- comment_ft.set("kitty",      "# %s")

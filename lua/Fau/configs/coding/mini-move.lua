@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local move_ok, move = pcall(require, "mini.move")
-if not move_ok then Fau_vim.load_plugin_error("mini.move") return end
+local move = require("mini.move")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   -- Module mappings. Use `''` (empty string) to disable one.
   mappings = {
@@ -30,6 +24,5 @@ local config = {
     reindent_linewise = true,
   },
 }
-
 
 move.setup(config)

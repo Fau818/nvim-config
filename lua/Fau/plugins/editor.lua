@@ -157,6 +157,13 @@ local editor = {
   },
 
   {
+    -- DESC: Auto remove trailing whitespaces and empty lines.
+    "echasnovski/mini.trailspace",
+    config = function() require("Fau.configs.editor.mini-trailspace") end,
+    event = "BufWritePre",
+  },
+
+  {
     -- DESC: Colorizer for showing color.
     "NvChad/nvim-colorizer.lua",
     config = function() require("Fau.core.colorizer") end,

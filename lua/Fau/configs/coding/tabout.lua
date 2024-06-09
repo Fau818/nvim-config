@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local tabout_ok, tabout = pcall(require, "tabout")
-if not tabout_ok then Fau_vim.load_plugin_error("tabout") return end
+local tabout = require("tabout")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type TaboutOptions
 local config = {
   tabkey            = "<Tab>",      -- key to trigger tabout, set to an empty string to disable

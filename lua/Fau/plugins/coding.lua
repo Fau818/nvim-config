@@ -2,11 +2,14 @@
 
 ---@type LazySpec[]
 local coding = {
+  -- -----------------------------------
+  -- -------- Text Operations
+  -- -----------------------------------
   {
     -- DESC: Quickly add, modify, and remove surround.
     "kylechui/nvim-surround",
-    config = function() require("Fau.core.surround") end,
-    event = { "BufReadPost", "BufNewFile" },
+    config = function() require("Fau.configs.coding.surround") end,
+    keys = { { "s", mode = { "n", "x" } }, { "S", mode = { "n", "x" } }, "cs", "ds" },
     cond = true,
   },
 
@@ -19,34 +22,12 @@ local coding = {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
           vim.g.skip_ts_context_commentstring_module = true
-          require('ts_context_commentstring').setup({ enable_autocmd = true })
+          require("ts_context_commentstring").setup({ enable_autocmd = false })
         end,
       },
     },
-    config = function() require("Fau.core.comment") end,
-    event = { "BufReadPost", "BufNewFile" },
-    cond = true,
-  },
-
-  {
-    -- DESC: Smartly move lines or selections.
-    "echasnovski/mini.move",
-    config = function() require("Fau.core.mini.move") end,
-    -- event = { "BufReadPost", "BufNewFile" },
-    keys = {
-      { "<A-h>", mode = "x", desc = "Move Selections left" },
-      { "<A-l>", mode = "x", desc = "Move Selections right" },
-      { "<A-j>", mode = { "n", "x" }, desc = "Move lines Down" },
-      { "<A-k>", mode = { "n", "x" }, desc = "Move lines Up" },
-    },
-    cond = true,
-  },
-
-  {
-    -- DESC: Press <TAB> to jump out of brakets.
-    "abecodes/tabout.nvim",
-    config = function() require("Fau.core.tabout") end,
-    event = { "InsertEnter" },
+    config = function() require("Fau.configs.coding.comment") end,
+    keys = { { "gc", mode = { "n", "x" } }, { "gb", mode = { "n", "x" } } },
     cond = true,
   },
 
@@ -54,50 +35,29 @@ local coding = {
     -- DESC: Align text interactively.
     "echasnovski/mini.align",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("Fau.core.mini.align") end,
-    -- event = { "BufReadPost", "BufNewFile" },
+    config = function() require("Fau.configs.coding.mini-align") end,
     keys = { { "<LEADER>a", mode = "x" }, { "<LEADER>A", mode = "x" } },
-    cond = true,  -- Fau: Whether can use vscode's plugin.
-  },
-
-  {
-    -- DESC: Auto remove trailing whitespaces and empty lines.
-    "echasnovski/mini.trailspace",
-    config = function() require("Fau.core.mini.trailspace") end,
-    event = { "BufWritePre" },
-  },
-
-  {
-    -- DESC: Auto switch input method.
-    "keaising/im-select.nvim",
-    config = function() require("Fau.core.im-select") end,
-    event = { "InsertEnter" },
-    -- enabled = vim.fn.executable("im-select") == 1 and true or false,
-    cond = true,  -- TESTING: Not TESTED in VSCode.
-    enalbed = false,
-  },
-
-  {
-    -- DESC: Auto generate python docstring.
-    "pixelneo/vim-python-docstring",
-    config = function() require("Fau.core.python-docstring") end,
-    ft = "python",
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
   {
-    -- DESC: Auto change normal string to template string.
-    -- Fau: Used to automatically convert string to f-string in python.
-    "axelvc/template-string.nvim",
-    config = function() require("Fau.core.template-string") end,
-    event = { "BufReadPost", "BufNewFile" },
+    -- DESC: Smartly move lines or selections.
+    "echasnovski/mini.move",
+    config = function() require("Fau.configs.coding.mini-move") end,
+    keys = {
+      { "<A-h>", mode = "x",          desc = "Move Selections left" },
+      { "<A-l>", mode = "x",          desc = "Move Selections right" },
+      { "<A-j>", mode = { "n", "x" }, desc = "Move lines Down" },
+      { "<A-k>", mode = { "n", "x" }, desc = "Move lines Up" },
+    },
+    cond = true,
   },
 
   {
     -- DESC: Splitting and joining block of code.
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("Fau.core.treesj") end,
+    config = function() require("Fau.configs.coding.treesj") end,
     cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
     keys = { { "sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Split and Join" } },
   },
@@ -106,15 +66,17 @@ local coding = {
     -- DESC: Running code action on nodes(code).
     "ckolkey/ts-node-action",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    -- event = { "BufReadPost", "BufNewFile" },
-    keys = { { "<LEADER>n", [[<CMD>lua require("ts-node-action").node_action()<CR>]], mode = "n", desc = "Node Action" } }
+    config = true,
+    cmd = { "NodeAction", "NodeActionDebug" },
+    keys = { { "<LEADER>n", "<CMD>NodeAction<CR>", mode = "n", desc = "Node Action" } },
+    cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
   {
     -- DESC: Convert text case in Neovim.
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function() require("Fau.core.textcase") end,
+    config = function() require("Fau.configs.coding.textcase") end,
     cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
     keys = {
       {
@@ -124,6 +86,43 @@ local coding = {
         desc = "Conver Text Case",
       },
     },
+    cond = true,  -- TESTING: Not TESTED in VSCode.
+  },
+
+
+  -- -----------------------------------
+  -- -------- Edit Enhancements
+  -- -----------------------------------
+  {
+    -- DESC: Press <TAB> to jump out of brakets.
+    "abecodes/tabout.nvim",
+    config = function() require("Fau.configs.coding.tabout") end,
+    event = "InsertEnter",
+    cond = true,
+  },
+
+  {
+    -- DESC: Auto generate python docstring.
+    "pixelneo/vim-python-docstring",
+    config = function()
+      vim.g.python_style = "numpy"  -- values: google|numpy|rest|epytext
+      vim.g.vpd_indent = (" "):rep(vim.bo.tabstop)
+    end,
+    cmd = { "Docstring", "DostringTypes", "DocstringLine" },
+    keys = {
+      { "<LEADER><LEADER>d", "<CMD>DocstringTypes<CR>", desc = "Python Docstring with type hints" },
+      { "<LEADER><LEADER>D", "<CMD>Docstring<CR>",      desc = "Python Docstring" }
+    },
+    cond = true,  -- TESTING: Not TESTED in VSCode.
+  },
+
+  {
+    -- DESC: Auto convert normal string to template string.
+    -- Fau: Used to automatically convert string to f-string in python.
+    "axelvc/template-string.nvim",
+    config = function() require("Fau.configs.coding.template-string") end,
+    ft =  { "html", "typescript", "javascript", "typescriptreact", "javascriptreact", "python" },
+    cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
   {
@@ -143,9 +142,19 @@ local coding = {
         "<LEADER>M",
         "<CMD>MCunderCursor<CR>",
         desc = "Create a selection for selected text under the cursor",
-      }
+      },
     },
-    config = function() require("Fau.core.multicursor") end
+    config = function() require("Fau.configs.coding.multicursors") end,
+    cond = true,  -- TESTING: Not TESTED in VSCode.
+  },
+
+  {
+    -- DESC: Auto switch input method.
+    "keaising/im-select.nvim",
+    config = function() require("Fau.configs.coding.im-select") end,
+    event = "InsertEnter",
+    cond = true,  -- TESTING: Not TESTED in VSCode.
+    enabled = vim.fn.executable("im-select") == 1 and true or false,
   },
 
 }

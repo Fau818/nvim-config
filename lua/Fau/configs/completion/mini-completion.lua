@@ -1,15 +1,9 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local completion_ok, completion = pcall(require, "mini.completion")
-if not completion_ok then Fau_vim.load_plugin_error("mini.completion") return end
+local completion = require("mini.completion")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
-local DISABLE_TIME = 99999999999999999999999999999999999999999999999999999999999
+local DISABLE_TIME = 999999999999999
 local config = {
   -- Delay (debounce type, in ms) between certain Neovim event and action.
   -- This can be used to (virtually) disable certain automatic actions by
@@ -20,7 +14,7 @@ local config = {
   -- - `height` and `width` are maximum dimensions.
   -- - `border` defines border (as in `nvim_open_win()`).
   window = {
-    info = { height = 25, width = 80, border = "none" },
+    info      = { height = 25, width = 80, border = "none" },
     signature = { height = 25, width = 80, border = "single" },
   },
 
@@ -53,10 +47,8 @@ local config = {
     force_fallback = "", -- Force fallback completion
   },
 
-  -- Whether to set Vim's settings for better experience (modifies
-  -- `shortmess` and `completeopt`)
+  -- Whether to set Vim's settings for better experience (modifies `shortmess` and `completeopt`)
   set_vim_settings = false,
 }
-
 
 completion.setup(config)

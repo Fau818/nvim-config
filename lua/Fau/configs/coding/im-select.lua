@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local im_select_ok, im_select = pcall(require, "im_select")
-if not im_select_ok then Fau_vim.load_plugin_error("im_select") return end
+local im_select = require("im_select")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   -- IM will be set to `default_im_select` in `normal` mode
   -- For Windows/WSL, default: "1033", aka: English US Keyboard
@@ -36,6 +30,5 @@ local config = {
   -- Async run `default_command` to switch IM or not.
   async_switch_im = true,
 }
-
 
 im_select.setup(config)

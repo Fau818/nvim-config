@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local textcase_ok, textcase  = pcall(require, "textcase")
-if not textcase_ok then Fau_vim.load_plugin_error("textcase") return end
+local textcase = require("textcase")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   default_keymappings_enabled = false,
   prefix = nil,  -- Only works when `default_keymappings_enabled` is true.
@@ -18,5 +12,11 @@ local config = {
   enabled_methods = nil,  -- Enable all
 }
 
-
 textcase.setup(config)
+
+
+
+-- =============================================
+-- ========== Telescope Integration
+-- =============================================
+require("telescope").load_extension("textcase")
