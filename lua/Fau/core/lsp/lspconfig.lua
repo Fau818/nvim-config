@@ -43,6 +43,8 @@ local function is_available(client_name)
   end
 
   if vim.fn.executable(client_name) == 1 then return true end
+  -- TODO: delance config is very bad, need to refactor it.
+  if client_name == "delance" then return true end
   return false
 end
 
@@ -69,7 +71,9 @@ local function setup_server(server)
     on_attach = server_attach,
   }
 
-  if server == "pylance" then opts.before_init = function(_, config) config.settings.python.pythonPath = vim.fn.exepath("python3") end end
+  if server == "pylance" or server == "delance" then
+    opts.before_init = function(_, config) config.settings.python.pythonPath = vim.fn.exepath("python3") end
+  end
 
   -- load custom settings
   local settings_ok, setting_opts = pcall(require, "Fau.core.lsp.settings." .. server)
@@ -98,7 +102,10 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   -- Get servers for specific filetype.
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
   -- HACK: Special for pylance
-  if filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance") end
+  -- if filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance") end
+  if filetype == "python" and vim.fn.executable("delance-langserver") == 1 then table.insert(clients, "delance")
+  elseif filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance")
+  end
 
   -- Config LS for current filetype.
   for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end

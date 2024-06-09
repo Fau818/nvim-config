@@ -78,7 +78,7 @@ local config = {
       function()
         local clients = vim.lsp.get_clients({ bufnr = 0 })
         for _, client in ipairs(clients) do
-          if client.name == "lua_ls" then
+          if client.name == "lua_ls" or client.name == "pylance" or client.name == "delance" then
             if client.root_dir == nil then return true end
             return vim.fn.expand("%:p"):find(client.root_dir, 1, true) == nil
           end
