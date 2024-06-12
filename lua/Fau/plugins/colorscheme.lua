@@ -7,7 +7,10 @@ local colorscheme = {
     "folke/tokyonight.nvim",
     priority = 1000,
     tag = "stable",
-    config = function() require("Fau.core.colorscheme") end,
+    config = function()
+      Fau_vim.colorscheme = "tokyonight"
+      require("Fau.configs.colorscheme")
+    end,
   },
 }
 

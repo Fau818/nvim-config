@@ -166,8 +166,8 @@ local config = {
     separator_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cyan_gray },
     separator_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.cyan_gray },
 
-    indicator_visible = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false },
-    -- indicator_selected = { },  -- Controlled by tokyonight,
+    indicator_visible  = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false },
+    -- indicator_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false },
 
     pick          = { bg = Fau_vim.colors.bufferline_bg },
     pick_visible  = { bg = Fau_vim.colors.bufferline_bg },

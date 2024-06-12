@@ -10,7 +10,7 @@ Fau_vim = { plugin = {}, file = {}, lsp = {} }
 -- -----------------------------------
 -- -------- General
 -- -----------------------------------
-Fau_vim.colorscheme = "tokyonight"
+Fau_vim.colorscheme = "habamax"  -- Default colorscheme
 Fau_vim.config_path = vim.fn.stdpath("config")
 Fau_vim.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or vim.fn.expand("~/.config")
 Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
