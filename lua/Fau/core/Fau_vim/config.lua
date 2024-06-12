@@ -20,7 +20,6 @@ Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 -- -------- Plugin
 -- -----------------------------------
 Fau_vim.plugin.copilot = { enable = vim.loop.fs_stat(string.format("%s/github-copilot/hosts.json", Fau_vim.xdg_config_home)) and true or false }
-Fau_vim.plugin.dap = { enable = false }
 
 
 -- -----------------------------------
@@ -60,7 +59,6 @@ Fau_vim.file.disabled_filetypes = {
   "trouble",
   "TelescopePrompt",
   "packer", "lazy", "yazi",
-  "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
 }
 Fau_vim.file.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
 Fau_vim.file.ignored_files = { "^.DS_Store$", "^.git$", "^__pycache__$", "^.vscode$", "^.idea$", "^.mypy_cache$" }

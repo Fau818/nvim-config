@@ -25,7 +25,6 @@ local config = {
 
     ignore_focus = {  -- show as inactive
       "help", "trouble", "NvimTree", "aerial", "DiffviewFiles", "yazi",
-      "dap-repl", "dapui_watches", "dapui_stacks", "dapui_breakpoints", "dapui_scopes", "dapui_console",
     },
 
     always_divide_middle = true,

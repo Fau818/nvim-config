@@ -179,22 +179,6 @@ return {
   },
 
 
-  dapui = {
-    Expanded  = "",
-    Collapsed = "",
-    Circular  = "",
-
-    Pause     = "",
-    Play      = "",
-    StepInto  = "",
-    StepOver  = "",
-    StepOut   = "",
-    StepBack  = "",
-    RunLast   = "",
-    Terminate = "",
-  },
-
-
   mode = {
     n = "",
     i = "",
