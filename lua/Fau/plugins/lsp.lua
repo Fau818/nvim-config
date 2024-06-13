@@ -81,7 +81,7 @@ local lsp = {
     -- DESC: a powerful breadcrumb plugin based on navic.
     "utilyre/barbecue.nvim",
     dependencies = {
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
       {
         -- DESC: a fancy winbar plugin combining with LSP.
         "SmiteshP/nvim-navic",
@@ -97,7 +97,7 @@ local lsp = {
   {
     -- DESC: Show symbol outline.
     "stevearc/aerial.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.core.aerial")end,
     cmd = { "AerialToggle", "AerialNavToggle" },
   },

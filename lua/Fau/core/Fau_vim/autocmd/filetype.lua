@@ -22,20 +22,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 
---- Set table mode options in markdown.
--- TODO: Put it in config file or in markdown plugin.
-vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
-  desc = "Set table mode options in markdown.",
-  pattern = { "markdown" },
-  callback = function()
-    vim.g.table_mode_corner = "|"
-    vim.g.table_mode_map_prefix = "<LEADER>T"
-    vim.keymap.set("n", "<LEADER>rf", "<CMD>Glow<CR>", { silent=true, buffer=true })
-    vim.keymap.set("n", "<C-r>", "<CMD>MarkdownPreview<CR>", { silent=true, buffer=true })
-  end,
-})
-
 --- TEST: Treat docker-compose.yaml and docker-compose.yml to docker-compose filetype.
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   group = "Fau_vim",

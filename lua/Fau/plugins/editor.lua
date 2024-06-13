@@ -9,6 +9,7 @@ local editor = {
   {
     -- DESC: File explorer tree for Neovim.
     "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.core.nvim-tree") end,
     event = "VeryLazy",
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
@@ -19,10 +20,11 @@ local editor = {
     -- DESC: A snazzy tabline for showing opened buffers.
     "akinsho/bufferline.nvim",
     dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
       {
         "echasnovski/mini.bufremove",
         config = function() require("mini.bufremove").setup() end,
-      }
+      },
     },
     config = function() require("Fau.core.bufferline") end,
     event = "VeryLazy",
@@ -198,6 +200,13 @@ local editor = {
   -- -------- View Guide
   -- -----------------------------------
   {
+    -- DESC: detect file indentation automatically.
+    "nmac427/guess-indent.nvim",
+    config = function() require("Fau.core.guess-indent") end,
+    event = "BufReadPre",
+  },
+
+  {
     -- DESC: indent guides for Neovim.
     "lukas-reineke/indent-blankline.nvim",
     config = function() require("Fau.core.indentline") end,
@@ -269,7 +278,7 @@ local editor = {
   {
     -- DESC: single tabpage interface for easily cycling through diffs for all modified files for any git rev.
     "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.core.diffview") end,
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
   },

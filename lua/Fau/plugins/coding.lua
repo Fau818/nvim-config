@@ -102,21 +102,6 @@ local coding = {
   },
 
   {
-    -- DESC: Auto generate python docstring.
-    "pixelneo/vim-python-docstring",
-    config = function()
-      vim.g.python_style = "numpy"  -- values: google|numpy|rest|epytext
-      vim.g.vpd_indent = (" "):rep(vim.bo.tabstop)
-    end,
-    cmd = { "Docstring", "DostringTypes", "DocstringLine" },
-    keys = {
-      { "<LEADER><LEADER>d", "<CMD>DocstringTypes<CR>", desc = "Python Docstring with type hints" },
-      { "<LEADER><LEADER>D", "<CMD>Docstring<CR>",      desc = "Python Docstring" }
-    },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
-  },
-
-  {
     -- DESC: Auto convert normal string to template string.
     -- Fau: Used to automatically convert string to f-string in python.
     "axelvc/template-string.nvim",
