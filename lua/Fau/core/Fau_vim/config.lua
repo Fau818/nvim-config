@@ -42,7 +42,7 @@ Fau_vim.lsp.packages = {
 -- -----------------------------------
 -- -------- File
 -- -----------------------------------
-Fau_vim.file.large_file_size = 1024 * 128  -- 128KiB
+Fau_vim.file.large_file_size = 1024 * 512  -- 512KiB
 Fau_vim.file.disabled_filetypes = {
   "", "help", "netrw", "tutor", "man",
   "alpha",

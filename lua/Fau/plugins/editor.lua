@@ -100,16 +100,18 @@ local editor = {
       -- -----------------------------------
       -- -------- Extensions
       -- -----------------------------------
-      "ahmedkhalf/project.nvim",  ---@see workspace.lua file
+      -- TODO: The telescope is necessary for the following extensions. (The current situation is the opposite)
+      {
+        -- DESC: Explore projects with telescope.
+        -- TEMP: Use a fork version to avoid deprecated warning.
+        "LennyPhoenix/project.nvim",
+        config = function() require("Fau.core.project") end,
+      },
       {
         -- DESC: `fzf` sorter for telescope.
         "nvim-telescope/telescope-fzf-native.nvim",  -- for speeding up the fuzzy find
         build = "make",
         -- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      },
-      {
-        -- DESC: Emoji searcher for telescope
-        "xiyaowong/telescope-emoji.nvim",
       },
       {
         -- DESC: LuaSnip searcher for telescope.

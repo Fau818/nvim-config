@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local project_ok, project = pcall(require, "project_nvim")
-if not project_ok then Fau_vim.load_plugin_error("project_nvim") return end
+local projects = require("project_nvim")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   -- Manual mode doesn't automatically change your root directory, so you have
   -- the option to manually do so using `:ProjectRoot` command.
@@ -45,10 +39,8 @@ local config = {
   -- * win
   scope_chdir = "global",
 
-  -- Path where project.nvim will store the project history for use in
-  -- telescope
+  -- Path where project.nvim will store the project history for use in telescope
   datapath = vim.fn.stdpath("data"),
 }
 
-
-project.setup(config)
+projects.setup(config)

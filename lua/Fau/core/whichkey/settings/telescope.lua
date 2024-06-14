@@ -13,8 +13,6 @@ local functions = {
 
   docker = function() extensions.docker.docker() end,
 
-  emoji = function() extensions.emoji.emoji() end,
-
   luasnip = function()
     local config = { layout_strategy = "vertical", initial_mode = "normal" }
     extensions.luasnip.luasnip(config)
@@ -56,7 +54,6 @@ return {
       c = { builtin.commands,                              "Find Commands" },
       d = { functions.docker,                              "Find Docker" },
       e = { functions.conda,                               "Find Conda Environments" },
-      E = { functions.emoji,                               "Find Emoji" },
       f = { builtin.find_files,                            "Find Files" },
       h = { builtin.help_tags,                             "Find Help" },
       H = { builtin.highlights,                            "Find Highlights" },

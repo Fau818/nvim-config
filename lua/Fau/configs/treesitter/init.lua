@@ -1,21 +1,15 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local treesitter_ok, treesitter = pcall(require, "nvim-treesitter.configs")
-if not treesitter_ok then Fau_vim.load_plugin_error("nvim-treesitter.configs") return end
+local treesitter = require("nvim-treesitter.configs")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type TSConfig
 local config = {
   -- A list of parser names, or "all"
   ensure_installed = {
-    "vim",
-    "c", "cpp", "lua", "python",
-    "regex", "bash", "markdown", "markdown_inline",
+    "vim", "vimdoc", "regex",
+    "lua", "python", "bash",
+    "markdown", "markdown_inline",
     "gitignore", "gitcommit",
   },
 
@@ -26,7 +20,7 @@ local config = {
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
   auto_install = true,
 
-  -- List of parsers to ignore installing (for "all")
+  -- List of parsers to ignore installing (or "all")
   ignore_install = {},
 
   highlight = {
@@ -42,13 +36,13 @@ local config = {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = { "gitcommit" },
   },
 
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection    = false, -- set to `false` to disable one of the mappings
+      init_selection    = "<C-=>",
       node_incremental  = "<C-=>",
       node_decremental  = "<C-->",
       scope_incremental = false,
@@ -56,7 +50,7 @@ local config = {
   },
 
   indent = {
-    -- NOTE: Bad indentation performance in Python function block.
+    -- NOTE: Bad indentation behavior in Python function block.
     -- \ e.g.: for i in range(10): print(i)
     -- \ if you hit the <ENTER> key, an indentation will continuously persist (even if you delete it and hit the <ENTER> again).
     enable = false,
@@ -71,10 +65,7 @@ local config = {
   endwise = { enable = true },
 
   -- nvim-treesitter-textobjects plugin
-  textobjects = require("Fau.core.treesitter.textobjects"),
-
-  -- playground plugin
-  playground = require("Fau.core.treesitter.playground"),
+  textobjects = require("Fau.configs.treesitter.textobjects"),
 }
 
 

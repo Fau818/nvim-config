@@ -1,34 +1,23 @@
 -- NOTE: This module is for treesitter, will be loaded in `BufReadPost` and `BufNewFile` event.
 -- for playground, will be loaded by its specific commands.
 
+-- TODO: Move this module to `editor` module.
 ---@type LazySpec[]
 local treesitter = {
   {
-    -- DESC: a parser generator tool and an incremental parsing library.
+    -- DESC: An incremental parsing system for programming tools for Neovim.
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function() require("Fau.core.treesitter") end,
+    config = function() require("Fau.configs.treesitter") end,
     event = { "BufReadPost", "BufNewFile" },
-  },
-
-  {
-    -- DESC: a viewer for treesitter, which can show treesitter information directly in Neovim.
-    "nvim-treesitter/playground",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    cmd = { "TSPlaygroundToggle", "TSCaptureUnderCursor", "TSNodeUnderCursor" },
-    keys = {
-      { "<LEADER><LEADER>u", "<CMD>TSCaptureUnderCursor<CR>", desc = "Capture Highlight Group Under Cursor" },
-      { "<LEADER><LEADER>n", "<CMD>TSNodeUnderCursor<CR>",    desc = "Capture Node Under Cursor" }
-    },
   },
 
   {
     -- DESC: Show context of the current buffer contents.
     "nvim-treesitter/nvim-treesitter-context",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function() require("Fau.core.treesitter.context") end,
-    event = { "BufReadPost", "BufNewFile" },
+    config = function() require("Fau.configs.treesitter.context") end,
     cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+    event = { "BufReadPost", "BufNewFile" },
   },
 
   {

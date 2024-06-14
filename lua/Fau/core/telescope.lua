@@ -311,7 +311,6 @@ local config = {
     --  sorting_strategy = "ascending",
     --  initial_mode = "normal",
     -- },
-    emoji = { layout_strategy = "vertical" },
     -- notify = { layout_strategy = "vertical", initial_mode = "normal" },
     -- luasnip = { theme = "ivy" },
     conda = {
@@ -340,7 +339,6 @@ telescope.setup(config)
 telescope.load_extension("fzf")
 telescope.load_extension("notify")
 telescope.load_extension("projects")
-telescope.load_extension("emoji")
 telescope.load_extension("luasnip")
 telescope.load_extension("noice")
 if vim.fn.executable("docker") == 1 then telescope.load_extension("docker") end

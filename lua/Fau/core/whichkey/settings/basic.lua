@@ -146,10 +146,17 @@ return {
 
 
     -- -----------------------------------
-    -- -------- Buffer Navigation (By `akinsho/bufferline.nvim`)
+    -- -------- Buffer Navigation (For `akinsho/bufferline.nvim`)
     -- -----------------------------------
     ["<A-1~9>"]       = "Switch to Buffer <1~9>",
     ["<LEADER><1~9>"] = "Switch to Buffer <1~9>",
+
+
+    -- -----------------------------------
+    -- -------- Inspect
+    -- -----------------------------------
+    ["<LEADER>i"] = { "<CMD>Inspect<CR>",     "Show Highlight Groups under Cursor" },
+    ["<LEADER>I"] = { "<CMD>InspectTree<CR>", "Show the Parsed Syntax Tree" }
   },
 
 
