@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local alpha_ok, alpha = pcall(require, "alpha")
-if not alpha_ok then Fau_vim.load_plugin_error("alpha") return end
+local alpha = require("alpha")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local dashboard = require("alpha.themes.dashboard")
 dashboard.section.header.val = {
   [[]],
@@ -37,14 +31,15 @@ dashboard.section.buttons.val = {
   dashboard.button("f", ("%s  Find Files"):format(Fau_vim.icons.ui.FindFile),  "<CMD>Telescope find_files<CR>"),
   dashboard.button("r", ("%s  Recent Files"):format(Fau_vim.icons.ui.History), "<CMD>Telescope oldfiles<CR>"),
 
+  ---@diagnostic disable-next-line: param-type-mismatch
   dashboard.button("l", ("%s  Load Session"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").load() end),
+  ---@diagnostic disable-next-line: param-type-mismatch
   dashboard.button("L", ("%s  Load Last Session"):format(Fau_vim.icons.ui.Restore), function() require("persistence").load({ last = true }) end),
 
   dashboard.button("c", ("%s  Config Neovim"):format(Fau_vim.icons.ui.Gear), "<CMD>FauvimConfig<CR>"),
 
   dashboard.button("q", ("%s  Quit Neovim"):format(Fau_vim.icons.ui.Exit), "<CMD>qall<CR>"),
 }
-
 
 alpha.setup(dashboard.config)
 

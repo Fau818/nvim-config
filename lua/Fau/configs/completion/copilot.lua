@@ -16,7 +16,8 @@ local config = {
       open = "<M-CR>"
     },
     layout = {
-      position = "bottom",  -- values: top|left|right
+      ---@type "bottom"|"top"|"left"|"right"
+      position = "bottom",
       ratio = 0.35
     },
   },

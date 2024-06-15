@@ -32,7 +32,8 @@ return {
 
           completeFunctionParens = false,
 
-          diagnosticMode = "openFilesOnly",  -- values: workspace | openFilesOnly
+          ---@type "workspace"|"openFilesOnly"
+          diagnosticMode = "openFilesOnly",
 
           enablePytestExtra   = false,
           enablePytestSupport = true,
@@ -41,7 +42,8 @@ return {
 
           gotoDefinitionInStringLiteral = true,
 
-          importFormat = "absolute", -- values: absolute | relative
+          ---@type "absolute"|"relative"
+          importFormat = "absolute",
           indexing = true,
 
           inlayHints= {
@@ -51,13 +53,15 @@ return {
             variableTypes       = true,
           },
 
-          logLevel = "Information",  -- values: Trace | Information | Warning | Error
+          ---@type "Trace"|"Information"|"Warning"|"Error"
+          logLevel = "Information",
 
           persistAllIndices = true,
 
           stubPath = "typings",
 
-          typeCheckingMode = "off",  -- values: off | basic | strict
+          ---@type "off"|"basic"|"strict"
+          typeCheckingMode = "off",
 
           useLibraryCodeForTypes = true,
           userFileIndexingLimit = 2000,

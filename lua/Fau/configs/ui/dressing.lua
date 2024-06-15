@@ -1,34 +1,22 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local dressing_ok, dressing = pcall(require, "dressing")
-if not dressing_ok then Fau_vim.load_plugin_error("dressing") return end
+local dressing = require("dressing")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   input = {
     -- Set to false to disable the vim.ui.input implementation
     enabled = true,
-
     -- Default prompt string
     default_prompt = "Input",
-
     -- Trim trailing `:` from prompt
     trim_prompt = true,
-
     -- Can be 'left', 'right', or 'center'
     prompt_align = "left",
-
     -- When true, <Esc> will close the modal
     insert_only = false,
-
     -- When true, input will start in insert mode.
     start_in_insert = true,
-
     border = "rounded",
     -- 'editor' and 'win' will default to being centered
     relative = "cursor",
@@ -58,13 +46,13 @@ local config = {
     mappings = {
       n = {
         ["<Esc>"] = "Close",
-        ["<CR>"] = "Confirm",
         ["<C-c>"] = "Close",
+        ["<CR>"] = "Confirm",
       },
       i = {
         ["<C-c>"] = "Close",
         ["<CR>"] = "Confirm",
-        ["<Up>"] = "HistoryPrev",
+        ["<Up>"]   = "HistoryPrev",
         ["<Down>"] = "HistoryNext",
       },
     },
@@ -83,38 +71,26 @@ local config = {
   select = {
     -- Set to false to disable the vim.ui.select implementation
     enabled = true,
-
     -- Priority list of preferred vim.select implementations
-    backend = { "telescope", "nui", "fzf_lua", "fzf", "builtin", },
-
+    backend = { "telescope", "nui", "fzf_lua", "fzf", "builtin" },
     -- Trim trailing `:` from prompt
     trim_prompt = true,
 
     -- Options for telescope selector
     -- These are passed into the telescope picker directly. Can be used like:
-    -- telescope = require('telescope.themes').get_ivy({...})
-    telescope = {
-      initial_mode = "insert",
-      layout_strategy = "center",
-      sorting_strategy = "ascending",
-      previewer = false,
-    },
+    telescope = require("telescope.themes").get_dropdown({ initial_mode = "normal" }),
+    -- telescope = {
+    --   initial_mode = "normal",
+    --   layout_strategy = "center",
+    --   sorting_strategy = "ascending",
+    --   previewer = false,
+    -- },
 
     -- Options for fzf selector
-    fzf = {
-      window = {
-        width = 0.5,
-        height = 0.4,
-      },
-    },
+    fzf = { window = { width = 0.5, height = 0.4 } },
 
     -- Options for fzf_lua selector
-    fzf_lua = {
-      winopts = {
-        width = 0.5,
-        height = 0.4,
-      },
-    },
+    fzf_lua = { winopts = { width = 0.5, height = 0.4 } },
 
     -- Options for nui Menu
     nui = {
@@ -122,10 +98,7 @@ local config = {
       size = nil,
       relative = "editor",
       border = { style = "rounded" },
-      buf_options = {
-        swapfile = false,
-        filetype = "DressingSelect",
-      },
+      buf_options = { swapfile = false, filetype = "DressingSelect" },
       win_options = { winblend = 0 },
       max_width = 80,
       max_height = 40,
@@ -140,13 +113,8 @@ local config = {
       border = "rounded",
       -- 'editor' and 'win' will default to being centered
       relative = "editor",
-
       buf_options = {},
-      win_options = {
-        -- Window transparency (0-100)
-        winblend = 0,
-      },
-
+      win_options = { winblend = 0 },
       -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
       -- the min_ and max_ options can be a list of mixed types.
       -- max_width = {140, 0.8} means "the lesser of 140 columns or 80% of total"
@@ -178,6 +146,5 @@ local config = {
     get_config = nil,
   },
 }
-
 
 dressing.setup(config)

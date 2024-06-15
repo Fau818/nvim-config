@@ -22,7 +22,7 @@ local config = {
       alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
       -- signs = false, -- configure signs for some keywords individually
     },
-    TODO      = { icon = Fau_vim.icons.todo.TODO,      color = "todo" },
+    TODO      = { icon = Fau_vim.icons.todo.TODO,      color = "todo", alt = { "TASK", "QUES", "QUESTION" } },
     HACK      = { icon = Fau_vim.icons.todo.HACK,      color = "warning" },
     WARN      = { icon = Fau_vim.icons.todo.WARN,      color = "warning", alt = { "WARNING" } },
     PERF      = { icon = Fau_vim.icons.todo.PERF,      color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },

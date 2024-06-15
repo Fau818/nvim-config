@@ -16,11 +16,13 @@ return {
   space_before_inline_comment     = "2",
   align_continuous_inline_comment = "true",
 
-  end_of_line          = "auto",  -- values: crlf|lf|cr|auto
+  ---@type "crlf"|"lf"|"cr"|"auto"
+  end_of_line          = "auto",
   detect_end_of_line   = "false",
   insert_final_newline = "true",
 
-  quote_style = "double",  -- values: none|single|double
+  ---@type "none"|"single"|"double"
+  quote_style = "double",
 
 
   -- -----------------------------------
@@ -29,7 +31,8 @@ return {
   align_call_args       = "true",
   align_function_params = "true",
 
-  call_arg_parentheses  = "keep",  -- values: keep|remove|remove_table_only|remove_string_only|unambiguous_remove_string_only
+  ---@type "keep"|"remove"|"remove_table_only"|"remove_string_only"|"unambiguous_remove_string_only"
+  call_arg_parentheses  = "keep",
 
   space_before_function_open_parenthesis       = "false",
   space_before_closure_open_parenthesis        = "false",
@@ -48,8 +51,10 @@ return {
   align_continuous_rect_table_field  = "true",
   align_continuous_similar_call_args = "true",
 
-  table_separator_style    = "comma",  -- values: none|comma|semicolon|only_kv_colon
-  trailing_table_separator = "smart",  -- values: keep|never|always|smart
+  ---@type "none"|"comma"|"semicolon"|"only_kv_colon"
+  table_separator_style    = "comma",
+  ---@type "keep"|"never"|"always"|"smart"
+  trailing_table_separator = "smart",
 
   space_around_table_field_list      = "true",
   space_around_table_append_operator = "true",
@@ -90,7 +95,7 @@ return {
   -- -----------------------------------
   -- -------- Line Space
   -- -----------------------------------
-  -- values: keep|fixed(n)|min(n)|max(n)
+  ---@type "keep"|"fixed(n)"|"min(n)"|"max(n)"
   line_space_after_if_statement              = "keep",
   line_space_after_do_statement              = "keep",
   line_space_after_while_statement           = "keep",
@@ -102,7 +107,7 @@ return {
   line_space_after_comment                   = "keep",
   line_space_around_block                    = "keep",
 
-  -- values: keep|always|same_line|replace_with_newline|never?
+  ---@type "keep"|"always"|"same_line"|"replace_with_newline"|"never"
   ignore_space_after_colon                 = "same_line",
   remove_call_expression_list_finish_comma = "same_line",
   end_statement_with_semicolon             = "same_line",

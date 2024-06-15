@@ -12,7 +12,8 @@ local python = {
     -- DESC: Auto generate python docstring.
     "pixelneo/vim-python-docstring",
     config = function()
-      vim.g.python_style = "numpy"  -- values: google|numpy|rest|epytext
+      ---@type "google"|"numpy"|"rest"|"epytext"
+      vim.g.python_style = "numpy"
       vim.g.vpd_indent = (" "):rep(vim.bo.tabstop)
     end,
     ft = "python",

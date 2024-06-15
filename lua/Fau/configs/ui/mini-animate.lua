@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local animate_ok, animate = pcall(require, "mini.animate")
-if not animate_ok then Fau_vim.load_plugin_error("mini.animate") return end
+local animate = require("mini.animate")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   cursor = {
     enable = true,
@@ -20,6 +14,5 @@ local config = {
   open   = { enable = false },
   close  = { enable = false },
 }
-
 
 animate.setup(config)

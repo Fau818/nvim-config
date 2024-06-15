@@ -30,7 +30,8 @@ local config = {
   insert_mappings = true,   -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 
-  direction = "float", -- string, values: vertical|horizontal|tab|float
+  ---@type "vertical"|"horizontal"|"tab"|"float"
+  direction = "float",
 
   persist_mode = false, -- if set to true (default) the previous terminal mode will be remembered
   persist_size = false, -- if set tot true, the previous terminal window size will be remembered (for horizontal and vertical)
@@ -42,7 +43,8 @@ local config = {
   auto_scroll = true, -- automatically scroll to the bottom on terminal output
 
   float_opts = {
-    border = "rounded", -- values: single|double|shadow|curved|none
+    ---@type "single"|"double"|"shadow"|"curved"|"rounded"|"none"
+    border = "rounded",
     winblend = 0,  -- keep this equal 0 if use transparent theme
   },
 

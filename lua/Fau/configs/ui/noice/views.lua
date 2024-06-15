@@ -1,13 +1,11 @@
----@type NoiceConfigViews
+---@type table<string, NoiceViewOptions>
 local views = {
   -- -----------------------------------
-  -- -------- Preset modification
+  -- -------- Preset Modification
   -- -----------------------------------
   notify = {
     replace = true,
     merge = true,
-
-    -- stages = "fade_in_slide_out",
     render = "minimal",
   },
 
@@ -17,6 +15,9 @@ local views = {
   },
 
   cmdline_popup = { size = { width = 60 } },
+
+  -- TEST: Maybe not working.
+  mini = { replace = true, merge = true },
 
   -- -----------------------------------
   -- -------- Custom

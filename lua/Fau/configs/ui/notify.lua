@@ -1,18 +1,29 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local notify_ok, notify = pcall(require, "notify")
-if not notify_ok then Fau_vim.load_plugin_error("notify") return end
+local notify = require("notify")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type notify.Config
 local config = {
+  level = vim.log.levels.INFO,
   background_colour = "#000000",
+  timeout = 1000,
   fps = 60,
+
+  -- max_width = nil,
+  -- max_height = nil,
+  minimum_width = 30,
+
+  -- time_formats = nil,
+  ---@type "default"|"minimal"|"simple"
+  render = "default",
+  ---@type "fade_in_slide_out"|"fade"|"slide"|"static"
+  stages = "fade_in_slide_out",
+  top_down = true,
+
+  -- on_open = nil,
+  -- on_close = nil,
+
   icons = {
     DEBUG = Fau_vim.icons.diagnostics.Debug,
     ERROR = Fau_vim.icons.diagnostics.BoldError,
@@ -20,18 +31,14 @@ local config = {
     TRACE = Fau_vim.icons.diagnostics.Trace,
     WARN  = Fau_vim.icons.diagnostics.BoldWarning,
   },
-  level = 0,
-  minimum_width = 30,
-  render = "default",  -- values: default|minimal|simple
-  stages = "fade_in_slide_out",  -- values: fade_in_slide_out|fade|slide|static
-  timeout = 750,
-  top_down = true,
 }
-
 
 notify.setup(config)
 
 
+-- -----------------------------------
+-- -------- Global Notify
+-- -----------------------------------
 --- use notify to replace vim.notify
 ---@param msg string
 ---@param level string|number|nil

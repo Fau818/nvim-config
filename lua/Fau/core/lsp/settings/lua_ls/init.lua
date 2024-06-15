@@ -28,13 +28,16 @@ return {
         autoRequire = false,        -- When the input looks like a file name, automatically require this file.
         requireSeparator = '.',     -- The separator used when `require`.
 
-        callSnippet = "Disable",    -- Shows function call snippets. values: Disable|Both|Replace
-        keywordSnippet = "Disable", -- Shows keyword syntax snippets. values: Disable|Both|Replace
+        ---@type "Disable"|"Both"|"Replace"
+        callSnippet = "Disable",    -- Shows function call snippets.
+        ---@type "Disable"|"Both"|"Replace"
+        keywordSnippet = "Disable", -- Shows keyword syntax snippets.
         displayContext = 5,         -- Preview the line number of the relevant code snippet
         postfix = "@",              -- The symbol used to trigger the postfix suggestion.  [??? how to add]
         showParams = true,          -- Display parameters in completion list.
 
-        showWord = "Fallback",      -- Show contextual words in suggestions. values: Enable|Fallback|Disable
+        ---@type "Enable"|"Fallback"|"Disable"
+        showWord = "Fallback",      -- Show contextual words in suggestions.
         workspaceWord = true,       -- Whether the displayed context word contains the content of other files in the workspace.
       },
 
@@ -51,11 +54,14 @@ return {
         -- neededFileStatus = nil,    -- Use default
         -- severity = nil,            -- use default
 
-        ignoredFiles = "Opened",   -- Set how files that have been ignored should be diagnosed. values: Enable|Opened|Disable
-        libraryFiles = "Opened",   -- Set how files loaded with workspace.library are diagnosed. values: Enable|Opened|Disable
+        ---@type "Enable"|"Opened"|"Disable"
+        ignoredFiles = "Opened",   -- Set how files that have been ignored should be diagnosed.
+        ---@type "Enable"|"Opened"|"Disable"
+        libraryFiles = "Opened",   -- Set how files loaded with workspace.library are diagnosed.
 
         workspaceDelay = -1,        -- Disable workspace diagnostics
-        workspaceEvent = "OnSave",  -- Set when the workspace diagnostics should be analyzed. values: OnChange|OnSave|Disable
+        ---@type "OnChange"|"OnSave"|"Disable"
+        workspaceEvent = "OnSave",  -- Set when the workspace diagnostics should be analyzed.
         workspaceRate  = 100,       -- Define the rate at which the workspace will be diagnosed as a percentage.
       },
 
@@ -69,10 +75,13 @@ return {
       hint = {  -- Settings for configuring inline hints
         enable     = true,        -- Enable inlay hint.
         await      = true,        -- If the called function is marked ---@async, prompt await at the call.
-        arrayIndex = "Auto",      -- Show hints of array index when constructing a table. values: Enable|Disable|Auto
-        paramName  = "All",       -- Show hints of parameter name at the function call. values: All|Literal|Disable
+        ---@type "Enable"|"Disable"|"Auto"
+        arrayIndex = "Auto",      -- Show hints of array index when constructing a table.
+        ---@type "All"|"Literal"|"Disable"
+        paramName  = "All",       -- Show hints of parameter name at the function call.
         paramType  = true,        -- Show type hints at the parameter of the function.
-        semicolon  = "SameLine",  -- Whether to show a hint to add a semicolon to the end of a statement. values: All|SameLine|Disable
+        ---@type "All"|"SameLine"|"Disable"
+        semicolon  = "SameLine",  -- Whether to show a hint to add a semicolon to the end of a statement.
         setType    = true,        -- Show a hint to display the type being applied at assignment operations.
       },
 

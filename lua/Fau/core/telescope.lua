@@ -49,9 +49,12 @@ end
 local config = {
   defaults = {
     -- Default configuration for telescope goes here:
-    sorting_strategy = "descending", -- Determines the direction "better" results are sorted towards. values: `descending`, `ascending`
-    selection_strategy = "reset",    -- Determines how the cursor acts after each sort iteration. values: `reset`, `follow`, `row`, `closest`, `none`
-    scroll_strategy = "cycle",       -- Determines what happens if you try to scroll past the view of the picker.  values: `cycle`, `limit`
+    ---@type "descending"|"ascending"
+    sorting_strategy = "descending", -- Determines the direction "better" results are sorted towards.
+    ---@type "reset"|"follow"|"row"|"closest"|"none"
+    selection_strategy = "reset",    -- Determines how the cursor acts after each sort iteration.
+    ---@type "cycle"|"limit"
+    scroll_strategy = "cycle",       -- Determines what happens if you try to scroll past the view of the picker.
     layout_strategy = "horizontal",  -- Determines the default layout of Telescope pickers. values: see |telescope.layout|
 
     layout_config = { -- Determines the default configuration values for layout strategies.  values: see |telescope.layout|
@@ -117,7 +120,8 @@ local config = {
     entry_prefix = "  ",    -- Prefix in front of each result entry. Current selection not included.
     multi_icon = "+",       -- Symbol to add in front of a multi-selected result entry.
 
-    initial_mode = "insert", -- Determines in which mode telescope starts. values: `insert` and `normal`.
+    ---@type "insert"|"normal"
+    initial_mode = "insert", -- Determines in which mode telescope starts.
     path_display = { "smart" }, -- Determines how file paths are displayed
 
     border = true, -- Boolean defining if borders are added to Telescope windows.
@@ -250,7 +254,8 @@ local config = {
     lsp_definitions = {
       layout_strategy = "bottom_pane",
       initial_mode = "normal",
-      jump_type = "never", -- the performance of only one result.  values: false(auto jump), 'tab', 'split', 'vsplit', 'never'
+      ---@type false|"tab"|"split"|"vsplit"|"never"
+      jump_type = "never", -- the performance of only one result.
     },
 
     lsp_type_definitions = {
@@ -321,7 +326,8 @@ local config = {
       log_level = vim.log.levels.WARN,
       layout_strategy = "center",
       sorting_strategy = "ascending",
-      init_term = "split new",  -- values: "vsplit new"|"split new"|"tabnew"
+      ---@type "vsplit new"|"split new"|"tabnew"
+      init_term = "split new",
       initial_mode = "normal",
     },
   }

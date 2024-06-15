@@ -1,37 +1,20 @@
+extends conf
+
 snippet #!
 	#!/usr/bin/env python3
 
-# Module Docstring
-snippet docs
-	"""
-	File: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
-	Author: `g:snips_author`
-	Email: `g:snips_email`
-	Github: `g:snips_github`
-	Description: ${0}
-	"""
-
-snippet main
+snippet main # Main Function
 	if __name__ == "__main__":
 		${0:main()}
 
-snippet seccom # section comment
-	# =============================================
-	# ========== $1
-	# =============================================$0
-
-snippet subseccom # subsection comment
-	# -----------------------------------
-	# -------- $1
-	# -----------------------------------$0
-
-snippet universal_import # scientific research common header
+snippet universal_import # Scientific Research Universal Header
 	import numpy as np
 	import pandas as pd
 	import torch
 	import torch.nn as nn
 	import torch.utils.data as tdata
 	import torchvision
+	import torchvision.models as models
 	import torchvision.transforms as transforms
 	import matplotlib.pyplot as plt
 	import cv2 as cv

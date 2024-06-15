@@ -58,10 +58,11 @@ return {
 
     matching = nil,
 
+    ---@type cmp.SourceConfig[]
     sources = {
-      { name = "luasnip" },
-      { name = "copilot" },
-      { name = "nvim_lsp" },
+      { name = "luasnip", group_index = 1 },
+      { name = "copilot", group_index = 1 },
+      { name = "nvim_lsp", group_index = 1 },
 
       { name = "conventionalcommits" },
 

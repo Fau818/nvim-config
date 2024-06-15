@@ -1,15 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local noice_ok, noice = pcall(require, "noice")
-if not noice_ok then Fau_vim.load_plugin_error("noice") return end
-
-
-
--- =============================================
--- ========== Configuration
--- =============================================
-local config = require("Fau.core.noice.config")
+local noice = require("noice")
+local config = require("Fau.configs.ui.noice.config")
 noice.setup(config)
 
 

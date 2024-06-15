@@ -16,7 +16,8 @@ local config = {
     style_preset = bufferline.style_preset.minimal,
     themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
 
-    numbers = "none", -- values: "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string
+    ---@type "none"|"ordinal"|"buffer_id"|"both"|function({ ordinal, id, lower, raise }): string
+    numbers = "none",
 
     close_command        = Fau_vim.functions.utils.buf_remove, -- can be a string | function, see "Mouse actions"
     right_mouse_command  = Fau_vim.functions.utils.buf_remove, -- can be a string | function, see "Mouse actions"
@@ -25,7 +26,8 @@ local config = {
 
     indicator = {
       icon = Fau_vim.icons.ui.Indicator,     -- this should be omitted if indicator style is not 'icon'
-      style = "icon", -- values: 'icon' | 'underline' | 'none'
+      ---@type "icon"|"underline"|"none"
+      style = "icon",
     },
 
     buffer_close_icon = Fau_vim.icons.ui.Close,
@@ -58,7 +60,8 @@ local config = {
       return false
     end,
 
-    diagnostics = "nvim_lsp", -- values: false | "nvim_lsp" | "coc"
+    ---@type false|"nvim_lsp"|"coc"
+    diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = false,
     -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
     ---@diagnostic disable-next-line: unused-local
@@ -80,7 +83,8 @@ local config = {
       {
         filetype   = "NvimTree",
         text       = " Workspace",
-        text_align = "center",  -- values: "left" | "center" | "right"
+        ---@type "left"|"center"|"right"
+        text_align = "center",
         separator  = true
       }
     },
@@ -102,10 +106,12 @@ local config = {
     move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
 
     -- can also be a table containing 2 custom separators [focused and unfocused]. eg: { '|', '|' }
-    separator_style = { "▎", "▎" }, -- "slant" | "padded_slant" | "thick" | "thin" | "slope" | "padded_slope" | { 'any', 'any' },
+    ---@type "slant"|"padded_slant"|"thick"|"thin"|"slope"|"padded_slope"|{str1:string, str2:string}
+    separator_style = { "▎", "▎" },
 
     hover = { enabled = true, delay = 50, reveal = { "close" } },
-    sort_by = "insert_after_current", -- values: 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b) return buffer_a.modified > buffer_b.modified end
+    ---@type "insert_at_end"|"insert_after_current"|"id"|"extension"|"relative_directory"|"directory"|"tabs"|function(buffer_a: Buffer, buffer_b: Buffer): boolean
+    sort_by = "insert_after_current",
   },
 
   highlights = {

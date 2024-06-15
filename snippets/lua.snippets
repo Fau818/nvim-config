@@ -1,18 +1,24 @@
-snippet seccom # section comment
+snippet seccom # Section Comment
 	-- =============================================
-	-- ========== $1
+	-- ========== ${1:Section Comment}
 	-- =============================================$0
 
-snippet subseccom # subsection comment
+snippet subseccom # Subsection Comment
 	-- -----------------------------------
-	-- -------- $1
+	-- -------- ${1:Subsection Comment}
 	-- -----------------------------------$0
 
-snippet load_plugin # load_plugin templete
+snippet secsep # Section Separator
+	-- ==================== ${1:Section Separator} ====================$0
+
+snippet subsecsep # Subsection Separator
+	-- ---------- ${0:Subsection Separator}
+
+snippet load_plugin # Load Plugin
 	local $1_ok, $1 = pcall(require, "$2")
 	if not $1_ok then Fau_vim.load_plugin_error("$2") return end$0
 
-snippet plugin_init # plugin initialization
+snippet plugin_init # Plugin Initialization
 	-- =============================================
 	-- ========== Plugin Configurations
 	-- =============================================
