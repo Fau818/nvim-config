@@ -342,9 +342,9 @@ telescope.setup(config)
 -- =============================================
 -- ========== Extensions
 -- =============================================
-telescope.load_extension("fzf")
-telescope.load_extension("notify")
-telescope.load_extension("projects")
-telescope.load_extension("luasnip")
-telescope.load_extension("noice")
-if vim.fn.executable("docker") == 1 then telescope.load_extension("docker") end
+-- telescope.load_extension("fzf")
+-- telescope.load_extension("notify")
+-- telescope.load_extension("projects")
+-- telescope.load_extension("luasnip")
+-- telescope.load_extension("noice")
+-- if vim.fn.executable("docker") == 1 then telescope.load_extension("docker") end

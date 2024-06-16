@@ -69,12 +69,13 @@ return {
       a = { vim.lsp.buf.code_action, "Code Action" },
 
       -- Diagnostic Info
-      d = { "<CMD>Trouble diagnostics toggle focus=false filter.buf=0<CR>", "Buffer Diagnostics" },
-      D = { "<CMD>Trouble diagnostics toggle<CR>", "Workspace Diagnostics" },
+      d = { vim.diagnostic.setloclist, "Buffer Diagnostics" },
+      D = { vim.diagnostic.setqflist, "Workspace Diagnostics" },
 
       -- Goto Prev/Next Diagnostics
       p = { vim.diagnostic.goto_prev, "Goto Prev Diagnostics" },
       n = { vim.diagnostic.goto_next, "Goto Next Diagnostics" },
+
 
       -- Format
       f = { Fau_vim.functions.format.smart_format, "Format Code" },

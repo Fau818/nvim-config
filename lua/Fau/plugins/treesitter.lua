@@ -1,5 +1,4 @@
 -- NOTE: This module is for treesitter, will be loaded in `BufReadPost` and `BufNewFile` event.
--- for playground, will be loaded by its specific commands.
 
 -- TODO: Move this module to `editor` module.
 ---@type LazySpec[]

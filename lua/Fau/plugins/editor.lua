@@ -81,8 +81,7 @@ local editor = {
     "lewis6991/satellite.nvim",
     config = function() require("Fau.core.satellite") end,
     event = { "BufReadPost", "BufNewFile" },
-    -- enabled = vim.fn.has("nvim-0.10") == 1,
-    enabled = false,
+    enabled = vim.fn.has("nvim-0.10") == 1,
   },
 
 
@@ -257,9 +256,14 @@ local editor = {
   {
     -- DESC: Quickfix list enhancer.
     "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.core.trouble") end,
     cmd = "Trouble",
-    keys = { { "<LEADER>tt", "<CMD>Trouble<CR>", desc = "Show Trouble" } },
+    keys = {
+      { "<LEADER>tt", "<CMD>Trouble<CR>", desc = "Show Trouble" },
+      { "gd", "<CMD>Trouble lsp_definitions<CR>", desc = "Go To Definition" },
+      { "gD", "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace Diagnostics" },
+    },
   },
 
   {

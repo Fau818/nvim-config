@@ -1,20 +1,14 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local trouble_ok, trouble = pcall(require, "trouble")
-if not trouble_ok then Fau_vim.load_plugin_error("trouble") return end
+local trouble = require("trouble")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type trouble.Config
 local config = {
   auto_close   = false,  -- auto close when there are no items
   auto_open    = false,  -- auto open when there are items
   auto_preview = true,   -- automatically open preview when on an item
-  auto_refresh = false,  -- auto refresh when open
+  auto_refresh = true,   -- auto refresh when open
   auto_jump    = false,  -- auto jump to the item when there's only one
 
   focus   = true,  -- Focus the window when opened
@@ -30,7 +24,7 @@ local config = {
   open_no_results = false,  -- open the trouble window when there are no results
 
   ---@type trouble.Window.opts
-  win = { border = "double", minimal = true }, -- window options for the results window. Can be a split or a floating window.
+  win = {}, -- window options for the results window. Can be a split or a floating window.
 
   -- Window options for the preview window. Can be a split, floating window, or `main` to show the preview in the main editor window.
   ---@type trouble.Window.opts
@@ -54,7 +48,7 @@ local config = {
 
   -- Key mappings can be set to the name of a builtin action,
   -- or you can define your own custom action.
-  ---@type table<string, string|trouble.Action>
+  ---@type table<string, trouble.Action.spec>
   keys = {
     ["?"] = "help",
 
@@ -112,7 +106,21 @@ local config = {
   },
 
   ---@type table<string, trouble.Mode>
-  modes = nil,
+  modes = {
+    -- FIXME: Default config is not working.
+    lsp_references       = { auto_jump = false },
+    lsp_definitions      = { auto_jump = false },
+    lsp_implementations  = { auto_jump = false },
+    -- lsp_type_definitions = { auto_jump = false },
+    lsp_declarations     = { auto_jump = false },
+    lsp_incoming_calls   = { auto_jump = false },
+    lsp_outgoing_calls   = { auto_jump = false },
+
+    diagnostics_buffer = {
+      mode = "diagnostics",  -- inherit from diagnostics mode
+      filter = { buf = 0 },  -- filter diagnostics to the current buffer
+    },
+  },
 
   icons = {
     ---@type trouble.Indent.symbols
@@ -122,6 +130,5 @@ local config = {
     kinds = Fau_vim.icons.kind,
   },
 }
-
 
 trouble.setup(config)
