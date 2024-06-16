@@ -12,5 +12,5 @@ keymap("n", "gr", builtin.lsp_references,      opts("Show References"))
 keymap("n", "gi", builtin.lsp_incoming_calls, opts("Show Incoming Calls"))
 keymap("n", "go", builtin.lsp_outgoing_calls, opts("Show Outgoing Calls"))
 
-keymap("n", "<LEADER>ld", function() builtin.diagnostic({ bufnr = 0 }) end, opts("buffer Diagnostics"))
+keymap("n", "<LEADER>ld", function() builtin.diagnostic({ bufnr = 0 }) end, opts("Buffer Diagnostics"))
 keymap("n", "<LEADER>lD", builtin.diagnostics,      opts("Workspace Diagnostics"))

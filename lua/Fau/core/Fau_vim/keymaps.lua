@@ -78,10 +78,10 @@ keymap("n", "<C-f>", "<CMD>!open -R '%'<CR>", opts("Reveal File"))
 keymap("n", "<C-b>", "<NOP>",                 opts())  -- nop
 
 -- Convert tabs and spaces interchangeably
-keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab!<CR>", opts("Convert Tabs to Spaces or Spaces to Tabs"))
+keymap({ "n", "x" }, "<LEADER><LEADER>c", ":retab!<CR>", opts("Convert Tabs and Spaces"))
 
 -- Open File Explore
-keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Show File"))
+keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Open File Explore"))
 
 -- Inspect
 keymap("n", "<LEADER>i", "<CMD>Inspect<CR>",     opts("Show Highlight Groups under Cursor"))
@@ -94,7 +94,7 @@ keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Show the Parsed Syntax Tr
 -- =============================================
 -- Word
 keymap({ "x", "o" }, "w", "iw", opts("Inner Word"))
-keymap({ "x", "o" }, "W", "iW", opts("Around Word"))
+keymap({ "x", "o" }, "W", "iW", opts("Inner WORD"))
 
 -- Bracket
 keymap({ "x", "o" }, "ia", "i>", opts("Inner Angle Bracket"))
