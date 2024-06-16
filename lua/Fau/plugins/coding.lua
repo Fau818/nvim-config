@@ -9,7 +9,12 @@ local coding = {
     -- DESC: Quickly add, modify, and remove surround.
     "kylechui/nvim-surround",
     config = function() require("Fau.configs.coding.surround") end,
-    keys = { { "s", mode = { "n", "x" } }, { "S", mode = { "n", "x" } }, "cs", "ds" },
+    keys = {
+      { "s", mode = { "n", "x" }, desc = "+Surround" },
+      { "S", mode = { "n", "x" }, desc = "+SURROUND" },
+      { "cs", desc = "+Change Surround" },
+      { "ds", desc = "+Delete Surround" },
+    },
     cond = true,
   },
 
@@ -27,7 +32,7 @@ local coding = {
       },
     },
     config = function() require("Fau.configs.coding.comment") end,
-    keys = { { "gc", mode = { "n", "x" } }, { "gb", mode = { "n", "x" } } },
+    keys = { { "gc", mode = { "n", "x" }, desc = "+Comment" }, { "gb", mode = { "n", "x" }, desc = "+Comment (Block)" } },
     cond = true,
   },
 

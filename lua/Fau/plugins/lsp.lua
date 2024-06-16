@@ -17,8 +17,9 @@ local lsp = {
       require("Fau.core.lsp.diagnostics_config")
       require("Fau.core.lsp.lspconfig")
     end,
-    cmd = "LspInfo",
     event = "BufReadPre",
+    cmd = "LspInfo",
+    keys = { { "<LEADER>li", "<CMD>LspInfo<CR>", desc = "Show Lsp Info" } },
   },
 
   {
@@ -30,6 +31,7 @@ local lsp = {
         "williamboman/mason.nvim",
         config = function() require("Fau.core.lsp.mason") end,
         cmd = "Mason",
+        keys = { { "<LEADER>lI", "<CMD>Mason<CR>", desc = "Show Mason" } },
       },
     },
     config = function() require("Fau.core.lsp.mason-lspconfig") end,
@@ -100,6 +102,10 @@ local lsp = {
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.core.aerial")end,
     cmd = { "AerialToggle", "AerialNavToggle" },
+    keys = {
+      { "<LEADER>lo", "<CMD>AerialToggle<CR>",    desc = "Toggle Outline" },
+      { "<LEADER>lO", "<CMD>AerialNavToggle<CR>", desc = "Toggle Outline Navigation" },
+    },
   },
 
   {

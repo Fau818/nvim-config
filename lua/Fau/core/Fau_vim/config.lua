@@ -61,9 +61,3 @@ Fau_vim.file.disabled_filetypes = {
 }
 Fau_vim.file.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
 Fau_vim.file.ignored_files = { "^.DS_Store$", "^.git$", "^__pycache__$", "^.vscode$", "^.idea$", "^.mypy_cache$" }
-
-
--- -----------------------------------
--- -------- Deprecated
--- -----------------------------------
-Fau_vim.plugin.inc_rename = { enable = false, dressing = false }

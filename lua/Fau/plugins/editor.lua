@@ -11,8 +11,8 @@ local editor = {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.core.nvim-tree") end,
-    event = "VeryLazy",
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
+    keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Toggle NvimTree" } },
     -- BUG: Show file tree in iCloud folder leads delay.
   },
 
@@ -129,6 +129,7 @@ local editor = {
       },
     },
     config = function() require("Fau.core.telescope") end,
+    -- event = "UIEnter",
     cmd = "Telescope",  -- hard to be so lazy since which-key used this.
   },
 
@@ -144,8 +145,7 @@ local editor = {
     -- DESC: Key binding helper.
     "folke/which-key.nvim",
     config = function() require("Fau.core.whichkey") end,
-    event = "VeryLazy",
-    keys = "<LEADER>e", -- NOTE: Ensure open nvim-tree.
+    event = "UIEnter",
   },
 
 
@@ -157,6 +157,10 @@ local editor = {
     "RRethy/vim-illuminate",
     config = function() require("Fau.core.illuminate") end,
     event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { mode = { "n", "i" }, "<A-S-n>", function() require("illuminate").next_reference({ reverse=true, wrap=true }) end, desc = "Prev Reference" },
+      { mode = { "n", "i" }, "<A-n>",   function() require("illuminate").next_reference({ wrap=true }) end,               desc = "Next Reference" },
+    }
   },
 
   {
@@ -256,13 +260,26 @@ local editor = {
   {
     -- DESC: Quickfix list enhancer.
     "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-telescope/telescope.nvim"  -- Not necessary, but for loading telescope keybinds first!
+    },
     config = function() require("Fau.core.trouble") end,
     cmd = "Trouble",
     keys = {
       { "<LEADER>tt", "<CMD>Trouble<CR>", desc = "Show Trouble" },
-      { "gd", "<CMD>Trouble lsp_definitions<CR>", desc = "Go To Definition" },
-      { "gD", "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace Diagnostics" },
+
+      { "gd", "<CMD>Trouble lsp_definitions<CR>",      desc = "Goto Definition" },
+      { "gD", "<CMD>Trouble lsp_declarations<CR>",     desc = "Goto Declaration" },
+      { "gt", "<CMD>Trouble lsp_type_definitions<CR>", desc = "Goto Type Definition" },
+      { "gI", "<CMD>Trouble lsp_implementations<CR>",  desc = "Goto Implementation" },
+      { "gr", "<CMD>Trouble lsp_references<CR>",       desc = "Show References" },
+
+      { "gi", "<CMD>Trouble lsp_incoming_calls<CR>", desc = "Show Incoming Calls" },
+      { "go", "<CMD>Trouble lsp_outgoing_calls<CR>", desc = "Show Outgoing Calls" },
+
+      { "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>", desc = "Workspace Diagnostics" },
+      { "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace Diagnostics" },
     },
   },
 
