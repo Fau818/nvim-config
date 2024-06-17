@@ -44,17 +44,17 @@ Fau_vim.lsp.packages = {
 -- -----------------------------------
 Fau_vim.file.large_file_size = 1024 * 512  -- 512KiB
 Fau_vim.file.disabled_filetypes = {
-  "", "help", "netrw", "tutor", "man",
+  "", "help", "netrw", "tutor", "man", "qf",
   "alpha",
   "aerial", "aerial-nav",
   "crunner",
-  "DiffviewFiles",
+  "diff", "DiffviewFiles",
   "DressingInput", "DressingSelect",
   "glowpreview",
   "lspinfo", "mason",
   "notify", "noice", "netrw",
   "NvimTree",
-  "toggleterm",
+  "terminal", "toggleterm",
   "trouble",
   "TelescopePrompt",
   "packer", "lazy", "yazi",

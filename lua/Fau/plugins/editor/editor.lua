@@ -6,15 +6,6 @@ local editor = {
   -- =============================================
   -- ========== Basic Editor
   -- =============================================
-  {
-    -- DESC: File explorer tree for Neovim.
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function() require("Fau.core.nvim-tree") end,
-    cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
-    keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Toggle NvimTree" } },
-    -- BUG: Show file tree in iCloud folder leads delay.
-  },
 
   {
     -- DESC: A snazzy tabline for showing opened buffers.

@@ -108,13 +108,13 @@ local config = {
   ---@type table<string, trouble.Mode>
   modes = {
     -- FIXME: Default config is not working.
-    lsp_references       = { auto_jump = false },
-    lsp_definitions      = { auto_jump = false },
-    lsp_implementations  = { auto_jump = false },
-    -- lsp_type_definitions = { auto_jump = false },
-    lsp_declarations     = { auto_jump = false },
-    lsp_incoming_calls   = { auto_jump = false },
-    lsp_outgoing_calls   = { auto_jump = false },
+    lsp_definitions      = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_declarations     = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_implementations  = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_type_definitions = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_references       = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_incoming_calls   = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_outgoing_calls   = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
 
     diagnostics_buffer = {
       mode = "diagnostics",  -- inherit from diagnostics mode

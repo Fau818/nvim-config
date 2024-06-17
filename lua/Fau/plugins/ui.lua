@@ -18,15 +18,6 @@ local ui = {
     event = "UIEnter",
   },
 
-  -- ==================== Dashboard ====================
-  {
-    -- DESC: Welcome dashboard for Neovim.
-    "goolord/alpha-nvim",
-    config = function() require("Fau.configs.ui.alpha") end,
-    event = "VimEnter",
-    keys = { { ";", "<CMD>Alpha<CR>", desc = "Toggle Dashboard" } },
-  },
-
   -- ==================== Selector ====================
   {
     -- DESC: UI selector for Neovim.
