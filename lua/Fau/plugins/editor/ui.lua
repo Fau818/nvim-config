@@ -28,6 +28,19 @@ local editor_ui = {
     config = true,
     ft = "NvimTree",
   },
-}
 
+
+  -- ==================== Bufferline and Statusline ====================
+  {
+    -- DESC: A snazzy bufferline for Neovim.
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "echasnovski/mini.bufremove", config = true },
+    },
+    config = function() require("Fau.configs.editor.bufferline") end,
+    event = "UIEnter",
+  },
+
+}
 return editor_ui

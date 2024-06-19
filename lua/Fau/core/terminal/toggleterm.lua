@@ -43,8 +43,7 @@ local config = {
   auto_scroll = true, -- automatically scroll to the bottom on terminal output
 
   float_opts = {
-    ---@type "single"|"double"|"shadow"|"curved"|"rounded"|"none"
-    border = "rounded",
+    border = "rounded",  ---@type "single"|"double"|"shadow"|"curved"|"rounded"|"none"
     winblend = 0,  -- keep this equal 0 if use transparent theme
   },
 

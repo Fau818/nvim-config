@@ -11,7 +11,7 @@ local config = {
 
   -- You can add any custom commands below that will be available with `:Noice command`
   ---@type table<string, NoiceCommand>
-  commands = nil, -- Use default commands.
+  commands = nil,  -- Use default commands.
 
   -- QUES: ... On / Off is a question.
   notify = { enabled = false, view = "notify" },
@@ -28,13 +28,13 @@ local config = {
   throttle = 1000 / 60,
 
   ---@type NoiceConfigViews
-  views = require("Fau.configs.ui.noice.views"), ---@see section on views
+  views = require("Fau.configs.ui.noice.views"),  ---@see section on views
   ---@type NoiceRouteConfig[]
-  routes = require("Fau.configs.ui.noice.routes"), --- @see section on routes
+  routes = require("Fau.configs.ui.noice.routes"),  --- @see section on routes
   ---@type table<string, NoiceFilter>
-  status = nil, --- @see section on statusline components
+  status = nil,  --- @see section on statusline components
   ---@type NoiceFormatOptions
-  format = nil, --- @see section on formatting
+  format = nil,  --- @see section on formatting
 }
 
 

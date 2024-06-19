@@ -122,13 +122,6 @@ local config = {
 
 
     -- -----------------------------------
-    -- -------- BufferLine
-    -- -----------------------------------
-    -- BUG: If set in Bufferline configure, it will not work.
-    highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false }
-
-
-    -- -----------------------------------
     -- -------- ChatGPT
     -- -----------------------------------
     highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold=true }

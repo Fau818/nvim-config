@@ -326,8 +326,7 @@ local config = {
       log_level = vim.log.levels.WARN,
       layout_strategy = "center",
       sorting_strategy = "ascending",
-      ---@type "vsplit new"|"split new"|"tabnew"
-      init_term = "split new",
+      init_term = "split new",  ---@type "vsplit new"|"split new"|"tabnew"
       initial_mode = "normal",
     },
   }

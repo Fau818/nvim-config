@@ -6,8 +6,7 @@ return {
       checkUpdates = false,
       restartAfterCrash = true,  -- Auto restart clangd (up to 4 times) if it crashes.
 
-      ---@type "prompt"|"restart"|"ignore"
-      onConfigChanged = "prompt",
+      onConfigChanged = "prompt",  ---@type "prompt"|"restart"|"ignore"
       semanticHighlighting = true,  -- Enable semantic highlighting in clangd.
       serverCompletionRanking = true,
 

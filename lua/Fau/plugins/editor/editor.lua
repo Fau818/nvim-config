@@ -6,65 +6,11 @@ local editor = {
   -- =============================================
   -- ========== Basic Editor
   -- =============================================
-
-  {
-    -- DESC: A snazzy tabline for showing opened buffers.
-    "akinsho/bufferline.nvim",
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
-      {
-        "echasnovski/mini.bufremove",
-        config = function() require("mini.bufremove").setup() end,
-      },
-    },
-    config = function() require("Fau.core.bufferline") end,
-    event = "VeryLazy",
-    priority = 900,
-    keys = {
-      -- Cycle Buffers
-      { "<A-h>", "<CMD>BufferLineCyclePrev<CR>", desc = "Focus Shift Prev Buffer" },
-      { "<A-l>", "<CMD>BufferLineCycleNext<CR>", desc = "Focus Shift Next Buffer" },
-
-      -- Swap Buffers
-      { "<A-left>",  "<CMD>BufferLineMovePrev<CR>", desc = "Move Buffer Prev" },
-      { "<A-right>", "<CMD>BufferLineMoveNext<CR>", desc = "Move Buffer Next" },
-
-      -- By Meta Key
-      { "<A-1>", "<CMD>BufferLineGoToBuffer 1<CR>",  desc = "which_key_ignore" },
-      { "<A-2>", "<CMD>BufferLineGoToBuffer 2<CR>",  desc = "which_key_ignore" },
-      { "<A-3>", "<CMD>BufferLineGoToBuffer 3<CR>",  desc = "which_key_ignore" },
-      { "<A-4>", "<CMD>BufferLineGoToBuffer 4<CR>",  desc = "which_key_ignore" },
-      { "<A-5>", "<CMD>BufferLineGoToBuffer 5<CR>",  desc = "which_key_ignore" },
-      { "<A-6>", "<CMD>BufferLineGoToBuffer 6<CR>",  desc = "which_key_ignore" },
-      { "<A-7>", "<CMD>BufferLineGoToBuffer 7<CR>",  desc = "which_key_ignore" },
-      { "<A-8>", "<CMD>BufferLineGoToBuffer 8<CR>",  desc = "which_key_ignore" },
-      { "<A-9>", "<CMD>BufferLineGoToBuffer 9<CR>",  desc = "which_key_ignore" },
-      { "<A-0>", "<CMD>BufferLineGoToBuffer -1<CR>", desc = "Buffer Last" },
-
-      -- By Leader Key
-      { "<LEADER>1", "<CMD>BufferLineGoToBuffer 1<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>2", "<CMD>BufferLineGoToBuffer 2<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>3", "<CMD>BufferLineGoToBuffer 3<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>4", "<CMD>BufferLineGoToBuffer 4<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>5", "<CMD>BufferLineGoToBuffer 5<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>6", "<CMD>BufferLineGoToBuffer 6<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>7", "<CMD>BufferLineGoToBuffer 7<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>8", "<CMD>BufferLineGoToBuffer 8<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>9", "<CMD>BufferLineGoToBuffer 9<CR>",  desc = "which_key_ignore" },
-      { "<LEADER>0", "<CMD>BufferLineGoToBuffer -1<CR>", desc = "Buffer Last" },
-
-      -- -------- TEST (from lunarvim)
-      { "<LEADER>bj", "<CMD>BufferLinePick<CR>",      desc = "Buffer Pick" },
-      { "<LEADER>bt", "<CMD>BufferLineTogglePin<CR>", desc = "Buffer Toggle Pin" },
-    }
-  },
-
   {
     -- DESC: A fancy and configurable statusline.
     "nvim-lualine/lualine.nvim",
     config = function() require("Fau.core.lualine") end,
     event = "VeryLazy",
-    priority = 900,
   },
 
   {

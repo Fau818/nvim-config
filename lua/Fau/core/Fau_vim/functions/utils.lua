@@ -1,7 +1,8 @@
 return {
-  buf_remove = function(buf_id)
-    local flag = pcall(MiniBufremove.delete, buf_id)
-    if not flag then vim.api.nvim_command("bd " .. buf_id) end
+  buf_remove = function(bufnr)
+    bufnr = bufnr or vim.api.nvim_get_current_buf()
+    local flag = pcall(MiniBufremove.delete, bufnr)
+    if not flag then vim.api.nvim_command("bd " .. bufnr) end
   end,
 
 

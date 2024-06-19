@@ -71,8 +71,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   desc = "Disable some features in large file.",
   pattern = "*.*",
   callback = function()
-    local buffer = vim.api.nvim_get_current_buf()
-    if not Fau_vim.functions.utils.is_large_file(buffer) then return end
+    if not Fau_vim.functions.utils.is_large_file() then return end
 
     ---Large file!!
     vim.api.nvim_command("syntax off")
@@ -80,14 +79,14 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
     -- Disable fold
     local ufo_ok, ufo = pcall(require, "ufo")
-    if ufo_ok then ufo.detach(buffer) end
+    if ufo_ok then ufo.detach() end
     vim.opt_local.foldenable = false
     vim.opt_local.foldcolumn = "0"
     vim.opt_local.foldmethod = "manual"
 
     -- Disable IndentLine
     local indent_blankline_ok, indent_blankline = pcall(require, "ibl")
-    if indent_blankline_ok then indent_blankline.setup_buffer(buffer, { enabled = false }) end
+    if indent_blankline_ok then indent_blankline.setup_buffer(0, { enabled = false }) end
 
     -- Disable mini
     vim.b.minitrailspace_disable = true

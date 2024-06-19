@@ -51,10 +51,8 @@ local config = {
     focusable = true,
     border = "rounded",
 
-    ---@type "cursor"|"line"|"buffer"
-    scope = "line",
-    ---@type boolean|"if_many"
-    source = true,
+    scope = "line",  ---@type "cursor"|"line"|"buffer"
+    source = true,  ---@type boolean|"if_many"
 
     header = "",
     prefix = "",
