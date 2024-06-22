@@ -1,4 +1,4 @@
--- NOTE: This module is for pretty UI, most of them should be loaded in `VeryLazy` and `UIEnter` events.
+-- DESC: This module is for pretty UI, most of them should be loaded in `VeryLazy` and `UIEnter` events.
 
 ---@type LazySpec[]
 local ui = {

@@ -1,4 +1,4 @@
--- NOTE: This module is for testing new plugins.
+-- DESC: This module is for testing new plugins.
 
 ---@type LazySpec[]
 local test = {

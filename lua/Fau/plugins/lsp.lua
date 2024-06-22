@@ -1,4 +1,4 @@
--- NOTE: This module is for language server protocol, will be loaded in `BufReadPost` and `BufNewFile` events.
+-- DESC: This module is for language server protocol, will be loaded in `BufReadPost` and `BufNewFile` events.
 
 ---@type LazySpec[]
 local lsp = {

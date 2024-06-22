@@ -1,4 +1,4 @@
--- NOTE: misc plugins.
+-- DESC: misc plugins.
 
 ---@type LazySpec[]
 local misc = {

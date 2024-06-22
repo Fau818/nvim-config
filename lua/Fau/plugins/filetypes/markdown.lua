@@ -1,4 +1,4 @@
--- NOTE: This module is for markdown filetype.
+-- DESC: This module is for markdown filetype.
 
 ---@type LazySpec[]
 local markdown = {

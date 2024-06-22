@@ -1,4 +1,4 @@
--- NOTE: This module is for python filetype.
+-- DESC: This module is for python filetype.
 
 ---@type LazySpec[]
 local python = {

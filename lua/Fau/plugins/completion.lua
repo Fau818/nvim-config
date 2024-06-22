@@ -1,4 +1,4 @@
--- NOTE: This module is for code completion, will be loaded in `InsertEnter` event.
+-- DESC: This module is for code completion, will be loaded in `InsertEnter` event.
 
 ---@type LazySpec[]
 local cmp = {

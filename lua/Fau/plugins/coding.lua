@@ -1,4 +1,4 @@
--- NOTE: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` (Rarely loaded in `InsertEnter` and `BufWritePre`) events
+-- DESC: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` (Rarely loaded in `InsertEnter` and `BufWritePre`) events
 
 ---@type LazySpec[]
 local coding = {
