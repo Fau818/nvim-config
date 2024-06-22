@@ -116,10 +116,10 @@ return {
     LookDown = "",
     LookUp   = "",
 
-    DividerLeft      = "",  -- DividerLeft      = "",
-    DividerRight     = "",  -- DividerRight     = "",
-    BoldDividerLeft  = "", -- BoldDividerLeft  = "",
-    BoldDividerRight = "", -- BoldDividerRight = "",
+    DividerLeft      = "",  -- "", ""
+    DividerRight     = "",  -- "", ""
+    BoldDividerLeft  = "", -- ""
+    BoldDividerRight = "", -- ""
 
     ChevronRight = "",
 

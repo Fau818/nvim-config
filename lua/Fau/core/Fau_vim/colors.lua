@@ -13,7 +13,7 @@ return {
   yellow      = "#FFFF00",
   dark_yellow = "#C8C864",
 
-  green       = "#6A9955",
+  green       = "#6ECD82",
   light_green = "#ADEB96", -- #AFEBB9
 
   red         = "#FF5647",
@@ -31,4 +31,10 @@ return {
   bufferline_bg = "#232323",
 
   -- tokyonight = ...,  -- Loaded by the colorscheme module.
+
+  lualine = {
+    yellow = "#ECBE7B",
+    green  = "#98BE65",
+    red    = "#EC5F67",
+  },
 }

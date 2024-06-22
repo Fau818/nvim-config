@@ -7,13 +7,6 @@ local editor = {
   -- ========== Basic Editor
   -- =============================================
   {
-    -- DESC: A fancy and configurable statusline.
-    "nvim-lualine/lualine.nvim",
-    config = function() require("Fau.core.lualine") end,
-    event = "VeryLazy",
-  },
-
-  {
     -- DESC: A nice scrollbar.
     "lewis6991/satellite.nvim",
     config = function() require("Fau.core.satellite") end,

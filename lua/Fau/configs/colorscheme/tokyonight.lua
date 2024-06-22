@@ -86,24 +86,30 @@ local config = {
 
 
     -- -----------------------------------
-    -- -------- Custom
+    -- -------- Editor UI
     -- -----------------------------------
-    highlights["FloatBorder"]   = { fg = Fau_vim.colors.cobalt }
+    highlights["FloatBorder"]  = { fg = Fau_vim.colors.cobalt }
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
 
 
     -- -----------------------------------
     -- -------- Mini Library
     -- -----------------------------------
-    highlights["MiniTrailspace"] = { link = "DiagnosticUnderlineWarn" }
-    highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
+    highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
+    highlights["MiniIndentscopeSymbol"] = { fg   = Fau_vim.colors.yellow }
 
 
     -- -----------------------------------
     -- -------- Lspconfig
     -- -----------------------------------
     highlights["LspInfoBorder"] = { fg = Fau_vim.colors.cobalt }
-    highlights["LspInlayHint"] = { fg = colors.dark3 }
+    highlights["LspInlayHint"]  = { fg = colors.dark3 }
+
+
+    -- -----------------------------------
+    -- -------- Bufferline
+    -- -----------------------------------
+    highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false }
 
 
     -- -----------------------------------
@@ -116,9 +122,9 @@ local config = {
     -- -----------------------------------
     -- -------- Nvim-cmp
     -- -----------------------------------
-    highlights["CmpItemKindCopilot"] = { fg = Fau_vim.colors.light_blue }
+    highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
     highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
-    highlights["CmpItemKindText"] = { fg = Fau_vim.colors.light_blue }
+    highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
 
 
     -- -----------------------------------

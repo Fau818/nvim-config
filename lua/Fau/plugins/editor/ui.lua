@@ -42,5 +42,13 @@ local editor_ui = {
     event = "UIEnter",
   },
 
+  {
+    -- DESC: A fancy and configurable statusline.
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function() require("Fau.configs.editor.lualine") end,
+    event = "UIEnter",
+  },
+
 }
 return editor_ui
