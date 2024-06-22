@@ -1,3 +1,5 @@
+-- DESC: This module is for enhancing editor UI, will be loaded in `UIEnter` event.
+
 ---@type LazySpec[]
 local editor_ui = {
   -- ==================== Dashboard ====================
@@ -48,6 +50,16 @@ local editor_ui = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("Fau.configs.editor.lualine") end,
     event = "UIEnter",
+  },
+
+
+  -- ==================== Scroll Bar ====================
+    {
+    -- DESC: A nice scrollbar.
+    "lewis6991/satellite.nvim",
+    config = function() require("Fau.configs.editor.satellite") end,
+    event = "UIEnter",
+    enabled = vim.fn.has("nvim-0.10") == 1,
   },
 
 }

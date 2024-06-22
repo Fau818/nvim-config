@@ -4,19 +4,6 @@
 ---@type LazySpec[]
 local editor = {
   -- =============================================
-  -- ========== Basic Editor
-  -- =============================================
-  {
-    -- DESC: A nice scrollbar.
-    "lewis6991/satellite.nvim",
-    config = function() require("Fau.core.satellite") end,
-    event = { "BufReadPost", "BufNewFile" },
-    enabled = vim.fn.has("nvim-0.10") == 1,
-  },
-
-
-
-  -- =============================================
   -- ========== Fuzzy Finder (Telescope)
   -- =============================================
   {

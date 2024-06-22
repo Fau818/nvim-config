@@ -47,5 +47,4 @@ local config = {
   extensions = {},
 }
 
-
 lualine.setup(config)
