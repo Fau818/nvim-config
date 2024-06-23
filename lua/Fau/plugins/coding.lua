@@ -82,12 +82,7 @@ local coding = {
     config = function() require("Fau.configs.coding.textcase") end,
     cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
     keys = {
-      {
-        "<LEADER>tc",
-        "<CMD>Telescope textcase initial_mode=normal layout_strategy=center sorting_strategy=ascending<CR>",
-        mode = { "n", "x" },
-        desc = "Conver Text Case",
-      },
+      { "<LEADER>t", mode = { "n", "x" }, desc = "+Text Case" }
     },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },

@@ -26,7 +26,7 @@ local config = {
     HACK      = { icon = Fau_vim.icons.todo.HACK,      color = "warning" },
     WARN      = { icon = Fau_vim.icons.todo.WARN,      color = "warning", alt = { "WARNING" } },
     PERF      = { icon = Fau_vim.icons.todo.PERF,      color = "default", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE      = { icon = Fau_vim.icons.todo.NOTE,      color = "info", alt = { "INFO", "HINT" } },
+    NOTE      = { icon = Fau_vim.icons.todo.NOTE,      color = "note", alt = { "INFO", "HINT" } },
     TEST      = { icon = Fau_vim.icons.todo.TEST,      color = "test", alt = { "TESTING", "PASSED", "FAILED", "TEMP" } },
     Fau       = { icon = Fau_vim.icons.todo.Fau,       color = Fau_vim.colors.cobalt },
     DESC      = { icon = Fau_vim.icons.todo.DESC,      color = "desc" },
@@ -61,7 +61,7 @@ local config = {
 
   colors = {
     todo      = { "#39CC8F" },
-    info      = { "DiagnosticInfo" },
+    note      = { "DiagnosticInfo" },
     warning   = { "DiagnosticWarn", "WarningMsg" },
     error     = { "DiagnosticError", "ErrorMsg", "#DC2626" },
     hint      = { "DiagnosticHint", "#10B981" },
