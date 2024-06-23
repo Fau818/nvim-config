@@ -91,7 +91,7 @@ local cmp = {
     -- DESC: Github copilot source for nvim-cmp.
     "zbirenbaum/copilot-cmp",
     dependencies = {
-      { "hrsh7th/nvim-cmp" },
+      "hrsh7th/nvim-cmp",
       {
         -- DESC: Github copilot supporter.
         -- TEST: Use a fork

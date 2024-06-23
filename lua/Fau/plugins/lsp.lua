@@ -41,7 +41,7 @@ local lsp = {
   {
     -- DESC: a powerful language server manager.
     "jose-elias-alvarez/null-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = "nvim-lua/plenary.nvim",
     config = function() require("Fau.core.null-ls") end,
     event = { "BufReadPost", "BufNewFile" },
   },

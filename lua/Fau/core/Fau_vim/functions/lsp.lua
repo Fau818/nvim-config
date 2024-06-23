@@ -3,7 +3,7 @@
 -- =============================================
 return {
   initialization = function()
-    vim.api.nvim_create_autocmd({ "FileType" }, {
+    vim.api.nvim_create_autocmd("FileType", {
       group = "Fau_vim",
       pattern = "*",
       callback = function() Fau_vim.functions.lsp.set_client_by_ft() end,

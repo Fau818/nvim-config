@@ -80,7 +80,7 @@ return {
   datetime = "datetime",
 
   searchcount = { "searchcount", maxcount = 999, timeout = 500 },
-  selectioncount = { "selectioncount" },
+  selectioncount = "selectioncount",
 
 
   -- -----------------------------------

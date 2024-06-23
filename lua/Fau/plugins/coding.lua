@@ -37,7 +37,7 @@ local coding = {
   {
     -- DESC: Align text interactively.
     "echasnovski/mini.align",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.configs.coding.mini-align") end,
     keys = { { "<LEADER>a", mode = "x" }, { "<LEADER>A", mode = "x" } },
     cond = true,  -- TESTING: Not TESTED in VSCode.
@@ -59,7 +59,7 @@ local coding = {
   {
     -- DESC: Splitting and joining block of code.
     "Wansmer/treesj",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.configs.coding.treesj") end,
     cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
     keys = { { "sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Split and Join" } },
@@ -68,7 +68,7 @@ local coding = {
   {
     -- DESC: Running code action on nodes(code).
     "ckolkey/ts-node-action",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     config = true,
     cmd = { "NodeAction", "NodeActionDebug" },
     keys = { { "<LEADER>n", "<CMD>NodeAction<CR>", mode = "n", desc = "Node Action" } },
@@ -78,7 +78,7 @@ local coding = {
   {
     -- DESC: Convert text case in Neovim.
     "johmsalas/text-case.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    dependencies = "nvim-telescope/telescope.nvim",
     config = function() require("Fau.configs.coding.textcase") end,
     cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
     keys = {
@@ -114,7 +114,7 @@ local coding = {
   {
     -- DESC: Multi-cursor support in Neovim.
     "smoka7/multicursors.nvim",
-    dependencies = { "smoka7/hydra.nvim" },
+    dependencies = "smoka7/hydra.nvim",
     cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
       {

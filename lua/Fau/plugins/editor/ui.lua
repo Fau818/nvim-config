@@ -16,7 +16,7 @@ local editor_ui = {
   {
     -- DESC: File explorer tree for Neovim.
     "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function() require("Fau.configs.editor.nvim-tree") end,
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
     keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Toggle NvimTree" } },
@@ -37,7 +37,7 @@ local editor_ui = {
     -- DESC: A snazzy bufferline for Neovim.
     "akinsho/bufferline.nvim",
     dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
+      "nvim-tree/nvim-web-devicons",
       { "echasnovski/mini.bufremove", config = true },
     },
     config = function() require("Fau.configs.editor.bufferline") end,
@@ -47,7 +47,7 @@ local editor_ui = {
   {
     -- DESC: A fancy and configurable statusline.
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function() require("Fau.configs.editor.lualine") end,
     event = "UIEnter",
   },

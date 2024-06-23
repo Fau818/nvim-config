@@ -39,7 +39,7 @@ local ui = {
     -- DESC: Colorful window separator.
     "nvim-zh/colorful-winsep.nvim",
     config = function() require("Fau.configs.ui.winsep") end,
-    event = { "WinLeave" },
+    event = "WinLeave",
   },
 
   {
@@ -47,7 +47,7 @@ local ui = {
     "anuvyklack/windows.nvim",
     dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
     config = function() require("Fau.configs.ui.windows") end,
-    event = { "WinNew" },
+    event = "WinNew",
     keys = {
       { "<C-w>z", "<CMD>WindowsMaximize<CR>",             desc = "Maximize Window" },
       { "<C-w>_", "<CMD>WindowsMaximizeVertically<CR>",   desc = "Maximize Window Vertically" },
