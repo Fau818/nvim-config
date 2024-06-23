@@ -2,9 +2,7 @@
 
 ---@type LazySpec[]
 local coding = {
-  -- -----------------------------------
-  -- -------- Text Operations
-  -- -----------------------------------
+  -- ==================== Text Operation ====================
   {
     -- DESC: Quickly add, modify, and remove surround.
     "kylechui/nvim-surround",
@@ -95,9 +93,7 @@ local coding = {
   },
 
 
-  -- -----------------------------------
-  -- -------- Edit Enhancements
-  -- -----------------------------------
+  -- ==================== Code Enhancement ====================
   {
     -- DESC: Press <TAB> to jump out of brakets.
     "abecodes/tabout.nvim",

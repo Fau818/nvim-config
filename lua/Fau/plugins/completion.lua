@@ -2,12 +2,7 @@
 
 ---@type LazySpec[]
 local cmp = {
-  -- =============================================
-  -- ========== Completion
-  -- =============================================
-  -- -----------------------------------
-  -- -------- Completion Core
-  -- -----------------------------------
+  -- ==================== Completion Core ====================
   {
     -- DESC: Neovim code completion core plugin.
     -- BUG: If open a large file, a huge dalay occur in the first time entering the insert mode.
@@ -31,41 +26,39 @@ local cmp = {
   },
 
 
-  -- -----------------------------------
-  -- -------- Completion Sources
-  -- -----------------------------------
+  -- ==================== Completion Sources ====================
   {
     -- DESC: Language server protocol completion source for nvim-cmp.
     "hrsh7th/cmp-nvim-lsp",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = "LspAttach",
   },
 
   {
     -- DESC: Buffer completion source for nvim-cmp.
     "hrsh7th/cmp-buffer",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = { "CmdlineEnter", "InsertEnter" },
   },
 
   {
     -- DESC: Path completion source for nvim-cmp.
     "hrsh7th/cmp-path",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = { "CmdlineEnter", "InsertEnter" },
   },
 
   {
     -- DESC: Command line completion source for nvim-cmp.
     "hrsh7th/cmp-cmdline",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = "CmdlineEnter",
   },
 
   {
     -- DESC: Calculation source for nvim-cmp.
     "hrsh7th/cmp-calc",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = { "CmdlineEnter", "InsertEnter" },
   },
 
@@ -82,20 +75,18 @@ local cmp = {
   {
     -- DESC: Conventional gitcommits type source for nvim-cmp.
     "davidsierradz/cmp-conventionalcommits",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     ft = "gitcommit",
   },
 
   {
     "ray-x/cmp-treesitter",
-    dependencies = { "hrsh7th/nvim-cmp" },
+    dependencies = "hrsh7th/nvim-cmp",
     event = "InsertEnter",
   },
 
 
-  -- -----------------------------------
-  -- -------- Copilot
-  -- -----------------------------------
+  -- ==================== Copilot ====================
   {
     -- DESC: Github copilot source for nvim-cmp.
     "zbirenbaum/copilot-cmp",
@@ -106,7 +97,7 @@ local cmp = {
         -- TEST: Use a fork
         "Kelo007/copilot.lua",
         config = function() require("Fau.configs.completion.copilot") end,
-        cmd = { "Copilot" },
+        cmd = "Copilot",
       }
     },
     config = function() require("copilot_cmp").setup() end,
@@ -116,13 +107,11 @@ local cmp = {
   },
 
 
-  -- -----------------------------------
-  -- -------- MISC
-  -- -----------------------------------
+  -- ==================== MISC ====================
   {
     -- DESC: Smartly add `end` in lua, ruby, and etc.
     "RRethy/nvim-treesitter-endwise",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     event = "InsertEnter",
   },
 
