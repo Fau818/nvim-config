@@ -3,21 +3,13 @@ local views = {
   -- -----------------------------------
   -- -------- Preset Modification
   -- -----------------------------------
-  notify = {
-    replace = true,
-    merge = true,
-    render = "minimal",
-  },
+  notify = { replace = true, merge = true, render = "minimal" },
 
-  hover = {
-    size = { max_width = 100 },
-    border = { padding = { 0, 1 }, },
-  },
+  hover = { size = { max_width = 100 }, border = { padding = { 0, 1 } } },
 
   cmdline_popup = { size = { width = 60 } },
 
-  -- TEST: Maybe not working.
-  mini = { replace = true, merge = true },
+  mini = { timeout = 500, replace = true, merge = true },
 
   -- -----------------------------------
   -- -------- Custom
