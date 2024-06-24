@@ -4,55 +4,6 @@
 ---@type LazySpec[]
 local editor = {
   -- =============================================
-  -- ========== Fuzzy Finder (Telescope)
-  -- =============================================
-  {
-    -- DESC: Fuzzy finder.
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-
-      -- -----------------------------------
-      -- -------- Extensions
-      -- -----------------------------------
-      -- TODO: The telescope is necessary for the following extensions. (The current situation is the opposite)
-      {
-        -- DESC: Explore projects with telescope.
-        -- TEMP: Use a fork version to avoid deprecated warning.
-        "LennyPhoenix/project.nvim",
-        config = function() require("Fau.core.project") end,
-      },
-      {
-        -- DESC: `fzf` sorter for telescope.
-        "nvim-telescope/telescope-fzf-native.nvim",  -- for speeding up the fuzzy find
-        build = "make",
-        -- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      },
-      {
-        -- DESC: LuaSnip searcher for telescope.
-        "benfowler/telescope-luasnip.nvim",
-        dependencies = { "L3MON4D3/LuaSnip" },
-      },
-      {
-        -- DESC: Switch conda environments by telescope.
-        "IllustratedMan-code/telescope-conda.nvim",
-        enabled = vim.fn.executable("conda") == 1,
-      },
-      {
-        -- DESC: Docker manager in telescope.
-        "lpoto/telescope-docker.nvim",
-        enabled = vim.fn.executable("docker") == 1,
-      },
-    },
-    config = function() require("Fau.core.telescope") end,
-    -- event = "UIEnter",
-    cmd = "Telescope",  -- hard to be so lazy since which-key used this.
-  },
-
-
-
-  -- =============================================
   -- ========== Enhancement
   -- =============================================
   -- -----------------------------------
@@ -104,7 +55,7 @@ local editor = {
   {
     -- DESC: Highlight the TODO comment-liked things.
     "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = "nvim-lua/plenary.nvim",
     config = function() require("Fau.core.todo-comments") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
@@ -227,7 +178,7 @@ local editor = {
   {
     -- DESC: Support Yazi file browser in Neovim.
     "mikavilpas/yazi.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = "nvim-lua/plenary.nvim",
     opts = { floating_window_scaling_factor = 1, yazi_floating_window_border = "none" },
     keys = {
       { "<leader>gy", function() require("yazi").yazi() end, desc = "Open Yazi" },
@@ -256,7 +207,7 @@ local editor = {
   {
     -- DESC: dim inactive portions of the code to focus on coding.
     "folke/twilight.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.core.twilight") end,
     cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
     keys = { { "<LEADER><LEADER>t", "<CMD>Twilight<CR>", desc = "Toggle Twilight" } }

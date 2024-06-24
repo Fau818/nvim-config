@@ -81,7 +81,7 @@ local config = {
     title_pos = "center",  ---@type "center" | "left" | "right"
     -- Show pills on top of the Lazy window
     pills = true,  ---@type boolean
-    icons = nil,  -- NOTE: Use defaults
+    icons = nil,  -- Use defaults
     -- leave nil, to automatically select a browser depending on your OS.
     -- If you want to use a specific browser, you can define it here
     browser = nil,  ---@type string?

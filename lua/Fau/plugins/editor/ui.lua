@@ -62,5 +62,43 @@ local editor_ui = {
     enabled = vim.fn.has("nvim-0.10") == 1,
   },
 
+
+  -- ==================== Fuzzy Finder ====================
+  {
+    -- DESC: Find, Filter, Preview, Pick.
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+
+      -- ---------- Extensions
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+      -- TODO: The telescope is necessary for the following extensions. (The current situation is the opposite)
+      {
+        -- DESC: Explore projects with telescope.
+        -- TEMP: Use a fork version to avoid deprecated warning.
+        "LennyPhoenix/project.nvim",
+        config = function() require("Fau.core.project") end,
+      },
+      {
+        -- DESC: LuaSnip searcher for telescope.
+        "benfowler/telescope-luasnip.nvim",
+        dependencies = { "L3MON4D3/LuaSnip" },
+      },
+      {
+        -- DESC: Switch conda environments by telescope.
+        "IllustratedMan-code/telescope-conda.nvim",
+        enabled = vim.fn.executable("conda") == 1,
+      },
+    },
+    config = function() require("Fau.configs.editor.telescope") end,
+    event = "UIEnter",
+    cmd = "Telescope",
+    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
+  },
+
+
 }
 return editor_ui

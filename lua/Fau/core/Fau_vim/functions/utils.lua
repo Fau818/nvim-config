@@ -42,10 +42,10 @@ return {
 
 
   set_colorscheme = function(colorscheme)
-    --- Configuration
+    -- Configuration
     colorscheme = colorscheme or Fau_vim.colorscheme
     pcall(require, "Fau.configs.colorscheme." .. colorscheme)
-    --- Loading
+    -- Loading
     local status_ok, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
     if not status_ok then Fau_vim.notify("colorscheme [" .. colorscheme .. "] not found!", "error") return end
   end,

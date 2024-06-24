@@ -35,8 +35,8 @@ return {
     ["<TAB>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then cmp.confirm({ select=true })
-        elseif luasnip.jumpable(1) then luasnip.jump(1)
         elseif copilot_is_visable() then copilot_accept()
+        elseif luasnip.jumpable(1) then luasnip.jump(1)
         -- BUG: `fallback` function sometimes does not work.
         else jumpout()
         -- else fallback()

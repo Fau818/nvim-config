@@ -33,9 +33,9 @@ Fau_vim.lsp.packages = {
   json   = { "json-lsp" },
   sh     = { "bash-language-server" },
   yaml   = { "yaml-language-server" },
-  docker = { "dockerfile-language-server" },
   go     = { "gopls" },
   html   = { "html-lsp" },
+  docker = { "dockerfile-language-server" },
   dockerfile = { "dockerfile-language-server" },
 }
 
@@ -61,4 +61,5 @@ Fau_vim.file.excluded_filetypes = {
   "packer", "lazy", "yazi",
 }
 Fau_vim.file.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
-Fau_vim.file.ignored_files = { "^.DS_Store$", "^.git$", "^__pycache__$", "^.vscode$", "^.idea$", "^.mypy_cache$" }
+Fau_vim.file.ignored_files = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$" }
+Fau_vim.file.ignored_pattern = { ".git/", ".vscode/", ".idea/", "__pycache__/", ".DS_Store" }

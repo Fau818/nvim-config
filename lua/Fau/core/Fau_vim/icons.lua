@@ -1,8 +1,5 @@
--- =============================================
--- ========== Fau_vim.icons
--- =============================================
 return {
-  ---@type table<string, string>
+  -- ==================== LSP ====================
   kind = {
     Array         = "", -- "󰅨"
     Boolean       = "󰨙", -- ""
@@ -42,6 +39,20 @@ return {
   },
 
 
+  -- ==================== Diagnostics ====================
+  diagnostics = {
+    BoldError   = "", Error   = "",
+    BoldWarning = "", Warning = "",
+    BoldInfo    = "", Info    = "",
+    BoldHint    = "󰌵", Hint    = "󰌶",
+    -- BoldQuestion = "", Question = "",  -- unused
+    -- Other = "",
+    Debug = "",
+    Trace = "✎",
+  },
+
+
+  -- ==================== Git ====================
   git = {
     LineAdded    = "",
     LineModified = "",
@@ -61,7 +72,7 @@ return {
   },
 
 
-  gitsigns = { -- for gitsigns
+  gitsigns = {
     -- LineLeft     = "│",
     BoldLineLeft = "▎",
     Triangle     = "",
@@ -69,25 +80,27 @@ return {
   },
 
 
-  diagnostics = {
-    BoldError   = "", Error   = "",
-    BoldWarning = "", Warning = "",
-    BoldInfo    = "", Info    = "",
-    BoldHint    = "󰌵", Hint    = "󰌶",
-    -- BoldQuestion = "", Question = "",  -- unused
-    -- Other = "",
-    Debug = "",
-    Trace = "✎",
+  -- ==================== DAP ====================
+  dap = {
+    BreakPoint   = "",
+    Bug          = "",
+    Stacks       = "",
+    Scopes       = "󰙔",
+    Watches      = "󰂥",
+    DebugConsole = "",
   },
 
 
+  -- ==================== UI ====================
   ui = {
+    -- ---------- File, Folders, and Dashboard
     FolderClosed = "",
     FolderOpened = "",
     EmptyFolderClosed = "",
     EmptyFolderOpened = "",
     SymlinkFolder = "",
-    File  = "",
+
+    File     = "",
     Symlink  = "",
     FindFile = "󰮗",
     Project  = "",
@@ -97,17 +110,43 @@ return {
     Restore  = "󰦛",
     Exit     = "󰿅",
 
+    -- ---------- Fold
     FoldClosed = "",
     FoldOpened = "",
 
-    Rename    = "",
-    -- Parameter = "",
-    Signature = "󰷾",
+    -- ---------- Indent
+    IndentLine = "▏", -- "▎"
+    Tab        = "󰌒",
+    Space      = "⎵",
+    EndLine    = "",
 
-    Tab   = "󰌒",
-    Space = "⎵",
+    -- ---------- Bufferline
+    Modified  = "●",
+    Indicator = "▎",
+    Close     = "",
+    CloseBold = "",
 
-    -- noice, no space is better
+    ExpandLeft  = "",
+    ExpandRight = "",
+
+    -- ---------- Lualine
+    DividerLeft      = "",  -- "", ""
+    DividerRight     = "",  -- "", ""
+    BoldDividerLeft  = "", -- ""
+    BoldDividerRight = "", -- ""
+
+    Tree = "",
+
+    -- ---------- Breadcrumb
+    Bread = "󰳯", BoldBread = "󰳮",
+    Separator = "",
+    Ellipsis  = "…",
+
+    -- ---------- Treesitter-context
+    MethodSeparator      = "─",
+    MethodSeparatorHeavy = "━",
+
+    -- ---------- Noice
     Input    = "",
     Help     = "",
     Search   = "",
@@ -116,51 +155,22 @@ return {
     LookDown = "",
     LookUp   = "",
 
-    DividerLeft      = "",  -- "", ""
-    DividerRight     = "",  -- "", ""
-    BoldDividerLeft  = "", -- ""
-    BoldDividerRight = "", -- ""
+    -- ---------- Telescope
+    telescope       = "",
+    selection_caret = "",
+    multiple        = "",
 
-    ChevronRight = "",
-
-    Tree = "",
-
-    BoldArrowRight = "",
-
-    BreakPoint   = "",
-    Bug          = "",
-    Stacks       = "",
-    Scopes       = "󰙔",
-    Watches      = "󰂥",
-    DebugConsole = "",
-
-    IndentLine = "▏", -- "▎"
-    Indicator  = "▎",
-
-    MethodSeparator = "─",
-    MethodSeparatorHeavy = "━",
-
-    Bread = "󰳯", BoldBread = "󰳮",
-    Separator = "",
-    Ellipsis  = "…",
-
-    Modified  = "●",
-    Close     = "",
-    CloseBold = "",
-    Bookmark  = "󰆤",  -- ""
-
-    ExpandLeft  = "",
-    ExpandRight = "",
-
-    Done = "",
-    Undone = "",
-
-    EndLine = "",
-
+    -- ---------- ChatGPT
     Prompt = "",
+
+    -- Bookmark  = "󰆤",  -- ""
+    -- Done   = "",
+    -- Undone = "",
+    -- BoldArrowRight = "",
   },
 
 
+  -- ==================== TODO Comments ====================
   todo = {
     TODO   = " ",
     HACK   = " ",
@@ -179,18 +189,15 @@ return {
   },
 
 
+  -- ==================== Vim Mode ====================
   mode = {
     n = "",
     i = "",
-
     v = "󰈈",
     s = "󰈈",
-
     t = "",
     c = "",
-
     r = "",
-
     vim = "",
   },
 

@@ -61,8 +61,8 @@ return {
     ---@type cmp.SourceConfig[]
     sources = {
       { name = "luasnip" },
-      { name = "copilot" },
       { name = "nvim_lsp" },
+      { name = "copilot" },
 
       { name = "conventionalcommits" },
 

@@ -19,10 +19,10 @@ local config = {
 
   highlight = true,
 
-  separator = " " .. Fau_vim.icons.ui.ChevronRight .. " ",
+  separator = " " .. Fau_vim.icons.ui.Separator .. " ",
 
   depth_limit = 0,
-  depth_limit_indicator = "..",
+  depth_limit_indicator = Fau_vim.icons.ui.Ellipsis,
 
   safe_output = true,
   click = true,

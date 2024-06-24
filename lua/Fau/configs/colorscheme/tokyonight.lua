@@ -35,16 +35,16 @@ local config = {
   cache = true,
   plugin = nil,  -- Use default.
 
-  --- You can override specific color groups to use other groups or a hex color
-  --- function will be called with a ColorScheme table
+  ---You can override specific color groups to use other groups or a hex color
+  ---function will be called with a ColorScheme table
   ---@param colors ColorScheme
   on_colors = function(colors)
     colors.comment        = Fau_vim.colors.gray
     colors.terminal_black = Fau_vim.colors.gray
   end,
 
-  --- You can override specific highlights to use other groups or a hex color
-  --- function will be called with a Highlights and ColorScheme table
+  ---You can override specific highlights to use other groups or a hex color
+  ---function will be called with a Highlights and ColorScheme table
   ---@param highlights tokyonight.Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
@@ -118,10 +118,19 @@ local config = {
     highlights["PaintSeparator"] = { fg = Fau_vim.colors.tokyonight.blue5 }
 
     -- ---------- Telescope
-    highlights["TelescopeBorder"]       = { fg = Fau_vim.colors.cobalt }
-    highlights["TelescopePromptTitle"]  = { fg = Fau_vim.colors.cobalt }
-    highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
-    highlights["TelescopePromptBorder"] = { fg = Fau_vim.colors.cobalt }
+    highlights["TelescopeBorder"]         = { fg = Fau_vim.colors.cobalt }
+    highlights["TelescopePromptTitle"]    = { fg = Fau_vim.colors.cobalt }
+    highlights["TelescopePromptPrefix"]   = { fg = Fau_vim.colors.purple_blue }
+    highlights["TelescopePromptBorder"]   = { fg = Fau_vim.colors.cobalt }
+    highlights["TelescopeSelectionCaret"] = { fg = Fau_vim.colors.cobalt, bg = "#2D3F76" }
+
+    -- ---------- Nvim-cmp
+    highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
+    highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
+    highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
+
+    -- ---------- NvimTree
+    highlights["NvimTreeSpecialFile"] = { fg = Fau_vim.colors.tokyonight.purple }
   end,
 }
 

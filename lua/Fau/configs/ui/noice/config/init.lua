@@ -32,11 +32,11 @@ local config = {
   ---@type NoiceConfigViews
   views = require("Fau.configs.ui.noice.config.views"),  ---@see section on views
   ---@type NoiceRouteConfig[]
-  routes = require("Fau.configs.ui.noice.config.routes"),  --- @see section on routes
+  routes = require("Fau.configs.ui.noice.config.routes"),  ---@see section on routes
   ---@type table<string, NoiceFilter>
-  status = nil,  --- @see section on statusline components
+  status = nil,  ---@see section on statusline components
   ---@type NoiceFormatOptions
-  format = nil,  --- @see section on formatting
+  format = nil,  ---@see section on formatting
 }
 
 noice.setup(config)

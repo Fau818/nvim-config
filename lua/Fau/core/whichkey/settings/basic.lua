@@ -16,6 +16,7 @@ return {
     ["<A-q>"]     = { Fau_vim.functions.utils.buf_remove, "Close Current Buffer" },
 
     -- ==================== Fau_vim Custom ====================
+    -- TODO: Refactor this. (or move to other place)
     -- ---------- Edit Configuration and Snippet
     ["<LEADER>E"] = {
       name = "+Edit",

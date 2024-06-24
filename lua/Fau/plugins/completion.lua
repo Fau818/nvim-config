@@ -115,7 +115,7 @@ local cmp = {
     -- DESC: Smartly add `end` in lua, ruby, and etc.
     "RRethy/nvim-treesitter-endwise",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    event = "InsertEnter",
+    ft = { "Ruby", "Lua", "Vimscript", "Bash", "Elixir", "Fish", "Julia" }
   },
 
   {

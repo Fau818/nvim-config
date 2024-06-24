@@ -32,7 +32,6 @@ end
 -- ========== plugin settings
 -- =============================================
 load("basic")
-load("telescope")
 load("lsp")
 load("git")
 load("terminal")
