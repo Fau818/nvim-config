@@ -109,6 +109,15 @@ local cmp = {
 
   -- ==================== MISC ====================
   {
+    -- DESC: Auto convert normal string to template string.
+    -- Fau: Used to automatically convert string to f-string in python.
+    "axelvc/template-string.nvim",
+    config = function() require("Fau.configs.completion.template-string") end,
+    ft =  { "html", "typescript", "javascript", "typescriptreact", "javascriptreact", "python" },
+    cond = true,  -- TESTING: Not TESTED in VSCode.
+  },
+
+  {
     -- DESC: Smartly add `end` in lua, ruby, and etc.
     "RRethy/nvim-treesitter-endwise",
     dependencies = "nvim-treesitter/nvim-treesitter",

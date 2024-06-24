@@ -87,6 +87,8 @@ keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Open File Explore"))
 keymap("n", "<LEADER>i", "<CMD>Inspect<CR>",     opts("Show Highlight Groups under Cursor"))
 keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Show the Parsed Syntax Tree"))
 
+-- Disable Built-in Completion
+keymap("i", "<C-n>", "<NOP>", opts())
 
 
 -- =============================================

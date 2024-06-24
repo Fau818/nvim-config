@@ -98,15 +98,6 @@ local coding = {
   },
 
   {
-    -- DESC: Auto convert normal string to template string.
-    -- Fau: Used to automatically convert string to f-string in python.
-    "axelvc/template-string.nvim",
-    config = function() require("Fau.configs.coding.template-string") end,
-    ft =  { "html", "typescript", "javascript", "typescriptreact", "javascriptreact", "python" },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
-  },
-
-  {
     -- DESC: Multi-cursor support in Neovim.
     "smoka7/multicursors.nvim",
     dependencies = "smoka7/hydra.nvim",
