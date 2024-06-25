@@ -38,34 +38,39 @@ local config = {
   },
 
   -- leave nil when passing the spec as the first argument to setup()
-  spec = "Fau.plugins",
+  spec = "Fau.plugins",  ---@type LazySpec
+  local_spec = true,
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",  -- lockfile generated after running update.
   ---@type number limit the maximum amount of concurrent tasks
   concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or 50,
 
   git = {
-    -- defaults for the `Lazy log` command
-    -- log = { "-10" }, -- show the last 10 commits
     log = { "--since=3 days ago" },  -- show commits from the last 3 days
     timeout = 120,                   -- kill processes that take more than 2 minutes
     url_format = "https://github.com/%s.git",
     filter = true,
   },
 
+  pkg = {
+    enabled = false,
+    cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
+    version = true,
+    sources = { "lazy", "rockspec", "packspec" }
+  },
+
+  rocks = {
+    root = vim.fn.stdpath("data") .. "/lazy-rocks",
+    server = "https://nvim-neorocks.github.io/rocks-binaries/",
+  },
+
   dev = {
-    -- directory where you store your local plugin projects
     path = "~/projects",
     ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
     patterns = {},     -- For example {"folke"}
     fallback = false,  -- Fallback to git when local plugin doesn't exist
   },
 
-  install = {
-    -- install missing plugins on startup. This doesn't increase startup time.
-    missing = true,
-    -- try to load one of these colorschemes when starting an installation during startup
-    colorscheme = { "tokyonight", "habamax" },
-  },
+  install = { missing = true, colorscheme = { "tokyonight", "habamax" } },
 
   ui = {
     -- a number <1 is a percentage., >1 is a fixed size
@@ -89,18 +94,9 @@ local config = {
     },
   },
 
-  diff = {
-    -- diff command <d> can be one of:
-    -- * browser: opens the github compare view. Note that this is always mapped to <K> as well,
-    --   so you can have a different command for diff <d>
-    -- * git: will run git diff and open a buffer with filetype git
-    -- * terminal_git: will open a pseudo terminal with git diff
-    -- * diffview.nvim: will open Diffview to show the diff
-    cmd = Fau_vim.os_name == "Darwin" and "browser" or "diffview.nvim",
-  },
+  diff = { cmd = Fau_vim.os_name == "Darwin" and "browser" or "diffview.nvim" },
 
   checker = {
-    -- automatically check for plugin updates
     enabled = true,
     concurrency = nil,  ---@type number? set to 1 to check for updates very slowly
     notify = true,     -- get a notification when new updates are found
@@ -108,11 +104,7 @@ local config = {
     check_pinned = false,
   },
 
-  change_detection = {
-    -- automatically check for config file changes and reload the ui
-    enabled = true,
-    notify = true,  -- get a notification when changes are found
-  },
+  change_detection = { enabled = true, notify = true },
 
   performance = {
     cache = { enabled = true },
@@ -138,7 +130,6 @@ local config = {
   },
 
   state = vim.fn.stdpath("state") .. "/lazy/state.json",  -- state info for checker and other things
-  build = { warn_on_override = true },
 
   -- Enable profiling of lazy.nvim. This will add some overhead,
   -- so only enable this when you are debugging lazy.nvim
