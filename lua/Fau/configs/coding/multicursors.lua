@@ -18,7 +18,10 @@ local config = {
   -- normal_keys = normal_keys,
   -- insert_keys = insert_keys,
   -- extend_keys = extend_keys,
-  hint_config = { border = "double", position = "bottom" },
+  hint_config = {
+    float_opts = { border = "double" },
+    position = "bottom",
+  },
   generate_hints = {
     normal = true,
     insert = true,
