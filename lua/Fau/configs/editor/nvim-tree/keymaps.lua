@@ -14,7 +14,7 @@ local api = require("nvim-tree.api")
 ---@return "directory"|"file"|"binary"|"error"
 local function __get_node_type(node)
   -- CASE 1: Directory
-  if node.type == "directory" then return "directory" end
+  if node.type == "directory" or node.name == ".." then return "directory" end
   if node.fs_stat == nil then return "error" end
   ---@diagnostic disable-next-line: undefined-field
   if node.fs_stat.type == "directory" then return "directory" end  -- If the node.type is `link`, use fs_stat.type.
@@ -44,10 +44,11 @@ local function __hyper_open(node, default_method)
     api.node.run.system(node)
     Fau_vim.notify("A binary file, use system open to edit it. (Use `o` to force edit it in neovim.)", vim.log.levels.INFO, { render="minimal" })
   elseif file_type == "directory" then
-    local file_number = #node.nodes
+    local file_number = node.nodes and #node.nodes or -1  -- NOTE: if the name of node is `..`, the `nodes` field will be nil.
     if file_number >= 100 then Fau_vim.notify("A large folder. (Use `o` to force expand it.)", vim.log.levels.WARN, { render="minimal" })
     else default_method(node) end
   elseif file_type == "file" then default_method(node)
+  elseif file_type == "error" then Fau_vim.notify("Get node type error!", vim.log.levels.ERROR)
   else Fau_vim.notify("Unknown node type!", vim.log.levels.ERROR)
   end
 end
