@@ -94,6 +94,8 @@ local config = {
     },
   },
 
+  headless = { process = true, log = true, task = true, colors = true },
+
   diff = { cmd = Fau_vim.os_name == "Darwin" and "browser" or "diffview.nvim" },
 
   checker = {
