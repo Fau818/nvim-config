@@ -183,21 +183,8 @@ local editor = {
     },
     config = function() require("Fau.core.trouble") end,
     cmd = "Trouble",
-    keys = {
-      { "<LEADER>tt", "<CMD>Trouble<CR>", desc = "Show Trouble" },
-
-      { "gd", "<CMD>Trouble lsp_definitions<CR>",      desc = "Goto Definition" },
-      { "gD", "<CMD>Trouble lsp_declarations<CR>",     desc = "Goto Declaration" },
-      { "gt", "<CMD>Trouble lsp_type_definitions<CR>", desc = "Goto Type Definition" },
-      { "gI", "<CMD>Trouble lsp_implementations<CR>",  desc = "Goto Implementation" },
-      { "gr", "<CMD>Trouble lsp_references<CR>",       desc = "Show References" },
-
-      { "gi", "<CMD>Trouble lsp_incoming_calls<CR>", desc = "Show Incoming Calls" },
-      { "go", "<CMD>Trouble lsp_outgoing_calls<CR>", desc = "Show Outgoing Calls" },
-
-      { "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>", desc = "Workspace Diagnostics" },
-      { "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace Diagnostics" },
-    },
+    keys = { "gd", "gD", "gt", "gI", "gr", "gi", "go", "<LEADER>ld", "<LEADER>lD" },
+    tag = Fau_vim.plugin.trouble.tag,
   },
 
   {

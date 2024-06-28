@@ -132,3 +132,24 @@ local config = {
 }
 
 trouble.setup(config)
+
+
+
+-- =============================================
+-- ========== Keymaps
+-- =============================================
+local keymap = vim.keymap.set
+local function opts(desc) return { silent = true, desc = desc } end
+
+keymap("n", "<LEADER>tt", "<CMD>Trouble<CR>",                           opts("Show Trouble"))
+keymap("n", "gd",         "<CMD>Trouble lsp_definitions<CR>",           opts("Goto Definition"))
+keymap("n", "gD",         "<CMD>Trouble lsp_declarations<CR>",          opts("Goto Declaration"))
+keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions<CR>",      opts("Goto Type Definition"))
+keymap("n", "gI",         "<CMD>Trouble lsp_implementations<CR>",       opts("Goto Implementation"))
+keymap("n", "gr",         "<CMD>Trouble lsp_references<CR>",            opts("Show References"))
+
+keymap("n", "gi",         "<CMD>Trouble lsp_incoming_calls<CR>",        opts("Show Incoming Calls"))
+keymap("n", "go",         "<CMD>Trouble lsp_outgoing_calls<CR>",        opts("Show Outgoing Calls"))
+
+keymap("n", "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>", opts("Buffer Diagnostics"))
+keymap("n", "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>",        opts("Workspace Diagnostics"))
