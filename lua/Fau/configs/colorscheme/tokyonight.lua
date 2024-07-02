@@ -2,7 +2,7 @@
 -- ========== Plugin Configurations
 -- =============================================
 local tokyonight = require("tokyonight")
-Fau_vim.colors.tokyonight = require("tokyonight.colors").moon()
+Fau_vim.colors.tokyonight = require("tokyonight.colors.moon")
 
 
 local function _comment_style()
@@ -15,24 +15,27 @@ end
 
 
 local config = {
-  style       = "moon",  -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  light_style = "moon",  -- The theme is used when the background is set to light
-  transparent = true,  -- Enable this to disable setting the background color
-  terminal_colors = true,  -- Configure the colors used when opening a `:terminal` in Neovim
+  style           = "moon",  ---@type "moon" | "storm" | "night"
+  light_style     = "day",
+  transparent     = true,
+  terminal_colors = true,
+
   styles = {
     comments  = _comment_style(),
     keywords  = { italic = true },
     functions = {},
     variables = {},
-    -- Background styles. Can be "dark", "transparent" or "normal"
-    sidebars = "transparent", -- style for sidebars
-    floats   = "transparent", -- style for floating windows
+    sidebars  = "transparent",  ---@type "dark" | "transparent" | "normal"
+    floats    = "transparent",  ---@type "dark" | "transparent" | "normal"
   },
-  sidebars = { "qf", "help" },  -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+
   day_brightness = 0.3,  -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-  hide_inactive_statusline = false,  -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-  dim_inactive = true,  -- dims inactive windows
+  dim_inactive = true,   -- dims inactive windows
   lualine_bold = false,  -- When `true`, section headers in the lualine theme will be bold
+
+  use_background = true,
+  cache = true,
+  plugin = nil,  -- Use default.
 
   --- You can override specific color groups to use other groups or a hex color
   --- function will be called with a ColorScheme table
@@ -44,9 +47,22 @@ local config = {
 
   --- You can override specific highlights to use other groups or a hex color
   --- function will be called with a Highlights and ColorScheme table
-  ---@param highlights Highlights
+  ---@param highlights tokyonight.Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
+    -- -----------------------------------
+    -- -------- General
+    -- -----------------------------------
+    highlights["Bold"]   = { bold   = true }
+    highlights["Italic"] = { italic = true }
+
+
+    -- -----------------------------------
+    -- -------- Lazy
+    -- -----------------------------------
+    highlights["LazyCommitType"]  = { fg = Fau_vim.colors.tokyonight.blue, italic = true }
+    highlights["LazyCommitScope"] = { bold = true, italic = true }
+
     -- -----------------------------------
     -- -------- Syntax
     -- -----------------------------------
@@ -96,7 +112,7 @@ local config = {
     -- -------- Mini Library
     -- -----------------------------------
     highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
-    highlights["MiniIndentscopeSymbol"] = { fg   = Fau_vim.colors.yellow }
+    highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 
 
     -- -----------------------------------
@@ -116,7 +132,9 @@ local config = {
     -- -------- Telescope
     -- -----------------------------------
     highlights["TelescopeBorder"]       = { fg = Fau_vim.colors.cobalt }
+    highlights["TelescopePromptTitle"]  = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
+    highlights["TelescopePromptBorder"] = { fg = Fau_vim.colors.cobalt }
 
 
     -- -----------------------------------
@@ -130,7 +148,7 @@ local config = {
     -- -----------------------------------
     -- -------- ChatGPT
     -- -----------------------------------
-    highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold=true }
+    highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
 
 
     -- -----------------------------------

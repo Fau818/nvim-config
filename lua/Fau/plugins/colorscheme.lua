@@ -6,7 +6,7 @@ local colorscheme = {
     -- DESC: A snazzy colorscheme that can be customized.
     "folke/tokyonight.nvim",
     priority = 1000,
-    tag = "stable",
+    -- tag = "stable",
     config = function()
       Fau_vim.colorscheme = "tokyonight"
       require("Fau.configs.colorscheme")
