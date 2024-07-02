@@ -34,14 +34,6 @@ local ui = {
     event = "UIEnter",
   },
 
-  -- ==================== Window ====================
-  {
-    -- DESC: Colorful window separator.
-    "nvim-zh/colorful-winsep.nvim",
-    config = function() require("Fau.configs.ui.winsep") end,
-    event = "WinLeave",
-  },
-
   {
     -- DESC: Add animation for Neovim window actions.
     "anuvyklack/windows.nvim",
