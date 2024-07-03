@@ -5,11 +5,9 @@ local tokyonight = require("tokyonight")
 Fau_vim.colors.tokyonight = require("tokyonight.colors.moon")
 
 
-local function _comment_style()
+local function comment_style()
   local term_type = os.getenv("TERM")
-  if term_type == "xterm-kitty" or os.getenv("KITTY_PID") then
-    return { italic = true, bold = true }
-  end
+  if term_type == "xterm-kitty" or os.getenv("KITTY_PID") then return { italic = true, bold = true } end
   return { italic = true }
 end
 
@@ -21,7 +19,7 @@ local config = {
   terminal_colors = true,
 
   styles = {
-    comments  = _comment_style(),
+    comments  = comment_style(),
     keywords  = { italic = true },
     functions = {},
     variables = {},
@@ -50,113 +48,73 @@ local config = {
   ---@param highlights tokyonight.Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors)
-    -- -----------------------------------
-    -- -------- General
-    -- -----------------------------------
-    highlights["Bold"]   = { bold   = true }
-    highlights["Italic"] = { italic = true }
-
-
-    -- -----------------------------------
-    -- -------- Lazy
-    -- -----------------------------------
-    highlights["LazyCommitType"]  = { fg = Fau_vim.colors.tokyonight.blue, italic = true }
-    highlights["LazyCommitScope"] = { bold = true, italic = true }
-
-    -- -----------------------------------
-    -- -------- Syntax
-    -- -----------------------------------
-    highlights["Define"] = { fg = Fau_vim.colors.gray, italic = true }
-    highlights["Statement"] = { fg = colors.magenta, italic = true }
-    highlights["@constant.builtin"] = { fg = Fau_vim.colors.light_blue, italic = true }
-
-    highlights["Number"]  = { fg = Fau_vim.colors.light_blue }
-    highlights["String"]  = { fg = Fau_vim.colors.light_green }
-    highlights["Boolean"] = { fg = colors.orange, italic = true }
-
-    highlights["@keyword"] = { fg = colors.purple, italic = true, nocombine = true }
-    highlights["@keyword.function"] = { fg = Fau_vim.colors.purple, italic = true }
-    highlights["@keyword.operator"] = { fg = colors.blue5, italic = true }
-
+    -- ==================== General ====================
+    -- ---------- Basic
+    highlights["Bold"]       = { bold = true }
+    highlights["Italic"]     = { italic = true }
     highlights["MatchParen"] = { fg = Fau_vim.colors.yellow, bold = true }
 
-    highlights["@function.builtin"] = { fg = Fau_vim.colors.purple_blue, italic = true }
+    -- ---------- Type
+    highlights["Statement"] = { fg = Fau_vim.colors.tokyonight.magenta, italic = true }
+    highlights["Boolean"]   = { fg = Fau_vim.colors.tokyonight.orange, italic = true, force = true }
+    highlights["Number"]    = { fg = Fau_vim.colors.light_blue }
 
-    highlights["@string.documentation"] = { fg = Fau_vim.colors.cyan_gray }
-
-    highlights["PaintSeparator"] = { fg = "#483D8B" }
-
-
-    -- -----------------------------------
-    -- -------- Diagnostics
-    -- -----------------------------------
-    highlights["ErrorLine"]   = { bg = "#2C1418" }
-    highlights["WarningLine"] = { bg = "#362716" }
-    -- highlights["InfoLine"]    = { bg = "#182A3A" }
-    -- highlights["HintLine"]    = { bg = "#1B251D" }
-
-    highlights["DiagnosticFloatingError"] = { link = "DiagnosticError" }
-    highlights["DiagnosticFloatingWarn"]  = { link = "DiagnosticWarn" }
-    highlights["DiagnosticFloatingInfo"]  = { link = "DiagnosticInfo" }
-    highlights["DiagnosticFloatingHint"]  = { link = "DiagnosticHint" }
-
-
-    -- -----------------------------------
-    -- -------- Editor UI
-    -- -----------------------------------
+    -- ---------- Editor UI
     highlights["FloatBorder"]  = { fg = Fau_vim.colors.cobalt }
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
 
 
-    -- -----------------------------------
-    -- -------- Mini Library
-    -- -----------------------------------
-    highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
-    highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
+    -- ==================== Syntax ====================
+    -- ---------- General
+    highlights["@function.builtin"] = { fg = Fau_vim.colors.purple_blue, italic = true }
+    highlights["@keyword.function"] = { fg = Fau_vim.colors.tokyonight.magenta, italic = true }
+    highlights["@string.documentation"] = { fg = Fau_vim.colors.cyan_gray }
+    highlights["@lsp.type.macro"] = { italic = true }
+
+    -- ---------- Gitcommit
+    highlights["@keyword.gitcommit"] = { fg = Fau_vim.colors.tokyonight.purple, italic = true, nocombine = true }
+    highlights["@variable.parameter.gitcommit"] = { fg = Fau_vim.colors.tokyonight.yellow, italic = true, bold = true, nocombine = true }
+    highlights["@punctuation.delimiter.gitcommit"] = { fg = Fau_vim.colors.tokyonight.cyan, nocombine = true }
+    highlights["@markup.heading.gitcommit"] = { fg = Fau_vim.colors.tokyonight.blue, bold = false, italic = false, nocombine = true }
+    -- highlights["gitcommitSummary"] = { fg = Fau_vim.colors.tokyonight.blue, bold = false, italic = false, nocombine = true }
 
 
-    -- -----------------------------------
-    -- -------- Lspconfig
-    -- -----------------------------------
+    -- ==================== Diagnostics ====================
+    highlights["ErrorLine"]   = { bg = Fau_vim.colors.diagnostic.error }
+    highlights["WarningLine"] = { bg = Fau_vim.colors.diagnostic.warn }
+    -- highlights["InfoLine"]    = { bg = Fau_vim.colors.diagnostic.info }
+    -- highlights["HintLine"]    = { bg = Fau_vim.colors.diagnostic.hint }
+
+
+    -- ==================== Plugins ====================
+    -- ---------- Bufferline
+    highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true }
+
+    -- ---------- ChatGPT
+    -- highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
+
+    -- ---------- Lspconfig
     highlights["LspInfoBorder"] = { fg = Fau_vim.colors.cobalt }
     highlights["LspInlayHint"]  = { fg = colors.dark3 }
 
+    -- ---------- Mini Library
+    highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
+    highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 
-    -- -----------------------------------
-    -- -------- Bufferline
-    -- -----------------------------------
-    highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false }
+    -- ---------- Paint
+    highlights["Identifier"] = { fg = Fau_vim.colors.tokyonight.blue5 }
+    highlights["PaintSeparator"] = { fg = Fau_vim.colors.tokyonight.blue5 }
 
-
-    -- -----------------------------------
-    -- -------- Telescope
-    -- -----------------------------------
+    -- ---------- Telescope
     highlights["TelescopeBorder"]       = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptTitle"]  = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
     highlights["TelescopePromptBorder"] = { fg = Fau_vim.colors.cobalt }
 
-
-    -- -----------------------------------
-    -- -------- Nvim-cmp
-    -- -----------------------------------
+    -- ---------- Nvim-cmp
     highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
     highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
     highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
-
-
-    -- -----------------------------------
-    -- -------- ChatGPT
-    -- -----------------------------------
-    highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
-
-
-    -- -----------------------------------
-    -- -------- Gitcommit
-    -- -----------------------------------
-    -- TEST: WIP
-    highlights["gitcommitFirstLine"] = { link = "Title" }
-    highlights["gitcommitSummary"]   = { link = "Title" }
   end,
 }
 

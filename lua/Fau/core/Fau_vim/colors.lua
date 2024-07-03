@@ -32,6 +32,13 @@ return {
 
   -- tokyonight = ...,  -- Loaded by the colorscheme module.
 
+  diagnostic = {
+    error = "#2C1418",
+    warn  = "#362716",
+    info  = "#182A3A",
+    hint  = "#1B251D",
+  },
+
   lualine = {
     yellow = "#ECBE7B",
     green  = "#98BE65",
