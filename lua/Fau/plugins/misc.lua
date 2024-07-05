@@ -13,7 +13,7 @@ local misc = {
     -- DESC: Simple session manager for Neovim.
     "folke/persistence.nvim",
     config = function() require("persistence").setup() end,
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    event = "BufReadPre",  -- this will only start session saving when an actual file was opened
   },
 
 }
