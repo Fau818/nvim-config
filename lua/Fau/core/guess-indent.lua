@@ -19,14 +19,12 @@ local config = {
     "terminal",
     "prompt",
   },
-  on_tab_options = {    -- A table of vim options when tabs are detected
-    ["expandtab"] = false,
-  },
+  on_tab_options = { ["expandtab"] = false },
   on_space_options = {  -- A table of vim options when spaces are detected
     ["expandtab"]   = true,
     ["tabstop"]     = "detected",
-    ["softtabstop"] = "-1",
-    ["shiftwidth"]  = "0",
+    ["softtabstop"] = -1,
+    ["shiftwidth"]  = 0,
   },
 }
 

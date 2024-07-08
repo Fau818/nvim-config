@@ -93,6 +93,10 @@ local config = {
     -- ---------- ChatGPT
     -- highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
 
+    -- ---------- Lazy
+    highlights["LazyReasonKeys"] = { fg = Fau_vim.colors.tokyonight.magenta }
+    highlights["LazyReasonCmd"]  = { fg = Fau_vim.colors.tokyonight.blue5, nocombine = true }
+
     -- ---------- Lspconfig
     highlights["LspInfoBorder"] = { fg = Fau_vim.colors.cobalt }
     highlights["LspInlayHint"]  = { fg = colors.dark3 }
