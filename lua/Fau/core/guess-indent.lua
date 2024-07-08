@@ -13,12 +13,21 @@ local config = {
   auto_cmd = true,
   -- A list of filetypes for which the auto command gets disabled
   filetype_exclude = Fau_vim.file.disabled_filetypes,
-  buftype_exclude = { -- A list of buffer types for which the auto command gets disabled
+  buftype_exclude = {  -- A list of buffer types for which the auto command gets disabled
     "help",
     "nofile",
     "terminal",
     "prompt",
-  }
+  },
+  on_tab_options = {    -- A table of vim options when tabs are detected
+    ["expandtab"] = false,
+  },
+  on_space_options = {  -- A table of vim options when spaces are detected
+    ["expandtab"]   = true,
+    ["tabstop"]     = "detected",
+    ["softtabstop"] = "-1",
+    ["shiftwidth"]  = "0",
+  },
 }
 
 

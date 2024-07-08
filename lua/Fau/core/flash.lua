@@ -170,6 +170,7 @@ local config = {
     },
     -- options used for treesitter selections
     -- `require("flash").treesitter()`
+    -- TODO: seems good
     treesitter = {
       labels = "abcdefghijklmnopqrstuvwxyz",
       jump = { pos = "range" },

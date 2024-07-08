@@ -35,6 +35,8 @@ dashboard.section.buttons.val = {
   dashboard.button("l", ("%s  Load Session"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").load() end),
   ---@diagnostic disable-next-line: param-type-mismatch
   dashboard.button("L", ("%s  Load Last Session"):format(Fau_vim.icons.ui.Restore), function() require("persistence").load({ last = true }) end),
+---@diagnostic disable-next-line: param-type-mismatch
+  dashboard.button("S", ("%s  Session List"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").select() end),
 
   dashboard.button("c", ("%s  Config Neovim"):format(Fau_vim.icons.ui.Gear), "<CMD>FauvimConfig<CR>"),
 
