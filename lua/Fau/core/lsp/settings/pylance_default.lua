@@ -30,7 +30,7 @@ return {
           autoImportCompletions = true,
           autoSearchPaths       = true,
 
-          completeFunctionParens = false,
+          completeFunctionParens = true,
 
           ---@type "workspace"|"openFilesOnly"
           diagnosticMode = "openFilesOnly",
