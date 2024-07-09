@@ -21,17 +21,17 @@ local config = {
     },
   },
   suggestion = {
-    enabled = false,  -- NOTE: Use as cmp source, so keep it disabled.
+    enabled = true,
     auto_trigger = true,
     hide_during_completion = true,
-    debounce = 75,
+    debounce = 50,
     keymap = {
-      accept = "<A-l>",
+      accept = "<TAB>",
       accept_word = false,
       accept_line = false,
       next = "<A-]>",
       prev = "<A-[>",
-      dismiss = "<C-]>",
+      dismiss = "<C-c>",
     },
   },
   filetypes = { ["*"] = true },
