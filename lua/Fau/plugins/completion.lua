@@ -101,7 +101,8 @@ local cmp = {
   -- },
   {
     -- DESC: Github copilot supporter.
-    "zbirenbaum/copilot.lua",
+    -- NOTE: Original repo: zbirenbaum/copilot.lua
+    "Fau818/copilot.lua",
     config = function() require("Fau.configs.completion.copilot") end,
     event = "InsertEnter",
     cmd = "Copilot",
