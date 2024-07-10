@@ -27,10 +27,10 @@ local config = {
     debounce = 50,
     keymap = {
       accept = "<TAB>",
-      accept_word = false,
+      accept_word = "<C-w>",
       accept_line = false,
-      next = "<A-]>",
-      prev = "<A-[>",
+      next = "<A-l>",
+      prev = "<A-h>",
       dismiss = "<C-c>",
     },
   },

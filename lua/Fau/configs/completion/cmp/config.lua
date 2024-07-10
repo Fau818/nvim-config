@@ -16,7 +16,7 @@ return {
 
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
 
-    performance = { async_budget = 20 },
+    performance = nil,  -- Use default.
 
     completion = {
       autocomplete = { "InsertEnter", "TextChanged" },
@@ -68,7 +68,7 @@ return {
 
       { name = "calc" },
 
-      { name = "treesitter", max_item_count = 10 },
+      -- { name = "treesitter", max_item_count = 10 },
       { name = "buffer", max_item_count = 10 },
       { name = "path" },
     },

@@ -2,6 +2,17 @@ local cmp     = require("cmp")
 local luasnip = require("luasnip")
 
 
+local function accept_copilot()
+  if not Fau_vim.plugin.copilot.enable then return false end
+
+  if require("copilot.suggestion").is_visible() then
+    require("copilot.suggestion").accept()
+    return true
+  end
+  return false
+end
+
+
 return {
   -- -----------------------------------
   -- -------- Global
@@ -19,6 +30,7 @@ return {
       function(fallback)
         if cmp.visible() then cmp.confirm({ select=true })
         elseif luasnip.jumpable(1) then luasnip.jump(1)
+        elseif not accept_copilot() then fallback()
         else fallback()
         end
       end, { "i", "s" }

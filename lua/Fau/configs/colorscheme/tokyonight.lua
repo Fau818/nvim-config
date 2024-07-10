@@ -105,6 +105,14 @@ local config = {
     highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
     highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 
+    -- ---------- Nvim-cmp
+    highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
+    highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
+    highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
+
+    -- ---------- Nvim-tree
+    highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }
+
     -- ---------- Paint
     highlights["Identifier"] = { fg = Fau_vim.colors.tokyonight.blue5 }
     highlights["PaintSeparator"] = { fg = Fau_vim.colors.tokyonight.blue5 }
@@ -114,11 +122,6 @@ local config = {
     highlights["TelescopePromptTitle"]  = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptPrefix"] = { fg = Fau_vim.colors.purple_blue }
     highlights["TelescopePromptBorder"] = { fg = Fau_vim.colors.cobalt }
-
-    -- ---------- Nvim-cmp
-    highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
-    highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
-    highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
   end,
 }
 

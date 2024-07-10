@@ -79,11 +79,6 @@ local cmp = {
     ft = "gitcommit",
   },
 
-  {
-    "ray-x/cmp-treesitter",
-    dependencies = "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-  },
 
 
   -- ==================== Copilot ====================
@@ -106,9 +101,9 @@ local cmp = {
   -- },
   {
     -- DESC: Github copilot supporter.
-    -- TEMP: Use a fork
-    "Kelo007/copilot.lua",
+    "zbirenbaum/copilot.lua",
     config = function() require("Fau.configs.completion.copilot") end,
+    event = "InsertEnter",
     cmd = "Copilot",
     enabled = Fau_vim.plugin.copilot.enable,
   },
