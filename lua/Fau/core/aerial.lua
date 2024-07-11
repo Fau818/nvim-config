@@ -187,7 +187,7 @@ local config = { -- Call the setup function to change the default behavior
     unlisted_buffers = true,
 
     -- List of filetypes to ignore.
-    filetypes = Fau_vim.file.disabled_filetypes,
+    filetypes = Fau_vim.file.excluded_filetypes,
 
     -- Ignored buftypes.
     -- Can be one of the following:

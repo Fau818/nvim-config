@@ -28,6 +28,6 @@ end
 -- Disable trailspace in some filetype
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Disable trailspace in some filetypes.",
-  pattern = Fau_vim.file.disabled_filetypes,
+  pattern = Fau_vim.file.excluded_filetypes,
   callback = function() vim.b.minitrailspace_disable = true end,
 })

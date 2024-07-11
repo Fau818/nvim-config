@@ -11,7 +11,7 @@ local config = {
   },
   ignore = {
     -- buftype = {  },
-    filetype = Fau_vim.file.disabled_filetypes,
+    filetype = Fau_vim.file.excluded_filetypes,
   },
   animation = {
     enable = true,

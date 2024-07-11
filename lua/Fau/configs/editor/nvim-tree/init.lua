@@ -151,7 +151,7 @@ local config = {
         enable = true,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
         exclude = {
-          filetype = Fau_vim.file.disabled_filetypes,
+          filetype = Fau_vim.file.excluded_filetypes,
           buftype = { "nofile", "terminal", "help" },
         },
       },

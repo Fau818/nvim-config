@@ -90,11 +90,19 @@ local coding = {
 
   -- ==================== Code Enhancement ====================
   {
+    -- DESC: Auto convert normal string to template string.
+    -- Fau: Used to automatically convert string to f-string in python.
+    "axelvc/template-string.nvim",
+    config = function() require("Fau.configs.completion.template-string") end,
+    ft =  { "html", "typescript", "javascript", "typescriptreact", "javascriptreact", "python" },
+  },
+
+  {
     -- DESC: Press <TAB> to jump out of brakets.
     "abecodes/tabout.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "hrsh7th/nvim-cmp" },
     config = function() require("Fau.configs.coding.tabout") end,
-    event = "InsertCharPre",
+    event = "InsertEnter",
     cond = true,
   },
 

@@ -22,7 +22,7 @@ local config = {
   whitespace = {},
   scope = { enabled = false },
 
-  exclude = { filetypes = Fau_vim.file.disabled_filetypes },
+  exclude = { filetypes = Fau_vim.file.excluded_filetypes },
 }
 
 

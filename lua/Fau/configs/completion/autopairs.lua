@@ -4,7 +4,7 @@
 local npairs = require("nvim-autopairs")
 
 local config = {
-  disable_filetype = Fau_vim.file.disabled_filetypes,
+  disable_filetype = Fau_vim.file.excluded_filetypes,
   disable_in_macro        = false,  -- disable when recording or executing a macro
   disable_in_visualblock  = false,  -- disable when insert after visual block mode
   disable_in_replace_mode = true,
