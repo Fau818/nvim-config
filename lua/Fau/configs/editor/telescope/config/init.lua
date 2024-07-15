@@ -1,4 +1,3 @@
--- TODO: Let grep_string/live_grep like center (layout_strategy)
 -- ==================== Telescope ====================
 local telescope = require("telescope")
 

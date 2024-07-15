@@ -1,5 +1,3 @@
--- TODO: `initial_mode` is necessary for all pickers
--- TODO: set `sorting_strategy` in layout_strategy [can do?]
 return {
   -- =============================================
   -- ========== General
@@ -118,11 +116,9 @@ return {
     initial_mode = "insert",
     previewer = false,
 
-    -- TODO: refine find command
     find_command = { "fd", "--type", "file" },
     file_entry_encoding = nil,  ---@type string encoding of output of `find_command`
 
-    -- TODO: Use a input box to get the search pattern. [need?]
     search_dirs = nil,  ---@type table
     search_file = nil,  ---@type string
 

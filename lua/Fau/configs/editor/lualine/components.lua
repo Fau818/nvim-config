@@ -67,7 +67,7 @@ return {
   filename   = "filename",
   filetype   = "filetype",
   fileformat = { "fileformat", cond = conditions.hide_in_width },  -- win / linux / mac
-  encoding   = { "encoding", fmt    = string.upper, cond = conditions.hide_in_width },
+  encoding   = { "encoding", show_bomb = true, fmt = string.upper, cond = conditions.hide_in_width },
 
   buffers = "buffers",
   tabs    = "tabs",

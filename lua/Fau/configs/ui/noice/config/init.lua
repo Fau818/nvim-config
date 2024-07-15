@@ -15,7 +15,6 @@ local config = {
   ---@type table<string, NoiceCommand>
   commands = nil,  -- Use default commands.
 
-  -- QUES: ... On / Off is a question.
   notify = { enabled = false, view = "notify" },
 
   lsp = require("Fau.configs.ui.noice.config.lsp"),
