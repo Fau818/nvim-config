@@ -10,7 +10,7 @@ if not colorizer_ok then Fau_vim.load_plugin_error("colorizer") return end
 -- ========== Configuration
 -- =============================================
 local config = {
-  filetypes = { "*", "!c", "!cpp", "!lazy" },
+  filetypes = { "*", "!c", "!cpp", "!lazy", "!notify" },
   user_default_options = {
     RGB    = true, -- #RGB hex codes
     RRGGBB = true, -- #RRGGBB hex codes
@@ -35,6 +35,7 @@ local config = {
     -- parsers can contain values used in |user_default_options|
     -- sass = { enable = false, parsers = { css }, }, -- Enable sass colors
     virtualtext = "■",
+    virtualtext_inline = true,
 
     -- update color values even if buffer is not focused
     -- example use: cmp_menu, cmp_docs
