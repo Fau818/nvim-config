@@ -1,25 +1,13 @@
+---@type wk.Spec
 return {
-  n = {
-    ["<C-r>"] = { "<CMD>RunFile toggleterm<CR>", "Run File in Toggleterm" },
+  { "<C-r>", "<CMD>RunFile toggleterm<CR>", desc = "Run File in Toggleterm" },
 
-    ["<LEADER>r"] = {
-      name = "+Runcode",
+  { "<LEADER>r", group = "Code Runner" },
 
-      t = { "<CMD>RunFile term<CR>",   "Run File in Terminal" },
-      T = { "<CMD>RunFile toggle<CR>", "Run File Toggle" },
-      f = { "<CMD>RunFile float<CR>",  "Run File in Float" },
+  { "<LEADER>rt", "<CMD>RunFile term<CR>",   desc = "Run File in Terminal" },
+  { "<LEADER>rT", "<CMD>RunFile toggle<CR>", desc = "Run File Toggle" },
+  { "<LEADER>rf", "<CMD>RunFile float<CR>",  desc = "Run File in Float" },
 
-      c = { "<CMD>RunClose<CR>", "Run Close" },
-
-      p = { "<CMD>RunProject toggleterm<CR>", "Run Project in Toggleterm" },
-
-
-      e = {
-        name = "+Edit Config",
-
-        f = { "<CMD>CRFiletype<CR>", "Edit FileType Config" },
-        p = { "<CMD>CRProjects<CR>", "Edit Project Config" },
-      }
-    }
-  }
+  { "<LEADER>rc", "<CMD>RunClose<CR>", desc = "Run Close" },
+  { "<LEADER>rp", "<CMD>RunProject toggleterm<CR>", desc = "Run Project in Toggleterm" },
 }

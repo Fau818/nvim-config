@@ -19,7 +19,7 @@ return {
     performance = nil,  -- Use default.
 
     completion = {
-      autocomplete = { "InsertEnter", "TextChanged" },
+      autocomplete = { "TextChanged" },
       completeopt = "menu,menuone,noinsert",
     },
 

@@ -1,2 +1,2 @@
 require "Fau.core.whichkey.config"
-require "Fau.core.whichkey.register"
+require "Fau.core.whichkey.settings"
