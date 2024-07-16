@@ -14,7 +14,6 @@ return {
   -- ==================== Override ====================
   { "<A-q>", Fau_vim.functions.utils.buf_remove, desc = "Close Current Buffer" },
 
-
   -- ==================== Fau_vim Custom ====================
   -- ---------- Edit Configuration and Snippet
   -- TODO: Refactor this. (or move to other place)
@@ -28,10 +27,10 @@ return {
   -- ---------- Toggle Indent
   { "<LEADER><LEADER>i", Fau_vim.functions.indent.toggle_indent_width, desc = "Toggle Indent Width" },
   -- Fau: I don't think this is helpful.
-  { "<LEADER><LEADER>I", function() Fau_vim.functions.indent.toggle_indent_width(true) end, decs = "Toggle Indent Width (Force)" },
+  { "<LEADER><LEADER>I", function() Fau_vim.functions.indent.toggle_indent_width(true) end, desc = "Toggle Indent Width (Force)" },
 
   -- ---------- Buffer Navigation
   -- BUG: Not working.
-  ["<A-1~9>"]       = "Switch to Buffer <1~9>",
-  ["<LEADER><1~9>"] = "Switch to Buffer <1~9>",
+  -- { "<A-1~9>", group = "Switch Buffer" },
+  -- { "<LEADER><1~9>", group = "Switch Buffer" },
 }
