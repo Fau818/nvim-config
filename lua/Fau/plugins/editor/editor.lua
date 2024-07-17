@@ -9,12 +9,6 @@ local editor = {
   -- -----------------------------------
   -- -------- Keymap
   -- -----------------------------------
-  {
-    -- DESC: Key binding helper.
-    "folke/which-key.nvim",
-    config = function() require("Fau.core.whichkey") end,
-    event = "UIEnter",
-  },
 
 
   -- -----------------------------------

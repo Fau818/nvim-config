@@ -33,7 +33,7 @@ local config = {
     -- Start hidden and wait for a key to be pressed before showing the popup
     -- Only used by enabled xo mapping modes.
     -- Set to false to show the popup immediately (after the delay)
-    defer = {},
+    defer = { operators = {} },
   },
 
   plugins = {

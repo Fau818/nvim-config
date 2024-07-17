@@ -99,6 +99,13 @@ local editor_ui = {
     keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
   },
 
+  {
+    -- DESC: Key binding helper.
+    "folke/which-key.nvim",
+    config = function() require("Fau.configs.editor.whichkey") end,
+    event = "VeryLazy",
+  },
+
 
 }
 return editor_ui

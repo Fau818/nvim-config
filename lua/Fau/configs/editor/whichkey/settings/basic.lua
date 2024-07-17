@@ -4,6 +4,8 @@ return {
   -- ==================== Whichkey Ignore ====================
   { "<MouseMove>", desc = "which_key_ignore" },
   { "<LeftMouse>", desc = "which_key_ignore" },
+  { "n", desc = "Next" },
+  { "N", desc = "Prev" },
 
   -- ==================== Yank and Paste ====================
   { "y", group = "Yank with System Clipboard" },
