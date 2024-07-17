@@ -99,6 +99,8 @@ local editor_ui = {
     keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
   },
 
+
+  -- ==================== Key Binding ====================
   {
     -- DESC: Key binding helper.
     "folke/which-key.nvim",

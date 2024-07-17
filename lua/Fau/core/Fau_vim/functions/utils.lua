@@ -14,13 +14,13 @@ return {
   is_large_file = function(buffer)
     buffer = buffer or vim.api.nvim_get_current_buf()
 
-    -- Use the cached result.
+    -- EXIT: Use the cached result.
     if vim.b[buffer].is_large_file ~= nil then return vim.b[buffer].is_large_file end
 
     -- Get file status.
     local status_ok, file_status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buffer))
 
-    -- NOTE: Get the status of file error. => Not a large file
+    -- SPEC: Get the status of file error. => Not a large file
     if not status_ok or not file_status then vim.b[buffer].is_large_file = false
     else vim.b[buffer].is_large_file = file_status.size >= Fau_vim.file.large_file_size
     end

@@ -7,24 +7,8 @@ local editor = {
   -- ========== Enhancement
   -- =============================================
   -- -----------------------------------
-  -- -------- Keymap
-  -- -----------------------------------
-
-
-  -- -----------------------------------
   -- -------- Text
   -- -----------------------------------
-  {
-    -- DESC: Highlight other uses of the word under the cursor.
-    "RRethy/vim-illuminate",
-    config = function() require("Fau.core.illuminate") end,
-    event = { "BufReadPost", "BufNewFile" },
-    keys = {
-      { mode = { "n", "i" }, "<A-S-n>", function() require("illuminate").next_reference({ reverse=true, wrap=true }) end, desc = "Prev Reference" },
-      { mode = { "n", "i" }, "<A-n>",   function() require("illuminate").next_reference({ wrap=true }) end,               desc = "Next Reference" },
-    }
-  },
-
   {
     -- DESC: Auto remove trailing whitespaces and empty lines.
     "echasnovski/mini.trailspace",
