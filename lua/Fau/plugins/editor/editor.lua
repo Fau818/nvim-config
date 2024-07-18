@@ -113,6 +113,7 @@ local editor = {
     config = function() require("Fau.core.trouble") end,
     cmd = "Trouble",
     keys = { "gd", "gD", "gt", "gI", "gr", "gi", "go", "<LEADER>ld", "<LEADER>lD" },
+    event = "LspAttach",
     tag = Fau_vim.plugin.trouble.tag,
   },
 
