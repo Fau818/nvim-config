@@ -5,7 +5,7 @@
 -- -------- General
 -- -----------------------------------
 --- Let `-` and `$` be keywords.
-vim.opt.iskeyword:append({ "-", "$" })
+vim.opt.iskeyword:append({ "-", "$", "#" })
 
 --- Highlight the yank section.
 vim.api.nvim_create_autocmd("TextYankPost", {

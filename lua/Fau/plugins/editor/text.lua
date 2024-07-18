@@ -14,4 +14,32 @@ return {
       { mode = { "n", "i" }, "<A-n>", function() require("illuminate").next_reference({ reverse=false, wrap=true }) end, desc = "Next Reference" },
     }
   },
+
+  -- ==================== Remove Trailing Redundant Spaces and Lines ====================
+  {
+    -- DESC: Auto remove trailing whitespaces and empty lines.
+    "echasnovski/mini.trailspace",
+    config = function() require("Fau.configs.editor.mini-trailspace") end,
+    event = "BufWritePre",
+  },
+
+  -- ==================== Text Augmentation ====================
+  {
+    -- DESC: Colorizer for showing color.
+    "NvChad/nvim-colorizer.lua",
+    config = function() require("Fau.configs.editor.colorizer") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+  {
+    -- DESC: Highlight the TODO comment-liked things.
+    "folke/todo-comments.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function() require("Fau.core.todo-comments") end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
+    keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "Show Todo Comments" } }
+  },
+
+
 }

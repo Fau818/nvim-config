@@ -80,7 +80,7 @@ return {
     filter = nil,  ---@type function
   },
 
-  highlights = { layout_strategy = "horizontal" },
+  highlights = { layout_strategy = "horizontal", initial_mode = "insert" },
 
   current_buffer_tags = {
     ctags_file     = nil,    ---@type string

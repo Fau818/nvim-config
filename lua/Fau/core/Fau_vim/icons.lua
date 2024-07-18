@@ -172,20 +172,24 @@ return {
 
   -- ==================== TODO Comments ====================
   todo = {
-    TODO   = " ",
-    HACK   = " ",
-    WARN   = " ",
-    PERF   = " ",
-    NOTE   = " ",
-    TEST   = "󰅒 ",
-    Fau    = "󰙽 ",
-    DESC   = "󰈚 ",
-    BOOK   = " ",  -- " "
-    EXIT   = "󰗼 ",
+    HACK      = " ",
+    WARN      = " ",
+    BUG       = " ",
+    PERF      = " ",
+    TEST      = "⏲ ",  -- "󰅒 "
+
+    TODO      = " ",
+    NOTE      = " ",
+    Fau       = "󰙽 ",
+
+    DESC      = "󰈚 ",
+    BOOK      = " ",  -- " "
+
     -- CASE   = " ",
-    ASSERT = "󰞏 ",
+    EXIT      = "󰗼 ",
+    ASSERT    = "󰞏 ",
     IMPORTANT = "󱈸 ",
-    SPEC = "󰅳 ",
+    SPECIAL   = "󰅳 ",
   },
 
 
