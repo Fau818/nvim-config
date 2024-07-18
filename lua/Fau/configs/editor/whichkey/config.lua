@@ -79,7 +79,7 @@ local config = {
 
   disable = {
     -- disable WhichKey for certain buf types and file types.
-    ft = Fau_vim.file.excluded_filetypes,
+    ft = {},
     bt = {},
   },
 
