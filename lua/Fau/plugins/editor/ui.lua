@@ -1,4 +1,5 @@
--- DESC: This module is for enhancing editor UI, will be loaded in `UIEnter` event.
+-- DESC: This module is for enhancing editor UI, will be loaded in `UIEnter` event;
+-- \     Some plugins can also be more lazy loaded in `BufNewFile` and `BufReadPost` events.
 
 ---@type LazySpec[]
 return {
@@ -69,7 +70,6 @@ return {
   },
 
 
-
   -- ==================== Scroll Bar ====================
     {
     -- DESC: A nice scrollbar.
@@ -77,6 +77,15 @@ return {
     config = function() require("Fau.configs.editor.satellite") end,
     event = "UIEnter",
     enabled = vim.fn.has("nvim-0.10") == 1,
+  },
+
+
+  -- ==================== Git Signs ====================
+  {
+    -- DESC: Git integration for Neovim.
+    "lewis6991/gitsigns.nvim",
+    config = function() require("Fau.configs.editor.gitsigns") end,
+    event = { "BufReadPost", "BufNewFile" },
   },
 
 

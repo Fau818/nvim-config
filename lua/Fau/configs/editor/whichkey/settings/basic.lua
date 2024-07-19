@@ -35,4 +35,8 @@ return {
   -- BUG: Not working.
   -- { "<A-1~9>", group = "Switch Buffer" },
   -- { "<LEADER><1~9>", group = "Switch Buffer" },
+
+  -- ==================== Git Signs ====================
+  { "<LEADER>g",  group = "Gitsigns", mode = { "n", "x" } },
+  { "<LEADER>gt", group = "Gitsigns: Toggle" },
 }

@@ -14,7 +14,7 @@ local config = {
   ---@type wk.Spec
   triggers = nil,  -- Use default.
 
-  defer = nil,  -- Use default.
+  defer = function() end,  -- Disabled
 
   plugins = {
     marks     = true,

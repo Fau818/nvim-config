@@ -74,8 +74,10 @@ return {
 
   gitsigns = {
     -- LineLeft     = "│",
-    BoldLineLeft = "▎",
-    Triangle     = "",
+    BoldLine     = "▎",  -- "┃", "▎"
+    Delete       = "_",  -- ""
+    TopDelete    = "‾",
+    ChangeDelete = "~",
     Untracked    = "┆",
   },
 

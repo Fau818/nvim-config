@@ -11,12 +11,11 @@ local config = {
 
   ignored_next_char = nil,  -- Use default.
 
-  enable_moveright          = true,  -- if true: (|) -> ()|  else: (|) -> ()|)
-  enable_afterquote         = true,  -- add bracket pairs after quote
-  enable_check_bracket_line = true,  -- check bracket in same line
+  enable_moveright          = true,   -- if true: (|) -> ()|  else: (|) -> ()|)
+  enable_afterquote         = true,   -- add bracket pairs after quote
+  enable_check_bracket_line = true,   -- check bracket in same line
   enable_bracket_in_quote   = true,
-  -- TEST: Enabled in July 19, 2024
-  enable_abbr               = true,  -- trigger abbreviation
+  enable_abbr               = false,  -- trigger abbreviation
 
   break_undo = true,  -- Switch for basic rule break undo sequence
   -- TEST: Enabled in June 5, 2024

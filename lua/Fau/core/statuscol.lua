@@ -12,8 +12,8 @@ local config = {
   -- BUG: `checkhealth` is not working properly.
   -- \    It seems the `filetype` is empty first, then set to `checkhealth`.
   -- \    So the `ft_ignore` is disabled.
-  -- ft_ignore = Fau_vim.file.disabled_filetypes,
-  bt_ignore = nil,
+  ft_ignore = Fau_vim.file.excluded_filetypes,
+  bt_ignore = Fau_vim.file.excluded_buftypes,
 
   segments = {
     -- Sign (Default statuscolumn)
@@ -34,7 +34,7 @@ local config = {
     -- Fold
     {
       text = { builtin.foldfunc, " " },
-      condition = { true, function(args) return builtin.foldfunc(args) ~= "" end },
+      condition = { true, builtin.not_empty },
       click = "v:lua.ScFa",
       sign = { auto = true },
     },

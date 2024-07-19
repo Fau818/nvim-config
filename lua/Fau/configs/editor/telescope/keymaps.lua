@@ -6,8 +6,8 @@ local function opts(desc) return { silent = true, desc = desc } end
 
 -- ==================== General ====================
 keymap("n", "<LEADER>fa", builtin.autocommands,                                           opts("Find Autocommands"))
-keymap("n", "<LEADER>fb", builtin.current_buffer_fuzzy_find,                              opts("Find in Current Buffer"))
-keymap("n", "<LEADER>fB", builtin.buffers,                                                opts("Find Buffers"))
+keymap("n", "<LEADER>fb", builtin.buffers,                                                opts("Find Buffers"))
+keymap("n", "<LEADER>fB", builtin.current_buffer_fuzzy_find,                              opts("Find in Current Buffer"))
 keymap("n", "<LEADER>fc", builtin.commands,                                               opts("Find Commands"))
 keymap("n", "<LEADER>fC", builtin.command_history,                                        opts("Find Command History"))
 keymap("n", "<LEADER>fe", pickers.conda,                                                  opts("Find Conda Environments"))

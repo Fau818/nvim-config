@@ -4,13 +4,6 @@
 ---@type LazySpec[]
 return {
   {
-    -- DESC: git integration for buffer.
-    "lewis6991/gitsigns.nvim",
-    config = function() require("Fau.core.gitsigns") end,
-    event = { "BufReadPost", "BufNewFile" },
-  },
-
-  {
     -- DESC: Statusline enhancer.
     "luukvbaal/statuscol.nvim",
     config = function() require("Fau.core.statuscol") end,
