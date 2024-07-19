@@ -1,7 +1,7 @@
 -- DESC: This module is for enhancing editor UI, will be loaded in `UIEnter` event.
 
 ---@type LazySpec[]
-local editor_ui = {
+return {
   -- ==================== Dashboard ====================
   {
     -- DESC: Welcome dashboard for Neovim.
@@ -108,6 +108,4 @@ local editor_ui = {
     event = "VeryLazy",
   },
 
-
 }
-return editor_ui

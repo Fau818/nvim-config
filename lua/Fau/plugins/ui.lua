@@ -1,7 +1,7 @@
 -- DESC: This module is for pretty UI, most of them should be loaded in `VeryLazy` and `UIEnter` events.
 
 ---@type LazySpec[]
-local ui = {
+return {
   -- ==================== Global ====================
   {
     -- DESC: A fancy UI provider.
@@ -49,6 +49,3 @@ local ui = {
   },
 
 }
-
-
-return ui

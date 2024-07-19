@@ -1,7 +1,7 @@
 -- DESC: This module is for language server protocol, will be loaded in `BufReadPost` and `BufNewFile` events.
 
 ---@type LazySpec[]
-local lsp = {
+return {
   -- =============================================
   -- ========== LSP Manager
   -- =============================================
@@ -152,6 +152,3 @@ local lsp = {
   }
 
 }
-
-
-return lsp

@@ -1,7 +1,7 @@
 -- DESC: This module is for code completion, will be loaded in `InsertEnter` event.
 
 ---@type LazySpec[]
-local cmp = {
+return {
   -- ==================== Completion Core ====================
   {
     -- DESC: Neovim code completion core plugin.
@@ -126,6 +126,3 @@ local cmp = {
   },
 
 }
-
-
-return cmp

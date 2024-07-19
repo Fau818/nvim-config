@@ -41,5 +41,4 @@ return {
     keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "Show Todo Comments" } }
   },
 
-
 }

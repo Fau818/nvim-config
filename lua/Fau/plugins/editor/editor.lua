@@ -2,7 +2,7 @@
 -- \     also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
 
 ---@type LazySpec[]
-local editor = {
+return {
   -- -----------------------------------
   -- -------- View Guide
   -- -----------------------------------
@@ -157,6 +157,3 @@ local editor = {
   },
 
 }
-
-
-return editor

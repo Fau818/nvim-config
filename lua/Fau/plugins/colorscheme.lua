@@ -1,7 +1,7 @@
 -- DESC: This module is for colorscheme, will be lazy-loaded.
 
 ---@type LazySpec[]
-local colorscheme = {
+return {
   {
     -- DESC: A snazzy colorscheme that can be customized.
     "folke/tokyonight.nvim",
@@ -13,6 +13,3 @@ local colorscheme = {
     end,
   },
 }
-
-
-return colorscheme

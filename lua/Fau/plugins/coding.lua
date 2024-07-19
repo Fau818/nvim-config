@@ -1,7 +1,7 @@
 -- DESC: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` (Rarely loaded in `InsertEnter` and `BufWritePre`) events
 
 ---@type LazySpec[]
-local coding = {
+return {
   -- ==================== Text Operation ====================
   {
     -- DESC: Quickly add, modify, and remove surround.
@@ -139,6 +139,3 @@ local coding = {
   },
 
 }
-
-
-return coding

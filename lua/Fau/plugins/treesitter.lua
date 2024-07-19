@@ -2,7 +2,7 @@
 
 -- TODO: Move this module to `editor` module.
 ---@type LazySpec[]
-local treesitter = {
+return {
   {
     -- DESC: An incremental parsing system for programming tools for Neovim.
     "nvim-treesitter/nvim-treesitter",
@@ -27,6 +27,3 @@ local treesitter = {
   },
 
 }
-
-
-return treesitter

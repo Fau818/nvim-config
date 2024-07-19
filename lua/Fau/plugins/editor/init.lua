@@ -1,2 +1,2 @@
-local editor = { import = "Fau.plugins.editor" }
-return editor
+---@type LazySpecImport
+return { import = "Fau.plugins.editor" }

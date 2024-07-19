@@ -1,7 +1,7 @@
 -- DESC: This module is for testing new plugins.
 
 ---@type LazySpec[]
-local test = {
+return {
   {
     "xeluxee/competitest.nvim",
     dependencies = "MunifTanjim/nui.nvim",
@@ -10,6 +10,3 @@ local test = {
   },
 
 }
-
-
-return test

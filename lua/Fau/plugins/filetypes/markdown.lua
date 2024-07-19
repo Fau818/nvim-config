@@ -1,7 +1,7 @@
 -- DESC: This module is for markdown filetype.
 
 ---@type LazySpec[]
-local markdown = {
+return {
   {
     -- DESC: Quick table creation and editing in markdown.
     "dhruvasagar/vim-table-mode",
@@ -59,6 +59,3 @@ local markdown = {
   },
 
 }
-
-
-return markdown
