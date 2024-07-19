@@ -1,21 +1,18 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local luasnip = require("luasnip")  -- make sure installed
+local luasnip = require("luasnip")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   region_check_events = "InsertEnter",
-  delete_check_events = "InsertLeave"
+  delete_check_events = "InsertLeave",
 }
-
 
 luasnip.setup(config)
 
 
---- Load from Snitmate
+
+-- =============================================
+-- ========== Load Snippets from Snitmate
+-- =============================================
 require("luasnip.loaders.from_snipmate").lazy_load()
