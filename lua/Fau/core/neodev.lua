@@ -20,7 +20,7 @@ local config = {
   },
   setup_jsonls = true,  -- configures jsonls to provide completion for project specific .luarc.json files
   -- override = function(root_dir, library) end,
-  lspconfig = true, -- if true, Neodev will automatically setup your lua-language-server
+  lspconfig = true,  -- if true, Neodev will automatically setup your lua-language-server
   pathStrict = true,
 }
 

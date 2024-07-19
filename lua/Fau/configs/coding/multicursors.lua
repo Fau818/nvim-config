@@ -5,7 +5,7 @@ local multicursors = require("multicursors")
 
 local config = {
   DEBUG_MODE = false,
-  create_commands = true, -- create Multicursor user commands
+  create_commands = true,  -- create Multicursor user commands
   -- updatetime = nil,
   nowait = true,
   mode_keys = {
@@ -26,7 +26,7 @@ local config = {
     normal = true,
     insert = true,
     extend = true,
-    config = { column_count = nil, max_hint_length = 50 }
+    config = { column_count = nil, max_hint_length = 50 },
   },
 }
 

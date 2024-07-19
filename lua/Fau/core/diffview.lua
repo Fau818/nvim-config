@@ -12,17 +12,17 @@ local actions = require("diffview.actions")
 -- ========== Configuration
 -- =============================================
 local config = {
-  diff_binaries    = false, -- Show diffs for binaries
-  enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
+  diff_binaries    = false,  -- Show diffs for binaries
+  enhanced_diff_hl = false,  -- See ':h diffview-config-enhanced_diff_hl'
 
-  git_cmd = { "git" }, -- The git executable followed by default args.
-  hg_cmd  = { "hg" },  -- The hg executable followed by default args.
+  git_cmd = { "git" },  -- The git executable followed by default args.
+  hg_cmd  = { "hg" },   -- The hg executable followed by default args.
 
-  use_icons       = true, -- Requires nvim-web-devicons
-  show_help_hints = true, -- Show hints for how to open the help panel
-  watch_index     = true, -- Update views and index buffers when the git index changes.
+  use_icons       = true,  -- Requires nvim-web-devicons
+  show_help_hints = true,  -- Show hints for how to open the help panel
+  watch_index     = true,  -- Update views and index buffers when the git index changes.
 
-  icons = { -- Only applies when use_icons is true.
+  icons = {  -- Only applies when use_icons is true.
     folder_closed = Fau_vim.icons.ui.FolderClosed,
     folder_open   = Fau_vim.icons.ui.FolderOpened,
   },
@@ -46,36 +46,36 @@ local config = {
     default = {
       -- Config for changed files, and staged files in diff views.
       layout = "diff2_horizontal",
-      winbar_info = false, -- See ':h diffview-config-view.x.winbar_info'
+      winbar_info = false,  -- See ':h diffview-config-view.x.winbar_info'
     },
     merge_tool = {
       -- Config for conflicted files in diff views during a merge or rebase.
       layout = "diff3_horizontal",
-      disable_diagnostics = true, -- Temporarily disable diagnostics for conflict buffers while in the view.
-      winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
+      disable_diagnostics = true,  -- Temporarily disable diagnostics for conflict buffers while in the view.
+      winbar_info = true,          -- See ':h diffview-config-view.x.winbar_info'
     },
     file_history = {
       -- Config for changed files in file history views.
       layout = "diff2_horizontal",
-      winbar_info = false, -- See ':h diffview-config-view.x.winbar_info'
+      winbar_info = false,  -- See ':h diffview-config-view.x.winbar_info'
     },
   },
 
   file_panel = {
-    listing_style = "tree", -- One of 'list' or 'tree'
-    tree_options = { -- Only applies when listing_style is 'tree'
-      flatten_dirs = true, -- Flatten dirs that only contain one single dir
-      folder_statuses = "only_folded", -- One of 'never', 'only_folded' or 'always'.
+    listing_style = "tree",             -- One of 'list' or 'tree'
+    tree_options = {                    -- Only applies when listing_style is 'tree'
+      flatten_dirs = true,              -- Flatten dirs that only contain one single dir
+      folder_statuses = "only_folded",  -- One of 'never', 'only_folded' or 'always'.
     },
-    win_config = { -- See ':h diffview-config-win_config'
+    win_config = {  -- See ':h diffview-config-win_config'
       position = "left",
       width = 25,
-      win_opts = {}
+      win_opts = {},
     },
   },
 
   file_history_panel = {
-    log_options = { -- See ':h diffview-config-log_options'
+    log_options = {  -- See ':h diffview-config-log_options'
       git = {
         single_file = {
           diff_merges = "combined",
@@ -89,53 +89,53 @@ local config = {
         multi_file  = {},
       },
     },
-    win_config = { -- See ':h diffview-config-win_config'
+    win_config = {  -- See ':h diffview-config-win_config'
       position = "bottom",
       height = 12,
-      win_opts = {}
+      win_opts = {},
     },
   },
 
   commit_log_panel = {
-    win_config = { -- See ':h diffview-config-win_config'
+    win_config = {  -- See ':h diffview-config-win_config'
       win_opts = {},
-    }
+    },
   },
 
-  default_args = { -- Default args prepended to the arg-list for the listed commands
+  default_args = {  -- Default args prepended to the arg-list for the listed commands
     DiffviewOpen = {},
     DiffviewFileHistory = {},
   },
 
-  hooks = {}, -- See ':h diffview-config-hooks'
+  hooks = {},  -- See ':h diffview-config-hooks'
 
   keymaps = {
-    disable_defaults = true, -- Disable the default keymaps
+    disable_defaults = true,  -- Disable the default keymaps
     view = {
       -- The `view` bindings are active in the diff buffers, only when the current
       -- tabpage is a Diffview.
-      { "n", "<tab>",      actions.select_next_entry,         { desc = "Open the diff for the next file" } },
-      { "n", "<s-tab>",    actions.select_prev_entry,         { desc = "Open the diff for the previous file" } },
+      { "n", "<tab>",   actions.select_next_entry, { desc = "Open the diff for the next file" } },
+      { "n", "<s-tab>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
 
-      { "n", "gf",         actions.goto_file_edit,            { desc = "Open the file in the previous tabpage" } },
-      { "n", "<C-w><C-f>", actions.goto_file_split,           { desc = "Open the file in a new split" } },
-      { "n", "<C-w>gf",    actions.goto_file_tab,             { desc = "Open the file in a new tabpage" } },
+      { "n", "gf",         actions.goto_file_edit,  { desc = "Open the file in the previous tabpage" } },
+      { "n", "<C-w><C-f>", actions.goto_file_split, { desc = "Open the file in a new split" } },
+      { "n", "<C-w>gf",    actions.goto_file_tab,   { desc = "Open the file in a new tabpage" } },
 
-      { "n", "<leader>e",  actions.toggle_files,              { desc = "Toggle the file panel." } },
+      { "n", "<leader>e", actions.toggle_files, { desc = "Toggle the file panel." } },
 
-      { "n", "gp",         actions.prev_conflict,             { desc = "In the merge-tool: jump to the previous conflict" } },
-      { "n", "gn",         actions.next_conflict,             { desc = "In the merge-tool: jump to the next conflict" } },
+      { "n", "gp", actions.prev_conflict, { desc = "In the merge-tool: jump to the previous conflict" } },
+      { "n", "gn", actions.next_conflict, { desc = "In the merge-tool: jump to the next conflict" } },
 
-      { "n", "<leader>co", actions.conflict_choose("ours"),   { desc = "Choose the OURS version of a conflict" } },
-      { "n", "<leader>ct", actions.conflict_choose("theirs"), { desc = "Choose the THEIRS version of a conflict" } },
-      { "n", "<leader>cb", actions.conflict_choose("base"),   { desc = "Choose the BASE version of a conflict" } },
-      { "n", "<leader>ca", actions.conflict_choose("all"),    { desc = "Choose all the versions of a conflict" } },
-      { "n", "dx",         actions.conflict_choose("none"),   { desc = "Delete the conflict region" } },
-      { "n", "<leader>cO",  actions.conflict_choose_all("ours"),   { desc = "Choose the OURS version of a conflict for the whole file" } },
-      { "n", "<leader>cT",  actions.conflict_choose_all("theirs"), { desc = "Choose the THEIRS version of a conflict for the whole file" } },
-      { "n", "<leader>cB",  actions.conflict_choose_all("base"),   { desc = "Choose the BASE version of a conflict for the whole file" } },
-      { "n", "<leader>cA",  actions.conflict_choose_all("all"),    { desc = "Choose all the versions of a conflict for the whole file" } },
-      { "n", "dX",          actions.conflict_choose_all("none"),   { desc = "Delete the conflict region for the whole file" } },
+      { "n", "<leader>co", actions.conflict_choose("ours"),       { desc = "Choose the OURS version of a conflict" } },
+      { "n", "<leader>ct", actions.conflict_choose("theirs"),     { desc = "Choose the THEIRS version of a conflict" } },
+      { "n", "<leader>cb", actions.conflict_choose("base"),       { desc = "Choose the BASE version of a conflict" } },
+      { "n", "<leader>ca", actions.conflict_choose("all"),        { desc = "Choose all the versions of a conflict" } },
+      { "n", "dx",         actions.conflict_choose("none"),       { desc = "Delete the conflict region" } },
+      { "n", "<leader>cO", actions.conflict_choose_all("ours"),   { desc = "Choose the OURS version of a conflict for the whole file" } },
+      { "n", "<leader>cT", actions.conflict_choose_all("theirs"), { desc = "Choose the THEIRS version of a conflict for the whole file" } },
+      { "n", "<leader>cB", actions.conflict_choose_all("base"),   { desc = "Choose the BASE version of a conflict for the whole file" } },
+      { "n", "<leader>cA", actions.conflict_choose_all("all"),    { desc = "Choose all the versions of a conflict for the whole file" } },
+      { "n", "dX",         actions.conflict_choose_all("none"),   { desc = "Delete the conflict region for the whole file" } },
     },
 
     file_panel = {
@@ -178,7 +178,7 @@ local config = {
       { "n", "g?",            actions.help("file_panel"),  { desc = "Open the help panel" } },
 
       -- { "n", "g<C-x>",        actions.cycle_layout,        { desc = "Cycle available layouts" } },
-      { "n", "q",             "<CMD>tabclose<CR>",                  { desc = "Close" } },
+      { "n", "q",             "<CMD>tabclose<CR>",         { desc = "Close" } },
     },
 
     file_history_panel = {

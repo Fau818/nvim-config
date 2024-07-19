@@ -3,12 +3,16 @@
 -- =============================================
 local satellite = require("satellite")
 
+---@type SatelliteConfig
 local config = {
   current_only = false,
+
   winblend = 0,
-  zindex = 40,
+  zindex   = 40,
+  width    = 2,
+
   excluded_filetypes = Fau_vim.file.excluded_filetypes,
-  width = 2,
+
   handlers = {
     cursor = {
       enable = true,
@@ -32,6 +36,5 @@ local config = {
     quickfix = { signs = { "-", "=", "≡" } },
   },
 }
-vim.api.nvim_get_current_win()
 
 satellite.setup(config)

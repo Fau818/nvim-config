@@ -43,8 +43,8 @@ local config = {
   -- Module mappings. Use `''` (empty string) to disable one. Some of them
   -- might conflict with system mappings.
   mappings = {
-    force_twostep  = "", -- Force two-step completion
-    force_fallback = "", -- Force fallback completion
+    force_twostep  = "",  -- Force two-step completion
+    force_fallback = "",  -- Force fallback completion
   },
 
   -- Whether to set Vim's settings for better experience (modifies `shortmess` and `completeopt`)

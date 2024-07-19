@@ -34,7 +34,7 @@ local config = {
   },
 
   auto_attach = true,
-  attach_to_untracked = true, -- Attach to untracked files.
+  attach_to_untracked = true,
   on_attach = function(bufnr)
     -- TODO: call which-key binding.
   end,
@@ -46,19 +46,19 @@ local config = {
 
   watch_gitdir = { follow_files = true },
 
-  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = true,  -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
-    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+    virt_text_pos = "eol",  -- 'eol' | 'overlay' | 'right_align'
     virt_text_priority = 100,
     delay = 500,
-    ignore_whitespace = true, -- whether to ignore the whitespace when checking
+    ignore_whitespace = true,  -- whether to ignore the whitespace when checking
   },
   current_line_blame_formatter = "<author>, <author_time:%Y/%m/%d>, <committer_time:%H:%M> • <summary>",
 
   sign_priority = 9,  -- set 12 to cover diagnostic
   update_debounce = 100,
-  max_file_length = 5000, -- Disable if file is longer than this (in lines)
+  max_file_length = 5000,  -- Disable if file is longer than this (in lines)
 
   preview_config = {
     -- Options passed to nvim_open_win

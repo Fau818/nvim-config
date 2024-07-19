@@ -24,7 +24,7 @@ local config = {
   open_no_results = false,  -- open the trouble window when there are no results
 
   ---@type trouble.Window.opts
-  win = {}, -- window options for the results window. Can be a split or a floating window.
+  win = {},  -- window options for the results window. Can be a split or a floating window.
 
   -- Window options for the preview window. Can be a split, floating window, or `main` to show the preview in the main editor window.
   ---@type trouble.Window.opts

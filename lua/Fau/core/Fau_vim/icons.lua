@@ -1,41 +1,41 @@
 return {
   -- ==================== LSP ====================
   kind = {
-    Array         = "", -- "󰅨"
-    Boolean       = "󰨙", -- ""
+    Array         = "",  -- "󰅨"
+    Boolean       = "󰨙",  -- ""
     Class         = "",
-    Color         = "", -- ""
-    Constant      = "󰏿", -- ""
-    Constructor   = "", -- "", ""
+    Color         = "",  -- ""
+    Constant      = "󰏿",  -- ""
+    Constructor   = "",  -- "", ""
     Copilot       = "",
-    Enum          = "", -- "󰕘"
-    EnumMember    = "", -- ""
-    Event         = "", -- ""
-    Field         = "", -- "", ""
-    File          = "", -- ""
-    Folder        = "", -- ""
-    Function      = "󰊕", -- "󰡱"
-    Interface     = "", -- ""
-    Key           = "", -- ""
+    Enum          = "",  -- "󰕘"
+    EnumMember    = "",  -- ""
+    Event         = "",  -- ""
+    Field         = "",  -- "", ""
+    File          = "",  -- ""
+    Folder        = "",  -- ""
+    Function      = "󰊕",  -- "󰡱"
+    Interface     = "",  -- ""
+    Key           = "",  -- ""
     Keyword       = "",
     Method        = "󰆧",
-    Module        = "", -- ""
-    Namespace     = "", -- "󰦮"
-    Null          = "󰟢", -- ""
-    Number        = "󰎠", -- "" ""
+    Module        = "",  -- ""
+    Namespace     = "",  -- "󰦮"
+    Null          = "󰟢",  -- ""
+    Number        = "󰎠",  -- "" ""
     Object        = "󰅩",
     Operator      = "",
-    Package       = "", -- ""
-    Property      = "", -- ""
-    Reference     = "", -- ""
-    Snippet       = "", -- ""
-    String        = "", -- "", ""
-    Struct        = "󰆼", -- "", ""
+    Package       = "",  -- ""
+    Property      = "",  -- ""
+    Reference     = "",  -- ""
+    Snippet       = "",  -- ""
+    String        = "",  -- "", ""
+    Struct        = "󰆼",  -- "", ""
     Text          = "",
     TypeParameter = "",
     Unit          = "",
     Value         = "",
-    Variable      = "", -- "󰀫"
+    Variable      = "",  -- "󰀫"
   },
 
 
@@ -115,7 +115,7 @@ return {
     FoldOpened = "",
 
     -- ---------- Indent
-    IndentLine = "▏", -- "▎"
+    IndentLine = "▏",  -- "▎"
     Tab        = "󰌒",
     Space      = "⎵",
     EndLine    = "",
@@ -130,10 +130,10 @@ return {
     ExpandRight = "",
 
     -- ---------- Lualine
-    DividerLeft      = "",  -- "", ""
-    DividerRight     = "",  -- "", ""
-    BoldDividerLeft  = "", -- ""
-    BoldDividerRight = "", -- ""
+    DividerLeft      = "",   -- "", ""
+    DividerRight     = "",   -- "", ""
+    BoldDividerLeft  = "",  -- ""
+    BoldDividerRight = "",  -- ""
 
     Tree = "",
 

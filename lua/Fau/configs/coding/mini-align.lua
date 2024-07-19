@@ -49,8 +49,8 @@ local config = {
 
   -- Default options controlling alignment process
   options = {
-    split_pattern = "",
-    justify_side = "left",
+    split_pattern   = "",
+    justify_side    = "left",
     merge_delimiter = "",
   },
 

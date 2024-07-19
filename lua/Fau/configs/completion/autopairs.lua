@@ -5,8 +5,8 @@ local npairs = require("nvim-autopairs")
 
 local config = {
   disable_filetype = Fau_vim.file.excluded_filetypes,
-  disable_in_macro        = false,  -- disable when recording or executing a macro
-  disable_in_visualblock  = false,  -- disable when insert after visual block mode
+  disable_in_macro        = true,  -- disable when recording or executing a macro
+  disable_in_visualblock  = true,  -- disable when insert after visual block mode
   disable_in_replace_mode = true,
 
   ignored_next_char = nil,  -- Use default.
@@ -15,7 +15,8 @@ local config = {
   enable_afterquote         = true,  -- add bracket pairs after quote
   enable_check_bracket_line = true,  -- check bracket in same line
   enable_bracket_in_quote   = true,
-  enable_abbr               = false,  -- trigger abbreviation
+  -- TEST: Enabled in July 19, 2024
+  enable_abbr               = true,  -- trigger abbreviation
 
   break_undo = true,  -- Switch for basic rule break undo sequence
   -- TEST: Enabled in June 5, 2024

@@ -43,7 +43,7 @@ return {
 
   move = {
     enable = true,
-    set_jumps = true, -- whether to set jumps in the jumplist
+    set_jumps = true,  -- whether to set jumps in the jumplist
     goto_next_start = {
       ["]]"] = { query = { "@function.outer", "@class.outer" }, desc = "Next Code Block Start" },
       ["]f"] = { query = "@function.outer",                     desc = "Next Function Start" },

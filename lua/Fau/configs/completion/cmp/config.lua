@@ -14,7 +14,7 @@ return {
       return not Fau_vim.functions.utils.is_large_file()
     end,
 
-    snippet = { expand = function(args) luasnip.lsp_expand(args.body) end }, -- for loading custom snippets of luasnip
+    snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },  -- for loading custom snippets of luasnip
 
     performance = nil,  -- Use default.
 
@@ -32,9 +32,9 @@ return {
     mapping = mapping.global,
 
     formatting = {
-      expandable_indicator = true,         -- Boolean to show the `~` expandable indicator in cmp's floating window.
-      fields = { "kind", "abbr", "menu" }, -- An array of completion fields to specify their order.
-      format = function(entry, vim_item)   -- The function used to customize the appearance of the completion menu.
+      expandable_indicator = true,          -- Boolean to show the `~` expandable indicator in cmp's floating window.
+      fields = { "kind", "abbr", "menu" },  -- An array of completion fields to specify their order.
+      format = function(entry, vim_item)
         vim_item.kind = Fau_vim.icons.kind[vim_item.kind] or Fau_vim.icons.kind.Text
         vim_item.menu = ({
           luasnip  = "[Snippet]",

@@ -10,8 +10,8 @@ if not code_runner_ok then Fau_vim.load_plugin_error("code_runner") return end
 -- ========== Configuration
 -- =============================================
 local config = {
-  mode = "term", -- default mode
-  focus = true,  -- Focus on runner window (only works on toggle, term and tab mode)
+  mode  = "term",  -- default mode
+  focus = true,    -- Focus on runner window (only works on toggle, term and tab mode)
   startinsert = true,
 
   term = {

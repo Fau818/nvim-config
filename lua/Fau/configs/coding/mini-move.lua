@@ -7,10 +7,10 @@ local config = {
   -- Module mappings. Use `''` (empty string) to disable one.
   mappings = {
     -- Move visual selection in Visual mode.
-    left       = "<A-h>",
-    right      = "<A-l>",
-    down       = "<A-j>",
-    up         = "<A-k>",
+    left  = "<A-h>",
+    right = "<A-l>",
+    down  = "<A-j>",
+    up    = "<A-k>",
 
     -- Move current line in Normal mode
     line_left  = "",

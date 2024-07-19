@@ -30,10 +30,10 @@ return {
     "ellisonleao/glow.nvim",
     config = function()
       local config = {
-        border = "double", -- floating window border config
+        border = "double",  -- floating window border config
         width  = 99999,
         height = 99999,
-        width_ratio = 0.85, -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
+        width_ratio = 0.85,  -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
         height_ratio = 0.85,
       }
       require("glow").setup(config)

@@ -50,10 +50,10 @@ local config = {
     url_format = "https://github.com/%s.git",
     filter = true,
     throttle = {
-      enabled = false, -- not enabled by default
+      enabled = false,  -- not enabled by default
       -- max 2 ops every 5 seconds
       rate = 2,
-      duration = 5 * 1000, -- in ms
+      duration = 5 * 1000,  -- in ms
     },
   },
 

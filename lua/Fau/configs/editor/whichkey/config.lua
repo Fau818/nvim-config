@@ -12,7 +12,7 @@ local config = {
   notify = true,
 
   ---@type wk.Spec
-  triggers = nil, -- Use default.
+  triggers = nil,  -- Use default.
 
   defer = nil,  -- Use default.
 

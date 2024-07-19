@@ -40,7 +40,7 @@ local config = {
     -- save location in the jumplist
     jumplist = true,
     -- jump position
-    pos = "start", ---@type "start" | "end" | "range"
+    pos = "start",  ---@type "start" | "end" | "range"
     -- add pattern to search history
     history = false,
     -- add pattern to search register
@@ -52,11 +52,11 @@ local config = {
     -- You can force inclusive/exclusive jumps by setting the
     -- `inclusive` option. By default it will be automatically
     -- set based on the mode.
-    inclusive = nil, ---@type boolean?
+    inclusive = nil,  ---@type boolean?
     -- jump position offset. Not used for range jumps.
     -- 0: default
     -- 1: when pos == "end" and pos < current position
-    offset = nil, ---@type number
+    offset = nil,  ---@type number
   },
 
   label = {
@@ -68,14 +68,14 @@ local config = {
     -- you can always jump to the first match with `<CR>`
     current = true,
     -- show the label after the match
-    after = true, ---@type boolean|number[]
+    after = true,  ---@type boolean|number[]
     -- show the label before the match
-    before = false, ---@type boolean|number[]
+    before = false,  ---@type boolean|number[]
     -- position of the label extmark
-    style = "overlay", ---@type "eol" | "overlay" | "right_align" | "inline"
+    style = "overlay",  ---@type "eol" | "overlay" | "right_align" | "inline"
     -- flash tries to re-use labels that were already assigned to a position,
     -- when typing more characters. By default only lower-case labels are re-used.
-    reuse = "lowercase", ---@type "lowercase" | "all" | "none"
+    reuse = "lowercase",  ---@type "lowercase" | "all" | "none"
     -- for the current window, label targets closer to the cursor first
     distance = true,
     -- minimum pattern length to show labels
@@ -115,7 +115,7 @@ local config = {
   -- When `true`, flash will try to continue the last search
   continue = false,
   -- Set config to a function to dynamically change the config
-  config = nil, ---@type fun(opts:Flash.Config)|nil
+  config = nil,  ---@type fun(opts:Flash.Config)|nil
   -- You can override the default options for a specific mode.
   -- Use it with `require("flash").jump({mode = "forward"})`
   ---@type table<string, Flash.Config>
@@ -154,8 +154,8 @@ local config = {
       keys = { "f", "F", "t", "T", ";", "," },
       char_actions = function(motion)
         return {
-          [";"] = "next", -- set to `right` to always go right
-          [","] = "prev", -- set to `left` to always go left
+          [";"] = "next",  -- set to `right` to always go right
+          [","] = "prev",  -- set to `left` to always go left
           -- clever-f style
           [motion:lower()] = "next",
           [motion:upper()] = "prev",
@@ -199,10 +199,10 @@ local config = {
     prefix = { { "⚡", "FlashPromptIcon" } },
     win_config = {
       relative = "editor",
-      width = 1, -- when <=1 it's a percentage of the editor width
+      width = 1,  -- when <=1 it's a percentage of the editor width
       height = 1,
-      row = -1, -- when negative it's an offset from the bottom
-      col = 0, -- when negative it's an offset from the right
+      row = -1,  -- when negative it's an offset from the bottom
+      col = 0,   -- when negative it's an offset from the right
       zindex = 1000,
     },
   },
@@ -226,4 +226,4 @@ flash.setup(config)
 -- -----------------------------------
 -- -------- Keymaps
 -- -----------------------------------
-vim.keymap.set({ "n", "x", "o" }, "<LEADER>s", flash.jump, { silent=true, desc="Flash" })
+vim.keymap.set({ "n", "x", "o" }, "<LEADER>s", flash.jump, { silent = true, desc = "Flash" })
