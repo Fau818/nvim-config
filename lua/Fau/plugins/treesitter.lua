@@ -15,8 +15,8 @@ return {
     -- DESC: Show context of the current buffer contents.
     "nvim-treesitter/nvim-treesitter-context",
     config = function() require("Fau.configs.treesitter.context") end,
-    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
     event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
   },
 
   {

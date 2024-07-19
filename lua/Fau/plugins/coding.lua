@@ -110,7 +110,6 @@ return {
     -- DESC: Multi-cursor support in Neovim.
     "smoka7/multicursors.nvim",
     dependencies = "smoka7/hydra.nvim",
-    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
       {
         mode = { "n", "x" },
@@ -126,6 +125,7 @@ return {
       },
     },
     config = function() require("Fau.configs.coding.multicursors") end,
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 

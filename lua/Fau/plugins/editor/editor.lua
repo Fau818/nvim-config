@@ -16,8 +16,8 @@ return {
   {
     -- DESC: indent guides for Neovim.
     "lukas-reineke/indent-blankline.nvim",
-    config = function() require("Fau.core.indentline") end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function() require("Fau.core.indentline") end,
     event = "BufReadPre",
   },
   {
@@ -67,9 +67,9 @@ return {
       "nvim-telescope/telescope.nvim"  -- Not necessary, but for loading telescope keybinds first!
     },
     config = function() require("Fau.core.trouble") end,
+    event = "LspAttach",
     cmd = "Trouble",
     keys = { "gd", "gD", "gt", "gI", "gr", "gi", "go", "<LEADER>ld", "<LEADER>lD" },
-    event = "LspAttach",
     tag = Fau_vim.plugin.trouble.tag,
   },
 

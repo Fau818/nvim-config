@@ -134,6 +134,7 @@ return {
         end
       })
     end,
+    event = "LspAttach",
     keys = {
       {
         "<LEADER>lL",
@@ -148,7 +149,6 @@ return {
         desc = "Toggle LSP Lines",
       }
     },
-    event = "LspAttach",
   }
 
 }

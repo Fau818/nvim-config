@@ -38,7 +38,7 @@ return {
     config = function() require("Fau.core.todo-comments") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
-    keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "Show Todo Comments" } }
+    keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "Show Todo Comments" } },
   },
 
 }
