@@ -131,6 +131,8 @@ local config = {
 
     -- ---------- NvimTree
     highlights["NvimTreeSpecialFile"] = { fg = Fau_vim.colors.tokyonight.purple }
+    highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
+    highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
   end,
 }
 

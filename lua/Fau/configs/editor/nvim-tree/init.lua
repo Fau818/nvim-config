@@ -53,10 +53,11 @@ local config = {
     special_files = Fau_vim.file.special_files,
     symlink_destination = true,  -- Whether to show the destination of the symlink.
 
+    ---@type "all" | "name" | "icon" | "none"
     highlight_git          = "name",
-    highlight_diagnostics  = "all",
+    highlight_diagnostics  = "name",
     highlight_opened_files = "name",
-    highlight_modified     = "all",
+    highlight_modified     = "name",
     highlight_clipboard    = "name",
 
     indent_width = 2,
@@ -125,7 +126,7 @@ local config = {
     show_on_dirs = false,
     show_on_open_dirs = false,
     debounce_delay = 50,
-    severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR,  },
+    severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
     icons = {
       hint    = Fau_vim.icons.diagnostics.BoldHint,
       info    = Fau_vim.icons.diagnostics.BoldInfo,
