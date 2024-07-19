@@ -1,3 +1,4 @@
+-- TODO: ...
 -- DESC: This module is for enhancing editor, will be loaded in `VeryLazy` event.
 -- \     also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
 
