@@ -75,7 +75,7 @@ return {
     -- DESC: Statusline enhancer.
     "luukvbaal/statuscol.nvim",
     config = function() require("Fau.configs.editor.statuscol") end,
-    lazy = true,  -- loaded by nvim-ufo
+    event = "UIEnter",
     enabled = vim.fn.has("nvim-0.10") == 1,
   },
 
@@ -108,6 +108,8 @@ return {
   -- ==================== Scroll Bar ====================
     {
     -- DESC: A nice scrollbar.
+    -- BUG: Delay in large file.
+    -- HACK: Current solution is to disable scrollbar in large file.
     "lewis6991/satellite.nvim",
     config = function() require("Fau.configs.editor.satellite") end,
     event = "UIEnter",

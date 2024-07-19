@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
 -- -------- Large File
 -- -----------------------------------
 -- TODO: Finish this.
-vim.api.nvim_create_autocmd("BufReadPre", {
+vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*.*",
   group = "Fau_vim",
   desc = "Disable some features in large file.",
@@ -69,8 +69,10 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     if not Fau_vim.functions.utils.is_large_file() then return end
 
     ---Large file!!
-    vim.api.nvim_command("syntax off")
-    vim.api.nvim_command("filetype off")
+    -- vim.api.nvim_command("syntax off")
+    -- vim.api.nvim_command("filetype off")
+    -- vim.opt_local.syntax   = "off"
+    -- vim.opt_local.filetype = "none"
 
     -- Disable fold
     vim.opt_local.foldenable = false
@@ -85,6 +87,10 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     -- vim.opt_local.undolevels = -1
     -- vim.opt_local.undoreload = 0
     -- vim.opt_local.modifiable = false
+
+    -- HACK: Disable scrollbar (satellite)
+    pcall(require, "satellite")
+    vim.api.nvim_command("SatelliteDisable")
 
     -- Extra ...
     vim.opt_local.wrap = true
