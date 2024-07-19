@@ -70,6 +70,41 @@ return {
   },
 
 
+  -- ==================== Status Column and Folding ====================
+  {
+    -- DESC: Statusline enhancer.
+    "luukvbaal/statuscol.nvim",
+    config = function() require("Fau.configs.editor.statuscol") end,
+    lazy = true,  -- loaded by nvim-ufo
+    enabled = vim.fn.has("nvim-0.10") == 1,
+  },
+
+  {
+    -- DESC: Folding enhancer.
+    "kevinhwang91/nvim-ufo",
+    init = function()
+      vim.opt.foldcolumn     = "auto"
+      vim.opt.foldlevel      = 999
+      vim.opt.foldlevelstart = 999
+      vim.opt.foldenable     = true
+      vim.opt.fillchars:append([[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]])
+
+      -- TEST: Disabled on July 19, 2024
+      --- For saving the fold status
+      -- vim.cmd [[
+      --   augroup remember_folds
+      --     autocmd BufWinLeave *.* mkview
+      --     autocmd BufWinEnter *.* silent! loadview
+      --   augroup END
+      -- ]]
+    end,
+    dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter", "luukvbaal/statuscol.nvim" },
+    config = function() require("Fau.configs.editor.ufo") end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
+  },
+
+
   -- ==================== Scroll Bar ====================
     {
     -- DESC: A nice scrollbar.
@@ -123,6 +158,21 @@ return {
     event = "UIEnter",
     cmd = "Telescope",
     keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
+  },
+
+
+  -- ==================== Quickfix ====================
+  {
+    -- DESC: Quickfix list enhancer.
+    "folke/trouble.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-telescope/telescope.nvim"  -- Not necessary, but for loading telescope keybinds first!
+    },
+    config = function() require("Fau.configs.editor.trouble") end,
+    event = "LspAttach",
+    cmd = "Trouble",
+    tag = Fau_vim.plugin.trouble.tag,
   },
 
 

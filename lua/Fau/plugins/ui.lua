@@ -9,7 +9,7 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       {
-        -- DESC: a fancy notification manager for Neovim.
+        -- DESC: A fancy notification manager for Neovim.
         "rcarriga/nvim-notify",
         config = function() require("Fau.configs.ui.notify") end,
       },

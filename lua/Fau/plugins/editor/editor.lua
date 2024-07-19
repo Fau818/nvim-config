@@ -3,45 +3,9 @@
 
 ---@type LazySpec[]
 return {
-  {
-    -- DESC: Statusline enhancer.
-    "luukvbaal/statuscol.nvim",
-    config = function() require("Fau.core.statuscol") end,
-    lazy = true,  -- loaded by nvim-ufo
-    enabled = vim.fn.has("nvim-0.10") == 1,
-  },
-
-  {
-    -- DESC: Folding enhancer.
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      "nvim-treesitter/nvim-treesitter",
-      "luukvbaal/statuscol.nvim",
-    },
-    config = function() require("Fau.core.ufo") end,
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
-  },
-
-
   -- -----------------------------------
   -- -------- Powerful Window
   -- -----------------------------------
-  {
-    -- DESC: Quickfix list enhancer.
-    "folke/trouble.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "nvim-telescope/telescope.nvim"  -- Not necessary, but for loading telescope keybinds first!
-    },
-    config = function() require("Fau.core.trouble") end,
-    event = "LspAttach",
-    cmd = "Trouble",
-    keys = { "gd", "gD", "gt", "gI", "gr", "gi", "go", "<LEADER>ld", "<LEADER>lD" },
-    tag = Fau_vim.plugin.trouble.tag,
-  },
-
   {
     -- DESC: Terminal enhancer.
     "akinsho/toggleterm.nvim",
@@ -77,18 +41,6 @@ return {
     config = function() require("Fau.core.chatgpt") end,
     -- event = "VeryLazy",
     cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
-  },
-
-  {
-    -- DESC: Support Yazi file browser in Neovim.
-    "mikavilpas/yazi.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    opts = { floating_window_scaling_factor = 1, yazi_floating_window_border = "none" },
-    keys = {
-      { "<leader>gy", function() require("yazi").yazi() end, desc = "Open Yazi" },
-      { "\\", function() require("yazi").yazi() end, desc = "Open Yazi" },
-    },
-    enabled = vim.fn.executable("yazi") == 1,
   },
 
 

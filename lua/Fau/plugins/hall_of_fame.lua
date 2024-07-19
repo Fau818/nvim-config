@@ -3,11 +3,11 @@
 ---@type LazySpec[]
 return {
   {
-    -- DESC: highlight parameters in comments.
+    -- DESC: Easily add additional highlights to buffers.
     "folke/paint.nvim",
     config = function() require("Fau.core.paint") end,
     -- event = { "BufReadPost", "BufNewFile" },
     ft = { "lua", "python" },
-    cond = false,
+    enabled = false,
   },
 }
