@@ -38,7 +38,6 @@ indentscope.setup(config)
 -- =============================================
 -- ========== Autocmd
 -- =============================================
--- Special for python.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   group = "Fau_vim",
@@ -47,7 +46,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
--- Disable indentscope in some filetypes.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = Fau_vim.file.excluded_filetypes,
   group = "Fau_vim",

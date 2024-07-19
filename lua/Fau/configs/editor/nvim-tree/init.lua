@@ -3,7 +3,6 @@ require("Fau.configs.editor.nvim-tree.config")
 
 
 -- ==================== Autocmd ====================
---- Open nvim-tree when open a directory.
 vim.api.nvim_create_autocmd("VimEnter", {
   group = "Fau_vim",
   desc = "Show nvim-tree when opening a directory with Neovim.",

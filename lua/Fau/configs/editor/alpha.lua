@@ -49,11 +49,12 @@ alpha.setup(dashboard.config)
 -- -----------------------------------
 -- -------- Lazy Display
 -- -----------------------------------
--- close Lazy and re-open when the dashboard is ready
 if vim.o.filetype == "lazy" then
   vim.cmd.close()
   vim.api.nvim_create_autocmd("User", {
     pattern = "AlphaReady",
+    group = "Fau_vim",
+    desc = "Close Lazy and re-open when the dashboard is ready",
     callback = function() require("lazy").show() end,
   })
 end
@@ -61,6 +62,8 @@ end
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "LazyVimStarted",
+  group = "Fau_vim",
+  desc = "Show startup time when LazyVim starts",
   callback = function()
     local stats = require("lazy").stats()
     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)

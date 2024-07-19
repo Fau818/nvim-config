@@ -4,7 +4,6 @@ require("Fau.configs.ui.noice.keymaps")
 
 
 -- ==================== Autocmd ====================
----Disable `K` to show hover document keymaps in `noice`.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "noice",
   group = "Fau_vim",

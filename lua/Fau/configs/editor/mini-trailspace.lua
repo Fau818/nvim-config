@@ -25,8 +25,6 @@ end
 -- =============================================
 -- ========== Autocmd
 -- =============================================
--- Disable trailspace in some filetype
--- TODO: format autocmd like this params order
 vim.api.nvim_create_autocmd("FileType", {
   pattern = Fau_vim.file.excluded_filetypes,
   group = "Fau_vim",
