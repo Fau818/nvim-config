@@ -105,7 +105,7 @@ return {
     -- DESC: Key binding helper.
     "folke/which-key.nvim",
     config = function() require("Fau.configs.editor.whichkey") end,
-    event = "VeryLazy",
+    event = "UIEnter",
   },
 
 }

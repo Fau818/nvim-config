@@ -7,13 +7,6 @@ return {
   -- -------- View Guide
   -- -----------------------------------
   {
-    -- DESC: detect file indentation automatically.
-    "nmac427/guess-indent.nvim",
-    config = function() require("Fau.core.guess-indent") end,
-    event = "BufReadPre",
-  },
-
-  {
     -- DESC: indent guides for Neovim.
     "lukas-reineke/indent-blankline.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },

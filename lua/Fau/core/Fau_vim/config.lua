@@ -61,6 +61,7 @@ Fau_vim.file.excluded_filetypes = {
   "TelescopePrompt",
   "packer", "lazy", "yazi",
 }
+Fau_vim.file.excluded_buftypes = { "help", "nofile", "terminal", "prompt" }
 Fau_vim.file.special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" }
 Fau_vim.file.ignored_files = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$" }
 Fau_vim.file.ignored_pattern = { ".git/", ".vscode/", ".idea/", "__pycache__/", ".DS_Store" }

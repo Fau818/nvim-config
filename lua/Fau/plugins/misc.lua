@@ -16,4 +16,11 @@ return {
     event = "BufReadPre",  -- this will only start session saving when an actual file was opened
   },
 
+  {
+    -- DESC: Detect file indentation automatically.
+    "nmac427/guess-indent.nvim",
+    config = function() require("Fau.configs.misc.guess-indent") end,
+    event = "BufReadPre",
+  },
+
 }

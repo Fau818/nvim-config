@@ -152,7 +152,7 @@ local config = {
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
         exclude = {
           filetype = Fau_vim.file.excluded_filetypes,
-          buftype = { "nofile", "terminal", "help" },
+          buftype = Fau_vim.file.excluded_buftypes,
         },
       },
     },

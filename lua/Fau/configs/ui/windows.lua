@@ -10,7 +10,7 @@ local config = {
     filetype = nil,
   },
   ignore = {
-    -- buftype = {  },
+    buftype  = Fau_vim.file.excluded_buftypes,
     filetype = Fau_vim.file.excluded_filetypes,
   },
   animation = {
