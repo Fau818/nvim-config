@@ -3,23 +3,6 @@
 
 ---@type LazySpec[]
 return {
-  -- -----------------------------------
-  -- -------- View Guide
-  -- -----------------------------------
-  {
-    -- DESC: indent guides for Neovim.
-    "lukas-reineke/indent-blankline.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function() require("Fau.core.indentline") end,
-    event = "BufReadPre",
-  },
-  {
-    -- DESC: Indent guide line with animation.
-    "echasnovski/mini.indentscope",
-    config = function() require("Fau.core.mini.indentscope") end,
-    event = { "BufReadPost", "BufNewFile" },
-  },
-
   {
     -- DESC: git integration for buffer.
     "lewis6991/gitsigns.nvim",

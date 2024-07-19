@@ -34,7 +34,7 @@ local config = {
       dismiss = "<C-c>",
     },
   },
-  filetypes = { ["*"] = true },
+  filetypes = { ["*"] = function(bufnr) return not Fau_vim.functions.utils.is_large_file(bufnr) end },
   copilot_node_command = "node",
   server_opts_overrides = {},
 }

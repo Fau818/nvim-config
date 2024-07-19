@@ -53,6 +53,23 @@ return {
   },
 
 
+  -- ==================== Indentation ====================
+  {
+    -- DESC: Indent guides for Neovim.
+    "lukas-reineke/indent-blankline.nvim",
+    config = function() require("Fau.configs.editor.indentline") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+  {
+    -- DESC: Indent guide line with animation.
+    "echasnovski/mini.indentscope",
+    config = function() require("Fau.core.mini.indentscope") end,
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
+
+
   -- ==================== Scroll Bar ====================
     {
     -- DESC: A nice scrollbar.

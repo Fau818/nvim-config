@@ -84,13 +84,9 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     vim.opt_local.foldcolumn = "0"
     vim.opt_local.foldmethod = "manual"
 
-    -- Disable IndentLine
-    local indent_blankline_ok, indent_blankline = pcall(require, "ibl")
-    if indent_blankline_ok then indent_blankline.setup_buffer(0, { enabled = false }) end
-
     -- Disable mini
     vim.b.minitrailspace_disable = true
-    vim.b.miniindentscope_disable = true
+    -- vim.b.miniindentscope_disable = true
 
     -- Disable edit
     vim.opt_local.undofile   = false
