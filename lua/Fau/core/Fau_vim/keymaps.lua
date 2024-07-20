@@ -11,7 +11,7 @@ local function close_editor()
   local tabs_count = vim.fn.tabpagenr("$")
 
   -- `xall` doesn't work well when use toggle terminal
-  if tabs_count == 1 then vim.cmd("wall") vim.cmd("qall") end
+  if tabs_count == 1 then vim.cmd("wall"); vim.cmd("qall") end
   return vim.cmd("tabclose")
 end
 -- =============================================

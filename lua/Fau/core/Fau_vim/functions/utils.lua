@@ -6,7 +6,7 @@ return {
     -- NOTE: The `checkhealth` will open a new tab, but the `MiniBufremove.delete` function will not delete the tab.
     if vim.bo[bufnr].filetype == "checkhealth" then vim.api.nvim_command("bd " .. bufnr) return end
 
-    local flag = pcall(MiniBufremove.delete, bufnr)
+    local flag = pcall(require("mini.bufremove").delete, bufnr)
     if not flag then vim.api.nvim_command("bd " .. bufnr) end
   end,
 
@@ -42,9 +42,9 @@ return {
   end,
 
 
-  ---If there is no line crossing when yanking in Visual-Block mode, switch to Visual mode.
+  ---If there is no line crossing when selecting in Visual-Block mode, switch to Visual mode.
   ---This is useful to trim trailing line break when yanking some text in Visual-Block mode.
-  smart_yank = function()
+  smart_visual_mode = function()
     local mode = vim.fn.mode()
 
     if mode == "" then
@@ -56,8 +56,6 @@ return {
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v", true, true, true), "x", false)
       end
     end
-
-    vim.cmd("normal! y")
   end,
 
 

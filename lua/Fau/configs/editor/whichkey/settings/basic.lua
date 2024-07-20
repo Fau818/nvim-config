@@ -9,10 +9,11 @@ return {
 
   -- ==================== Yank and Paste ====================
   { "y", group = "Yank with System Clipboard" },
-  { "y", Fau_vim.functions.utils.smart_yank, mode = "x", desc = "Yank" },
+  { "y", function() Fau_vim.functions.utils.smart_visual_mode(); vim.api.nvim_command("normal! y") end, mode = "x", desc = "Yank" },
   { "Y", desc  = "Yank Line with System Clipboard" },
   { "p", desc  = "Paste from System Clipboard" },
   { "P", desc  = "PASTE from System Clipboard" },
+  { "<LEADER>d", function() Fau_vim.functions.utils.smart_visual_mode(); vim.api.nvim_command("normal! d") end, mode = "x", desc = "Cut" },
 
   -- ==================== Override ====================
   { "<A-q>", Fau_vim.functions.utils.buf_remove, desc = "Buffer: Close Current Buffer" },
