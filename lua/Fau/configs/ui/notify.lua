@@ -37,10 +37,10 @@ notify.setup(config)
 -- -----------------------------------
 -- -------- Global Notify
 -- -----------------------------------
---- use notify to replace vim.notify
+---Use notify to replace vim.notify
 ---@param msg string
----@param level string|number|nil
----@param opts notify.Options|nil
+---@param level? string|number
+---@param opts? notify.Options
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO

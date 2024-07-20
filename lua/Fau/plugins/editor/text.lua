@@ -35,7 +35,7 @@ return {
     -- DESC: Highlight the TODO comment-liked things.
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    config = function() require("Fau.core.todo-comments") end,
+    config = function() require("Fau.configs.editor.todo-comments") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
     keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "Show Todo Comments" } },

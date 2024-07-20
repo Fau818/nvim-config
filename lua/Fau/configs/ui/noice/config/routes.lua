@@ -18,7 +18,7 @@ local routes = {
     opts = { title = "Error", level = vim.log.levels.ERROR }
   },
 
-  ---Show @recoring Messages
+  -- Show `@recoring` Messages
   {
     view = "mini",
     filter = { event = "msg_showmode" },  -- show @recording

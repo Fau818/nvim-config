@@ -66,8 +66,8 @@ local config = {
     group      = "+",
     ellipsis   = "…",
     mappings   = true,
-    --- See `lua/which-key/icons.lua` for more details
-    --- Set to `false` to disable keymap icons
+    ---See `lua/which-key/icons.lua` for more details
+    ---Set to `false` to disable keymap icons
     ---@type wk.IconRule[]|false
     rules = {},
     colors = true,

@@ -1,3 +1,7 @@
+-- Let `-`, `$`, and `#` be keywords.
+vim.opt.iskeyword:append({ "-", "$", "#" })
+
+
 local options = {
   undofile    = true,   -- enable persistent undo
   swapfile    = false,  -- create a swapfile
@@ -50,6 +54,5 @@ local options = {
 
   -- colorcolumn = "150",
 }
-
 
 for k, v in pairs(options) do vim.opt[k] = v end

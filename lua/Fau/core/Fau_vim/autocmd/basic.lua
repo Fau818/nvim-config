@@ -4,9 +4,6 @@
 -- -----------------------------------
 -- -------- General
 -- -----------------------------------
---- Let `-`, `$`, and `#` be keywords.
-vim.opt.iskeyword:append({ "-", "$", "#" })
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   group = "Fau_vim",
@@ -14,11 +11,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end
 })
 
---- Keep cursor on the last closed position when enter a buffer.
+-- Keep cursor on the last closed position when enter a buffer.
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
-
---- Use diagonal lines in place of deleted lines in diff mode.
-vim.opt.fillchars:append { diff = "╱" }
 
 
 -- -----------------------------------
@@ -68,7 +62,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     if not Fau_vim.functions.utils.is_large_file() then return end
 
-    ---Large file!!
+    -- Large file!!
     -- vim.api.nvim_command("syntax off")
     -- vim.api.nvim_command("filetype off")
     -- vim.opt_local.syntax   = "off"

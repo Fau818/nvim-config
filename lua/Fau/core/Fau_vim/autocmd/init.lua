@@ -1,4 +1,4 @@
---- Autocmd group initialization.
+-- Autocmd group initialization.
 vim.api.nvim_create_augroup("Fau_vim", { clear = true })
 
 

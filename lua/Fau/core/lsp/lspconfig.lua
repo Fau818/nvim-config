@@ -84,7 +84,7 @@ local function setup_server(server)
 end
 
 
---- Implement set clients according to filetype (In Fau_vim)
+---Implement set clients according to filetype (In Fau_vim)
 ---@param filetype string? filetype
 Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   if Fau_vim.functions.utils.is_large_file() then return end

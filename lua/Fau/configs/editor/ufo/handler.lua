@@ -1,4 +1,4 @@
---- Copied from README.md file, for enhancing fold indicator.
+---Copied from README.md file, for enhancing fold indicator.
 return function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
   local suffix = (" 󰁂 %d "):format(endLnum - lnum)

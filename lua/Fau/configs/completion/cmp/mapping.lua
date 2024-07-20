@@ -2,17 +2,17 @@ local cmp     = require("cmp")
 local luasnip = require("luasnip")
 
 
---- Whether the copilot suggestion is visible.
---- @return boolean
+---Whether the copilot suggestion is visible.
+---@return boolean
 local function copilot_is_visable()
   if not Fau_vim.plugin.copilot.enable then return false end
   return require("copilot.suggestion").is_visible()
 end
 
---- Accept the copilot suggestion.
+---Accept the copilot suggestion.
 local function copilot_accept() require("copilot.suggestion").accept() end
 
---- Manually tabout!
+---Manually tabout!
 local function jumpout()
   local flag, tabout = pcall(require, "tabout")
   if flag then tabout.tabout() end

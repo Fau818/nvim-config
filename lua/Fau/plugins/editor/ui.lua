@@ -65,7 +65,7 @@ return {
   {
     -- DESC: Indent guide line with animation.
     "echasnovski/mini.indentscope",
-    config = function() require("Fau.core.mini.indentscope") end,
+    config = function() require("Fau.configs.editor.indentscope") end,
     event = { "BufReadPost", "BufNewFile" },
   },
 
@@ -90,7 +90,7 @@ return {
       vim.opt.fillchars:append([[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]])
 
       -- TEST: Disabled on July 19, 2024
-      --- For saving the fold status
+      -- -- For saving the fold status
       -- vim.cmd [[
       --   augroup remember_folds
       --     autocmd BufWinLeave *.* mkview
