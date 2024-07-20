@@ -39,7 +39,7 @@ return {
     "echasnovski/mini.align",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.configs.coding.mini-align") end,
-    keys = { { "<LEADER>a", mode = "x" }, { "<LEADER>A", mode = "x" } },
+    keys = { { "<LEADER>a", mode = "x", desc = "Edit: Align Text with Preview" }, { "<LEADER>A", mode = "x", desc = "Edit: Align Text" } },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
@@ -48,10 +48,10 @@ return {
     "echasnovski/mini.move",
     config = function() require("Fau.configs.coding.mini-move") end,
     keys = {
-      { "<A-h>", mode = "x",          desc = "Move Selections left" },
-      { "<A-l>", mode = "x",          desc = "Move Selections right" },
-      { "<A-j>", mode = { "n", "x" }, desc = "Move lines Down" },
-      { "<A-k>", mode = { "n", "x" }, desc = "Move lines Up" },
+      { "<A-h>", mode = "x",          desc = "Move: Selections Left" },
+      { "<A-l>", mode = "x",          desc = "Move: Selections Right" },
+      { "<A-j>", mode = { "n", "x" }, desc = "Move: lines Down" },
+      { "<A-k>", mode = { "n", "x" }, desc = "Move: lines Up" },
     },
     cond = true,
   },
@@ -62,7 +62,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.configs.coding.treesj") end,
     cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
-    keys = { { "sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Split and Join" } },
+    keys = { { "sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Treesj: Split and Join" } },
   },
 
   {
@@ -71,7 +71,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = true,
     cmd = { "NodeAction", "NodeActionDebug" },
-    keys = { { "<LEADER>n", "<CMD>NodeAction<CR>", mode = "n", desc = "Node Action" } },
+    keys = { { "<LEADER>n", "<CMD>NodeAction<CR>", mode = "n", desc = "Node Action: Node Action" } },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 
@@ -80,6 +80,7 @@ return {
     "johmsalas/text-case.nvim",
     dependencies = "nvim-telescope/telescope.nvim",
     config = function() require("Fau.configs.coding.textcase") end,
+    event = "VeryLazy",  -- Its keymaps are conflicted with `trouble.nvim`, so loaded it manually (VeryLazy).
     cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
     keys = { { "<LEADER>t", mode = { "n", "x" }, desc = "+Text Case" } },
     cond = true,  -- TESTING: Not TESTED in VSCode.
@@ -108,22 +109,22 @@ return {
     -- DESC: Multi-cursor support in Neovim.
     "smoka7/multicursors.nvim",
     dependencies = "smoka7/hydra.nvim",
+    config = function() require("Fau.configs.coding.multicursors") end,
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
       {
         mode = { "n", "x" },
         "<LEADER>m",
         "<CMD>MCstart<CR>",
-        desc = "Create a selection for selected word under the cursor",
+        desc = "Multicursors: Create a selection for selected word under the cursor",
       },
       {
         mode = { "n", "x" },
         "<LEADER>M",
         "<CMD>MCunderCursor<CR>",
-        desc = "Create a selection for selected text under the cursor",
+        desc = "Multicursors: Create a selection for selected text under the cursor",
       },
     },
-    config = function() require("Fau.configs.coding.multicursors") end,
-    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 

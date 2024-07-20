@@ -10,8 +10,8 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     keys = {
       -- BUG: the `goto_next_reference` and `goto_prev_reference` functions don't work.
-      { mode = { "n", "i" }, "<A-N>", function() require("illuminate").next_reference({ reverse=true,  wrap=true }) end, desc = "Prev Reference" },
-      { mode = { "n", "i" }, "<A-n>", function() require("illuminate").next_reference({ reverse=false, wrap=true }) end, desc = "Next Reference" },
+      { mode = { "n", "i" }, "<A-N>", function() require("illuminate").next_reference({ reverse=true,  wrap=true }) end, desc = "Illuminate: Prev Reference" },
+      { mode = { "n", "i" }, "<A-n>", function() require("illuminate").next_reference({ reverse=false, wrap=true }) end, desc = "Illuminate: Next Reference" },
     }
   },
 
@@ -38,7 +38,7 @@ return {
     config = function() require("Fau.configs.editor.todo-comments") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
-    keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "Show Todo Comments" } },
+    keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "TODO-Comments: Show in Trouble" } },
   },
 
 }

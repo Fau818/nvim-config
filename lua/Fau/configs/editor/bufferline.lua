@@ -172,12 +172,12 @@ bufferline.setup(config)
 -- =============================================
 local keys = {
   -- Cycle Buffers
-  { "<A-h>", "<CMD>BufferLineCyclePrev<CR>", desc = "Focus Shift Prev Buffer" },
-  { "<A-l>", "<CMD>BufferLineCycleNext<CR>", desc = "Focus Shift Next Buffer" },
+  { "<A-h>", "<CMD>BufferLineCyclePrev<CR>", desc = "Buffer: Focus Shift Prev" },
+  { "<A-l>", "<CMD>BufferLineCycleNext<CR>", desc = "Buffer: Focus Shift Next" },
 
   -- Swap Buffers
-  { "<A-left>",  "<CMD>BufferLineMovePrev<CR>", desc = "Move Buffer Prev" },
-  { "<A-right>", "<CMD>BufferLineMoveNext<CR>", desc = "Move Buffer Next" },
+  { "<A-left>",  "<CMD>BufferLineMovePrev<CR>", desc = "Buffer: Move Buffer Prev" },
+  { "<A-right>", "<CMD>BufferLineMoveNext<CR>", desc = "Buffer: Move Buffer Next" },
 
   -- By Meta Key
   { "<A-1>", "<CMD>BufferLineGoToBuffer 1<CR>",  desc = "which_key_ignore" },
@@ -189,7 +189,7 @@ local keys = {
   { "<A-7>", "<CMD>BufferLineGoToBuffer 7<CR>",  desc = "which_key_ignore" },
   { "<A-8>", "<CMD>BufferLineGoToBuffer 8<CR>",  desc = "which_key_ignore" },
   { "<A-9>", "<CMD>BufferLineGoToBuffer 9<CR>",  desc = "which_key_ignore" },
-  { "<A-0>", "<CMD>BufferLineGoToBuffer -1<CR>", desc = "Buffer Last" },
+  { "<A-0>", "<CMD>BufferLineGoToBuffer -1<CR>", desc = "Buffer: Focus on Last" },
 
   -- By Leader Key
   { "<LEADER>1", "<CMD>BufferLineGoToBuffer 1<CR>",  desc = "which_key_ignore" },
@@ -201,11 +201,11 @@ local keys = {
   { "<LEADER>7", "<CMD>BufferLineGoToBuffer 7<CR>",  desc = "which_key_ignore" },
   { "<LEADER>8", "<CMD>BufferLineGoToBuffer 8<CR>",  desc = "which_key_ignore" },
   { "<LEADER>9", "<CMD>BufferLineGoToBuffer 9<CR>",  desc = "which_key_ignore" },
-  { "<LEADER>0", "<CMD>BufferLineGoToBuffer -1<CR>", desc = "Buffer Last" },
+  { "<LEADER>0", "<CMD>BufferLineGoToBuffer -1<CR>", desc = "Buffer: Focus on Last" },
 
   -- -------- TEST (from lunarvim)
-  { "<LEADER>bj", "<CMD>BufferLinePick<CR>",      desc = "Buffer Pick" },
-  { "<LEADER>bt", "<CMD>BufferLineTogglePin<CR>", desc = "Buffer Toggle Pin" },
+  { "<LEADER>bj", "<CMD>BufferLinePick<CR>",      desc = "BufferLine: Pick Buffer" },
+  { "<LEADER>bt", "<CMD>BufferLineTogglePin<CR>", desc = "BufferLine: Toggle Pin" },
 }
 
 for _, key in pairs(keys) do vim.keymap.set("n", key[1], key[2], { silent = true, desc = key.desc }) end

@@ -43,10 +43,10 @@ return {
     config = function() require("Fau.configs.ui.windows") end,
     event = "WinNew",
     keys = {
-      { "<C-w>z", "<CMD>WindowsMaximize<CR>",             desc = "Maximize Window" },
-      { "<C-w>_", "<CMD>WindowsMaximizeVertically<CR>",   desc = "Maximize Window Vertically" },
-      { "<C-w>|", "<CMD>WindowsMaximizeHorizontally<CR>", desc = "Maximize Window Horizontally" },
-      { "<C-w>=", "<CMD>WindowsEqualize<CR>",             desc = "Equalize Window" },
+      { "<C-w>z", "<CMD>WindowsMaximize<CR>",             desc = "Window: Maximize" },
+      { "<C-w>_", "<CMD>WindowsMaximizeVertically<CR>",   desc = "Window: Maximize Vertically" },
+      { "<C-w>|", "<CMD>WindowsMaximizeHorizontally<CR>", desc = "Window: Maximize Horizontally" },
+      { "<C-w>=", "<CMD>WindowsEqualize<CR>",             desc = "Window: Equalize" },
     },
   },
 

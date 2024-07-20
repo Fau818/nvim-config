@@ -52,8 +52,8 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     opts = { floating_window_scaling_factor = 1, yazi_floating_window_border = "none" },
     keys = {
-      { "<leader>gy", function() require("yazi").yazi() end, desc = "Open Yazi" },
-      { "\\",         function() require("yazi").yazi() end, desc = "Open Yazi" },
+      { "<leader>gy", function() require("yazi").yazi() end, desc = "Yazi: Open" },
+      { "\\",         function() require("yazi").yazi() end, desc = "Yazi: Open" },
     },
     enabled = vim.fn.executable("yazi") == 1,
   },

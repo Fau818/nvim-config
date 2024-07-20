@@ -226,4 +226,4 @@ flash.setup(config)
 -- -----------------------------------
 -- -------- Keymaps
 -- -----------------------------------
-vim.keymap.set({ "n", "x", "o" }, "<LEADER>s", flash.jump, { silent = true, desc = "Flash" })
+vim.keymap.set({ "n", "x", "o" }, "<LEADER>s", flash.jump, { silent = true, desc = "Flash: Jump" })

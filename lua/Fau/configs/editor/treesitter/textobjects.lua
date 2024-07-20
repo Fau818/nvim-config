@@ -5,17 +5,17 @@ return {
 
     keymaps = {
       -- You can use the capture groups defined in textobjects.scm
-      ["af"] = { query = "@function.outer", desc = "Around Function" },
-      ["if"] = { query = "@function.inner", desc = "Innder Function" },
+      ["af"] = { query = "@function.outer", desc = "Range: Around Function" },
+      ["if"] = { query = "@function.inner", desc = "Range: Innder Function" },
 
-      ["ac"] = { query = "@class.outer", desc = "Around Class" },
-      ["ic"] = { query = "@class.inner", desc = "Innder Class" },
+      ["ac"] = { query = "@class.outer", desc = "Range: Around Class" },
+      ["ic"] = { query = "@class.inner", desc = "Range: Innder Class" },
 
-      ["aC"] = { query = "@comment.outer", desc = "Around Comment" },
-      ["iC"] = { query = "@comment.inner", desc = "Inner Comment" },
+      ["aC"] = { query = "@comment.outer", desc = "Range: Around Comment" },
+      ["iC"] = { query = "@comment.inner", desc = "Range: Inner Comment" },
 
-      ["as"] = { query = "@block.outer", desc = "Around Section" },
-      ["is"] = { query = "@block.inner", desc = "Inner Section" },
+      ["as"] = { query = "@block.outer", desc = "Range: Around Section" },
+      ["is"] = { query = "@block.inner", desc = "Range: Inner Section" },
     },
 
     selection_modes = {
@@ -36,8 +36,8 @@ return {
 
   swap = {
     enable = false,
-    swap_next     = { ["<leader>s"] = { query = "@parameter.inner", desc = "Swap Parameter with Next" }, },
-    swap_previous = { ["<leader>S"] = { query = "@parameter.inner", desc = "Swap Parameter with Prev" }, },
+    swap_next     = { ["<leader>s"] = { query = "@parameter.inner", desc = "Textobjects: Swap Parameter with Next" }, },
+    swap_previous = { ["<leader>S"] = { query = "@parameter.inner", desc = "Textobjects: Swap Parameter with Prev" }, },
   },
 
 
@@ -45,32 +45,32 @@ return {
     enable = true,
     set_jumps = true,  -- whether to set jumps in the jumplist
     goto_next_start = {
-      ["]]"] = { query = { "@function.outer", "@class.outer" }, desc = "Next Code Block Start" },
-      ["]f"] = { query = "@function.outer",                     desc = "Next Function Start" },
-      ["]c"] = { query = "@class.outer",                        desc = "Next Class Start" },
-      ["]z"] = { query = "@fold", query_group = "folds",        desc = "Next Fold Start" },
-      ["]s"] = { query = "@scope", query_group = "locals",      desc = "Next Scope Start" },
+      ["]]"] = { query = { "@function.outer", "@class.outer" }, desc = "Goto: Next Code Block Start" },
+      ["]f"] = { query = "@function.outer",                     desc = "Goto: Next Function Start" },
+      ["]c"] = { query = "@class.outer",                        desc = "Goto: Next Class Start" },
+      ["]z"] = { query = "@fold", query_group = "folds",        desc = "Goto: Next Fold Start" },
+      ["]s"] = { query = "@scope", query_group = "locals",      desc = "Goto: Next Scope Start" },
     },
     goto_next_end = {
-      ["]}"] = { query = { "@function.outer", "@class.outer" }, desc = "Next Code Block End" },
-      ["]F"] = { query = "@function.outer",                     desc = "Next Function End" },
-      ["]C"] = { query = "@class.outer",                        desc = "Next Class End" },
-      ["]Z"] = { query = "@fold", query_group = "folds",        desc = "Next Fold End" },
-      ["]S"] = { query = "@scope", query_group = "locals",      desc = "Next Scope End" },
+      ["]}"] = { query = { "@function.outer", "@class.outer" }, desc = "Goto: Next Code Block End" },
+      ["]F"] = { query = "@function.outer",                     desc = "Goto: Next Function End" },
+      ["]C"] = { query = "@class.outer",                        desc = "Goto: Next Class End" },
+      ["]Z"] = { query = "@fold", query_group = "folds",        desc = "Goto: Next Fold End" },
+      ["]S"] = { query = "@scope", query_group = "locals",      desc = "Goto: Next Scope End" },
     },
     goto_previous_start = {
-      ["[["] = { query = { "@function.outer", "@class.outer" }, desc = "Prev Code Block Start" },
-      ["[f"] = { query = "@function.outer",                     desc = "Prev Function Start" },
-      ["[c"] = { query = "@class.outer",                        desc = "Prev Class Start" },
-      ["[z"] = { query = "@fold", query_group = "folds",        desc = "Prev Fold Start" },
-      ["[s"] = { query = "@scope", query_group = "locals",      desc = "Prev Scope Start" },
+      ["[["] = { query = { "@function.outer", "@class.outer" }, desc = "Goto: Prev Code Block Start" },
+      ["[f"] = { query = "@function.outer",                     desc = "Goto: Prev Function Start" },
+      ["[c"] = { query = "@class.outer",                        desc = "Goto: Prev Class Start" },
+      ["[z"] = { query = "@fold", query_group = "folds",        desc = "Goto: Prev Fold Start" },
+      ["[s"] = { query = "@scope", query_group = "locals",      desc = "Goto: Prev Scope Start" },
     },
     goto_previous_end = {
-      ["[{"] = { query = { "@function.outer", "@class.outer" }, desc = "Prev Code Block End" },
-      ["[F"] = { query = "@function.outer",                     desc = "Prev Function End" },
-      ["[C"] = { query = "@class.outer",                        desc = "Prev Class End" },
-      ["[Z"] = { query = "@fold", query_group = "folds",        desc = "Prev Fold End" },
-      ["[S"] = { query = "@scope", query_group = "locals",      desc = "Prev Scope End" },
+      ["[{"] = { query = { "@function.outer", "@class.outer" }, desc = "Goto: Prev Code Block End" },
+      ["[F"] = { query = "@function.outer",                     desc = "Goto: Prev Function End" },
+      ["[C"] = { query = "@class.outer",                        desc = "Goto: Prev Class End" },
+      ["[Z"] = { query = "@fold", query_group = "folds",        desc = "Goto: Prev Fold End" },
+      ["[S"] = { query = "@scope", query_group = "locals",      desc = "Goto: Prev Scope End" },
     },
 
     -- Below will go to either the start or the end, whichever is closer.

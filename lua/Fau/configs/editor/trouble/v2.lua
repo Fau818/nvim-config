@@ -74,17 +74,17 @@ trouble.setup(config)
 -- ========== Keymaps
 -- =============================================
 local keymap = vim.keymap.set
-local function opts(desc) return { silent = true, desc = desc } end
+local function opts(desc) return { silent = true, desc = "Trouble: " .. desc } end
 
-keymap("n", "<LEADER>tt", "<CMD>Trouble<CR>",                       opts("Show Trouble"))
-keymap("n", "gd",         "<CMD>Trouble lsp_definitions<CR>",       opts("Goto Definition"))
-keymap("n", "gD",         "<CMD>Trouble lsp_declarations<CR>",      opts("Goto Declaration"))
-keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions<CR>",  opts("Goto Type Definition"))
-keymap("n", "gI",         "<CMD>Trouble lsp_implementations<CR>",   opts("Goto Implementation"))
-keymap("n", "gr",         "<CMD>Trouble lsp_references<CR>",        opts("Show References"))
+keymap("n", "<LEADER>tt", "<CMD>Trouble<CR>",                       opts("Show"))
+keymap("n", "gd",         "<CMD>Trouble lsp_definitions<CR>",       opts("Definition"))
+keymap("n", "gD",         "<CMD>Trouble lsp_declarations<CR>",      opts("Declaration"))
+keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions<CR>",  opts("Type Definition"))
+keymap("n", "gI",         "<CMD>Trouble lsp_implementations<CR>",   opts("Implementation"))
+keymap("n", "gr",         "<CMD>Trouble lsp_references<CR>",        opts("References"))
 
-keymap("n", "gi",         "<CMD>Trouble lsp_incoming_calls<CR>",    opts("Show Incoming Calls"))
-keymap("n", "go",         "<CMD>Trouble lsp_outgoing_calls<CR>",    opts("Show Outgoing Calls"))
+keymap("n", "gi",         "<CMD>Trouble lsp_incoming_calls<CR>",    opts("Incoming Calls"))
+keymap("n", "go",         "<CMD>Trouble lsp_outgoing_calls<CR>",    opts("Outgoing Calls"))
 
 keymap("n", "<LEADER>ld", "<CMD>Trouble document_diagnostics<CR>",  opts("Buffer Diagnostics"))
 keymap("n", "<LEADER>lD", "<CMD>Trouble workspace_diagnostics<CR>", opts("Workspace Diagnostics"))

@@ -3,7 +3,7 @@ return {
   { "g", group = "LSP" },
 
   { "<LEADER>l", mode = { "n", "x" }, group = "LSP" },
-  { "<LEADER>lf", Fau_vim.functions.format.smart_format, desc = "Format Code" },
+  { "<LEADER>lf", Fau_vim.functions.format.smart_format, desc = "LSP: Format Code (Smart)" },
   {
     "<LEADER>lf",
     function()
@@ -11,7 +11,7 @@ return {
       -- TODO: a wrap function, accept `keys` and `mode`, to trigger keys
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, true, true), "x", false)
     end,
-    desc = "Format Code",
+    desc = "LSP: Format Code (Smart)",
     mode = "x",
   },
   -- TODO: Rename? in current buffer?

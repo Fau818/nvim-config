@@ -8,7 +8,7 @@ return {
     "goolord/alpha-nvim",
     config = function() require("Fau.configs.editor.alpha") end,
     event = "VimEnter",
-    keys = { { ";", "<CMD>Alpha<CR>", desc = "Toggle Dashboard" } },
+    keys = { { ";", "<CMD>Alpha<CR>", desc = "Dashboard: Toggle" } },
   },
 
 
@@ -20,7 +20,7 @@ return {
     init = function() require("Fau.configs.editor.nvim-tree.before_loaded") end,
     config = function() require("Fau.configs.editor.nvim-tree") end,
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
-    keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Toggle NvimTree" } },
+    keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "nvim-tree: Toggle" } },
     -- BUG: Show file tree in iCloud folder leads delay. (Or say, in path with many files)
   },
 
@@ -144,7 +144,7 @@ return {
     config = function() require("Fau.configs.editor.telescope") end,
     event = "UIEnter",
     cmd = "Telescope",
-    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
+    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope: Open Builtin" } },
   },
 
 

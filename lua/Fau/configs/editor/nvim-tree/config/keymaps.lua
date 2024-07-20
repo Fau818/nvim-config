@@ -75,7 +75,7 @@ end
 -- ========== Keymaps
 -- =============================================
 local function on_attach(bufnr)
-  local function opts(desc) return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true } end
+  local function opts(desc) return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true } end
 
   vim.keymap.set("n", "<CR>",           smart_open,                                 opts("Open: Smart Open"))
   vim.keymap.set("n", "o",              api.node.open.edit,                         opts("Open: Edit in Neovim"))

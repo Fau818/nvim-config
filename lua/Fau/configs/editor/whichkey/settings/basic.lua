@@ -4,8 +4,8 @@ return {
   -- ==================== Whichkey Ignore ====================
   { "<MouseMove>", desc = "which_key_ignore" },
   { "<LeftMouse>", desc = "which_key_ignore" },
-  { "n", desc = "Next" },
-  { "N", desc = "Prev" },
+  { "n", desc = "Goto: Next" },
+  { "N", desc = "Goto: Prev" },
 
   -- ==================== Yank and Paste ====================
   { "y", group = "Yank with System Clipboard" },
@@ -14,22 +14,22 @@ return {
   { "P", desc  = "PASTE from System Clipboard" },
 
   -- ==================== Override ====================
-  { "<A-q>", Fau_vim.functions.utils.buf_remove, desc = "Close Current Buffer" },
+  { "<A-q>", Fau_vim.functions.utils.buf_remove, desc = "Buffer: Close Current Buffer" },
 
   -- ==================== Fau_vim Custom ====================
   -- ---------- Edit Configuration and Snippet
   -- TODO: Refactor this. (or move to other place)
   { "<LEADER>E", group = "Edit" },
-  { "<LEADER>Ec", "<CMD>EditConfiguration<CR>", desc = "Edit Configuration" },
-  { "<LEADER>Es", "<CMD>EditSnip<CR>",          desc = "Edit Snippet" },
+  { "<LEADER>Ec", "<CMD>EditConfiguration<CR>", desc = "Fau_vim: Edit Configuration" },
+  { "<LEADER>Es", "<CMD>EditSnip<CR>",          desc = "Fau_vim: Edit Snippet" },
 
   -- ---------- Lazy
-  { "<LEADER>ll", require("lazy").home, desc = "Open Lazy (Plugin Manager)" },
+  { "<LEADER>ll", require("lazy").home, desc = "Lazy: Open" },
 
   -- ---------- Toggle Indent
-  { "<LEADER><LEADER>i", Fau_vim.functions.indent.toggle_indent_width, desc = "Toggle Indent Width" },
+  { "<LEADER><LEADER>i", Fau_vim.functions.indent.toggle_indent_width, desc = "Indent: Toggle Width" },
   -- Fau: I don't think this is helpful.
-  { "<LEADER><LEADER>I", function() Fau_vim.functions.indent.toggle_indent_width(true) end, desc = "Toggle Indent Width (Force)" },
+  { "<LEADER><LEADER>I", function() Fau_vim.functions.indent.toggle_indent_width(true) end, desc = "Indent: Toggle Width (Force)" },
 
   -- ---------- Buffer Navigation
   -- BUG: Not working.

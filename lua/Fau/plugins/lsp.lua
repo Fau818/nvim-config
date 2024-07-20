@@ -19,7 +19,7 @@ return {
     end,
     event = "BufReadPre",
     cmd = "LspInfo",
-    keys = { { "<LEADER>li", "<CMD>LspInfo<CR>", desc = "Show Lsp Info" } },
+    keys = { { "<LEADER>li", "<CMD>LspInfo<CR>", desc = "LSP: Show Info" } },
   },
 
   {
@@ -31,7 +31,7 @@ return {
         "williamboman/mason.nvim",
         config = function() require("Fau.core.lsp.mason") end,
         cmd = "Mason",
-        keys = { { "<LEADER>lI", "<CMD>Mason<CR>", desc = "Show Mason" } },
+        keys = { { "<LEADER>lI", "<CMD>Mason<CR>", desc = "LSP: Show Mason" } },
       },
     },
     config = function() require("Fau.core.lsp.mason-lspconfig") end,
@@ -103,8 +103,8 @@ return {
     config = function() require("Fau.core.aerial")end,
     cmd = { "AerialToggle", "AerialNavToggle" },
     keys = {
-      { "<LEADER>lo", "<CMD>AerialToggle<CR>",    desc = "Toggle Outline" },
-      { "<LEADER>lO", "<CMD>AerialNavToggle<CR>", desc = "Toggle Outline Navigation" },
+      { "<LEADER>lo", "<CMD>AerialToggle<CR>",    desc = "Symbol Outline: Toggle" },
+      { "<LEADER>lO", "<CMD>AerialNavToggle<CR>", desc = "Symbol Outline: Toggle Navigation" },
     },
   },
 
@@ -146,7 +146,7 @@ return {
           else vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
           end
         end,
-        desc = "Toggle LSP Lines",
+        desc = "LSP: Toggle Lines",
       }
     },
   }
