@@ -65,7 +65,7 @@ local config = {
   endwise = { enable = true },
 
   -- nvim-treesitter-textobjects plugin
-  textobjects = require("Fau.configs.treesitter.textobjects"),
+  textobjects = require("Fau.configs.editor.treesitter.textobjects"),
 }
 
 

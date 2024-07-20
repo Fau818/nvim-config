@@ -18,6 +18,7 @@ return {
     event = "UIEnter",
   },
 
+
   -- ==================== Selector ====================
   {
     -- DESC: UI selector for Neovim.
@@ -25,6 +26,7 @@ return {
     config = function() require("Fau.configs.ui.dressing") end,
     event = "UIEnter"
   },
+
 
   -- ==================== Animation ====================
   {
