@@ -1,4 +1,18 @@
 return {
+  ---Simulate pressing `keys` in `mode` mode.
+  ---@param mode string
+  ---@param keys string
+  feedkeys = function(mode, keys)
+    vim.api.nvim_feedkeys(
+      vim.api.nvim_replace_termcodes(keys, true, true, true),
+      mode,
+      false
+    )
+  end,
+
+
+  ---Delete the specified buffer.
+  ---@param bufnr integer Default is the current buffer.
   buf_remove = function(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
 
@@ -11,21 +25,24 @@ return {
   end,
 
 
-  is_large_file = function(buffer)
-    buffer = buffer or vim.api.nvim_get_current_buf()
+  ---Determine if the specified buffer is a large file.
+  ---@param bufnr integer Default is the current buffer.
+  ---@return boolean flag True if the buffer is a large file, otherwise false.
+  is_large_file = function(bufnr)
+    bufnr = bufnr or vim.api.nvim_get_current_buf()
 
     -- EXIT: Use the cached result.
-    if vim.b[buffer].is_large_file ~= nil then return vim.b[buffer].is_large_file end
+    if vim.b[bufnr].is_large_file ~= nil then return vim.b[bufnr].is_large_file end
 
     -- Get file status.
-    local status_ok, file_status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buffer))
+    local status_ok, file_status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
 
-    -- SPEC: Get the status of file error. => Not a large file
-    if not status_ok or not file_status then vim.b[buffer].is_large_file = false
-    else vim.b[buffer].is_large_file = file_status.size >= Fau_vim.file.large_file_size
+    -- HACK: Get the status of file error. => Not a large file
+    if not status_ok or not file_status then vim.b[bufnr].is_large_file = false
+    else vim.b[bufnr].is_large_file = file_status.size >= Fau_vim.file.large_file_size
     end
 
-    return vim.b[buffer].is_large_file
+    return vim.b[bufnr].is_large_file
   end,
 
 
@@ -51,10 +68,7 @@ return {
       local start_row, end_row = vim.fn.getpos("v")[2], vim.fn.getpos(".")[2]
       -- vim.notify(string.format("mode: %s start_row: %d, end_row: %d", mode, start_row, end_row))
 
-      if start_row == end_row then
-        -- Switch to Visual mode
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v", true, true, true), "x", false)
-      end
+      if start_row == end_row then Fau_vim.functions.utils.feedkeys("x", "v") end
     end
   end,
 
