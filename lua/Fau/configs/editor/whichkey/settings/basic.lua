@@ -9,6 +9,7 @@ return {
 
   -- ==================== Yank and Paste ====================
   { "y", group = "Yank with System Clipboard" },
+  { "y", Fau_vim.functions.utils.smart_yank, mode = "x", desc = "Yank" },
   { "Y", desc  = "Yank Line with System Clipboard" },
   { "p", desc  = "Paste from System Clipboard" },
   { "P", desc  = "PASTE from System Clipboard" },

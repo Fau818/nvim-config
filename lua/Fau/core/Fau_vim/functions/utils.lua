@@ -35,9 +35,29 @@ return {
     return file_info ~= nil
   end,
 
+
   reveal_in_system = function(path)
     if path == nil then path = vim.fn.expand('%') end
     return string.format("<CMD>silent !open -R '%s'<CR>", path)
+  end,
+
+
+  ---If there is no line crossing when yanking in Visual-Block mode, switch to Visual mode.
+  ---This is useful to trim trailing line break when yanking some text in Visual-Block mode.
+  smart_yank = function()
+    local mode = vim.fn.mode()
+
+    if mode == "" then
+      local start_row, end_row = vim.fn.getpos("v")[2], vim.fn.getpos(".")[2]
+      -- vim.notify(string.format("mode: %s start_row: %d, end_row: %d", mode, start_row, end_row))
+
+      if start_row == end_row then
+        -- Switch to Visual mode
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("v", true, true, true), "x", false)
+      end
+    end
+
+    vim.cmd("normal! y")
   end,
 
 
