@@ -18,6 +18,7 @@ return {
     -- DESC: File explorer tree for Neovim.
     "nvim-tree/nvim-tree.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
+    init = function() require("Fau.configs.editor.nvim-tree.before_loaded") end,
     config = function() require("Fau.configs.editor.nvim-tree") end,
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
     keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "Toggle NvimTree" } },
@@ -82,22 +83,7 @@ return {
   {
     -- DESC: Folding enhancer.
     "kevinhwang91/nvim-ufo",
-    init = function()
-      vim.opt.foldcolumn     = "auto"
-      vim.opt.foldlevel      = 999
-      vim.opt.foldlevelstart = 999
-      vim.opt.foldenable     = true
-      vim.opt.fillchars:append([[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]])
-
-      -- TEST: Disabled on July 19, 2024
-      -- -- For saving the fold status
-      -- vim.cmd [[
-      --   augroup remember_folds
-      --     autocmd BufWinLeave *.* mkview
-      --     autocmd BufWinEnter *.* silent! loadview
-      --   augroup END
-      -- ]]
-    end,
+    init = function() require("Fau.configs.editor.ufo.before_loaded") end,
     dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter", "luukvbaal/statuscol.nvim" },
     config = function() require("Fau.configs.editor.ufo") end,
     event = { "BufReadPost", "BufNewFile" },
