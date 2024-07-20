@@ -203,7 +203,7 @@ local config = {
       { "n", "o",             actions.select_entry,               { desc = "Open the diff for the selected entry." } },
       { "n", "<2-LeftMouse>", actions.select_entry,               { desc = "Open the diff for the selected entry." } },
 
-      { "n", "<c-b>",         actions.scroll_view( -0.25),        { desc = "Scroll the view up" } },
+      { "n", "<c-b>",         actions.scroll_view(-0.25),         { desc = "scroll the view up" } },
       { "n", "<c-f>",         actions.scroll_view(0.25),          { desc = "Scroll the view down" } },
 
 
