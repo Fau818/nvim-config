@@ -2,6 +2,7 @@
 
 ---@type LazySpec[]
 return {
+  -- ==================== Enhancer ====================
   {
     -- DESC: Simple session manager for Neovim.
     "folke/persistence.nvim",
@@ -16,6 +17,28 @@ return {
     event = "BufReadPre",
   },
 
+
+  -- ==================== Immersive ====================
+  {
+    -- DESC: Dim inactive portions of the code to focus on coding.
+    "folke/twilight.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function() require("Fau.configs.editor.twilight") end,
+    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
+    keys = { { "<LEADER><LEADER>t", "<CMD>Twilight<CR>", desc = "Twilight: Toggle" } }
+  },
+
+
+  {
+    -- DESC: distraction-free coding for Neovim (zen-mode).
+    "folke/zen-mode.nvim",
+    config = function() require("Fau.configs.editor.zen-mode") end,
+    cmd = "ZenMode",
+    keys = { { "<LEADER><LEADER>z", "<CMD>ZenMode<CR>", desc = "ZenMode: Toggle" } }
+  },
+
+
+  -- ==================== Extension ====================
   {
     -- DESC: Coding time tracker (for wakatime statistics).
     "wakatime/vim-wakatime",

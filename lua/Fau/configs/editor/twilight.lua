@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local twilight_ok, twilight = pcall(require, "twilight")
-if not twilight_ok then Fau_vim.load_plugin_error("twilight") return end
+local twilight = require("twilight")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 local config = {
   dimming = {
     alpha = 0.35,  -- amount of dimming
@@ -27,8 +21,7 @@ local config = {
     "table",
     "if_statement",
   },
-  exclude = {},  -- exclude these filetypes
+  exclude = Fau_vim.file.excluded_filetypes,  -- exclude these filetypes
 }
-
 
 twilight.setup(config)

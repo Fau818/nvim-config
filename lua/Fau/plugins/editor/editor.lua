@@ -61,25 +61,4 @@ return {
   },
 
 
-
-  -- =============================================
-  -- ========== Immersive
-  -- =============================================
-  {
-    -- DESC: dim inactive portions of the code to focus on coding.
-    "folke/twilight.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function() require("Fau.core.twilight") end,
-    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
-    keys = { { "<LEADER><LEADER>t", "<CMD>Twilight<CR>", desc = "Toggle Twilight" } }
-  },
-
-  {
-    -- DESC: distraction-free coding for Neovim (zen-mode).
-    "folke/zen-mode.nvim",
-    config = function() require("Fau.core.zen-mode") end,
-    cmd = "ZenMode",
-    keys = { { "<LEADER><LEADER>z", "<CMD>ZenMode<CR>", desc = "Toggle ZenMode" } }
-  },
-
 }
