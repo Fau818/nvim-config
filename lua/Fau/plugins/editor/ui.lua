@@ -1,5 +1,4 @@
--- DESC: This module is for enhancing editor UI, will be loaded in `UIEnter` event;
--- \     Some plugins can also be more lazy loaded in `BufNewFile` and `BufReadPost` events.
+-- DESC: This module is for enhancing editor UI. Unlike `ui` module, this module is more fundamental for the editor.
 
 ---@type LazySpec[]
 return {
@@ -145,7 +144,7 @@ return {
     config = function() require("Fau.configs.editor.telescope") end,
     event = "UIEnter",
     cmd = "Telescope",
-    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
+    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope" } },
   },
 
 

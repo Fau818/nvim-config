@@ -1,4 +1,4 @@
--- DESC: This module is for treesitter, will be loaded in `BufReadPost` and `BufNewFile` event.
+-- DESC: This module is for treesitter.
 
 -- TODO: Move this module to `editor` module.
 ---@type LazySpec[]

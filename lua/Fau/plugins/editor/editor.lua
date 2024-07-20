@@ -1,6 +1,5 @@
 -- TODO: ...
--- DESC: This module is for enhancing editor, will be loaded in `VeryLazy` event.
--- \     also maybe in `BufReadPre`, `BufReadPost`, and `BufNewFile` events.
+-- DESC: This module is for enhancing editor.
 
 ---@type LazySpec[]
 return {
@@ -32,20 +31,6 @@ return {
     end,
     config = function() require("Fau.core.diffview") end,
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
-  },
-
-  {
-    -- DESC: ChatGPT in Neovim!
-    "jackMort/ChatGPT.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim"
-    },
-    config = function() require("Fau.core.chatgpt") end,
-    -- event = "VeryLazy",
-    cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
   },
 
 

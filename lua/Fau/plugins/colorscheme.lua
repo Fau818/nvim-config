@@ -1,4 +1,4 @@
--- DESC: This module is for colorscheme, will be lazy-loaded.
+-- DESC: This module is for colorscheme.
 
 ---@type LazySpec[]
 return {

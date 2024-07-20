@@ -135,7 +135,7 @@ keymap({ "n", "x" }, "<LEADER>P", '""P', opts("PASTE from Vim Clipboard"))
 del_map("n", "Y")
 
 -- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
-keymap("x", "p", '"_dP', opts())
+keymap("x", "p", '"_dP', opts("Paste"))
 
 
 

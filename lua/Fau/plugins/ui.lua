@@ -1,4 +1,4 @@
--- DESC: This module is for pretty UI, most of them should be loaded in `VeryLazy` and `UIEnter` events.
+-- DESC: This module is for pretty UI; different from `editor.ui` module, this module is more global.
 
 ---@type LazySpec[]
 return {

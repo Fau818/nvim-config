@@ -1,3 +1,5 @@
+-- DESC: This module is for kitty filetype.
+
 ---@type LazySpec[]
 return {
   {

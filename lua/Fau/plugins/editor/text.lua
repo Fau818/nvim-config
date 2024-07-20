@@ -1,4 +1,4 @@
--- DESC: This module is for enhancing editor text, will be loaded in `BufReadPost` and `BufNewFile` event.
+-- DESC: This module is for enhancing editor text.
 
 ---@type LazySpec[]
 return {

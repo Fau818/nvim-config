@@ -1,4 +1,4 @@
--- DESC: This module is for better coding, will be loaded in `BufReadPost` and `BufNewFile` (Rarely loaded in `InsertEnter` and `BufWritePre`) events
+-- DESC: This module is for better coding, including some editing utilities.
 
 ---@type LazySpec[]
 return {
@@ -81,9 +81,7 @@ return {
     dependencies = "nvim-telescope/telescope.nvim",
     config = function() require("Fau.configs.coding.textcase") end,
     cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
-    keys = {
-      { "<LEADER>t", mode = { "n", "x" }, desc = "+Text Case" }
-    },
+    keys = { { "<LEADER>t", mode = { "n", "x" }, desc = "+Text Case" } },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },
 

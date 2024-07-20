@@ -1,4 +1,4 @@
--- DESC: This module is for enhancing editor.
+-- DESC: This module is for enhancing editor functionality.
 
 ---@type LazySpec[]
 return {
@@ -56,6 +56,21 @@ return {
       { "\\",         function() require("yazi").yazi() end, desc = "Open Yazi" },
     },
     enabled = vim.fn.executable("yazi") == 1,
+  },
+
+  {
+    -- DESC: ChatGPT in Neovim!
+    "jackMort/ChatGPT.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    },
+    config = function() require("Fau.configs.editor.chatgpt") end,
+    -- event = "VeryLazy",
+    cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
+    keys = require("Fau.configs.editor.chatgpt.lazy_keys"),
   },
 
 }

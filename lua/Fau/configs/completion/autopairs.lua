@@ -5,8 +5,9 @@ local npairs = require("nvim-autopairs")
 
 local config = {
   disable_filetype = Fau_vim.file.excluded_filetypes,
-  disable_in_macro        = true,  -- disable when recording or executing a macro
-  disable_in_visualblock  = true,  -- disable when insert after visual block mode
+  disable_in_macro        = true,   -- disable when recording or executing a macro
+  -- FIXME: When exit visual-block mode, the autopairs will not work.
+  disable_in_visualblock  = false,  -- disable when insert after visual block mode
   disable_in_replace_mode = true,
 
   ignored_next_char = nil,  -- Use default.

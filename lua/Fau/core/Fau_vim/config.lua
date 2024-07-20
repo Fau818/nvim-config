@@ -21,6 +21,10 @@ Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 -- -----------------------------------
 Fau_vim.plugin.copilot = { enable = vim.loop.fs_stat(string.format("%s/github-copilot/hosts.json", Fau_vim.xdg_config_home)) and true or false }
 Fau_vim.plugin.trouble = { tag = "v2.10.0" }
+Fau_vim.plugin.openai  = {
+  api_path  = ("%s/apikey"):format(os.getenv("OPENAI_API_PATH") or Fau_vim.config_path),
+  host_path = ("%s/host"):format(os.getenv("OPENAI_API_PATH") or Fau_vim.config_path),
+}
 
 
 -- -----------------------------------
@@ -50,6 +54,7 @@ Fau_vim.file.excluded_filetypes = {
   "alpha",
   "aerial", "aerial-nav",
   "crunner",
+  "chatgpt-input",
   "diff", "DiffviewFiles",
   "DressingInput", "DressingSelect",
   "glowpreview",
