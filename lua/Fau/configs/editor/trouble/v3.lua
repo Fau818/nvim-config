@@ -24,7 +24,7 @@ local config = {
   open_no_results = false,  -- open the trouble window when there are no results
 
   ---@type trouble.Window.opts
-  win = {},  -- window options for the results window. Can be a split or a floating window.
+  win = nil,  -- Use default.
 
   -- Window options for the preview window. Can be a split, floating window, or `main` to show the preview in the main editor window.
   ---@type trouble.Window.opts
@@ -38,17 +38,11 @@ local config = {
 
   -- Throttle/Debounce settings. Should usually not be changed.
   ---@type table<string, number|{ms:number, debounce?:boolean}>
-  throttle = {
-    refresh = 20,   -- fetches new data when needed
-    update  = 10,   -- updates the window
-    render  = 10,   -- renders the window
-    follow  = 100,  -- follows the current item
-    preview = { ms = 100, debounce = true },  -- shows the preview for the current item
-  },
+  throttle = nil,  -- Use default.
 
   -- Key mappings can be set to the name of a builtin action,
   -- or you can define your own custom action.
-  ---@type table<string, trouble.Action.spec>
+  ---@type table<string, trouble.Action.spec|false>
   keys = {
     ["?"] = "help",
 
@@ -64,8 +58,8 @@ local config = {
     ["<C-s>"] = "jump_split",
     ["<C-v>"] = "jump_vsplit",
 
-    ["j"] = "next",
-    ["k"] = "prev",
+    ["<Down>"] = "next",
+    ["<Up>"] = "prev",
 
     dd = "delete",
     d = { action = "delete", mode = "v" },
@@ -108,13 +102,13 @@ local config = {
   ---@type table<string, trouble.Mode>
   modes = {
     -- FIXME: Default config is not working.
-    lsp_definitions      = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
-    lsp_declarations     = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
-    lsp_implementations  = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
-    lsp_type_definitions = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
-    lsp_references       = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
-    lsp_incoming_calls   = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
-    lsp_outgoing_calls   = { auto_jump = false, keys = { ["<CR>"] = "jump_close" } },
+    lsp_definitions      = { auto_jump = false },
+    lsp_declarations     = { auto_jump = false },
+    lsp_implementations  = { auto_jump = false },
+    lsp_type_definitions = { auto_jump = false },
+    lsp_references       = { auto_jump = false },
+    lsp_incoming_calls   = { auto_jump = false },
+    lsp_outgoing_calls   = { auto_jump = false },
 
     diagnostics_buffer = {
       mode = "diagnostics",  -- inherit from diagnostics mode
