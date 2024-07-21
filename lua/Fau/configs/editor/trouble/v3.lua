@@ -101,7 +101,8 @@ local config = {
 
   ---@type table<string, trouble.Mode>
   modes = {
-    -- FIXME: Default config is not working.
+    -- FIXME: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
+    -- HACK: set `auto_jump` to `false` to avoid jumping to the first item.
     lsp_definitions      = { auto_jump = false },
     lsp_declarations     = { auto_jump = false },
     lsp_implementations  = { auto_jump = false },
@@ -124,6 +125,11 @@ local config = {
     kinds = Fau_vim.icons.kind,
   },
 }
+
+
+-- BUG: Keymaps are case-sensitive. [Error like `<CR>`]
+-- HACK: Force to lowercase.
+for lhs, rhs in pairs(config.keys) do if type(lhs) == "string" and lhs:sub(1, 1) == "<" then config.keys[lhs:lower()] = rhs end end
 
 trouble.setup(config)
 

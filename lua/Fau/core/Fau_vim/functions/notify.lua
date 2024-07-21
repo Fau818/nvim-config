@@ -29,19 +29,21 @@ end
 -- -------- Show Lua Table
 -- -----------------------------------
 Fau_vim.table2string = function(...)
-  local objects = {}
-  for i = 1, select("#", ...) do
-    local v = select(i, ...)
-    table.insert(objects, vim.inspect(v))
-  end
-  return table.concat(objects, "\n")
+  return vim.inspect(...)
+  -- local objects = {}
+  -- for i = 1, select("#", ...) do
+  --   local v = select(i, ...)
+  --   table.insert(objects, vim.inspect(v))
+  -- end
+  -- return table.concat(objects, "\n")
 end
 
 Fau_vim.show = function(...)
-  local objects = {}
-  for i = 1, select("#", ...) do
-    local v = select(i, ...)
-    table.insert(objects, vim.inspect(v))
-  end
-  print(table.concat(objects, "\n"))
+  -- local objects = {}
+  -- for i = 1, select("#", ...) do
+  --   local v = select(i, ...)
+  --   table.insert(objects, vim.inspect(v))
+  -- end
+  -- print(table.concat(objects, "\n"))
+  print(vim.inspect(...))
 end
