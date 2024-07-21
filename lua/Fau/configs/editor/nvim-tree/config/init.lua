@@ -58,6 +58,7 @@ local config = {
     highlight_diagnostics  = "name",
     highlight_opened_files = "name",
     highlight_modified     = "name",
+    highlight_hidden       = "none",  -- NOTE: Conflict with special_files.
     highlight_clipboard    = "name",
 
     indent_width = 2,
@@ -73,15 +74,16 @@ local config = {
         folder = { enable = false, color = true },
       },
 
-      git_placement         = "before",
+      git_placement         = "before",   ---@type "before" | "after" | "signcolumn"
       diagnostics_placement = "signcolumn",
       modified_placement    = "after",
+      hidden_placement      = "before",
       bookmarks_placement   = "signcolumn",
 
       padding = nil,        -- Use default.
       symlink_arrow = nil,  -- Use default.
 
-      show = { file = true, folder = true, folder_arrow = true, git = true, modified = true, diagnostics = true, bookmarks = true },
+      show = { file = true, folder = true, folder_arrow = true, git = true, hidden = false, modified = true, diagnostics = true, bookmarks = true },
 
       glyphs = nil,  -- Use default.
     },

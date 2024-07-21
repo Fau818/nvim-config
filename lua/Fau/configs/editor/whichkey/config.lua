@@ -12,7 +12,7 @@ local config = {
   notify = true,
 
   ---@type wk.Spec
-  triggers = nil,  -- Use default.
+  triggers = { "<LEADER>", mode = "nxsot" },  -- Only <LEADER> to trigger whichkey.
 
   defer = function() end,  -- Disabled
 
