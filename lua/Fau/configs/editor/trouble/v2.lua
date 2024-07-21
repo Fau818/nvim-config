@@ -78,7 +78,7 @@ local function opts(desc) return { silent = true, desc = "Trouble: " .. desc } e
 
 keymap("n", "<LEADER>tt", "<CMD>Trouble<CR>",                       opts("Show"))
 keymap("n", "gd",         "<CMD>Trouble lsp_definitions<CR>",       opts("Definition"))
-keymap("n", "gD",         "<CMD>Trouble lsp_declarations<CR>",      opts("Declaration"))
+-- keymap("n", "gD",         "<CMD>Trouble lsp_declarations<CR>",      opts("Declaration"))
 keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions<CR>",  opts("Type Definition"))
 keymap("n", "gI",         "<CMD>Trouble lsp_implementations<CR>",   opts("Implementation"))
 keymap("n", "gr",         "<CMD>Trouble lsp_references<CR>",        opts("References"))

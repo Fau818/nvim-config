@@ -12,7 +12,7 @@ local config = {
   notify = true,
 
   ---@type wk.Spec
-  triggers = { "<LEADER>", mode = "nxsot" },  -- Only <LEADER> to trigger whichkey.
+  triggers = { { "<LEADER>", mode = "nxsot" }, { "<auto>", mode = "n" } },
 
   defer = function() end,  -- Disabled
 
