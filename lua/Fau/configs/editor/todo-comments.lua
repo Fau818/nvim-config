@@ -7,7 +7,7 @@ local todo_comments = require("todo-comments")
 local config = {
   signs         = true,  -- show icons in the signs column
   -- TODO: Priority is less than unstaged git sign but greater than staged git sign.
-  sign_priority = 10,    -- sign priority
+  sign_priority = Fau_vim.settings.sign_priority.todo_comments,    -- sign priority
 
   keywords = {
     FIX       = { icon = Fau_vim.icons.todo.BUG,       color = "error",     alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, signs = true },

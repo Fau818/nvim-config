@@ -48,7 +48,7 @@ local config = {
   -- current_line_blame_formatter = "<author>, <author_time:%Y/%m/%d>, <committer_time:%H:%M> • <summary>",
   current_line_blame_formatter = "<author>, <author_time:%R> • <summary>",
 
-  sign_priority = 9,  -- set 12 to cover diagnostic
+  sign_priority = Fau_vim.settings.sign_priority.gitsigns,  -- set 12 to cover diagnostic
   update_debounce = 100,
   -- status_formatter = nil,  -- Use default
   max_file_length = Fau_vim.file.large_file_line,  -- Disable if file is longer than this (in lines)

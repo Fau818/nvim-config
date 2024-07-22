@@ -7,6 +7,7 @@ require("Fau.core.Fau_vim.keymaps")
 
 -- ==================== Core ====================
 require("Fau.core.Fau_vim.config")
+require("Fau.core.Fau_vim.functions")
 require("Fau.core.Fau_vim.commands")
 require("Fau.core.Fau_vim.autocmd")
 

@@ -58,8 +58,8 @@ local config = {
     ["<C-s>"] = "jump_split",
     ["<C-v>"] = "jump_vsplit",
 
-    ["<Down>"] = "next",
-    ["<Up>"] = "prev",
+    j = "next",
+    k = "prev",
 
     dd = "delete",
     d = { action = "delete", mode = "v" },
@@ -142,14 +142,14 @@ local keymap = vim.keymap.set
 local function opts(desc) return { silent = true, desc = "Trouble: " .. desc } end
 
 keymap("n", "<LEADER>tt", "<CMD>Trouble<CR>",                           opts("Show"))
-keymap("n", "gd",         "<CMD>Trouble lsp_definitions<CR>",           opts("Definition"))
-keymap("n", "gD",         "<CMD>Trouble lsp_declarations<CR>",          opts("Declaration"))
-keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions<CR>",      opts("Type Definition"))
-keymap("n", "gI",         "<CMD>Trouble lsp_implementations<CR>",       opts("Implementation"))
-keymap("n", "gr",         "<CMD>Trouble lsp_references<CR>",            opts("References"))
+keymap("n", "gd",         "<CMD>Trouble lsp_definitions first<CR>",           opts("Definition"))
+keymap("n", "gD",         "<CMD>Trouble lsp_declarations first<CR>",          opts("Declaration"))
+keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions first<CR>",      opts("Type Definition"))
+keymap("n", "gI",         "<CMD>Trouble lsp_implementations first<CR>",       opts("Implementation"))
+keymap("n", "gr",         "<CMD>Trouble lsp_references first<CR>",            opts("References"))
 
-keymap("n", "gi",         "<CMD>Trouble lsp_incoming_calls<CR>",        opts("Incoming Calls"))
-keymap("n", "go",         "<CMD>Trouble lsp_outgoing_calls<CR>",        opts("Outgoing Calls"))
+keymap("n", "gi",         "<CMD>Trouble lsp_incoming_calls first<CR>",        opts("Incoming Calls"))
+keymap("n", "go",         "<CMD>Trouble lsp_outgoing_calls first<CR>",        opts("Outgoing Calls"))
 
 keymap("n", "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>", opts("Buffer Diagnostics"))
 keymap("n", "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>",        opts("Workspace Diagnostics"))

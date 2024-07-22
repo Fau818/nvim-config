@@ -41,7 +41,7 @@ local config = {
   },
 
   -- virtual_text = false,
-  signs = true,
+  signs = { priority = Fau_vim.settings.sign_priority.diagnostic },
 
   underline = true,
   update_in_insert = true,
