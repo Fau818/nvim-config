@@ -26,7 +26,7 @@ return {
 
 
   ---Determine if the specified buffer is a large file.
-  ---@param bufnr integer Default is the current buffer.
+  ---@param bufnr? integer Default is the current buffer.
   ---@return boolean flag True if the buffer is a large file, otherwise false.
   is_large_file = function(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()

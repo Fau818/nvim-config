@@ -103,13 +103,13 @@ local config = {
   modes = {
     -- FIXME: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
     -- HACK: set `auto_jump` to `false` to avoid jumping to the first item.
-    lsp_definitions      = { auto_jump = false },
-    lsp_declarations     = { auto_jump = false },
-    lsp_implementations  = { auto_jump = false },
-    lsp_type_definitions = { auto_jump = false },
-    lsp_references       = { auto_jump = false },
-    lsp_incoming_calls   = { auto_jump = false },
-    lsp_outgoing_calls   = { auto_jump = false },
+    lsp_definitions      = { auto_jump = false, auto_refresh = false },
+    lsp_declarations     = { auto_jump = false, auto_refresh = false },
+    lsp_implementations  = { auto_jump = false, auto_refresh = false },
+    lsp_type_definitions = { auto_jump = false, auto_refresh = false },
+    lsp_references       = { auto_jump = false, auto_refresh = false },
+    lsp_incoming_calls   = { auto_jump = false, auto_refresh = false },
+    lsp_outgoing_calls   = { auto_jump = false, auto_refresh = false },
 
     diagnostics_buffer = {
       mode = "diagnostics",  -- inherit from diagnostics mode

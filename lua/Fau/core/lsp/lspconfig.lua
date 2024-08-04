@@ -102,10 +102,10 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   -- Get servers for specific filetype.
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
   -- HACK: Special for pylance
-  -- if filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance") end
-  if filetype == "python" and vim.fn.executable("delance-langserver") == 1 then table.insert(clients, "delance")
-  elseif filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance")
-  end
+  if filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance") end
+  -- if filetype == "python" and vim.fn.executable("delance-langserver") == 1 then table.insert(clients, "delance")
+  -- elseif filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance")
+  -- end
 
   -- Config LS for current filetype.
   for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end

@@ -7,23 +7,27 @@ if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settin
 
 
 local function installer(ctx)
-  local sed_binary = Fau_vim.os_name == "Darwin" and "gsed" or "sed"
+  -- ==================== Scripts ====================
+  -- local sed_binary = Fau_vim.os_name == "Darwin" and "gsed" or "sed"
   -- Download
-  local script = [[
+  local download = [[
     curl -s -c cookies.txt 'https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance' > /dev/null &&
-    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2024.4.100/vspackage"
+    curl -s "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/latest/vspackage"
          -j -b cookies.txt --compressed --output "pylance.vsix"
   ]]
+  -- Edit
+  local edit = [[ perl -pe 's/if\(!process.*?\)return!\[\];/if(false)return false;/g; s/throw new//g' extension/dist/server.bundle.js > extension/dist/server.nvim.js ]]
+
+
+  -- ==================== Handle ====================
   ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
-  ctx.spawn.bash({ "-c", script:gsub("\n", " ") })
+  -- Download
+  ctx.spawn.bash({ "-c", download:gsub("\n", " ") })
   ctx.spawn.unzip({ "pylance.vsix" })
   -- Patch
-  ctx.spawn.bash { "-c", sed_binary .. [[ -i "0,/\(if(\!process\[[^] ]*\]\[[^] ]*\])return\!0x\)1/ s//\10/" extension/dist/server.bundle.js]] }
-  ctx.spawn.bash { "-c", sed_binary .. [[ -i "0,/\(if(\!process\[.*\]\[.*\])return\!\)\[\]/ s//\10x0/" extension/dist/server.bundle.js]] }
-  ctx.spawn.bash { "-c", sed_binary .. [[ -i -E "s/;_0x[0-9a-f]+\[.*\+'nt'\]=function\(_0x[0-9a-f]+\)\{/&return;/" extension/dist/server.bundle.js]] }
-  ctx.spawn.bash { "-c", sed_binary .. [[ -i "0,/\(throw new Error(.*);}\)/ s//return;\1/" extension/dist/server.bundle.js]] }
+  ctx.spawn.bash { "-c", edit:gsub("\n", " ") }
   -- Link
-  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat { "extension", "dist", "server.bundle.js" }))
+  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat { "extension", "dist", "server.nvim.js" }))
 end
 
 
