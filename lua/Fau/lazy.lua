@@ -57,6 +57,8 @@ local config = {
     },
   },
 
+  cooldown = 0,
+
   pkg = {
     enabled = false,
     cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",

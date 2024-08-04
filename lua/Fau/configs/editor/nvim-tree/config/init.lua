@@ -74,10 +74,10 @@ local config = {
         folder = { enable = false, color = true },
       },
 
-      git_placement         = "before",   ---@type "before" | "after" | "signcolumn"
-      diagnostics_placement = "signcolumn",
+      git_placement         = "before",   ---@type "before" | "after" | "signcolumn" | "right_align"
+      diagnostics_placement = "right_align",
       modified_placement    = "after",
-      hidden_placement      = "before",
+      -- hidden_placement      = "before",  -- BUG: if set to "before", the folder icons for hidden files will lack a space.
       bookmarks_placement   = "signcolumn",
 
       padding = nil,        -- Use default.

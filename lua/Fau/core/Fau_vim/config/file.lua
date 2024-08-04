@@ -22,6 +22,6 @@ return {
   excluded_buftypes = { "help", "nofile", "terminal", "prompt", "quickfix" },
 
   special_files     = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" },
-  ignored_files     = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$" },
-  ignored_pattern   = { ".git/", ".vscode/", ".idea/", "__pycache__/", ".DS_Store" },
+  ignored_files     = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$", "^.*.iosinterface$" },
+  ignored_pattern   = { ".git/", ".vscode/", ".idea/", "__pycache__/", ".DS_Store", ".iosinterface" },
 }
