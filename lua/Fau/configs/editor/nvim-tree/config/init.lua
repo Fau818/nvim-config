@@ -53,6 +53,8 @@ local config = {
     special_files = Fau_vim.file.special_files,
     symlink_destination = true,  -- Whether to show the destination of the symlink.
 
+    hidden_display = "none",  ---@type "none" | "simple" | "all"
+
     ---@type "all" | "name" | "icon" | "none"
     highlight_git          = "name",
     highlight_diagnostics  = "name",

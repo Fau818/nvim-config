@@ -5,7 +5,7 @@ return {
   -- ========== Extension Pickers
   -- =============================================
   conda = function()
-    local config = { theme = "dropdown", initial_mode = "normal" }
+    local config = require("telescope.themes").get_dropdown({ initial_mode = "normal" })
     extensions.conda.conda(config)
   end,
 
@@ -20,7 +20,7 @@ return {
   end,
 
   projects = function()
-    local config = { theme = "dropdown", initial_mode = "normal" }
+    local config = require("telescope.themes").get_dropdown({ initial_mode = "normal" })
     extensions.projects.projects(config)
   end,
 
