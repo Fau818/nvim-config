@@ -88,6 +88,8 @@ local config = {
     hover = { enabled = true, delay = 100, reveal = { "close" } },
     ---@type "insert_at_end"|"insert_after_current"|"id"|"extension"|"relative_directory"|"directory"|"tabs"|function(buffer_a: Buffer, buffer_b: Buffer): boolean
     sort_by = "insert_after_current",
+
+    pick = { alphabet = "abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ1234567890" },
   },
 
   highlights = {
