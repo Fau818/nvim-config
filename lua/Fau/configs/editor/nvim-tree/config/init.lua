@@ -76,10 +76,11 @@ local config = {
         folder = { enable = false, color = true },
       },
 
-      git_placement         = "before",   ---@type "before" | "after" | "signcolumn" | "right_align"
+      ---@type "before" | "after" | "signcolumn" | "right_align"
+      git_placement         = "before",
       diagnostics_placement = "right_align",
       modified_placement    = "after",
-      -- hidden_placement      = "before",  -- BUG: if set to "before", the folder icons for hidden files will lack a space.
+      hidden_placement      = "after",
       bookmarks_placement   = "signcolumn",
 
       padding = nil,        -- Use default.
@@ -152,6 +153,7 @@ local config = {
       quit_on_open = false,
       eject = true,
       resize_window = true,
+      relative_path = true,  --  Buffers opened by nvim-tree will use with relative paths instead of absolute.
       window_picker = {
         enable = true,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",

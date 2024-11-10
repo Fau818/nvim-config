@@ -21,6 +21,7 @@ local config = {
     ignore_focus = { "help", "trouble", "NvimTree", "aerial", "DiffviewFiles" },
 
     always_divide_middle = true,
+    always_show_tabline = true,
     globalstatus = true,
 
     refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },

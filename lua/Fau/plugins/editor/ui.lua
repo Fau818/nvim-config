@@ -167,6 +167,7 @@ return {
   {
     -- DESC: Key binding helper.
     "folke/which-key.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function() require("Fau.configs.editor.whichkey") end,
     event = "UIEnter",
   },

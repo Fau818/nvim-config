@@ -112,6 +112,9 @@ local config = {
 
     -- ---------- Nvim-tree
     highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }
+    highlights["NvimTreeSpecialFile"] = { fg = Fau_vim.colors.tokyonight.purple }
+    highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
+    highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
 
     -- ---------- Paint
     highlights["Identifier"] = { fg = Fau_vim.colors.tokyonight.blue5 }
@@ -123,16 +126,6 @@ local config = {
     highlights["TelescopePromptPrefix"]   = { fg = Fau_vim.colors.purple_blue }
     highlights["TelescopePromptBorder"]   = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopeSelectionCaret"] = { fg = Fau_vim.colors.cobalt, bg = "#2D3F76" }
-
-    -- ---------- Nvim-cmp
-    highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
-    highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
-    highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
-
-    -- ---------- NvimTree
-    highlights["NvimTreeSpecialFile"] = { fg = Fau_vim.colors.tokyonight.purple }
-    highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
-    highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
   end,
 }
 

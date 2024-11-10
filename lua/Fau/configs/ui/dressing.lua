@@ -11,10 +11,10 @@ local config = {
     default_prompt = "Input",
     -- Trim trailing `:` from prompt
     trim_prompt = true,
-    -- Can be 'left', 'right', or 'center'
-    prompt_align = "left",
-    -- When true, input will start in insert mode.
-    start_in_insert = true,
+    ---@type "left"|"right"|"center"
+    title_pos = "left",
+    ---@type "insert"|"normal"|"visual"|"select" The initial mode when the window opens.
+    start_mode = "insert",
     border = "rounded",
     -- 'editor' and 'win' will default to being centered
     relative = "cursor",
@@ -45,11 +45,11 @@ local config = {
       n = {
         ["<Esc>"] = "Close",
         ["<C-c>"] = "Close",
-        ["<CR>"] = "Confirm",
+        ["<CR>"]  = "Confirm",
       },
       i = {
-        ["<C-c>"] = "Close",
-        ["<CR>"] = "Confirm",
+        ["<C-c>"]  = "Close",
+        ["<CR>"]   = "Confirm",
         ["<Up>"]   = "HistoryPrev",
         ["<Down>"] = "HistoryNext",
       },
@@ -112,7 +112,7 @@ local config = {
       -- 'editor' and 'win' will default to being centered
       relative = "editor",
       buf_options = {},
-      win_options = { winblend = 0 },
+      win_options = { cursorline = true, cursorlineopt = "both", winblend = 0 },
       -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
       -- the min_ and max_ options can be a list of mixed types.
       -- max_width = {140, 0.8} means "the lesser of 140 columns or 80% of total"
@@ -127,7 +127,7 @@ local config = {
       mappings = {
         ["<Esc>"] = "Close",
         ["<C-c>"] = "Close",
-        ["<CR>"] = "Confirm",
+        ["<CR>"]  = "Confirm",
       },
 
       override = function(conf)
