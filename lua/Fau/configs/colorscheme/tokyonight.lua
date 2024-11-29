@@ -126,6 +126,8 @@ local config = {
     highlights["TelescopePromptPrefix"]   = { fg = Fau_vim.colors.purple_blue }
     highlights["TelescopePromptBorder"]   = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopeSelectionCaret"] = { fg = Fau_vim.colors.cobalt, bg = "#2D3F76" }
+
+    highlights["@module.python"] = { fg = Fau_vim.colors.tokyonight.fg }
   end,
 }
 
