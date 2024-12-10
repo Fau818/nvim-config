@@ -40,6 +40,9 @@ return {
           enableSyncServer    = false,
           extraCommitChars    = true,
 
+          displayEnglishDiagnostics = true,
+          disableTaggedHints        = false,
+
           gotoDefinitionInStringLiteral = true,
 
           ---@type "absolute"|"relative"

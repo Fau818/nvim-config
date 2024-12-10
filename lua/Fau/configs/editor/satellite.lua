@@ -33,7 +33,7 @@ local config = {
       show_builtins = false,  -- shows the builtin marks like [ ] < >
       key = "m",
     },
-    quickfix = { signs = { "-", "=", "≡" } },
+    quickfix = { signs = { error = { '-', '=', '≡' }, warn = { '-', '=', '≡' }, info = { '-', '=', '≡' }, hint = { '-', '=', '≡' } } },
   },
 }
 
