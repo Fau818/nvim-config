@@ -7,13 +7,6 @@ return {
   -- -------- Powerful Window
   -- -----------------------------------
   {
-    -- DESC: Terminal enhancer.
-    "akinsho/toggleterm.nvim",
-    config = function() require("Fau.core.terminal") end,
-    lazy = true,
-  },
-
-  {
     -- DESC: easily run code in Neovim.
     "CRAG666/code_runner.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -44,6 +37,5 @@ return {
     event = "VeryLazy",
     cond = true,
   },
-
 
 }
