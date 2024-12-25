@@ -23,7 +23,7 @@ local config = {
     tailwind = true,  ---@type boolean | "normal" | "lsp" | "both"
 
     -- parsers can contain values used in |user_default_options|
-    sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+    sass = { enable = false, parsers = { "css" } },  -- Enable sass colors
 
     virtualtext = "■",
     virtualtext_inline = true,
