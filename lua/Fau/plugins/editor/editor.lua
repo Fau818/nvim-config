@@ -7,14 +7,6 @@ return {
   -- -------- Powerful Window
   -- -----------------------------------
   {
-    -- DESC: easily run code in Neovim.
-    "CRAG666/code_runner.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function() require("Fau.core.code_runner") end,
-    event = { "BufReadPost", "BufNewFile" },
-  },
-
-  {
     -- DESC: single tabpage interface for easily cycling through diffs for all modified files for any git rev.
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },

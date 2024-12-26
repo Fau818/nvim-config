@@ -38,6 +38,15 @@ return {
   },
 
 
+  -- ==================== Code Runner ====================
+  {
+    -- DESC: easily run code in Neovim.
+    "CRAG666/code_runner.nvim",
+    config = function() require("Fau.core.code_runner") end,
+    -- event = { "BufReadPost", "BufNewFile" },
+  },
+
+
   -- ==================== Extension ====================
   {
     -- DESC: Coding time tracker (for wakatime statistics).
