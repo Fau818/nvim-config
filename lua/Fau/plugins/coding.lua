@@ -137,4 +137,13 @@ return {
     enabled = vim.fn.executable("im-select") == 1 and true or false,
   },
 
+  {
+    -- DESC: A snazzy jump plugin.
+    "folke/flash.nvim",
+    config = function() require("Fau.configs.coding.flash") end,
+    event = "VeryLazy",
+    cond = true,
+  },
+
+
 }

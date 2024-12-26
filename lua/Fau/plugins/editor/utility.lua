@@ -40,10 +40,12 @@ return {
 
   -- ==================== Code Runner ====================
   {
-    -- DESC: easily run code in Neovim.
+    -- DESC: Easily run code in Neovim.
     "CRAG666/code_runner.nvim",
-    config = function() require("Fau.core.code_runner") end,
-    -- event = { "BufReadPost", "BufNewFile" },
+    config = function() require("Fau.configs.editor.code_runner") end,
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "RunCode", "RunFile", "RunProject", "RunClose", "CRFiletype", "CRProjects", "CrStopHr" },
+    keys = { "<C-r>", "<LEADER>r" },
   },
 
 

@@ -30,13 +30,6 @@ return {
 
   -- ==================== Animation ====================
   {
-    -- DESC: Add animation for Neovim actions.
-    "echasnovski/mini.animate",
-    config = function() require("Fau.configs.ui.mini-animate") end,
-    event = "UIEnter",
-  },
-
-  {
     -- DESC: Add animation for Neovim window actions.
     "anuvyklack/windows.nvim",
     dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },

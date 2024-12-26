@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local flash_ok, flash = pcall(require, "flash")
-if not flash_ok then Fau_vim.load_plugin_error("flash") return end
+local flash = require("flash")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type Flash.Config
 local config = {
   labels = "asfghjklqwetuiopzbnm",

@@ -18,16 +18,4 @@ return {
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
   },
 
-
-  -- -----------------------------------
-  -- -------- Jump
-  -- -----------------------------------
-  {
-    -- DESC: a snazzy jump plugin.
-    "folke/flash.nvim",
-    config = function() require("Fau.core.flash") end,
-    event = "VeryLazy",
-    cond = true,
-  },
-
 }

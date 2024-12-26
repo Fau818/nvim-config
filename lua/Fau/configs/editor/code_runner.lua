@@ -33,6 +33,7 @@ local config = {
       (os.getenv("CPPFLAGS_FAU") or ""),
       "$fileName -o $fileNameWithoutExt -w && ./$fileNameWithoutExt",
     },
+    lua = [[luajit $dir/$fileName]]
     -- typescript = "deno run",
     -- rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt"
   },
@@ -58,6 +59,21 @@ local config = {
   -- NOTE: If use json to config code_runner, uncomment the following codes.
   -- filetype_path = vim.fn.expand(Fau_vim.config_path .. "/code_runner/filetype.json"),
   -- project_path  = vim.fn.expand(Fau_vim.config_path .. "/code_runner/project.json"),
+
+  hot_reload = false,
 }
 
 code_runner.setup(config)
+
+
+
+-- =============================================
+-- ========== Keymaps
+-- =============================================
+vim.keymap.set("n", "<LEADER>r",  "<NOP>", { desc = "Code Runner" } )
+vim.keymap.set("n", "<C-r>",      "<CMD>RunFile toggleterm<CR>",    { silent = true, desc = "Run File in Toggleterm"    } )
+vim.keymap.set("n", "<LEADER>rt", "<CMD>RunFile term<CR>",          { silent = true, desc = "Run File in Terminal"      } )
+vim.keymap.set("n", "<LEADER>rT", "<CMD>RunFile toggle<CR>",        { silent = true, desc = "Run File Toggle"           } )
+vim.keymap.set("n", "<LEADER>rf", "<CMD>RunFile float<CR>",         { silent = true, desc = "Run File in Float"         } )
+vim.keymap.set("n", "<LEADER>rc", "<CMD>RunClose<CR>",              { silent = true, desc = "Run Close"                 } )
+vim.keymap.set("n", "<LEADER>rp", "<CMD>RunProject toggleterm<CR>", { silent = true, desc = "Run Project in Toggleterm" } )

@@ -44,6 +44,7 @@ local config = {
     -- -- Special configurations for common splits
     -- ['='] = --<function: enhanced setup for '='>,
     -- [','] = --<function: enhanced setup for ','>,
+    -- ['|'] = --<function: enhanced setup for '|'>,
     -- [' '] = --<function: enhanced setup for ' '>,
   },
 
