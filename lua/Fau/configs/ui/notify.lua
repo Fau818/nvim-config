@@ -16,7 +16,7 @@ local config = {
 
   -- time_formats = nil,
   render = "default",  ---@type "default"|"minimal"|"simple"
-  stages = "fade_in_slide_out",  ---@type "fade_in_slide_out"|"fade"|"slide"|"static"
+  stages = "fade_in_slide_out",  ---@type "fade_in_slide_out"|"fade"|"slide"|"slide_out"|"static"
   top_down = true,
 
   -- on_open = nil,
