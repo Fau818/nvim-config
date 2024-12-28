@@ -23,6 +23,7 @@ return {
     -- DESC: Enhance textobjects.
     "nvim-treesitter/nvim-treesitter-textobjects",
     requires = "nvim-treesitter/nvim-treesitter",
+    config = nil,   -- Setup in nvim-treesitter
     event = { "BufReadPost", "BufNewFile" },
   },
 

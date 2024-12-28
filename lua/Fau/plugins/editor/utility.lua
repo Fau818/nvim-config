@@ -13,8 +13,15 @@ return {
   {
     -- DESC: Detect file indentation automatically.
     "nmac427/guess-indent.nvim",
-    config = function() require("Fau.configs.editor.guess-indent") end,
+    config = function() require("Fau.configs.editor.utility.guess-indent") end,
     event = "BufReadPre",
+  },
+
+  {
+    -- DESC: Auto remove trailing whitespaces and empty lines.
+    "echasnovski/mini.trailspace",
+    config = function() require("Fau.configs.editor.utility.mini-trailspace") end,
+    event = "BufWritePre",
   },
 
 
@@ -23,7 +30,7 @@ return {
     -- DESC: Dim inactive portions of the code to focus on coding.
     "folke/twilight.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function() require("Fau.configs.editor.twilight") end,
+    config = function() require("Fau.configs.editor.utility.twilight") end,
     cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
     keys = { { "<LEADER><LEADER>t", "<CMD>Twilight<CR>", desc = "Twilight: Toggle" } }
   },
@@ -32,7 +39,7 @@ return {
   {
     -- DESC: distraction-free coding for Neovim (zen-mode).
     "folke/zen-mode.nvim",
-    config = function() require("Fau.configs.editor.zen-mode") end,
+    config = function() require("Fau.configs.editor.utility.zen-mode") end,
     cmd = "ZenMode",
     keys = { { "<LEADER><LEADER>z", "<CMD>ZenMode<CR>", desc = "ZenMode: Toggle" } }
   },
@@ -42,7 +49,7 @@ return {
   {
     -- DESC: Easily run code in Neovim.
     "CRAG666/code_runner.nvim",
-    config = function() require("Fau.configs.editor.code_runner") end,
+    config = function() require("Fau.configs.editor.utility.code_runner") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "RunCode", "RunFile", "RunProject", "RunClose", "CRFiletype", "CRProjects", "CrStopHr" },
     keys = { "<C-r>", "<LEADER>r" },
@@ -78,10 +85,10 @@ return {
       "folke/trouble.nvim",
       "nvim-telescope/telescope.nvim"
     },
-    config = function() require("Fau.configs.editor.chatgpt") end,
+    config = function() require("Fau.configs.editor.utility.chatgpt") end,
     -- event = "VeryLazy",
     cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
-    keys = require("Fau.configs.editor.chatgpt.lazy_keys"),
+    keys = require("Fau.configs.editor.utility.chatgpt.lazy_keys"),
   },
 
 }
