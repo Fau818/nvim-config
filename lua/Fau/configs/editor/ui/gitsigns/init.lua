@@ -13,8 +13,6 @@ local config = {
     changedelete = { text = Fau_vim.icons.gitsigns.ChangeDelete, show_count = true },
     untracked    = { text = Fau_vim.icons.gitsigns.Untracked,    show_count = true },
   },
-
-  signs_staged_enable = true,
   signs_staged = {
     add          = { text = Fau_vim.icons.gitsigns.BoldLine,     show_count = true },
     change       = { text = Fau_vim.icons.gitsigns.BoldLine,     show_count = true },
@@ -23,8 +21,9 @@ local config = {
     changedelete = { text = Fau_vim.icons.gitsigns.ChangeDelete, show_count = true },
     untracked    = { text = Fau_vim.icons.gitsigns.Untracked,    show_count = true },
   },
-
   count_chars = { [1] = "¹", [2] = "²", [3] = "³", [4] = "⁴", [5] = "⁵", [6] = "⁶", [7] = "⁷", [8] = "⁸", [9] = "⁹", ["+"] = "+" },
+
+  signs_staged_enable = true,
 
   auto_attach = true,
   attach_to_untracked = true,
@@ -54,9 +53,6 @@ local config = {
   max_file_length = Fau_vim.file.large_file_line,  -- Disable if file is longer than this (in lines)
 
   preview_config = { border = "single", style = "minimal", relative = "cursor", row = 0, col = 1 },
-
-  trouble = true,  -- Integrated with trouble.nvim
 }
-
 
 gitsigns.setup(config)

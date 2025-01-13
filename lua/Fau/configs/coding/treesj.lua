@@ -31,7 +31,7 @@ local config = {
   on_error = nil,
 
   ---@type table Presets for languages
-  -- langs = { json = { join = { space_in_brackets = true } } },
+  langs = { python = { dictionary = { join = { space_in_brackets = true } } } },
 }
 
 treesj.setup(config)

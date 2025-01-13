@@ -53,12 +53,11 @@ local config = {
     -- NOTE: Bad indentation behavior in Python function block.
     -- \ e.g.: for i in range(10): print(i)
     -- \ if you hit the <ENTER> key, an indentation will continuously persist (even if you delete it and hit the <ENTER> again).
-    enable = false,
-    -- disable = function()
-    --   local ft = vim.bo.filetype
-    --   if ft == "python" then return true end
-    --   return Fau_vim.functions.utils.is_large_file()
-    -- end,
+    enable = true,
+    disable = function()
+      -- if vim.bo.filetype == "python" then return true end
+      return Fau_vim.functions.utils.is_large_file()
+    end,
   },
 
   -- nvim-treesitter-endwise plugin
