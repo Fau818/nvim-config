@@ -18,8 +18,8 @@ return {
     ft = "python",
     cmd = { "Docstring", "DostringTypes", "DocstringLine" },
     keys = {
-      { "<LEADER><LEADER>d", "<CMD>DocstringTypes<CR>", desc = "Python Docstring: Generate with Type Hints" },
-      { "<LEADER><LEADER>D", "<CMD>Docstring<CR>",      desc = "Python Docstring: Generate" },
+      { "<LEADER><LEADER>d", "<CMD>Docstring<CR>",      desc = "Python Docstring: Generate" },
+      { "<LEADER><LEADER>D", "<CMD>DocstringTypes<CR>", desc = "Python Docstring: Generate with Type Hints" },
     },
     cond = true,  -- TESTING: Not TESTED in VSCode.
   },

@@ -7,6 +7,7 @@ local config = {
   draw = {
     delay = 100,
     animation = nil,  -- Use default.
+    predicate = nil,  -- Use default.
     priority = 2,
   },
 
