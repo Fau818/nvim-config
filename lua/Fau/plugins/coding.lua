@@ -68,7 +68,6 @@ return {
   {
     -- DESC: Running code action on nodes(code).
     "ckolkey/ts-node-action",
-    dependencies = "nvim-treesitter/nvim-treesitter",
     config = true,
     cmd = { "NodeAction", "NodeActionDebug" },
     keys = { { "<LEADER>n", "<CMD>NodeAction<CR>", mode = "n", desc = "Node Action: Node Action" } },

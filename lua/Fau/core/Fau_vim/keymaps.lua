@@ -104,6 +104,8 @@ keymap({ "x", "o" }, "ir", "i]", opts("Range: Inner Square Bracket"))
 keymap({ "x", "o" }, "aa", "a>", opts("Range: Around Angle Bracket"))
 keymap({ "x", "o" }, "ar", "a]", opts("Range: Around Square Bracket"))
 
+-- Paragraph
+keymap("o", "p", "ip", opts("Range: Inner Paragraph"))
 
 
 -- =============================================

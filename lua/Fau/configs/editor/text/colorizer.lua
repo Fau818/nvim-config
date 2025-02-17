@@ -44,6 +44,12 @@ local config = {
   buftypes = nil,
 
   user_commands = true,  ---@type boolean | table Enable all or some usercommands
+
+  -- hooks to invert control of colorizer
+  hooks = {
+    -- called before line parsing.  Set to function that returns a boolean and accepts the following parameters.  See hooks section.
+    do_lines_parse = false,
+  },
 }
 
 colorizer.setup(config)

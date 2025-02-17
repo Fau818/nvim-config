@@ -4,6 +4,7 @@
 local npairs = require("nvim-autopairs")
 
 local config = {
+  enabled = function(bufnr) return true end, -- control if auto-pairs should be enabled when attaching to a buffer
   disable_filetype = Fau_vim.file.excluded_filetypes,
   disable_in_macro        = true,   -- disable when recording or executing a macro
   -- FIXME: When exit visual-block mode, the autopairs will not work.
