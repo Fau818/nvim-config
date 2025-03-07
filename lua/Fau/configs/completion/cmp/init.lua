@@ -19,7 +19,10 @@ cmp.setup.cmdline({ "/", "?" }, config.search)
 -- -----------------------------------
 -- For inserting '(' after select function or method item
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+cmp.event:on(
+  "confirm_done",
+  function(event) if vim.bo.filetype ~= "python" then cmp_autopairs.on_confirm_done()(event) end end
+)
 
 
 -- -----------------------------------

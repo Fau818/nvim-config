@@ -42,8 +42,8 @@ local config = {
     ---@diagnostic disable-next-line: unused-local
     custom_filter = function(buf_number, buf_numbers)
       ---@diagnostic disable-next-line: param-type-mismatch
-      if vim.fn.bufname(buf_number) ~= "" then return true end
-      return false
+      if vim.fn.bufname(buf_number) == "" or vim.bo[buf_number].filetype == "checkhealth" then return false end
+      return true
     end,
 
     diagnostics = "nvim_lsp",  ---@type false|"nvim_lsp"|"coc"

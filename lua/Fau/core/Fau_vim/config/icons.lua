@@ -74,7 +74,7 @@ return {
 
   gitsigns = {
     -- LineLeft     = "│",
-    BoldLine     = "▎",  -- "┃", "▎"
+    BoldLine     = "┃",  -- "┃", "▎"
     Delete       = "_",  -- ""
     TopDelete    = "‾",
     ChangeDelete = "~",
