@@ -46,6 +46,12 @@ return {
 
   -- ==================== Text Augmentation ====================
   {
+    "zbirenbaum/neodim",
+    config = function() require("Fau.configs.editor.text.neodim") end,
+    event = "LspAttach",
+  },
+
+  {
     -- DESC: Colorizer for showing color.
     "NvChad/nvim-colorizer.lua",
     config = function() require("Fau.configs.editor.text.colorizer") end,
