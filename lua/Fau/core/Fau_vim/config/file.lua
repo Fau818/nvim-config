@@ -25,5 +25,26 @@ return {
 
   special_files     = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" },
   ignored_files     = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$", "^.*.iosinterface$" },
-  ignored_pattern   = { ".git/", ".vscode/", ".idea/", "__pycache__/", ".DS_Store", ".iosinterface" },
+  ignored_patterns   = {
+    "^.git/",
+    "^.vscode/",
+    "^.idea/",
+
+    "^node_modules/",
+    "^__pycache__/",
+
+    "^.local/",
+    "^.cache/",
+    "^.Trash/",
+    "^.terminfo/",
+
+    "^Applications/",
+    "^Desktop/",
+    "^Documents/",
+    "^Downloads/",
+    "^Library/",
+    "^Movies/",
+    "^Music/",
+    "^Pictures/",
+  },
 }

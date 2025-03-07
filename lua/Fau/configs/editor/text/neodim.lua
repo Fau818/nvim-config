@@ -4,7 +4,7 @@
 local neodim = require("neodim")
 
 local config = {
-  alpha = 0.75,
+  alpha = 0.65,
   blend_color = nil,
   hide = {
     underline    = true,

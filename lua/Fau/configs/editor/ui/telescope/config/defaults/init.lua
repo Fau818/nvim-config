@@ -66,7 +66,7 @@ return {
 
   tiebreak = nil,  -- Use default.
 
-  file_ignore_patterns = Fau_vim.file.ignored_pattern,
+  file_ignore_patterns = Fau_vim.file.ignored_patterns,
 
   get_selection_window = nil,  -- Use default.
 
