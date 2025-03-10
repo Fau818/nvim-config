@@ -27,24 +27,35 @@ local config = {
     -- on every `BufEnter` event.
     auto_setup = false,
 
-    -- `process_items` should be a function which takes LSP
-    -- 'textDocument/completion' response items and word to complete. Its
-    -- output should be a table of the same nature as input items. The most
-    -- common use-cases are custom filtering and sorting. You can use
-    -- default `process_items` as `MiniCompletion.default_process_items()`.
-    -- process_items = --<function: filters out snippets; sorts by LSP specs>,
+    -- A function which takes LSP 'textDocument/completion' response items
+    -- and word to complete. Output should be a table of the same nature as
+    -- input items. Common use case is custom filter/sort.
+    -- Default: `default_process_items`
+    -- process_items = nil,
+
+    -- A function which takes a snippet as string and inserts it at cursor.
+    -- Default: `default_snippet_insert` which tries to use 'mini.snippets'
+    -- and falls back to `vim.snippet.expand` (on Neovim>=0.10).
+    -- snippet_insert = nil,
   },
 
-  -- Fallback action. It will always be run in Insert mode. To use Neovim's
-  -- built-in completion (see `:h ins-completion`), supply its mapping as
-  -- string. Example: to use 'whole lines' completion, supply '<C-x><C-l>'.
-  -- fallback_action = --<function: like `<C-n>` completion>,
+  -- Fallback action as function/string. Executed in Insert mode.
+  -- To use built-in completion (`:h ins-completion`), set its mapping as
+  -- string. Example: set '<C-x><C-l>' for 'whole lines' completion.
+  fallback_action = nil,
 
   -- Module mappings. Use `''` (empty string) to disable one. Some of them
   -- might conflict with system mappings.
   mappings = {
+    -- Force two-step/fallback completions
     force_twostep  = "",  -- Force two-step completion
     force_fallback = "",  -- Force fallback completion
+
+    -- Scroll info/signature window down/up. When overriding, check for
+    -- conflicts with built-in keys for popup menu (like `<C-u>`/`<C-o>`
+    -- for 'completefunc'/'omnifunc' source function; or `<C-n>`/`<C-p>`).
+    scroll_down = "<C-d>",
+    scroll_up   = "<C-b>",
   },
 
   -- Whether to set Vim's settings for better experience (modifies `shortmess` and `completeopt`)
