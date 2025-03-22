@@ -16,6 +16,7 @@ return {
     "lspinfo", "mason",
     "notify", "noice", "netrw",
     "NvimTree",
+    "snacks_picker_input",
     "terminal", "toggleterm",
     "trouble",
     "TelescopePrompt",

@@ -82,6 +82,8 @@ return {
   searchcount = { "searchcount", maxcount = 999, timeout = 500 },
   selectioncount = "selectioncount",
 
+  lsp_status = { "lsp_status", ignore_lsp = { "null-ls", "copilot" } },
+
 
   -- -----------------------------------
   -- -------- Indent
@@ -172,6 +174,7 @@ return {
   -- -----------------------------------
   lsp = {
     function()
+      -- TODO: `lsp_status` (shows active LSPs in the current buffer and a progress spinner)
       -- TODO: Clean outdated code.
       local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
 
