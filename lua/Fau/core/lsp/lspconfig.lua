@@ -30,7 +30,7 @@ if not cmp_nvim_lsp_ok then cmp_nvim_lsp = nil end
 -- -----------------------------------
 -- -------- Change LspInfo Window Border
 -- -----------------------------------
-require('lspconfig.ui.windows').default_options.border = "double"
+require("lspconfig.ui.windows").default_options.border = "double"
 
 
 -- -----------------------------------

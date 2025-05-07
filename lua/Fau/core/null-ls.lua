@@ -1,8 +1,7 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local null_ls_ok, null_ls = pcall(require, "null-ls")
-if not null_ls_ok then Fau_vim.load_plugin_error("null-ls") return end
+local null_ls = require("null-ls")
 
 
 
@@ -39,25 +38,25 @@ local sources = {
   -- -----------------------------------
   -- -------- Python
   -- -----------------------------------
-  flake8 = null_ls.builtins.diagnostics.flake8.with({
-    extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" }
+  flake8 = require("none-ls.diagnostics.flake8").with({
+    extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" },
   }),
 
-  pydocstyle = null_ls.builtins.diagnostics.pydocstyle.with({
-    extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" }
-  }),
+  -- pydocstyle = require("none-ls.diagnostics.pydocstyle").with({
+  --   extra_args = { "--config", Fau_vim.config_path .. "/configuration/tox.ini" },
+  -- }),
 
   -- djlint = null_ls.builtins.diagnostics.djlint.with({
   --   filetypes = { "django", "jinja.html", "htmldjango", "html" }
   -- }),
-  curlylint = null_ls.builtins.diagnostics.curlylint.with({
-    filetypes = { "jinja.html", "htmldjango", "html" }
-  }),
+  -- curlylint = require("none-ls.diagnostics.curlylint").with({
+  --   filetypes = { "jinja.html", "htmldjango", "html" }
+  -- }),
 
   -- mypy = null_ls.builtins.diagnostics.mypy,
   -- vulture = null_ls.builtins.diagnostics.vulture,
 
-  black = null_ls.builtins.formatting.black,
+  -- black = require("none-ls.formatting.black"),
 
 
   -- -----------------------------------

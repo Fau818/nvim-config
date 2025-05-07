@@ -4,7 +4,7 @@ return {
   -- TODO: Configured in `ftplugin/`.
   packages = {
     lua    = { "lua-language-server" },
-    python = { "pylance", "flake8", "pydocstyle" },
+    python = { "pylance", "ruff" },
     json   = { "json-lsp" },
     sh     = { "bash-language-server" },
     yaml   = { "yaml-language-server" },

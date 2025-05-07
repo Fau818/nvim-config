@@ -41,8 +41,8 @@ return {
 
   {
     -- DESC: a powerful language server manager.
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
+    "nvimtools/none-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls-extras.nvim" },
     config = function() require("Fau.core.null-ls") end,
     event = { "BufReadPost", "BufNewFile" },
   },

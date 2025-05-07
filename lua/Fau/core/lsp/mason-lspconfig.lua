@@ -1,20 +1,12 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local mlspconfig_ok, mlspconfig = pcall(require, "mason-lspconfig")
-if not mlspconfig_ok then Fau_vim.load_plugin_error("mason-lspconfig") return end
+local mlspconfig = require("mason-lspconfig")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type MasonLspconfigSettings
 local config = {
+  automatic_enable = true,
   ensure_installed = { "lua_ls", },
-  automatic_installation = false,
-  handlers = nil,
 }
-
 
 mlspconfig.setup(config)

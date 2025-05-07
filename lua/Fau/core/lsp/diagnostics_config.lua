@@ -24,12 +24,13 @@ end
 -- -----------------------------------
 -- -------- Diagnostics
 -- -----------------------------------
+---@type vim.diagnostic.Opts
 local config = {
   virtual_text = {
     prefix="●", spacing = 4,
 
-    ---@param diagnostic Diagnostic
-    ---@return string|nil #Diagnostic message
+    ---@param diagnostic vim.Diagnostic
+    ---@return string|nil
     format = function(diagnostic)  -- for show the error code
       -- Remove Pyright diagnostics
       if diagnostic.source == "Pyright" or "Pylance" then return nil
