@@ -1,14 +1,8 @@
 -- =============================================
--- ========== Plugin Loading
+-- ========== Plugin Configurations
 -- =============================================
-local mason_ok, mason = pcall(require, "mason")
-if not mason_ok then Fau_vim.load_plugin_error("mason") return end
+local mason = require("mason")
 
-
-
--- =============================================
--- ========== Configuration
--- =============================================
 ---@type MasonSettings
 local config = {
   -- The directory in which to install packages.
@@ -37,12 +31,11 @@ local config = {
   pip = { upgrade_pip = false, install_args = {} },
 
   ui = {
-    -- Whether to automatically check for new versions when opening the :Mason window.
     check_outdated_packages_on_open = true,
 
-    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
     border = "double",
 
+    backdrop = 100,
     width  = 0.9,
     height = 0.85,
 
@@ -70,6 +63,5 @@ local config = {
     },
   },
 }
-
 
 mason.setup(config)

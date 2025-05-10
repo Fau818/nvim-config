@@ -2,10 +2,9 @@ local Pkg     = require("mason-core.package")
 local path    = require("mason-core.path")
 local configs = require("lspconfig.configs")
 
-
 if not configs["pylance"] then configs["pylance"] = require("Fau.core.lsp.settings.pylance_default") end
 
-
+---@param ctx InstallContext
 local function installer(ctx)
   -- ==================== Scripts ====================
   -- local sed_binary = Fau_vim.os_name == "Darwin" and "gsed" or "sed"
@@ -20,22 +19,28 @@ local function installer(ctx)
 
 
   -- ==================== Handle ====================
-  ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
+  -- ctx.receipt:with_primary_source(ctx.receipt.unmanaged)
   -- Download
   ctx.spawn.bash({ "-c", download:gsub("\n", " ") })
   ctx.spawn.unzip({ "pylance.vsix" })
   -- Patch
-  ctx.spawn.bash { "-c", edit:gsub("\n", " ") }
+  ctx.spawn.bash({ "-c", edit:gsub("\n", " ") })
   -- Link
-  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat { "extension", "dist", "server.nvim.js" }))
+  ctx:link_bin("pylance", ctx:write_node_exec_wrapper("pylance", path.concat({ "extension", "dist", "server.nvim.js" })))
 end
 
 
-return Pkg.new({
+return {
   name = "pylance",
-  desc = [[Fast, feature-rich language support for Python]],
+  description = "Fast, feature-rich language support for Python",
   homepage = "https://github.com/microsoft/pylance",
   languages = { Pkg.Lang.Python },
   categories = { Pkg.Cat.LSP },
-  install = installer,
-})
+  licenses = { "Apache-2.0" },
+
+  source = {
+    id = "pkg:mason/pylance@latest",
+    install = installer,
+  },
+  -- bin = { ["pylance"] = "extension/dist/server.nvim.js" },
+}
