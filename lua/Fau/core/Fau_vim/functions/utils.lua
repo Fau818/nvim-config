@@ -20,7 +20,7 @@ return {
     -- NOTE: The `checkhealth` will open a new tab, but the `MiniBufremove.delete` function will not delete the tab.
     if vim.bo[bufnr].filetype == "checkhealth" then vim.api.nvim_command("bd " .. bufnr) return end
 
-    local flag = pcall(require("mini.bufremove").delete, bufnr)
+    local flag = pcall(Snacks.bufdelete.delete, bufnr)
     if not flag then vim.api.nvim_command("bd " .. bufnr) end
   end,
 

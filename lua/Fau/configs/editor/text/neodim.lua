@@ -11,7 +11,7 @@ local config = {
     virtual_text = true,
     signs        = true,
   },
-  regex = { "[uU]nused", "[nN]ever [rR]ead", "[nN]ot [rR]ead" },
+  regex = { "[uU]nused", "[nN]ever [rR]ead", "[nN]ot [rR]ead", "[nN]ot [aA]ccessed" },
   priority = 128,
   disable = {},
 }
