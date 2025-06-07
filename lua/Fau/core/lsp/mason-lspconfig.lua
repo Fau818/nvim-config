@@ -5,7 +5,7 @@ local mlspconfig = require("mason-lspconfig")
 
 ---@type MasonLspconfigSettings
 local config = {
-  automatic_enable = false,
+  automatic_enable = true,
   ensure_installed = { "lua_ls", },
 }
 

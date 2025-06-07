@@ -108,9 +108,9 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   -- end
 
   -- Config LS for current filetype.
-  for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
+  -- for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
 
-  vim.api.nvim_command("LspStart")
+  -- vim.api.nvim_command("LspStart")
 end
 
 
@@ -118,4 +118,7 @@ end
 -- =============================================
 -- ========== Auto LSP
 -- =============================================
-Fau_vim.functions.lsp.initialization()
+-- TODO: Refactor
+-- Fau_vim.functions.lsp.initialization()
+-- TEMP: Setup pylance manually
+if vim.fn.executable("pylance") == 1 then setup_server("pylance") end
