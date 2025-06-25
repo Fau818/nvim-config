@@ -24,7 +24,8 @@ return {
     -- DESC: UI selector for Neovim.
     "stevearc/dressing.nvim",
     config = function() require("Fau.configs.ui.dressing") end,
-    event = "UIEnter"
+    event = "UIEnter",
+    enabled = false  -- NOTE: Using snacks.
   },
 
 

@@ -32,6 +32,7 @@ local config = {
     width = { min = 15, max = 30, padding = 1 },
     side = "left",
     cursorline = true,
+    cursorlineopt = "both",
 
     debounce_delay = 15,
     centralize_selection = false,

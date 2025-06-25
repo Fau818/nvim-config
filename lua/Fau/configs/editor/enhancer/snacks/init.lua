@@ -8,8 +8,8 @@ local config = {
   bigfile      = require("Fau.configs.editor.enhancer.snacks.bigfile"),
   dashboard    = { enabled = false },  -- TODO: QwQ
   explorer     = { enabled = false },
-  indent       = { enabled = false },
-  input        = { enabled = false },
+  indent       = require("Fau.configs.editor.enhancer.snacks.indent"),
+  input        = { enabled = true },
   picker       = { enabled = false },
   notifier     = { enabled = false },
   quickfile    = { enabled = false },
@@ -18,6 +18,8 @@ local config = {
   statuscolumn = { enabled = false },
   words        = { enabled = false },
 
+  -- Snacks.git.blame_line()
+  -- Snacks.gitbrowse.open()
 }
 
 snacks.setup(config)
