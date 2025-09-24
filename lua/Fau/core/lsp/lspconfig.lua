@@ -80,7 +80,8 @@ local function setup_server(server)
   if settings_ok then opts = vim.tbl_deep_extend("force", opts, setting_opts) end
 
   -- setup LSP
-  lspconfig[server].setup(opts)
+  vim.lsp.config(server, opts)
+  vim.lsp.enable(server)
 end
 
 
@@ -90,10 +91,11 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   if Fau_vim.functions.utils.is_large_file() then return end
   filetype = filetype or vim.bo.filetype
 
-  if Fau_vim.lsp.configured_ft[filetype] then return end -- configured
+  if Fau_vim.lsp.configured_ft[filetype] then return end  -- configured
   Fau_vim.lsp.configured_ft[filetype] = true
 
   -- Ensure servers installed.
+  -- TODO: Auto start if LSP is installed.
   if Fau_vim.functions.lsp.ensure_installed(filetype) then
     -- Set configured_ft to false for restarting LSP.
     Fau_vim.lsp.configured_ft[filetype] = false
@@ -108,9 +110,7 @@ Fau_vim.functions.lsp.set_client_by_ft = function(filetype)
   -- end
 
   -- Config LS for current filetype.
-  -- for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
-
-  -- vim.api.nvim_command("LspStart")
+  for _, client in pairs(clients) do if is_available(client) then setup_server(client) end end
 end
 
 
@@ -119,6 +119,4 @@ end
 -- ========== Auto LSP
 -- =============================================
 -- TODO: Refactor
--- Fau_vim.functions.lsp.initialization()
--- TEMP: Setup pylance manually
-if vim.fn.executable("pylance") == 1 then setup_server("pylance") end
+Fau_vim.functions.lsp.initialization()

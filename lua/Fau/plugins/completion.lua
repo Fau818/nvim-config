@@ -101,8 +101,7 @@ return {
   -- },
   {
     -- DESC: Github copilot supporter.
-    -- NOTE: Original repo: zbirenbaum/copilot.lua
-    "Fau818/copilot.lua",
+    "zbirenbaum/copilot.lua",
     config = function() require("Fau.configs.completion.copilot") end,
     event = "InsertEnter",
     cmd = "Copilot",

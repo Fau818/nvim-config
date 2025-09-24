@@ -1,5 +1,5 @@
 return {
-  copilot = { enable = vim.loop.fs_stat(string.format("%s/github-copilot/hosts.json", Fau_vim.xdg_config_home)) and true or false },
+  copilot = { enable = vim.loop.fs_stat(string.format("%s/github-copilot/apps.json", Fau_vim.xdg_config_home)) and true or false },
 
   -- TODO: Remove [TODO date: July 22, 2024]
   trouble = { tag = nil },
