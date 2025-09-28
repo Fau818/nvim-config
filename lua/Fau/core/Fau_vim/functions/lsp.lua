@@ -6,12 +6,30 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       group = "Fau_vim",
       pattern = "*",
-      callback = function() Fau_vim.functions.lsp.set_client_by_ft() end,
+      callback = function() Fau_vim.functions.lsp.setup_by_ft() end,
     })
   end,
 
 
-  set_client_by_ft = function() Fau_vim.notify("Called an uninitialized function `set_client_by_ft`.") end,  -- Implement in lspconfig.lua file.
+  ---Setup LSP server
+  ---@param server string
+  ---@param opts? table
+  setup_server = function(server, opts)
+    opts = opts or {}
+
+    if server == "pylance" then opts.before_init = function(_, config) config.settings.python.pythonPath = vim.fn.exepath("python3") end end
+
+    -- load custom settings
+    local settings_ok, setting_opts = pcall(require, "Fau.core.lsp.settings." .. server)
+    if settings_ok then opts = vim.tbl_deep_extend("force", opts, setting_opts) end
+
+    -- setup LSP
+    vim.lsp.config(server, opts)
+    vim.lsp.enable(server)
+  end,
+
+
+  setup_by_ft = function() Fau_vim.notify("Called an uninitialized function `setup_lsp_by_ft`.") end,  -- Implement in lspconfig.lua file.
 
 
   restart_lsp = function()
@@ -19,7 +37,7 @@ return {
     local filetype = vim.bo.filetype
     if Fau_vim.lsp.configured_ft[filetype] ~= true then  -- NOTE: Not configured might false|nil.
       Fau_vim.notify("Starting LSP server for " .. filetype .. "...")
-      Fau_vim.functions.lsp.set_client_by_ft(filetype)
+      Fau_vim.functions.lsp.setup_by_ft(filetype)
       return
     end
 

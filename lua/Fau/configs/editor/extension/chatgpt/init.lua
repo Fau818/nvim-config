@@ -3,7 +3,7 @@
 -- =============================================
 local chatgpt = require("chatgpt")
 
-local openai_model = "gpt-4o-mini"
+local openai_model = "gpt-5-mini"
 
 local config = {
   api_key_cmd  = ([[zsh -c "%s"]]):format(Fau_vim.plugin.openai.api_path),
@@ -167,7 +167,7 @@ local config = {
     model = openai_model,
     frequency_penalty = 0,
     presence_penalty = 0,
-    max_tokens = 1024,
+    max_tokens = 4096,
     temperature = 1,
     top_p = 1,
     n = 1,

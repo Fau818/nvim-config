@@ -20,7 +20,9 @@ return {
     -- NOTE: The `checkhealth` will open a new tab, but the `MiniBufremove.delete` function will not delete the tab.
     if vim.bo[bufnr].filetype == "checkhealth" then vim.api.nvim_command("bd " .. bufnr) return end
 
-    local flag = pcall(Snacks.bufdelete.delete, bufnr)
+    -- BUG: Snacks.bufdelete delete function cannot delete the buffer in some cases.
+    -- local flag = pcall(Snacks.bufdelete.delete, bufnr)
+    local flag = false
     if not flag then vim.api.nvim_command("bd " .. bufnr) end
   end,
 
@@ -35,7 +37,7 @@ return {
     if vim.b[bufnr].is_large_file ~= nil then return vim.b[bufnr].is_large_file end
 
     -- Get file status.
-    local status_ok, file_status = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+    local status_ok, file_status = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
 
     -- HACK: Get the status of file error. => Not a large file
     if not status_ok or not file_status then vim.b[bufnr].is_large_file = false
@@ -48,7 +50,7 @@ return {
 
   -- TODO: to a new class
   exist_path = function(path)
-    local file_info = vim.loop.fs_stat(path)
+    local file_info = vim.uv.fs_stat(path)
     return file_info ~= nil
   end,
 

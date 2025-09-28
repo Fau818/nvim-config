@@ -51,6 +51,7 @@ return {
     "zbirenbaum/neodim",
     config = function() require("Fau.configs.editor.text.neodim") end,
     event = "LspAttach",
+    enabled = false,  -- BUG: Not working and breaking dimming
   },
 
   {

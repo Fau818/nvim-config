@@ -42,7 +42,7 @@ local config = {
   local_spec = true,
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",  -- lockfile generated after running update.
   ---@type number limit the maximum amount of concurrent tasks
-  concurrency = jit.os:find("Windows") and (vim.loop.available_parallelism() * 2) or 50,
+  concurrency = jit.os:find("Windows") and (vim.uv.available_parallelism() * 2) or 50,
 
   git = {
     log = { "--since=3 days ago" },  -- show commits from the last 3 days

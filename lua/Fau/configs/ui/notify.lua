@@ -38,14 +38,15 @@ notify.setup(config)
 -- -------- Global Notify
 -- -----------------------------------
 ---Use notify to replace vim.notify
----@param msg string
----@param level? string|number
----@param opts? notify.Options
+---@param msg string|string[] Notification message
+---@param level? string|number Log level. See vim.log.levels
+---@param opts? notify.Options Notification options
+---@return notify.Record
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO
   if not opts then opts = { title = "Fau_vim" }
   elseif not opts.title or opts.title == "" then opts.title = "Fau_vim"
   end
-  notify(msg, level, opts)
+  return notify(msg, level, opts)
 end

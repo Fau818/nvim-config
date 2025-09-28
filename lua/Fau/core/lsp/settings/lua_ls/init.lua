@@ -1,23 +1,4 @@
-local util = require("lspconfig.util")
-
-local root_files = {
-  ".luarc.json",
-  ".luarc.jsonc",
-  ".luacheckrc",
-  ".stylua.toml",
-  "stylua.toml",
-  "selene.toml",
-  "selene.yml",
-  ".gitignore",
-}
-
 return {
-  root_dir = function(fname)
-    local root = util.root_pattern(unpack(root_files))(fname)
-    if root and root ~= vim.env.HOME then return root end
-    return util.find_git_ancestor(fname)
-  end,
-
   -- SEE: https://luals.github.io/wiki/settings
   settings = {
     Lua = {
@@ -60,7 +41,7 @@ return {
         ---@type "Enable"|"Opened"|"Disable"
         libraryFiles = "Opened",  -- Set how files loaded with workspace.library are diagnosed.
 
-        workspaceDelay = -1,  -- Disable workspace diagnostics
+        -- workspaceDelay = -1,  -- NOTE: Keep it enabled, otherwise `lazydev.nvim` will not work properly (no diagnostics auto refresh).
         ---@type "OnChange"|"OnSave"|"Disable"
         workspaceEvent = "OnSave",  -- Set when the workspace diagnostics should be analyzed.
         workspaceRate  = 100,       -- Define the rate at which the workspace will be diagnosed as a percentage.

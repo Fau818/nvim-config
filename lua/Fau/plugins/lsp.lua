@@ -11,7 +11,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "lvimuser/lsp-inlayhints.nvim",
+      "RRethy/vim-illuminate",
       "folke/neoconf.nvim",
     },
     config = function()
@@ -51,12 +51,11 @@ return {
     -- DESC: Faster LuaLS setup for Neovim.
     "folke/lazydev.nvim",
     config = function()
-      local plugins = { "lazy.nvim", "lazydev.nvim", "luvit-meta/library", "nvim-notify", "which-key.nvim" }
+      local plugins = { { path = "${3rd}/luv/library", words = { "vim%.uv" } }, "lazy.nvim", "snacks.nvim"  }
       require("lazydev").setup({ library = plugins })
     end,
     ft = "lua",
   },
-  { "Bilal2453/luvit-meta", lazy = true },
 
   {
     -- DESC: config LSP in json file.
@@ -71,15 +70,6 @@ return {
   -- =============================================
   -- ========== LSP Enhancement
   -- =============================================
-  {
-    -- DESC: LSP inlay hints supporter.
-    "lvimuser/lsp-inlayhints.nvim",
-    branch = vim.fn.has("nvim-0.10") == 1 and "anticonceal" or "main",
-    config = function() require("Fau.core.lsp.inlayhints") end,
-    lazy = true,  -- loaded by nvim-lspconfig
-    enabled = vim.fn.has("nvim-0.10") == 0,
-  },
-
   {
     -- DESC: a powerful breadcrumb plugin based on navic.
     "utilyre/barbecue.nvim",
@@ -115,41 +105,4 @@ return {
     config = function() require("Fau.core.symbol-usage") end,
     event = vim.fn.has("nvim-0.10") == 1 and "LspAttach" or "BufReadPre",
   },
-
-  {
-    -- DESC: Render LSP diagnostics with virtual lines.
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup()
-      vim.diagnostic.config({ virtual_lines = false })
-      vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
-
-      -- TODO:  move to other place
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "lazy",
-        callback = function()
-          ---@diagnostic disable-next-line: undefined-field
-          local virtual_lines = vim.diagnostic.config().virtual_lines
-          local lines_on = virtual_lines ~= nil and virtual_lines ~= false
-          if lines_on then vim.diagnostic.config({ virtual_lines = false }) end
-        end
-      })
-    end,
-    event = "LspAttach",
-    keys = {
-      {
-        "<LEADER>lL",
-        function()
-          ---@diagnostic disable-next-line: undefined-field
-          local virtual_lines = vim.diagnostic.config().virtual_lines
-          local lines_on = virtual_lines ~= nil and virtual_lines ~= false
-          if lines_on then vim.diagnostic.config({ virtual_lines = false })
-          else vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
-          end
-        end,
-        desc = "LSP: Toggle Lines",
-      }
-    },
-  }
-
 }
