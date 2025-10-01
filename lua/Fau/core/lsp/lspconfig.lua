@@ -38,6 +38,7 @@ end
 ---Implement set clients according to filetype (In Fau_vim)
 ---@param filetype string? filetype
 Fau_vim.functions.lsp.setup_by_ft = function(filetype)
+  if vim.bo.buftype ~= "" then return end  -- Not a regular buffer.
   if Fau_vim.functions.utils.is_large_file() then return end
 
   filetype = filetype or vim.bo.filetype
