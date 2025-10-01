@@ -2,16 +2,6 @@
 
 ---@type LazySpec[]
 return {
-  -- ==================== Key Binding ====================
-  {
-    -- DESC: Key binding helper.
-    "folke/which-key.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function() require("Fau.configs.editor.enhancer.whichkey") end,
-    event = "UIEnter",
-  },
-
-
   -- ==================== Terminal ====================
   {
     -- DESC: Terminal enhancer.
