@@ -114,10 +114,6 @@ local config = {
     highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
     highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
 
-    -- ---------- Paint
-    highlights["Identifier"] = { fg = Fau_vim.colors.tokyonight.blue5 }
-    highlights["PaintSeparator"] = { fg = Fau_vim.colors.tokyonight.blue5 }
-
     -- ---------- Telescope
     highlights["TelescopeBorder"]         = { fg = Fau_vim.colors.cobalt }
     highlights["TelescopePromptTitle"]    = { fg = Fau_vim.colors.cobalt }

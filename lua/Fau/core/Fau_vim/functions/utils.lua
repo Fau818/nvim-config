@@ -32,6 +32,8 @@ return {
   ---@return boolean flag True if the buffer is a large file, otherwise false.
   is_large_file = function(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
+    -- EXIT: `bigfile` filetype always a large file.
+    if vim.bo[bufnr].filetype == "bigfile" then return true end
 
     -- EXIT: Use the cached result.
     if vim.b[bufnr].is_large_file ~= nil then return vim.b[bufnr].is_large_file end

@@ -1,6 +1,6 @@
 return {
   large_file_size = 1024 * 512,  -- 512KiB
-  large_file_line = 5000,
+  large_file_line = 2000,
 
   excluded_filetypes = {
     "", "help", "netrw", "tutor", "man", "qf",
