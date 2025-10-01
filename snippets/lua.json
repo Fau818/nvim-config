@@ -1,0 +1,26 @@
+{
+  "# Load Plugin": {
+    "prefix": "load_plugin",
+    "body": "local $1_ok, $1 = pcall(require, \"$2\")\nif not $1_ok then Fau_vim.load_plugin_error(\"$2\") return end$0"
+  },
+  "# Plugin Initialization": {
+    "prefix": "plugin_init",
+    "body": "-- =============================================\n-- ========== Plugin Configurations\n-- =============================================\nlocal ${1:pname} = require(\"${2:plugin}\")\nlocal config = ${0:nil}\n${1:pname}.setup(config)"
+  },
+  "# Section Comment": {
+    "prefix": "seccom",
+    "body": "-- =============================================\n-- ========== ${1:Section Comment}\n-- =============================================$0"
+  },
+  "# Section Separator": {
+    "prefix": "secsep",
+    "body": "-- ==================== ${1:Section Separator} ====================$0"
+  },
+  "# Subsection Comment": {
+    "prefix": "subseccom",
+    "body": "-- -----------------------------------\n-- -------- ${1:Subsection Comment}\n-- -----------------------------------$0"
+  },
+  "# Subsection Separator": {
+    "prefix": "subsecsep",
+    "body": "-- ---------- ${1:Subsection Separator}$0"
+  }
+}

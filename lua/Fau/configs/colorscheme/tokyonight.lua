@@ -105,10 +105,8 @@ local config = {
     highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
     highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
 
-    -- ---------- Nvim-cmp
-    highlights["CmpItemKindCopilot"]  = { fg = Fau_vim.colors.cobalt }
-    highlights["CmpItemKindVariable"] = { fg = Fau_vim.colors.purple }
-    highlights["CmpItemKindText"]     = { fg = Fau_vim.colors.light_blue }
+    -- ---------- Blink Cmp
+    highlights["BlinkCmpLabelMatch"] = { bold = true }
 
     -- ---------- Nvim-tree
     highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }

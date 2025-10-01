@@ -1,0 +1,6 @@
+{
+  "# HTML Template": {
+    "prefix": "html",
+    "body": "<!DOCTYPE html lang=\"en\">\n<html>\n<head>\n\t<meta charset=\"UTF-8\">\n\t<title>${1:title}</title>\n</head>\n<body>\n\t$0\n</body>\n</html>"
+  }
+}

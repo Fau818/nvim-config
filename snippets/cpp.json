@@ -1,0 +1,6 @@
+{
+  "": {
+    "prefix": "",
+    "body": "extends c\nextends acm_cpp"
+  }
+}

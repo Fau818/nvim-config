@@ -9,11 +9,6 @@ return {
     extensions.conda.conda(config)
   end,
 
-  luasnip = function()
-    local config = { layout_strategy = "vertical", initial_mode = "normal" }
-    extensions.luasnip.luasnip(config)
-  end,
-
   notify = function()
     local config = { layout_strategy = "vertical", initial_mode = "normal" }
     extensions.notify.notify(config)

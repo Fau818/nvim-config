@@ -98,7 +98,7 @@ return {
   {
     -- DESC: Press <TAB> to jump out of brakets.
     "abecodes/tabout.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "hrsh7th/nvim-cmp" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.configs.coding.tabout") end,
     event = "InsertEnter",
     cond = true,

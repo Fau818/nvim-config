@@ -6,7 +6,7 @@ return {
     "", "help", "netrw", "tutor", "man", "qf",
     "alpha",
     "aerial", "aerial-nav",
-    "cmp_menu",
+    "cmp_menu", "blink-cmp-menu", "blink-cmp-documentation",
     "crunner",
     "chatgpt-input",
     "diff", "DiffviewFiles",

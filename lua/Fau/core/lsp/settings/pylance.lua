@@ -23,7 +23,7 @@ local pylance_settings = {
     indexing = true, userFileIndexingLimit = 2000,
     includeAliasesFromUserFiles = false, includeAliasFromUserFiles = false,
     regenerateStdLibIndices = false,
-    completeFunctionParens = true,
+    completeFunctionParens = false,  -- NOTE: If use `blink.cmp`, please set it to false.
 
     -- ---------- Docstring
     supportRestructuredText  = true,  -- Enable/disable support for reStructuredText in docstrings.

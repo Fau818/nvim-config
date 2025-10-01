@@ -15,7 +15,6 @@ keymap("n", "<LEADER>ff", builtin.find_files,                                   
 keymap("n", "<LEADER>fh", builtin.help_tags,                                              opts("Telescope: Help"))
 keymap("n", "<LEADER>fH", builtin.highlights,                                             opts("Telescope: Highlights"))
 keymap("n", "<LEADER>fk", builtin.keymaps,                                                opts("Telescope: Keymaps"))
-keymap("n", "<LEADER>fl", pickers.luasnip,                                                opts("Telescope: Luasnip"))
 keymap("n", "<LEADER>fn", pickers.notify,                                                 opts("Telescope: Notify"))
 keymap("n", "<LEADER>fp", pickers.projects,                                               opts("Telescope: Projects"))
 keymap("n", "<LEADER>ft", pickers.todo_comments,                                          opts("Telescope: Todo Comments"))

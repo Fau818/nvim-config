@@ -116,11 +116,7 @@ return {
         -- TEMP: Use a fork version to avoid deprecated warning.
         "LennyPhoenix/project.nvim",
         config = function() require("Fau.core.project") end,
-      },
-      {
-        -- DESC: LuaSnip searcher for telescope.
-        "benfowler/telescope-luasnip.nvim",
-        dependencies = { "L3MON4D3/LuaSnip" },
+        enabled = false,
       },
       {
         -- DESC: Switch conda environments by telescope.

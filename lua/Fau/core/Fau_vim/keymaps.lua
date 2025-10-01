@@ -231,4 +231,5 @@ keymap("n", "<LEADER>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay
 
 -- ==================== Trigger with `<CONTROL>` ====================
 keymap({ "n", "i" }, "<C-d>", vim.lsp.buf.hover,          opts("LSP: Document"))
-keymap({ "n", "i" }, "<C-p>", vim.lsp.buf.signature_help, opts("LSP: Signature Help"))
+-- TODO: imap <C-s> and <C-S-p> different behaviors.
+keymap({ "n", "i" }, "<C-S-p>", vim.lsp.buf.signature_help, opts("LSP: Signature Help"))
