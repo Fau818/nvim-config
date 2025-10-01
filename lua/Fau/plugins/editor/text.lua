@@ -48,10 +48,11 @@ return {
 
   -- ==================== Text Augmentation ====================
   {
-    "zbirenbaum/neodim",
+    -- "zbirenbaum/neodim",
+    "ALVAROPING1/neodim",  -- NOTE: Use a forked version to fix the issue with Neovim 0.11
+    branch = "fix-nvim-0.11",
     config = function() require("Fau.configs.editor.text.neodim") end,
     event = "LspAttach",
-    enabled = false,  -- BUG: Not working and breaking dimming
   },
 
   {

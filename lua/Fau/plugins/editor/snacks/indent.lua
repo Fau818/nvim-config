@@ -1,5 +1,4 @@
 ---@class snacks.indent.Config
----@field enabled? boolean
 return {
   enabled = true,
 

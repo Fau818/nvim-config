@@ -20,9 +20,9 @@ return {
     -- NOTE: The `checkhealth` will open a new tab, but the `MiniBufremove.delete` function will not delete the tab.
     if vim.bo[bufnr].filetype == "checkhealth" then vim.api.nvim_command("bd " .. bufnr) return end
 
-    -- BUG: Snacks.bufdelete delete function cannot delete the buffer in some cases.
-    -- local flag = pcall(Snacks.bufdelete.delete, bufnr)
-    local flag = false
+    -- BUG: Snacks.bufdelete delete function cannot delete the buffer in some cases. [Maybe Caused by the `satellite.nvim` plugin]
+    -- local flag = pcall(require("mini.bufremove").delete, bufnr, true)
+    local flag = pcall(Snacks.bufdelete.delete, bufnr)
     if not flag then vim.api.nvim_command("bd " .. bufnr) end
   end,
 

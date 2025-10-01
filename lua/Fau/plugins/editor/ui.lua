@@ -40,7 +40,8 @@ return {
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       -- TEST: Use `Snacks.bufdelete.delete()` in May 10, 2025.
-      { "echasnovski/mini.bufremove", config = true, enabled = false },
+      -- -- BUG: Retreat to `mini.bufremove` due to `Snacks.bufdelete` has some issues.
+      -- "nvim-mini/mini.bufremove",
     },
     config = function() require("Fau.configs.editor.ui.bufferline") end,
     event = "UIEnter",

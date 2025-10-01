@@ -25,7 +25,7 @@ local config = {
       min_severity = vim.diagnostic.severity.WARN,
     },
     gitsigns = {
-      enable = true,
+      enable = false,  -- BUG: It seems that prevent the buffer remove function.
       signs = { add = "│", change = "│", delete = "-" },
     },
     marks = {
