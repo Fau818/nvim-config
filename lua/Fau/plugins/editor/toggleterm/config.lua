@@ -2,7 +2,6 @@
 -- ========== Plugin Configurations
 -- =============================================
 local toggleterm = require("toggleterm")
-local custom_terminal = require("Fau.configs.editor.enhancer.terminal.custom_terminal")
 
 ---@type ToggleTermConfig
 local config = {
@@ -66,15 +65,3 @@ local config = {
 }
 
 toggleterm.setup(config)
-
-
-
--- =============================================
--- ========== Custom Terminal
--- =============================================
-vim.keymap.set("n", "<LEADER>gg", custom_terminal.lazygit, { silent = true, desc = "Toggle Lazygit" })
-vim.keymap.set("n", "<LEADER>gb", custom_terminal.btop,    { silent = true, desc = "Toggle btop" })
-
--- vim.keymap.set("n", "<C-q>1", custom_terminal.float,      { silent = true, desc = "Toggle Float Terminal" })
--- vim.keymap.set("n", "<C-q>2", custom_terminal.horizontal, { silent = true, desc = "Toggle Horizontal Terminal" })
--- vim.keymap.set("n", "<C-q>3", custom_terminal.vertical,   { silent = true, desc = "Toggle Vertical Terminal" })

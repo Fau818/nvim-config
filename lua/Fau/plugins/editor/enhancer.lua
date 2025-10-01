@@ -2,16 +2,6 @@
 
 ---@type LazySpec[]
 return {
-  -- ==================== Terminal ====================
-  {
-    -- DESC: Terminal enhancer.
-    "akinsho/toggleterm.nvim",
-    config = function() require("Fau.configs.editor.enhancer.terminal") end,
-    keys = { "<C-t>", "<LEADER>gg", "<LEADER>gb" },
-    cmd = { "ToggleTerm", "TermExec" },
-  },
-
-
   -- ==================== Immersive ====================
   {
     -- DESC: Dim inactive portions of the code to focus on coding.

@@ -1,9 +1,7 @@
 local Terminal = require("toggleterm.terminal").Terminal
 
-
 -- ==================== Custom Layouts ====================
 local full_screen = { border = "none", width = 888888, height = 888888 }
-
 
 -- ==================== Custom Terminal ====================
 local custom_terminal = {
@@ -59,12 +57,8 @@ local custom_terminal = {
   }),
 }
 
-
----@type table<string, function>
-return {
-  lazygit    = function() custom_terminal.lazygit:toggle()    end,
-  btop       = function() custom_terminal.btop:toggle()       end,
-  float      = function() custom_terminal.float:toggle()      end,
-  horizontal = function() custom_terminal.horizontal:toggle() end,
-  vertical   = function() custom_terminal.vertical:toggle()   end,
-}
+vim.keymap.set("n", "<LEADER>gg", function() custom_terminal.lazygit:toggle()    end, { silent = true, desc = "Toggle Lazygit" })
+vim.keymap.set("n", "<LEADER>gb", function() custom_terminal.btop:toggle()       end, { silent = true, desc = "Toggle btop" })
+-- vim.keymap.set("n", "<C-q>1",     function() custom_terminal.float:toggle()      end, { silent = true, desc = "Toggle Float Terminal" })
+-- vim.keymap.set("n", "<C-q>2",     function() custom_terminal.horizontal:toggle() end, { silent = true, desc = "Toggle Horizontal Terminal" })
+-- vim.keymap.set("n", "<C-q>3",     function() custom_terminal.vertical:toggle()   end, { silent = true, desc = "Toggle Vertical Terminal" })
