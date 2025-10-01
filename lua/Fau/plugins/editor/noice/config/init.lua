@@ -2,9 +2,9 @@ local noice = require("noice")
 
 ---@type NoiceConfig
 local config = {
-  cmdline   = require("Fau.configs.ui.noice.config.cmdline"),
-  messages  = require("Fau.configs.ui.noice.config.messages"),
-  popupmenu = require("Fau.configs.ui.noice.config.popupmenu"),
+  cmdline   = require("Fau.plugins.editor.noice.config.cmdline"),
+  messages  = require("Fau.plugins.editor.noice.config.messages"),
+  popupmenu = require("Fau.plugins.editor.noice.config.popupmenu"),
 
   -- default options for require('noice').redirect
   -- see the section on Command Redirection
@@ -17,21 +17,21 @@ local config = {
 
   notify = { enabled = false, view = "notify" },
 
-  lsp = require("Fau.configs.ui.noice.config.lsp"),
+  lsp = require("Fau.plugins.editor.noice.config.lsp"),
 
-  markdown = require("Fau.configs.ui.noice.config.markdown"),
+  markdown = require("Fau.plugins.editor.noice.config.markdown"),
 
   health = { checker = true },
 
   ---@type NoicePresets
-  presets = require("Fau.configs.ui.noice.config.presets"),
+  presets = require("Fau.plugins.editor.noice.config.presets"),
 
   throttle = 1000 / 60,
 
   ---@type NoiceConfigViews
-  views = require("Fau.configs.ui.noice.config.views"),  ---@see section on views
+  views = require("Fau.plugins.editor.noice.config.views"),  ---@see section on views
   ---@type NoiceRouteConfig[]
-  routes = require("Fau.configs.ui.noice.config.routes"),  ---@see section on routes
+  routes = require("Fau.plugins.editor.noice.config.routes"),  ---@see section on routes
   ---@type table<string, NoiceFilter>
   status = nil,  ---@see section on statusline components
   ---@type NoiceFormatOptions
