@@ -54,6 +54,7 @@ return {
         end
       end, "fallback" },
       ["<S-TAB>"] = { "select_prev", "fallback" },
+      ["<CR>"]    = { "snippet_forward", "fallback" },
 
       ["<Up>"]   = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },

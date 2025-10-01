@@ -2,21 +2,6 @@
 
 ---@type LazySpec[]
 return {
-  -- ==================== Quickfix ====================
-  {
-    -- DESC: Quickfix list enhancer.
-    "folke/trouble.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "nvim-telescope/telescope.nvim"  -- Not necessary, but for loading telescope keybinds first!
-    },
-    config = function() require("Fau.configs.editor.enhancer.trouble") end,
-    event = "LspAttach",
-    cmd = "Trouble",
-    tag = Fau_vim.plugin.trouble.tag,
-  },
-
-
   -- ==================== Key Binding ====================
   {
     -- DESC: Key binding helper.
