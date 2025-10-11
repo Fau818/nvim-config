@@ -122,6 +122,12 @@ local config = {
     highlights["TelescopeSelectionCaret"] = { fg = Fau_vim.colors.cobalt, bg = "#2D3F76" }
 
     highlights["@module.python"] = { fg = Fau_vim.colors.tokyonight.fg }
+
+    -- TODO: TODO Sign refactor
+    highlights["@comment"] = { bold = true, italic = true, nocombine = true }
+    highlights["TodoSign"] = { fg = Fau_vim.colors.dark_green, bold = true, italic = true }
+    highlights["InfoSign"] = { fg = Fau_vim.colors.tokyonight.blue2, bold = true, italic = true }
+    highlights["FixSign"]  = { fg = Fau_vim.colors.tokyonight.red1, bold = true, italic = true }
   end,
 }
 

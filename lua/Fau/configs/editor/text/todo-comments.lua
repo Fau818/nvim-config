@@ -63,7 +63,7 @@ local config = {
     desc = Fau_vim.colors.light_gray,
     see  = Fau_vim.colors.wathet,
 
-    exit      = Fau_vim.colors.deep_blue,
+    exit      = "#BDB76B",
     assert    = Fau_vim.colors.orange_yellow,
     important = Fau_vim.colors.red,
     special   = Fau_vim.colors.dark_blue,
