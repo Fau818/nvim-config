@@ -13,10 +13,6 @@ local function _on_attach(client, bufnr)
   -- Disable LSP formatting.
   -- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
 
-  -- For highlight support.
-  local illuminate = require("illuminate")
-  if illuminate then illuminate.on_attach(client) end
-
   -- For inlayhint support.
   if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(true) end
 end

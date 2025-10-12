@@ -2,6 +2,7 @@
 return {
   "folke/snacks.nvim",
   priority = 1000,
+  lazy = false,
 
   ---@type snacks.Config
   opts = {
@@ -17,8 +18,8 @@ return {
     scope        = { enabled = false },
     scroll       = { enabled = false },
     statuscolumn = { enabled = false },
-    words        = { enabled = false },
-    zen = require("Fau.plugins.editor.snacks.zen"),
+    words        = require("Fau.plugins.editor.snacks.words"),
+    zen          = require("Fau.plugins.editor.snacks.zen"),
 
     -- Snacks.git.blame_line()
     -- Snacks.gitbrowse.open()
@@ -36,8 +37,30 @@ return {
     ---@diagnostic disable-next-line: duplicate-set-field
     if vim.fn.has("nvim-0.11") == 1 then vim._print = function(_, ...) dd(...) end else vim.print = dd end
 
-    -- ==================== Snacks ====================
+    -- ==================== Toggle ====================
     Snacks.toggle.dim():map("<leader><leader>t")
     Snacks.toggle.zen():map("<leader><leader>z")
   end,
+
+  keys = {
+    -- ==================== Words ====================
+    {
+      mode = { "n", "i" }, "<A-n>",
+      function()
+        if Snacks.words.is_enabled() then Snacks.words.jump(1,  true)
+        else vim.notify("Snacks.words is disabled", vim.log.levels.WARN)
+        end
+      end,
+      desc = "Snacks.words: Next"
+    },
+    {
+      mode = { "n", "i" }, "<A-N>",
+      function()
+        if Snacks.words.is_enabled() then Snacks.words.jump(-1,  true)
+        else vim.notify("Snacks.words is disabled", vim.log.levels.WARN)
+        end
+      end,
+      desc = "Snacks.words: Prev",
+    },
+  },
 }
