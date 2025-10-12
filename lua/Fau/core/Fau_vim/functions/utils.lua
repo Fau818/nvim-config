@@ -79,12 +79,5 @@ return {
   end,
 
 
-  set_colorscheme = function(colorscheme)
-    -- Configuration
-    colorscheme = colorscheme or Fau_vim.colorscheme
-    pcall(require, "Fau.configs.colorscheme." .. colorscheme)
-    -- Loading
-    local status_ok, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
-    if not status_ok then Fau_vim.notify("colorscheme [" .. colorscheme .. "] not found!", "error") return end
-  end,
+  set_colorscheme = ...,  -- SEE: lua/Fau/plugins/editor/colorscheme/init.lua
 }

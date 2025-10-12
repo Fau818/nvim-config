@@ -1,7 +1,8 @@
 ---@type LazySpec
 return {
   "saghen/blink.cmp",
-  version = "1.*",
+  -- version = "1.*",
+  build = "cargo build --release",
   dependencies = {
     { "disrupted/blink-cmp-conventional-commits" },
     { "xzbdmw/colorful-menu.nvim", config = true },
