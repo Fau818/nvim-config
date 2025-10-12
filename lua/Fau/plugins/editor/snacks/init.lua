@@ -18,6 +18,7 @@ return {
     scroll       = { enabled = false },
     statuscolumn = { enabled = false },
     words        = { enabled = false },
+    zen = require("Fau.plugins.editor.snacks.zen"),
 
     -- Snacks.git.blame_line()
     -- Snacks.gitbrowse.open()
@@ -37,5 +38,6 @@ return {
 
     -- ==================== Snacks ====================
     Snacks.toggle.dim():map("<leader><leader>t")
+    Snacks.toggle.zen():map("<leader><leader>z")
   end,
 }

@@ -24,7 +24,7 @@ return {
     vim.opt_local.undofile   = false
 
     -- Extra ...
-    vim.opt_local.wrap = true
+    vim.opt_local.wrap = false
     vim.opt_local.linebreak = false
     vim.opt_local.mousemoveevent = false
   end,
