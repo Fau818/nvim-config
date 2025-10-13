@@ -1,14 +1,7 @@
 local actions = require("telescope.actions")
 local layout  = require("telescope.actions.layout")
 
-
-local function trouble_open(...)
-  if Fau_vim.plugin.trouble.tag and Fau_vim.plugin.trouble.tag:find("v2") then
-    return require("trouble.providers.telescope").open_with_trouble(...)
-  else
-    return require("trouble.sources.telescope").open(...)
-  end
-end
+local function trouble_open(...) return require("trouble.sources.telescope").open(...) end
 
 
 return {
