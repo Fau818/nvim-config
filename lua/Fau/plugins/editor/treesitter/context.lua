@@ -6,6 +6,7 @@ local ts_context = require("treesitter-context")
 ---@type TSContext.UserConfig
 local config = {
   enable = true,             -- Enable this plugin (Can be enabled/disabled later via commands)
+  multiwindow = false,       -- Enable multiwindow support.
   max_lines = 8,             -- How many lines the window should span. Values <= 0 mean no limit.
   min_window_height = 0,     -- Minimum editor window height to enable context. Values <= 0 mean no limit.
   line_numbers = true,

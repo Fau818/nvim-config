@@ -28,18 +28,12 @@ return {
   -- animate scopes. Enabled by default for Neovim >= 0.10
   -- Works on older versions but has to trigger redraws during animation.
   ---@class snacks.indent.animate: snacks.animate.Config
-  ---@field enabled? boolean
-  --- * out: animate outwards from the cursor
-  --- * up: animate upwards from the cursor
-  --- * down: animate downwards from the cursor
-  --- * up_down: animate up or down based on the cursor position
-  ---@field style? "out"|"up_down"|"down"|"up"
   animate = {
     enabled = vim.fn.has("nvim-0.10") == 1,
-    style  = "out",
+    style  = "out",  ---@type "out"|"up_down"|"down"|"up"
     easing = "linear",
     duration = {
-      step  = 20,   -- ms per step
+      step  = 25,   -- ms per step
       total = 500,  -- maximum duration
     },
   },

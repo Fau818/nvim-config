@@ -7,7 +7,7 @@ local guess_indent = require("guess-indent")
 local config = {
   auto_cmd = true,
   override_editorconfig = false,
-  filetype_exclude = Fau_vim.file.excluded_filetypes,
+  filetype_exclude = vim.list_extend({ "gitcommit" }, Fau_vim.file.excluded_filetypes),
   buftype_exclude  = Fau_vim.file.excluded_buftypes,
   on_tab_options = { ["expandtab"] = false },
   on_space_options = {

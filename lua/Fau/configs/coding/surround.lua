@@ -23,7 +23,11 @@ local config = {
     change_line = "cS",
   },
 
-  aliases = { ["B"] = "{" },
+  aliases = {
+    ["B"] = "{",
+    ["q"] = { '"', "'", "`" },
+    ["s"] = { "}", "]", ")", ">", '"', "'", "`" },
+  },
 
   move_cursor = "sticky",
 }

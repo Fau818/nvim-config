@@ -6,7 +6,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       group = "Fau_vim",
       pattern = "*",
-      callback = function() Fau_vim.functions.lsp.setup_by_ft() end,
+      callback = function() vim.schedule(function() Fau_vim.functions.lsp.setup_by_ft() end) end,
     })
   end,
 
@@ -25,7 +25,7 @@ return {
 
     -- setup LSP
     vim.lsp.config(server, opts)
-    vim.lsp.enable(server)
+    vim.lsp.enable(server, true)
   end,
 
 

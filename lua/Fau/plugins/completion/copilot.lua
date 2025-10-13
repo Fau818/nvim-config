@@ -34,8 +34,8 @@ return {
       trigger_on_accept = true,
       keymap = {
         accept = "<TAB>",
-        accept_word = "<C-w>",
-        accept_line = "<C-e>",
+        accept_word = "<A-w>",
+        accept_line = "<A-e>",
         next = "<A-l>",
         prev = "<A-h>",
         dismiss = "<C-c>",

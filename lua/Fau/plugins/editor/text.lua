@@ -2,24 +2,6 @@
 
 ---@type LazySpec[]
 return {
-  -- ==================== Indentation ====================
-  {
-    -- DESC: Indent guides for Neovim.
-    "lukas-reineke/indent-blankline.nvim",
-    config = function() require("Fau.configs.editor.text.indentline") end,
-    event = { "BufReadPost", "BufNewFile" },
-    enabled = false,  -- NOTE: Using snacks
-  },
-
-  {
-    -- DESC: Indent guide line with animation.
-    "echasnovski/mini.indentscope",
-    config = function() require("Fau.configs.editor.text.mini-indentscope") end,
-    event = { "BufReadPost", "BufNewFile" },
-    -- cond = false,
-  },
-
-
   -- ==================== Folding ====================
   {
     -- DESC: Folding enhancer.

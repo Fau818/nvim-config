@@ -13,7 +13,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "folke/neoconf.nvim",
     },
-    config = function()
+    init = function()
       require("Fau.core.lsp.diagnostics_config")
       require("Fau.core.lsp.lspconfig")
     end,

@@ -6,15 +6,18 @@ local whichkey = require("which-key")
 ---@type wk.Opts
 local config = {
   preset = "classic",  ---@type false | "classic" | "modern" | "helix"
-  delay  = nil,  -- Use default.
-  filter = nil,  -- Use default.
-  spec   = {},  ---@type wk.Spec
+  -- delay  = nil,  -- Use default.
+  -- filter = nil,  -- Use default.
+  -- spec   = nil,  ---@type wk.Spec
   notify = true,
 
   ---@type wk.Spec
-  triggers = { { "<LEADER>", mode = "nxsot" }, { "<auto>", mode = "n" } },
+  triggers = { { "<auto>", mode = "nxsot" } },
 
-  defer = function() end,  -- Disabled
+  -- Start hidden and wait for a key to be pressed before showing the popup
+  -- Only used by enabled xo mapping modes.
+  ---@param ctx { mode: string, operator: string }
+  defer = function(ctx) return ctx.mode == "v" or ctx.mode == "V" or ctx.mode == "<C-V>" end,
 
   plugins = {
     marks     = true,
@@ -47,40 +50,19 @@ local config = {
 
   ---@type table<string, ({[1]:string, [2]:string}|fun(str:string):string)[]>
   replace = {
-    -- key = nil,  -- Use default.
-    desc = {
-      { "<Plug>%(?(.*)%)?", "%1" },
-      { "^%+",              "" },
-      { "<[cC][mM][dD]>",   "" },
-      { "<[cC][rR]>",       "" },
-      { "<[sS]ilent>",      "" },
-      { "^lua%s+",          "" },
-      { "^call%s+",         "" },
-      { "^:%s*",            "" },
-    },
+    -- key  = nil,  -- Use default.
+    -- desc = nil,  -- Use default.
   },
 
-  icons = {
-    breadcrumb = "»",
-    separator  = "➜",
-    group      = "+",
-    ellipsis   = "…",
-    mappings   = true,
-    ---See `lua/which-key/icons.lua` for more details
-    ---Set to `false` to disable keymap icons
-    ---@type wk.IconRule[]|false
-    rules = {},
-    colors = true,
-    keys = nil,  -- Use default.
-  },
+  icons = nil,  -- Use default.
 
   show_help = true,  -- show a help message in the command line for using WhichKey
   show_keys = true,  -- show the currently pressed key and its label as a message in the command line
 
   disable = {
     -- disable WhichKey for certain buf types and file types.
-    ft = {},
-    bt = {},
+    ft = Fau_vim.file.excluded_filetypes,
+    bt = Fau_vim.file.excluded_buftypes,
   },
 
   debug = false,  -- enable wk.log in the current directory

@@ -1,13 +1,13 @@
 ---@type LazySpec
 return {
   "saghen/blink.cmp",
-  -- version = "1.*",
-  build = "cargo build --release",
+  version = "1.*",
+  -- build = "cargo build --release",
   dependencies = {
     { "disrupted/blink-cmp-conventional-commits" },
     { "xzbdmw/colorful-menu.nvim", config = true },
     -- TODO: Move to `coding`?
-    { "windwp/nvim-autopairs", config = function() require ("Fau.configs.completion.autopairs") end },
+    { "windwp/nvim-autopairs", config = function() require("Fau.configs.completion.autopairs") end },
     { "windwp/nvim-ts-autotag", config = function() require("Fau.configs.completion.autotag") end },
     { "RRethy/nvim-treesitter-endwise", dependencies = "nvim-treesitter/nvim-treesitter", ft = { "Ruby", "Lua", "Vimscript", "Bash", "Elixir", "Fish", "Julia" } },
   },
@@ -96,7 +96,8 @@ return {
       list = { selection = { preselect = true, auto_insert = false } },
       menu = {
         auto_show = true,
-        auto_show_delay_ms = 250,
+        -- BUG: If set `auto_show_delay_ms`, Neovim may crash when typing. !!!
+        -- auto_show_delay_ms = 250,
         border = "rounded",
         draw = {
           padding = { 1, 1 },

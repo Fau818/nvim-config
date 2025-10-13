@@ -15,7 +15,7 @@ return {
     picker       = { enabled = false },
     notifier     = { enabled = false },
     quickfile    = { enabled = false },
-    scope        = { enabled = false },
+    scope        = require("Fau.plugins.editor.snacks.scope"),
     scroll       = { enabled = false },
     statuscolumn = { enabled = false },
     words        = require("Fau.plugins.editor.snacks.words"),

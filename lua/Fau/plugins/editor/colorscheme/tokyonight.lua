@@ -63,6 +63,14 @@ local config = {
     highlights["FloatBorder"]  = { fg = Fau_vim.colors.cobalt }
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
 
+    -- ---------- TodoSign
+    -- FIXME: if set fg color for `@comment`, it will override the `TodoSign` color
+    -- \      But if not set, Comment will be white in preview window.
+    highlights["@comment"] = { bold = true, italic = true, nocombine = false }
+    highlights["TodoSign"] = { fg = Fau_vim.colors.dark_green, bold = true, italic = true }
+    highlights["InfoSign"] = { fg = Fau_vim.colors.tokyonight.blue2, bold = true, italic = true }
+    highlights["FixSign"]  = { fg = Fau_vim.colors.tokyonight.red1, bold = true, italic = true }
+
 
     -- ==================== Syntax ====================
     -- ---------- General
@@ -87,6 +95,9 @@ local config = {
 
 
     -- ==================== Plugins ====================
+    -- ---------- Blink Cmp
+    highlights["BlinkCmpLabelMatch"] = { bold = true }
+
     -- ---------- Bufferline
     highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true }
 
@@ -103,16 +114,16 @@ local config = {
 
     -- ---------- Mini Library
     highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
-    highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.yellow }
-
-    -- ---------- Blink Cmp
-    highlights["BlinkCmpLabelMatch"] = { bold = true }
+    highlights["MiniIndentscopeSymbol"] = { fg = Fau_vim.colors.cobalt }
 
     -- ---------- Nvim-tree
     highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }
     highlights["NvimTreeSpecialFile"] = { fg = Fau_vim.colors.tokyonight.purple }
     highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
     highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
+
+    -- ---------- Snacks
+    highlights["SnacksIndentScope"] = { fg = Fau_vim.colors.cobalt }
 
     -- ---------- Telescope
     highlights["TelescopeBorder"]         = { fg = Fau_vim.colors.cobalt }
@@ -122,12 +133,6 @@ local config = {
     highlights["TelescopeSelectionCaret"] = { fg = Fau_vim.colors.cobalt, bg = "#2D3F76" }
 
     highlights["@module.python"] = { fg = Fau_vim.colors.tokyonight.fg }
-
-    -- TODO: TODO Sign refactor
-    highlights["@comment"] = { bold = true, italic = true, nocombine = true }
-    highlights["TodoSign"] = { fg = Fau_vim.colors.dark_green, bold = true, italic = true }
-    highlights["InfoSign"] = { fg = Fau_vim.colors.tokyonight.blue2, bold = true, italic = true }
-    highlights["FixSign"]  = { fg = Fau_vim.colors.tokyonight.red1, bold = true, italic = true }
   end,
 }
 

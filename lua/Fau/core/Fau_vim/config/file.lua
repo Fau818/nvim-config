@@ -3,7 +3,7 @@ return {
   large_file_line = 2000,
 
   excluded_filetypes = {
-    "", "help", "netrw", "tutor", "man", "qf",
+    "", "help", "netrw", "tutor", "man", "qf", "query",
     "alpha",
     "aerial", "aerial-nav",
     "cmp_menu", "blink-cmp-menu", "blink-cmp-documentation",

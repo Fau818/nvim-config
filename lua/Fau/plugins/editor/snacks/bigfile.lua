@@ -15,6 +15,10 @@ return {
     vim.schedule(function() if vim.api.nvim_buf_is_valid(ctx.buf) then vim.bo[ctx.buf].syntax = ctx.ft end end)
 
     -- ==================== Custom ====================
+    -- DIsable Snacks
+    vim.b.snacks_indent = false
+    vim.b.snacks_words  = false
+
     -- Disable mini
     vim.b.minitrailspace_disable  = true
     vim.b.miniindentscope_disable = true

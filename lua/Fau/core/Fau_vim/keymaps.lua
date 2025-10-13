@@ -38,7 +38,6 @@ keymap({ "n", "x", "o" }, "L", "<END>", opts("Goto: Line End"))
 -- =============================================
 keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
 keymap("n", "<LEADER>w", "<CMD>wall<CR>",    opts("Editor: Save All Buffers"))
-keymap("n", "<A-w>",     "<CMD>wall<CR>",    opts("Editor: Save All Buffers"))
 keymap("n", "<A-q>",     "<CMD>bdelete<CR>", opts("Editor: Close Current Buffer"))
 
 keymap("n", "Q",       "<CMD>q<CR>", opts("Editor: Quit Current Window"))
