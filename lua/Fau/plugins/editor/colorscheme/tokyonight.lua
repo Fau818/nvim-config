@@ -53,6 +53,7 @@ local config = {
     highlights["Bold"]       = { bold = true }
     highlights["Italic"]     = { italic = true }
     highlights["MatchParen"] = { fg = Fau_vim.colors.yellow, bold = true }
+    highlights["Todo"]       = { bg = colors.bg_highlight, nocombine = true }
 
     -- ---------- Type
     highlights["Statement"] = { fg = Fau_vim.colors.tokyonight.magenta, italic = true }
@@ -64,9 +65,8 @@ local config = {
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
 
     -- ---------- TodoSign
-    -- FIXME: if set fg color for `@comment`, it will override the `TodoSign` color
-    -- \      But if not set, Comment will be white in preview window.
-    highlights["@comment"] = { bold = true, italic = true, nocombine = false }
+    -- SEE: `@comment` will be linked to `Comment` for trouble and telescope previewer.
+    highlights["@comment"] = { bold = true, italic = true }
     highlights["TodoSign"] = { fg = Fau_vim.colors.dark_green, bold = true, italic = true }
     highlights["InfoSign"] = { fg = Fau_vim.colors.tokyonight.blue2, bold = true, italic = true }
     highlights["FixSign"]  = { fg = Fau_vim.colors.tokyonight.red1, bold = true, italic = true }

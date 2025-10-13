@@ -6,14 +6,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   callback = function() vim.opt_local.filetype = "conf" end
 })
 
--- Fix keymap in `quickfix` filetype. (Revert <CR> mapping)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "qf",
-  group = "Fau_vim",
-  desc = "Fix keymap in qf filetype.",
-  callback = function() vim.keymap.set("n", "<CR>", "<CR>", { silent=true, buffer=true }) end
-})
-
 -- Use `q` to close the float window.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
@@ -28,12 +20,4 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   desc = "Correct filetype for docker-compose.",
   pattern = { "docker-compose.yaml", "docker-compose.yml" },
   callback = function() vim.opt_local.filetype = "yaml.docker-compose" end
-})
-
--- Treat `zsh` files as `sh` filetype.
-vim.api.nvim_create_autocmd("FileType", {
-  group = "Fau_vim",
-  desc = "Use `q` to close the float window.",
-  pattern = { "zsh" },
-  callback = function() vim.opt_local.filetype = "sh" end
 })

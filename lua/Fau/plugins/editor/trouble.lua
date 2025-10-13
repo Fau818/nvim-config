@@ -38,7 +38,14 @@ return {
 
       -- Window options for the preview window. Can be a split, floating window, or `main` to show the preview in the main editor window.
       ---@type trouble.Window.opts
-      preview = { type = "main", scratch = true },
+      preview = {
+        type = "main",
+        scratch = true,
+        on_mount = function(self)
+          ---@diagnostic disable-next-line: param-type-mismatch
+          Fau_vim.functions.colorscheme.fix_comment_hl(self.win)
+        end,
+      },
 
       -- Throttle/Debounce settings. Should usually not be changed.
       ---@type table<string, number|{ms:number, debounce?:boolean}>

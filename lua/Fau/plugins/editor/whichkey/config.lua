@@ -61,8 +61,8 @@ local config = {
 
   disable = {
     -- disable WhichKey for certain buf types and file types.
-    ft = Fau_vim.file.excluded_filetypes,
-    bt = Fau_vim.file.excluded_buftypes,
+    -- ft = Fau_vim.file.excluded_filetypes,
+    -- bt = Fau_vim.file.excluded_buftypes,
   },
 
   debug = false,  -- enable wk.log in the current directory

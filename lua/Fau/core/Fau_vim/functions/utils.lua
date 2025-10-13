@@ -77,7 +77,4 @@ return {
       if start_row == end_row then Fau_vim.functions.utils.feedkeys("x", "v") end
     end
   end,
-
-
-  set_colorscheme = ...,  -- SEE: lua/Fau/plugins/editor/colorscheme/init.lua
 }
