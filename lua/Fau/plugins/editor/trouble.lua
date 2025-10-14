@@ -4,11 +4,28 @@ return {
   "folke/trouble.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "nvim-telescope/telescope.nvim",  -- Not necessary, but for loading telescope keybinds first!
+    "folke/todo-comments.nvim",
+    "nvim-telescope/telescope.nvim",  -- NOTE: Not necessary, for remapping keymaps of Telescope.
   },
 
   cmd = "Trouble",
   event = "LspAttach",
+  keys = {
+    { "<LEADER>T", "<CMD>Trouble<CR>", desc = "Troule: Show" },
+
+    { "gd", "<CMD>Trouble lsp_definitions first<CR>",      desc = "Troule: Definition" },
+    { "gD", "<CMD>Trouble lsp_declarations first<CR>",     desc = "Troule: Declaration" },
+    { "gt", "<CMD>Trouble lsp_type_definitions first<CR>", desc = "Troule: Type Definition" },
+    { "gI", "<CMD>Trouble lsp_implementations first<CR>",  desc = "Troule: Implementation" },
+    { "gr", "<CMD>Trouble lsp_references first<CR>",       desc = "Troule: References" },
+    { "gi", "<CMD>Trouble lsp_incoming_calls first<CR>",   desc = "Troule: Incoming Calls" },
+    { "go", "<CMD>Trouble lsp_outgoing_calls first<CR>",   desc = "Troule: Outgoing Calls" },
+
+    { "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>", desc = "Troule: Buffer Diagnostics" },
+    { "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>",        desc = "Troule: Workspace Diagnostics" },
+
+    { "<LEADER>tt", "<CMD>Trouble todo filter={tag={TODO,FIX,TEST}}<CR>", desc = "Troule: Show TODO Comments"    },
+  },
 
   config = function()
     local trouble = require("trouble")
@@ -142,25 +159,5 @@ return {
     end
 
     trouble.setup(config)
-
-
-    -- =============================================
-    -- ========== Keymaps
-    -- =============================================
-    local keymap = vim.keymap.set
-    local function opts(desc) return { silent = true, desc = "Trouble: " .. desc } end
-
-    keymap("n", "<LEADER>tt", "<CMD>Trouble<CR>",                            opts("Show"))
-    keymap("n", "gd",         "<CMD>Trouble lsp_definitions first<CR>",      opts("Definition"))
-    keymap("n", "gD",         "<CMD>Trouble lsp_declarations first<CR>",     opts("Declaration"))
-    keymap("n", "gt",         "<CMD>Trouble lsp_type_definitions first<CR>", opts("Type Definition"))
-    keymap("n", "gI",         "<CMD>Trouble lsp_implementations first<CR>",  opts("Implementation"))
-    keymap("n", "gr",         "<CMD>Trouble lsp_references first<CR>",       opts("References"))
-
-    keymap("n", "gi",         "<CMD>Trouble lsp_incoming_calls first<CR>",   opts("Incoming Calls"))
-    keymap("n", "go",         "<CMD>Trouble lsp_outgoing_calls first<CR>",   opts("Outgoing Calls"))
-
-    keymap("n", "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>",  opts("Buffer Diagnostics"))
-    keymap("n", "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>",         opts("Workspace Diagnostics"))
   end,
 }

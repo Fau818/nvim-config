@@ -14,11 +14,6 @@ return {
     extensions.notify.notify(config)
   end,
 
-  projects = function()
-    local config = require("telescope.themes").get_dropdown({ initial_mode = "normal" })
-    extensions.projects.projects(config)
-  end,
-
   todo_comments = function()
     -- local config = { layout_strategy = "vertical", initial_mode = "normal" }
     extensions["todo-comments"].todo()

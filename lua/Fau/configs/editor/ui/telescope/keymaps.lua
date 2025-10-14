@@ -16,8 +16,6 @@ keymap("n", "<LEADER>fh", builtin.help_tags,                                    
 keymap("n", "<LEADER>fH", builtin.highlights,                                             opts("Telescope: Highlights"))
 keymap("n", "<LEADER>fk", builtin.keymaps,                                                opts("Telescope: Keymaps"))
 keymap("n", "<LEADER>fn", pickers.notify,                                                 opts("Telescope: Notify"))
-keymap("n", "<LEADER>fp", pickers.projects,                                               opts("Telescope: Projects"))
-keymap("n", "<LEADER>ft", pickers.todo_comments,                                          opts("Telescope: Todo Comments"))
 keymap("n", "<LEADER>fr", builtin.oldfiles,                                               opts("Telescope: Recent Files"))
 keymap("n", "<LEADER>fs", builtin.live_grep,                                              opts("Telescope: String"))
 keymap("n", "<LEADER>fS", function() builtin.live_grep({ grep_open_files = true }) end,   opts("Telescope: String in Opened Buffers"))

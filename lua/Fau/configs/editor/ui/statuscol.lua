@@ -10,7 +10,7 @@ local config = {
   relculright = true,   -- whether to right-align the cursor line number with 'relativenumber' set
 
   ft_ignore = vim.list_slice(Fau_vim.file.excluded_filetypes, 2),  -- NOTE: Filtered filetype `""`
-  bt_ignore = Fau_vim.file.excluded_buftypes,
+  -- bt_ignore = Fau_vim.file.excluded_buftypes,
 
   segments = {
     -- Sign (Default statuscolumn)
