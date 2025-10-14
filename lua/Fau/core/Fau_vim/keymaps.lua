@@ -233,4 +233,6 @@ keymap({ "n", "i" }, "<C-d>", vim.lsp.buf.hover,          opts("LSP: Document"))
 
 keymap("i", "<C-s>", "<NOP>", opts())
 -- NOTE: If call `vim.lsp.buf.signature_help` directly, no noice markdown rendering.
-keymap({ "n", "i" }, "<C-S-p>", function() vim.lsp.buf.signature_help() end, opts("LSP: Signature Help"))
+-- NOTE: `<C-p>` for signature help in insert mode will be configured in `blink.cmp` plugin.
+keymap("n", "<C-p>", function() vim.lsp.buf.signature_help() end, opts("LSP: Signature Help"))
+keymap("i", "<C-S-p>", function() vim.lsp.buf.signature_help() end, opts("LSP: Signature Help"))

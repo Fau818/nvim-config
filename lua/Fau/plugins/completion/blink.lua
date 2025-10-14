@@ -79,6 +79,7 @@ return {
       },
       keymap = {
         preset = "none",
+        ["<C-space>"] = { "show", "hide" },
 
         ["<TAB>"]   = { "show_and_insert", "select_next", "fallback" },
         ["<S-TAB>"] = { "show_and_insert", "select_prev", "fallback" },

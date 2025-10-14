@@ -3,18 +3,6 @@
 
 ---@type LazySpec[]
 return {
-  -- ==================== Folding ====================
-  {
-    -- DESC: Folding enhancer.
-    "kevinhwang91/nvim-ufo",
-    init = function() require("Fau.configs.editor.text.ufo.before_loaded") end,
-    dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter", "luukvbaal/statuscol.nvim" },
-    config = function() require("Fau.configs.editor.text.ufo.init") end,
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
-  },
-
-
   -- ==================== Text Augmentation ====================
   {
     -- "zbirenbaum/neodim",
