@@ -31,7 +31,7 @@ return {
     init = function()
       Fau_vim.colorscheme = "tokyonight"
       vim.api.nvim_create_autocmd("User", {
-        pattern = "TelescopePreviewerLoaded",
+        pattern = { "TelescopePreviewerLoaded", "DiffviewDiffBufWinEnter" },
         group = "Fau_vim",
         callback = function() Fau_vim.functions.colorscheme.fix_comment_hl() end,
       })

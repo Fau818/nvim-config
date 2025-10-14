@@ -1,5 +1,3 @@
--- TODO: Expand all folders to filter huge directories.
-
 local api = require("nvim-tree.api")
 
 

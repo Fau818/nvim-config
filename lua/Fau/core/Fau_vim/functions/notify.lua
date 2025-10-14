@@ -4,9 +4,9 @@
 -- -----------------------------------
 -- -------- Notify
 -- -----------------------------------
----@param msg string
----@param level string|number|nil
----@param opts table|notify.Options|nil
+---@param msg string|string[] Notification message
+---@param level? string|number Log level. See vim.log.levels
+---@param opts? notify.Options Notification options
 Fau_vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO
   if not opts then opts = { title = "Fau_vim" }
@@ -20,6 +20,7 @@ end
 -- -------- Show No Plugin Message
 -- -----------------------------------
 ---@param plugin string
+-- TODO: Deparecate this function after refactor all plugin loader.
 Fau_vim.load_plugin_error = function(plugin)
   vim.notify(plugin .. " not found!", "ERROR", { title = "Fau_vim: Plugin Not Found" })
 end

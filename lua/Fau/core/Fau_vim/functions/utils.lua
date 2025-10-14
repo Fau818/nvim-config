@@ -16,12 +16,9 @@ return {
   buf_remove = function(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
 
-    -- HACK: Special case for checkhealth buffer.
-    -- NOTE: The `checkhealth` will open a new tab, but the `MiniBufremove.delete` function will not delete the tab.
+    -- NOTE: The `checkhealth` will open a new tab, so just use `:bd` to close it.
     if vim.bo[bufnr].filetype == "checkhealth" then vim.api.nvim_command("bd " .. bufnr) return end
 
-    -- BUG: Snacks.bufdelete delete function cannot delete the buffer in some cases. [Maybe Caused by the `satellite.nvim` plugin]
-    -- local flag = pcall(require("mini.bufremove").delete, bufnr, true)
     local flag = pcall(Snacks.bufdelete.delete, bufnr)
     if not flag then vim.api.nvim_command("bd " .. bufnr) end
   end,
@@ -34,7 +31,7 @@ return {
     bufnr = bufnr or vim.api.nvim_get_current_buf()
 
     -- EXIT: Not a regular buffer.
-    if vim.bo[bufnr].buftype ~= "" then return false end
+    if vim.bo[bufnr].buftype ~= "" then return true end  -- TEST: Considered as a large file on Oct 13, 2025.
     -- EXIT: `bigfile` filetype always a large file.
     if vim.bo[bufnr].filetype == "bigfile" then return true end
     -- EXIT: Use the cached result.
@@ -42,20 +39,11 @@ return {
 
     -- Get file status.
     local status_ok, file_status = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+    -- EXIT: Get the status of file error. => Not a large file (E.g., a new buffer)
+    if not status_ok or not file_status then return false end
 
-    -- HACK: Get the status of file error. => Not a large file
-    if not status_ok or not file_status then vim.b[bufnr].is_large_file = false
-    else vim.b[bufnr].is_large_file = file_status.size >= Fau_vim.file.large_file_size
-    end
-
+    vim.b[bufnr].is_large_file = file_status.size >= Fau_vim.file.large_file_size
     return vim.b[bufnr].is_large_file
-  end,
-
-
-  -- TODO: to a new class
-  exist_path = function(path)
-    local file_info = vim.uv.fs_stat(path)
-    return file_info ~= nil
   end,
 
 

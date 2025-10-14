@@ -6,7 +6,6 @@ local todo_comments = require("todo-comments")
 ---@type TodoConfig
 local config = {
   signs         = true,  -- show icons in the signs column
-  -- TODO: Priority is less than unstaged git sign but greater than staged git sign.
   sign_priority = Fau_vim.settings.sign_priority.todo_comments,    -- sign priority
 
   keywords = {
@@ -17,7 +16,7 @@ local config = {
     TEST      = { icon = Fau_vim.icons.todo.TEST,      color = "test",      alt = { "TESTING", "PASSED", "FAILED", "TEMP" } },
 
     TODO      = { icon = Fau_vim.icons.todo.TODO,      color = "todo",      alt = { "TASK", "QUES", "QUESTION" } },
-    NOTE      = { icon = Fau_vim.icons.todo.NOTE,      color = "note",      alt = { "INFO", "HINT" } },
+    NOTE      = { icon = Fau_vim.icons.todo.NOTE,      color = "note",      alt = { "INFO", "HINT", "TIPS" } },
     Fau       = { icon = Fau_vim.icons.todo.Fau,       color = "Fau" },
 
     DESC      = { icon = Fau_vim.icons.todo.DESC,      color = "desc" },
@@ -26,7 +25,6 @@ local config = {
     EXIT      = { icon = Fau_vim.icons.todo.EXIT,      color = "exit",      alt = { "RETURN", "CASE" } },
     ASSERT    = { icon = Fau_vim.icons.todo.ASSERT,    color = "assert" },
     IMPORTANT = { icon = Fau_vim.icons.todo.IMPORTANT, color = "important", alt = { "IMPO" } },
-    SPECIAL   = { icon = Fau_vim.icons.todo.SPECIAL,   color = "special",   alt = { "SP", "SPEC" } },
   },
 
   gui_style = { fg = "NONE", bg = "BOLD" },
@@ -63,10 +61,9 @@ local config = {
     desc = Fau_vim.colors.light_gray,
     see  = Fau_vim.colors.wathet,
 
-    exit      = "#BDB76B",
+    exit      = Fau_vim.colors.dark_blue,
     assert    = Fau_vim.colors.orange_yellow,
     important = Fau_vim.colors.red,
-    special   = Fau_vim.colors.dark_blue,
   },
 
   search = {

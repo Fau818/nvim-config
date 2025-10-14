@@ -36,7 +36,7 @@ return {
   smart_format = function()
     local filetype = vim.bo.filetype
 
-    -- SPEC: Special treamtment for some filetypes.
+    -- NOTE: Special treamtment for some filetypes.
     if filetype == "python" then return Fau_vim.functions.format.__auto_indent()
     elseif filetype == "c" or filetype == "cpp" then return Fau_vim.functions.format.__auto_indent()
     end

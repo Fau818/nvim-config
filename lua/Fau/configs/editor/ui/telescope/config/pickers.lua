@@ -193,7 +193,6 @@ return {
     file_encoding = nil,  ---@type string
   },
 
-  -- TODO: QAQ?
   treesitter = {
     show_line = true,  ---@type boolean
     bufnr = nil,  ---@type number default: current buffer

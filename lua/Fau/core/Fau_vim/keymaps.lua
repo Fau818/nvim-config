@@ -17,7 +17,7 @@ end
 -- =============================================
 -- ========== Set Leader key
 -- =============================================
-keymap({ "n", "x" }, "<Space>", "<Nop>", opts())
+keymap({ "n", "x" }, "<Space>", "<NOP>", opts())
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -72,7 +72,6 @@ keymap("n", "<LEADER><CR>", "<CR>",   opts("Edit: Normal Enter Key"))
 keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))
 
 -- Reveal File
--- TODO: Compatible with multiple platforms [see yazi "opener" section]
 keymap("n", "<C-f>", "<CMD>!open -R '%'<CR>", opts("Editor: Reveal File"))
 keymap("n", "<C-b>", "<NOP>",                 opts())
 
@@ -191,7 +190,7 @@ keymap("n", "<C-v>", "<CMD>vsplit<CR>", opts("Editor: Vertical Split"))
 -- =============================================
 -- ========== Terminal
 -- =============================================
-keymap("t", "<C-r>", "<Nop>", opts())
+keymap("t", "<C-r>", "<NOP>", opts())
 
 
 
@@ -211,6 +210,7 @@ keymap("n", "gi", vim.lsp.buf.incoming_calls, opts("LSP: Incoming Calls"))
 keymap("n", "go", vim.lsp.buf.outgoing_calls, opts("LSP: Outgoing Calls"))
 
 -- ==================== Trigger Begin with `<LEADER>l` ====================
+-- TODO: UPDATE ------------
 keymap("n", "<LEADER>lr", vim.lsp.buf.rename,      opts("LSP: Rename"))
 keymap("n", "<LEADER>la", vim.lsp.buf.code_action, opts("LSP: Code Action"))
 
@@ -230,5 +230,7 @@ keymap("n", "<LEADER>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay
 
 -- ==================== Trigger with `<CONTROL>` ====================
 keymap({ "n", "i" }, "<C-d>", vim.lsp.buf.hover,          opts("LSP: Document"))
--- TODO: imap <C-s> and <C-S-p> different behaviors.
-keymap({ "n", "i" }, "<C-S-p>", vim.lsp.buf.signature_help, opts("LSP: Signature Help"))
+
+keymap("i", "<C-s>", "<NOP>", opts())
+-- NOTE: If call `vim.lsp.buf.signature_help` directly, no noice markdown rendering.
+keymap({ "n", "i" }, "<C-S-p>", function() vim.lsp.buf.signature_help() end, opts("LSP: Signature Help"))

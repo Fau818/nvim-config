@@ -9,11 +9,8 @@ local config = {
   thousands   = false,  -- or line number thousands separator string ("." / ",")
   relculright = true,   -- whether to right-align the cursor line number with 'relativenumber' set
 
-  -- BUG: `checkhealth` is not working properly.
-  -- \    It seems the `filetype` is empty first, then it is set to `checkhealth`.
-  -- \    So the `ft_ignore` and `bt_ignore` are disabled.
-  -- ft_ignore = Fau_vim.file.excluded_filetypes,
-  -- bt_ignore = Fau_vim.file.excluded_buftypes,
+  ft_ignore = vim.list_slice(Fau_vim.file.excluded_filetypes, 2),  -- NOTE: Filtered filetype `""`
+  bt_ignore = Fau_vim.file.excluded_buftypes,
 
   segments = {
     -- Sign (Default statuscolumn)

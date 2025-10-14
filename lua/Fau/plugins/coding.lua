@@ -1,3 +1,4 @@
+-- TODO: Refactor it!
 -- DESC: This module is for better coding, including some editing utilities.
 
 ---@type LazySpec[]
@@ -40,7 +41,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function() require("Fau.configs.coding.mini-align") end,
     keys = { { "<LEADER>a", mode = "x", desc = "Edit: Align Text with Preview" }, { "<LEADER>A", mode = "x", desc = "Edit: Align Text" } },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
+    cond = true,
   },
 
   {
@@ -71,7 +72,7 @@ return {
     config = true,
     cmd = { "NodeAction", "NodeActionDebug" },
     keys = { { "<LEADER>n", "<CMD>NodeAction<CR>", mode = "n", desc = "Node Action: Node Action" } },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
+    cond = true,
   },
 
   {
@@ -82,7 +83,7 @@ return {
     event = "VeryLazy",  -- Its keymaps are conflicted with `trouble.nvim`, so loaded it manually (VeryLazy).
     cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
     keys = { { "<LEADER>t", mode = { "n", "x" }, desc = "+Text Case" } },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
+    cond = true,
   },
 
 
@@ -100,7 +101,7 @@ return {
     "abecodes/tabout.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function() require("Fau.configs.coding.tabout") end,
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     cond = true,
   },
 
@@ -124,15 +125,15 @@ return {
         desc = "Multicursors: Create a selection for selected text under the cursor",
       },
     },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
+    cond = true,
   },
 
   {
     -- DESC: Auto switch input method.
     "keaising/im-select.nvim",
     config = function() require("Fau.configs.coding.im-select") end,
-    event = "InsertEnter",
-    cond = true,  -- TESTING: Not TESTED in VSCode.
+    event = { "InsertEnter", "CmdlineEnter" },
+    cond = true,
     enabled = vim.fn.executable("im-select") == 1 and true or false,
   },
 

@@ -191,7 +191,7 @@ return {
     EXIT      = "󰗼 ",
     ASSERT    = "󰞏 ",
     IMPORTANT = "󱈸 ",
-    SPECIAL   = "󰅳 ",
+    -- SPECIAL   = "󰅳 ",
   },
 
 

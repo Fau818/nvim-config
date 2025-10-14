@@ -11,11 +11,17 @@ return {
   end,
 
 
+  ---@type vim.lsp.client.on_attach_cb
+  -- TODO: After refactor LSP, need to update `SEE`
+  on_attach = function(client, bufnr) end,  -- SEE: lspconfig.lua file.
+
+
   ---Setup LSP server
   ---@param server string
   ---@param opts? table
   setup_server = function(server, opts)
     opts = opts or {}
+    opts = vim.tbl_deep_extend("force", { on_attach = Fau_vim.functions.lsp.on_attach }, opts)
 
     if server == "pylance" then opts.before_init = function(_, config) config.settings.python.pythonPath = vim.fn.exepath("python3") end end
 
@@ -43,7 +49,7 @@ return {
 
     local client_list = vim.lsp.get_clients({ bufnr=0 })
     for _, client in ipairs(client_list) do
-      if client.name ~= "null-ls" and client.name ~= "copilot" then vim.api.nvim_command("LspRestart " .. client.id) end
+      if client.name ~= "copilot" then vim.api.nvim_command("LspRestart " .. client.id) end
     end
   end,
 

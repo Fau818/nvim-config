@@ -21,7 +21,7 @@ return {
       { "<LEADER><LEADER>d", "<CMD>Docstring<CR>",      desc = "Python Docstring: Generate" },
       { "<LEADER><LEADER>D", "<CMD>DocstringTypes<CR>", desc = "Python Docstring: Generate with Type Hints" },
     },
-    cond = true,  -- TESTING: Not TESTED in VSCode.
+    cond = true,
   },
 
 }

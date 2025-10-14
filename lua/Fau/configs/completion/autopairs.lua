@@ -7,7 +7,6 @@ local config = {
   enabled = function(bufnr) return true end, -- control if auto-pairs should be enabled when attaching to a buffer
   disable_filetype = Fau_vim.file.excluded_filetypes,
   disable_in_macro        = true,   -- disable when recording or executing a macro
-  -- FIXME: When exit visual-block mode, the autopairs will not work.
   disable_in_visualblock  = false,  -- disable when insert after visual block mode
   disable_in_replace_mode = true,
 
@@ -20,7 +19,6 @@ local config = {
   enable_abbr               = false,  -- trigger abbreviation
 
   break_undo = true,  -- Switch for basic rule break undo sequence
-  -- TEST: Enabled in June 5, 2024
   check_ts = true,  -- Use treesitter to check the pair.
 
   map_cr  = true,   -- map the <CR> key

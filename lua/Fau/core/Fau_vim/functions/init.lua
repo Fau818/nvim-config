@@ -1,4 +1,3 @@
--- TODO: Move it.
 require("Fau.core.Fau_vim.functions.notify")
 
 Fau_vim.functions = {

@@ -2,10 +2,9 @@
 return {
   -- DESC: Github copilot supporter.
   "zbirenbaum/copilot.lua",
-  commit = "f693e2169df70b0a166ac2cc09ed6c1cb94ac897",  -- FIXME: Keymaps logic changed in later versions.
   enabled = Fau_vim.plugin.copilot.enable,
 
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
   cmd   = "Copilot",
 
   ---@type CopilotConfig

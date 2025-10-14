@@ -1,4 +1,4 @@
--- TODO: ...
+-- TODO: Refactor
 -- DESC: This module is for language server protocol.
 
 ---@type LazySpec[]
@@ -14,6 +14,7 @@ return {
       "folke/neoconf.nvim",
     },
     init = function()
+      if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(true) end
       require("Fau.core.lsp.diagnostics_config")
       require("Fau.core.lsp.lspconfig")
     end,
@@ -39,18 +40,10 @@ return {
   },
 
   {
-    -- DESC: a powerful language server manager.
-    "nvimtools/none-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvimtools/none-ls-extras.nvim" },
-    config = function() require("Fau.core.null-ls") end,
-    event = { "BufReadPost", "BufNewFile" },
-  },
-
-  {
     -- DESC: Faster LuaLS setup for Neovim.
     "folke/lazydev.nvim",
     config = function()
-      local plugins = { { path = "${3rd}/luv/library", words = { "vim%.uv" } }, "lazy.nvim", "snacks.nvim"  }
+      local plugins = { { path = "${3rd}/luv/library", words = { "vim%.uv" } }, "lazy.nvim", "snacks.nvim", { "which-key.nvim", words = { "wk%." } }  }
       require("lazydev").setup({ library = plugins })
     end,
     ft = "lua",

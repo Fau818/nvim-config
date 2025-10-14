@@ -8,7 +8,7 @@ return {
   opts = {
     bigfile      = require("Fau.plugins.editor.snacks.bigfile"),
     dim          = require("Fau.plugins.editor.snacks.dim"),
-    dashboard    = { enabled = false },  -- TODO: QwQ
+    dashboard    = { enabled = false },
     explorer     = { enabled = false },
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = { enabled = true },

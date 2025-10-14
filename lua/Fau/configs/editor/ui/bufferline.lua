@@ -153,6 +153,7 @@ local config = {
     indicator_visible = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false },
     -- BUG: Not worked, please set the indicator style in tokyonight theme.
     -- \    highlights["BufferLineIndicatorSelected"] = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false }
+    -- HACK: Now we don't use the indicator, so never mind. Oct 13, 2025
     indicator_selected = { bg = Fau_vim.colors.bufferline_bg, fg = Fau_vim.colors.dark_purple, bold = true, italic = false },
 
     pick          = { bg = Fau_vim.colors.bufferline_bg },

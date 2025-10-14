@@ -4,6 +4,7 @@ return {
 
   excluded_filetypes = {
     "", "help", "netrw", "tutor", "man", "qf", "query",
+    "bigfile",
     "alpha",
     "aerial", "aerial-nav",
     "cmp_menu", "blink-cmp-menu", "blink-cmp-documentation",

@@ -1,4 +1,4 @@
--- Take `*.dconf` as `conf` filetype. (For Surge Detached Configuration)
+-- DESC: Take `*.dconf` as `conf` filetype. (For Surge Detached Configuration)
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   pattern = "*.dconf",
   group = "Fau_vim",
@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   callback = function() vim.opt_local.filetype = "conf" end
 })
 
--- Use `q` to close the float window.
+-- DESC: Use `q` to close the float window.
 vim.api.nvim_create_autocmd("FileType", {
   group = "Fau_vim",
   desc = "Use `q` to close the float window.",
@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
 })
 
--- TEST: Treat docker-compose.yaml and docker-compose.yml to docker-compose filetype.
+-- DESC: Treat docker-compose.yaml and docker-compose.yml to docker-compose filetype.
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   group = "Fau_vim",
   desc = "Correct filetype for docker-compose.",

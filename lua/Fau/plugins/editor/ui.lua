@@ -1,3 +1,4 @@
+-- TODO: refactor it
 -- DESC: This module is the basis of editor UI.
 
 ---@type LazySpec[]
@@ -21,7 +22,6 @@ return {
     config = function() require("Fau.configs.editor.ui.nvim-tree") end,
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
     keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "nvim-tree: Toggle" } },
-    -- BUG: Show file tree in iCloud folder leads delay. (Or say, in path with many files)
   },
 
   {
@@ -37,12 +37,7 @@ return {
   {
     -- DESC: A snazzy bufferline for Neovim.
     "akinsho/bufferline.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      -- TEST: Use `Snacks.bufdelete.delete()` in May 10, 2025.
-      -- -- BUG: Retreat to `mini.bufremove` due to `Snacks.bufdelete` has some issues.
-      -- "nvim-mini/mini.bufremove",
-    },
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function() require("Fau.configs.editor.ui.bufferline") end,
     event = "UIEnter",
   },
@@ -59,8 +54,6 @@ return {
   -- ==================== Scroll Bar ====================
     {
     -- DESC: A nice scrollbar.
-    -- BUG: Delay in large file.
-    -- HACK: Current solution is to disable scrollbar in large file.
     "lewis6991/satellite.nvim",
     config = function() require("Fau.configs.editor.ui.satellite") end,
     event = "UIEnter",
@@ -110,15 +103,6 @@ return {
 
       -- ---------- Extensions
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-
-      -- TODO: The telescope is necessary for the following extensions. (The current situation is the opposite)
-      {
-        -- DESC: Explore projects with telescope.
-        -- TEMP: Use a fork version to avoid deprecated warning.
-        "LennyPhoenix/project.nvim",
-        config = function() require("Fau.core.project") end,
-        enabled = false,
-      },
       {
         -- DESC: Switch conda environments by telescope.
         "IllustratedMan-code/telescope-conda.nvim",

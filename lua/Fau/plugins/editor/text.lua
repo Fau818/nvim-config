@@ -1,3 +1,4 @@
+-- TODO: Refactor this file.
 -- DESC: This module is for enhancing editor text.
 
 ---@type LazySpec[]
@@ -37,7 +38,7 @@ return {
     config = function() require("Fau.configs.editor.text.todo-comments") end,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TodoTrouble", "TodoTelescope", "TodoLocList", "TodoQuickFix" },
-    keys = { { "<LEADER>T", "<CMD>TodoTrouble keywords=TODO<CR>", desc = "TODO-Comments: Show in Trouble" } },
+    keys = { { "<LEADER>T", "<CMD>Trouble todo filter = {tag = {TODO,FIX,TEST}}<CR>", desc = "TODO-Comments: Show in Trouble" } },
   },
 
 }

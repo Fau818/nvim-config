@@ -6,10 +6,13 @@ return {
     keymaps = {
       -- You can use the capture groups defined in textobjects.scm
       ["af"] = { query = "@function.outer", desc = "Range: Around Function" },
-      ["if"] = { query = "@function.inner", desc = "Range: Innder Function" },
+      ["if"] = { query = "@function.inner", desc = "Range: Inner Function" },
 
       ["ac"] = { query = "@class.outer", desc = "Range: Around Class" },
-      ["ic"] = { query = "@class.inner", desc = "Range: Innder Class" },
+      ["ic"] = { query = "@class.inner", desc = "Range: Inner Class" },
+
+      ["as"] = { query = "@conditional.outer", desc = "Range: Around Scope" },
+      ["is"] = { query = "@conditional.inner", desc = "Range: Inner Scope" },
     },
 
     selection_modes = {

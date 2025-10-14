@@ -82,15 +82,14 @@ return {
   searchcount = { "searchcount", maxcount = 999, timeout = 500 },
   selectioncount = "selectioncount",
 
-  lsp_status = { "lsp_status", ignore_lsp = { "null-ls", "copilot" } },
+  lsp_status = { "lsp_status", ignore_lsp = { "copilot" } },
 
 
   -- -----------------------------------
   -- -------- Indent
   -- -----------------------------------
   indent = {  -- detect the indenttype and check whether occur mixed indent
-    -- TODO: Check indent except comment lines
-    -- TODO: REFACTOR ?
+    -- TODO: Check indent except comment lines (REFACTOR ?)
     function()
       -- if Fau_vim.functions.utils.is_large_file() then return "LF" end
       local TIMEOUT = 5
@@ -174,8 +173,7 @@ return {
   -- -----------------------------------
   lsp = {
     function()
-      -- TODO: `lsp_status` (shows active LSPs in the current buffer and a progress spinner)
-      -- TODO: Clean outdated code.
+      -- TODO: `lsp_status` (shows active LSPs in the current buffer and a progress spinner) && Clean outdated code.
       local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
 
       -- EXIT: No Clients
@@ -188,23 +186,11 @@ return {
       -- Add client
       for _, client in pairs(buf_clients) do
         if client.name == "copilot" then copilot_active = true
-        elseif client.name ~= "null-ls" then table.insert(buf_client_names, client.name)
-        end
-      end
-
-      -- Add null-ls sources
-      local sources_ok, sources = pcall(require, "null-ls.sources")
-      if not sources_ok then sources = nil end
-      if sources ~= nil then
-        local clients = sources.get_available(buf_ft)
-        for _, client in pairs(clients) do
-          if client.name ~= "gitsigns" then table.insert(buf_client_names, client.name) end
+        else table.insert(buf_client_names, client.name)
         end
       end
 
       -- Combine
-      -- local unique_client_names = vim.fn.uniq(buf_client_names)
-      -- local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
       local unique_client_names = table.concat(buf_client_names, ", ")
       local language_servers    = string.format("[%s]", unique_client_names)
 

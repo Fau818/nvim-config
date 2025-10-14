@@ -1,1 +1,2 @@
 -- TODO: Config will be auto loaded when LSP is started
+-- Format: filename = lsp/<name>.lua

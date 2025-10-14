@@ -9,12 +9,9 @@ require("lspconfig.ui.windows").default_options.border = "double"
 -- -------- Config Servers
 -- -----------------------------------
 ---@type vim.lsp.client.on_attach_cb
-local function _on_attach(client, bufnr)
+Fau_vim.functions.lsp.on_attach = function(client, bufnr)
   -- Disable LSP formatting.
   -- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
-
-  -- For inlayhint support.
-  if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(true) end
 end
 
 
@@ -23,11 +20,7 @@ local function setup_servers(servers)
 
   local available_servers = mlspconfig.get_installed_servers()
   -- Config LS for current filetype.
-  for _, server in pairs(servers) do
-    if vim.fn.executable(server) == 1 or vim.tbl_contains(available_servers, server) then
-      Fau_vim.functions.lsp.setup_server(server, { on_attach = _on_attach })
-    end
-  end
+  for _, server in pairs(servers) do if vim.tbl_contains(available_servers, server) then Fau_vim.functions.lsp.setup_server(server) end end
 end
 
 
@@ -35,13 +28,11 @@ end
 ---@param filetype string? filetype
 Fau_vim.functions.lsp.setup_by_ft = function(filetype)
   if vim.bo.buftype ~= "" then return end  -- Not a regular buffer.
-  if Fau_vim.functions.utils.is_large_file() then return end
 
   filetype = filetype or vim.bo.filetype
   if Fau_vim.lsp.configured_ft[filetype] then return end  -- Configured
   Fau_vim.lsp.configured_ft[filetype] = true
 
-  -- TODO: Auto start if LSP is installed.
   -- Ensure servers installed.
   if Fau_vim.functions.lsp.ensure_installed(filetype) then
     -- Set configured_ft to false for restarting LSP.
@@ -50,8 +41,6 @@ Fau_vim.functions.lsp.setup_by_ft = function(filetype)
 
   -- Get servers for specific filetype.
   local clients = mlspconfig.get_available_servers({ filetype=filetype })
-  -- HACK: Special for pylance
-  if filetype == "python" and vim.fn.executable("pylance") == 1 then table.insert(clients, "pylance") end
 
   -- Setup
   setup_servers(clients)

@@ -18,7 +18,7 @@ return {
       auto_close   = false,  -- auto close when there are no items
       auto_open    = false,  -- auto open when there are items
       auto_preview = true,   -- automatically open preview when on an item
-      auto_refresh = true,   -- auto refresh when open
+      auto_refresh = false,  -- auto refresh when open
       auto_jump    = false,  -- auto jump to the item when there's only one
 
       focus   = true,  -- Focus the window when opened
@@ -112,7 +112,7 @@ return {
 
       ---@type table<string, trouble.Mode>
       modes = {
-        -- FIXME: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
+        -- NOTE: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
         -- HACK: set `auto_jump` to `false` to avoid jumping to the first item.
         lsp_definitions      = { auto_jump = false, auto_refresh = false },
         lsp_declarations     = { auto_jump = false, auto_refresh = false },
@@ -121,6 +121,7 @@ return {
         lsp_references       = { auto_jump = false, auto_refresh = false },
         lsp_incoming_calls   = { auto_jump = false, auto_refresh = false },
         lsp_outgoing_calls   = { auto_jump = false, auto_refresh = false },
+        todo                 = { auto_jump = false, auto_refresh = false },
 
         diagnostics_buffer = { mode = "diagnostics", filter = { buf = 0 } },
       },
@@ -134,7 +135,7 @@ return {
       },
     }
 
-    -- BUG: Keymaps are case-sensitive. [Error like `<CR>`]
+    -- NOTE: Keymaps are case-sensitive. [Error like `<CR>`]
     -- HACK: Force to lowercase.
     for lhs, rhs in pairs(config.keys) do
       if type(lhs) == "string" and lhs:sub(1, 1) == "<" then config.keys[lhs:lower()] = rhs end

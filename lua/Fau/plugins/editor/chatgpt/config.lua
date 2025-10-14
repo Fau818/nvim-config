@@ -182,7 +182,7 @@ local config = {
     n = 1,
   },
 
-  use_openai_functions_for_edits = true,  -- TESTING: enabled on July 20, 2024
+  use_openai_functions_for_edits = true,
 
   actions_paths = nil,
   show_quickfixes_cmd = "Trouble quickfix",

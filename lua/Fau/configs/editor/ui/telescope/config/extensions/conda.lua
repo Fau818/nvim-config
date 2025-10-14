@@ -18,6 +18,6 @@ return {
         "/usr/local/miniconda3",
       }
     end
-    for _, path in ipairs(path_list) do if Fau_vim.functions.utils.exist_path(path) then return path end end
+    for _, path in ipairs(path_list) do if vim.uv.fs_stat(path) ~= nil then return path end end
   end,
 }

@@ -25,7 +25,6 @@ local config = {
 
   icons = {
     enable = true,
-    -- TODO: Update icons
     kinds = {
       use_devicons = true,
       symbols = {

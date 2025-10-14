@@ -27,7 +27,6 @@ dashboard.section.header.val = {
 dashboard.section.buttons.val = {
   dashboard.button("n", ("%s  New File"):format(Fau_vim.icons.ui.File), "<CMD>enew<CR>"),
 
-  dashboard.button("p", ("%s  Projects"):format(Fau_vim.icons.ui.Project),     "<CMD>Telescope projects layout_strategy=center sorting_strategy=ascending initial_mode=normal<CR>"),
   dashboard.button("f", ("%s  Find Files"):format(Fau_vim.icons.ui.FindFile),  "<CMD>Telescope find_files<CR>"),
   dashboard.button("r", ("%s  Recent Files"):format(Fau_vim.icons.ui.History), "<CMD>Telescope oldfiles<CR>"),
 
