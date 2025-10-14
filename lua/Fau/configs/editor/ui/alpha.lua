@@ -10,6 +10,9 @@ dashboard.section.header.val = {
   [[]],
   [[]],
   [[]],
+  [[]],
+  [[]],
+  [[]],
   [[ ________                               __               ]],
   [[|        \                             |  \              ]],
   [[| $$$$$$$$______   __    __  __     __  \$$ ______ ____  ]],
@@ -34,7 +37,7 @@ dashboard.section.buttons.val = {
   dashboard.button("l", ("%s  Load Session"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").load() end),
   ---@diagnostic disable-next-line: param-type-mismatch
   dashboard.button("L", ("%s  Load Last Session"):format(Fau_vim.icons.ui.Restore), function() require("persistence").load({ last = true }) end),
----@diagnostic disable-next-line: param-type-mismatch
+  ---@diagnostic disable-next-line: param-type-mismatch
   dashboard.button("S", ("%s  Session List"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").select() end),
 
   dashboard.button("c", ("%s  Config Neovim"):format(Fau_vim.icons.ui.Gear), "<CMD>FauvimConfig<CR>"),
@@ -66,7 +69,7 @@ vim.api.nvim_create_autocmd("User", {
   callback = function()
     local stats = require("lazy").stats()
     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-    dashboard.section.footer.val =  "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
+    dashboard.section.footer.val =  { "", "", "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
     pcall(vim.cmd.AlphaRedraw)
   end,
 })

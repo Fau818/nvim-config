@@ -15,7 +15,7 @@ return {
     "flash_prompt",
     "glowpreview",
     "lspinfo", "mason",
-    "notify", "noice", "netrw",
+    "notify", "noice",
     "NvimTree",
     "snacks_picker_input",
     "terminal", "toggleterm",

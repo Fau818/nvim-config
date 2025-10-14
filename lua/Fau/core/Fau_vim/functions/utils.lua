@@ -31,7 +31,7 @@ return {
     bufnr = bufnr or vim.api.nvim_get_current_buf()
 
     -- EXIT: Not a regular buffer.
-    if vim.bo[bufnr].buftype ~= "" then return true end  -- TEST: Considered as a large file on Oct 13, 2025.
+    if vim.bo[bufnr].buftype ~= "" then return false end
     -- EXIT: `bigfile` filetype always a large file.
     if vim.bo[bufnr].filetype == "bigfile" then return true end
     -- EXIT: Use the cached result.

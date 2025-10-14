@@ -45,7 +45,7 @@ return {
           if not Fau_vim.plugin.copilot.enable then return false end
           local copilot_ok, copilot = pcall(require, "copilot.suggestion")
           if not copilot_ok then return false end
-          return copilot.is_visible()
+          return copilot.is_visible() ~= nil
         end
 
         if cmp.is_menu_visible() then return cmp.accept()

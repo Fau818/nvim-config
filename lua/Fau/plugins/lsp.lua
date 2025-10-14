@@ -43,7 +43,13 @@ return {
     -- DESC: Faster LuaLS setup for Neovim.
     "folke/lazydev.nvim",
     config = function()
-      local plugins = { { path = "${3rd}/luv/library", words = { "vim%.uv" } }, "lazy.nvim", "snacks.nvim", { "which-key.nvim", words = { "wk%." } }  }
+      local plugins = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        "lazy.nvim",
+        "snacks.nvim",
+        { "which-key.nvim", words = { "wk%." } },
+        { "copilot.lua", words = { "copilot" } }
+      }
       require("lazydev").setup({ library = plugins })
     end,
     ft = "lua",
