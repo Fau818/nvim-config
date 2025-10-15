@@ -11,6 +11,7 @@ return {
     { "windwp/nvim-ts-autotag", config = function() require("Fau.configs.completion.autotag") end },
     { "RRethy/nvim-treesitter-endwise", dependencies = "nvim-treesitter/nvim-treesitter", ft = { "Ruby", "Lua", "Vimscript", "Bash", "Elixir", "Fish", "Julia" } },
   },
+
   event = { "InsertEnter", "CmdlineEnter" },
 
   -- init = function()

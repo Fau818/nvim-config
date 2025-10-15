@@ -68,6 +68,6 @@ return {
   },
   -- filter for buffers to enable indent guides
   filter = function(buf)
-    return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ""
+    return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and (vim.w.snacks_indent == true or vim.bo[buf].buftype == "")
   end,
 }

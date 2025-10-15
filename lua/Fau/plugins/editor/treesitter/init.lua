@@ -6,6 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = { "nvim-treesitter/nvim-treesitter-context", "nvim-treesitter/nvim-treesitter-textobjects" },
+    cond = true,
     event = { "BufReadPost", "BufNewFile" },
     config = function() require("Fau.plugins.editor.treesitter.config") end,
   },

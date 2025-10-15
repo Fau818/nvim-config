@@ -112,7 +112,7 @@ return {
     config = function() require("Fau.configs.editor.ui.telescope") end,
     event = "UIEnter",
     cmd = "Telescope",
-    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope: Open Builtin" } },
+    keys = { { "<LEADER>f", "<NOP>", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope: Open Builtin" } },
   },
 
 }

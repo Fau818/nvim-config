@@ -8,7 +8,7 @@ return {
 
   cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
   keys = {
-    { "<LEADER>c", mode = { "n", "x" }, desc = "+ChatGPT" },
+    { "<LEADER>c", "<NOP>", mode = { "n", "x" }, desc = "+ChatGPT" },
     { "<LEADER>cc", "<CMD>ChatGPT<CR>",                     mode = { "n", "x" }, desc = "ChatGPT" },
     { "<LEADER>ci", "<CMD>ChatGPTEditWithInstructions<CR>", mode = { "n", "x" }, desc = "ChatGPTEditWithInstructions" },
     { "<LEADER>ca", "<CMD>ChatGPTActAs<CR>",                mode = { "n", "x" }, desc = "ChatGPTActAs" },

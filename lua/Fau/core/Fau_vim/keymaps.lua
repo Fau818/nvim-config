@@ -96,11 +96,16 @@ keymap("i", "<C-n>", "<NOP>", opts())
 keymap({ "x", "o" }, "w", "iw", opts("Range: Inner Word"))
 keymap({ "x", "o" }, "W", "iW", opts("Range: Inner WORD"))
 
--- Bracket
+-- Brackets
 keymap({ "x", "o" }, "ia", "i>", opts("Range: Inner Angle Bracket"))
 keymap({ "x", "o" }, "ir", "i]", opts("Range: Inner Square Bracket"))
 keymap({ "x", "o" }, "aa", "a>", opts("Range: Around Angle Bracket"))
 keymap({ "x", "o" }, "ar", "a]", opts("Range: Around Square Bracket"))
+
+-- Quotes: for trimming leading/trailing spaces.
+keymap({ "x", "o" }, 'a"', '2i"', opts("Range: Around Double Quote"))
+keymap({ "x", "o" }, "a'", "2i'", opts("Range: Around Single Quote"))
+keymap({ "x", "o" }, "a`", "2i`", opts("Range: Around Back Quote"))
 
 -- Paragraph
 keymap("o", "p", "ip", opts("Range: Inner Paragraph"))
