@@ -5,6 +5,8 @@ return {
   dependencies = "nvim-treesitter/nvim-treesitter",
   cond = true,
   event = { "InsertEnter", "CmdlineEnter" },
+
+  ---@module "tabout.nvim"
   ---@type TaboutOptions
   opts = {
     tabkey            = "<Tab>",      -- key to trigger tabout, set to an empty string to disable

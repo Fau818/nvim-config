@@ -2,7 +2,7 @@ local actions = require("gitsigns.actions")
 local keymap  = vim.keymap.set
 
 return function(bufnr)
-  local function opts(desc) return { desc = "Gitsigns: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true } end
+  local function opts(desc) return { desc = "Gitsigns: " .. desc, buffer = bufnr } end
 
   -- ==================== Toggle ====================
   keymap("n", "<LEADER>gtb", actions.toggle_current_line_blame, opts("Gitsigns: Toggle Line Blame"))

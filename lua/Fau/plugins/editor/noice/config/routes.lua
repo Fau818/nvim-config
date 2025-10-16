@@ -1,19 +1,16 @@
-local config = require("noice.config").defaults()
-
-
 ---@type NoiceRouteConfig[]
-local routes = {
+return {
   -- -----------------------------------
   -- -------- Basic Info
   -- -----------------------------------
   {
-    view = config.messages.view_warn,
+    view = "notify",
     filter = { warning = true },
     opts = { title = "Warning", level = vim.log.levels.WARN }
   },
 
   {
-    view = config.messages.view_error,
+    view = "notify",
     filter = { error = true },
     opts = { title = "Error", level = vim.log.levels.ERROR }
   },
@@ -32,9 +29,5 @@ local routes = {
     view = "notify",
     filter = { event = "msg_show", find = "(mini.align)" },
     opts = { title = "mini.align" },
-  },
-
+  }
 }
-
-
-return routes

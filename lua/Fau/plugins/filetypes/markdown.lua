@@ -37,7 +37,7 @@ return {
         height_ratio = 0.85,
       }
       require("glow").setup(config)
-      vim.keymap.set("n", "<LEADER>rf", "<CMD>Glow<CR>", { silent = true, buffer = true, desc = "Glow: Show" })
+      vim.keymap.set("n", "<LEADER>rf", "<CMD>Glow<CR>", { buffer = true, desc = "Glow: Show" })
     end,
     ft = "markdown",
     cmd = "Glow",
@@ -53,7 +53,7 @@ return {
     end,
     config = function()
       -- TODO: Do this in code_runner.
-      vim.keymap.set("n", "<C-r>", "<CMD>MarkdownPreview<CR>", { silent = true, buffer = true, desc = "Markdown Preview: Preview" })
+      vim.keymap.set("n", "<C-r>", "<CMD>MarkdownPreview<CR>", { buffer = true, desc = "Markdown Preview: Preview" })
     end,
     ft = "markdown",
     cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },

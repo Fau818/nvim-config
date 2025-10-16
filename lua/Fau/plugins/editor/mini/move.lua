@@ -10,6 +10,7 @@ return {
   },
   cond = true,
 
+  ---@module "mini.move"
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {

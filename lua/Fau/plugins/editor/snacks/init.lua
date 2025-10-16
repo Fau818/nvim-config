@@ -13,6 +13,7 @@ return {
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = { enabled = true },
     picker       = { enabled = false },
+    -- profiler     = { enabled = false, autocmds = false },
     notifier     = { enabled = false },
     quickfile    = { enabled = false },
     scope        = require("Fau.plugins.editor.snacks.scope"),
@@ -30,6 +31,7 @@ return {
 
     -- TEST: Test in May 10, 2025
     Fau_vim.notify = Snacks.debug.inspect
+    Fau_vim.functions.utils._buf_remove = Snacks.bufdelete.delete
 
     -- NOTE: Global debug functions
     _G.dd = function(...) Snacks.debug.inspect(...) end

@@ -64,7 +64,7 @@ local function reveal_in_system(node)
   if not node then Fau_vim.notify("Get node info error!", vim.log.levels.ERROR) return end  -- error notified in get_cursor_node().
 
   print(("Reveal %s in system."):format(node.absolute_path))
-  return Fau_vim.functions.utils.reveal_in_system(node.absolute_path)
+  Fau_vim.functions.utils.reveal_in_system(node.absolute_path)
 end
 
 
@@ -73,7 +73,7 @@ end
 -- ========== Keymaps
 -- =============================================
 local function on_attach(bufnr)
-  local function opts(desc) return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true } end
+  local function opts(desc) return { desc = desc, buffer = bufnr } end
 
   vim.keymap.set("n", "<CR>",           smart_open,                                 opts("Open: Smart Open"))
   vim.keymap.set("n", "o",              api.node.open.edit,                         opts("Open: Edit in Neovim"))

@@ -20,6 +20,7 @@ return {
     })
   end,
 
+  ---@module "mini.indentscope"
   opts = {
     draw = {
       delay = 100,

@@ -11,7 +11,8 @@ local function comment_style()
   return { italic = true }
 end
 
-
+---@module "tokyonight"
+---@type tokyonight.Config
 local config = {
   style           = "moon",  ---@type "moon" | "storm" | "night"
   light_style     = "day",

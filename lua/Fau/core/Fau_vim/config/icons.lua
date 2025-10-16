@@ -149,13 +149,14 @@ return {
     MethodSeparatorHeavy = "━",
 
     -- ---------- Noice
-    Input    = "",
-    Help     = "",
-    Search   = "",
-    Terminal = "",
-    Lua      = "",
-    LookDown = "",
-    LookUp   = "",
+    Input      = "",
+    Help       = "",
+    Search     = "",
+    Terminal   = "",
+    Lua        = "",
+    Calculator = "" ,
+    LookDown   = "",
+    LookUp     = "",
 
     -- ---------- Telescope
     telescope       = "",

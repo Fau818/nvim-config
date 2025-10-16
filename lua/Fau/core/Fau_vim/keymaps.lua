@@ -2,7 +2,6 @@
 -- ========== Global Config
 -- =============================================
 local keymap  = vim.keymap.set
-local del_map = vim.keymap.del
 local function opts(desc) return { silent = true, desc = desc } end
 
 
@@ -72,7 +71,7 @@ keymap("n", "<LEADER><CR>", "<CR>",   opts("Edit: Normal Enter Key"))
 keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))
 
 -- Reveal File
-keymap("n", "<C-f>", "<CMD>!open -R '%'<CR>", opts("Editor: Reveal File"))
+keymap("n", "<C-f>", "<CMD>Open %:p:h<CR>", opts("Editor: Reveal File"))
 keymap("n", "<C-b>", "<NOP>",                 opts())
 
 -- Convert tabs and spaces interchangeably
@@ -137,7 +136,7 @@ keymap({ "n", "x" }, "<LEADER>p", '""p', opts("Paste from Vim Clipboard"))
 keymap({ "n", "x" }, "<LEADER>P", '""P', opts("PASTE from Vim Clipboard"))
 
 -- Delete Neovim Default Keymap Y -> Y$
-del_map("n", "Y")
+vim.keymap.del("n", "Y")
 
 -- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
 keymap("x", "p", '"_dP', opts("Paste"))
@@ -234,7 +233,7 @@ keymap("n", "<LEADER>lv", function() vim.diagnostic.config({ virtual_text = not 
 keymap("n", "<LEADER>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })) end,        opts("LSP: Toggle Inlay Hint"))
 
 -- ==================== Trigger with `<CONTROL>` ====================
-keymap({ "n", "i" }, "<C-d>", vim.lsp.buf.hover,          opts("LSP: Document"))
+keymap({ "n", "i" }, "<C-d>", function() vim.lsp.buf.hover() end, opts("LSP: Document"))
 
 keymap("i", "<C-s>", "<NOP>", opts())
 -- NOTE: If call `vim.lsp.buf.signature_help` directly, no noice markdown rendering.

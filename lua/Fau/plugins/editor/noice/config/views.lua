@@ -5,11 +5,16 @@ local views = {
   -- -----------------------------------
   notify = { replace = true, merge = true, render = "minimal" },
 
-  hover = { size = { max_width = 100 }, border = { padding = { 0, 1 } } },
+  hover = {
+    size = { max_width = 100 },
+    border = { style = "rounded", padding = { 0, 1 } },
+    position = { row = 2, col = 2 },
+  },
 
   cmdline_popup = { size = { width = 60 } },
 
   mini = { timeout = 500, replace = true, merge = true },
+
 
   -- -----------------------------------
   -- -------- Custom
@@ -26,11 +31,15 @@ local views = {
     win_options = {
       winhighlight = {
         Normal = "NoiceCmdlinePopup",
+        FloatTitle = "NoiceCmdlinePopupTitle",
         FloatBorder = "NoiceCmdlinePopupBorder",
         IncSearch = "",
+        CurSearch = "",
         Search = "",
       },
+      winbar = "",
       cursorline = false,
+      foldenable = false,
     },
   },
 }

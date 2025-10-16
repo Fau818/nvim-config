@@ -7,6 +7,7 @@ return {
   event = { "InsertEnter", "CmdlineEnter" },
   cmd   = "Copilot",
 
+  ---@module "copilot.lua"
   ---@type CopilotConfig
   opts = {
     panel = {

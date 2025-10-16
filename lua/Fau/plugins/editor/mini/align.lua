@@ -6,6 +6,7 @@ return {
   keys = { { "<LEADER>a", mode = "x", desc = "Edit: Align Text with Preview" }, { "<LEADER>A", mode = "x", desc = "Edit: Align Text" } },
   cond = true,
 
+  ---@module "mini.align"
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {
