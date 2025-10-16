@@ -1,15 +1,32 @@
 ---@type LazySpec
 return {
+  ---@module "blink.cmp"
   "saghen/blink.cmp",
   version = "1.*",
   -- build = "cargo build --release",
   dependencies = {
     { "disrupted/blink-cmp-conventional-commits" },
-    { "xzbdmw/colorful-menu.nvim", config = true },
+    {
+      ---@module "colorful-menu"
+      "xzbdmw/colorful-menu.nvim",
+      config = true,
+    },
     -- TODO: Move to `coding`?
-    { "windwp/nvim-autopairs", config = function() require("Fau.configs.completion.autopairs") end },
-    { "windwp/nvim-ts-autotag", config = function() require("Fau.configs.completion.autotag") end },
-    { "RRethy/nvim-treesitter-endwise", dependencies = "nvim-treesitter/nvim-treesitter", ft = { "Ruby", "Lua", "Vimscript", "Bash", "Elixir", "Fish", "Julia" } },
+    {
+      ---@module "nvim-autopairs"
+      "windwp/nvim-autopairs",
+      config = function() require("Fau.configs.completion.autopairs") end,
+    },
+    {
+      ---@module "nvim-ts-autotag"
+      "windwp/nvim-ts-autotag",
+      config = function() require("Fau.configs.completion.autotag") end,
+    },
+    {
+      "RRethy/nvim-treesitter-endwise",
+      dependencies = "nvim-treesitter/nvim-treesitter",
+      ft = { "Ruby", "Lua", "Vimscript", "Bash", "Elixir", "Fish", "Julia" },
+    },
   },
 
   event = { "InsertEnter", "CmdlineEnter" },
@@ -31,7 +48,6 @@ return {
   --   })
   -- end,
 
-  ---@module "blink.cmp"
   ---@type blink.cmp.Config
   opts = {
     enabled = function() return not Fau_vim.functions.utils.is_large_file() end,

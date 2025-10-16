@@ -1,4 +1,5 @@
--- TODO: refactor it
+-- TODO: refactor it [NEXT]
+-- TODO: Add `@module`
 -- DESC: This module is the basis of editor UI.
 
 ---@type LazySpec[]
@@ -112,7 +113,8 @@ return {
     config = function() require("Fau.configs.editor.ui.telescope") end,
     event = "UIEnter",
     cmd = "Telescope",
-    keys = { { "<LEADER>f", "<NOP>", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope: Open Builtin" } },
+    -- FIXME: It seems if we map `<LEADER>f` tp `<Nop>`, will lead a lag when open Telescope.
+    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope: Open Builtin" } },
   },
 
 }

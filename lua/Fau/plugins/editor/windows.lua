@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Add animation for Neovim window actions.
+  ---@module "windows"
   "anuvyklack/windows.nvim",
   dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
 

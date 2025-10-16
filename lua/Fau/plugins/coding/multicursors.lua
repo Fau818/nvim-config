@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Multi-cursor support in Neovim.
+  ---@module "multicursors"
   "smoka7/multicursors.nvim",
   dependencies = "nvimtools/hydra.nvim",
   cond = true,
@@ -19,7 +20,6 @@ return {
     },
   },
 
-  ---@module "multicursors"
   ---@type Config
   opts = {
     DEBUG_MODE = false,

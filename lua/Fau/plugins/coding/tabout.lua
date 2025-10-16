@@ -1,12 +1,12 @@
 ---@type LazySpec
 return {
   -- DESC: Press <TAB> to jump out of brakets.
+  ---@module "tabout.nvim"
   "abecodes/tabout.nvim",
   dependencies = "nvim-treesitter/nvim-treesitter",
   cond = true,
   event = { "InsertEnter", "CmdlineEnter" },
 
-  ---@module "tabout.nvim"
   ---@type TaboutOptions
   opts = {
     tabkey            = "<Tab>",      -- key to trigger tabout, set to an empty string to disable

@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Indent guide line with animation.
+  ---@module "mini.indentscope"
   "echasnovski/mini.indentscope",
   event = { "BufReadPost", "BufNewFile" },
 
@@ -20,7 +21,6 @@ return {
     })
   end,
 
-  ---@module "mini.indentscope"
   opts = {
     draw = {
       delay = 100,

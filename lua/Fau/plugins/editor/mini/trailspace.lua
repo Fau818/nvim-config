@@ -1,7 +1,7 @@
 ---@type LazySpec
-return
-{
+return {
   -- DESC: Auto remove trailing whitespaces and empty lines.
+  ---@module "mini.trailspace"
   "echasnovski/mini.trailspace",
   event = "BufWritePre",
 
@@ -19,6 +19,5 @@ return
     })
   end,
 
-  ---@module "mini.trailspace"
   opts = { only_in_normal_buffers = true },
 }

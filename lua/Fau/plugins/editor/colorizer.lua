@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Colorizer for showing color.
+  ---@module "colorizer"
   "catgoose/nvim-colorizer.lua",
   event = { "BufReadPost", "BufNewFile" },
 

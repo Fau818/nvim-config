@@ -1,6 +1,7 @@
 -- =============================================
 -- ========== Plugin Configurations
 -- =============================================
+---@module "tokyonight"
 local tokyonight = require("tokyonight")
 Fau_vim.colors.tokyonight = require("tokyonight.colors.moon")
 
@@ -11,7 +12,6 @@ local function comment_style()
   return { italic = true }
 end
 
----@module "tokyonight"
 ---@type tokyonight.Config
 local config = {
   style           = "moon",  ---@type "moon" | "storm" | "night"

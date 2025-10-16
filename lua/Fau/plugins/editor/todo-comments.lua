@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Highlight the TODO comment-liked things.
+  ---@module "todo-comments"
   "folke/todo-comments.nvim",
   dependencies = "nvim-lua/plenary.nvim",
 

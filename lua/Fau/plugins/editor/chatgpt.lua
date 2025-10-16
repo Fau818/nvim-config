@@ -3,6 +3,7 @@ local openai_model = "gpt-5-mini"
 
 ---@type LazySpec
 return {
+  ---@module "chatgpt"
   "jackMort/ChatGPT.nvim",
   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim", "folke/trouble.nvim", "nvim-telescope/telescope.nvim" },
 

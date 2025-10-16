@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Support Yazi file browser in Neovim.
+  ---@module "yazi"
   "mikavilpas/yazi.nvim",
   dependencies = "nvim-lua/plenary.nvim",
 

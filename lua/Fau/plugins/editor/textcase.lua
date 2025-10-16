@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Convert text case in Neovim.
+  ---@module "textcase"
   "johmsalas/text-case.nvim",
   dependencies = "nvim-telescope/telescope.nvim",
   cond = true,

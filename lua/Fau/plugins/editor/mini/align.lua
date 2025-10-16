@@ -1,12 +1,12 @@
 ---@type LazySpec
 return {
   -- DESC: Align text interactively.
+  ---@module "mini.align"
   "echasnovski/mini.align",
   dependencies = "nvim-treesitter/nvim-treesitter",
   keys = { { "<LEADER>a", mode = "x", desc = "Edit: Align Text with Preview" }, { "<LEADER>A", mode = "x", desc = "Edit: Align Text" } },
   cond = true,
 
-  ---@module "mini.align"
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {

@@ -27,6 +27,7 @@ return {
 
   {
     -- DESC: A floating window markdown previewer for Neovim.
+    ---@module "glow"
     "ellisonleao/glow.nvim",
     config = function()
       local config = {
@@ -44,7 +45,7 @@ return {
   },
 
   {
-    -- DESC:
+    -- DESC: A markdown previewer using a web browser.
     "iamcco/markdown-preview.nvim",
     build = "cd app && yarn install",
     init = function()

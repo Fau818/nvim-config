@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Smartly move lines or selections.
+  ---@module "mini.move"
   "echasnovski/mini.move",
   keys = {
     { "<A-h>", mode = "x",          desc = "Move: Selections Left" },
@@ -10,7 +11,6 @@ return {
   },
   cond = true,
 
-  ---@module "mini.move"
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {

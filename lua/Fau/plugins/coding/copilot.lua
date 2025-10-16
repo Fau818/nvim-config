@@ -1,13 +1,13 @@
 ---@type LazySpec
 return {
   -- DESC: Github copilot supporter.
+  ---@module "copilot.lua"
   "zbirenbaum/copilot.lua",
   enabled = Fau_vim.plugin.copilot.enable,
 
   event = { "InsertEnter", "CmdlineEnter" },
   cmd   = "Copilot",
 
-  ---@module "copilot.lua"
   ---@type CopilotConfig
   opts = {
     panel = {

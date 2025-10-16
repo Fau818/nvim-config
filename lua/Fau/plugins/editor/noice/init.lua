@@ -1,12 +1,13 @@
 ---@type LazySpec
 return {
   -- DESC: A fancy UI provider.
+  ---@module "noice"
   "folke/noice.nvim",
   dependencies = {
     "MunifTanjim/nui.nvim",
     {
-      "rcarriga/nvim-notify",
       ---@module "notify"
+      "rcarriga/nvim-notify",
       ---@type notify.Config
       opts ={
         level = vim.log.levels.INFO,
@@ -51,7 +52,6 @@ return {
     end, { desc = "Editor: Scroll Up" })
   end,
 
-  ---@module "noice"
   ---@type NoiceConfig
   opts = {
     cmdline   = require("Fau.plugins.editor.noice.config.cmdline"),

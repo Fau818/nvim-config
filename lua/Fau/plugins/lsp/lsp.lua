@@ -1,3 +1,4 @@
+-- TODO: Add `@module` annotation for better lazy loading.
 -- TODO: Refactor
 -- DESC: This module is for language server protocol.
 

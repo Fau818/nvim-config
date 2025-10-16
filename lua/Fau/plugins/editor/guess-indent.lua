@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Detect file indentation automatically.
+  ---@module "guess-indent"
   "nmac427/guess-indent.nvim",
   event = "BufReadPre",
 

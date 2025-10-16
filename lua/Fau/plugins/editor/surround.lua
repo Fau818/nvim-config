@@ -1,7 +1,7 @@
 ---@type LazySpec
-return
-{
+return {
   -- DESC: Quickly add, modify, and remove surround.
+  ---@module "nvim-surround"
   "kylechui/nvim-surround",
   keys = {
     { "s",  mode = { "n", "x" }, desc = "+Surround" },

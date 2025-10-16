@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  ---@module "snacks"
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
@@ -14,7 +15,7 @@ return {
     input        = { enabled = true },
     picker       = { enabled = false },
     -- profiler     = { enabled = false, autocmds = false },
-    notifier     = { enabled = false },
+    notifier     = { enabled = true },  -- TODO: Didn't configured
     quickfile    = { enabled = false },
     scope        = require("Fau.plugins.editor.snacks.scope"),
     scroll       = { enabled = false },

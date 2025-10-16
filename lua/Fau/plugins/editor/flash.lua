@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: A snazzy jump plugin.
+  ---@module "flash"
   "folke/flash.nvim",
   cond = true,
   keys = {

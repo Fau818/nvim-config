@@ -1,10 +1,10 @@
 ---@type LazySpec
 return {
   -- DESC: Auto convert normal string to template string.
+  ---@module "template-string.nvim"
   "axelvc/template-string.nvim",
   ft = { "html", "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "svelte", "python", "cs" },
 
-  ---@module "template-string.nvim"
   opts = {
     filetypes = nil,  -- Use default filetypes.
     jsx_brackets = true,

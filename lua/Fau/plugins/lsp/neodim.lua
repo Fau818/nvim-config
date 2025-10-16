@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
+  ---@module "neodim"
   -- "zbirenbaum/neodim",
   -- TEMP: Use a forked version to fix the issue with Neovim 0.11
   "ALVAROPING1/neodim",

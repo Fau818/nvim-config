@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Quickfix list enhancer.
+  ---@module "trouble"
   "folke/trouble.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
