@@ -29,7 +29,7 @@ vim.g.maplocalleader = " "
 keymap({ "n", "x", "o" }, "H", "^",     opts("Goto: Line Begin"))
 keymap({ "n", "x", "o" }, "J", "5j",    opts("Goto: Five Lines Down"))
 keymap({ "n", "x", "o" }, "K", "5k",    opts("Goto: Five Lines Up"))
-keymap({ "n", "x", "o" }, "L", "<END>", opts("Goto: Line End"))
+keymap({ "n", "x", "o" }, "L", "g_", opts("Goto: Line End"))
 
 
 

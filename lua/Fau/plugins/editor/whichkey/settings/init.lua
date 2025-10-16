@@ -1,4 +1,3 @@
--- TODO : Refactor this
 local whichkey = require("which-key")
 
 whichkey.add(require("Fau.plugins.editor.whichkey.settings.basic"))
