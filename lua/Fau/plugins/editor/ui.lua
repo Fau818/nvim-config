@@ -52,26 +52,6 @@ return {
   },
 
 
-  -- ==================== Scroll Bar ====================
-    {
-    -- DESC: A nice scrollbar.
-    "lewis6991/satellite.nvim",
-    config = function() require("Fau.configs.editor.ui.satellite") end,
-    event = "UIEnter",
-    enabled = vim.fn.has("nvim-0.10") == 1,
-  },
-
-
-  -- ==================== Status Column and Folding ====================
-  {
-    -- DESC: Statusline enhancer.
-    "luukvbaal/statuscol.nvim",
-    config = function() require("Fau.configs.editor.ui.statuscol") end,
-    event = "UIEnter",
-    enabled = vim.fn.has("nvim-0.10") == 1,
-  },
-
-
   -- ==================== Git ====================
   {
     -- DESC: Git integration for Neovim.
