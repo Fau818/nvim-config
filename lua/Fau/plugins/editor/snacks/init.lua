@@ -13,9 +13,9 @@ return {
     explorer     = { enabled = false },
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = { enabled = true },
-    picker       = { enabled = false },
+    picker       = require("Fau.plugins.editor.snacks.picker"),
     -- profiler     = { enabled = false, autocmds = false },
-    notifier     = { enabled = true },  -- TODO: Didn't configured
+    notifier     = { enabled = false },  -- TODO: Didn't configured
     quickfile    = { enabled = false },
     scope        = require("Fau.plugins.editor.snacks.scope"),
     scroll       = { enabled = false },

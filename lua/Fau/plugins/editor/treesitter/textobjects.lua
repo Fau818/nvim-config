@@ -4,15 +4,16 @@ return {
     lookahead = true,  -- automatically jump forward to textobj, similar to targets.vim
 
     keymaps = {
+      -- NOTE: Manually set in lua/Fau/plugins/editor/treesitter/init.lua
       -- You can use the capture groups defined in textobjects.scm
-      ["af"] = { query = "@function.outer", desc = "Range: Around Function" },
-      ["if"] = { query = "@function.inner", desc = "Range: Inner Function" },
-
-      ["ac"] = { query = "@class.outer", desc = "Range: Around Class" },
-      ["ic"] = { query = "@class.inner", desc = "Range: Inner Class" },
-
-      ["as"] = { query = "@conditional.outer", desc = "Range: Around Scope" },
-      ["is"] = { query = "@conditional.inner", desc = "Range: Inner Scope" },
+      -- ["af"] = { query = "@function.outer", desc = "Range: Around Function" },
+      -- ["if"] = { query = "@function.inner", desc = "Range: Inner Function" },
+      --
+      -- ["ac"] = { query = "@class.outer", desc = "Range: Around Class" },
+      -- ["ic"] = { query = "@class.inner", desc = "Range: Inner Class" },
+      --
+      -- ["as"] = { query = "@conditional.outer", desc = "Range: Around Scope" },
+      -- ["is"] = { query = "@conditional.inner", desc = "Range: Inner Scope" },
     },
 
     selection_modes = {

@@ -56,8 +56,8 @@ return {
   -- -----------------------------------
   mode = {
     function()
-      local mode = vim.api.nvim_get_mode()["mode"]:sub(1, 1):lower()
-      if mode == "" then mode = "v" end
+      local mode = vim.fn.mode():sub(1, 1):lower()
+      if mode == "\22" then mode = "v" end
       local icon = Fau_vim.icons.mode[mode] or Fau_vim.icons.mode.vim
       return icon
     end,

@@ -79,7 +79,7 @@ return {
     presets = {
       bottom_search           = false,  -- use a classic bottom cmdline for search
       command_palette         = false,  -- position the cmdline and popupmenu together
-      long_message_to_split   = true,   -- long messages will be sent to a split
+      long_message_to_split   = false,  -- long messages will be sent to a split
       inc_rename              = true,   -- enables an input dialog for inc-rename.nvim [entrust in cmdline.lua file]
       lsp_doc_border          = false,  -- add a border to hover docs and signature help
       cmdline_output_to_split = false,  -- send the output of a command you executed in the cmdline to a split

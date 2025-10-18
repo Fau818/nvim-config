@@ -13,9 +13,10 @@ end
 local fix_comment_hl_ns_id = vim.api.nvim_create_namespace("fix_comment_hl")
 vim.api.nvim_set_hl(fix_comment_hl_ns_id, "@comment", { link = "Comment" })
 
----@param win_id? integer -- Window ID, default: 0 (current window)
+---@param win_id? number -- Window ID, default: 0 (current window)
 Fau_vim.functions.colorscheme.fix_comment_hl = function(win_id)
   win_id = win_id or 0
+  ---@diagnostic disable-next-line: param-type-mismatch
   vim.api.nvim_win_set_hl_ns(win_id, fix_comment_hl_ns_id)
 end
 

@@ -8,24 +8,16 @@ return {
   -- ========== LSP Manager
   -- =============================================
   {
-    -- DESC: quickstart config LSP in Neovim.
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "folke/neoconf.nvim",
-    },
+    -- DESC: a bridge between lspconfig and mason.nvim for making things easier.
     init = function()
       if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(true) end
       require("Fau.core.lsp.diagnostics_config")
-      require("Fau.core.lsp.lspconfig")
+      vim.api.nvim_create_autocmd("FileType", {
+        group = "Fau_vim",
+        pattern = "*",
+        callback = function() vim.schedule(function() Fau_vim.functions.lsp.setup_by_ft() end) end,
+      })
     end,
-    event = "BufReadPre",
-    cmd = "LspInfo",
-    keys = { { "<LEADER>li", "<CMD>LspInfo<CR>", desc = "LSP: Show Info" } },
-  },
-
-  {
-    -- DESC: a bridge between lspconfig and mason.nvim for making things easier.
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       {
@@ -36,8 +28,9 @@ return {
         keys = { { "<LEADER>lI", "<CMD>Mason<CR>", desc = "LSP: Show Mason" } },
       },
     },
+    keys = { { "<LEADER>li", "<CMD>checkhealth vim.lsp<CR>", desc = "LSP: Show Info" } },
     config = function() require("Fau.core.lsp.mason-lspconfig") end,
-    lazy = true,  -- loaded by nvim-lspconfig
+    lazy = true,  -- TODO: QAQ
   },
 
   {
@@ -54,14 +47,6 @@ return {
       require("lazydev").setup({ library = plugins })
     end,
     ft = "lua",
-  },
-
-  {
-    -- DESC: config LSP in json file.
-    "folke/neoconf.nvim",
-    config = function() require("Fau.core.lsp.neoconf") end,
-    cmd = "Neoconf",
-    lazy = true,  -- loaded by nvim-lspconfig
   },
 
 
@@ -90,7 +75,7 @@ return {
     -- DESC: Show symbol outline.
     "stevearc/aerial.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-    config = function() require("Fau.core.aerial")end,
+    config = function() require("Fau.core.aerial") end,
     cmd = { "AerialToggle", "AerialNavToggle" },
     keys = {
       { "<LEADER>lo", "<CMD>AerialToggle<CR>",    desc = "Symbol Outline: Toggle" },
@@ -102,6 +87,6 @@ return {
     -- DESC: Show references, definitions and implementations of symbols.
     "Wansmer/symbol-usage.nvim",
     config = function() require("Fau.core.symbol-usage") end,
-    event = vim.fn.has("nvim-0.10") == 1 and "LspAttach" or "BufReadPre",
+    event  = "LspAttach",
   },
 }

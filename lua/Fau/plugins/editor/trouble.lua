@@ -60,7 +60,6 @@ return {
         type = "main",
         scratch = true,
         on_mount = function(self)
-          ---@diagnostic disable-next-line: param-type-mismatch
           Fau_vim.functions.colorscheme.fix_comment_hl(self.win)
           vim.w.snacks_indent = true
         end,

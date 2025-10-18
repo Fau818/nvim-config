@@ -67,7 +67,7 @@ end
 function M.smart_visual_mode()
   local mode = vim.fn.mode()
 
-  if mode == "" then
+  if mode == "\22" then
     local start_row, end_row = vim.fn.getpos("v")[2], vim.fn.getpos(".")[2]
     -- vim.notify(string.format("mode: %s start_row: %d, end_row: %d", mode, start_row, end_row))
     if start_row == end_row then Fau_vim.functions.utils.feedkeys("x", "v") end
