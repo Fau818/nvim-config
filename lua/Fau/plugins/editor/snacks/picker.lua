@@ -109,6 +109,7 @@ return {
         ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
         ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
         ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
+        ["<a-r>"] = { "toggle_regex", mode = { "i", "n" } },
         ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
         ["<a-w>"] = { "cycle_win", mode = { "i", "n" } },
@@ -202,7 +203,7 @@ return {
     },
     -- preview window
     preview = {
-      -- HACK: Need to modify `snacks.nvim/lua/snacks/picker/core/preview.lua` from moving `opts.win.preview` as the last element.
+      -- HACK: Need to modify `snacks.nvim/lua/snacks/picker/core/preview.lua:88` from moving `opts.win.preview` as the last element.
       on_win = function(win)
         -- Fau_vim.show(win)
         Fau_vim.functions.colorscheme.fix_comment_hl(win.win)

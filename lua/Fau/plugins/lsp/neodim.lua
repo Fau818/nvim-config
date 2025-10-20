@@ -9,7 +9,7 @@ return {
   event = "LspAttach",
 
   opts = {
-    alpha = 0.65,
+    alpha = 0.75,
     blend_color = nil,
     hide = { underline = true, virtual_text = true, signs = true },
     regex = { "[uU]nused", "[nN]ever [rR]ead", "[nN]ot [rR]ead", "[nN]ot [aA]ccessed" },

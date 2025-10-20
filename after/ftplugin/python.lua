@@ -7,4 +7,4 @@ vim.opt_local.shiftwidth  = 0
 
 -- LSP settings
 Fau_vim.lsp.packages.python = { "pylance", "ruff" }
-if vim.fn.executable("pylance") == 1 then Fau_vim.functions.lsp.setup_server("pylance") end
+if not vim.lsp.is_enabled("pylance") and vim.fn.executable("pylance") == 1 then Fau_vim.lsp.setup_server("pylance") end

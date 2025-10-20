@@ -16,6 +16,8 @@ return {
     ---@module "nvim-treesitter-textobjects"
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = "nvim-treesitter/nvim-treesitter",
+    cond = true,
+    event = { "BufReadPost", "BufNewFile" },
     init = function()
       local function set_keymap(lhs, query_string, bufnr)
         local to_select = require("nvim-treesitter.textobjects.select")

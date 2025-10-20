@@ -13,6 +13,6 @@ return {
     desc = "LSP: Format Code (Smart)",
     mode = "x",
   },
-  -- TODO: Rename? in current buffer?
-  { "<LEADER>lR", Fau_vim.functions.lsp.restart_lsp, desc = "Restart LSP in All Buffers" },
+
+  { "<LEADER>lR", Fau_vim.lsp.restart_lsp, desc = "Restart LSP for Current Buffer" },
 }

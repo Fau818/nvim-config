@@ -11,7 +11,15 @@ return {
     preset = "classic",  ---@type false | "classic" | "modern" | "helix"
     -- delay  = nil,  -- Use default.
     -- filter = nil,  -- Use default.
-    -- spec   = nil,  ---@type wk.Spec
+
+    ---@type wk.Spec
+    spec = {
+      -- TODO: Refator
+      require("Fau.plugins.editor.whichkey.settings.basic"),
+      require("Fau.plugins.editor.whichkey.settings.lsp"),
+      require("Fau.plugins.editor.whichkey.settings.git"),
+    },
+
     notify = true,
 
     ---@type wk.Spec
@@ -69,15 +77,5 @@ return {
     },
 
     debug = false,  -- enable wk.log in the current directory
-  },
-
-  config = function(_, opts)
-    local whichkey = require("which-key")
-    whichkey.setup(opts)
-
-    -- TODO: Refator settings.
-    whichkey.add(require("Fau.plugins.editor.whichkey.settings.basic"))
-    whichkey.add(require("Fau.plugins.editor.whichkey.settings.lsp"))
-    whichkey.add(require("Fau.plugins.editor.whichkey.settings.git"))
-  end,
+  }
 }
