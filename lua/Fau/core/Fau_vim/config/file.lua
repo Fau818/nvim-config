@@ -1,5 +1,5 @@
 return {
-  large_file_size = 1024 * 512,  -- 512KiB
+  large_file_size = 1024 * 1024,  -- 1MiB
   large_file_line = 2000,
 
   excluded_filetypes = {  -- NOTE: Please keep the `""` as the first element.
@@ -23,7 +23,7 @@ return {
     "bigfile", "image",
     "terminal", "toggleterm",
     "trouble",
-    "TelescopePrompt",
+    "TelescopePrompt", "TelescopeResults",
     "packer", "lazy", "yazi",
   },
   excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix" },

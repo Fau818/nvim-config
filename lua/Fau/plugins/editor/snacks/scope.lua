@@ -17,7 +17,7 @@ return {
   filter = function(buf) return vim.bo[buf].buftype == "" and vim.b[buf].snacks_scope ~= false and vim.g.snacks_scope ~= false end,
 
   -- debounce scope detection in ms
-  debounce = 30,
+  debounce = Fau_vim.settings.debounce.indentscope,
 
   treesitter = {
     -- detect scope based on treesitter.

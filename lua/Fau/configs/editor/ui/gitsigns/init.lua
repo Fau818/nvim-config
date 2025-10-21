@@ -41,14 +41,14 @@ local config = {
     virt_text = true,
     virt_text_pos = "eol",  ---@type "eol" | "overlay" | "right_align"
     virt_text_priority = 100,
-    delay = 500,
+    delay = Fau_vim.settings.debounce.git_blame,
     ignore_whitespace = true,  -- whether to ignore the whitespace when checking
   },
   -- current_line_blame_formatter = "<author>, <author_time:%Y/%m/%d>, <committer_time:%H:%M> • <summary>",
   current_line_blame_formatter = "<author>, <author_time:%R> • <summary>",
 
-  sign_priority = Fau_vim.settings.sign_priority.gitsigns,  -- set 12 to cover diagnostic
-  update_debounce = 100,
+  sign_priority = Fau_vim.settings.sign_priority.gitsigns,
+  update_debounce = Fau_vim.settings.debounce.gitsigns,
   -- status_formatter = nil,  -- Use default
   max_file_length = Fau_vim.file.large_file_line,  -- Disable if file is longer than this (in lines)
 

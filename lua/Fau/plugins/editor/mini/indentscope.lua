@@ -23,7 +23,7 @@ return {
 
   opts = {
     draw = {
-      delay = 100,
+      delay = Fau_vim.settings.debounce.indentscope,
       animation = nil,  -- Use default.
       predicate = nil,  -- Use default.
       priority = 2,

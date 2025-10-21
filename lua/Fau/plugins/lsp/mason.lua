@@ -8,8 +8,9 @@ return {
     keys = { { "<LEADER>li", "<CMD>checkhealth vim.lsp<CR>", desc = "LSP: Show Info" } },
 
     init = function()
-      if vim.fn.has("nvim-0.10") == 1 then vim.lsp.inlay_hint.enable(true) end
+      Fau_vim.lsp = require("Fau.core.Fau_vim.config.lsp")
       require("Fau.core.lsp.diagnostics_config")
+      vim.lsp.inlay_hint.enable(true)
 
       vim.api.nvim_create_autocmd("FileType", {
         group = "Fau_vim",

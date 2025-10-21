@@ -14,5 +14,5 @@ return {
     mode = "x",
   },
 
-  { "<LEADER>lR", Fau_vim.lsp.restart_lsp, desc = "Restart LSP for Current Buffer" },
+  { "<LEADER>lR", function() Fau_vim.lsp.restart_lsp() end, desc = "Restart LSP for Current Buffer" },
 }

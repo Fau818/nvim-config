@@ -34,7 +34,7 @@ local config = {
     cursorline = true,
     cursorlineopt = "both",
 
-    debounce_delay = 15,
+    debounce_delay = Fau_vim.settings.debounce.explore,
     centralize_selection = false,
     preserve_window_proportions = false,
 
@@ -131,7 +131,7 @@ local config = {
     enable = true,
     show_on_dirs = false,
     show_on_open_dirs = false,
-    debounce_delay = 50,
+    debounce_delay = Fau_vim.settings.debounce.diagnostics,
     severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
     icons = {
       hint    = Fau_vim.icons.diagnostics.BoldHint,
@@ -143,7 +143,7 @@ local config = {
 
   modified = { enable = true, show_on_dirs = false, show_on_open_dirs = false },
 
-  filesystem_watchers = { enable = true, debounce_delay = 50, ignore_dirs = {} },
+  filesystem_watchers = { enable = true, debounce_delay = Fau_vim.settings.debounce.explore, ignore_dirs = {} },
 
   actions = {
     use_system_clipboard = true,

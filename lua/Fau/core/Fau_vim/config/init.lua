@@ -12,4 +12,4 @@ Fau_vim.settings = require("Fau.core.Fau_vim.config.settings")
 
 Fau_vim.file     = require("Fau.core.Fau_vim.config.file")
 Fau_vim.plugin   = require("Fau.core.Fau_vim.config.plugin")
-Fau_vim.lsp      = require("Fau.core.Fau_vim.config.lsp")
+Fau_vim.lsp      = {}  -- SEE: Loaded when mason.nvim is ready.

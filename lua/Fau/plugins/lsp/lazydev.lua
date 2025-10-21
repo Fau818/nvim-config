@@ -11,6 +11,7 @@ return {
       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       "lazy.nvim",
       "snacks.nvim",
+      { "which-key.nvim", words = { "wk%." } },
     },
   },
 }

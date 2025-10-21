@@ -30,7 +30,7 @@ return {
       enabled = true,
       auto_trigger = true,
       hide_during_completion = true,
-      debounce = 50,
+      debounce = Fau_vim.settings.debounce.copilot,
       trigger_on_accept = true,
       keymap = {
         accept = "<TAB>",

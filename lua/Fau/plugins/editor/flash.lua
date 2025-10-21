@@ -5,7 +5,6 @@ return {
   "folke/flash.nvim",
   cond = true,
   keys = {
-    { ";" }, { "," },
     { "f", mode = { "n", "x", "o" } }, { "F", mode = { "n", "x", "o" } },
     { "t", mode = { "n", "x", "o" } }, { "T", mode = { "n", "x", "o" } },
 
@@ -60,7 +59,8 @@ return {
         jump_labels = true,  -- show jump labels
         multi_line = true,  -- set to `false` to use the current line only
         label = { exclude = "hjkliardcs" },
-        keys = { "f", "F", "t", "T", ";", "," },
+        -- keys = { "f", "F", "t", "T", ";", "," },
+        keys = { "f", "F", "t", "T" },  -- Conflict with dashboard.
         char_actions = nil,  -- Use default.
         search = { wrap = false },
         highlight = { backdrop = true },

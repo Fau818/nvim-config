@@ -196,7 +196,7 @@ return {
 
       if copilot_active then
         -- language_servers = language_servers .. "%#SLCopilot#" .. " " .. Fau_vim.icons.kind.Copilot .. "%*"
-        language_servers = ("%s %s"):format(language_servers, Fau_vim.icons.kind.Copilot)
+        language_servers = ("%s %s"):format(language_servers, Fau_vim.icons.kinds.Copilot)
       end
 
       return language_servers == "[]" and "LS Empty" or language_servers

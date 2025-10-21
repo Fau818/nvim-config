@@ -35,20 +35,21 @@ function M._install_missing_packages(filetype)
   local mason_registry = require("mason-registry")
 
   for _, lsp_name in ipairs(package_list) do
-    local package_name = mason_lspconfig.get_mappings().lspconfig_to_package[lsp_name]
-    if lsp_name == "pylance" then package_name = "pylance" end  -- HACK: mason-lspconfig does not have mapping for pylance.
+    -- NOTE: lsp_name and package_name may be different and confusing, so handle both.
+    local package_name = mason_lspconfig.get_mappings().lspconfig_to_package[lsp_name] or lsp_name
+    lsp_name = mason_lspconfig.get_mappings().package_to_lspconfig[package_name] or package_name
 
     local pkg = mason_registry.get_package(package_name)
 
     if not pkg:is_installed() then
       if not pkg:is_installing() then
-        Fau_vim.notify(("Mason: installing %s ..."):format(lsp_name))
+        Fau_vim.notify(("Mason: installing %s ..."):format(package_name))
         pkg:install({}, function(success, err)
           if success then
-            Fau_vim.notify(("Mason: %s was successfully installed"):format(lsp_name))
+            Fau_vim.notify(("Mason: %s was successfully installed"):format(package_name))
             vim.schedule(function() M.setup_server(lsp_name) end)
           else
-            Fau_vim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(lsp_name), vim.log.levels.ERROR)
+            Fau_vim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(package_name), vim.log.levels.ERROR)
             M.configured_ft[filetype] = false  -- Mark as not configured due to installation failure.
           end
         end)

@@ -149,7 +149,7 @@ return {
         indent = nil,
         folder_closed = nil,
         folder_open   = nil,
-        kinds = Fau_vim.icons.kind,
+        kinds = Fau_vim.icons.kinds,
       },
     }
 

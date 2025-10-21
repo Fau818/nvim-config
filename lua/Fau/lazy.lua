@@ -38,7 +38,14 @@ local config = {
   },
 
   -- leave nil when passing the spec as the first argument to setup()
-  spec = "Fau.plugins",  ---@type LazySpec
+  ---@type LazySpec
+  spec = {
+    { import = "Fau.plugins" },
+    { import = "Fau.plugins.editor" },
+    { import = "Fau.plugins.coding" },
+    { import = "Fau.plugins.filetypes" },
+    { import = "Fau.plugins.lsp" },
+  },
   local_spec = true,
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",  -- lockfile generated after running update.
   ---@type number limit the maximum amount of concurrent tasks
