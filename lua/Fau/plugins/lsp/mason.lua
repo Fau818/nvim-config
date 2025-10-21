@@ -9,15 +9,14 @@ return {
 
     init = function()
       Fau_vim.lsp = require("Fau.core.Fau_vim.config.lsp")
-      require("Fau.core.lsp.diagnostics_config")
-      vim.lsp.inlay_hint.enable(true)
 
+      vim.lsp.inlay_hint.enable(true)
       vim.api.nvim_create_autocmd("FileType", {
         group = "Fau_vim",
         pattern = "*",
         callback = function(args)
           if vim.bo[args.buf].buftype ~= "" then return end
-          vim.schedule(function() Fau_vim.lsp.setup_by_ft(args.match) end)
+          Fau_vim.lsp.setup_by_ft(args.match)
         end,
       })
     end,

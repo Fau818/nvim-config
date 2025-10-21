@@ -7,7 +7,16 @@ local M = {}
 M.configured_ft = {}
 
 ---@type table<string, string[]> Auto installed LSP servers for specific filetypes
-M.packages = {}
+M.packages = {
+  docker     = { "dockerfile-language-server" },
+  dockerfile = { "dockerfile-language-server" },
+  go         = { "gopls" },
+  html       = { "html-lsp" },
+  json       = { "json-lsp" },
+  lua        = { "lua-language-server" },
+  python     = { "pylance", "ruff" },
+  yaml       = { "yaml-language-server" },
+}
 
 
 
@@ -47,7 +56,7 @@ function M._install_missing_packages(filetype)
         pkg:install({}, function(success, err)
           if success then
             Fau_vim.notify(("Mason: %s was successfully installed"):format(package_name))
-            vim.schedule(function() M.setup_server(lsp_name) end)
+            M.setup_server(lsp_name)
           else
             Fau_vim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(package_name), vim.log.levels.ERROR)
             M.configured_ft[filetype] = false  -- Mark as not configured due to installation failure.
@@ -78,7 +87,7 @@ function M.setup_server(server, opts)
 
   -- setup LSP
   vim.lsp.config(server, opts)
-  if not vim.lsp.is_enabled(server) then vim.lsp.enable(server, true) end
+  if not vim.lsp.is_enabled(server) then vim.schedule(function() vim.lsp.enable(server, true) end) end
 end
 
 

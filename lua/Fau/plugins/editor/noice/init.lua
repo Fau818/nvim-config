@@ -32,7 +32,7 @@ return {
           ERROR = Fau_vim.icons.diagnostics.BoldError,
           INFO  = Fau_vim.icons.diagnostics.BoldInfo,
           TRACE = Fau_vim.icons.diagnostics.Trace,
-          WARN  = Fau_vim.icons.diagnostics.BoldWarning,
+          WARN  = Fau_vim.icons.diagnostics.BoldWarn,
         },
       },
       enabled = true,  -- TODO: Deprecated it, use `Snacks.notifier` instead.

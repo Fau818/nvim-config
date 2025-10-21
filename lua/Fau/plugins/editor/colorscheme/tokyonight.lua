@@ -89,8 +89,8 @@ local config = {
 
 
     -- ==================== Diagnostics ====================
-    highlights["ErrorLine"]   = { bg = Fau_vim.colors.diagnostic.error }
-    highlights["WarningLine"] = { bg = Fau_vim.colors.diagnostic.warn }
+    highlights["ErrorLine"] = { bg = Fau_vim.colors.diagnostic.error }
+    -- highlights["WarnLine"]  = { bg = Fau_vim.colors.diagnostic.warn }
     -- highlights["InfoLine"]    = { bg = Fau_vim.colors.diagnostic.info }
     -- highlights["HintLine"]    = { bg = Fau_vim.colors.diagnostic.hint }
 

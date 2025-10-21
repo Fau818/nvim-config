@@ -72,10 +72,10 @@ return {
 
   -- ==================== Diagnostics ====================
   diagnostics = {
-    BoldError   = "", Error   = "",
-    BoldWarning = "", Warning = "",
-    BoldInfo    = "", Info    = "",
-    BoldHint    = "󰌵", Hint    = "󰌶",
+    BoldError = "", Error = "",
+    BoldWarn  = "", Warn  = "",
+    BoldInfo  = "", Info  = "",
+    BoldHint  = "󰌵", Hint  = "󰌶",
     -- BoldQuestion = "", Question = "",  -- unused
     -- Other = "",
     Debug = "",

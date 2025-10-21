@@ -2,9 +2,9 @@ return {
   sign_priority = {
     default = 10,
 
-    diagnostics = 11,  -- FIXME: It seems diagnostic is 13
-    gitsigns = 14,
-    todo_comments = 10,
+    diagnostics = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
+    gitsigns = 12,
+    todo_comments = 11,
   },
 
 

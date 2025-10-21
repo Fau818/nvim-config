@@ -53,7 +53,7 @@ local config = {
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local show = ""
       for diagnostics, cou in pairs(diagnostics_dict) do
-        local icon = (diagnostics == "error" and Fau_vim.icons.diagnostics.Error) or (diagnostics == "warning" and Fau_vim.icons.diagnostics.Warning)
+        local icon = (diagnostics == "error" and Fau_vim.icons.diagnostics.Error) or (diagnostics == "warning" and Fau_vim.icons.diagnostics.Warn)
         if icon then show = ("%s%s %d "):format(show, icon, cou) end
       end
       return show

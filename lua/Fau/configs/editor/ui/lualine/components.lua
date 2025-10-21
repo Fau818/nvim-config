@@ -160,7 +160,7 @@ return {
     sources = { "nvim_diagnostic" },
     symbols = {
       error = Fau_vim.icons.diagnostics.Error .. " ",
-      warn  = Fau_vim.icons.diagnostics.Warning .. " ",
+      warn  = Fau_vim.icons.diagnostics.Warn .. " ",
       info  = Fau_vim.icons.diagnostics.Info .. " ",
       hint  = Fau_vim.icons.diagnostics.Hint .. " ",
     },

@@ -6,10 +6,12 @@ Fau_vim.os_name = vim.fn.system("uname"):gsub("\n", "")
 
 
 -- ==================== General ====================
-Fau_vim.icons    = require("Fau.core.Fau_vim.config.icons")
-Fau_vim.colors   = require("Fau.core.Fau_vim.config.colors")
-Fau_vim.settings = require("Fau.core.Fau_vim.config.settings")
+Fau_vim.icons      = require("Fau.core.Fau_vim.config.icons")
+Fau_vim.colors     = require("Fau.core.Fau_vim.config.colors")
+Fau_vim.settings   = require("Fau.core.Fau_vim.config.settings")
 
-Fau_vim.file     = require("Fau.core.Fau_vim.config.file")
-Fau_vim.plugin   = require("Fau.core.Fau_vim.config.plugin")
-Fau_vim.lsp      = {}  -- SEE: Loaded when mason.nvim is ready.
+Fau_vim.file       = require("Fau.core.Fau_vim.config.file")
+Fau_vim.plugin     = require("Fau.core.Fau_vim.config.plugin")
+
+Fau_vim.diagnostic = require("Fau.core.Fau_vim.config.diagnostic")
+Fau_vim.lsp        = {}  -- SEE: Loaded when mason.nvim is ready.
