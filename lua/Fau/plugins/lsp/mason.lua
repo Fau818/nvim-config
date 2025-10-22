@@ -8,7 +8,7 @@ return {
     keys = { { "<LEADER>li", "<CMD>checkhealth vim.lsp<CR>", desc = "LSP: Show Info" } },
 
     init = function()
-      Fau_vim.lsp = require("Fau.core.Fau_vim.config.lsp")
+      Fau_vim.lsp = require("Fau.config.lsp")
 
       vim.lsp.inlay_hint.enable(true)
       vim.api.nvim_create_autocmd("FileType", {
@@ -45,7 +45,7 @@ return {
 
       registries = {
         "github:mason-org/mason-registry",
-        "lua:Fau.core.lsp.custom_source",
+        "lua:Fau.lsp.custom_source",
       },
 
       providers = nil,  -- Use default.

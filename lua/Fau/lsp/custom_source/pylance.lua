@@ -2,7 +2,7 @@ local Pkg  = require("mason-core.package")
 local path = require("mason-core.path")
 
 -- Add pylance to vim.lsp.config
-if not vim.lsp.config.pylance then vim.lsp.config.pylance = require("Fau.core.lsp.settings.pylance_default") end
+if not vim.lsp.config.pylance then vim.lsp.config.pylance = require("Fau.lsp.settings.pylance_default") end
 
 ---@param ctx InstallContext
 local function installer(ctx)

@@ -51,7 +51,7 @@ return {
 
       format = {        -- Settings for configuring the built-in code formatter.
         enable = true,  -- Enable code formatter.
-        defaultConfig = require("Fau.core.lsp.settings.lua_ls.format_config"),
+        defaultConfig = require("Fau.lsp.settings.lua_ls.format_config"),
       },
 
       hint = {              -- Settings for configuring inline hints

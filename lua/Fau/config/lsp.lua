@@ -75,14 +75,8 @@ function M.setup_server(server, opts)
   opts = opts or {}
   opts = vim.tbl_deep_extend("force", { on_attach = M._on_attach }, opts)
 
-  if server == "pylance" then
-    opts.before_init = function(_, config)
-      config.settings.python.pythonPath = vim.fn.exepath("python3")
-    end
-  end
-
   -- load custom settings
-  local settings_ok, setting_opts = pcall(require, "Fau.core.lsp.settings." .. server)
+  local settings_ok, setting_opts = pcall(require, "Fau.lsp.settings." .. server)
   if settings_ok then opts = vim.tbl_deep_extend("force", opts, setting_opts) end
 
   -- setup LSP
