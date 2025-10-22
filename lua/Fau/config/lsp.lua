@@ -8,6 +8,7 @@ M.configured_ft = {}
 
 ---@type table<string, string[]> Auto installed LSP servers for specific filetypes
 M.packages = {
+  sh         = { "bash-language-server" },
   docker     = { "dockerfile-language-server" },
   dockerfile = { "dockerfile-language-server" },
   go         = { "gopls" },

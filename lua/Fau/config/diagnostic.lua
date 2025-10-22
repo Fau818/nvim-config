@@ -3,6 +3,23 @@ local M = {}
 M.virtual_text = true
 M.virtual_lines = false
 
+
+---Smart show diagnostic message.
+---@param diagnostic vim.Diagnostic
+function M.smart_format(diagnostic)
+  local source, message, code = diagnostic.source, diagnostic.message, diagnostic.code
+  if source and code then
+    return ("%s: %s [%s]"):format(source, message, code)
+  elseif source and not code then
+    return ("%s: %s"):format(source, message)
+  elseif not source and code then
+    return ("%s [%s]"):format(message, code)
+  else  -- not source and not code
+    return message
+  end
+end
+
+
 function M._setup()
   vim.diagnostic.config({
     update_in_insert = true,
@@ -28,14 +45,13 @@ function M._setup()
       format = function(diagnostic)  -- for show the error code
         -- EXIT: Virtual text is disabled.
         if not Fau_vim.diagnostic.virtual_text then return nil end
+        return M.smart_format(diagnostic)
 
-        local message = ("%s: %s [%s]"):format(diagnostic.source, diagnostic.message, diagnostic.code)
         -- Remove Pyright diagnostics
         -- TEMP: If not used in the future, remove this code. Oct 21, 2025.
         -- if diagnostic.source == "Pyright" or "Pylance" then return nil
         -- elseif diagnostic.source == "clang" then if diagnostic.message:sub(1, 6) == "Unused" then return nil end
         -- end
-        return message
       end,
     },
 
@@ -44,7 +60,7 @@ function M._setup()
       current_line = true,
       format = function(diagnostic)
         if not Fau_vim.diagnostic.virtual_lines then return nil end
-        return ("%s [%s]"):format(diagnostic.message, diagnostic.code)
+        return ("%s [%s]"):format(diagnostic.message, diagnostic.code or "N/A")
       end,
     },
 

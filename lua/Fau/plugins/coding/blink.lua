@@ -88,30 +88,12 @@ return {
       ["<C-b>"] = { "scroll_documentation_up", "scroll_signature_up", "fallback" },
     },
 
-    cmdline = {
-      enabled = true,
-      completion = {
-        menu = { auto_show = true },
-        list = { selection = { preselect = false, auto_insert = true } },
-      },
-      keymap = {
-        preset = "none",
-        ["<C-space>"] = { "show", "hide" },
-
-        ["<TAB>"]   = { "show_and_insert", "select_next", "fallback" },
-        ["<S-TAB>"] = { "show_and_insert", "select_prev", "fallback" },
-        ["<Up>"]    = { "select_prev", "fallback" },
-        ["<Down>"]  = { "select_next", "fallback" },
-
-        -- ["<ESC>"] = { "hide", "fallback" },
-        ["<C-c>"] = { "cancel", "fallback" },
-      },
-    },
-
-    appearance = { nerd_font_variant = "mono" },
     completion = {
-      accept = { auto_brackets = { enabled = true } },
+      keyword = { range = "prefix" },
+      trigger =  nil,  -- Use default.
       list = { selection = { preselect = true, auto_insert = false } },
+      accept = nil,  -- Use default.
+
       menu = {
         auto_show = true,
         -- BUG: If set `auto_show_delay_ms`, Neovim may crash when typing. !!!
@@ -129,34 +111,63 @@ return {
           },
         },
       },
+
       documentation = { auto_show = true, window = { border = "rounded" } },
-      keyword = { range = "prefix" },
-      ghost_text = { enabled = false },
+
+      ghost_text = { enabled = true, show_with_selection = true, show_without_selection = false, show_with_menu = true, show_without_menu = false },
     },
 
-    signature = { enabled = true, window = { show_documentation = true, border = "single" } },
+    signature = { enabled = true, window = { border = "single" } },
+    -- TODO: Configure it.
+    snippet = nil,  -- Use default.
+
+    appearance = { kind_icons = Fau_vim.icons.kinds },
+    fuzzy = nil,  -- Use default.
 
     sources = {
       default = {
         "copilot", "lsp",
         "snippets",
-        "conventional_commits",
         "env", "path",
         "buffer",
       },
-      per_filetype = { lua = { inherit_defaults = true, "lazydev" } },
+      per_filetype = {
+        lua       = { inherit_defaults = true, "lazydev" },
+        gitcommit = { inherit_defaults = true, "commits" },
+      },
       providers = {
-        copilot = { name = "copilot", module = "blink-copilot", score_offset = 200, async = true },
+        copilot = { name = "Copilot", module = "blink-copilot", score_offset = 200, async = true },
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
-        env = { name = "ENV", module = "blink-cmp-env" },
-        conventional_commits = {
-          name = "GitCommit",
-          module = "blink-cmp-conventional-commits",
-          enabled = function() return vim.bo.filetype == "gitcommit" end,
-        },
+        env     = { name = "Env", module = "blink-cmp-env" },
+        commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 500, async = true },
       },
     },
 
-    fuzzy = { implementation = "prefer_rust_with_warning" },
+    cmdline = {
+      enabled = true,
+      keymap = {
+        preset = "none",
+        ["<C-space>"] = { "show", "hide" },
+
+        ["<TAB>"]   = { "show_and_insert", "select_next", "fallback" },
+        ["<S-TAB>"] = { "show_and_insert", "select_prev", "fallback" },
+        ["<Up>"]    = { "select_prev", "fallback" },
+        ["<Down>"]  = { "select_next", "fallback" },
+
+        -- ["<ESC>"] = { "hide", "fallback" },
+        ["<C-c>"] = { "cancel", "fallback" },
+      },
+
+      completion = {
+        trigger = nil,  -- Use default.
+        menu = { auto_show = true },
+        list = { selection = { preselect = false, auto_insert = true } },
+        ghost_text = nil,  -- Use default.
+      },
+
+      sources = { "cmdline", "buffer" },
+    },
+
+    term = { enabled = false },
   }
 }

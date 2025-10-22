@@ -22,13 +22,10 @@ ViewConfig.keys.hover = "<C-d>"
 -- ---------- Options
 ---@type LazyConfig
 local config = {
-  root = vim.fn.stdpath("data") .. "/lazy",  -- directory where plugins will be installed
-  defaults = {
-    lazy = false,
-    cond = not vim.g.vscode,
-  },
+  root = nil,  -- Use default.
 
-  -- leave nil when passing the spec as the first argument to setup()
+  defaults = { lazy = false, cond = not vim.g.vscode },
+
   ---@type LazySpec
   spec = {
     { import = "Fau.plugins" },
@@ -38,116 +35,66 @@ local config = {
     { import = "Fau.plugins.lsp" },
   },
   local_spec = true,
-  lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",  -- lockfile generated after running update.
-  ---@type number limit the maximum amount of concurrent tasks
-  concurrency = jit.os:find("Windows") and (vim.uv.available_parallelism() * 2) or 50,
+
+  lockfile    = nil,  -- Use default.
+  concurrency = nil,  -- Use default.
 
   git = {
-    log = { "--since=3 days ago" },  -- show commits from the last 3 days
-    timeout = 120,                   -- kill processes that take more than 2 minutes
-    url_format = "https://github.com/%s.git",
+    log = { "--since=3 days ago" },
+    timeout = 120,
+    url_format = nil,  -- Use default.
     filter = true,
-    throttle = {
-      enabled = false,  -- not enabled by default
-      -- max 2 ops every 5 seconds
-      rate = 2,
-      duration = 5 * 1000,  -- in ms
-    },
+    throttle = nil,  -- Use default.
+    cooldown = 0,
   },
-
-  cooldown = 0,
-
-  pkg = {
-    enabled = false,
-    cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
-    version = true,
-    sources = { "lazy", "rockspec", "packspec" }
-  },
-
-  rocks = {
-    root = vim.fn.stdpath("data") .. "/lazy-rocks",
-    server = "https://nvim-neorocks.github.io/rocks-binaries/",
-  },
-
-  dev = {
-    path = "~/projects",
-    ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
-    patterns = {},     -- For example {"folke"}
-    fallback = false,  -- Fallback to git when local plugin doesn't exist
-  },
+  pkg   = nil,  -- Use default.
+  rocks = nil,  -- Use default.
+  dev   = nil,  -- Use default.
 
   install = { missing = true, colorscheme = { "tokyonight", "habamax" } },
 
   ui = {
-    -- a number <1 is a percentage., >1 is a fixed size
     size = { width = 0.9, height = 0.85 },
-    wrap = true,  -- wrap the lines in the ui
+    wrap = true,
     border = "double",
-    title = nil,  ---@type string only works when border is not "none"
-    title_pos = "center",  ---@type "center" | "left" | "right"
-    -- Show pills on top of the Lazy window
+    backdrop = 60,
+
+    title = " 💤lazy.nvim ", title_pos = "center",
+
     pills = true,  ---@type boolean
-    icons = nil,  -- Use defaults
-    -- leave nil, to automatically select a browser depending on your OS.
-    -- If you want to use a specific browser, you can define it here
-    browser = nil,  ---@type string?
-    throttle = 20,  -- how frequently should the ui process render events
+
+    icons    = nil,  -- Use default.
+    browser  = nil,  -- Use default.
+    throttle = nil,  -- Use default.
+
     custom_keys = {
       -- Open a terminal for the plugin dir
-      ["<localleader>D"] = function(plugin) require("lazy.util").float_term(nil, { cwd = plugin.dir }) end,
+      ["<localleader>D"] = { function(plugin) require("lazy.util").float_term(nil, { cwd = plugin.dir }) end, desc = "Open Terminal in Plugin Dir" },
       -- Open lazygit log
-      ["<localleader>L"] = function(plugin) require("lazy.util").float_term({ "lazygit", "log" }, { cwd = plugin.dir }) end,
+      ["<localleader>L"] = { function(plugin) require("lazy.util").float_term({ "lazygit", "log" }, { cwd = plugin.dir }) end, desc = "Lazygit Log" },
+      -- Inspect plugin
+      ["<localleader>i"] = { function(plugin) require("lazy.util").notify(vim.inspect(plugin), { title = "Inspect " .. plugin.name, lang = "lua" }) end, desc = "Inspect Plugin" },
     },
   },
 
-  headless = { process = true, log = true, task = true, colors = true },
+  headless = nil,  -- Use default.
 
   diff = { cmd = Fau_vim.os_name == "Darwin" and "browser" or "diffview.nvim" },
 
   checker = {
-    enabled = true,
-    concurrency = nil,  ---@type number? set to 1 to check for updates very slowly
-    notify = true,     -- get a notification when new updates are found
-    frequency = 3600,  -- check for updates every hour
+    enabled      = true,
+    concurrency  = nil,   ---@type number? set to 1 to check for updates very slowly
+    notify       = true,  -- get a notification when new updates are found
+    frequency    = 3600,  -- check for updates every hour
     check_pinned = false,
   },
 
   change_detection = { enabled = true, notify = true },
 
-  performance = {
-    cache = { enabled = true },
-    reset_packpath = true,  -- reset the package path to improve startup time
-    rtp = {
-      reset = true,  -- reset the runtime path to $VIMRUNTIME and your config directory
-      ---@type string[]
-      paths = {},  -- add any custom paths here that you want to includes in the rtp
-      ---@type string[] list any plugins you want to disable here
-      disabled_plugins = {},
-    },
-  },
-
-  -- lazy can generate helptags from the headings in markdown readme files,
-  -- so :help works even for plugins that don't have vim docs.
-  -- when the readme opens with :help it will be correctly displayed as markdown
-  readme = {
-    enabled = true,
-    root = vim.fn.stdpath("state") .. "/lazy/readme",
-    files = { "README.md", "lua/**/README.md" },
-    -- only generate markdown helptags for plugins that dont have docs
-    skip_if_doc_exists = true,
-  },
-
-  state = vim.fn.stdpath("state") .. "/lazy/state.json",  -- state info for checker and other things
-
-  -- Enable profiling of lazy.nvim. This will add some overhead,
-  -- so only enable this when you are debugging lazy.nvim
-  profiling = {
-    -- Enables extra stats on the debug tab related to the loader cache.
-    -- Additionally gathers stats about all package.loaders
-    loader = false,
-    -- Track each new require in the Lazy profiling tab
-    require = false,
-  },
+  performance = nil,  -- Use default.
+  readme      = nil,  -- Use default.
+  state       = nil,  -- Use default.
+  profiling   = nil,  -- Use default.
 }
 
 require("lazy").setup(config)
