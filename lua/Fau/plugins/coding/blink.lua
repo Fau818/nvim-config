@@ -14,6 +14,8 @@ return {
     "xzbdmw/colorful-menu.nvim",
 
     "disrupted/blink-cmp-conventional-commits",
+    ---@module "blink-cmp-env"
+    "bydlw98/blink-cmp-env",
     {
       ---@module "blink-copilot"
       "fang2hou/blink-copilot",
@@ -135,11 +137,18 @@ return {
     signature = { enabled = true, window = { show_documentation = true, border = "single" } },
 
     sources = {
-      default = { "copilot", "lsp", "path", "snippets", "conventional_commits", "buffer" },
+      default = {
+        "copilot", "lsp",
+        "snippets",
+        "conventional_commits",
+        "env", "path",
+        "buffer",
+      },
       per_filetype = { lua = { inherit_defaults = true, "lazydev" } },
       providers = {
         copilot = { name = "copilot", module = "blink-copilot", score_offset = 200, async = true },
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+        env = { name = "ENV", module = "blink-cmp-env" },
         conventional_commits = {
           name = "GitCommit",
           module = "blink-cmp-conventional-commits",
