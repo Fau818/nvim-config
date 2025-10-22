@@ -8,7 +8,7 @@ return {
   {
     -- DESC: Welcome dashboard for Neovim.
     "goolord/alpha-nvim",
-    config = function() require("Fau.configs.editor.ui.alpha") end,
+    config = function() require("Fau.ui.alpha") end,
     event = "VimEnter",
     keys = { { ";", "<CMD>Alpha<CR>", desc = "Dashboard: Toggle" } },
   },
@@ -19,8 +19,8 @@ return {
     -- DESC: File explorer tree for Neovim.
     "nvim-tree/nvim-tree.lua",
     dependencies = "nvim-tree/nvim-web-devicons",
-    init = function() require("Fau.configs.editor.ui.nvim-tree.before_loaded") end,
-    config = function() require("Fau.configs.editor.ui.nvim-tree") end,
+    init = function() require("Fau.ui.nvim-tree.before_loaded") end,
+    config = function() require("Fau.ui.nvim-tree") end,
     cmd = { "NvimTreeFindFileToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeToggle", "NvimTreeFocus" },
     keys = { { "<LEADER>e", "<CMD>NvimTreeFindFileToggle<CR>", desc = "nvim-tree: Toggle" } },
   },
@@ -39,7 +39,7 @@ return {
     -- DESC: A snazzy bufferline for Neovim.
     "akinsho/bufferline.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    config = function() require("Fau.configs.editor.ui.bufferline") end,
+    config = function() require("Fau.ui.bufferline") end,
     event = "UIEnter",
   },
 
@@ -47,7 +47,7 @@ return {
     -- DESC: A fancy and configurable statusline.
     "nvim-lualine/lualine.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    config = function() require("Fau.configs.editor.ui.lualine") end,
+    config = function() require("Fau.ui.lualine") end,
     event = "UIEnter",
   },
 
@@ -56,7 +56,7 @@ return {
   {
     -- DESC: Git integration for Neovim.
     "lewis6991/gitsigns.nvim",
-    config = function() require("Fau.configs.editor.ui.gitsigns") end,
+    config = function() require("Fau.ui.gitsigns") end,
     event = { "BufReadPost", "BufNewFile" },
   },
 
@@ -68,7 +68,7 @@ return {
       -- Use diagonal lines in place of deleted lines in diff mode.
       vim.opt.fillchars:append{ diff = "╱" }
     end,
-    config = function() require("Fau.configs.editor.ui.diffview") end,
+    config = function() require("Fau.ui.diffview") end,
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
   },
 
@@ -90,7 +90,7 @@ return {
         enabled = vim.fn.executable("conda") == 1,
       },
     },
-    config = function() require("Fau.configs.editor.ui.telescope") end,
+    config = function() require("Fau.ui.telescope") end,
     event = "UIEnter",
     cmd = "Telescope",
     -- FIXME: It seems if we map `<LEADER>f` tp `<Nop>`, will lead a lag when open Telescope.
