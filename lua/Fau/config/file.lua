@@ -24,7 +24,7 @@ return {
     "terminal", "toggleterm",
     "trouble",
     "TelescopePrompt", "TelescopeResults",
-    "packer", "lazy", "yazi",
+    "packer", "lazy", "lazy_backdrop", "yazi",
   },
   excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix" },
 

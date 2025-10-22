@@ -2,6 +2,7 @@
 return {
   ---@module "nvim-ts-autotag"
   "windwp/nvim-ts-autotag",
+  lazy = true,  -- Loaded by blink.cmp
 
   ---@type nvim-ts-autotag.PluginSetup
   opts = {

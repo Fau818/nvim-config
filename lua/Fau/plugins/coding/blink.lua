@@ -19,8 +19,9 @@ return {
     {
       ---@module "blink-copilot"
       "fang2hou/blink-copilot",
+      dependencies = "zbirenbaum/copilot.lua",
       ---@type Config
-      opts = { max_completions = 2, max_attempts    = 2 }
+      opts = { max_completions = 2, max_attempts = 2 },
     },
     {
       "RRethy/nvim-treesitter-endwise",
@@ -29,24 +30,7 @@ return {
     },
   },
 
-  event = { "InsertEnter", "CmdlineEnter" },
-
-  init = function()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "BlinkCmpMenuOpen",
-      callback = function()
-        require("copilot.suggestion").dismiss()
-        vim.b.copilot_suggestion_hidden = true
-      end,
-    })
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "BlinkCmpMenuClose",
-      callback = function()
-        vim.b.copilot_suggestion_hidden = false
-      end,
-    })
-  end,
+  event = { "InsertEnter", "CmdlineEnter", "LspAttach" },
 
   ---@type blink.cmp.Config
   opts = {
@@ -126,7 +110,8 @@ return {
 
     sources = {
       default = {
-        "copilot", "lsp",
+        "copilot",
+        "lsp",
         "snippets",
         "env", "path",
         "buffer",
@@ -138,7 +123,7 @@ return {
       providers = {
         copilot = { name = "Copilot", module = "blink-copilot", score_offset = 200, async = true },
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
-        env     = { name = "Env", module = "blink-cmp-env" },
+        env     = { name = "Env", module = "blink-cmp-env", async = true },
         commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 500, async = true },
       },
     },
