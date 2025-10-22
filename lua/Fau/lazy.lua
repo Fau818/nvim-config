@@ -1,6 +1,4 @@
--- =============================================
--- ========== Lazy Install
--- =============================================
+-- ==================== Lazy Installation ====================
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -16,19 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 
 
--- =============================================
--- ========== Configuration
--- =============================================
--- -----------------------------------
--- -------- Keymaps
--- -----------------------------------
+-- ==================== Configuration ====================
+-- ---------- Keymaps
 local ViewConfig = require("lazy.view.config")
 ViewConfig.keys.hover = "<C-d>"
 
-
--- -----------------------------------
--- -------- Options
--- -----------------------------------
+-- ---------- Options
 ---@type LazyConfig
 local config = {
   root = vim.fn.stdpath("data") .. "/lazy",  -- directory where plugins will be installed
@@ -158,6 +149,5 @@ local config = {
     require = false,
   },
 }
-
 
 require("lazy").setup(config)

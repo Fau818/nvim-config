@@ -2,7 +2,7 @@
 -- ========== Plugin Configurations
 -- =============================================
 local lualine = require("lualine")
-local component = require("Fau.configs.editor.ui.lualine.components")
+local component = require("Fau.ui.lualine.components")
 
 local config = {
   options = {

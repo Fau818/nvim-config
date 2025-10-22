@@ -6,7 +6,7 @@ return {
   event = "BufWritePre",
 
   init = function()
-    Fau_vim.functions.format.remove_blank_lines_and_spaces = function()
+    Fau_vim.functions.format.trim_text = function()
       local trailspace = require("mini.trailspace")
       trailspace.trim_last_lines(); trailspace.trim()
     end

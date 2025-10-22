@@ -1,6 +1,3 @@
--- =============================================
--- ========== Plugin Configurations
--- =============================================
 local treesitter = require("nvim-treesitter.configs")
 
 ---@type TSConfig

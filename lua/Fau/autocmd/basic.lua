@@ -1,9 +1,4 @@
--- =============================================
--- ========== Baisc
--- =============================================
--- -----------------------------------
--- -------- General
--- -----------------------------------
+-- ==================== Yank ====================
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   group = "Fau_vim",
@@ -15,20 +10,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 
 
--- -----------------------------------
--- -------- Auto Trim
--- -----------------------------------
+-- ==================== Save ====================
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   group = "Fau_vim",
   desc = "Trim blank lines and spaces before writing buffer to file.",
-  callback = function() Fau_vim.functions.format.remove_blank_lines_and_spaces() end,
+  callback = function() Fau_vim.functions.format.trim_text() end,
 })
 
 
--- -----------------------------------
--- -------- Indentation
--- -----------------------------------
+-- ==================== Indentation ====================
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "tabstop",
   group = "Fau_vim",

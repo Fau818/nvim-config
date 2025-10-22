@@ -1,7 +1,7 @@
 -- DESC: "Disable `K` to show hover document keymaps in `noice`.",
 vim.b.markdown_keys = true
 
--- ==================== Better `gx` Handling ====================
+-- DESC: Better `gx` handling.
 -- SEE: noice.nvim/lua/noice/text/markdown.lua:221
 vim.keymap.set("n", "gx", function()
   local line = vim.api.nvim_get_current_line()

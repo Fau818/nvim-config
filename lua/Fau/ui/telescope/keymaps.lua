@@ -1,5 +1,5 @@
 local builtin = require("telescope.builtin")
-local pickers = require("Fau.configs.editor.ui.telescope.custom_pickers")
+local pickers = require("Fau.ui.telescope.custom_pickers")
 
 local keymap = vim.keymap.set
 local function opts(desc) return { desc = "Telescope: " .. desc } end

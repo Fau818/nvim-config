@@ -1,6 +1,3 @@
--- =============================================
--- ========== Plugin Configurations
--- =============================================
 ---@module "tokyonight"
 local tokyonight = require("tokyonight")
 Fau_vim.colors.tokyonight = require("tokyonight.colors.moon")

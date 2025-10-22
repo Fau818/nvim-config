@@ -1,8 +1,6 @@
 ---@type table<string, NoiceViewOptions>
 local views = {
-  -- -----------------------------------
-  -- -------- Preset Modification
-  -- -----------------------------------
+  -- ==================== Preset Modification ====================
   notify = { replace = true, merge = true, render = "minimal" },
 
   hover = {
@@ -16,9 +14,7 @@ local views = {
   mini = { timeout = 500, replace = true, merge = true },
 
 
-  -- -----------------------------------
-  -- -------- Custom
-  -- -----------------------------------
+  -- ==================== Custom ====================
   cmdline_popup_top = {
     backend = "popup",
     relative = "editor",

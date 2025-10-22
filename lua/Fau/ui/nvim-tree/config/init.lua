@@ -12,7 +12,7 @@ local config = {
   hijack_cursor = true,                        -- Keeps the cursor on the first letter of the filename when moving in the tree.
   hijack_unnamed_buffer_when_opening = false,  -- Opens in place of the unnamed buffer if it's empty.
 
-  on_attach = require("Fau.configs.editor.ui.nvim-tree.config.keymaps"),
+  on_attach = require("Fau.ui.nvim-tree.config.keymaps"),
 
   -- root_dirs = {},
   -- prefer_startup_root = false,

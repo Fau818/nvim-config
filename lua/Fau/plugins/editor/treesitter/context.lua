@@ -1,6 +1,3 @@
--- =============================================
--- ========== Plugin Configurations
--- =============================================
 local ts_context = require("treesitter-context")
 
 ---@type TSContext.UserConfig

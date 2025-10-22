@@ -5,7 +5,7 @@ return {
   layout_strategy    = "horizontal",
 
   create_layout = nil,
-  layout_config = require("Fau.configs.editor.ui.telescope.config.defaults.layouts"),
+  layout_config = require("Fau.ui.telescope.config.defaults.layouts"),
   -- Determines the layouts to cycle through when using `actions.layout.cycle_layout_next` and `actions.layout.cycle_layout_prev`.
   cycle_layout_list = { "horizontal", "vertical" },
 
@@ -31,7 +31,7 @@ return {
   prompt_title  = "Prompt",
 
   default_mappings = nil,
-  mappings = require("Fau.configs.editor.ui.telescope.config.defaults.mappings"),
+  mappings = require("Fau.ui.telescope.config.defaults.mappings"),
 
   history = {
     path = nil,  -- Use default `stdpath("data")/telescope_history`.

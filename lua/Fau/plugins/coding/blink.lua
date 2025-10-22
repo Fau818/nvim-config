@@ -5,22 +5,20 @@ return {
   version = "1.*",
   -- build = "cargo build --release",
   dependencies = {
-    { "disrupted/blink-cmp-conventional-commits" },
+    ---@module "nvim-autopairs"
+    "windwp/nvim-autopairs" ,
+    ---@module "nvim-ts-autotag"
+    "windwp/nvim-ts-autotag",
+
+    ---@module "colorful-menu"
+    "xzbdmw/colorful-menu.nvim",
+
+    "disrupted/blink-cmp-conventional-commits",
     {
-      ---@module "colorful-menu"
-      "xzbdmw/colorful-menu.nvim",
-      config = true,
-    },
-    -- TODO: Move to `coding`?
-    {
-      ---@module "nvim-autopairs"
-      "windwp/nvim-autopairs",
-      config = function() require("Fau.configs.completion.autopairs") end,
-    },
-    {
-      ---@module "nvim-ts-autotag"
-      "windwp/nvim-ts-autotag",
-      config = function() require("Fau.configs.completion.autotag") end,
+      ---@module "blink-copilot"
+      "fang2hou/blink-copilot",
+      ---@type Config
+      opts = { max_completions = 2, max_attempts    = 2 }
     },
     {
       "RRethy/nvim-treesitter-endwise",
@@ -31,22 +29,22 @@ return {
 
   event = { "InsertEnter", "CmdlineEnter" },
 
-  -- init = function()
-  --   vim.api.nvim_create_autocmd("User", {
-  --     pattern = "BlinkCmpMenuOpen",
-  --     callback = function()
-  --       require("copilot.suggestion").dismiss()
-  --       vim.b.copilot_suggestion_hidden = true
-  --     end,
-  --   })
+  init = function()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "BlinkCmpMenuOpen",
+      callback = function()
+        require("copilot.suggestion").dismiss()
+        vim.b.copilot_suggestion_hidden = true
+      end,
+    })
 
-  --   vim.api.nvim_create_autocmd("User", {
-  --     pattern = "BlinkCmpMenuClose",
-  --     callback = function()
-  --       vim.b.copilot_suggestion_hidden = false
-  --     end,
-  --   })
-  -- end,
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "BlinkCmpMenuClose",
+      callback = function()
+        vim.b.copilot_suggestion_hidden = false
+      end,
+    })
+  end,
 
   ---@type blink.cmp.Config
   opts = {
@@ -137,9 +135,10 @@ return {
     signature = { enabled = true, window = { show_documentation = true, border = "single" } },
 
     sources = {
-      default = { "lsp", "path", "snippets", "conventional_commits", "buffer" },
+      default = { "copilot", "lsp", "path", "snippets", "conventional_commits", "buffer" },
       per_filetype = { lua = { inherit_defaults = true, "lazydev" } },
       providers = {
+        copilot = { name = "copilot", module = "blink-copilot", score_offset = 200, async = true },
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
         conventional_commits = {
           name = "GitCommit",

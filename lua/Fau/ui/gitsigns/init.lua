@@ -27,7 +27,7 @@ local config = {
 
   auto_attach = true,
   attach_to_untracked = true,
-  on_attach = require("Fau.configs.editor.ui.gitsigns.keymaps"),
+  on_attach = require("Fau.ui.gitsigns.keymaps"),
 
   signcolumn = true,   -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false,  -- Toggle with `:Gitsigns toggle_numhl`

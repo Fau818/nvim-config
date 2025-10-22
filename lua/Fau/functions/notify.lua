@@ -1,12 +1,8 @@
--- =============================================
--- ========== Functions: Notify
--- =============================================
--- -----------------------------------
--- -------- Notify
--- -----------------------------------
+-- ==================== Notify ====================
 ---@param msg string|string[] Notification message
 ---@param level? string|number Log level. See vim.log.levels
 ---@param opts? notify.Options Notification options
+-- TODO: 规范这个方法，Fau_vim一定是我的配置报错。
 Fau_vim.notify = function(msg, level, opts)
   level = level or vim.log.levels.INFO
   if not opts then opts = { title = "Fau_vim" }
@@ -26,25 +22,6 @@ Fau_vim.load_plugin_error = function(plugin)
 end
 
 
--- -----------------------------------
--- -------- Show Lua Table
--- -----------------------------------
-Fau_vim.table2string = function(...)
-  return vim.inspect(...)
-  -- local objects = {}
-  -- for i = 1, select("#", ...) do
-  --   local v = select(i, ...)
-  --   table.insert(objects, vim.inspect(v))
-  -- end
-  -- return table.concat(objects, "\n")
-end
+Fau_vim.table2string = function(...) return vim.inspect(...) end
 
-Fau_vim.show = function(...)
-  -- local objects = {}
-  -- for i = 1, select("#", ...) do
-  --   local v = select(i, ...)
-  --   table.insert(objects, vim.inspect(v))
-  -- end
-  -- print(table.concat(objects, "\n"))
-  print(vim.inspect(...))
-end
+Fau_vim.show = function(...) print(vim.inspect(...)) end

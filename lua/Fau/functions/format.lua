@@ -1,12 +1,7 @@
--- =============================================
--- ========== Functions: Format
--- =============================================
 return {
-  -- -----------------------------------
-  -- -------- Trim Blank Lines and Spaces
-  -- -----------------------------------
+  -- ==================== Trim Blank Lines and Spaces ====================
   -- NOTE: `mini.trailspace` will overwrite this function.
-  remove_blank_lines_and_spaces = function()
+  trim_text = function()
     local save_cursor = vim.fn.getpos(".")
     vim.api.nvim_command([[silent! %s#\($\n\s*\)\+\%$##]])
     vim.api.nvim_command([[silent! %s/\s\+$//e]])
@@ -14,10 +9,8 @@ return {
   end,
 
 
-  -- -----------------------------------
-  -- -------- Smart Format
-  -- -----------------------------------
-  -- Smart indent a file or range.
+  -- ==================== Smart Format ====================
+  -- DESC: Smart indent a file or range.
   __auto_indent = function()
     local mode = vim.api.nvim_get_mode()["mode"]
     if mode == "v" or mode == "V" then -- indent selected
@@ -27,12 +20,12 @@ return {
       vim.api.nvim_command("normal! gg=G")
       vim.fn.setpos(".", save_cursor)
     end
-    Fau_vim.functions.format.remove_blank_lines_and_spaces()
+    Fau_vim.functions.format.trim_text()
     vim.api.nvim_command("nohlsearch")
     Fau_vim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal" })
   end,
 
-  -- Smart format (if no lsp formatter: use auto_indent)
+  -- DESC: Smart format (if no lsp formatter: use auto_indent)
   smart_format = function()
     local filetype = vim.bo.filetype
 

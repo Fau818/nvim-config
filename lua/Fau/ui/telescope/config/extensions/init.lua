@@ -1,4 +1,4 @@
-local conda = require("Fau.configs.editor.ui.telescope.config.extensions.conda")
+local conda = require("Fau.ui.telescope.config.extensions.conda")
 
 return {
   fzf = {

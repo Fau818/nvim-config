@@ -1,8 +1,6 @@
 -- SEE: https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
 return {
-  -- -----------------------------------
-  -- -------- Basic
-  -- -----------------------------------
+  -- ==================== Basic ====================
   max_line_length                 = "120",
   auto_collapse_lines             = "false",
   break_all_list_when_line_exceed = "false",
@@ -25,9 +23,7 @@ return {
   quote_style = "double",
 
 
-  -- -----------------------------------
-  -- -------- Function
-  -- -----------------------------------
+  -- ==================== Function ====================
   align_call_args       = "true",
   align_function_params = "true",
 
@@ -44,9 +40,7 @@ return {
   ignore_spaces_inside_function_call = "true",
 
 
-  -- -----------------------------------
-  -- -------- Table
-  -- -----------------------------------
+  -- ==================== Table ====================
   align_array_table                  = "true",
   align_continuous_rect_table_field  = "true",
   align_continuous_similar_call_args = "true",
@@ -60,9 +54,7 @@ return {
   space_around_table_append_operator = "true",
 
 
-  -- -----------------------------------
-  -- -------- Statement
-  -- -----------------------------------
+  -- ==================== Statement ====================
   align_continuous_assign_statement = "true",
 
   space_before_attribute = "true",
@@ -71,18 +63,14 @@ return {
   space_after_comma_in_for_statement = "true",
 
 
-  -- -----------------------------------
-  -- -------- If Condition
-  -- -----------------------------------
+  -- ==================== Conditional ====================
   align_if_branch = "false",
 
   never_indent_before_if_condition  = "false",
   never_indent_comment_on_if_branch = "false",
 
 
-  -- -----------------------------------
-  -- -------- Space
-  -- -----------------------------------
+  -- ==================== Space ====================
   space_before_open_square_bracket = "false",
   space_inside_square_brackets     = "false",
 
@@ -92,9 +80,7 @@ return {
   space_around_assign_operator  = "true",
 
 
-  -- -----------------------------------
-  -- -------- Line Space
-  -- -----------------------------------
+  -- ==================== Line Space ====================
   ---@type "keep"|"fixed(n)"|"min(n)"|"max(n)"
   line_space_after_if_statement              = "keep",
   line_space_after_do_statement              = "keep",
@@ -113,11 +99,8 @@ return {
   end_statement_with_semicolon             = "same_line",
 
 
-  -- -----------------------------------
-  -- -------- Unknown
-  -- -----------------------------------
+  -- ==================== Unknown ====================
   align_chain_expr = "none",
   align_continuous_line_space = "1",
   keep_indents_on_empty_lines = "false",
-
 }
