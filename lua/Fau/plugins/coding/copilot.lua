@@ -10,10 +10,11 @@ return {
       vim.g.copilot_nes_debounce = 500
       vim.keymap.set({ "n", "i" }, "<C-y>", function()
         local nes = require("copilot-lsp.nes")
-        local state = vim.b.nes_state
+        local bufnr = vim.api.nvim_get_current_buf()
+        local state = vim.b[bufnr].nes_state
         if state then
           -- local _ = nes.walk_cursor_start_edit() or (nes.apply_pending_nes() and nes.walk_cursor_end_edit())
-          local _ = nes.apply_pending_nes() and nes.walk_cursor_end_edit()
+          local _ = nes.apply_pending_nes(bufnr) and nes.walk_cursor_end_edit(bufnr)
           return nil
         else
           vim.notify("Requested Copilot NES suggestion ...")
