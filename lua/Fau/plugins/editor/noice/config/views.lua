@@ -2,6 +2,7 @@
 local views = {
   -- ==================== Preset Modification ====================
   notify = { replace = true, merge = true, render = "minimal" },
+  -- snacks = { replace = true, merge = true },
 
   hover = {
     size = { max_width = 100 },

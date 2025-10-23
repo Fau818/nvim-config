@@ -9,11 +9,6 @@ return {
     extensions.conda.conda(config)
   end,
 
-  notify = function()
-    local config = { layout_strategy = "vertical", initial_mode = "normal" }
-    extensions.notify.notify(config)
-  end,
-
   todo_comments = function()
     -- local config = { layout_strategy = "vertical", initial_mode = "normal" }
     extensions["todo-comments"].todo()

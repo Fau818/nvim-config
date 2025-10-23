@@ -15,7 +15,7 @@ keymap("n", "<LEADER>ff", builtin.find_files,                                   
 keymap("n", "<LEADER>fh", builtin.help_tags,                                              opts("Help"))
 keymap("n", "<LEADER>fH", builtin.highlights,                                             opts("Highlights"))
 keymap("n", "<LEADER>fk", builtin.keymaps,                                                opts("Keymaps"))
-keymap("n", "<LEADER>fn", pickers.notify,                                                 opts("Notify"))
+keymap("n", "<LEADER>fn", "<CMD>NoiceSnacks<CR>",                                         opts("NoiceSnacks"))
 keymap("n", "<LEADER>fr", builtin.oldfiles,                                               opts("Recent Files"))
 keymap("n", "<LEADER>fs", builtin.live_grep,                                              opts("String"))
 keymap("n", "<LEADER>fS", function() builtin.live_grep({ grep_open_files = true }) end,   opts("String in Opened Buffers"))

@@ -15,8 +15,9 @@ return {
     input        = { enabled = true },
     picker       = require("Fau.plugins.editor.snacks.picker"),
     -- profiler     = { enabled = false, autocmds = false },
-    notifier     = { enabled = false },  -- TODO: Didn't configured
+    notifier     = require("Fau.plugins.editor.snacks.notifier"),
     quickfile    = { enabled = false },
+    styles       = require("Fau.plugins.editor.snacks.styles"),
     scope        = require("Fau.plugins.editor.snacks.scope"),
     scroll       = { enabled = false },
     statuscolumn = { enabled = false },
@@ -30,8 +31,20 @@ return {
   config = function(_, opts)
     require("snacks").setup(opts)
 
-    -- TEST: Test in May 10, 2025
-    Fau_vim.notify = Snacks.debug.inspect
+    -- ==================== Notification ====================
+    ---@type fun(msg: string, level?: snacks.notifier.level|number, opts?: snacks.notifier.Notif.opts): number|string
+    function Fau_vim.notify(msg, level, opts_)
+      if type(msg) ~= "string" then msg = vim.inspect(msg) end
+      level = level or vim.log.levels.INFO
+      opts_ = opts_ or {}
+      vim.tbl_extend("force", opts_, { title = "Fau_vim" })
+      Snacks.notifier.notify(msg, level, opts_)
+      return 555
+    end
+    function Fau_vim.inspect (...) return vim.inspect(...) end
+    function Fau_vim.show(...) Fau_vim.notify(vim.inspect(...)) end
+
+
     Fau_vim.functions.utils._buf_remove = Snacks.bufdelete.delete
 
     -- NOTE: Global debug functions
@@ -51,7 +64,7 @@ return {
       mode = { "n", "i" }, "<A-n>",
       function()
         if Snacks.words.is_enabled() then Snacks.words.jump(1,  true)
-        else vim.notify("Snacks.words is disabled", vim.log.levels.WARN)
+        else Fau_vim.notify("Snacks.words is disabled", vim.log.levels.WARN)
         end
       end,
       desc = "Snacks.words: Next"
@@ -60,7 +73,7 @@ return {
       mode = { "n", "i" }, "<A-N>",
       function()
         if Snacks.words.is_enabled() then Snacks.words.jump(-1,  true)
-        else vim.notify("Snacks.words is disabled", vim.log.levels.WARN)
+        else Fau_vim.notify("Snacks.words is disabled", vim.log.levels.WARN)
         end
       end,
       desc = "Snacks.words: Prev",

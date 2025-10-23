@@ -121,7 +121,7 @@ return {
         gitcommit = { inherit_defaults = true, "commits" },
       },
       providers = {
-        copilot = { name = "Copilot", module = "blink-copilot", score_offset = 1, async = true },
+        copilot = { name = "Copilot", module = "blink-copilot", score_offset = 5, async = true },
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 10 },
         env     = { name = "Env", module = "blink-cmp-env", async = true },
         commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 10, async = true },

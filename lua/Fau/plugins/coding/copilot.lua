@@ -23,7 +23,7 @@ return {
           local _ = nes.apply_pending_nes(bufnr) and nes.walk_cursor_end_edit(bufnr)
           return nil
         else
-          vim.notify("Requested Copilot NES suggestion ...")
+          Fau_vim.notify("Requested Copilot NES suggestion ...")
           nes.request_nes("copilot")
           return nil
         end

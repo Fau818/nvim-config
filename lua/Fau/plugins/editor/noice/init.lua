@@ -35,7 +35,7 @@ return {
           WARN  = Fau_vim.icons.diagnostics.BoldWarn,
         },
       },
-      enabled = true,  -- TODO: Deprecated it, use `Snacks.notifier` instead.
+      enabled = false,  -- TEST: Should be deprecated.  Oct 22, 2025
     },
   },
 

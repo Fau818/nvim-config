@@ -76,10 +76,10 @@ return {
     BoldWarn  = "", Warn  = "",
     BoldInfo  = "", Info  = "",
     BoldHint  = "󰌵", Hint  = "󰌶",
+    BoldDebug = "", Debug = "",
+    BoldTrace = "", Trace = "✎",
     -- BoldQuestion = "", Question = "",  -- unused
     -- Other = "",
-    Debug = "",
-    Trace = "✎",
   },
 
 

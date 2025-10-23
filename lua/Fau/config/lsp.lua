@@ -127,7 +127,7 @@ function M.restart_lsp()
 
   -- Disable all clients first.
   for _, name in ipairs(clients) do
-    if vim.lsp.config[name] == nil then vim.notify(("Invalid server name '%s'"):format(name))
+    if vim.lsp.config[name] == nil then Fau_vim.notify(("Invalid server name '%s'"):format(name))
     else vim.lsp.enable(name, false)
     end
   end
