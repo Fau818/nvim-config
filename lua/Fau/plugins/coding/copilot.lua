@@ -6,7 +6,13 @@ return {
   dependencies = {
     ---@module "copilot-lsp"
     "copilotlsp-nvim/copilot-lsp",
+    enabled = false,
     init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = Fau_vim.file.excluded_filetypes,
+        callback = function() vim.b.copilot_nes_debounce = 9999999999999999999999 end,
+      })
+
       vim.g.copilot_nes_debounce = 500
       vim.keymap.set({ "n", "i" }, "<C-y>", function()
         local nes = require("copilot-lsp.nes")
@@ -84,7 +90,7 @@ return {
     },
 
     nes = {
-      enabled = true,
+      enabled = false,
       auto_trigger = true,
       keymap = {
         accept = false,
