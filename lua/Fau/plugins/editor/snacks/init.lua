@@ -12,7 +12,7 @@ return {
     dashboard    = { enabled = false },
     explorer     = { enabled = false },
     indent       = require("Fau.plugins.editor.snacks.indent"),
-    input        = { enabled = true },
+    input        = require("Fau.plugins.editor.snacks.input"),
     picker       = require("Fau.plugins.editor.snacks.picker"),
     -- profiler     = { enabled = false, autocmds = false },
     notifier     = require("Fau.plugins.editor.snacks.notifier"),
