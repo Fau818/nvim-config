@@ -3,10 +3,9 @@ return {
   -- DESC: Convert text case in Neovim.
   ---@module "textcase"
   "johmsalas/text-case.nvim",
-  dependencies = "nvim-telescope/telescope.nvim",
   cond = true,
 
-  cmd = { "Subs", "TextCaseOpenTelescope", "TextCaseOpenTelescopeQuickChange", "TextCaseOpenTelescopeLSPChange", "TextCaseStartReplacingCommand" },
+  cmd = { "Subs", "TextCaseStartReplacingCommand" },
   event = { "BufReadPost", "BufNewFile" },
   -- keys = { { "<LEADER>t", "<NOP>", mode = { "n", "x" }, desc = "+Text Case" } },
 

@@ -194,10 +194,7 @@ return {
       local unique_client_names = table.concat(buf_client_names, ", ")
       local language_servers    = string.format("[%s]", unique_client_names)
 
-      if copilot_active then
-        -- language_servers = language_servers .. "%#SLCopilot#" .. " " .. Fau_vim.icons.kind.Copilot .. "%*"
-        language_servers = ("%s %s"):format(language_servers, Fau_vim.icons.kinds.Copilot)
-      end
+      language_servers = ("%s %s"):format(language_servers, copilot_active and Fau_vim.icons.kinds.Copilot or Fau_vim.icons.kinds.CopilotError)
 
       return language_servers == "[]" and "LS Empty" or language_servers
     end,

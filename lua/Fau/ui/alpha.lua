@@ -30,8 +30,10 @@ dashboard.section.header.val = {
 dashboard.section.buttons.val = {
   dashboard.button("n", ("%s  New File"):format(Fau_vim.icons.ui.File), "<CMD>enew<CR>"),
 
-  dashboard.button("f", ("%s  Find Files"):format(Fau_vim.icons.ui.FindFile),  "<CMD>Telescope find_files<CR>"),
-  dashboard.button("r", ("%s  Recent Files"):format(Fau_vim.icons.ui.History), "<CMD>Telescope oldfiles<CR>"),
+  ---@diagnostic disable-next-line: param-type-mismatch
+  dashboard.button("f", ("%s  Find Files"):format(Fau_vim.icons.ui.FindFile),  function() Snacks.picker.files() end),
+  ---@diagnostic disable-next-line: param-type-mismatch
+  dashboard.button("r", ("%s  Recent Files"):format(Fau_vim.icons.ui.History),  function() Snacks.picker.recent() end),
 
   ---@diagnostic disable-next-line: param-type-mismatch
   dashboard.button("l", ("%s  Load Session"):format(Fau_vim.icons.ui.Restore),      function() require("persistence").load() end),

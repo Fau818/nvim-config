@@ -29,7 +29,7 @@ local config = {
   },
 
   view = {
-    width = { min = 15, max = 30, padding = 1 },
+    width = { min = 15, max = 35, padding = 1 },
     side = "left",
     cursorline = true,
     cursorlineopt = "both",

@@ -87,6 +87,8 @@ keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Synta
 -- Disable Built-in Completion
 keymap("i", "<C-n>", "<NOP>", opts())
 
+keymap("i",  "<C-w>", "<C-s-w>", opts("Delete Previous Word"))
+
 
 -- =============================================
 -- ========== Quick Range Operations
@@ -201,6 +203,12 @@ keymap("t", "<C-r>", "<NOP>", opts())
 -- =============================================
 -- ========== LSP
 -- =============================================
+-- NOTE: Remove default LSP keymaps.
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grt")
 -- ==================== Trigger Begin with `g` ====================
 keymap("n", "gd", vim.lsp.buf.definition,      opts("LSP: Definition"))
 keymap("n", "gD", vim.lsp.buf.declaration,     opts("LSP: Declaration"))

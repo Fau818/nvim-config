@@ -7,6 +7,7 @@ return {
   height = { min = 1, max = 0.6 },
   margin = { top = 0, right = 1, bottom = 0 },
   padding = true,  -- add 1 cell of left/right padding to the notification window.
+  gap = 0,         -- gap between notifications
 
   sort = { "level", "added" },  -- sort by level and time
   level = vim.log.levels.TRACE,  -- minimum log level to display.

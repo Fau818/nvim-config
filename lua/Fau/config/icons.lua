@@ -14,6 +14,7 @@ return {
     ContinueStatement = "→",
     Control           = "",
     Copilot           = "",
+    CopilotError      = "",
     Declaration       = "󰙠",
     Delete            = "󰩺",
     DoStatement       = "󰑖",
@@ -188,11 +189,6 @@ return {
     Calculator = "" ,
     LookDown   = "",
     LookUp     = "",
-
-    -- ---------- Telescope
-    telescope       = "",
-    selection_caret = "",
-    multiple        = "",
 
     -- ---------- ChatGPT
     Prompt = "",

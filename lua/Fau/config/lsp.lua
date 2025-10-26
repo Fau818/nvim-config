@@ -24,10 +24,39 @@ M.packages = {
 -- =============================================
 -- ========== Functions
 -- =============================================
+---Truncate inlay hints labels to a specific length.
+---@param truncate_len integer
+---@return function
+local function truncate_inlay_hints(truncate_len)
+  local function truncate_text(text) return text:sub(1, truncate_len) .. "  " end
+
+  return function(err, result, ctx, config)
+    if not result then return end
+
+    for _, hint in ipairs(result) do
+      if type(hint.label) == "string" then
+        if #hint.label > truncate_len then
+          hint.label = truncate_text(hint.label)
+        end
+      elseif type(hint.label) == "table" then
+        for _, part in ipairs(hint.label) do
+          if part.value and #part.value > truncate_len then
+            part.value = truncate_text(part.value)
+          end
+        end
+      end
+    end
+
+    vim.lsp.handlers["textDocument/inlayHint"](err, result, ctx, config)
+  end
+end
+
+
 ---@type vim.lsp.client.on_attach_cb
 function M._on_attach(client, bufnr)
   -- Disable LSP formatting.
   -- if client.name == "clangd" then client.server_capabilities.documentFormattingProvider = false end
+  client.handlers["textDocument/inlayHint"] = truncate_inlay_hints(15)
 end
 
 

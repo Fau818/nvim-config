@@ -3,11 +3,7 @@ return {
   -- DESC: Quickfix list enhancer.
   ---@module "trouble"
   "folke/trouble.nvim",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-    "folke/todo-comments.nvim",
-    "nvim-telescope/telescope.nvim",  -- NOTE: Not necessary, for remapping keymaps of Telescope.
-  },
+  dependencies = "nvim-tree/nvim-web-devicons",
 
   cmd = "Trouble",
   event = "LspAttach",
@@ -24,8 +20,7 @@ return {
 
     { "<LEADER>ld", "<CMD>Trouble diagnostics_buffer toggle<CR>", desc = "Troule: Buffer Diagnostics" },
     { "<LEADER>lD", "<CMD>Trouble diagnostics toggle<CR>",        desc = "Troule: Workspace Diagnostics" },
-
-    { "<LEADER>tt", "<CMD>Trouble todo filter={tag={TODO,FIX,TEST}}<CR>", desc = "Troule: Show TODO Comments"    },
+    { "<LEADER>ft", "<CMD>Trouble todo filter={tag={TODO,FIX,TEST}}<CR>", desc = "Troule: Show TODO Comments" },
   },
 
   config = function()

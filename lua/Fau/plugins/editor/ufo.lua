@@ -37,12 +37,15 @@ return {
   cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
 
   init = function()
+    -- ==================== Fold Options ====================
     vim.opt.foldcolumn     = "auto"
     vim.opt.foldlevel      = 999
     vim.opt.foldlevelstart = 999
     vim.opt.foldenable     = true
     vim.opt.fillchars:append([[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]])
 
+
+    -- ==================== Keymaps ====================
     local function peek_fold()
       local winid = require("ufo").peekFoldedLinesUnderCursor()
       if not winid then vim.lsp.buf.hover() end
@@ -53,6 +56,27 @@ return {
     vim.keymap.set("n", "zm", function() require("ufo").closeFoldsWith()       end, { desc = "ufo: Close Fold" })
     vim.keymap.set("n", "zR", function() require("ufo").openAllFolds()         end, { desc = "ufo: Open Fold (All)" })
     vim.keymap.set("n", "zM", function() require("ufo").closeAllFolds()        end, { desc = "ufo: Close Fold (All)" })
+
+
+    -- ==================== View Keeper ====================
+    vim.api.nvim_create_augroup("remember_folds", { clear = true })
+    vim.api.nvim_create_autocmd("BufWinLeave", {
+      group = "remember_folds",
+      callback = function(event)
+        local buftype = vim.bo[event.buf].buftype
+        local filetype = vim.bo[event.buf].filetype
+        if buftype ~= "" or vim.tbl_contains(Fau_vim.file.excluded_filetypes, filetype) then return end
+        if vim.fn.empty(vim.fn.expand("%:p")) == 0 then pcall(vim.cmd.mkview) end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+      group = "remember_folds",
+      callback = function(event)
+        if vim.fn.empty(vim.fn.expand("%:p")) == 0 then pcall(vim.cmd.loadview) end
+      end,
+    })
+
   end,
 
   ---@type UfoConfig

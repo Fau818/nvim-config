@@ -110,7 +110,7 @@ return {
 
     sources = {
       default = {
-        "copilot",
+        -- "copilot",
         "lsp",
         "snippets",
         "env", "path",
@@ -154,5 +154,32 @@ return {
     },
 
     term = { enabled = false },
-  }
+  },
+
+  config = function(_, opts)
+    require("blink.cmp").setup(opts)
+
+    -- ==================== Copilot Auto Hide ====================
+    if require("blink.cmp.config").completion.ghost_text.enabled then
+      local copilot_status, _ = pcall(require, "copilot")
+      if not copilot_status then return end
+
+      local suggestion = require("copilot.suggestion")
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuOpen",
+        callback = function()
+          vim.b.copilot_suggestion_hidden = true
+          if suggestion.is_visible() then suggestion.dismiss() end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlinkCmpMenuClose",
+        callback = function()
+          vim.b.copilot_suggestion_hidden = false
+          if not suggestion.is_visible() then suggestion.next() end
+        end,
+      })
+    end
+  end,
 }

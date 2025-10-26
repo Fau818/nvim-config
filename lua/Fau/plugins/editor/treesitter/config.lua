@@ -4,8 +4,8 @@ local treesitter = require("nvim-treesitter.configs")
 local config = {
   -- A list of parser names, or "all"
   ensure_installed = {
-    "vim", "vimdoc", "regex",
-    "lua", "python", "bash",
+    "vim", "regex", "bash",
+    "cpp", "lua", "python",
     "markdown", "markdown_inline",
     "gitignore", "gitcommit",
   },

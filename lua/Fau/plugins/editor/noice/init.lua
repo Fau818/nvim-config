@@ -99,5 +99,5 @@ return {
     debug = false,
     log = nil,  -- Use default.
     log_max_size = nil,  -- Use default.
-  }
+  },
 }

@@ -1,4 +1,4 @@
 ---@type table<string, snacks.win.Config>
 return {
-  input = { b = { completion = true } }
+  input = { b = { completion = true } },
 }

@@ -5,7 +5,7 @@ local openai_model = "gpt-5-mini"
 return {
   ---@module "chatgpt"
   "jackMort/ChatGPT.nvim",
-  dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim", "folke/trouble.nvim", "nvim-telescope/telescope.nvim" },
+  dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim", "folke/trouble.nvim", { "nvim-telescope/telescope.nvim", lazy = true } },
 
   cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
   keys = {

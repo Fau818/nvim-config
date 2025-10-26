@@ -10,7 +10,7 @@ return {
     bigfile      = require("Fau.plugins.editor.snacks.bigfile"),
     dim          = require("Fau.plugins.editor.snacks.dim"),
     dashboard    = { enabled = false },
-    explorer     = { enabled = false },
+    explorer     = { enabled = true, replace_netrw = true },
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = require("Fau.plugins.editor.snacks.input"),
     picker       = require("Fau.plugins.editor.snacks.picker"),
@@ -30,6 +30,9 @@ return {
 
   config = function(_, opts)
     require("snacks").setup(opts)
+    -- NOTE: Remove std_data path from default config.
+    Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }
+
 
     -- ==================== Notification ====================
     ---@type fun(msg: string, level?: snacks.notifier.level|number, opts?: snacks.notifier.Notif.opts): number|string
@@ -54,8 +57,20 @@ return {
     if vim.fn.has("nvim-0.11") == 1 then vim._print = function(_, ...) dd(...) end else vim.print = dd end
 
     -- ==================== Toggle ====================
-    Snacks.toggle.dim():map("<leader><leader>t")
-    Snacks.toggle.zen():map("<leader><leader>z")
+    Snacks.toggle.dim():map("<LEADER><LEADER>t")
+    Snacks.toggle.zen():map("<LEADER><LEADER>z")
+
+    -- -- TODO: Custom pickers.
+    -- local function file_picker_by_type()
+    --   Snacks.input( { prompt = "Enter Filetypes" }, function(input)
+    --     if not input or input == "" then return end
+    --     local ft = vim.split(input, "[,;:%s]+", { trimempty=true })
+    --     Fau_vim.show(ft)
+    --     Snacks.picker.files({ ft = ft })
+    --   end
+    --   )
+    -- end
+    -- vim.keymap.set("n", "<leader>fft", file_picker_by_type, { desc = "Files by Type" })
   end,
 
   keys = {
@@ -78,5 +93,69 @@ return {
       end,
       desc = "Snacks.words: Prev",
     },
+
+
+
+    -- ==================== Picker ====================
+    -- TODO: Recheck these keymaps later.
+    -- { "<LEADER>tt", "<CMD>Trouble todo filter={tag={TODO,FIX,TEST}}<CR>", desc = "Troule: Show TODO Comments"    },
+    -- { "<LEADER>e", function() Snacks.explorer.open() end, desc = "File Explorer" },
+
+    -- Top Pickers
+    { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Find Files" },
+    -- TEST: use smart picker as the files picker.  Oct 24, 2025
+    { "<LEADER>ff", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+    -- { "<LEADER>F",  function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<LEADER>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<LEADER>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+    { "<LEADER>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+
+    { "<leader>F",  function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+    { "<LEADER>fs", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "<LEADER>fS", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+
+    { "<LEADER>fn", function() Snacks.picker.notifications() end, desc = "Notification History" },
+    { "<LEADER>fT",
+      ---@diagnostic disable-next-line: undefined-field
+      function() Snacks.picker.todo_comments({
+          keywords = {
+            "TODO", "TASK", "QUES", "QUESTION",
+            "FIX", "FIXME", "BUG", "FIXIT", "ISSUE",
+            "TEST", "TESTING", "PASSED", "FAILED", "TEMP",
+          }
+        })
+      end,
+      desc = "TODO Comments"
+    },
+    { "<LEADER>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+    { "<LEADER>gh", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },  -- TODO: set a new keymap
+
+    { "<LEADER>fa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+    { "<LEADER>fc", function() Snacks.picker.commands() end, desc = "Commands" },
+    { "<LEADER>fC", function() Snacks.picker.command_history() end, desc = "Command History" },
+
+    { "<LEADER>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
+    { "<LEADER>fH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+    { "<LEADER>fi", function() Snacks.picker.icons() end, desc = "Icons" },
+    { "<LEADER>fj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+    { "<LEADER>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+    -- TODO: conda picker
+
+    { "<LEADER>fP", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
+    { "<LEADER>fR", function() Snacks.picker.resume() end, desc = "Resume" },
+
+    { "<LEADER>flc", function() Snacks.picker.lsp_config() end, desc = "LSP Config" },
+    { "<LEADER>fld", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+    { "<LEADER>flD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+    { "<LEADER>flI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+    { "<LEADER>flr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+    { "<LEADER>flt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+    { "<LEADER>fli", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
+    { "<LEADER>flo", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
+
+    -- { "<LEADER>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+    { "<LEADER>ls", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+
+    { "z=", function() Snacks.picker.spelling() end, desc = "Spelling Suggestions" },
   },
 }

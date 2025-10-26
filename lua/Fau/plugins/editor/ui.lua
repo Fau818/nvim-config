@@ -71,30 +71,4 @@ return {
     config = function() require("Fau.ui.diffview") end,
     cmd = { "DiffviewOpen", "DiffviewFileHistory" }
   },
-
-
-  -- ==================== Fuzzy Finder ====================
-  {
-    -- DESC: Find, Filter, Preview, Pick.
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-
-      -- ---------- Extensions
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      {
-        -- DESC: Switch conda environments by telescope.
-        "IllustratedMan-code/telescope-conda.nvim",
-        enabled = vim.fn.executable("conda") == 1,
-      },
-    },
-    config = function() require("Fau.ui.telescope") end,
-    event = "UIEnter",
-    cmd = "Telescope",
-    -- FIXME: It seems if we map `<LEADER>f` tp `<Nop>`, will lead a lag when open Telescope.
-    keys = { { "<LEADER>f", desc = "+Telescope" }, { "<LEADER><LEADER>f", desc = "+Telescope" }, { "<LEADER>F", "<CMD>Telescope<CR>", desc = "Telescope: Open Builtin" } },
-  },
-
 }

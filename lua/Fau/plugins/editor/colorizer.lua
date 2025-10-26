@@ -38,7 +38,7 @@ return {
 
       sass = { enable = true, parsers = { "css" } },
 
-      xterm = true,
+      xterm = false,  -- NOTE: Huge performance hit.
 
       mode = "background",  ---@type "foreground" | "background" | "virtualtext"
 

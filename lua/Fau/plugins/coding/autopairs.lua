@@ -19,8 +19,8 @@ return {
     enable_bracket_in_quote   = true,
     enable_abbr               = false,  -- trigger abbreviation
 
-    break_undo = true,  -- Switch for basic rule break undo sequence
-    check_ts   = true,  -- Use treesitter to check the pair.
+    break_undo = true,   -- Switch for basic rule break undo sequence
+    check_ts   = false,  -- Use treesitter to check the pair. Fau: Keep it off.
 
     map_cr  = true,   -- map the <CR> key
     map_bs  = true,   -- map the <BS> key

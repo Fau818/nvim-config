@@ -9,6 +9,14 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter-context",
     cond = true,
     event = { "BufReadPost", "BufNewFile" },
+    cmd = {
+      "TSInstall", "TSInstallSync", "TSInstallInfo",
+      "TSUpdate", "TSUpdateSync", "TSUninstall",
+      "TSToggle", "TSBufToggle", "TSEnable", "TSDisable",
+      "TSBufEnable", "TSBufDisable",
+      "TSBufToggle", "TSConfigInfo", "TSModuleInfo",
+      "TSEditQuery", "TSEditQueryUserAfter",
+    },
     config = function() require("Fau.plugins.editor.treesitter.config") end,
   },
 
