@@ -59,18 +59,6 @@ return {
     -- ==================== Toggle ====================
     Snacks.toggle.dim():map("<LEADER><LEADER>t")
     Snacks.toggle.zen():map("<LEADER><LEADER>z")
-
-    -- -- TODO: Custom pickers.
-    -- local function file_picker_by_type()
-    --   Snacks.input( { prompt = "Enter Filetypes" }, function(input)
-    --     if not input or input == "" then return end
-    --     local ft = vim.split(input, "[,;:%s]+", { trimempty=true })
-    --     Fau_vim.show(ft)
-    --     Snacks.picker.files({ ft = ft })
-    --   end
-    --   )
-    -- end
-    -- vim.keymap.set("n", "<leader>fft", file_picker_by_type, { desc = "Files by Type" })
   end,
 
   keys = {

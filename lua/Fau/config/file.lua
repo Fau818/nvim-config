@@ -16,7 +16,7 @@ return {
     "hydra_hint",
     "lspinfo", "mason",
     "notify", "noice",
-    "NvimTree",
+    "NvimTree", "NvimTreeFilter",
     "snacks_input", "snacks_picker_input", "snacks_picker_list", "snacks_picker_preview",
     "snacks_notif", "snacks_notif_history", "snacks_layout_box",
     "snacks_win", "snacks_win_help", "snacks_win_backdrop",

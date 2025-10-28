@@ -35,13 +35,6 @@ return {
 
 
   -- ==================== Bufferline and Statusline ====================
-  {
-    -- DESC: A snazzy bufferline for Neovim.
-    "akinsho/bufferline.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function() require("Fau.ui.bufferline") end,
-    event = "UIEnter",
-  },
 
   {
     -- DESC: A fancy and configurable statusline.

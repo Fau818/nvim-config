@@ -13,6 +13,9 @@ local minimal_preview = {
 
 local function normal_mode() vim.cmd.stopinsert() end
 
+local lsp_action = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } }
+local classic_normal = { layout = "default", on_show = normal_mode, win = { preview = minimal_preview } }
+
 
 ---@type snacks.picker.Action.fn
 local function open_float(picker, item, action)
@@ -81,7 +84,7 @@ return {
   -- diagnostics_buffer = {},
   -- explorer = {},
 
-  files = { hidden = true, layout = "default", win = { preview = minimal_preview } },
+  files = { hidden = true, follow = true, layout = "default", win = { preview = minimal_preview } },
 
   -- git_branches = {},
   -- git_diff = {},
@@ -93,7 +96,13 @@ return {
   -- git_stash = {},
   -- git_status = {},
 
-  grep         = { hidden = true, layout = "stack_rev", win = { preview = normal_preview } },
+  grep = {
+    args = { "--ignore-file", ("%s/git/ignore"):format(Fau_vim.xdg_config_home) },
+    hidden = true,
+    follow = true,
+    layout = "stack_rev",
+    win = { preview = normal_preview },
+  },
   -- grep_buffers = { hidden = true, layout = "stack_rev", win = { preview = normal_preview } },
   -- grep_word    = { hidden = true, layout = "stack_rev", win = { preview = normal_preview } },
 
@@ -121,13 +130,13 @@ return {
   -- loclist = {},
 
   lsp_config           = { layout = "default", on_show   = normal_mode, win = { preview = minimal_preview } },
-  lsp_declarations     = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
-  lsp_definitions      = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
-  lsp_type_definitions = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
-  lsp_implementations  = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
-  lsp_references       = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
-  lsp_incoming_calls   = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
-  lsp_outgoing_calls   = { layout = "stack_rev", on_show = normal_mode, win = { preview = minimal_preview } },
+  lsp_declarations     = lsp_action,
+  lsp_definitions      = lsp_action,
+  lsp_type_definitions = lsp_action,
+  lsp_implementations  = lsp_action,
+  lsp_references       = lsp_action,
+  lsp_incoming_calls   = lsp_action,
+  lsp_outgoing_calls   = lsp_action,
 
   lsp_symbols = { layout = "default", win = { preview = minimal_preview } },
   lsp_workspace_symbols = { layout = "default", on_show = normal_mode },
@@ -137,17 +146,17 @@ return {
 
   notifications = { on_show = normal_mode, confirm = open_float, win = { preview  = minimal_preview } },
 
-  picker_actions = { layout = "default", on_show = normal_mode,  win = { preview = minimal_preview } },
-  picker_format = { layout = "default", on_show = normal_mode, win = { preview = minimal_preview } },
-  picker_layouts = { layout = "default", on_show = normal_mode, win = { preview = minimal_preview } },
-  picker_preview = { layout = "default", on_show = normal_mode, win = { preview = minimal_preview } },
   pickers = { layout = "default", win = { preview = minimal_preview } },
+  picker_actions = classic_normal,
+  picker_format  = classic_normal,
+  picker_layouts = classic_normal,
+  picker_preview = classic_normal,
 
   projects = { layout = "default", on_show = normal_mode, win = { preview = minimal_preview } },
 
   -- qlist = {},
 
-  recent = { hidden = true, layout = "default", on_show = normal_mode, win = { preview = minimal_preview } },
+  recent = { hidden = true, follow = true, layout = "default", on_show = normal_mode, win = { preview = minimal_preview } },
 
   -- registers = {},
   -- resume = {},
@@ -156,7 +165,7 @@ return {
   -- search_history = {},
   select = { layout = { preset = "select" }, on_show = normal_mode },
   spelling = { layout = "vscode", on_show = normal_mode},
-  smart = { hidden = true, supports_live = true, layout = "default", win = { preview = minimal_preview } },
+  smart = { hidden = true, follow = true, supports_live = true, layout = "default", win = { preview = minimal_preview } },
 
   -- tags = {},
   -- treesitter = {},
