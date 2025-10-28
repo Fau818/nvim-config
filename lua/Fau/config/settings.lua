@@ -2,8 +2,8 @@ return {
   sign_priority = {
     default = 10,
 
-    diagnostics = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
-    gitsigns = 12,
+    diagnostics   = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
+    gitsigns      = 12,  -- NOTE: Set to 12 means it will be covered by warn&error signs.
     todo_comments = 11,
 
     git_blame = 100,

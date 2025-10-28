@@ -2,7 +2,7 @@ return {
   -- DESC: Statusline enhancer.
   ---@module "statuscol"
   "luukvbaal/statuscol.nvim",
-  enabled = false,  -- TEST: Use `Snacks.statuscolumn` instead.
+  enabled = vim.fn.has("nvim-0.10") == 1,
   event = "UIEnter",
 
   config = function()

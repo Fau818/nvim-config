@@ -141,7 +141,7 @@ return {
     History  = "",
     FindText = "",
     Gear     = "",
-    Restore  = "󰦛",
+    Restore  = "",  -- "󰦛"
     Exit     = "󰿅",
 
     -- ---------- Fold

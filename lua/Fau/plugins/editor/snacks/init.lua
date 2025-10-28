@@ -9,7 +9,7 @@ return {
   opts = {
     bigfile      = require("Fau.plugins.editor.snacks.bigfile"),
     dim          = require("Fau.plugins.editor.snacks.dim"),
-    dashboard    = { enabled = false },
+    dashboard    = require("Fau.plugins.editor.snacks.dashboard"),
     explorer     = { enabled = true, replace_netrw = true },
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = require("Fau.plugins.editor.snacks.input"),

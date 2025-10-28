@@ -4,16 +4,6 @@
 
 ---@type LazySpec[]
 return {
-  -- ==================== Dashboard ====================
-  {
-    -- DESC: Welcome dashboard for Neovim.
-    "goolord/alpha-nvim",
-    config = function() require("Fau.ui.alpha") end,
-    event = "VimEnter",
-    keys = { { ";", "<CMD>Alpha<CR>", desc = "Dashboard: Toggle" } },
-  },
-
-
   -- ==================== File Tree ====================
   {
     -- DESC: File explorer tree for Neovim.
@@ -40,7 +30,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function() require("Fau.ui.lualine") end,
-    event = "UIEnter",
+    event = { "BufReadPost", "BufNewFile" },  -- NOTE: If loaded when `UIEnter`, it will show on dashboard.
   },
 
   {

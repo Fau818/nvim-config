@@ -76,7 +76,6 @@ return {
         if vim.fn.empty(vim.fn.expand("%:p")) == 0 then pcall(vim.cmd.loadview) end
       end,
     })
-
   end,
 
   ---@type UfoConfig

@@ -9,11 +9,11 @@ local config = {
     icons_enabled = true,
     theme = "auto",
 
-    component_separators = { left = Fau_vim.icons.ui.DividerLeft, right = Fau_vim.icons.ui.DividerRight },
+    component_separators = { left = Fau_vim.icons.ui.DividerLeft,     right = Fau_vim.icons.ui.DividerRight },
     section_separators   = { left = Fau_vim.icons.ui.BoldDividerLeft, right = Fau_vim.icons.ui.BoldDividerRight },
 
     disabled_filetypes = {
-      statusline = { "alpha", "yazi" },
+      statusline = { "snacks_dashboard", "yazi" },
       winbar     = {},
     },
 
@@ -24,7 +24,7 @@ local config = {
     always_show_tabline = true,
     globalstatus = true,
 
-    refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
+    refresh = { statusline = 1000, tabline = nil, winbar = nil },
   },
   sections = {
     lualine_a = { component.mode, component.lazy },

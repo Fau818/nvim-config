@@ -1,6 +1,7 @@
+-- NOTE: Not used since it breaks the priority of signs.
 ---@class snacks.statuscolumn.Config
 return {
-  enabled = true,
+  enabled = false,
 
   -- left = { "mark", "sign" },
   left = { "sign", "git" },  -- priority of signs on the left (high to low)
