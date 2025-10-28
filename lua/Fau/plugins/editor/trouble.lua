@@ -1,14 +1,3 @@
-local _fix_comment_hl = function()
-  -- HACK: Fix comment highlight in trouble window.
-  local view = require("trouble.view")
-  local view_on_mount = view.on_mount
-  view.on_mount = function(self)
-    Fau_vim.functions.colorscheme.fix_comment_hl(self.win.win)
-    view_on_mount(self)
-  end
-end
-
-
 ---@type LazySpec
 return {
   -- DESC: Quickfix list enhancer.
@@ -65,10 +54,7 @@ return {
       preview = {
         type = "main",
         scratch = true,
-        on_mount = function(self)
-          Fau_vim.functions.colorscheme.fix_comment_hl(self.win)
-          vim.w.snacks_indent = true
-        end,
+        on_mount = function(self) vim.w.snacks_indent = true end,
       },
 
       -- Throttle/Debounce settings. Should usually not be changed.
@@ -166,7 +152,5 @@ return {
     end
 
     trouble.setup(config)
-
-    _fix_comment_hl()
   end,
 }

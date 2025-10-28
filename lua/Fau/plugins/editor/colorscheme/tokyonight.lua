@@ -63,8 +63,6 @@ local config = {
     highlights["WinSeparator"] = { fg = Fau_vim.colors.light_blue }
 
     -- ---------- TodoSign
-    -- SEE: `@comment` will be linked to `Comment` for trouble and telescope previewer.
-    highlights["@comment"] = { bold = true, italic = true }
     highlights["TodoSign"] = { fg = Fau_vim.colors.dark_green, bold = true, italic = true }
     highlights["InfoSign"] = { fg = Fau_vim.colors.tokyonight.blue2, bold = true, italic = true }
     highlights["FixSign"]  = { fg = Fau_vim.colors.tokyonight.red1, bold = true, italic = true }

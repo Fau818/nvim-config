@@ -7,3 +7,6 @@ vim.opt_local.shiftwidth  = 0
 
 -- LSP setup
 if not vim.lsp.is_enabled("pylance") and vim.fn.executable("pylance") == 1 then Fau_vim.lsp.setup_server("pylance") end
+
+-- Set TodoSign highlights namespace.
+if vim.bo.buftype == "" then Fau_vim.functions.colorscheme.set_todo_sign_hl_ns() end

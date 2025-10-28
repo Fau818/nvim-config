@@ -6,11 +6,6 @@ return {
   sources = require("Fau.plugins.editor.snacks.picker.sources"),
   focus = "input",
 
-  preview = function(ctx)
-    Fau_vim.functions.colorscheme.fix_comment_hl(ctx.win)
-    Snacks.picker.preview.file(ctx)
-  end,
-
   show_delay = nil,  -- Use default.
   limit_live = 5000,
 

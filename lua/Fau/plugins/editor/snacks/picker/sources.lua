@@ -121,10 +121,6 @@ return {
   lines = {
     layout = "main",
     win = { preview = normal_preview },
-    on_show = function(picker)
-      Fau_vim.functions.colorscheme.fix_comment_hl(picker.list.win.win)
-      Snacks.picker.sources.lines.on_show(picker)  -- NOTE: Call the original on_show
-    end,
   },
 
   -- loclist = {},
