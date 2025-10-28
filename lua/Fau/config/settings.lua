@@ -21,6 +21,7 @@ return {
     diagnostics = 250,
     lsp_symbols = 300,
 
+    statuscolumn = 100,
     gitsigns = 100,
     git_blame = 500,
 

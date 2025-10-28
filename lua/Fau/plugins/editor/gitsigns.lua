@@ -52,6 +52,7 @@ end
 
 ---@type LazySpec
 return {
+  ---@module "gitsigns"
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPost", "BufNewFile" },
 

@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: A snazzy bufferline for Neovim.
+  ---@module "bufferline"
   "akinsho/bufferline.nvim",
   dependencies = "nvim-tree/nvim-web-devicons",
   event = "UIEnter",

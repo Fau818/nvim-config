@@ -19,8 +19,8 @@ return {
     quickfile    = { enabled = false },
     styles       = require("Fau.plugins.editor.snacks.styles"),
     scope        = require("Fau.plugins.editor.snacks.scope"),
-    scroll       = { enabled = false },
-    statuscolumn = { enabled = false },
+    scroll       = require("Fau.plugins.editor.snacks.scroll"),
+    statuscolumn = require("Fau.plugins.editor.snacks.statuscolumn"),
     words        = require("Fau.plugins.editor.snacks.words"),
     zen          = require("Fau.plugins.editor.snacks.zen"),
 
