@@ -5,6 +5,8 @@ return {
     diagnostics = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
     gitsigns = 12,
     todo_comments = 11,
+
+    git_blame = 100,
   },
 
 

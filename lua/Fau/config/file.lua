@@ -27,7 +27,7 @@ return {
     "TelescopePrompt", "TelescopeResults",
     "packer", "lazy", "lazy_backdrop", "yazi",
   },
-  excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix" },
+  excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },
 
   special_files     = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" },
   ignored_files     = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$", "^.*.iosinterface$" },

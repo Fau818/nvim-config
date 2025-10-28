@@ -35,22 +35,12 @@ return {
 
 
   -- ==================== Bufferline and Statusline ====================
-
   {
     -- DESC: A fancy and configurable statusline.
     "nvim-lualine/lualine.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function() require("Fau.ui.lualine") end,
     event = "UIEnter",
-  },
-
-
-  -- ==================== Git ====================
-  {
-    -- DESC: Git integration for Neovim.
-    "lewis6991/gitsigns.nvim",
-    config = function() require("Fau.ui.gitsigns") end,
-    event = { "BufReadPost", "BufNewFile" },
   },
 
   {

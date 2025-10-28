@@ -30,7 +30,8 @@ return {
 
   config = function(_, opts)
     require("snacks").setup(opts)
-    -- NOTE: Remove std_data path from default config.
+
+    -- HACK: Remove std_data path from default config.
     Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }
 
 
