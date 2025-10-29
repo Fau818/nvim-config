@@ -46,10 +46,10 @@ return {
         max_prefix_length = 12,    -- prefix used when a buffer is de-duplicated
         truncate_names    = true,  -- whether or not tab names should be truncated
 
-        ---@diagnostic disable-next-line: unused-local
         custom_filter = function(bufnr, buf_numbers)
           ---@diagnostic disable-next-line: param-type-mismatch
-          if vim.fn.bufname(bufnr) == "" then return false end
+          local buf_name = vim.fn.bufname(bufnr)
+          if buf_name == "" then return false end
           return true
         end,
 

@@ -26,5 +26,7 @@ return {
     git_blame = 500,
 
     explore = 50,
+
+    statusline = 1000,
   }
 }
