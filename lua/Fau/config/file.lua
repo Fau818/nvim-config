@@ -2,6 +2,8 @@ return {
   large_file_size = 1024 * 1024,  -- 1MiB
   large_file_line = 2000,
 
+  large_folder_size = 100,
+
   -- HINT: Please consider to update `lualine.ignore_focus` when you add new filetypes.
   excluded_filetypes = {
     -- NOTE: Keep `""` as the first element.
@@ -32,28 +34,8 @@ return {
   },
   excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },      -- NOTE: Keep `nofile` as the first element.
 
-  special_files     = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" },
-  ignored_files     = { "^.git$", "^.vscode$", "^.idea$", "^__pycache__$", "^.mypy_cache$", "^.DS_Store$", "^.*.iosinterface$" },
-  ignored_patterns   = {
-    "^.git/",
-    "^.vscode/",
-    "^.idea/",
+  special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" },
 
-    "^node_modules/",
-    "^__pycache__/",
-
-    "^.local/",
-    "^.cache/",
-    "^.Trash/",
-    "^.terminfo/",
-
-    "^Applications/",
-    "^Desktop/",
-    "^Documents/",
-    "^Downloads/",
-    "^Library/",
-    "^Movies/",
-    "^Music/",
-    "^Pictures/",
-  },
+  -- NOTE: List of vim regex for file/directory names.
+  ignored_files = { "^\\.git$", "^\\.vscode$", "^\\.idea$", "^__pycache__$", "^\\.mypy_cache$", "^\\.DS_Store$", "^\\..*\\.iosinterface$" },
 }

@@ -1,3 +1,4 @@
+-- TODO: Refactor me!
 ---@type LazySpec
 return {
   -- DESC: Easily run code in Neovim.

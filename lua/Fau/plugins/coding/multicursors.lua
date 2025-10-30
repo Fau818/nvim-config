@@ -25,7 +25,7 @@ return {
     DEBUG_MODE = false,
     create_commands = true,  -- create Multicursor user commands
     -- updatetime = nil,  -- Use default.
-    nowait = true,
+    nowait = false,
 
     mode_keys = {
       append = "a",

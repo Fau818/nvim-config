@@ -10,7 +10,7 @@ return {
     bigfile      = require("Fau.plugins.editor.snacks.bigfile"),
     dim          = require("Fau.plugins.editor.snacks.dim"),
     dashboard    = require("Fau.plugins.editor.snacks.dashboard"),
-    explorer     = { enabled = true, replace_netrw = true },
+    explorer     = { enabled = false, replace_netrw = true },
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = require("Fau.plugins.editor.snacks.input"),
     picker       = require("Fau.plugins.editor.snacks.picker"),
@@ -36,16 +36,16 @@ return {
 
 
     -- ==================== Notification ====================
-    ---@type fun(msg: string, level?: snacks.notifier.level|number, opts?: snacks.notifier.Notif.opts): number|string
+    ---@type fun(msg: any, level?: snacks.notifier.level|number, opts?: snacks.notifier.Notif.opts): number|string
     function Fau_vim.notify(msg, level, opts_)
       if type(msg) ~= "string" then msg = vim.inspect(msg) end
       level = level or vim.log.levels.INFO
       opts_ = opts_ or {}
-      vim.tbl_extend("force", opts_, { title = "Fau_vim" })
+      opts_ = vim.tbl_extend("force", opts_, { title = "Fau_vim" })
       Snacks.notifier.notify(msg, level, opts_)
       return 555
     end
-    function Fau_vim.inspect (...) return vim.inspect(...) end
+    function Fau_vim.inspect(...) return vim.inspect(...) end
     function Fau_vim.show(...) Fau_vim.notify(vim.inspect(...)) end
 
 
@@ -86,10 +86,6 @@ return {
 
 
     -- ==================== Picker ====================
-    -- TODO: Recheck these keymaps later.
-    -- { "<LEADER>tt", "<CMD>Trouble todo filter={tag={TODO,FIX,TEST}}<CR>", desc = "Troule: Show TODO Comments"    },
-    -- { "<LEADER>e", function() Snacks.explorer.open() end, desc = "File Explorer" },
-
     -- Top Pickers
     { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Find Files" },
     -- TEST: use smart picker as the files picker.  Oct 24, 2025
@@ -137,7 +133,7 @@ return {
     { "<LEADER>fld", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
     { "<LEADER>flD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
     { "<LEADER>flI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-    { "<LEADER>flr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+    { "<LEADER>flr", function() Snacks.picker.lsp_references() end, desc = "References" },
     { "<LEADER>flt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
     { "<LEADER>fli", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
     { "<LEADER>flo", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },

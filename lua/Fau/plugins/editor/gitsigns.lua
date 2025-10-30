@@ -19,8 +19,8 @@ local function _on_attach(bufnr)
   keymap("n", "<LEADER>gu", gitsigns.undo_stage_hunk, opts("Gitsigns: Undo"))
 
   -- ==================== Preview ====================
-  keymap("n", "<LEADER>gc", gitsigns.preview_hunk_inline, opts("Preview Changes Inline"))
-  keymap("n", "<LEADER>gC", gitsigns.preview_hunk,        opts("Preview Changes Float"))
+  keymap({ "n", "x" }, "<LEADER>gc", gitsigns.preview_hunk_inline, opts("Preview Changes Inline"))
+  keymap({ "n", "x" }, "<LEADER>gC", gitsigns.preview_hunk,        opts("Preview Changes Float"))
 
   -- ==================== Blame ====================
   keymap("n", "<LEADER>gb", function() gitsigns.blame_line({ full = true }) end, opts("Show Full Blame"))

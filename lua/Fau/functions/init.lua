@@ -1,10 +1,4 @@
----@param plugin string
--- TODO: Deparecate this function after refactor all plugin loader.
-Fau_vim.load_plugin_error = function(plugin)
-  Fau_vim.notify(plugin .. " not found!", vim.log.levels.ERROR)
-end
-
-
+-- TODO: Put them into one file.
 Fau_vim.functions = {
   colorscheme = {},  -- SEE: lua/Fau/plugins/editor/colorscheme/init.lua
   format      = require("Fau.functions.format"),

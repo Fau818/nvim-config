@@ -3,8 +3,8 @@ return {
     default = 10,
 
     diagnostics   = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
-    gitsigns      = 12,  -- NOTE: Set to 12 means it will be covered by warn&error signs.
-    todo_comments = 11,
+    gitsigns      = 11,  -- NOTE: Set to 11 means it will be covered by warn&error signs.
+    todo_comments = 10,
 
     git_blame = 100,
   },
@@ -18,7 +18,7 @@ return {
     highlight = 200,
     indentscope = 100,
 
-    diagnostics = 250,
+    diagnostics = 500,
     lsp_symbols = 300,
 
     statuscolumn = 100,
@@ -28,5 +28,8 @@ return {
     explore = 50,
 
     statusline = 1000,
-  }
+  },
+
+
+  timeout = { git = 500 },
 }
