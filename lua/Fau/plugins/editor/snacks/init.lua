@@ -17,7 +17,7 @@ return {
     input        = require("Fau.plugins.editor.snacks.input"),
     notifier     = require("Fau.plugins.editor.snacks.notifier"),
     picker       = require("Fau.plugins.editor.snacks.picker"),
-    profiler     = { enabled = false,  autocmds     = true },
+    profiler     = { enabled = false, autocmds = true },
     quickfile    = { enabled = true },
     scope        = require("Fau.plugins.editor.snacks.scope"),
     scratch      = require("Fau.plugins.editor.snacks.scratch"),
@@ -29,9 +29,6 @@ return {
     win          = {},  -- TODO: QwQ
     words        = require("Fau.plugins.editor.snacks.words"),
     zen          = require("Fau.plugins.editor.snacks.zen"),
-
-    -- Snacks.git.blame_line()
-    -- Snacks.gitbrowse.open()
   },
 
   -- =============================================
@@ -77,7 +74,8 @@ return {
       return 555
     end
     function Fau_vim.inspect(...) return vim.inspect(...) end
-    function Fau_vim.show(...) Fau_vim.notify(vim.inspect(...)) end
+    -- function Fau_vim.show(...) Fau_vim.notify(vim.inspect(...)) end
+    function Fau_vim.show(...) Snacks.debug.inspect(...) end
 
     -- Global debug functions.
     _G.dd = function(...) Snacks.debug.inspect(...) end
@@ -97,9 +95,6 @@ return {
   -- ========== Keymaps
   -- =============================================
   keys = {
-    -- { "<LEADER>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-    -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-    -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
     -- ==================== Words ====================
     {
       mode = { "n", "i" }, "<A-n>",

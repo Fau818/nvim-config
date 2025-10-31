@@ -1,19 +1,21 @@
--- TODO: Refactor me!
 ---@type LazySpec
 return {
   -- DESC: Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
   ---@module "diffview"
   "sindrets/diffview.nvim",
   dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
-  cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+  cmd = {
+    "DiffviewOpen", "DiffviewClose",
+    "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory",
+    "DiffviewRefresh",
+  },
+
   init = function()
     -- Use diagonal lines in place of deleted lines in diff mode.
     vim.opt.fillchars:append{ diff = "╱" }
   end,
+
   config = function()
-    -- =============================================
-    -- ========== Plugin Configurations
-    -- =============================================
     local diffview = require("diffview")
     local actions = require("diffview.actions")
 
@@ -262,7 +264,6 @@ return {
         },
       },
     }
-
 
     diffview.setup(config)
   end,

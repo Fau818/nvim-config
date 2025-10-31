@@ -2,6 +2,7 @@
 ---@type LazySpec[]
 return {
   {
+    -- BUG: When enter a buffer with no treesitter parser installed, it won't be installed automatically.
     -- DESC: An incremental parsing system for programming tools for Neovim.
     ---@module "nvim-treesitter"
     "nvim-treesitter/nvim-treesitter",
