@@ -248,7 +248,7 @@ return {
         },
       },
 
-      hijack_directories = { enable = false, auto_open = true },
+      hijack_directories = { enable = true, auto_open = true },
 
       update_focused_file = {
         enable = true,
@@ -356,12 +356,14 @@ return {
     },
   },
 
-  {
-    -- DESC: Add LSP support for file operations in NvimTree.
-    ---@module "lsp-file-operations"
-    "antosha417/nvim-lsp-file-operations",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-tree.lua" },
-    ft = "NvimTree",
-    config = true,
-  },
+
+  -- TEST: Use Snacks.reanme module.  Oct 30, 2025
+  -- {
+  --   -- DESC: Add LSP support for file operations in NvimTree.
+  --   ---@module "lsp-file-operations"
+  --   "antosha417/nvim-lsp-file-operations",
+  --   dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-tree.lua" },
+  --   ft = "NvimTree",
+  --   config = true,
+  -- },
 }

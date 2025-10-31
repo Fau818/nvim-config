@@ -9,7 +9,7 @@ local views = {
     position = { row = 2, col = 2 },
   },
 
-  cmdline_popup = { size = { width = 60 } },
+  cmdline_popup = { zindex = 60, size = { width = 60 } },
 
   mini = { timeout = 500, replace = true, merge = true },
 

@@ -43,6 +43,7 @@ local function open_float(picker, item, action)
   local win_row = math.floor((ui.height - win_height) / 2)
   local win_col = math.floor((ui.width - win_width) / 2)
 
+  -- TODO: Use Snacks.win to create floating window.
   -- Create floating window.
   local win = vim.api.nvim_open_win(new_buf, true, {
     relative = "editor",

@@ -8,19 +8,25 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile      = require("Fau.plugins.editor.snacks.bigfile"),
-    dim          = require("Fau.plugins.editor.snacks.dim"),
     dashboard    = require("Fau.plugins.editor.snacks.dashboard"),
+    dim          = require("Fau.plugins.editor.snacks.dim"),
     explorer     = { enabled = false, replace_netrw = true },
+    gitbrowse    = { enabled = true },
+    image        = require("Fau.plugins.editor.snacks.image"),
     indent       = require("Fau.plugins.editor.snacks.indent"),
     input        = require("Fau.plugins.editor.snacks.input"),
-    picker       = require("Fau.plugins.editor.snacks.picker"),
-    -- profiler     = { enabled = false, autocmds = false },
     notifier     = require("Fau.plugins.editor.snacks.notifier"),
-    quickfile    = { enabled = false },
-    styles       = require("Fau.plugins.editor.snacks.styles"),
+    picker       = require("Fau.plugins.editor.snacks.picker"),
+    profiler     = { enabled = false,  autocmds     = true },
+    quickfile    = { enabled = true },
     scope        = require("Fau.plugins.editor.snacks.scope"),
+    scratch      = require("Fau.plugins.editor.snacks.scratch"),
     scroll       = require("Fau.plugins.editor.snacks.scroll"),
     statuscolumn = require("Fau.plugins.editor.snacks.statuscolumn"),
+    styles       = require("Fau.plugins.editor.snacks.styles"),
+    terminal     = {},  -- TODO: QwQ
+    toggle       = { enabled = true },
+    win          = {},  -- TODO: QwQ
     words        = require("Fau.plugins.editor.snacks.words"),
     zen          = require("Fau.plugins.editor.snacks.zen"),
 
@@ -28,11 +34,36 @@ return {
     -- Snacks.gitbrowse.open()
   },
 
+  -- =============================================
+  -- ========== Configuration
+  -- =============================================
   config = function(_, opts)
     require("snacks").setup(opts)
 
+    -- ==================== Picker ====================
     -- HACK: Remove std_data path from default config.
     Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }
+
+
+    -- ==================== Buffer Remove ====================
+    Fau_vim.functions.utils._buf_remove = Snacks.bufdelete.delete
+
+
+    -- ==================== Rename (LSP) ====================
+    -- SEE: https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#nvim-tree
+    local prev = { new_name = "", old_name = "" }  -- Prevents duplicate events
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "NvimTreeSetup",
+      callback = function()
+        local events = require("nvim-tree.api").events
+        events.subscribe(events.Event.NodeRenamed, function(data)
+          if prev.new_name ~= data.new_name or prev.old_name ~= data.old_name then
+            data = data
+            Snacks.rename.on_rename_file(data.old_name, data.new_name)
+          end
+        end)
+      end,
+    })
 
 
     -- ==================== Notification ====================
@@ -48,21 +79,27 @@ return {
     function Fau_vim.inspect(...) return vim.inspect(...) end
     function Fau_vim.show(...) Fau_vim.notify(vim.inspect(...)) end
 
-
-    Fau_vim.functions.utils._buf_remove = Snacks.bufdelete.delete
-
-    -- NOTE: Global debug functions
+    -- Global debug functions.
     _G.dd = function(...) Snacks.debug.inspect(...) end
     _G.bt = function() Snacks.debug.backtrace() end
     ---@diagnostic disable-next-line: duplicate-set-field
     if vim.fn.has("nvim-0.11") == 1 then vim._print = function(_, ...) dd(...) end else vim.print = dd end
 
+
     -- ==================== Toggle ====================
     Snacks.toggle.dim():map("<LEADER><LEADER>t")
     Snacks.toggle.zen():map("<LEADER><LEADER>z")
+    Snacks.toggle.inlay_hints():map("<LEADER>lh")
+    Snacks.toggle.diagnostics():map("<LEADER>lv")
   end,
 
+  -- =============================================
+  -- ========== Keymaps
+  -- =============================================
   keys = {
+    -- { "<LEADER>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
+    -- { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+    -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
     -- ==================== Words ====================
     {
       mode = { "n", "i" }, "<A-n>",
@@ -83,20 +120,31 @@ return {
       desc = "Snacks.words: Prev",
     },
 
+    -- ==================== Gitbrowse ====================
+    { "<LEADER>gB", function() Snacks.gitbrowse.open() end, desc = "Git Browse", mode = { "n", "x" } },
+
+
+    -- ==================== Lazygit ====================
+    { "<LEADER>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+
+
+    -- ==================== Scratch ====================
+    { "<LEADER><LEADER>s", function() Snacks.scratch() end,        desc = "Toggle Scratch Buffer" },
+    { "<LEADER><LEADER>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 
 
     -- ==================== Picker ====================
     -- Top Pickers
-    { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Find Files" },
-    -- TEST: use smart picker as the files picker.  Oct 24, 2025
-    { "<LEADER>ff", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-    -- { "<LEADER>F",  function() Snacks.picker.files() end, desc = "Find Files" },
-    { "<LEADER>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<LEADER>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+    { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Pickers" },
+
+    -- { "<LEADER>F",  function() Snacks.picker.files() end,    desc = "Find Files" },
+    { "<LEADER>ff", function() Snacks.picker.smart() end,    desc = "Smart Find Files" },
+    { "<LEADER>fb", function() Snacks.picker.buffers() end,  desc = "Buffers" },
+    { "<LEADER>fr", function() Snacks.picker.recent() end,   desc = "Recent" },
     { "<LEADER>fp", function() Snacks.picker.projects() end, desc = "Projects" },
 
-    { "<leader>F",  function() Snacks.picker.lines() end, desc = "Buffer Lines" },
-    { "<LEADER>fs", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "<LEADER>F",  function() Snacks.picker.lines() end,     desc = "Buffer Lines" },
+    { "<LEADER>fs", function() Snacks.picker.grep() end,      desc = "Grep" },
     { "<LEADER>fS", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
 
     { "<LEADER>fn", function() Snacks.picker.notifications() end, desc = "Notification History" },

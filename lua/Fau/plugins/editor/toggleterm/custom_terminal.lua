@@ -58,7 +58,7 @@ local custom_terminal = {
   }),
 }
 
-vim.keymap.set("n", "<LEADER>gg", function() custom_terminal.lazygit:toggle()    end, { desc = "Toggle Lazygit" })
+-- vim.keymap.set("n", "<LEADER>gg", function() custom_terminal.lazygit:toggle()    end, { desc = "Toggle Lazygit" })
 vim.keymap.set("n", "<LEADER>gb", function() custom_terminal.btop:toggle()       end, { desc = "Toggle btop" })
 -- vim.keymap.set("n", "<C-q>1",     function() custom_terminal.float:toggle()      end, { desc = "Toggle Float Terminal" })
 -- vim.keymap.set("n", "<C-q>2",     function() custom_terminal.horizontal:toggle() end, { desc = "Toggle Horizontal Terminal" })

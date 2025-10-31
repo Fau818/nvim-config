@@ -4,7 +4,7 @@ return {
   ---@module "toggleterm"
   "akinsho/toggleterm.nvim",
   cmd = { "ToggleTerm", "TermExec" },
-  keys = { "<C-t>", "<LEADER>gg", "<LEADER>gb" },
+  keys = { "<C-t>", "<LEADER>gb" },
 
   ---@type ToggleTermConfig
   opts = {

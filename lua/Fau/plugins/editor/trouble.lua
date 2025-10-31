@@ -38,10 +38,10 @@ return {
       restore = true,  -- restores the last location in the list when opening
       follow  = true,  -- Follow the current item
 
-      indent_guides = true,  -- show indent guides
-      max_items = 200,       -- limit number of items that can be displayed per section
-      multiline = true,      -- render multi-line messages
-      pinned = false,        -- When pinned, the opened trouble window will be bound to the current buffer
+      indent_guides = true,   -- show indent guides
+      max_items     = 200,    -- limit number of items that can be displayed per section
+      multiline     = true,   -- render multi-line messages
+      pinned        = false,  -- When pinned, the opened trouble window will be bound to the current buffer
 
       warn_no_results = true,   -- show a warning when there are no results
       open_no_results = false,  -- open the trouble window when there are no results
@@ -68,27 +68,27 @@ return {
         ["?"] = "help",
 
         q = "close",
-        r = "refresh",
-        R = "toggle_refresh",
-
         ["<ESC>"] = "cancel",
+
         ["<TAB>"] = "jump",
         ["<CR>"]  = "jump_close",
-
         ["<2-leftmouse>"] = "jump",
+
         ["<C-s>"] = "jump_split",
         ["<C-v>"] = "jump_vsplit",
 
         j = "next",
         k = "prev",
 
-        dd = "delete",
-        d = { action = "delete", mode = "v" },
-
         i = "inspect",
-
         p = "preview",
         P = "toggle_preview",
+
+        r = "refresh",
+        R = "toggle_refresh",
+
+        dd = "delete",
+        d = { action = "delete", mode = "x" },
 
         zo = "fold_open",
         zO = "fold_open_recursive",
@@ -106,7 +106,7 @@ return {
         zN = "fold_enable",
         zi = "fold_toggle_enable",
 
-        s = {  -- example of a custom action that toggles the severity
+        s = {
           action = function(view)
             local f = view:get_filter("severity")
             local severity = ((f and f.filter.severity or 0) + 1) % 5
@@ -122,16 +122,16 @@ return {
 
       ---@type table<string, trouble.Mode>
       modes = {
-        -- NOTE: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
-        -- HACK: set `auto_jump` to `false` to avoid jumping to the first item.
-        lsp_definitions      = { auto_jump = false, auto_refresh = false },
-        lsp_declarations     = { auto_jump = false, auto_refresh = false },
-        lsp_implementations  = { auto_jump = false, auto_refresh = false },
-        lsp_type_definitions = { auto_jump = false, auto_refresh = false },
-        lsp_references       = { auto_jump = false, auto_refresh = false },
-        lsp_incoming_calls   = { auto_jump = false, auto_refresh = false },
-        lsp_outgoing_calls   = { auto_jump = false, auto_refresh = false },
-        todo                 = { auto_jump = false, auto_refresh = false },
+        -- HINT: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
+        -- HACK: Set `auto_jump` to `false` to avoid jumping to the only matched item.
+        lsp_definitions      = { auto_jump = false },
+        lsp_declarations     = { auto_jump = false },
+        lsp_implementations  = { auto_jump = false },
+        lsp_type_definitions = { auto_jump = false },
+        lsp_references       = { auto_jump = false },
+        lsp_incoming_calls   = { auto_jump = false },
+        lsp_outgoing_calls   = { auto_jump = false },
+        todo                 = { auto_jump = false },
 
         diagnostics_buffer = { mode = "diagnostics", filter = { buf = 0 } },
       },
@@ -145,7 +145,7 @@ return {
       },
     }
 
-    -- NOTE: Keymaps are case-sensitive. [Error like `<CR>`]
+    -- ISSUE: Keymaps are case-sensitive. [Error like `<CR>`]
     -- HACK: Force to lowercase.
     for lhs, rhs in pairs(config.keys) do
       if type(lhs) == "string" and lhs:sub(1, 1) == "<" then config.keys[lhs:lower()] = rhs end

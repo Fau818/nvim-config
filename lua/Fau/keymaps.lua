@@ -237,7 +237,6 @@ keymap("n", "<LEADER>lF", vim.lsp.buf.format, opts("LSP: Format Code (Force)"))
 keymap("x", "<LEADER>lf", "<CMD>lua vim.lsp.buf.format()<CR><ESC>", opts("Format Code"))
 keymap("x", "<LEADER>lF", "<CMD>lua vim.lsp.buf.format()<CR><ESC>", opts("Format Code (Force)"))
 
-keymap("n", "<LEADER>lv", function() vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text }) end, opts("LSP: Toggle Virtual Text"))
 keymap("n", "<LEADER>lh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })) end,        opts("LSP: Toggle Inlay Hint"))
 
 -- ==================== Trigger with `<CONTROL>` ====================
