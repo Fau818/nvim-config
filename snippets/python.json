@@ -1,0 +1,14 @@
+{
+  "# Main Function": {
+    "prefix": "main",
+    "body": "if __name__ == \"__main__\":\n\t${0:main()}"
+  },
+  "# Scientific Research Universal Header": {
+    "prefix": "universal_import",
+    "body": "import numpy as np\nimport pandas as pd\nimport torch\nimport torch.nn as nn\nimport torch.utils.data as tdata\nimport torchvision\nimport torchvision.models as models\nimport torchvision.transforms as transforms\nimport matplotlib.pyplot as plt\nimport cv2 as cv\nimport fau_tools$0"
+  },
+  "#!": {
+    "prefix": "#!",
+    "body": "#!/usr/bin/env python3"
+  }
+}

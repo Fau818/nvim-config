@@ -1,0 +1,356 @@
+snippet main # Main Function
+  /**
+   * Author: Fau
+   * Time: `strftime("%Y-%m-%d %H:%M")`
+   **/
+  #include <bits/stdc++.h>
+  #define rep(i, n) for (int i = 1; i <= (n); ++i)
+  using namespace std;
+  typedef long long ll;
+  int main()
+  {
+    $0
+    return 0;
+  }
+
+snippet 01Trie # 01Trie Template
+  /* 01Trie Template */
+  struct TRIE { // 使用01Trie记得是否需要插入0!!!!!!!!!
+    static const int B = 30, M = B * N;
+    int t[M][2]; int ind;
+    int cou[M]; // 统计所有位置的出现情况
+    void modify(int c, int val = 1) { // 添加 / 删除数字
+      int x = 0;
+      for (int i = B - 1; i >= 0; --i) {
+        int w = c >> i & 1;
+        if (!t[x][w]) t[x][w] = ++ind;
+        x = t[x][w], cou[x] += val;
+      }
+    }
+    int ask(int c) { // 询问最大异或和
+      int x = 0, res = 0;
+      for (int i = B - 1; i >= 0; --i) {
+        int w = c >> i & 1;
+        if (cou[t[x][w ^ 1]]) {
+          res += 1 << i;
+          x = t[x][w ^ 1];
+        }
+        else x = t[x][w];
+      }
+      return res;
+    }
+
+    void clear(int x) {
+      cou[x] = 0;
+      for (int i = 0; i < 2; ++i) {
+        if (t[x][i]) clear(t[x][i]), t[x][i] = 0;
+      }
+    }
+    void clear() { clear(ind = 0); }
+  }trie;
+
+snippet beizenglca # Get LCA (Binary lifting) Template
+  /* 倍增求LCA模版 */
+  namespace LCA {
+    const int B = 17; // 记录真实的B, f数组多开1即可
+    int dep[N], f[N][B + 1];
+    void dfs(int x = 1, int fa = 0) {
+      dep[x] = dep[fa] + 1;
+      f[x][0] = fa;
+      rep(i, B) f[x][i] = f[f[x][i - 1]][i - 1];
+      for (auto& to : edge[x]) if (to != fa) dfs(to, x);
+    }
+    int lca(int x, int y) {
+      if (dep[x] < dep[y]) swap(x, y);
+      for (int i = B; i >= 0; --i) if (dep[f[x][i]] >= dep[y]) x = f[x][i];
+      if (x == y) return x;
+      for (int i = B; i >= 0; --i) if (f[x][i] != f[y][i]) x = f[x][i], y = f[y][i];
+      return f[x][0];
+    }
+  }
+
+snippet bit # Binary Indexed Tree
+  /* Binary Indexed Tree Template */
+  struct BIT {
+    int t[N]discretization;
+    static int lowbit(int x) { return x & -x; }
+    void add(int x, int c) { for (int i = x; i <= n; i += lowbit(i)) t[i] += c; }
+    int ask(int x) {
+      int res = 0;
+      for (int i = x; i; i -= lowbit(i)) res += t[i];
+      return res;
+    }
+    int ask(int l, int r) { return ask(r) - ask(l - 1); }
+  }bit;
+
+snippet crt # HJT Tree
+  /* 静态主席树模版 */
+  const int L = 1; int R = N - 5;
+  struct CRT {
+    struct node {
+      int l, r;
+      int val;
+    }t[N << 5];
+    int root[N], ind;
+    int build(int a, int c, int tl, int tr, int p) {
+      int x = ++ind; t[x] = t[p];
+      t[x].val += c;
+      if (tl == tr) return x;
+
+      int mid = tl + tr >> 1;
+      if (a <= mid) t[x].l = build(a, c, tl, mid, t[p].l);
+      else t[x].r = build(a, c, mid + 1, tr, t[p].r);
+      return x;
+    }
+    int ask(/*内容*/int tl, int tr, int p, int x) {
+      if (tl == tr) return tl;
+      int mid = tl + tr >> 1;
+      /* 内容 */
+    }
+  }crt;
+
+snippet dynamic_crt # Dynamic HJT Tree
+  /* 动态主席树模版 */
+  const int L = 1; int R = N - 5;
+  int rt[N], root[N]; //root是动态树, rt是静态树
+  struct CRT {
+    struct node {
+      int l, r;
+      int val;
+    }t[N * 18 * 18];
+    int ind; //多组记得清空
+    int build(int a, int c, int tl, int tr, int p) { // 静态树建立
+      int x = ++ind; t[x] = t[p];
+      t[x].val += c;
+      if (tl == tr) return x;
+      int mid = tl + tr >> 1;
+      if (a <= mid) t[x].l = build(a, c, tl, mid, t[p].l);
+      else t[x].r = build(a, c, mid + 1, tr, t[p].r);
+      return x;
+    }
+    void modify(int a, int c, int tl, int tr, int& x) { //修改动态树
+      if (!x) x = ++ind;
+      t[x].val += c;
+      if (tl == tr) return;
+
+      int mid = tl + tr >> 1;
+      a <= mid ? modify(a, c, tl, mid, t[x].l) : modify(a, c, mid + 1, tr, t[x].r);
+    }
+    int ask(int k, int tl, int tr, vector<int>& p, vector<int>& x) { //查询树中第k小
+      if (tl == tr) return tl;
+      int cou = 0;
+      for (auto& op : x) cou += t[t[op].l].val;
+      for (auto& op : p) cou -= t[t[op].l].val;
+
+      int mid = tl + tr >> 1;
+      vector<int> np, nx;
+      if (cou >= k) {
+        for (auto& op : p) np.push_back(t[op].l);
+        for (auto& op : x) nx.push_back(t[op].l);
+        return ask(k, tl, mid, np, nx);
+      }
+
+      for (auto& op : p) np.push_back(t[op].r);
+      for (auto& op : x) nx.push_back(t[op].r);
+      return ask(k - cou, mid + 1, tr, np, nx); //记得减去左边贡献
+    }
+  }crt;
+  struct BIT {
+    static int lowbit(int x) { return x & -x; }
+    void add(int x, int a, int c) { for (int i = x; i <= n; i += lowbit(i)) crt.modify(a, c, L, R, root[i]); }
+    int ask(int l, int r, int k) {
+      vector<int> nx(1, rt[r]), np(1, rt[l - 1]); // 别忘了推入静态树
+      for (int i = r; i; i -= lowbit(i)) nx.push_back(root[i]);
+      for (int i = l - 1; i; i -= lowbit(i)) np.push_back(root[i]);
+      return crt.ask(k, L, R, np, nx);
+    }
+  }bit;
+
+snippet dsu # Disjoint Set Union
+  /* Disjoint Set Union Template */
+  struct DSU {
+    int p[N];
+    int find(int x) { return x == p[x] ? x : p[x] = find(p[x]); }
+    void merge(int a, int b) {
+      a = find(a), b = find(b);
+      if (a == b) return;
+      p[b] = a;
+    }
+    void init(int n) { rep(i, n) p[i] = i; }
+  }dsu;
+
+snippet fpow # Binary Exponentiation
+  /* Binary Exponentiation */
+  int fpow(int a, int b) {
+    ll res = 1; a %= mod;
+    while (b) {
+      if (b & 1) res = res * a % mod;
+      b >>= 1;
+      a = 1ll * a * a % mod;
+    }
+    return res;
+  }
+
+snippet lca # Heavy Path Decomposition
+  /* 树链剖分求lca模板 */
+  int p[N], dep[N], sz[N], son[N];
+  void dfs1(int x = 1, int fa = 0) {
+    p[x] = fa, dep[x] = dep[fa] + 1, sz[x] = 1; // son[x] = 0;
+    for (auto& to : edge[x]) {
+      if (to == fa) continue;
+      dfs1(to, x);
+      sz[x] += sz[to];
+      if (sz[to] > sz[son[x]]) son[x] = to;
+    }
+  }
+  int id[N], top[N], ind;
+  void dfs2(int x = 1, int tp = 1) {
+    id[x] = ++ind, top[x] = tp;
+
+    if (!son[x]) return;
+    dfs2(son[x], tp);
+
+    for (auto& to : edge[x]) {
+      if (to == p[x] or to == son[x]) continue;
+      dfs2(to, to);
+    }
+  }
+  int lca(int a, int b) {
+    while (top[a] != top[b]) {
+      if (dep[top[a]] < dep[top[b]]) swap(a, b);
+      a = p[top[a]];
+    }
+    return id[a] < id[b] ? a : b;
+  }
+
+snippet lisanhua # Discretization
+  /* Discretization Template */
+  vector<int> v(1, -0x3f3f3f3f); // int len;
+  int find(int x) { return lower_bound(v.begin(), v.end(), x) - v.begin(); }
+  void discrete() { sort(v.begin(), v.end()); v.erase(unique(v.begin(), v.end()), v.end()); }
+
+snippet seg # Segment Tree
+  /* Segment Tree Template */
+  struct SEG {
+    struct node {
+      int l, r;
+      int val;
+      int lazy;
+    }t[N << 2];
+    static void pushdown(node& op, int lazy) {
+      op.val += (op.r - op.l + 1) * lazy;
+      op.lazy += lazy;
+    }
+    void pushdown(int x) {
+      if (!t[x].lazy) return;
+      pushdown(t[x << 1], t[x].lazy), pushdown(t[x << 1 | 1], t[x].lazy);
+      t[x].lazy = 0;
+    }
+    static void pushup(node& p, node& l, node& r) {
+      p.val = l.val + r.val;
+    }
+    void pushup(int x) { pushup(t[x], t[x << 1], t[x << 1 | 1]); }
+    void build(int l, int r, int x = 1) {
+      t[x] = { l, r, 0, 0 };
+      if (l == r) return;
+      int mid = l + r >> 1;
+      build(l, mid, x << 1), build(mid + 1, r, x << 1 | 1);
+      pushup(x);
+    }
+    void modify(int l, int r, int c, int x = 1) {
+      if (l <= t[x].l and r >= t[x].r) {
+        pushdown(t[x], c);
+        return;
+      }
+      pushdown(x);
+      int mid = t[x].l + t[x].r >> 1;
+      if (l <= mid) modify(l, r, c, x << 1);
+      if (r > mid) modify(l, r, c, x << 1 | 1);
+      pushup(x);
+    }
+    int ask(int l, int r, int x = 1) {
+      if (l <= t[x].l and r >= t[x].r) return t[x].val;
+      pushdown(x);
+      int mid = t[x].l + t[x].r >> 1;
+      int res = 0;
+      if (l <= mid) res = ask(l, r, x << 1);
+      if (r > mid) res += ask(l, r, x << 1 | 1);
+      return res;
+    }
+  }seg;
+
+snippet shupou # Heavy Path Decomposition Template
+  /* Heavy Path Decomposition Template */
+  int w[N];
+  vector<int> edge[N];
+  // struct EDGE { int a, b, c; }EG[N]; // 如果涉及到修改第i条边的情况, 可以这样存储
+
+  int p[N], dep[N], sz[N], son[N];
+  void dfs1(int x = 1, int fa = 0) {
+    p[x] = fa, dep[x] = dep[fa] + 1, sz[x] = 1; // son[x] = 0;
+    for (auto& to : edge[x]) {
+      if (to == fa) continue;
+      dfs1(to, x);
+      sz[x] += sz[to];
+      if (sz[to] > sz[son[x]]) son[x] = to;
+    }
+  }
+  int id[N], nw[N], top[N], ind;
+  void dfs2(int x = 1, int tp = 1) {
+    id[x] = ++ind, nw[ind] = w[x], top[x] = tp;
+
+    if (!son[x]) return;
+    dfs2(son[x], tp);
+
+    for (auto& to : edge[x]) {
+      if (to == p[x] or to == son[x]) continue;
+      dfs2(to, to);
+    }
+  }
+
+snippet suijishu # mt19937 Template
+  mt19937 rnd(chrono::steady_clock::now().time_since_epoch().count());
+
+snippet universal_header # Universal Includes
+  #include <iostream>
+  #include <cstdio>
+  #include <algorithm>
+  #include <cctype>
+  #include <cmath>
+  #include <climits>
+  #include <cstring>
+  #include <queue>
+  #include <cassert>
+  #ifdef CODE_Fau
+  #include <bits/stdc++.h>
+  #endif
+
+snippet youhua # CPP I/O Optimization
+  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);$0
+
+snippet zuheshu # Combinatorics Template
+  /* Combinatorics Template */
+  int num[N], innum[N];
+  int fpow(int a, int b) {
+    ll res = 1; a %= mod;
+    while (b) {
+      if (b & 1) res = res * a % mod;
+      b >>= 1;
+      a = 1ll * a * a % mod;
+    }
+    return res;
+  }
+  void init(int n = N - 5)
+  {
+    num[0] = innum[0] = 1;
+    for (int i = 1; i <= n; ++i) {
+      num[i] = 1ll * num[i - 1] * i % mod;
+    }
+
+    innum[n] = fpow(num[n], mod - 2);
+    for (int i = n - 1; i >= 1; --i) {
+      innum[i] = 1ll * innum[i + 1] * (i + 1) % mod;
+    }
+  }
+  int C(int a, int b) { return 1ll * num[a] * innum[a - b] % mod * innum[b] % mod; }
+  int A(int a, int b) { return 1ll * num[a] * innum[a - b] % mod; }

@@ -1,0 +1,18 @@
+{
+  "# Section Comment": {
+    "prefix": "seccom",
+    "body": "# =============================================\n# ========== ${1:Section Comment}\n# =============================================$0"
+  },
+  "# Section Separator": {
+    "prefix": "secsep",
+    "body": "# ==================== ${1:Section Separator} ====================$0"
+  },
+  "# Subsection Comment": {
+    "prefix": "subseccom",
+    "body": "# -----------------------------------\n# -------- ${1:Subsection Comment}\n# -----------------------------------$0"
+  },
+  "# Subsection Separator": {
+    "prefix": "subsecsep",
+    "body": "# ---------- ${1:Subsection Separator}$0"
+  }
+}

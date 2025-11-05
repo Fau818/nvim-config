@@ -1,0 +1,19 @@
+{
+  "name": "personal-snippets",
+  "contributes": {
+    "snippets": [
+      { "language": "bash", "path": "./conf.json" },
+      { "language": "sh", "path": "./conf.json" },
+      { "language": "conf", "path": "./conf.json" },
+      { "language": "dockfile", "path": "./conf.json" },
+      { "language": "sshconfig", "path": "./conf.json" },
+      { "language": "toml", "path": "./conf.json" },
+      { "language": "zsh", "path": "./conf.json" },
+
+      { "language": "cpp", "path": "./acm_cpp.json" },
+      { "language": "html", "path": "./html.json" },
+      { "language": "lua", "path": "./lua.json" },
+      { "language": "python", "path": "./python.json" }
+    ]
+  }
+}
