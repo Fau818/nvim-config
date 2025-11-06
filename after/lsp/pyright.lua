@@ -1,4 +1,5 @@
--- https://github.com/microsoft/pyright/blob/main/docs/settings.md
+-- SEE: https://github.com/microsoft/pyright/blob/main/docs/settings.md
+---@type vim.lsp.Config
 return {
   settings = {
     pyright = {

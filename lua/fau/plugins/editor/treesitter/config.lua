@@ -54,7 +54,7 @@ local config = {
     -- \ if you hit the <ENTER> key, an indentation will continuously persist (even if you delete it and hit the <ENTER> again).
     enable = true,
     disable = function()
-      -- if vim.bo.filetype == "python" then return true end
+      if vim.bo.filetype == "python" then return true end
       return fvim.utils.is_large_file()
     end,
   },
