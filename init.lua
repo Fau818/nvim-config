@@ -1,1 +1,1 @@
-require "fau"
+require("fau")

@@ -1,21 +1,63 @@
+# =============================================
+# ========== Pyright
+# =============================================
 [tool.pyright]
-# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
-
+# SEE: Pyright: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+# SEE: Basedpyright: https://docs.basedpyright.com/dev/configuration/config-files
+# ==================== Environment Options ====================
 # include = ["src"]
 exclude = [
+  "**/.git",
   "**/.idea",
   "**/.vscode",
+  "**/.cache",
+  "**/.venv",
   "**/__pycache__",
-  "**/.git",
-  "**/venv",
+  "**/.mypy_cache",
 ]
-# defineConstant = { DEBUG = true }
-pythonPlatform = "Linux"  # values: "Windows" | "Darwin" | "Linux" | "All"
 
-typeCheckingMode = "off"  # values: "off" | "basic" | "strict"
-# values: true | false | "none" | "information" | "warning" | "error"
-reportMissingImports    = false  # by flake8
-reportGeneralTypeIssues = false
-reportMissingTypeStubs  = false
+# strict  = []
+# extends = ""
+# defineConstant = { "DEBUG": true }
+# stubPath = ""
+# extraPaths = []
 
-# useLibraryCodeForTypes = false
+# verboseOutput = false
+
+# pythonPlatform = "Darwin"  # values: "Windows" | "Darwin" | "Linux" | "All"
+# pythonVersion = ""
+
+# executionEnvironments = []
+
+useLibraryCodeForTypes = true
+
+
+# ==================== Type Evaluation Settings ====================
+# strictListInference        = false
+# strictSetInference         = false
+# strictDictionaryInferencet = false
+
+# strictParameterNoneValue   = true
+
+# analyzeUnannotatedFunctions = true
+
+# deprecateTypingAliases = true
+# disableBytesTypePromotions = true
+# enableExperimentalFeatures = false
+
+# ---------- Basedpyright Exclusive Settings
+# strictGenericNarrowing = true
+# enableBasedFeatures = false
+
+# ---------- Discouraged Settings
+enableTypeIgnoreComments = true
+# enableReachabilityAnalysis = false
+
+
+# ==================== Diagnostics ====================
+typeCheckingMode = "recommended"  # values: "off" | "basic" | "strict" | "recommended" | "all"
+# ignore = []
+
+# ---------- Type Check Rule Overrides [Not All Settings Shown]
+# Values: "error" | "warning" | "information" | "hint" | "none" | boolean
+reportMissingImports = false  # by flake8

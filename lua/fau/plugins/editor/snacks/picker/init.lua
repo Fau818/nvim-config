@@ -91,7 +91,7 @@ return {
     hidden   = "h",
     ignored  = { icon = "i", value = true },
     modified = "m",
-    regex    = { icon = "R", value = false },
+    regex    = { icon = "R", value = true },
   },
 
   win = {

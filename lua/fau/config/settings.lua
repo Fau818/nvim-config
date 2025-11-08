@@ -34,7 +34,7 @@ return {
 
     explore = 50,
 
-    statusline = 1000,
+    statusline = 500,
   },
 
 

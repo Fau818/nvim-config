@@ -140,6 +140,11 @@ vim.keymap.del("n", "Y")
 keymap("n", "p", "p`[v`]=", opts("PASTE with Auto Indent"))
 keymap("n", "P", "P`[v`]=", opts("PASTE with Auto Indent"))
 
+keymap("n", "<D-v>", "p`[v`]=", opts("PASTE with Auto Indent"))
+-- keymap("i", "<D-v>", "<C-r>+<Esc>`[v`]=`]a", opts("PASTE with Auto Indent"))
+keymap("i", "<D-v>", function() vim.fn.setreg("z", vim.fn.getreg("+"):gsub("\n$", "")); return "<C-r>z<Esc>`[v`]=`]a" end, { expr = true, desc = "PASTE with Auto Indent" })
+keymap("x", "<D-v>", [["_dP]], opts("Paste with Auto Indent"))
+
 -- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
 keymap("x", "p", [["_dP]], opts("Paste"))
 

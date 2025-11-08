@@ -29,7 +29,7 @@ return {
       SEE  = { icon = fvim.icons.todo.BOOK, color = fvim.colors.wathet, signs = true, alt = { "REF", "LINK" } },
       Fau  = { icon = fvim.icons.todo.Fau,  color = fvim.colors.cobalt },
 
-      EXIT   = { icon = fvim.icons.todo.EXIT,   color = fvim.colors.dark_blue, alt = { "RETURN", "CASE" } },
+      EXIT   = { icon = fvim.icons.todo.EXIT,   color = fvim.colors.dark_blue, alt = { "RETURN", "CASE", "SPECIAL" } },
       ASSERT = { icon = fvim.icons.todo.ASSERT, color = fvim.colors.orange_yellow },
     },
 

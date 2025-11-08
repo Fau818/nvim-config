@@ -29,7 +29,7 @@ function M.auto_indent()
   local mode = vim.fn.mode()
   if mode == "v" or mode == "V" or mode == "\22" then
     fvim.utils.feedkeys("x", "=")
-  else -- indent all buffer
+  else  -- indent all buffer
     local save_cursor = vim.fn.getpos(".")
     vim.api.nvim_command("normal! gg=G")
     vim.fn.setpos(".", save_cursor)
@@ -45,12 +45,11 @@ function M.smart_format()
   local filetype = vim.bo.filetype
 
   -- NOTE: Special treamtment for some filetypes.
-  if filetype == "python" then return M.auto_indent()
-  elseif filetype == "c" or filetype == "cpp" then return M.auto_indent()
-  end
+  -- if filetype == "python" then return M.auto_indent()  -- TEST: Use ruff for python formatting. Nov 7, 2025.
+  if filetype == "c" or filetype == "cpp" then return M.auto_indent() end
 
   -- By lsp capability
-  local clients = vim.lsp.get_clients({ bufnr=0 })
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
   clients = vim.tbl_filter(function(client) return client.supports_method("textDocument/formatting") end, clients)
   if #clients == 0 then return M.auto_indent()
   else return vim.lsp.buf.format()

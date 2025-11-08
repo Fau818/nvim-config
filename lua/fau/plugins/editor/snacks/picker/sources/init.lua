@@ -18,7 +18,7 @@ return {
   -- diagnostics_buffer = {},
   -- explorer = {},
 
-  files = { layout = { preset = preset.default_layout }, hidden = true, follow = true, win = { preview = preset.minimal_preview } },
+  files = { layout = { preset = preset.default_layout }, hidden = true, follow = true, regex = false, win = { preview = preset.minimal_preview } },
 
   -- git_branches = {},
   -- git_diff = {},
@@ -35,12 +35,13 @@ return {
     win = { preview = preset.normal_preview },
     hidden = true,
     follow = true,
+    regex  = false,
     args = { "--ignore-file", ("%s/git/ignore"):format(fvim.xdg_config_home) },
   },
   -- grep_buffers = { hidden = true, layout = "stack_rev", win = { preview = preset.normal_preview } },
   -- grep_word    = { hidden = true, layout = "stack_rev", win = { preview = preset.normal_preview } },
 
-  help = { layout = { preset = "stack_rev" }, win = { preview = preset.minimal_preview } },
+  help = { layout = { preset = "stack_rev" }, regex = false, win = { preview = preset.minimal_preview } },
   highlights = { layout = { preset = "telescope" }, confirm = preset.open_float, win = { preview = preset.minimal_preview } },
 
   icons = { confirm = "paste" },
@@ -50,9 +51,9 @@ return {
   -- NOTE: <A-g> and <A-b> are mapped to go to toggle global and buffer keymaps.
   keymaps = { layout = { preset = preset.default_layout }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
 
-  lazy = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview } },
+  lazy = { layout = { preset = preset.default_layout }, regex = false, win = { preview = preset.minimal_preview } },
 
-  lines = { layout = { preset = "main" }, win = { preview = preset.normal_preview } },
+  lines = { layout = { preset = "main" }, regex = false, win = { preview = preset.normal_preview } },
 
   -- loclist = {},
 
@@ -79,20 +80,20 @@ return {
   picker_layouts = preset.classic_normal,
   picker_preview = preset.classic_normal,
 
-  projects = { layout = { preset = preset.default_layout }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
+  projects = { layout = { preset = preset.default_layout }, regex = false, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
 
   -- qlist = {},
 
-  recent = { layout = { preset = preset.default_layout }, hidden = true, follow = true, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
+  recent = { layout = { preset = preset.default_layout }, hidden = true, follow = true, regex = false, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
 
   -- registers = {},
   -- resume = {},
   scratch = { layout = { preset = preset.default_layout }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
 
   -- search_history = {},
-  select = { layout = { preset = "select" }, on_show = preset.normal_mode },
+  select = { layout = { preset = "select" }, regex = false, on_show = preset.normal_mode },
   spelling = { layout = { preset = "vscode" }, on_show = preset.normal_mode },
-  smart = { layout = { preset = preset.default_layout }, hidden = true, follow = true, supports_live = true, win = { preview = preset.minimal_preview } },
+  smart = { layout = { preset = preset.default_layout }, hidden = true, follow = true, regex = false, supports_live = true, win = { preview = preset.minimal_preview } },
 
   -- tags = {},
   -- treesitter = {},

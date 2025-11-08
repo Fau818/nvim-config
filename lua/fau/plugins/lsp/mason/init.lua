@@ -8,13 +8,15 @@ return {
     keys = { { "<LEADER>li", "<CMD>checkhealth vim.lsp<CR>", desc = "LSP: Show Info" } },
 
     init = function()
+      fvim.lsp.mason = require("fau.config.lsp.mason")
       vim.lsp.inlay_hint.enable(true)
+
       vim.api.nvim_create_autocmd("FileType", {
         group = "fau_vim",
         pattern = "*",
         callback = function(args)
           if vim.bo[args.buf].buftype ~= "" then return end
-          fvim.lsp.setup_by_ft(args.match)
+          fvim.lsp.mason.setup_by_ft(args.match)
         end,
       })
     end,
@@ -63,5 +65,10 @@ return {
         keymaps = nil,  -- Use default.
       },
     },
+
+    config = function(_, opts)
+      require("mason").setup(opts)
+      fvim.lsp.mason.hook_on_install_success()
+    end,
   },
 }

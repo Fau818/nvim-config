@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command("FauvimConfig",
 -- DESC: Copy pyproject.toml file
 vim.api.nvim_create_user_command("GetPyprojectFile",
   function()
-    vim.api.nvim_command(string.format("!cp %s/configuration/pyproject.toml .", fvim.xdg_config_home))
+    vim.api.nvim_command(string.format("!cp %s/configuration/pyproject.toml .", fvim.nvim_config_path))
   end, {}
 )
 

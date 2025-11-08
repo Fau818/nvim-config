@@ -11,7 +11,7 @@ vim.opt_local.softtabstop = -1
 vim.opt_local.shiftwidth  = 0
 
 -- LSP setup
-if not vim.lsp.is_enabled("fylance") and vim.fn.executable("fylance") == 1 then fvim.lsp.setup_server("fylance") end
+-- if not vim.lsp.is_enabled("fylance") and vim.fn.executable("fylance") == 1 then fvim.lsp.setup_server("fylance") end
 
 -- Set TodoSign highlights namespace.
 if vim.bo.buftype == "" then fvim.colorscheme.set_todo_sign_hl_ns() end

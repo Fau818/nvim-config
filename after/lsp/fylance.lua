@@ -3,19 +3,6 @@ local settings = {
   python = {
     -- pythonPath = "python3",  -- Set dynamically in before_init.
     analysis = {
-      -- ==================== AI ====================
-      -- TEST: Does it work?   Nov 5, 2025
-      aiCodeActions = {
-        convertLambdaToNamedFunction = true,
-        generateDocstring = true,
-        implementAbstractClasses = true,
-        generateSymbol = true,
-        convertFormatString = true,
-      },
-
-      aiHoverSummaries = true,
-
-
       -- ==================== Path ====================
       -- exclude = { "**/.*", "**/node_modules", "**/__pycache__", "Applications", "Desktop", "Documents", "Downloads", "Library", "Movies", "Music", "Pictures" },
       -- include = nil,
@@ -26,7 +13,6 @@ local settings = {
 
 
       -- ==================== Import ====================
-      addImport = { exactMatchOnly = true },
       autoImportCompletions = true,
       showOnlyDirectDependenciesInAutoImport = false,
       -- packageIndexDepths = nil,
@@ -39,7 +25,7 @@ local settings = {
       indexing = true,
       userFileIndexingLimit = 2000,
       includeAliasesFromUserFiles = true,
-      regenerateStdLibIndices = false,
+      regenerateStdLibIndices = true,
       completeFunctionParens = false,  -- NOTE: If use `blink.cmp`, please set it to false.
 
 
@@ -122,7 +108,7 @@ return {
     ".git",
   },
 
-  before_init = function(_, config) config.settings.python.pythonPath = vim.fn.exepath("python3") end,
+  -- before_init = function(_, config) config.settings.python.pythonPath = vim.fn.exepath("python3") end,
 
   settings = settings,
 }
