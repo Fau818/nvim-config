@@ -37,6 +37,9 @@ return {
     on_error = nil,
 
     ---@type table Presets for languages
-    langs = { python = { dictionary = { join = { space_in_brackets = true } } } },
+    langs = {
+      python = { dictionary = { join = { space_in_brackets = true } } },
+      toml = { array = { join = { space_in_brackets = false } } },
+    },
   },
 }

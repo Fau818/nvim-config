@@ -109,13 +109,13 @@ local settings = {
     completion = {
       enable = true,
 
-      autoRequire = true,      -- When the input looks like a file name, automatically require this file.
+      autoRequire = false,     -- When the input looks like a file name, automatically require this file.
       requireSeparator = ".",  -- The separator used when `require`.
 
       ---@type "Disable"|"Both"|"Replace"
       callSnippet = "Disable",  -- Shows function call snippets.
       ---@type "Disable"|"Both"|"Replace"
-      wordSnippet = "Disable",  -- Shows keyword syntax snippets.
+      keywordSnippet = "Disable",  -- Shows keyword syntax snippets.
 
       displayContextkey = 9,  -- Preview the line number of the relevant code snippet
       showParams = true,      -- Display parameters in completion list.

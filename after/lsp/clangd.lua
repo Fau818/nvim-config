@@ -42,6 +42,5 @@ return {
     "--completion-style=bundled",
 
     "--function-arg-placeholders=false",
-    -- "--offset-encoding=utf-16",
   },
 }

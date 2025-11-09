@@ -1,3 +1,6 @@
+[project]
+requires-python = ">=3.10"
+
 # =============================================
 # ========== Pyright
 # =============================================
@@ -61,3 +64,96 @@ typeCheckingMode = "recommended"  # values: "off" | "basic" | "strict" | "recomm
 # ---------- Type Check Rule Overrides [Not All Settings Shown]
 # Values: "error" | "warning" | "information" | "hint" | "none" | boolean
 reportMissingImports = false  # by flake8
+
+
+
+# =============================================
+# ========== Ruff
+# =============================================
+# SEE: https://docs.astral.sh/ruff/settings/       (Full settings)
+# SEE: https://docs.astral.sh/ruff/configuration/  (Basic configuration)
+[tool.ruff]
+cache-dir = "~/.cache/ruff"
+
+# builtins = []
+# namespace-packages = []
+
+# src = [".", "src"]  # Use default.
+# include = ["*.py", "*.pyi", "*.pyw", "*.ipynb", "**/pyproject.toml"]  # Use default.
+# exclude = [".bzr", ".direnv", ".eggs", ".git", ".git-rewrite", ".hg", ".mypy_cache", ".nox", ".pants.d", ".pytype", ".ruff_cache", ".svn", ".tox", ".venv", "__pypackages__", "_build", "buck-out", "dist", "node_modules", "venv"]  # Use default.
+
+# extend = ""
+# extend-exclude = []
+# force-exclude = false
+
+# fix = false
+# fix-only = false
+# show-fixes = false
+# unsafe-fixes = false
+
+line-length = 120
+indent-width = 2
+
+output-format = "full"  # Type: "full" | "concise" | "grouped" | "json" | "junit" | "github" | "gitlab" | "pylint" | "azure"
+
+# required-version = null  # Required Ruff version.
+# target-version   = null  # Required Python version; respect `requires-python` from [project].
+# per-file-target-version = {}
+
+preview = false
+respect-gitignore = true
+
+[tool.ruff.analyze]
+detect-string-imports = true  # TEST enabled on Nov 8, 2025
+# direction = "dependencies"
+# exclude = []
+# include-dependencies = {}
+# preview = false
+# string-imports-min-dots = 2
+
+
+[tool.ruff.format]
+# exclude = []
+
+quote-style = "double"
+indent-style = "space"
+
+skip-magic-trailing-comma = false  # TEST: Allow trailing commas. Nov 8, 2025
+line-ending = "auto"
+
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+preview = false
+
+
+[tool.ruff.lint]
+# allowed-confusables = []
+# dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"  # Use default.
+# logger-objects = []
+
+# exclude = []
+
+# preview = false
+# explicit-preview-rules = false
+# future-annotations = false
+
+# select = []
+# extend-select = []
+# external = []
+ignore = [
+  "E701"
+]
+
+# fixable =["ALL"]
+# unfixable = []
+# extend-fixable = []
+# extend-safe-fixes = []
+# extend-unsafe-fixes = []
+# per-file-ignores = {}
+# extend-per-file-ignores = {}
+
+# task-tags = ["TODO", "FIXME", "XXX"]  -- Use default.
+
+typing-extensions = true
+# typing-modules = []
