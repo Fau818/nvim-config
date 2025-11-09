@@ -1,6 +1,7 @@
 -- DESC: "Disable `K` to show hover document keymaps in `noice`.",
 vim.b.markdown_keys = true
 
+
 -- DESC: Better `gx` handling.
 -- SEE: noice.nvim/lua/noice/text/markdown.lua:221
 vim.keymap.set("n", "gx", function()
@@ -17,5 +18,6 @@ vim.keymap.set("n", "gx", function()
       if from then from = to + 1 end
     end
   end
-  vim.api.nvim_feedkeys("gx", "n", false)
-end, { buffer = true })
+
+  return "gx"
+end, { buffer = true, expr = true, desc = "Open link under cursor" })

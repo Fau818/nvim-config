@@ -17,7 +17,7 @@ keymap("n", "<LEADER><LEADER>i", fvim.indent.toggle_indent_width, opts("Indent: 
 keymap("n", "<LEADER>lf", fvim.format.smart_format, opts("LSP: Format Code (Smart)"))
 keymap("x", "<LEADER>lf", function()
   fvim.format.smart_format()
-  fvim.utils.feedkeys("x", "<ESC>")  -- Exit visual mode after formatting.
+  fvim.utils.feedkeys("n", "<ESC>")  -- Exit visual mode after formatting.
 end, opts("LSP: Format Code (Smart)"))
 
 keymap("n", "<LEADER>lR", function() fvim.lsp.restart_lsp() end, opts("LSP: Restart LSP for Current Buffer"))

@@ -79,11 +79,13 @@ end
 -- =============================================
 ---If there is no line crossing when selecting in Visual-Block mode, switch to Visual mode.
 ---This is useful to trim line break when yanking in Visual-Block mode.
+---E.g., when you are in normal mode and press `vg_`, although you didn't copy the line break, the macOS clipboard will
+---still add a line break at the end. This function can help avoid this issue.
 function M.smart_visual_mode()
   local mode = vim.fn.mode()
   if mode == "\22" then
     local start_row, end_row = vim.fn.getpos("v")[2], vim.fn.getpos(".")[2]
-    if start_row == end_row then fvim.utils.feedkeys("x", "v") end
+    if start_row == end_row then vim.api.nvim_command("normal! v") end
   end
 end
 
@@ -117,30 +119,21 @@ local function run_fallback_mapping(mapping)
 
   -- REF: https://github.com/saghen/blink.cmp/blob/2408f14f740f89d603cad33fe8cbd92ab068cc92/lua/blink/cmp/keymap/fallback.lua#L64
   if type(mapping.callback) == "function" then
-    vim.schedule(mapping.callback)
-    return nil
-  elseif mapping.rhs then
-    local rhs = mapping.rhs
-    if mapping.expr == 1 then
-      vim.notify("Expr rhs mappings are not tested yet.", vim.log.levels.ERROR)
-      assert(false, "PLEASE TEST ME!!!")
-      -- rhs = vim.api.nvim_replace_termcodes(mapping.rhs, true, true, true)
-      -- rhs = vim.api.nvim_eval(rhs)
-    end
+    if mapping.expr ~= 1 then vim.schedule(mapping.callback) return end
 
-    if type(rhs) == "string" then
-      M.feedkeys(mapping.mode, rhs)
-      return nil
-    else
-      vim.notify("Fallback mapping rhs is not a string.", vim.log.levels.ERROR)
-      assert(false, "PLEASE TEST ME!!!")
+    local expr = mapping.callback()
+    if type(expr) == "string" and mapping.expr == 1 then
+      expr = vim.api.nvim_replace_termcodes(expr, true, true, true)
     end
+    return expr
+  elseif mapping.rhs then
+    local rhs = vim.api.nvim_replace_termcodes(mapping.rhs, true, true, true)
+    if mapping.expr == 1 then rhs = vim.api.nvim_eval(rhs) end
+    return rhs
   end
 
-  vim.notify("Fallback mappings without rhs or callback are not tested yet.", vim.log.levels.ERROR)
-  assert(false, "PLEASE TEST ME!!!")
-  -- pass the key along as usual
-  -- return vim.api.nvim_replace_termcodes(key, true, true, false)
+  vim.notify("Fallback mappings has no callback or rhs.", vim.log.levels.ERROR)
+  assert(false, "Fallback mappings has no callback or rhs.")
 end
 
 

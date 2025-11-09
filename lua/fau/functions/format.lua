@@ -28,7 +28,7 @@ end
 function M.auto_indent()
   local mode = vim.fn.mode()
   if mode == "v" or mode == "V" or mode == "\22" then
-    fvim.utils.feedkeys("x", "=")
+    vim.api.nvim_command("normal! =")
   else  -- indent all buffer
     local save_cursor = vim.fn.getpos(".")
     vim.api.nvim_command("normal! gg=G")

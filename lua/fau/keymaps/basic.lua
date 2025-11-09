@@ -162,7 +162,7 @@ keymap("i", "<D-v>", function()
   -- dd(string.format("p_row=%d, p_col=%d, n_col=%d, i_line=%d, p_line=%d, gap=%d", p_row, p_col, n_col, i_line, p_line, gap))
 end, opts("Paste with Auto Indent"))
 keymap("x", "<D-v>", [["_dP]], opts("Paste with Auto Indent"))
-keymap("c", "<D-v>", "<C-r>+", opts("PASTE from System Clipboard"))  -- NOTE: KEEP `silent = false` for command mode. (Otherwise, it won't work.)
+keymap("c", "<D-v>", "<C-r>+", { desc = "PASTE from System Clipboard" })  -- NOTE: KEEP `silent = false` for command mode. (Otherwise, it won't work.)
 
 -- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
 keymap("x", "p", [["_dP]], opts("Paste"))
