@@ -142,7 +142,25 @@ keymap("n", "P", "P`[v`]=", opts("PASTE with Auto Indent"))
 
 keymap("n", "<D-v>", "p`[v`]=", opts("PASTE with Auto Indent"))
 -- keymap("i", "<D-v>", "<C-r>+<Esc>`[v`]=`]a", opts("PASTE with Auto Indent"))
-keymap("i", "<D-v>", function() vim.fn.setreg("z", vim.fn.getreg("+"):gsub("\n$", "")); return "<C-r>z<Esc>`[v`]=`]a" end, { expr = true, desc = "PASTE with Auto Indent" })
+keymap("i", "<D-v>", function()
+  -- Trim line break then store to register `z`.
+  vim.fn.setreg("z", vim.fn.getreg("+"):gsub("\n$", ""))
+
+  -- Paste from register `z` then record the cursor position and line length.
+  vim.api.nvim_paste(vim.fn.getreg("z"), true, -1)
+  local p_row, p_col = unpack(vim.api.nvim_win_get_cursor(0))
+  local p_line = #vim.api.nvim_get_current_line()
+
+  -- Auto Indent for the pasted content and calculate the new cursor column.
+  vim.api.nvim_command("normal! `[v`]=`]")
+  local i_line = #vim.api.nvim_get_current_line()
+  local gap = i_line - p_line
+  local n_col = p_col + gap
+
+  -- Set the cursor to the new position.
+  vim.api.nvim_win_set_cursor(0, { p_row, n_col })
+  -- dd(string.format("p_row=%d, p_col=%d, n_col=%d, i_line=%d, p_line=%d, gap=%d", p_row, p_col, n_col, i_line, p_line, gap))
+end, opts("Paste with Auto Indent"))
 keymap("x", "<D-v>", [["_dP]], opts("Paste with Auto Indent"))
 keymap("c", "<D-v>", "<C-r>+", opts("PASTE from System Clipboard"))  -- NOTE: KEEP `silent = false` for command mode. (Otherwise, it won't work.)
 
