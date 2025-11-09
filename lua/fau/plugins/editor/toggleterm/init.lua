@@ -64,7 +64,8 @@ return {
     -- on_stderr = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stderr
     -- on_exit   = fun(t: Terminal, job: number, exit_code: number, name: string) -- function to run when terminal process exits
 
-    -- on_open = function() vim.cmd("startinsert!") end,
+    on_open  = function(t) fvim.kitty.deactivate_in_editor() end,
+    on_close = function(t) fvim.kitty.activate_in_editor() end,
   },
 
   config = function(_, opts)

@@ -2,7 +2,7 @@
 -- ========== Global Config
 -- =============================================
 local keymap = vim.keymap.set
-local function opts(desc) return { silent = true, desc = desc } end
+local function opts(desc) return { silent = false, desc = desc } end  -- TEST: Keep `silent = false` for showing message in command line.
 
 
 keymap({ "n", "x" }, "<Space>", "<NOP>", opts())
@@ -83,7 +83,7 @@ keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Synta
 keymap("i", "<C-n>", "<NOP>", opts())
 
 -- Delete Previous Word in Insert Mode [TEST]
-keymap("i",  "<C-w>", "<C-s-w>", opts("Delete Previous Word"))
+keymap("i", "<C-w>", "<C-s-w>", opts("Delete Previous Word"))
 
 
 -- =============================================
@@ -144,6 +144,7 @@ keymap("n", "<D-v>", "p`[v`]=", opts("PASTE with Auto Indent"))
 -- keymap("i", "<D-v>", "<C-r>+<Esc>`[v`]=`]a", opts("PASTE with Auto Indent"))
 keymap("i", "<D-v>", function() vim.fn.setreg("z", vim.fn.getreg("+"):gsub("\n$", "")); return "<C-r>z<Esc>`[v`]=`]a" end, { expr = true, desc = "PASTE with Auto Indent" })
 keymap("x", "<D-v>", [["_dP]], opts("Paste with Auto Indent"))
+keymap("c", "<D-v>", "<C-r>+", opts("PASTE from System Clipboard"))  -- NOTE: KEEP `silent = false` for command mode. (Otherwise, it won't work.)
 
 -- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
 keymap("x", "p", [["_dP]], opts("Paste"))
@@ -209,7 +210,7 @@ keymap("t", "<C-r>", "<NOP>", opts())
 -- ========== Diagnostics
 -- =============================================
 -- Full Diagnostics Infomation
-keymap("n", "gl", vim.diagnostic.open_float,   opts("LSP: Full Diagnostics"))
+keymap("n", "gl", vim.diagnostic.open_float, opts("LSP: Full Diagnostics"))
 
 -- Navigation
 keymap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts("LSP: Prev Diagnostics"))

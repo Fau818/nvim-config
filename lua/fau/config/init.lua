@@ -1,6 +1,8 @@
 -- ==================== Basic ====================
 fvim.nvim_config_path = vim.fn.stdpath("config")
-fvim.xdg_config_home  = os.getenv("XDG_CONFIG_HOME") or vim.fn.expand("~/.config")
+fvim.xdg_config_home  = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
+
+fvim.kitty = require("fau.config.kitty")
 
 
 -- ==================== General ====================

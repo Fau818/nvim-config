@@ -17,11 +17,14 @@ return {
     },
 
     selection_modes = {
-      ["@function.outer"] = "V",
+      ["@function.outer"] = "v",
       ["@function.inner"] = "v",
 
-      ["@class.outer"] = "V",
+      ["@class.outer"] = "v",
       ["@class.inner"] = "v",
+
+      ["@conditional.inner"] = "v",
+      ["@conditional.outer"] = "v",
     },
 
     -- include_surrounding_whitespace = function(query_string, selection_modes) end,

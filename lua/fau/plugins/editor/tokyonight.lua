@@ -1,10 +1,3 @@
-local function comment_style()
-  local term_type = os.getenv("TERM")
-  if term_type == "xterm-kitty" or os.getenv("KITTY_PID") then return { italic = true, bold = true } end
-  return { italic = true }
-end
-
-
 ---@type LazySpec
 return {
   -- DESC: A snazzy colorscheme that can be customized.
@@ -20,7 +13,7 @@ return {
     terminal_colors = true,
 
     styles = {
-      comments  = comment_style(),
+      comments  = fvim.kitty.is_enabled and { italic = true, bold = true } or { italic = true },
       keywords  = { italic = true },
       functions = {},
       variables = {},

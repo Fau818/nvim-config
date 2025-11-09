@@ -93,27 +93,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- =============================================
 -- ========== Kitty
 -- =============================================
-if vim.env.TERM == "xterm-kitty" then
+if fvim.kitty.is_enabled then
   -- SEE: https://sw.kovidgoyal.net/kitty/mapping/#conditional-mappings-depending-on-the-state-of-the-focused-window
   vim.api.nvim_create_autocmd({ "VimEnter", "VimResume" }, {
     group = vim.api.nvim_create_augroup("KittySetVarVimEnter", { clear = true }),
-    callback = function(args)
-      if vim.api.nvim_ui_send then
-        vim.api.nvim_ui_send("\x1b]1337;SetUserVar=in_editor=MQo\007")
-      else
-        io.stdout:write("\x1b]1337;SetUserVar=in_editor=MQo\007")
-      end
-    end,
+    callback = fvim.kitty.activate_in_editor,
   })
 
   vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
     group = vim.api.nvim_create_augroup("KittyUnsetVarVimLeave", { clear = true }),
-    callback = function()
-      if vim.api.nvim_ui_send then
-        vim.api.nvim_ui_send("\x1b]1337;SetUserVar=in_editor=MQo\007")
-      else
-        io.stdout:write("\x1b]1337;SetUserVar=in_editor\007")
-      end
-    end,
+    callback = fvim.kitty.deactivate_in_editor,
   })
 end

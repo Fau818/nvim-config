@@ -86,7 +86,8 @@ return {
     disable_limit_reached_message = false,  -- Set to `true` to suppress completion limit reached popup
 
     -- NOTE: Overwrite `internal_filetypes`
-    filetypes = { gitcommit = true },
+    filetypes = { gitcommit = true, yaml = true },
+
     should_attach = function(_, _) return not fvim.utils.is_large_file() end,
 
     server = {
