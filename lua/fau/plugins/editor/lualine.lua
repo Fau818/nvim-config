@@ -191,6 +191,13 @@ local components = {
 
   copilot = { "copilot", padding = { left = 0, right = 1 } },  -- SEE: `AndreM222/copilot-lualine`.
 
+  ai_agent = {
+    function() local status = require("sidekick.status").cli() return " " .. (#status > 1 and #status or "") end,
+    color = function() return #require("sidekick.status").cli() > 0 and "Special" or { fg = fvim.colors.lualine.red } end,
+    cond = function() return package.loaded["sidekick"] ~= nil end,
+    padding = { right = 1 },
+  },
+
 
   -- ==================== Treesitter ====================
   treesitter = {
@@ -293,7 +300,7 @@ return {
       lualine_a = { components.mode, components.lazy },
       lualine_b = { components.branch, components.diff },
       lualine_c = { components.diagnostics, components.python_env },
-      lualine_x = { components.lsp_status, components.copilot, components.treesitter },
+      lualine_x = { components.lsp_status, components.copilot, components.ai_agent, components.treesitter },
       lualine_y = { components.filetype, components.indent, components.encoding, components.fileformat },
       lualine_z = { components.progress, components.location, components.command },
     },

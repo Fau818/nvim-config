@@ -3,36 +3,6 @@ return {
   -- DESC: Github copilot supporter.
   ---@module "copilot"
   "zbirenbaum/copilot.lua",
-  dependencies = {
-    ---@module "copilot-lsp"
-    "copilotlsp-nvim/copilot-lsp",
-    -- enabled = false,
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = fvim.file.excluded_filetypes,
-        callback = function() vim.b.copilot_nes_debounce = 9999999999999999999999 end,
-      })
-
-      vim.g.copilot_nes_debounce = 500
-      vim.keymap.set({ "n", "i" }, "<C-y>", function()
-        local nes = require("copilot-lsp.nes")
-        local bufnr = vim.api.nvim_get_current_buf()
-        local state = vim.b[bufnr].nes_state
-        if state then
-          -- local _ = nes.walk_cursor_start_edit() or (nes.apply_pending_nes() and nes.walk_cursor_end_edit())
-          local _ = nes.apply_pending_nes(bufnr) and nes.walk_cursor_end_edit(bufnr)
-          return nil
-        else
-          fvim.notify("Requested Copilot NES suggestion ...")
-          nes.request_nes("copilot")
-          return nil
-        end
-      end, { desc = "Accept Copilot NES suggestion or Requested", expr = true })
-    end,
-
-    ---@type copilotlsp.config
-    opts = {}
-  },
   enabled = fvim.settings.copilot.enable,
 
   event = { "InsertEnter", "CmdlineEnter", "LspAttach" },

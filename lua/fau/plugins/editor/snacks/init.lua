@@ -158,8 +158,8 @@ return {
     },
 
     { "<LEADER>fa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
-    { "<LEADER>fc", function() Snacks.picker.commands() end, desc = "Commands" },
-    { "<LEADER>fC", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<LEADER>fc", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<LEADER>fC", function() Snacks.picker.commands() end, desc = "Commands" },
 
     { "<LEADER>fe", function() Snacks.picker("conda") end, desc = "Conda Environments", ft = { "python" } },
 

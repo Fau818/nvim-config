@@ -104,4 +104,14 @@ if fvim.kitty.is_enabled then
     group = vim.api.nvim_create_augroup("KittyUnsetVarVimLeave", { clear = true }),
     callback = fvim.kitty.deactivate_in_editor,
   })
+
+  vim.api.nvim_create_autocmd("TermEnter", {
+    group = "fau_vim",
+    callback = function() fvim.kitty.deactivate_in_editor() end,
+  })
+
+  vim.api.nvim_create_autocmd("TermLeave", {
+    group = "fau_vim",
+    callback = function() fvim.kitty.activate_in_editor() end,
+  })
 end

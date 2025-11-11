@@ -39,22 +39,26 @@ return {
     keymap = {
       preset = "none",
       -- ["<TAB>"] = { "accept", "snippet_forward", "fallback" },
-      ["<TAB>"] = { function(cmp)
-        ---Accept the copilot suggestion if it's visible
-        ---@return boolean
-        local function copilot_is_visable()
-          if not fvim.settings.copilot.enable then return false end
-          local copilot_ok, copilot = pcall(require, "copilot.suggestion")
-          if not copilot_ok then return false end
-          return copilot.is_visible() ~= nil
-        end
+      ["<TAB>"] = {
+        function(cmp)
+          ---Accept the copilot suggestion if it's visible
+          ---@return boolean
+          local function copilot_is_visible()
+            local copilot_ok, copilot = pcall(require, "copilot.suggestion")
+            return copilot_ok and copilot.is_visible() ~= nil
+          end
 
-        if cmp.is_menu_visible() then return cmp.accept()
-        elseif cmp.snippet_active() then return cmp.snippet_forward()
-        elseif copilot_is_visable() then return pcall(function() require("copilot.suggestion").accept() end)
-        else return pcall(function() require("tabout").tabout() end)
-        end
-      end, "fallback" },
+          if cmp.is_menu_visible() then return cmp.accept()
+          elseif cmp.snippet_active() then return cmp.snippet_forward()
+          elseif copilot_is_visible() then return pcall(function() require("copilot.suggestion").accept() end)
+          else
+            local tabout_ok, tabout = pcall(require, "tabout")
+            vim.schedule(function() pcall(function() tabout.tabout() end) end)
+            return tabout_ok
+          end
+        end,
+        "fallback"
+      },
       ["<S-TAB>"] = { "select_prev", "fallback" },
       ["<CR>"]    = { "snippet_forward", "fallback" },
 
@@ -169,7 +173,7 @@ return {
         pattern = "BlinkCmpMenuOpen",
         callback = function()
           vim.b.copilot_suggestion_hidden = true
-          if suggestion.is_visible() then suggestion.dismiss() end
+          suggestion.dismiss()
         end,
       })
 
@@ -177,7 +181,7 @@ return {
         pattern = "BlinkCmpMenuClose",
         callback = function()
           vim.b.copilot_suggestion_hidden = false
-          vim.defer_fn(function() if not suggestion.is_visible() then suggestion.next() end end, 100)
+          vim.defer_fn(function() suggestion.update_preview() end, fvim.settings.debounce.copilot)
         end,
       })
     end

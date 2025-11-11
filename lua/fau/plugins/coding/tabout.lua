@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   -- DESC: Press <TAB> to jump out of brakets.
-  ---@module "tabout.nvim"
+  ---@module "tabout"
   "abecodes/tabout.nvim",
   dependencies = "nvim-treesitter/nvim-treesitter",
   cond = true,
@@ -16,7 +16,7 @@ return {
     default_tab       = "<C-Tab>",    -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
     default_shift_tab = "<C-S-Tab>",  -- reverse shift default action,
     enable_backwards  = false,        -- Disable if you just want to move forward
-    completion        = true,         -- If you use a completion pum that also uses the tab key for a smart scroll function. Setting this to true will disable tab out when the pum is open and execute the smart scroll function instead.
+    completion        = false,        -- If you use a completion pum that also uses the tab key for a smart scroll function. Setting this to true will disable tab out when the pum is open and execute the smart scroll function instead.
     tabouts = {
       { open = "'", close = "'" },
       { open = '"', close = '"' },
@@ -28,5 +28,5 @@ return {
     },
     ignore_beginning = false,  -- if the cursor is at the beginning of a filled element it will rather tab out than shift the content
     exclude = fvim.file.excluded_filetypes,  -- tabout will ignore these filetypes
-  }
+  },
 }

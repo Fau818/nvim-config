@@ -11,8 +11,8 @@ return {
   -- cliphist = {},
   -- colorschemes = {},
 
-  commands        = { layout = { preset = "stack_rev" }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
-  command_history = { layout = { preset = "vscode" }, on_show    = preset.normal_mode },
+  commands        = { layout = { preset = "stack_rev" }, win = { preview = preset.minimal_preview } },
+  command_history = { layout = { preset = "vscode" } },
 
   -- diagnostics = {},
   -- diagnostics_buffer = {},
