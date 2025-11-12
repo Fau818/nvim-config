@@ -66,7 +66,7 @@ return {
 
     nes = {
       ---@type boolean|fun(buf:integer):boolean?
-      enabled = function(buf) return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false end,
+      enabled = function(buf) return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false and not vim.tbl_contains(fvim.file.excluded_filetypes, vim.bo[buf].filetype) end,
       debounce = fvim.settings.debounce.nes,
       trigger = { events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" } },
       clear = { events = { "TextChangedI", "InsertEnter" }, esc = true },

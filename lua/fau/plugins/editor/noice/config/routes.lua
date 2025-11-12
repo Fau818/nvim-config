@@ -1,3 +1,4 @@
+---@module "noice"
 ---@type NoiceRouteConfig[]
 return {
   -- ==================== Basic Info ====================

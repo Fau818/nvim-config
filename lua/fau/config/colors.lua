@@ -6,6 +6,7 @@ return {
   deep_blue   = "#4169E1",
   purple_blue = "#82AAFF",
 
+  cyan_blue  = "#0DB9D7",
   cyan       = "#32C8C8",
   light_cyan = "#4FD6BE",
   dark_cyan  = "#20B2AA",
@@ -17,6 +18,7 @@ return {
   yellow        = "#FFFF00",
   dark_yellow   = "#C8C864",
   orange_yellow = "#FBBF24",
+  yellow_orange = "#FFC777",
 
   green       = "#6ECD82",
   light_green = "#ADEB96",  -- #AFEBB9
@@ -25,6 +27,7 @@ return {
   red       = "#DC2626",
   fresh_red = "#FF5647",
   light_red = "#D7829F",
+  red1      = "#C53B53",
 
   pink        = "#FCA7EA",
   light_pink  = "#FFC8E1",

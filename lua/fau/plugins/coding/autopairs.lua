@@ -63,24 +63,6 @@ return {
         end)
     })
 
-    -- ---------- Skip Comma and Semicolon
-    for _,punct in pairs { ",", ";" } do
-      npairs.add_rules({
-        npairs_rule("", punct)
-          :with_move(function(opts) return opts.char == punct end)
-          :with_pair(function() return false end)
-          :with_del(function() return false end)
-          :with_cr(function() return false end)
-          :use_key(punct)
-      })
-    end
-
-    -- ---------- TEST: Arrow Key on Javascript
-    npairs.add_rules({
-      npairs_rule("%(.*%)%s*%=>$", " {  }", { "typescript", "typescriptreact", "javascript" })
-        :use_regex(true)
-        :set_end_pair_length(2)
-    })
 
     -- ---------- For Jinja
     -- npairs.add_rules({

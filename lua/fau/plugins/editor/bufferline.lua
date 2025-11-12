@@ -49,7 +49,7 @@ return {
         custom_filter = function(bufnr, buf_numbers)
           ---@diagnostic disable-next-line: param-type-mismatch
           local buf_name = vim.fn.bufname(bufnr)
-          if buf_name == "" then return false end
+          if buf_name == "" or buf_name == "NvimTree_1" then return false end
           return true
         end,
 
@@ -115,32 +115,32 @@ return {
         buffer_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.cobalt, bold = false, italic = true },
 
         hint                     = { bg = fvim.colors.bufferline_bg },
-        hint_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.teal, bold = false, italic = true },
-        hint_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.teal, bold = false, italic = true },
+        hint_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.light_cyan, bold = false, italic = true },
+        hint_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.light_cyan, bold = false, italic = true },
         hint_diagnostic          = { bg = fvim.colors.bufferline_bg },
-        hint_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.teal, bold = false, italic = false },
-        hint_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.teal, bold = false, italic = false },
+        hint_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.light_cyan, bold = false, italic = false },
+        hint_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.light_cyan, bold = false, italic = false },
 
         info                     = { bg = fvim.colors.bufferline_bg },
-        info_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.blue2, bold = false, italic = true },
-        info_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.blue2, bold = false, italic = true },
+        info_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.cyan_blue, bold = false, italic = true },
+        info_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.cyan_blue, bold = false, italic = true },
         info_diagnostic          = { bg = fvim.colors.bufferline_bg },
-        info_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.blue2, bold = false, italic = false },
-        info_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.blue2, bold = false, italic = false },
+        info_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.cyan_blue, bold = false, italic = false },
+        info_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.cyan_blue, bold = false, italic = false },
 
         warning                     = { bg = fvim.colors.bufferline_bg },
-        warning_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.yellow, bold = false, italic = true },
-        warning_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.yellow, bold = false, italic = true },
+        warning_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.yellow_orange, bold = false, italic = true },
+        warning_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.yellow_orange, bold = false, italic = true },
         warning_diagnostic          = { bg = fvim.colors.bufferline_bg },
-        warning_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.yellow, bold = false, italic = false },
-        warning_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.yellow, bold = false, italic = false },
+        warning_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.yellow_orange, bold = false, italic = false },
+        warning_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.yellow_orange, bold = false, italic = false },
 
         error                     = { bg = fvim.colors.bufferline_bg },
-        error_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.red1, bold = false, italic = true },
-        error_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.red1, bold = false, italic = true },
+        error_visible             = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.red1, bold = false, italic = true },
+        error_selected            = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.red1, bold = false, italic = true },
         error_diagnostic          = { bg = fvim.colors.bufferline_bg },
-        error_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.red1, bold = false, italic = false },
-        error_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.tokyonight.red1, bold = false, italic = false },
+        error_diagnostic_visible  = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.red1, bold = false, italic = false },
+        error_diagnostic_selected = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.red1, bold = false, italic = false },
 
         -- the path name in italic
         duplicate          = { bg = fvim.colors.bufferline_bg, bold = true, italic = true },

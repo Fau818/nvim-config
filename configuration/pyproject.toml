@@ -63,7 +63,10 @@ typeCheckingMode = "recommended"  # values: "off" | "basic" | "strict" | "recomm
 
 # ---------- Type Check Rule Overrides [Not All Settings Shown]
 # Values: "error" | "warning" | "information" | "hint" | "none" | boolean
-reportMissingImports = false  # by flake8
+reportUnusedCallResult = "none"
+reportUnusedParameter  = "hint"
+reportUnusedVariable   = "hint"
+reportUnreachable      = "information"
 
 
 

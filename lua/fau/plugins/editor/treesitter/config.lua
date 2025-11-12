@@ -39,7 +39,7 @@ local config = {
   },
 
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
       init_selection    = "<C-=>",
       node_incremental  = "<C-=>",

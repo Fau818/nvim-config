@@ -12,6 +12,7 @@ return {
     { "<LEADER>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash: Treesitter" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "Flash: Remote" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Flash: Treesitter Search" },
+    { "<C-=>", mode = { "n", "x", "o" }, function() require("flash").treesitter({ actions = { ["<C-=>"] = "next", ["<C-->"] = "prev" } }) end, desc = "Treesitter incremental selection" },
   },
 
   ---@type Flash.Config
@@ -19,7 +20,7 @@ return {
     labels = "asfghjklqwetuiopzbnm",
     search = {
       -- Excluded filetypes and custom window filters
-      ---@type (string|fun(win:window))[]
+      ---@type (string|fun(win:Flash.State.Window))[]
       exclude = vim.list_extend({ function(win) return not vim.api.nvim_win_get_config(win).focusable end, }, fvim.file.excluded_filetypes),
     },
 

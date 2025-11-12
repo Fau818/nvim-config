@@ -14,6 +14,7 @@ return {
     -- DESC: Simple session manager for Neovim.
     ---@module "persistence"
     "folke/persistence.nvim",
+    init = function() vim.opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "skiprtp", "tabpages", "winsize" } end,
     config = true,
     event = "BufReadPre",  -- this will only start session saving when an actual file was opened
   },

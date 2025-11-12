@@ -2,7 +2,7 @@
 -- ========== Global Config
 -- =============================================
 local keymap = vim.keymap.set
-local function opts(desc) return { silent = false, desc = desc } end  -- TEST: Keep `silent = false` for showing message in command line.
+local function opts(desc) return { silent = true, desc = desc } end
 
 
 keymap({ "n", "x" }, "<Space>", "<NOP>", opts())
@@ -82,8 +82,11 @@ keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Synta
 -- Disable Built-in Completion
 keymap("i", "<C-n>", "<NOP>", opts())
 
--- Delete Previous Word in Insert Mode [TEST]
-keymap("i", "<C-w>", "<C-s-w>", opts("Delete Previous Word"))
+-- Add Undo Breakpoints [TEST]
+keymap("i", ",", ",<c-g>u", opts("Add Undo Breakpoint"))
+keymap("i", ".", "<c-g>u.", opts("Add Undo Breakpoint"))
+keymap("i", ";", ";<c-g>u", opts("Add Undo Breakpoint"))
+
 
 
 -- =============================================
@@ -106,6 +109,7 @@ keymap({ "x", "o" }, [[a`]], [[2i`]], opts("Range: Around Back Quote"))
 
 -- Paragraph
 keymap("o", "p", "ip", opts("Range: Inner Paragraph"))
+
 
 
 -- =============================================
@@ -170,15 +174,14 @@ keymap("x", "p", [["_dP]], opts("Paste"))
 
 
 -- =============================================
--- ========== Move Line(s) (which-key will redefine them)
+-- ========== Move Line(s)
 -- =============================================
--- Normal and Insert Mode
-keymap({ "n", "i" }, "<A-j>", "<CMD>move . +1<CR>", opts("Move: Line Down"))
-keymap({ "n", "i" }, "<A-k>", "<CMD>move . -2<CR>", opts("Move: Line Up"))
-
--- Visual Mode
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts("Move: Line Down"))
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts("Move: Line Up"))
+keymap("n", "<A-j>", "<CMD>execute 'move .+' . v:count1<CR>==",       opts("Move: Line Down"))
+keymap("n", "<A-k>", "<CMD>execute 'move .-' . (v:count1 + 1)<CR>==", opts("Move: Line Up"))
+keymap("i", "<A-j>", "<ESC><CMD>m .+1<CR>==gi", opts("Move: Line Down"))
+keymap("i", "<A-k>", "<ESC><CMD>m .-2<CR>==gi", opts("Move: Line Up"))
+keymap("x", "<A-j>", [[:<C-u>execute "'<, '>move '>+" . v:count1<cr>gv=gv]],       opts("Move: Line Down"))
+keymap("x", "<A-k>", [[:<C-u>execute "'<, '>move '<-" . (v:count1 + 1)<cr>gv=gv]], opts("Move: Line Up"))
 
 
 
@@ -233,6 +236,10 @@ keymap("n", "gl", vim.diagnostic.open_float, opts("LSP: Full Diagnostics"))
 -- Navigation
 keymap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts("LSP: Prev Diagnostics"))
 keymap("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end,  opts("LSP: Next Diagnostics"))
+keymap("n", "[e", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end, opts("LSP: Prev Error"))
+keymap("n", "]e", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end, opts("LSP: Next Error"))
+keymap("n", "[w", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN }) end,  opts("LSP: Prev Warning"))
+keymap("n", "]w", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end,  opts("LSP: Next Warning"))
 
 -- Diagnostics List
 keymap("n", "<LEADER>ld", vim.diagnostic.setqflist, opts("LSP: Workspace Diagnostics"))
@@ -245,10 +252,15 @@ keymap("n", "<LEADER>ld", vim.diagnostic.setqflist, opts("LSP: Workspace Diagnos
 -- Remove Default LSP Keymaps
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grt")
-vim.keymap.del("i", "<C-s>")
+vim.keymap.del("n", "gO")
+vim.keymap.del("n", "<C-w>d")
+vim.keymap.del("n", "<C-w><C-d>")
+vim.keymap.del({ "n", "x" }, "gra")
+vim.keymap.del({ "i", "s" }, "<C-s>")
+vim.keymap.del({ "i", "s" }, "<Tab>")
+vim.keymap.del({ "i", "s" }, "<S-Tab>")
 
 -- Navigation
 keymap("n", "gd", vim.lsp.buf.definition,      opts("LSP: Definition"))

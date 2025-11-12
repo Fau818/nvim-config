@@ -1,3 +1,4 @@
+---@module "noice"
 ---@type table<string, NoiceViewOptions>
 local views = {
   -- ==================== Preset Modification ====================

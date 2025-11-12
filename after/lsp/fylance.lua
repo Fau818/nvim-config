@@ -26,7 +26,8 @@ local settings = {
       userFileIndexingLimit = 2000,
       includeAliasesFromUserFiles = true,
       regenerateStdLibIndices = true,
-      completeFunctionParens = false,  -- NOTE: If use `blink.cmp`, please set it to false.
+      -- TEST: Set to true  Nov 11, 2025
+      completeFunctionParens = true,  -- NOTE: If use `blink.cmp`, please set it to false.
 
 
       -- ==================== Diagnostics ====================

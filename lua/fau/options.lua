@@ -9,8 +9,9 @@ local options = {
   writebackup = false,  -- create a backup file when written
 
   termguicolors = true,  -- set term gui colors
-  cursorline    = true,  -- highlight the current line
   clipboard = vim.fn.has("clipboard") == 1 and "unnamedplus" or "",  -- allows neovim to access the system clipboard
+  cursorline    = true,  -- highlight the current line
+  virtualedit = "block",  -- allow cursor to move where there is no text in visual block mode
 
   number         = true,   -- set numbered lines
   relativenumber = true,   -- set relative numbered lines
@@ -42,13 +43,12 @@ local options = {
   softtabstop = -1,    -- how many spaces will be inserted when enter <tab> (if negative number, the shiftwidth value is used)
   shiftwidth  = 0,     -- the number of spaces inserted for each indentation (if zero, the tabstop value is used)
   expandtab   = true,  -- convert tab to spaces (indent_type: space if true else tab)
+  shiftround  = true,  -- round indent to multiple of 'shiftwidth'
 
   wrap      = false,
   linebreak = true,  -- line break after an entire word
 
   mousemoveevent = true,  -- for bufferline hover events
-
-  laststatus = 0,  -- disable statusline (for alpha no blink)
 
   ruler = false,  -- no position information in bottom-right
 
