@@ -32,7 +32,7 @@ end
 return {
   ---@module "ufo"
   "kevinhwang91/nvim-ufo",
-  dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
+  dependencies = "kevinhwang91/promise-async",
   event = { "BufReadPost", "BufNewFile" },
   cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
 

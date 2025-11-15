@@ -17,6 +17,11 @@ return {
       desc = "Disable indentscope in excluded filetypes.",
       callback = function() vim.b.miniindentscope_disable = true end,
     })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      desc = "Disable indentscope in non regular buffers.",
+      callback = function() vim.b.miniindentscope_disable = vim.bo.buftype ~= "" end,
+    })
   end,
 
   opts = {

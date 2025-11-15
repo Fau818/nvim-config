@@ -143,7 +143,7 @@ end
 ---@return fun()
 function M.fallback_warp(mode, key)
   local mapping = get_global_mapping_for_key(mode, key)
-  return function() if mapping then run_fallback_mapping(mapping) end end
+  return function() if mapping then return run_fallback_mapping(mapping) end end
 end
 
 

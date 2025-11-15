@@ -46,13 +46,13 @@ function M.open_float(picker, item, action)
 
     relative = "editor",
     position = "float",
-    width = win_width,
+    width = win_width + 2,
     height = win_height,
 
     buf = new_buf,
 
     bo = { modifiable = false, filetype = picker.preview.item.preview.ft },
-    wo = { conceallevel = 3, concealcursor = "nvic", spell = false },
+    wo = { conceallevel = 3, concealcursor = "nvic", spell = false, statuscolumn = " " },
 
     title = " Notification ",
     title_pos = "center",
@@ -62,7 +62,7 @@ function M.open_float(picker, item, action)
     footer_keys = true,
   })
 
-  win:add_padding()
+  -- win:add_padding()
   win:show()
 
   picker:close()

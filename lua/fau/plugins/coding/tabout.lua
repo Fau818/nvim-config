@@ -3,7 +3,6 @@ return {
   -- DESC: Press <TAB> to jump out of brakets.
   ---@module "tabout"
   "abecodes/tabout.nvim",
-  dependencies = "nvim-treesitter/nvim-treesitter",
   cond = true,
   event = { "InsertEnter", "CmdlineEnter" },
 

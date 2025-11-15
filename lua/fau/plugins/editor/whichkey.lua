@@ -20,7 +20,6 @@ return {
       { "<Tab>",       desc = "which_key_ignore" },
       { "<S-Tab>",     desc = "which_key_ignore" },
 
-
       -- ==================== Navigation ====================
       { "]", group = "Next", mode = { "n", "x" } },
       { "[", group = "Prev", mode = { "n", "x" } },

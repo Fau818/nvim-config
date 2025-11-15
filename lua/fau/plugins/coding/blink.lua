@@ -23,11 +23,6 @@ return {
       ---@type Config
       opts = { max_completions = 2, max_attempts = 2 },
     },
-    {
-      "RRethy/nvim-treesitter-endwise",
-      dependencies = "nvim-treesitter/nvim-treesitter",
-      ft = { "Ruby", "Lua", "Vimscript", "Bash", "Elixir", "Fish", "Julia" },
-    },
   },
 
   event = { "InsertEnter", "CmdlineEnter", "LspAttach" },

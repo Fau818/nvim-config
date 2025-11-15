@@ -3,7 +3,7 @@ return {
   -- DESC: Show symbol outline.
   ---@module "aerial"
   "stevearc/aerial.nvim",
-  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+  dependencies = "nvim-tree/nvim-web-devicons",
   cmd = {
     "AerialToggle", "AerialOpen", "AerialOpenAll", "AerialClose", "AerialCloseAll",
     "AerialNext", "AerialPrev", "AerialGo",

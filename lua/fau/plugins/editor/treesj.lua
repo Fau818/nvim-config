@@ -3,7 +3,6 @@ return {
   -- DESC: Splitting and joining block of code.
   ---@module "treesj"
   "Wansmer/treesj",
-  dependencies = "nvim-treesitter/nvim-treesitter",
   cond = true,
 
   cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },

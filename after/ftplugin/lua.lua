@@ -1,4 +1,5 @@
-vim.cmd.runtime("after/ftplugin/all.lua")
+-- NOTE: If set `fvim_lua_ftplugin_loaded` will break `formatoptions` settings.
+-- if vim.b.fvim_lua_ftplugin_loaded then return end
+-- vim.b.fvim_lua_ftplugin_loaded = true
 
--- Set TodoSign highlights namespace.
-if vim.bo.buftype == "" then fvim.colorscheme.set_todo_sign_hl_ns() end
+vim.cmd.runtime("after/ftplugin/all.lua")

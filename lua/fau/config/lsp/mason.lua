@@ -1,3 +1,5 @@
+---@module "mason"
+
 local M = {}
 
 
@@ -23,10 +25,37 @@ end
 function M.hook_on_install_success()
   -- Auto setup LSP after installation.
   local registry = require("mason-registry")
+  ---@param pkg Package
   registry:on("package:install:success", function(pkg, receipt)
-    local lsp_name = M.pkg_name_to_lsp_name(pkg.name)
+    if pkg.spec.languages == {} then return end  -- Not an LSP package.
+    local lsp_name = M.pkg_name_to_lsp_name(pkg.spec.name)
     fvim.lsp.setup_server(lsp_name)
   end)
+end
+
+
+---Install a specific package via Mason.
+---@param pkg_name string Mason package name
+---@param filetype string? filetype
+---@param callback fun(success: boolean, receipt: InstallReceipt) | fun(success: boolean, err: string)? Optional callback function after installation.
+function M.mason_install(pkg_name, filetype, callback)
+  local mason_registry = require("mason-registry")
+  local pkg = mason_registry.get_package(pkg_name)
+  if not pkg:is_installed() then
+    if not pkg:is_installing() then
+      fvim.notify(("Mason: installing %s ..."):format(pkg_name))
+      pkg:install({}, function(success, err)
+        if type(callback) == "function" then return callback(success, err)
+        else  -- Default callback behavior.
+          if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name))
+          else
+            fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR)
+            if filetype then fvim.lsp.configured_ft[filetype] = false end  -- Mark as not configured due to installation failure.
+          end
+        end
+      end)
+    end
+  end
 end
 
 
@@ -49,22 +78,7 @@ function M.install_missing_packages(filetype)
       -- NOTE: lsp_name and package_name may be different and confusing, so handle both.
       local pkg_name = M.lsp_name_to_pkg_name(lsp_name)
       lsp_name = M.pkg_name_to_lsp_name(pkg_name)
-
-      local pkg = mason_registry.get_package(pkg_name)
-      if not pkg:is_installed() then
-        if not pkg:is_installing() then
-          fvim.notify(("Mason: installing %s ..."):format(pkg_name))
-          pkg:install({}, function(success, err)
-            if success then
-              fvim.notify(("Mason: %s was successfully installed."):format(pkg_name))
-              -- TIPS: LSP will be setup via the hook on `M.hook_on_install_success()`.
-            else
-              fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR)
-              fvim.lsp.configured_ft[filetype] = false  -- Mark as not configured due to installation failure.
-            end
-          end)
-        end
-      end
+      M.mason_install(pkg_name, filetype)
     end
   end)
 end
