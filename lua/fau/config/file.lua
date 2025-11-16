@@ -13,7 +13,7 @@ return {
     "bigfile",
     "cmp_menu", "blink-cmp-menu", "blink-cmp-documentation", "blink-cmp-signature", "blink-cmp-dot-repeat",
     "crunner",
-    "chatgpt-input",
+    "chatgpt-input", "copilot-chat",
     "diff", "DiffviewFiles", "DiffviewFileHistory",
     "flash_prompt",
     "glowpreview",

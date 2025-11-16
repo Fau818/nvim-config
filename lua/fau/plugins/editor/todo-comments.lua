@@ -8,7 +8,7 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   cmd = { "TodoTrouble", "TodoTelescope", "TodoFzfLua", "TodoLocList", "TodoQuickFix" },
 
-  ---@type TodoConfig
+  ---@type TodoOptions
   opts = {
     signs         = true,  -- show icons in the signs column
     sign_priority = fvim.settings.sign_priority.todo_comments,    -- sign priority

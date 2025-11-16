@@ -29,7 +29,7 @@ return {
 
   ---@type blink.cmp.Config
   opts = {
-    enabled = function() return not fvim.utils.is_large_file() end,
+    enabled = function() return vim.bo.filetype ~= "copilot-chat" and not fvim.utils.is_large_file() end,
 
     keymap = {
       preset = "none",

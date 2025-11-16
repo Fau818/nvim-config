@@ -63,6 +63,7 @@ function M.open_float(picker, item, action)
   })
 
   -- win:add_padding()
+  -- require("snacks.picker.util.markdown").render(new_buf)
   win:show()
 
   picker:close()
