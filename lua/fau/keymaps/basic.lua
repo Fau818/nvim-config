@@ -82,7 +82,7 @@ keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Synta
 -- Disable Built-in Completion
 keymap("i", "<C-n>", "<NOP>", opts())
 
--- Add Undo Breakpoints [TEST]
+-- Add Undo Breakpoints
 keymap("i", ",", ",<c-g>u", opts("Add Undo Breakpoint"))
 keymap("i", ".", "<c-g>u.", opts("Add Undo Breakpoint"))
 keymap("i", ";", ";<c-g>u", opts("Add Undo Breakpoint"))

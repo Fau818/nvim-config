@@ -1,5 +1,9 @@
 -- ==================== Filetype ====================
+vim.g.go_recommended_style = 0
+vim.g.markdown_recommended_style = 0
 vim.g.python_recommended_style = 0
+vim.g.rust_recommended_style = 0
+vim.g.yaml_recommended_style = 0
 
 -- ==================== Basic ====================
 fvim.nvim_config_path = vim.fn.stdpath("config")

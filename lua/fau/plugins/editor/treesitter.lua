@@ -160,6 +160,15 @@ return {
     branch = "main",
     cond = true,
     event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { mode = { "n", "x", "o" }, "]]", function() require("nvim-treesitter-textobjects.move").goto_next_start("@block.outer", "textobjects") end, desc = "Textobjects: Next Block" },
+      { mode = { "n", "x", "o" }, "[[", function() require("nvim-treesitter-textobjects.move").goto_previous_start("@block.outer", "textobjects") end, desc = "Textobjects: Prev Block" },
+      { mode = { "n", "x", "o" }, "]f", function() require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects") end, desc = "Textobjects: Next Function" },
+      { mode = { "n", "x", "o" }, "[f", function() require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects") end, desc = "Textobjects: Prev Function" },
+      { mode = { "n", "x", "o" }, "]c", function() require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects") end, desc = "Textobjects: Next Class" },
+      { mode = { "n", "x", "o" }, "[c", function() require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects") end, desc = "Textobjects: Prev Class" },
+    },
+
     init = function()
       local function set_keymap(lhs, query_string, bufnr)
         local to_select = require("nvim-treesitter-textobjects.select")
