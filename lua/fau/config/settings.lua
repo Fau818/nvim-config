@@ -21,7 +21,7 @@ return {
     general = 250,  -- Fau: It should be the same as `vim.opt.updatetime`.
 
     copilot = 50,
-    nes     = 250,
+    nes     = 1000,
 
     highlight = 200,
     indentscope = 100,

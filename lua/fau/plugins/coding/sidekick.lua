@@ -66,7 +66,10 @@ return {
 
     nes = {
       ---@type boolean|fun(buf:integer):boolean?
-      enabled = function(buf) return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false and not vim.tbl_contains(fvim.file.excluded_filetypes, vim.bo[buf].filetype) end,
+      enabled = function(buf)
+        if vim.bo[buf].filetype == "copilot-chat" then return false end
+        return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false and not vim.tbl_contains(fvim.file.excluded_filetypes, vim.bo[buf].filetype)
+      end,
       debounce = fvim.settings.debounce.nes,
       trigger = { events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" } },
       clear = { events = { "TextChangedI", "InsertEnter" }, esc = true },
@@ -104,8 +107,8 @@ return {
           hide_n        = { "q",     "hide",       mode = "n",  desc = "hide the terminal window" },
           hide_ctrl_q   = { "<c-q>", "hide",       mode = "n",  desc = "hide the terminal window" },
           hide_ctrl_dot = { "<c-.>", "hide",       mode = "nt", desc = "hide the terminal window" },
-          -- hide_ctrl_z   = { "<c-z>", "hide",       mode = "nt", desc = "hide the terminal window" },
-          hide_ctrl_z = false,
+          hide_ctrl_z   = { "<c-z>", "hide",       mode = "nt", desc = "hide the terminal window" },
+          -- hide_ctrl_z = false,
           prompt        = { "<c-p>", "prompt",     mode = "t",  desc = "insert prompt or context" },
           stopinsert    = { "<c-q>", "stopinsert", mode = "t",  desc = "enter normal mode" },
           -- Navigate windows in terminal mode. Only active when:

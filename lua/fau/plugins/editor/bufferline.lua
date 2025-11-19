@@ -49,7 +49,7 @@ return {
         custom_filter = function(bufnr, buf_numbers)
           ---@diagnostic disable-next-line: param-type-mismatch
           local buf_name = vim.fn.bufname(bufnr)
-          if buf_name == "" or buf_name == "NvimTree_1" then return false end
+          if buf_name == "" or buf_name == "copilot-chat" then return false end
           return true
         end,
 

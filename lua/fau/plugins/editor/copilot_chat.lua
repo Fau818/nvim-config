@@ -5,7 +5,13 @@ return {
   dependencies = "nvim-lua/plenary.nvim",
   build = "make tiktoken",
 
-  keys = { { "<LEADER>cc", "<CMD>CopilotChat<CR>" } },
+  cmd = {
+    "CopilotChat", "CopilotChatOpen", "CopilotChatClose", "CopilotChatToggle",
+    "CopilotChatStop", "CopilotChatReset",
+    "CopilotChatSave", "CopilotChatLoad",
+    "CopilotChatPrompts", "CopilotChatModels",
+  },
+  keys = { { "<LEADER>cc", "<CMD>CopilotChat<CR>", mode = { "n", "x" } } },
 
   ---@type CopilotChat.config.Config
   opts = {
@@ -26,7 +32,7 @@ return {
     -- default window options
     window = {
       layout = "vertical",  -- 'vertical', 'horizontal', 'float', 'replace', or a function that returns the layout
-      width = 0.5,          -- fractional width of parent, or absolute width in columns when > 1
+      width = 0.4,          -- fractional width of parent, or absolute width in columns when > 1
       height = 0.5,         -- fractional height of parent, or absolute height in rows when > 1
       -- Options below only apply to floating windows
       relative = "editor",     -- 'editor', 'win', 'cursor', 'mouse'

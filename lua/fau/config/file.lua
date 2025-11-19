@@ -13,7 +13,7 @@ return {
     "bigfile",
     "cmp_menu", "blink-cmp-menu", "blink-cmp-documentation", "blink-cmp-signature", "blink-cmp-dot-repeat",
     "crunner",
-    "chatgpt-input", "copilot-chat",
+    "chatgpt-input",
     "diff", "DiffviewFiles", "DiffviewFileHistory",
     "flash_prompt",
     "glowpreview",
@@ -34,7 +34,14 @@ return {
   },
   excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },      -- NOTE: Keep `nofile` as the first element.
 
-  special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "pyproject.toml", ".gitignore", ".gitmodules" },
+  special_files = {
+    "Cargo.toml",
+    "Makefile",
+    "README.md", "readme.md",
+    "CLAUDE.md",
+    "pyproject.toml",
+    ".gitignore", ".gitmodules",
+  },
 
   -- NOTE: List of vim regex for file/directory names.
   ignored_files = { "^\\.git$", "^\\.vscode$", "^\\.idea$", "^__pycache__$", "^\\.mypy_cache$", "^\\.DS_Store$", "^\\..*\\.iosinterface$" },

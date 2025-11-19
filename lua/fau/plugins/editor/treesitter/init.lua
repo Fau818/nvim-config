@@ -100,7 +100,7 @@ return {
         "cpp", "lua", "python",
         "json", "jsonc",
         "markdown", "markdown_inline",
-        "gitignore", "gitcommit",
+        "gitignore", "gitcommit", "diff", "git_rebase",
       },
 
       auto_install = true,  -- Automatically install missing parsers when entering buffer.
