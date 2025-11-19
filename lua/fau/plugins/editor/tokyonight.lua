@@ -58,10 +58,10 @@ return {
       highlights["FloatBorder"]  = { fg = fvim.colors.cobalt }
       highlights["WinSeparator"] = { fg = fvim.colors.light_blue }
 
-      -- ---------- TodoSign
-      highlights["TodoSign"] = { fg = fvim.colors.dark_green, bold = true, italic = true }
-      highlights["InfoSign"] = { fg = colors.blue2, bold = true, italic = true }
-      highlights["FixSign"]  = { fg = colors.red1, bold = true, italic = true }
+      -- ---------- TodoTag
+      highlights["TodoTag"] = { fg = fvim.colors.dark_green, bold = true, italic = true }
+      highlights["InfoTag"] = { fg = colors.blue2, bold = true, italic = true }
+      highlights["FixTag"]  = { fg = colors.red1, bold = true, italic = true }
 
 
       -- ==================== Syntax ====================

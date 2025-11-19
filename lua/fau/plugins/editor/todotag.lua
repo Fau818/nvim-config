@@ -10,18 +10,18 @@ return {
   ---@type Todotag.Config
   opts = {
     keywords = {
-      todo = { hl_group = "TodoSign", case_sensitive = false },
+      todo = { hl_group = "TodoTag", case_sensitive = false },
 
-      test = { hl_group = "InfoSign", case_sensitive = false },
-      note = { hl_group = "InfoSign", case_sensitive = false },
-      hint = { hl_group = "InfoSign", case_sensitive = false },
-      PS   = { hl_group = "InfoSign", case_sensitive = true },
+      test = { hl_group = "InfoTag", case_sensitive = false },
+      note = { hl_group = "InfoTag", case_sensitive = false },
+      hint = { hl_group = "InfoTag", case_sensitive = false },
+      PS   = { hl_group = "InfoTag", case_sensitive = true },
 
-      bug   = { hl_group = "FixSign", case_sensitive = false },
-      fix   = { hl_group = "FixSign", case_sensitive = false },
-      fixme = { hl_group = "FixSign", case_sensitive = false },
-      fixit = { hl_group = "FixSign", case_sensitive = false },
-      issue = { hl_group = "FixSign", case_sensitive = false },
+      bug   = { hl_group = "FixTag", case_sensitive = false },
+      fix   = { hl_group = "FixTag", case_sensitive = false },
+      fixme = { hl_group = "FixTag", case_sensitive = false },
+      fixit = { hl_group = "FixTag", case_sensitive = false },
+      issue = { hl_group = "FixTag", case_sensitive = false },
     },
 
     only_visible = true,
