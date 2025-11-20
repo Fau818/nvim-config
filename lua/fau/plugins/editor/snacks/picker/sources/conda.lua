@@ -29,35 +29,40 @@ local function get_conda_path()
 end
 
 
+local _conda_env_list = nil
 ---Get list of conda environments.
 ---@return snacks.picker.Item[]
 local function get_conda_envs()
-  local conda_path = get_conda_path()
-  local conda_envs_path = conda_path .. "/envs"
+  if not _conda_env_list then
+    local conda_path = get_conda_path()
+    local conda_envs_path = conda_path .. "/envs"
 
-  if vim.fn.isdirectory(conda_envs_path) ~= 1 then
-    vim.notify("Conda envs directory not found: " .. conda_envs_path, vim.log.levels.WARN)
-    return {}
-  end
+    if vim.fn.isdirectory(conda_envs_path) ~= 1 then
+      vim.notify("Conda envs directory not found: " .. conda_envs_path, vim.log.levels.WARN)
+      return {}
+    end
 
-  local env_list = {}
-  table.insert(env_list, { name = "base", path = conda_path, idx = 1 })
+    local env_list = {}
+    table.insert(env_list, { name = "base", path = conda_path, idx = 1 })
 
-  local file_list = vim.fn.readdir(conda_envs_path)
-  for _, file in ipairs(file_list) do
-    if file:sub(1,1) ~= "." then  -- Ignore hidden files
-      local full_path = string.format("%s/%s", conda_envs_path, file)
-      if vim.fn.isdirectory(full_path) == 1 then
-        table.insert(env_list, {
-          name = file,
-          path = full_path,
-          idx = #env_list + 1,
-        })
+    local file_list = vim.fn.readdir(conda_envs_path)
+    for _, file in ipairs(file_list) do
+      if file:sub(1,1) ~= "." then  -- Ignore hidden files
+        local full_path = string.format("%s/%s", conda_envs_path, file)
+        if vim.fn.isdirectory(full_path) == 1 then
+          table.insert(env_list, {
+            name = file,
+            path = full_path,
+            idx = #env_list + 1,
+          })
+        end
       end
     end
+
+    _conda_env_list = env_list
   end
 
-  return env_list
+  return _conda_env_list
 end
 
 
@@ -85,16 +90,13 @@ local function conda_deactivate(item)
 end
 
 
--- Get conda environments list. [cache]
-local conda_env_list = get_conda_envs()
-
 
 return {
   ---@type snacks.picker.Config
   conda_picker = {
     title = "Conda Environment",
 
-    finder = function(opts, ctx) return conda_env_list end,
+    finder = function(opts, ctx) return get_conda_envs() end,
 
     format = function(item, picker)
       return {
@@ -115,7 +117,7 @@ return {
       end,
     },
 
-    layout = { preset = "vscode", layout = { height = #conda_env_list + 3, max_height = 25 } },
+    layout = { preset = "vscode", layout = { height = #get_conda_envs() + 3, max_height = 25 } },
     on_show = preset.normal_mode,
   },
 }

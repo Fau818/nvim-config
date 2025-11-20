@@ -161,7 +161,10 @@ return {
     { "<LEADER>fc", function() Snacks.picker.command_history() end, desc = "Command History" },
     { "<LEADER>fC", function() Snacks.picker.commands() end, desc = "Commands" },
 
-    { "<LEADER>fe", function() Snacks.picker("conda") end, desc = "Conda Environments", ft = { "python" } },
+    { "<LEADER>fe", function()
+      if vim.fn.executable("conda") == 1 then Snacks.picker("conda")
+      else vim.notify("Conda is not installed.", vim.log.levels.WARN) end
+    end, desc = "Conda Environments", ft = { "python" } },
 
     { "<LEADER>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
     { "<LEADER>fH", function() Snacks.picker.highlights() end, desc = "Highlights" },
