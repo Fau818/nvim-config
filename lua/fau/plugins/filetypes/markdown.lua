@@ -53,7 +53,7 @@ return {
   {
     -- DESC: A markdown previewer using a web browser.
     "iamcco/markdown-preview.nvim",
-    build = "cd app && yarn install",
+    build = vim.fn.executable("yarn") == 1 and "cd app && yarn install" or function() vim.fn["mkdp#util#install"]() end,
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_echo_preview_url = 1

@@ -3,6 +3,7 @@ return {
   ---@module "CopilotChat"
   "CopilotC-Nvim/CopilotChat.nvim",
   dependencies = "nvim-lua/plenary.nvim",
+  enabled = vim.fn.executable("make") == 1,
   build = "make tiktoken",
 
   cmd = {
