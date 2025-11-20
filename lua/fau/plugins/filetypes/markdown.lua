@@ -26,6 +26,12 @@ return {
   },
 
   {
+    -- DESC: Follow markdown links (including anchors) with Enter.
+    "jghauser/follow-md-links.nvim",
+    ft = "markdown",
+  },
+
+  {
     -- DESC: A floating window markdown previewer for Neovim.
     ---@module "glow"
     "ellisonleao/glow.nvim",
