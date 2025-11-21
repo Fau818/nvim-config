@@ -85,6 +85,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = ":TSUpdate",
+    dependencies = "mason-org/mason-lspconfig.nvim",  -- Make sure `tree-sitter-cli` can be installed automatically.
     cond = true,
     cmd = { "TSInstall", "TSInstallFromGrammar", "TSUpdate", "TSUninstall", "TSLog" },
     event = { "BufReadPost", "BufNewFile" },

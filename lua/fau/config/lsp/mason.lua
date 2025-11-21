@@ -40,22 +40,27 @@ end
 ---@param callback fun(success: boolean, receipt: InstallReceipt) | fun(success: boolean, err: string)? Optional callback function after installation.
 function M.mason_install(pkg_name, filetype, callback)
   local mason_registry = require("mason-registry")
-  local pkg = mason_registry.get_package(pkg_name)
-  if not pkg:is_installed() then
-    if not pkg:is_installing() then
-      fvim.notify(("Mason: installing %s ..."):format(pkg_name))
-      pkg:install({}, function(success, err)
-        if type(callback) == "function" then return callback(success, err)
-        else  -- Default callback behavior.
-          if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name))
-          else
-            fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR)
-            if filetype then fvim.lsp.configured_ft[filetype] = false end  -- Mark as not configured due to installation failure.
+
+  local function _mason_install()
+    local pkg = mason_registry.get_package(pkg_name)
+    if not pkg:is_installed() then
+      if not pkg:is_installing() then
+        fvim.notify(("Mason: installing %s ..."):format(pkg_name))
+        pkg:install({}, function(success, err)
+          if type(callback) == "function" then return callback(success, err)
+          else  -- Default callback behavior.
+            if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name))
+            else
+              fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR)
+              if filetype then fvim.lsp.configured_ft[filetype] = false end  -- Mark as not configured due to installation failure.
+            end
           end
-        end
-      end)
+        end)
+      end
     end
   end
+
+  mason_registry.refresh(_mason_install)
 end
 
 
@@ -70,7 +75,7 @@ function M.install_missing_packages(filetype)
 
   -- ==================== Install Missing Packages ====================
   -- NOTE: Please make sure you have `mason.nvim` and `mason-lspconfig.nvim` installed.
-  local mason_lspconfig = require("mason-lspconfig")
+  -- local mason_lspconfig = require("mason-lspconfig")
   local mason_registry = require("mason-registry")
 
   mason_registry.refresh(function()
@@ -90,7 +95,7 @@ function M.setup_by_ft(filetype)
   filetype = filetype or vim.bo.filetype
 
   -- EXIT: LSP is already configured.
-  if fvim.lsp.configured_ft[filetype] then return end
+  if not filetype or fvim.lsp.configured_ft[filetype] then return end
 
   -- ==================== Setup Servers ====================
   local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")

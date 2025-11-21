@@ -68,6 +68,7 @@ return {
 
     config = function(_, opts)
       require("mason").setup(opts)
+      if not fvim.lsp.mason then fvim.lsp.mason = require("fau.config.lsp.mason") end
       fvim.lsp.mason.hook_on_install_success()
     end,
   },
