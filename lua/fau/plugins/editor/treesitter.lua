@@ -151,6 +151,7 @@ return {
 
           -- BUG: If a parser is installed, vim.treesitter.query.get still return `nil`.
           -- \    Which means ts features won't be enabled on the first time after installation.
+          -- HACK: Restart neovim.
           if opts.auto_install then ts_ensure_install(lang, ts_buf_enable)
           else ts_buf_enable()
           end
@@ -174,56 +175,10 @@ return {
       { mode = { "n", "x", "o" }, "[c", function() require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects") end, desc = "Textobjects: Prev Class" },
     },
 
-    init = function()
-      local function set_keymap(lhs, query_string, bufnr)
-        local to_select = require("nvim-treesitter-textobjects.select")
-
-        local function query_fun_x() vim.cmd("normal! v") to_select.select_textobject(query_string, "textobjects") end
-        local function query_fun_o() to_select.select_textobject(query_string, "textobjects") end
-        vim.keymap.set("x", lhs, query_fun_x, { buffer = bufnr, desc = "Textobjects: " .. query_string })
-        vim.keymap.set("o", lhs, query_fun_o, { buffer = bufnr, desc = "Textobjects: " .. query_string })
-      end
-
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function(args)
-          local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-          if not lang then return end
-          local query = vim.treesitter.query.get(lang, "textobjects")
-          if not query then return end
-
-          set_keymap("if", "@function.inner", args.buf)
-          set_keymap("af", "@function.outer", args.buf)
-
-          set_keymap("ic", "@class.inner", args.buf)
-          set_keymap("ac", "@class.outer", args.buf)
-
-          set_keymap("is", "@conditional.inner", args.buf)
-          set_keymap("as", "@conditional.outer", args.buf)
-        end,
-      })
-    end,
-
     ---@type TSTextObjects.UserConfig
     opts = {
-      select = {
-        lookahead  = true,   -- automatically jump forward to textobj, similar to targets.vim
-        lookbehind = false,  -- automatically jump backward to textobj
-
-        selection_modes = {  -- BUG: Not working?
-          ["@function.outer"] = "v",
-          ["@function.inner"] = "v",
-
-          ["@class.outer"] = "v",
-          ["@class.inner"] = "v",
-
-          ["@conditional.inner"] = "v",
-          ["@conditional.outer"] = "v",
-        },
-
-        include_surrounding_whitespace = false,
-      },
-
-      move = { set_jumps = true },
+      -- select = { lookahead  = true, lookbehind = false, selection_modes = {}, include_surrounding_whitespace = false },
+      -- move = { set_jumps = true },
     },
   },
 

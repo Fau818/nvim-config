@@ -100,7 +100,7 @@ return {
       -- ==================== Plugins ====================
       -- ---------- Blink Cmp
       highlights["BlinkCmpLabelMatch"] = { bold = true, nocombine = true }
-      highlights["BlinkCmpGhostText"] = { link = "Comment" }
+      highlights["BlinkCmpGhostText"] = { fg = colors.comment }
 
       -- ---------- Bufferline
       highlights["BufferLineIndicatorSelected"] = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.dark_purple, bold = true }
@@ -109,7 +109,7 @@ return {
       -- highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
 
       -- ---------- Copilot
-      highlights["CopilotSuggestion"] = { link = "Comment" }
+      highlights["CopilotSuggestion"] = { fg = colors.comment }
 
       -- ---------- Lazy
       highlights["LazyReasonKeys"] = { fg = colors.magenta }

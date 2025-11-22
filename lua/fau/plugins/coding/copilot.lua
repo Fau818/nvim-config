@@ -57,6 +57,7 @@ return {
 
     -- NOTE: Overwrite `internal_filetypes`
     filetypes = {
+      markdown = true,
       gitcommit = true,
       yaml = true,
 

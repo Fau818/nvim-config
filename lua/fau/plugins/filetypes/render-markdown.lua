@@ -5,11 +5,14 @@ return {
   dependencies = "nvim-tree/nvim-web-devicons",
   cmd = { "RenderMarkdown" },
   ft = { "markdown" },
+  keys = {
+    { "<LEADER><LEADER>r", "<CMD>RenderMarkdown buf_toggle<CR>", desc = "Toggle Render Markdown", buffer = true, ft = "markdown" },
+  },
 
   ---@type render.md.UserConfig
   opts = {
     enabled = true,
-    render_modes = { "n", "c", "t" },
+    render_modes = { "n", "c", "t", "i", "v", "V", "\22" },
     debounce = fvim.settings.debounce.highlight,
 
     preset = "none",
