@@ -5,11 +5,9 @@ return {
   enabled = vim.fn.has("nvim-0.10") == 1,
   event = { "BufReadPre", "BufNewFile" },
 
-  config = function()
-    local statuscol = require("statuscol")
+  opts = function()
     local builtin   = require("statuscol.builtin")
-
-    local config = {
+    return {
       setopt      = true,
       thousands   = false,  -- or line number thousands separator string ("." / ",")
       relculright = true,  -- whether to right-align the cursor line number with 'relativenumber' set
@@ -45,7 +43,5 @@ return {
 
       clickhandlers = nil,  -- Use default.
     }
-
-    statuscol.setup(config)
   end,
 }

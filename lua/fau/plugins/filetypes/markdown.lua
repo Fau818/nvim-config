@@ -5,6 +5,9 @@ return {
   {
     -- DESC: Quick table creation and editing in markdown.
     "dhruvasagar/vim-table-mode",
+    cmd = { "TableModeToggle", "TableModeEnable", "TableModeDisable", "Tableize", "TableModeRealign", "TableAddFormula", "TableEvalFormulaLine", "TableSort" },
+    ft = "markdown",
+
     init = function()
       vim.g.table_mode_corner = "|"
 
@@ -21,8 +24,6 @@ return {
       vim.g.table_mode_tableize_map = false
       vim.g.table_mode_tableize_d_map = false
     end,
-    ft = "markdown",
-    cmd = { "TableModeToggle", "TableModeEnable", "TableModeDisable", "Tableize", "TableModeRealign", "TableAddFormula", "TableEvalFormulaLine", "TableSort" }
   },
 
   {
@@ -35,19 +36,19 @@ return {
     -- DESC: A floating window markdown previewer for Neovim.
     ---@module "glow"
     "ellisonleao/glow.nvim",
-    config = function()
-      local config = {
-        border = "double",  -- floating window border config
-        width  = 99999,
-        height = 99999,
-        width_ratio = 0.85,  -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
-        height_ratio = 0.85,
-      }
-      require("glow").setup(config)
-      vim.keymap.set("n", "<LEADER>rf", "<CMD>Glow<CR>", { buffer = true, desc = "Glow: Show" })
-    end,
-    ft = "markdown",
+    enabled = vim.fn.executable("glow") == 1,
     cmd = "Glow",
+    ft = "markdown",
+    keys = { { "<LEADER>rf", "<CMD>Glow<CR>", desc = "Glow: Show", buffer = true, ft = "markdown" } },
+
+    ---@type Config
+    opts = {
+      border = "double",  -- floating window border config
+      width  = 99999,
+      height = 99999,
+      width_ratio = 0.85,  -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
+      height_ratio = 0.85,
+    }
   },
 
   {
@@ -55,16 +56,14 @@ return {
     "iamcco/markdown-preview.nvim",
     enabled = vim.fn.executable("yarn") == 1,
     build = "cd app && yarn install",
+    cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },
+    ft = "markdown",
+    keys = { { "<C-r>", "<CMD>MarkdownPreview<CR>", desc = "Markdown Preview: Preview", buffer = true, ft = "markdown" } },
+
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_echo_preview_url = 1
     end,
-    config = function()
-      -- TODO: Do this in code_runner.
-      vim.keymap.set("n", "<C-r>", "<CMD>MarkdownPreview<CR>", { buffer = true, desc = "Markdown Preview: Preview" })
-    end,
-    ft = "markdown",
-    cmd = { "MarkdownPreview", "MarkdownPreviewToggle", "MarkdownPreviewStop" },
   },
 
 }

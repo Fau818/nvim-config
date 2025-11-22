@@ -11,17 +11,18 @@ return {
   {
     -- DESC: Auto generate python docstring.
     "pixelneo/vim-python-docstring",
-    config = function()
+    cond = true,
+    cmd = { "Docstring", "DocstringTypes", "DocstringLine" },
+    ft = "python",
+    keys = {
+      { "<LEADER><LEADER>d", "<CMD>Docstring<CR>",      buffer = true, ft = "python", desc = "Python Docstring: Generate" },
+      { "<LEADER><LEADER>D", "<CMD>DocstringTypes<CR>", buffer = true, ft = "python", desc = "Python Docstring: Generate with Type Hints" },
+    },
+
+    init = function()
       vim.g.python_style = "numpy"  ---@type "google" | "numpy" | "rest" | "epytext"
       vim.g.vpd_indent = (" "):rep(vim.bo.tabstop)
     end,
-    ft = "python",
-    cmd = { "Docstring", "DostringTypes", "DocstringLine" },
-    keys = {
-      { "<LEADER><LEADER>d", "<CMD>Docstring<CR>",      desc = "Python Docstring: Generate" },
-      { "<LEADER><LEADER>D", "<CMD>DocstringTypes<CR>", desc = "Python Docstring: Generate with Type Hints" },
-    },
-    cond = true,
   },
 
 }

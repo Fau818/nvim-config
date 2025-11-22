@@ -33,8 +33,8 @@ return {
     ---function will be called with a ColorScheme table
     ---@param colors ColorScheme
     on_colors = function(colors)
-      colors.comment        = fvim.colors.gray
-      colors.terminal_black = fvim.colors.gray
+      -- colors.comment        = fvim.colors.gray
+      colors.terminal.black = fvim.colors.gray
     end,
 
     ---You can override specific highlights to use other groups or a hex color
@@ -100,12 +100,16 @@ return {
       -- ==================== Plugins ====================
       -- ---------- Blink Cmp
       highlights["BlinkCmpLabelMatch"] = { bold = true, nocombine = true }
+      highlights["BlinkCmpGhostText"] = { link = "Comment" }
 
       -- ---------- Bufferline
       highlights["BufferLineIndicatorSelected"] = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.dark_purple, bold = true }
 
       -- ---------- ChatGPT
       -- highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
+
+      -- ---------- Copilot
+      highlights["CopilotSuggestion"] = { link = "Comment" }
 
       -- ---------- Lazy
       highlights["LazyReasonKeys"] = { fg = colors.magenta }
