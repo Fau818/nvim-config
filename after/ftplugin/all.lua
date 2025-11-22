@@ -1,1 +1,1 @@
-vim.opt_local.formatoptions = "tcqj"
+vim.schedule(function() vim.opt_local.formatoptions = "tcqj" end)

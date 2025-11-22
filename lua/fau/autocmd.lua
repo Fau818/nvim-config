@@ -60,20 +60,28 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   callback = function() vim.opt_local.filetype = "conf" end
 })
 
--- DESC: Use `q` to close the float window.
-vim.api.nvim_create_autocmd("FileType", {
-  group = "fau_vim",
-  desc = "Use `q` to close the float window.",
-  pattern = { "snacks_notif", "git" },
-  callback = function() vim.keymap.set("n", "q", "<CMD>q<CR>", { silent=true, buffer=true }) end
-})
-
 -- DESC: Treat docker-compose.yaml and docker-compose.yml to docker-compose filetype.
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   group = "fau_vim",
   desc = "Correct filetype for docker-compose.",
   pattern = { "docker-compose.yaml", "docker-compose.yml" },
   callback = function() vim.opt_local.filetype = "yaml.docker-compose" end
+})
+
+-- DESC: Use `q` to close certain filetypes.
+vim.api.nvim_create_autocmd("FileType", {
+  group = "fau_vim",
+  desc = "Use `q` to close window.",
+  pattern = { "snacks_notif", "git", "checkhealth", "grug-far-history", "help", "qf" },
+  callback = function(args)
+    vim.bo[args.buf].buflisted = false
+    vim.schedule(function()
+      vim.keymap.set("n", "q", function()
+        vim.cmd("close")
+        pcall(vim.api.nvim_buf_delete, args.buf, { force = true })
+      end, { buffer = args.buf, silent = true, desc = "Quit buffer" })
+    end)
+  end,
 })
 
 

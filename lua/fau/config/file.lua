@@ -17,6 +17,7 @@ return {
     "diff", "DiffviewFiles", "DiffviewFileHistory",
     "flash_prompt",
     "glowpreview",
+    "grug-far", "grug-far-history", "grug-far-help",
     "hydra_hint",
     "image",
     "lazy", "lazy_backdrop",

@@ -247,7 +247,7 @@ return {
     ---@module "copilot-lualine"
     "AndreM222/copilot-lualine",
   },
-  event = { "BufReadPost", "BufNewFile" },    -- NOTE: If loaded when `UIEnter`, it will show on dashboard.
+  event = { "BufReadPre", "BufNewFile" },  -- NOTE: If loaded when `UIEnter`, it will show on dashboard.
 
   opts = {
     options = {

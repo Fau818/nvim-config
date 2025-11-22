@@ -1,9 +1,10 @@
+---@type LazySpec
 return {
   -- DESC: A nice scrollbar.
   ---@module "satellite"
   "lewis6991/satellite.nvim",
-  enabled = vim.fn.has("nvim-0.10") == 1,
-  event = "UIEnter",
+  enabled = vim.fn.has("nvim-0.10") == 1,  -- BUG: Delay when scroll in buffer.
+  event = { "BufReadPre", "BufNewFile" },
   ---@type SatelliteConfig
   opts = {
     current_only = false,

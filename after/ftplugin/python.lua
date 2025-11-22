@@ -1,5 +1,3 @@
--- BUG: "axelvc/template-string.nvim" will lead to load twice when the first time to open a python file.
--- HACK: Add protection here.
 if vim.b.fvim_python_ftplugin_loaded then return end
 vim.b.fvim_python_ftplugin_loaded = true
 

@@ -3,7 +3,7 @@ return {
   ---@module "statuscol"
   "luukvbaal/statuscol.nvim",
   enabled = vim.fn.has("nvim-0.10") == 1,
-  event = "UIEnter",
+  event = { "BufReadPre", "BufNewFile" },
 
   config = function()
     local statuscol = require("statuscol")

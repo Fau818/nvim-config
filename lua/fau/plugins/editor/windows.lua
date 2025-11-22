@@ -4,6 +4,7 @@ return {
   ---@module "windows"
   "anuvyklack/windows.nvim",
   dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
+  enabled = false,
 
   event = "WinNew",
   keys = {

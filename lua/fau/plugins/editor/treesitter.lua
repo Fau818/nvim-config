@@ -84,7 +84,11 @@ return {
     ---@module "nvim-treesitter"
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
-    build = ":TSUpdate",
+    -- NOTE: Don't use `build = ":TSUpdate"` since it can't auto install parsers when nvim-treesitter is installed.
+    build = function()
+      local treesitter = require("nvim-treesitter")
+      treesitter.update(nil, { summary = false })
+    end,
     dependencies = "mason-org/mason-lspconfig.nvim",  -- Make sure `tree-sitter-cli` can be installed automatically.
     cond = true,
     cmd = { "TSInstall", "TSInstallFromGrammar", "TSUpdate", "TSUninstall", "TSLog" },

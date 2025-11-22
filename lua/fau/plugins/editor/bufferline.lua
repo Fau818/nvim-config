@@ -4,7 +4,7 @@ return {
   ---@module "bufferline"
   "akinsho/bufferline.nvim",
   dependencies = "nvim-tree/nvim-web-devicons",
-  event = "UIEnter",
+  event = { "BufReadPre", "BufNewFile" },
 
   config = function()
     -- ==================== Configuration ====================
