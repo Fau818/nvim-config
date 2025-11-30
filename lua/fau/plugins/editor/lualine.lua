@@ -247,7 +247,7 @@ return {
     ---@module "copilot-lualine"
     "AndreM222/copilot-lualine",
   },
-  event = { "BufReadPre", "BufNewFile" },  -- NOTE: If loaded when `UIEnter`, it will show on dashboard.
+  event = "UIEnter",
 
   opts = {
     options = {
@@ -263,22 +263,25 @@ return {
       },
 
       ignore_focus = {
-        "help", "qf",
+        "", "help", "netrw", "tutor", "man", "qf", "log",
         "aerial", "aerial-nav",
         "chatgpt-input",
         "crunner",
-        "DiffviewFiles", "DiffviewFileHistory",
+        "diff", "DiffviewFiles", "DiffviewFileHistory",
+        "flash_prompt",
         "glowpreview",
-        "lazy",
+        "grug-far", "grug-far-history", "grug-far-help",
+        "hydra_hint",
+        "lazy", "lazy_backdrop",
         "mason",
         "NvimTree", "NvimTreeFilter",
-        "noice",
+        "notify", "noice",
         "snacks_input", "snacks_picker_input", "snacks_picker_list", "snacks_picker_preview",
         "snacks_notif", "snacks_notif_history", "snacks_layout_box",
         "snacks_win", "snacks_win_help", "snacks_win_backdrop",
-        "snacks_dashboard", "snacks_terminal",
+        "snacks_terminal", "sidekick_terminal",
         "TelescopePrompt", "TelescopeResults",
-        "toggleterm",
+        "terminal", "toggleterm",
         "trouble",
       },
 

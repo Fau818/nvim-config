@@ -19,7 +19,7 @@ return {
       FIX  = { icon = fvim.icons.todo.BUG,  color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
       HACK = { icon = fvim.icons.todo.HACK, color = "warn",  alt = { "PATCH", "TRICK" } },
       WARN = { icon = fvim.icons.todo.WARN, color = "warn",  alt = { "WARNING" } },
-      IMPO = { icon = fvim.icons.todo.IMPORTANT, color = fvim.colors.red, alt = { "IMPORTANT" } },
+      IMPO = { icon = fvim.icons.todo.IMPORTANT, color = fvim.colors.lualine.red, alt = { "IMPORTANT" } },
 
       PERF = { icon = fvim.icons.todo.PERF, color = fvim.colors.purple,     alt = { "OPTIM",   "OPTIMIZE", "PERFORMANCE" } },
       TEST = { icon = fvim.icons.todo.TEST, color = fvim.colors.light_pink, alt = { "TESTING", "PASSED",   "FAILED", "TEMP" }},

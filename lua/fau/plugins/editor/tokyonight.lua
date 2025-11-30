@@ -58,6 +58,10 @@ return {
       highlights["FloatBorder"]  = { fg = fvim.colors.cobalt }
       highlights["WinSeparator"] = { fg = fvim.colors.light_blue }
 
+      -- ---------- Statusline (make it transparent)
+      highlights["StatusLine"]   = { fg = colors.fg_dark }
+      highlights["StatusLineNC"] = { fg = colors.fg_gutter }
+
       -- ---------- TodoTag
       highlights["TodoTag"] = { fg = fvim.colors.dark_green, bold = true, italic = true }
       highlights["InfoTag"] = { fg = colors.blue2, bold = true, italic = true }

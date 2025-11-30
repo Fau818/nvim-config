@@ -19,6 +19,7 @@ M.packages = {
   sh         = { "bash-language-server" },
   toml       = { "tombi" },
   yaml       = { "yaml-language-server" },
+  zsh        = { "bash-language-server" },
 }
 
 ---@type table<string, function>

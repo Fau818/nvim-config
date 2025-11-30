@@ -38,6 +38,8 @@ return {
     ---@type table Presets for languages
     langs = {
       python = { dictionary = { join = { space_in_brackets = true } } },
+
+      json = { array = { join = { space_in_brackets = false } } },
       toml = { array = { join = { space_in_brackets = false } } },
     },
   },

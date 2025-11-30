@@ -33,6 +33,8 @@ keymap({ "n", "x", "o" }, "L", "g_", opts("Goto: Line End"))
 -- =============================================
 -- ========== Quick Save and Close
 -- =============================================
+keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
+
 keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
 keymap("n", "<LEADER>w", "<CMD>wall<CR>",    opts("Editor: Save All Buffers"))
 keymap("n", "<A-q>",     "<CMD>bdelete<CR>", opts("Editor: Close Current Buffer"))
@@ -65,12 +67,12 @@ keymap("n", "v", "<C-v>", opts("Visual-Block Mode"))
 keymap("n", "<CR>",         "o<ESC>", opts("Edit: Add New Line"))
 keymap("n", "<LEADER><CR>", "<CR>",   opts("Edit: Normal Enter Key"))
 
--- Use `<LEADER>q` to Recording
-keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))
-
 -- Reveal File
 keymap("n", "<C-f>", "<CMD>Open %:p:h<CR>", opts("Editor: Reveal File"))
 keymap("n", "<C-b>", "<NOP>",               opts())
+
+-- Get Current File Absolute Path
+keymap("n", "<LEADER><LEADER>p", "<CMD>let @+=expand('%:p')<CR>", opts("Editor: Copy Current File Absolute Path"))
 
 -- Open File Explore
 keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Editor: Open File Explore"))
@@ -137,7 +139,7 @@ keymap({ "n", "x" }, "<LEADER>Y", [[""Y]], opts("Yank Line with Vim Clipboard"))
 keymap({ "n", "x" }, "<LEADER>p", [[""p]], opts("Paste from Vim Clipboard"))
 keymap({ "n", "x" }, "<LEADER>P", [[""P]], opts("PASTE from Vim Clipboard"))
 
--- Delete Neovim Default Keymap Y -> Y$  ->  Y = yy
+-- Delete Neovim Default Keymap `Y -> Y$`.  => `Y = yy`
 vim.keymap.del("n", "Y")
 
 -- Paste with Auto Indent
