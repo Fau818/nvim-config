@@ -30,7 +30,7 @@ return {
     -- ==================== CLI ====================
     {
       "<c-.>",
-      function() require("sidekick.cli").toggle() end,
+      function() require("sidekick.cli").focus() end,
       mode = { "n", "t", "i", "x" },
       desc = "Sidekick Toggle",
     },

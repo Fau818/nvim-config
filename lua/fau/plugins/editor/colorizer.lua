@@ -7,7 +7,7 @@ return {
 
   opts = {
     -- NOTE: Exclusion Only makes sense if '*' is specified first!
-    filetypes = { "*", "!c", "!cpp", "!lazy", notify = { RGB = false } },
+    filetypes = { "*", "!c", "!cpp", "!lazy", "!sidekick_terminal", notify = { RGB = false } },
     buftypes = fvim.file.excluded_buftypes,  -- Use default.
     user_commands = true,  ---@type boolean | table Enable all or some usercommands
     lazy_load = false,  -- NOTE: If true, cmp_menu will not show colors.

@@ -8,6 +8,7 @@ M.configured_ft = {}
 
 ---@type table<string, string[]> Auto installed LSP servers for specific filetypes
 M.packages = {
+  css        = { "css-lsp" },
   docker     = { "dockerfile-language-server" },
   dockerfile = { "dockerfile-language-server" },
   go         = { "gopls" },
@@ -21,9 +22,6 @@ M.packages = {
   yaml       = { "yaml-language-server" },
   zsh        = { "bash-language-server" },
 }
-
----@type table<string, function>
--- M.mason = require("fau.config.lsp.mason")  -- Loaded if mason is installed.
 
 
 

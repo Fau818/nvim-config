@@ -29,7 +29,7 @@ function M.setup()
 
     virtual_text = {
       severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.WARN },
-      current_line = false,
+      current_line = nil,
       source = false,  -- NOTE: Set in format function below.
 
       spacing = 4,

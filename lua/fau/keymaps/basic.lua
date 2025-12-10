@@ -11,11 +11,12 @@ vim.g.maplocalleader = " "
 
 
 local function close_editor()
-  local tabs_count = vim.fn.tabpagenr("$")
+  local tabs_count = #vim.api.nvim_list_tabpages()
 
   -- `xall` doesn't work well when use toggle terminal
-  if tabs_count == 1 then vim.cmd("wall"); vim.cmd("qall") end
-  return vim.cmd("tabclose")
+  if tabs_count == 1 then vim.cmd("wall|qall")
+  else vim.cmd("tabclose")
+  end
 end
 
 
@@ -36,6 +37,7 @@ keymap({ "n", "x", "o" }, "L", "g_", opts("Goto: Line End"))
 keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
 
 keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
+keymap("n", "<D-s>",     "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
 keymap("n", "<LEADER>w", "<CMD>wall<CR>",    opts("Editor: Save All Buffers"))
 keymap("n", "<A-q>",     "<CMD>bdelete<CR>", opts("Editor: Close Current Buffer"))
 

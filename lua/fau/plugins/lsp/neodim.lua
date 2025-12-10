@@ -1,12 +1,7 @@
 ---@type LazySpec
 return {
   ---@module "neodim"
-  -- "zbirenbaum/neodim",
-  -- TEMP: Use a forked version to fix the issue with Neovim 0.11
-  -- IMPO: If used in neovim 0.12+, you need to modify the source code.
-  -- \ in `lazy/neodim/lua/neodim/TSOverride.lua:239` use `highlighter:for_each_highlight_state(callback)`
-  "ALVAROPING1/neodim",
-  branch = "fix-nvim-0.11",
+  "zbirenbaum/neodim",
 
   event = "LspAttach",
 

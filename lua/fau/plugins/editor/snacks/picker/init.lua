@@ -270,7 +270,7 @@ return {
     leaks    = false,  -- show when pickers don't get garbage collected
     explorer = false,  -- show explorer debug info
     files    = false,  -- show file debug info
-    grep     = false,  -- show file debug info
+    grep     = false,  -- show grep debug info
     proc     = false,  -- show proc debug info
     extmarks = false,  -- show extmarks errors
   },
