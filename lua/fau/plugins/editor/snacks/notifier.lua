@@ -1,6 +1,6 @@
 ---@class snacks.notifier.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   timeout = 3000,
   width = { min = 40, max = 0.4 },

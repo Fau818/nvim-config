@@ -1,6 +1,6 @@
 ---@class snacks.lazygit.Config: snacks.terminal.Opts
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   -- automatically configure lazygit to use the current colorscheme
   -- and integrate edit with the current neovim instance

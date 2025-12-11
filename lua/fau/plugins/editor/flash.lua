@@ -3,7 +3,8 @@ return {
   -- DESC: A snazzy jump plugin.
   ---@module "flash"
   "folke/flash.nvim",
-  cond = true,
+  vscode = true,
+
   keys = {
     { "f", mode = { "n", "x", "o" } }, { "F", mode = { "n", "x", "o" } },
     { "t", mode = { "n", "x", "o" } }, { "T", mode = { "n", "x", "o" } },

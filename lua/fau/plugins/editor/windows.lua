@@ -1,3 +1,4 @@
+-- TASK: Clean?
 ---@type LazySpec
 return {
   -- DESC: Add animation for Neovim window actions.

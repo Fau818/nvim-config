@@ -1,6 +1,6 @@
 ---@class snacks.image.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   formats = nil,  -- Use default.
 

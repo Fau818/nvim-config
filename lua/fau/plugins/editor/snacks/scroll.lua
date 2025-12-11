@@ -1,6 +1,6 @@
 ---@class snacks.scroll.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   animate = {
     duration = { step = 10, total = 200 },

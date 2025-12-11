@@ -3,7 +3,7 @@ return {
   -- DESC: Convert text case in Neovim.
   ---@module "textcase"
   "johmsalas/text-case.nvim",
-  cond = true,
+  -- vscode = true,
 
   cmd = { "Subs", "TextCaseStartReplacingCommand" },
   event = { "BufReadPost", "BufNewFile" },

@@ -24,7 +24,11 @@ ViewConfig.keys.hover = "<C-d>"
 local config = {
   root = nil,  -- Use default.
 
-  defaults = { lazy = false, cond = not vim.g.vscode },
+  defaults = {
+    lazy = false,
+    ---@param plugin LazyPlugin
+    cond = function(plugin) return plugin["vscode"] or not vim.g.vscode end
+  },
 
   ---@type LazySpec
   spec = {

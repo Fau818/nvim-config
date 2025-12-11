@@ -3,13 +3,13 @@ return {
   -- DESC: Smartly move lines or selections.
   ---@module "mini.move"
   "echasnovski/mini.move",
+  vscode = true,
   keys = {
     { "<A-h>", mode = "x",          desc = "Move: Selections Left" },
     { "<A-l>", mode = "x",          desc = "Move: Selections Right" },
     { "<A-j>", mode = { "n", "x" }, desc = "Move: lines Down" },
     { "<A-k>", mode = { "n", "x" }, desc = "Move: lines Up" },
   },
-  cond = true,
 
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.

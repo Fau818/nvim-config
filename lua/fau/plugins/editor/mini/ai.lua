@@ -2,6 +2,7 @@
 return {
   ---@module "mini.ai"
   "nvim-mini/mini.ai",
+  vscode = true,
   event = "VeryLazy",
 
   opts = function()

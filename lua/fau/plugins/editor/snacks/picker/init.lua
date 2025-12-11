@@ -1,6 +1,6 @@
 ---@class snacks.picker.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   prompt = nil,  -- Use default.
   sources = require("fau.plugins.editor.snacks.picker.sources"),

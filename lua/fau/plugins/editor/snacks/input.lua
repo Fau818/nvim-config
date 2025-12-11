@@ -1,6 +1,6 @@
 ---@class snacks.input.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   icon    = nil,  -- Use default.
   icon_hl = nil,  -- Use default.

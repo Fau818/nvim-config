@@ -4,7 +4,7 @@ return {
   ---@module "multicursors"
   "smoka7/multicursors.nvim",
   dependencies = "nvimtools/hydra.nvim",
-  cond = true,
+  vscode = true,
 
   cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
   keys = {

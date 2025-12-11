@@ -1,6 +1,6 @@
 ---@class snacks.dashboard.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   width    = 60,
   row      = nil,  -- dashboard position. nil for center

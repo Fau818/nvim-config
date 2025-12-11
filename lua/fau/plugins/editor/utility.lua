@@ -5,6 +5,7 @@ return {
   {
     ---@module "ts-comments"
     "folke/ts-comments.nvim",
+    vscode = true,
     enabled = vim.fn.has("nvim-0.10.0") == 1,
     event = { "BufReadPost", "BufNewFile" },
     config = true,

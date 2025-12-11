@@ -11,7 +11,8 @@ return {
   {
     -- DESC: Auto generate python docstring.
     "pixelneo/vim-python-docstring",
-    cond = true,
+    vscode = true,
+
     cmd = { "Docstring", "DocstringTypes", "DocstringLine" },
     ft = "python",
     keys = {

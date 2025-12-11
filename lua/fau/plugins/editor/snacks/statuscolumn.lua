@@ -4,7 +4,7 @@ return {
   enabled = false,
 
   -- left = { "mark", "sign" },
-  left = { "sign", "git" },  -- priority of signs on the left (high to low)
+  left = { "git", "sign" },  -- priority of signs on the left (high to low)
   right = { "fold" },        -- priority of signs on the right (high to low)
 
   folds = { open = true, git_hl = false },

@@ -1,6 +1,6 @@
 ---@class snacks.zen.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   -- You can add any `Snacks.toggle` id here.
   -- Toggle state is restored when the window is closed.

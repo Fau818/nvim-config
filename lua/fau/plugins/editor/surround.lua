@@ -3,12 +3,12 @@ return {
   -- DESC: Quickly add, modify, and remove surround.
   ---@module "nvim-surround"
   "kylechui/nvim-surround",
+  vscode = true,
+
   keys = {
     { "s",  mode = { "n", "x" }, desc = "+Surround" }, { "S",  mode = { "n", "x" }, desc = "+SURROUND" },
     { "cs", desc = "+Change Surround" }, { "ds", desc = "+Delete Surround" },
   },
-
-  cond = true,
 
   ---@type user_options
   opts = {

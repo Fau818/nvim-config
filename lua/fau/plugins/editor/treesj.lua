@@ -3,7 +3,7 @@ return {
   -- DESC: Splitting and joining block of code.
   ---@module "treesj"
   "Wansmer/treesj",
-  cond = true,
+  vscode = true,
 
   cmd = { "TSJJoin", "TSJSplit", "TSJToggle" },
   keys = { { "sj", "<CMD>TSJToggle<CR>", mode = "n", desc = "Treesj: Split and Join" } },

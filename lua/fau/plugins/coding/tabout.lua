@@ -3,7 +3,7 @@ return {
   -- DESC: Press <TAB> to jump out of brakets.
   ---@module "tabout"
   "abecodes/tabout.nvim",
-  cond = true,
+  vscode = true,
   event = { "InsertEnter", "CmdlineEnter" },
 
   ---@type TaboutOptions

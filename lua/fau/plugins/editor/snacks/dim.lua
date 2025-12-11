@@ -1,6 +1,6 @@
 ---@class snacks.dim.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   ---@type snacks.scope.Config
   scope = { min_size = 5, max_size = 25, siblings = true },

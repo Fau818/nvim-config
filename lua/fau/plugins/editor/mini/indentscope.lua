@@ -3,9 +3,12 @@ return {
   -- DESC: Indent guide line with animation.
   ---@module "mini.indentscope"
   "echasnovski/mini.indentscope",
+  vscode = true,
   event = { "BufReadPost", "BufNewFile" },
 
   init = function()
+    if vim.g.vscode then vim.g.miniindentscope_disable = true end
+
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "python",
       desc = "Config mini.indentscope for python.",

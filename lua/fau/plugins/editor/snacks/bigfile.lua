@@ -1,6 +1,6 @@
 ---@class snacks.bigfile.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
   notify  = true,
 
   size = fvim.file.large_file_size,

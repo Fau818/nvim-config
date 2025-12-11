@@ -90,7 +90,7 @@ return {
       treesitter.update(nil, { summary = false })
     end,
     dependencies = "mason-org/mason-lspconfig.nvim",  -- Make sure `tree-sitter-cli` can be installed automatically.
-    cond = true,
+    vscode = true,
     cmd = { "TSInstall", "TSInstallFromGrammar", "TSUpdate", "TSUninstall", "TSLog" },
     event = { "BufReadPost", "BufNewFile" },
 
@@ -111,7 +111,7 @@ return {
       auto_install = true,  -- Automatically install missing parsers when entering buffer.
 
       highlight = {
-        enable = true,
+        enable = not vim.g.vscode,
         disable = function(bufnr) return fvim.utils.is_large_file(bufnr) end,
       },
       indent    = {
@@ -164,7 +164,8 @@ return {
     ---@module "nvim-treesitter-textobjects"
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
-    cond = true,
+    vscode = true,
+
     event = { "BufReadPost", "BufNewFile" },
     keys = {
       { mode = { "n", "x", "o" }, "]]", function() require("nvim-treesitter-textobjects.move").goto_next_start("@block.outer", "textobjects") end, desc = "Textobjects: Next Block" },

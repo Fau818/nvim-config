@@ -1,6 +1,6 @@
 ---@class snacks.indent.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   indent = {
     enabled = true, -- enable indent guides

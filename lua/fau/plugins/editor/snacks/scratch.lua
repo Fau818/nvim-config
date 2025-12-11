@@ -1,6 +1,6 @@
 ---@class snacks.scratch.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   name = "Snacks Scratch",
   ft = nil,  -- Use default.

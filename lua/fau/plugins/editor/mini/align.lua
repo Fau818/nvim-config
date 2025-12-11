@@ -3,8 +3,8 @@ return {
   -- DESC: Align text interactively.
   ---@module "mini.align"
   "echasnovski/mini.align",
+  vscode = true,
   keys = { { "<LEADER>a", mode = "x", desc = "Edit: Align Text with Preview" }, { "<LEADER>A", mode = "x", desc = "Edit: Align Text" } },
-  cond = true,
 
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
