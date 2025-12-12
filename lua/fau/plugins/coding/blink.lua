@@ -14,15 +14,20 @@ return {
     "xzbdmw/colorful-menu.nvim",
 
     "disrupted/blink-cmp-conventional-commits",
+
     ---@module "blink-cmp-env"
     "bydlw98/blink-cmp-env",
-    {
-      ---@module "blink-copilot"
-      "fang2hou/blink-copilot",
-      dependencies = "zbirenbaum/copilot.lua",
-      ---@type Config
-      opts = { max_completions = 2, max_attempts = 2 },
-    },
+
+    { "Kaiser-Yang/blink-cmp-dictionary", dependencies = "nvim-lua/plenary.nvim" },
+
+    -- {
+    --   ---@module "blink-copilot"
+    --   "fang2hou/blink-copilot",
+    --   dependencies = "zbirenbaum/copilot.lua",
+    --   enabled = false,
+    --   ---@type Config
+    --   opts = { max_completions = 2, max_attempts = 2 },
+    -- },
   },
 
   event = { "InsertEnter", "CmdlineEnter", "LspAttach" },
@@ -113,17 +118,28 @@ return {
         "lsp",
         "snippets",
         "env", "path",
-        "buffer",
+        "buffer", "dictionary",
       },
       per_filetype = {
         lua       = { inherit_defaults = true, "lazydev" },
         gitcommit = { inherit_defaults = true, "commits" },
       },
       providers = {
-        copilot = { name = "Copilot", module = "blink-copilot", score_offset = 5, async = true },
-        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 10 },
-        env     = { name = "Env", module = "blink-cmp-env", async = true },
-        commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 10, async = true },
+        commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 15, async = true },
+        snippets = { score_offset = 10 },
+
+        copilot = { name = "Copilot", module = "blink-copilot", score_offset = 9, async = true },
+
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 8 },
+        lsp = { score_offset = 8 },
+        env = { name = "Env", module = "blink-cmp-env", score_offset = 8, async = true },
+
+        buffer = { score_offset = 3 },
+        dictionary = {
+          name = "Dict", module = "blink-cmp-dictionary",
+          min_keyword_length = 2, max_items = 15, score_offset = -5,
+          opts = { dictionary_files = { fvim.nvim_config_path .. "/spell/mydict.txt", fvim.nvim_config_path .. "/spell/dictionary.txt" } },
+        },
       },
     },
 

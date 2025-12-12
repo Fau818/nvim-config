@@ -5,9 +5,9 @@ local function _on_attach(bufnr)
 
   -- ==================== Navigation ====================
   ---@diagnostic disable-next-line: param-type-mismatch
-  keymap("n", "]g", function() gitsigns.nav_hunk("next") end, opts("Next Hunk"))
+  keymap("n", "]g", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gitsigns.nav_hunk("next") end end, opts("Next Hunk"))
   ---@diagnostic disable-next-line: param-type-mismatch
-  keymap("n", "[g", function() gitsigns.nav_hunk("prev") end, opts("Prev Hunk"))
+  keymap("n", "[g", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk("prev") end end, opts("Prev Hunk"))
 
   -- ==================== Stage & Reset ====================
   keymap("n", "<LEADER>gs", gitsigns.stage_hunk,   opts("Stage Hunk"))

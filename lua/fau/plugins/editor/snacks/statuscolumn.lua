@@ -4,10 +4,10 @@ return {
   enabled = false,
 
   -- left = { "mark", "sign" },
-  left = { "git", "sign" },  -- priority of signs on the left (high to low)
-  right = { "fold" },        -- priority of signs on the right (high to low)
+  left = { "sign" },          -- priority of signs on the left (high to low)
+  right = { "fold", "git" },  -- priority of signs on the right (high to low)
 
-  folds = { open = true, git_hl = false },
+  folds = { open = false, git_hl = true },
 
   git = { patterns = { "GitSign", "MiniDiffSign" } },
 

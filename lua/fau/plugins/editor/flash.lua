@@ -72,7 +72,7 @@ return {
       -- options used for treesitter selections
       -- `require("flash").treesitter()`
       treesitter = {
-        labels = "abcdefghijklmnopqrstuvwxyz",  -- TEST: No excluded letters. Oct 15, 2025
+        labels = "abefghijklmnopqrstuvwyz",
         jump = { pos = "range", autojump = true },
         search = { incremental = false },
         label = { before = true, after = true, style = "inline" },
