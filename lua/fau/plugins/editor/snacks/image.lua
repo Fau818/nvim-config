@@ -56,4 +56,6 @@ return {
   ---@class snacks.image.convert.Config
   convert = nil,  -- Use default.
   math = nil,  -- Use default.
+
+  resolve = function(...) if fvim_obsidian_image_resolver then return fvim_obsidian_image_resolver(...) end end,
 }

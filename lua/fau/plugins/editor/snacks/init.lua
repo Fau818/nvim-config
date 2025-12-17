@@ -4,7 +4,6 @@ return {
   "folke/snacks.nvim",
   priority = 999,
   lazy = false,
-  vscode = true,
 
   ---@type snacks.Config
   opts = {
@@ -66,19 +65,6 @@ return {
 
 
     -- ==================== Notification ====================
-    ---@type fun(msg: any, level?: snacks.notifier.level|number, opts?: snacks.notifier.Notif.opts): number|string
-    function fvim.notify(msg, level, opts_)
-      if type(msg) ~= "string" then msg = vim.inspect(msg) end
-      level = level or vim.log.levels.INFO
-      opts_ = opts_ or {}
-      opts_ = vim.tbl_extend("force", opts_, { title = "fau_vim" })
-      Snacks.notifier.notify(msg, level, opts_)
-      return 555
-    end
-    function fvim.inspect(...) return vim.inspect(...) end
-    -- function fvim.show(...) fvim.notify(vim.inspect(...)) end
-    function fvim.show(...) Snacks.debug.inspect(...) end
-
     -- Global debug functions.
     _G.dd = function(...) Snacks.debug.inspect(...) end
     _G.bt = function() Snacks.debug.backtrace() end
@@ -135,16 +121,16 @@ return {
     { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Pickers" },
 
     -- { "<LEADER>F",  function() Snacks.picker.files() end,    desc = "Find Files" },
-    { "<LEADER>ff", function() Snacks.picker.smart() end,    desc = "Smart Find Files" },
-    { "<LEADER>fb", function() Snacks.picker.buffers() end,  desc = "Buffers" },
-    { "<LEADER>fr", function() Snacks.picker.recent() end,   desc = "Recent" },
-    { "<LEADER>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+    { "<LEADER>ff", function() Snacks.picker.smart() end,    desc = "Picker: Smart Find Files" },
+    { "<LEADER>fb", function() Snacks.picker.buffers() end,  desc = "Picker: Buffers" },
+    { "<LEADER>fr", function() Snacks.picker.recent() end,   desc = "Picker: Recent" },
+    { "<LEADER>fp", function() Snacks.picker.projects() end, desc = "Picker: Projects" },
 
-    { "<LEADER>F",  function() Snacks.picker.lines() end,     desc = "Buffer Lines" },
-    { "<LEADER>fs", function() Snacks.picker.grep() end,      desc = "Grep" },
-    { "<LEADER>fS", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<LEADER>F",  function() Snacks.picker.lines() end, desc = "Picker: Buffer Lines" },
+    { "<LEADER>fs", function() Snacks.picker.grep() end, desc = "Picker: Grep" },
+    { "<LEADER>fS", function() Snacks.picker.grep_word() end, mode = { "n", "x" }, desc = "Picker: Grep Word" },
 
-    { "<LEADER>fn", function() Snacks.picker.notifications() end, desc = "Notification History" },
+    { "<LEADER>fn", function() Snacks.picker.notifications() end, desc = "Picker: Notifications" },
     { "<LEADER>fT",
       ---@diagnostic disable-next-line: undefined-field
       function() Snacks.picker.todo_comments({
@@ -155,42 +141,42 @@ return {
           }
         })
       end,
-      desc = "TODO Comments"
+      desc = "Picker: TODO Comments"
     },
 
-    { "<LEADER>fa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
-    { "<LEADER>fc", function() Snacks.picker.command_history() end, desc = "Command History" },
-    { "<LEADER>fC", function() Snacks.picker.commands() end, desc = "Commands" },
+    { "<LEADER>fa", function() Snacks.picker.autocmds() end, desc = "Picker: Autocmds" },
+    { "<LEADER>fc", function() Snacks.picker.command_history() end, desc = "Picker: Command History" },
+    { "<LEADER>fC", function() Snacks.picker.commands() end, desc = "Picker: Commands" },
 
     { "<LEADER>fe", function()
       if vim.fn.executable("conda") == 1 then Snacks.picker("conda")
       else vim.notify("Conda is not installed.", vim.log.levels.WARN) end
-    end, desc = "Conda Environments", ft = { "python" } },
+    end, desc = "Picker: Conda Environments", ft = { "python" } },
 
-    { "<LEADER>fh", function() Snacks.picker.help() end, desc = "Help Pages" },
-    { "<LEADER>fH", function() Snacks.picker.highlights() end, desc = "Highlights" },
-    { "<LEADER>fi", function() Snacks.picker.icons() end, desc = "Icons" },
-    { "<LEADER>fj", function() Snacks.picker.jumps() end, desc = "Jumps" },
-    { "<LEADER>fk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+    { "<LEADER>fh", function() Snacks.picker.help() end, desc = "Picker: Help Pages" },
+    { "<LEADER>fH", function() Snacks.picker.highlights() end, desc = "Picker: Highlights" },
+    { "<LEADER>fi", function() Snacks.picker.icons() end, desc = "Picker: Icons" },
+    { "<LEADER>fj", function() Snacks.picker.jumps() end, desc = "Picker: Jumps" },
+    { "<LEADER>fk", function() Snacks.picker.keymaps() end, desc = "Picker: Keymaps" },
 
-    { "<LEADER>fP", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
-    { "<LEADER>fR", function() Snacks.picker.resume() end, desc = "Resume" },
+    { "<LEADER>fP", function() Snacks.picker.lazy() end, desc = "Picker: Search Plugins" },
+    { "<LEADER>fR", function() Snacks.picker.resume() end, desc = "Picker: Resume" },
 
-    { "<LEADER>fll", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-    { "<LEADER>flf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+    { "<LEADER>fll", function() Snacks.picker.git_log_line() end, desc = "Picker: Git Log Line" },
+    { "<LEADER>flf", function() Snacks.picker.git_log_file() end, desc = "Picker: Git Log File" },
 
-    { "<LEADER>flc", function() Snacks.picker.lsp_config() end, desc = "LSP Config" },
-    { "<LEADER>fld", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-    { "<LEADER>flD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-    { "<LEADER>flI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-    { "<LEADER>flr", function() Snacks.picker.lsp_references() end, desc = "References" },
-    { "<LEADER>flt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-    { "<LEADER>fli", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
-    { "<LEADER>flo", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
+    { "<LEADER>flc", function() Snacks.picker.lsp_config() end, desc = "Picker: LSP Config" },
+    { "<LEADER>fld", function() Snacks.picker.lsp_definitions() end, desc = "Picker: Definition" },
+    { "<LEADER>flD", function() Snacks.picker.lsp_declarations() end, desc = "Picker: Declaration" },
+    { "<LEADER>flI", function() Snacks.picker.lsp_implementations() end, desc = "Picker: Implementation" },
+    { "<LEADER>flr", function() Snacks.picker.lsp_references() end, desc = "Picker: References" },
+    { "<LEADER>flt", function() Snacks.picker.lsp_type_definitions() end, desc = "Picker: Type Definition" },
+    { "<LEADER>fli", function() Snacks.picker.lsp_incoming_calls() end, desc = "Picker: Incoming Calls" },
+    { "<LEADER>flo", function() Snacks.picker.lsp_outgoing_calls() end, desc = "Picker: Outgoing Calls" },
 
-    -- { "<LEADER>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
-    { "<LEADER>ls", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    { "<LEADER>ls", function() Snacks.picker.lsp_symbols() end, desc = "Picker: LSP Symbols" },
+    { "<LEADER>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Picker: LSP Workspace Symbols" },
 
-    { "z=", function() Snacks.picker.spelling() end, desc = "Spelling Suggestions" },
+    { "z=", function() Snacks.picker.spelling() end, desc = "Picker: Spelling Suggestions" },
   },
 }

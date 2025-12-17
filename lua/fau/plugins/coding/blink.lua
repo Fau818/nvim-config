@@ -85,6 +85,7 @@ return {
       menu = {
         auto_show = true,
         -- BUG: If set `auto_show_delay_ms`, Neovim may crash when typing. !!!
+        -- NOTE: Currently, the delay depends on `sources.providers` without `async=true`; mostly depends on `lsp` source.
         -- auto_show_delay_ms = 250,
         border = "rounded",
         draw = {
@@ -126,6 +127,7 @@ return {
       },
       providers = {
         commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 15, async = true },
+        path = { score_offset = 12 },
         snippets = { score_offset = 10 },
 
         copilot = { name = "Copilot", module = "blink-copilot", score_offset = 9, async = true },

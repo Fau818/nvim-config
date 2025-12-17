@@ -1,6 +1,6 @@
 ---@class snacks.words.Config
 return {
-  enabled = true,
+  enabled = not vim.g.vscode,
 
   debounce = fvim.settings.debounce.highlight,  -- time in ms to wait before updating
 

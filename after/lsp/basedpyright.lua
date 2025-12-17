@@ -1,5 +1,7 @@
 ---@type vim.lsp.Config
 return {
+  -- NOTE: LSP settings may be ignored. (More info in the link below.)
+  -- SEE: https://docs.basedpyright.com/v1.36.1/configuration/config-files/#overriding-language-server-settings
   settings = {
     python = { pythonPath = nil, venvPath = nil },
     basedpyright = {
@@ -11,8 +13,7 @@ return {
         autoImportCompletions = true,
         autoSearchPaths = true,
 
-        diagnosticMode = "workspace",  ---@type "openFilesOnly" | "workspace"
-
+        diagnosticMode = "openFilesOnly",  ---@type "openFilesOnly" | "workspace"
         logLevel = "Information",  ---@type "Error" | "Warning" | "Information" | "Trace"
 
         inlayHints = {
@@ -22,12 +23,31 @@ return {
           genericTypes = true,
         },
 
-        useTypingExtensions = true,  -- TEST: Default is false, try it! On Nov 7, 2025
+        useTypingExtensions = false,
         -- fileEnumerationTimeout = nil,  -- Use default.
-
         autoFormatStrings = true,  -- NOTE: Neovim doesn't support it yet. Planned for 0.12.
 
-        configFilePath = string.format("%s/configuration/pyproject.toml", fvim.nvim_config_path),
+        -- configFilePath = nil,  -- Use default.
+
+        -- ==================== pyproject.toml ====================
+        exclude = { "**/.git", "**/.idea", "**/.vscode", "**/.cache", "**/.venv", "**/__pycache__", "**/.mypy_cache", "**/node_modules" },
+        -- extraPaths = nil,  -- Use default.
+        -- stubPath = nil,  -- Use default.
+        -- typeshedPaths = nil,  -- Use default.
+        -- baselineFile = nil,  -- Use default.
+
+        useLibraryCodeForTypes = true,
+
+        typeCheckingMode = "recommended",  ---@type "off"|"basic"|"standard"|"strict"|"recommended"|"all"
+
+        ---@type table<string, "error"|"warning"|"information"|"hint"|"none"|boolean>
+        diagnosticSeverityOverrides = {
+          reportUnusedCallResult = "none",
+          reportUnusedParameter  = "hint",
+          reportUnusedVariable   = "hint",
+          reportUnreachable      = "information",
+          reportMissingTypeStubs = "hint",
+        }
       },
     },
   },

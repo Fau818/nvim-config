@@ -48,7 +48,7 @@ return {
   -- jumps = {},
 
   -- NOTE: <A-g> and <A-b> are mapped to go to toggle global and buffer keymaps.
-  keymaps = { layout = { preset = preset.default_layout }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
+  keymaps = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview } },
 
   lazy = { layout = { preset = preset.default_layout }, regex = false, win = { preview = preset.minimal_preview } },
 
@@ -66,7 +66,7 @@ return {
   lsp_outgoing_calls   = preset.lsp_action,
 
   lsp_symbols = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview } },
-  lsp_workspace_symbols = { layout = { preset = preset.default_layout }, on_show = preset.normal_mode },
+  lsp_workspace_symbols = { layout = { preset = preset.default_layout }, win = { preview = preset.normal_preview } },
 
   -- man = {},
   -- martks = {},

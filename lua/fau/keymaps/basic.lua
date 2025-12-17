@@ -32,9 +32,12 @@ keymap({ "n", "x", "o" }, "L", "g_", opts("Goto: Line End"))
 
 
 -- =============================================
--- ========== Quick Save and Close
+-- ========== Buffer Operations
 -- =============================================
 keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
+
+keymap("n", "<A-h>", "<CMD>bprevious<CR>", opts("Editor: Previous Buffer"))
+keymap("n", "<A-l>", "<CMD>bnext<CR>",     opts("Editor: Next Buffer"))
 
 keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
 keymap("n", "<D-s>",     "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
@@ -76,11 +79,11 @@ keymap("n", "<C-b>", "<NOP>",               opts())
 -- Get Current File Absolute Path
 keymap("n", "<LEADER><LEADER>p", "<CMD>let @+=expand('%:p')<CR>", opts("Editor: Copy Current File Absolute Path"))
 
--- Open File Explore
-keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Editor: Open File Explore"))
+-- Open File Explorer
+keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Editor: Open File Explorer"))
 
 -- Inspect
-keymap("n", "<LEADER>i", "<CMD>Inspect<CR>",     opts("Editor: Show Highlight Groups under Cursor"))
+keymap("n", "<LEADER>i", "<CMD>Inspect<CR>",     opts("Editor: Inspect Element under Cursor"))
 keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Syntax Tree"))
 
 -- Disable Built-in Completion
@@ -204,9 +207,9 @@ keymap("x", "<S-TAB>", "<gv", opts("Indent: Red Indent Level"))  -- Reduce inden
 
 
 -- =============================================
--- ========== Windows Operations
+-- ========== Window Operations
 -- =============================================
--- Focus in Windows
+-- Focus in Window
 keymap({ "n", "t" }, "<C-h>", "<CMD>wincmd h<CR>", opts("Window: Focus Shift Left"))
 keymap({ "n", "t" }, "<C-j>", "<CMD>wincmd j<CR>", opts("Window: Focus Shift Down"))
 keymap({ "n", "t" }, "<C-k>", "<CMD>wincmd k<CR>", opts("Window: Focus Shift Up"))
