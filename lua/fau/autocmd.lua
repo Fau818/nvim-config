@@ -25,6 +25,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function() fvim.format.trim_text() end,
 })
 
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  pattern = "*",
+  group = "fau_vim",
+  desc = "Auto save buffer.",
+  callback = function() if vim.bo.buftype == "" and vim.bo.modifiable then vim.cmd("update") end end,
+})
+
 
 -- ==================== Indentation ====================
 vim.api.nvim_create_autocmd("OptionSet", {

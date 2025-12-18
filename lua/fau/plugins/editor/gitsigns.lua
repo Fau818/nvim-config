@@ -114,6 +114,17 @@ return {
 
     -- worktrees = nil,  -- Use default.
     -- watch_gitdir = nil,  -- Use default.
-    -- diff_opts = {},  -- Use default.
+    diff_opts = {
+      algorithm = "histogram",
+      internal = true,
+      indent_heuristic = true,
+      linematch = 60,
+      vertical = true,
+
+      ignore_blank_lines = true,
+      ignore_whitespace = true,
+      ignore_whitespace_change = true,
+      ignore_whitespace_change_at_eol = true,
+    },
   }
 }
