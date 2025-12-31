@@ -121,7 +121,7 @@ return {
       linematch = 60,
       vertical = true,
 
-      ignore_blank_lines = true,
+      -- ignore_blank_lines = true,
       ignore_whitespace = true,
       ignore_whitespace_change = true,
       ignore_whitespace_change_at_eol = true,

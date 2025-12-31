@@ -201,6 +201,7 @@ local settings = {
       castNumberToInteger = true,  -- Whether casting a number to an integer is allowed.
       checkTableShape = false,  -- HINT: TESTED, set it to false.
       -- inferTableSize = 10,
+      inferParamType = true,
 
       weakNilCheck   = false,  -- Whether it is permitted to assign a union type that contains nil to a variable that does not permit it.
       weakUnionCheck = false,  -- Whether it is permitted to assign a union type which only has one matching type to a variable.
