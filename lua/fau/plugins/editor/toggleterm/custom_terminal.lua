@@ -58,8 +58,15 @@ local custom_terminal = {
   }),
 }
 
-vim.keymap.set("n", "<LEADER>gg", function() custom_terminal.lazygit:toggle() end, { desc = "Toggle Lazygit" })
-vim.keymap.set("n", "<LEADER>gb", function() custom_terminal.btop:toggle() end,    { desc = "Toggle btop" })
+vim.keymap.set("n", "<LEADER>gg", function()
+  if vim.fn.executable(custom_terminal.lazygit.cmd) ~= 1 then vim.notify("Lazygit is not installed!", vim.log.levels.ERROR) return end
+  custom_terminal.lazygit:toggle()
+end, { desc = "Toggle Lazygit" })
+-- TODO: Better keymaps
+vim.keymap.set("n", "<LEADER>ga", function()
+  if vim.fn.executable(custom_terminal.btop.cmd) ~= 1 then vim.notify("Btop is not installed!", vim.log.levels.ERROR) return end
+  custom_terminal.btop:toggle()
+end, { desc = "Toggle btop" })
 -- vim.keymap.set("n", "<C-q>1",     function() custom_terminal.float:toggle()      end, { desc = "Toggle Float Terminal" })
 -- vim.keymap.set("n", "<C-q>2",     function() custom_terminal.horizontal:toggle() end, { desc = "Toggle Horizontal Terminal" })
 -- vim.keymap.set("n", "<C-q>3",     function() custom_terminal.vertical:toggle()   end, { desc = "Toggle Vertical Terminal" })

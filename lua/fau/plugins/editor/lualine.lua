@@ -32,7 +32,7 @@ local components = {
   },
 
   filename   = "filename",
-  filetype   = "filetype",
+  filetype   = { "filetype", padding = { left = 1, right = 2 } },
   filesize   = "filesize",
   fileformat = { "fileformat", cond = conditions.hide_in_width, padding = { left = 1, right = 2 } },
   encoding   = {
@@ -40,13 +40,14 @@ local components = {
     show_bomb = true,
     fmt = function(str) str = str:upper(); return str == "UTF-8" and "" or str end,
     cond = conditions.hide_in_width,
+    padding = { left = 1, right = 1 }
   },
 
   buffers = "buffers",
   windows = "windows",
   tabs    = "tabs",
 
-  progress = "progress",
+  progress = { "progress", padding = 1 },
   location = { "location", padding = { left = 0, right = 1 } },
 
   hostname = "hostname",
@@ -68,46 +69,6 @@ local components = {
 
 
   -- ==================== Indent ====================
-  -- ---Detect indent type and check whether occur mixed indent.
-  -- indent = {
-  --   function()
-  --     local TIMEOUT   = 10   -- Pattern search timeout in milliseconds.
-  --     local MAX_COUNT = 500  -- Max count for searchcount.
-  --     local SPC_PTN, TAB_PTN, MIXED_PTN = [[\v^  +]], [[\v^\t+]], [[\v^(\t+  |  +\t)]]
-  --
-  --     -- Get the indent width and type.
-  --     local indent_width = vim.bo.tabstop
-  --     local indent_type  = vim.bo.expandtab  -- true: space, false: tab
-  --
-  --     -- Get the count of space and tab indents.
-  --     local spc_cnt = vim.fn.searchcount({ pattern = SPC_PTN, max_count = MAX_COUNT, timeout = TIMEOUT }).total
-  --     local tab_cnt = vim.fn.searchcount({ pattern = TAB_PTN, max_count = MAX_COUNT, timeout = TIMEOUT }).total
-  --
-  --     local file_indent_type = spc_cnt == tab_cnt and indent_type or spc_cnt > tab_cnt  -- same as indent_type
-  --     local indent_icon = file_indent_type and fvim.icons.ui.Space or fvim.icons.ui.Tab
-  --     local indent_show = string.format("%s %d", indent_icon, indent_width)
-  --
-  --     if file_indent_type ~= indent_type then indent_show = "*" .. indent_show end  -- Mixed indent type.
-  --
-  --     -- Check mixed indent.
-  --     local mixed_line = 0
-  --     if spc_cnt > 0 and tab_cnt > 0 then  -- Detected mixed indent.
-  --       if file_indent_type then mixed_line = vim.fn.search(TAB_PTN, "nwc")
-  --       else mixed_line = vim.fn.search(SPC_PTN, "nwc", nil, TIMEOUT)
-  --       end
-  --     else
-  --       -- Check whether mixed in the same line.
-  --       mixed_line = vim.fn.search(MIXED_PTN, "nwc", nil, TIMEOUT)
-  --     end
-  --
-  --     if mixed_line > 0 then indent_show = indent_show .. " (MI:" .. mixed_line .. ")" end
-  --
-  --     return indent_show
-  --   end,
-  --
-  --   on_click = click_events.indent,
-  -- },
-
   indent = {
     function()
       local TIMEOUT = 10   -- Pattern search timeout in milliseconds.
@@ -132,11 +93,12 @@ local components = {
       fvim.indent.toggle_indent_width()
       require("lualine").refresh()
     end,
+    padding = { right = 1 }
   },
 
 
   -- ==================== Git ====================
-  branch = { "branch", icon = fvim.icons.git.Branch, color = { gui = "bold" } },
+  branch = { "branch", icon = fvim.icons.git.Branch, color = { gui = "bold" }, padding = { left = 1 } },
 
   diff = {
     "diff",
@@ -155,7 +117,7 @@ local components = {
       removed  = { fg = fvim.colors.lualine.red },
     },
     cond = conditions.hide_in_width,
-    padding = { right = 1 },
+    padding = { left = 1 },
   },
 
 
@@ -226,6 +188,7 @@ local components = {
     end,
     color = { fg = fvim.colors.purple },
     cond = conditions.hide_in_width,
+    padding = { left = 1 },
   },
 
 
