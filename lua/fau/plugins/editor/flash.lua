@@ -11,6 +11,7 @@ return {
 
     { "<LEADER>s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash: Jump" },
     { "<LEADER>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash: Treesitter" },
+    -- BUG: See https://github.com/folke/flash.nvim/pull/419
     { "r", mode = "o", function() require("flash").remote() end, desc = "Flash: Remote" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Flash: Treesitter Search" },
     { "<C-=>", mode = { "n", "x", "o" }, function() require("flash").treesitter({ actions = { ["<C-=>"] = "next", ["<C-->"] = "prev" } }) end, desc = "Treesitter incremental selection" },
@@ -88,6 +89,6 @@ return {
     prompt = nil,  -- Use default.
 
     -- options for remote operator pending mode
-    remote_op = nil,  -- Use default.
+    -- remote_op = nil,  -- Use default.
   }
 }

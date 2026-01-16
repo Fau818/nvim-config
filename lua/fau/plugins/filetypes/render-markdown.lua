@@ -238,6 +238,7 @@ return {
       -- email = "󰀓 ",
       -- hyperlink = "󰌹 ",
       -- highlight = "RenderMarkdownLink",
+      -- highlight_title = "RenderMarkdownLinkTitle",
       wiki = nil,  -- Use default.
       custom = nil,  -- Use default.
     },

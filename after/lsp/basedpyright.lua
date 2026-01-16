@@ -47,6 +47,7 @@ return {
           reportUnusedVariable   = "hint",
           reportUnreachable      = "information",
           reportMissingTypeStubs = "hint",
+          reportAny = "none"
         }
       },
     },

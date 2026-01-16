@@ -89,6 +89,7 @@ return {
 
     fold_virt_text_handler = _fold_virt_text_handler,
     enable_get_fold_virt_text = false,
+    override_foldtext = true,
 
     preview = {
       win_config = { border = "single", winblend = 0, winhighlight = nil, maxheight = 20 },

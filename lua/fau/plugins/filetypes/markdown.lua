@@ -61,6 +61,7 @@ return {
       },
 
       -- see below for full list of options 👇
+      footer = { enabled = true }
     },
 
     config = function(_, opts)

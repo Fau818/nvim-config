@@ -170,7 +170,9 @@ local components = {
       return { fg = ts and not vim.tbl_isempty(ts) and fvim.colors.lualine.green or fvim.colors.lualine.red }
     end,
     on_click = function(number, button, modifier)
-      vim.api.nvim_command("TSBufToggle highlight")
+      local bufnr = vim.api.nvim_get_current_buf()
+      if vim.treesitter.highlighter.active[bufnr] then pcall(vim.treesitter.stop, bufnr)
+      else pcall(vim.treesitter.start, bufnr) end
       require("lualine").refresh()
     end,
     padding = { left = 0, right = 2 },
@@ -265,7 +267,7 @@ return {
     sections = {
       lualine_a = { components.mode, components.lazy },
       lualine_b = { components.branch, components.diff },
-      lualine_c = { components.diagnostics, components.python_env },
+      lualine_c = { components.diagnostics, components.python_env, "b:obsidian_status" },
       lualine_x = { components.lsp_status, components.copilot, components.ai_agent, components.treesitter },
       lualine_y = { components.filetype, components.indent, components.encoding, components.fileformat },
       lualine_z = { components.progress, components.location, components.command },
