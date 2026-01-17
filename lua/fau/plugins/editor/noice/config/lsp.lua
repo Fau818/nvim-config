@@ -55,11 +55,10 @@ local lsp = {
     view = "hover",
     ---@type NoiceViewOptions
     opts = {
-      lang = "markdown",
       replace = true,
       render = "plain",
       format = { "{message}" },
-      win_options = { concealcursor = "n", conceallevel = 0, scrolloff = 2 },
+      win_options = { concealcursor = "n", conceallevel = 3, scrolloff = 2 },
     },
   },
 }
