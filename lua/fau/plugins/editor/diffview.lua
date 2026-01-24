@@ -4,6 +4,7 @@ return {
   ---@module "diffview"
   "sindrets/diffview.nvim",
   dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+  enabled = false,  -- Confusing plugin, so disabled.
   cmd = {
     "DiffviewOpen", "DiffviewClose",
     "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory",

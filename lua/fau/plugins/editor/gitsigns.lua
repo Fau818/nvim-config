@@ -121,7 +121,7 @@ return {
       linematch = 60,
       vertical = true,
 
-      ignore_blank_lines = true,
+      ignore_blank_lines = nil,
       ignore_whitespace = nil,
       ignore_whitespace_change = nil,
       ignore_whitespace_change_at_eol = nil,

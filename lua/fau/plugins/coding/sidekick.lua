@@ -10,7 +10,7 @@ return {
       "<C-y>", function()
         local nes = require("sidekick.nes")
         if not nes.have() then
-          vim.notify("Requesting Next Edit Suggestion...", vim.log.levels.INFO, { title = "Sidekick NES" })
+          fvim.notify("Requesting Next Edit Suggestion...", vim.log.levels.INFO, { title = "Sidekick NES" })
           nes.update()
         else nes.apply()
         end

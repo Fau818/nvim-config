@@ -2,7 +2,8 @@
 return {
   -- DESC: A snazzy jump plugin.
   ---@module "flash"
-  "folke/flash.nvim",
+  -- BUG: See https://github.com/folke/flash.nvim/pull/419
+  "Fau818/flash.nvim",
   vscode = true,
 
   keys = {

@@ -2,7 +2,7 @@ local preset = require("fau.plugins.editor.snacks.picker.sources.preset")
 
 
 ---Get conda installation path.
----@return string conda_path
+---@return string? conda_path
 local function get_conda_path()
   local conda_path_list = {
     -- Universe
@@ -23,45 +23,42 @@ local function get_conda_path()
     end
   end
 
-  vim.notify("Conda path not found.", vim.log.levels.WARN)
-  assert(false, "Conda path not found. Please install Miniconda or Anaconda.")
-  return ""
+  fvim.notify("Conda path not found.", vim.log.levels.ERROR)
+  return nil
+end
+
+
+---Build list of conda environments.
+---@return string[]
+local function build_conda_envs()
+  local conda_path = get_conda_path()
+  if not conda_path then return {} end
+
+  local conda_envs_path = conda_path .. "/envs"
+  if vim.fn.isdirectory(conda_envs_path) ~= 1 then
+    fvim.notify("Conda envs directory not found: " .. conda_envs_path, vim.log.levels.WARN)
+    return {}
+  end
+
+  local env_list = { { name = "base", path = conda_path, idx = 1 } }
+  for _, file in ipairs(vim.fn.readdir(conda_envs_path)) do
+    if file:sub(1, 1) ~= "." then  -- Ignore hidden files
+      local full_path = string.format("%s/%s", conda_envs_path, file)
+      if vim.fn.isdirectory(full_path) == 1 then
+        table.insert(env_list, { name = file, path = full_path, idx = #env_list + 1 })
+      end
+    end
+  end
+
+  return env_list
 end
 
 
 local _conda_env_list = nil
----Get list of conda environments.
+---Get list of conda environments (cached).
 ---@return snacks.picker.Item[]
 local function get_conda_envs()
-  if not _conda_env_list then
-    local conda_path = get_conda_path()
-    local conda_envs_path = conda_path .. "/envs"
-
-    if vim.fn.isdirectory(conda_envs_path) ~= 1 then
-      vim.notify("Conda envs directory not found: " .. conda_envs_path, vim.log.levels.WARN)
-      return {}
-    end
-
-    local env_list = {}
-    table.insert(env_list, { name = "base", path = conda_path, idx = 1 })
-
-    local file_list = vim.fn.readdir(conda_envs_path)
-    for _, file in ipairs(file_list) do
-      if file:sub(1,1) ~= "." then  -- Ignore hidden files
-        local full_path = string.format("%s/%s", conda_envs_path, file)
-        if vim.fn.isdirectory(full_path) == 1 then
-          table.insert(env_list, {
-            name = file,
-            path = full_path,
-            idx = #env_list + 1,
-          })
-        end
-      end
-    end
-
-    _conda_env_list = env_list
-  end
-
+  if not _conda_env_list then _conda_env_list = build_conda_envs() end
   return _conda_env_list
 end
 
@@ -69,7 +66,7 @@ end
 ---Activate conda environment.
 ---@param item snacks.picker.Item
 local function conda_avtivate(item)
-  vim.notify("Activating conda environment: " .. item.name, vim.log.levels.INFO)
+  fvim.notify("Activating conda environment: " .. item.name, vim.log.levels.INFO)
 
   vim.fn.setenv("CONDA_DEFAULT_ENV", item.name)
   vim.fn.setenv("CONDA_PREFIX",      item.path)
@@ -79,7 +76,7 @@ end
 
 
 local function conda_deactivate(item)
-  vim.notify("Deactivating conda environment.", vim.log.levels.INFO)
+  fvim.notify("Deactivating conda environment.", vim.log.levels.INFO)
 
   ---@diagnostic disable-next-line: param-type-mismatch
   vim.fn.setenv("CONDA_DEFAULT_ENV", nil)

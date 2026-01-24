@@ -336,6 +336,8 @@ return {
 
       ui = { confirm = { remove = true, trash = true, default_yes = true } },
 
+      bookmarks = { persist = true },
+
       experimental = {},
 
       log = {

@@ -10,7 +10,7 @@ return {
   cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
   keys = {
     { "<LEADER>c", "<NOP>", mode = { "n", "x" }, desc = "+ChatGPT" },
-    { "<LEADER>cC", "<CMD>ChatGPT<CR>",                     mode = { "n", "x" }, desc = "ChatGPT" },
+    { "<LEADER>cc", "<CMD>ChatGPT<CR>",                     mode = { "n", "x" }, desc = "ChatGPT" },
     { "<LEADER>ci", "<CMD>ChatGPTEditWithInstructions<CR>", mode = { "n", "x" }, desc = "ChatGPTEditWithInstructions" },
     { "<LEADER>ca", "<CMD>ChatGPTActAs<CR>",                mode = { "n", "x" }, desc = "ChatGPTActAs" },
     { "<LEADER>cr", ":ChatGPTRun ",                         mode = { "n", "x" }, desc = "ChatGPTRun" },

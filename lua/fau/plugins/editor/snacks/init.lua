@@ -73,6 +73,7 @@ return {
 
 
     -- ==================== Toggle ====================
+    -- TODO: Toggle diagnostics update in insert mode.
     Snacks.toggle.dim():map("<LEADER><LEADER>t")
     Snacks.toggle.zen():map("<LEADER><LEADER>z")
     Snacks.toggle.inlay_hints():map("<LEADER>lh")
@@ -150,7 +151,7 @@ return {
 
     { "<LEADER>fe", function()
       if vim.fn.executable("conda") == 1 then Snacks.picker("conda")
-      else vim.notify("Conda is not installed.", vim.log.levels.WARN) end
+      else fvim.notify("Conda is not installed.", vim.log.levels.WARN) end
     end, desc = "Picker: Conda Environments", ft = { "python" } },
 
     { "<LEADER>fh", function() Snacks.picker.help() end, desc = "Picker: Help Pages" },

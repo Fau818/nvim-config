@@ -52,7 +52,7 @@ end
 local function ts_install(lang, callback)
   _ensure_ts_cli(vim.schedule_wrap(function()
     require("nvim-treesitter").install(lang, { summary = true }):await(function(err)
-      if err then vim.notify(err, vim.log.levels.ERROR, { title = "nvim-treesitter" })
+      if err then fvim.notify(err, vim.log.levels.ERROR, { title = "nvim-treesitter" })
       else
         fvim.notify("Neovim needs to be restarted to load the newly installed parser.", vim.log.levels.INFO, { title = "nvim-treesitter" })
         if vim.fn.has("nvim-0.12") == 1 then

@@ -115,7 +115,7 @@ end
 ---@param mapping vim.api.keyset.get_keymap
 ---@return nil
 local function run_fallback_mapping(mapping)
-  if mapping == nil then vim.notify("Fallback mapping is nil.", vim.log.levels.ERROR); return end
+  if mapping == nil then fvim.notify("Fallback mapping is nil.", vim.log.levels.ERROR); return end
 
   -- REF: https://github.com/saghen/blink.cmp/blob/2408f14f740f89d603cad33fe8cbd92ab068cc92/lua/blink/cmp/keymap/fallback.lua#L64
   if type(mapping.callback) == "function" then
@@ -132,7 +132,7 @@ local function run_fallback_mapping(mapping)
     return rhs
   end
 
-  vim.notify("Fallback mappings has no callback or rhs.", vim.log.levels.ERROR)
+  fvim.notify("Fallback mappings has no callback or rhs.", vim.log.levels.ERROR)
   assert(false, "Fallback mappings has no callback or rhs.")
 end
 

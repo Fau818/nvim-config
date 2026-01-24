@@ -3,7 +3,7 @@ return {
   -- DESC: A nice scrollbar.
   ---@module "satellite"
   "lewis6991/satellite.nvim",
-  enabled = vim.fn.has("nvim-0.10") == 1,  -- BUG: Delay when scroll in buffer.
+  enabled = vim.fn.has("nvim-0.10") == 1,
   event = { "BufReadPre", "BufNewFile" },
   ---@type SatelliteConfig
   opts = {
@@ -27,7 +27,7 @@ return {
         min_severity = vim.diagnostic.severity.WARN,
       },
       gitsigns = {
-        enable = false,  -- BUG: It seems that prevent the buffer remove function.
+        enable = true,
         signs = { add = "│", change = "│", delete = "-" },
       },
       marks = {
