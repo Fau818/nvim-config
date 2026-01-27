@@ -15,6 +15,7 @@ M.packages = {
   html       = { "html-lsp" },
   json       = { "json-lsp" },
   jsonc      = { "json-lsp" },
+  latex      = { "texlab" },
   lua        = { "lua-language-server" },
   python     = { "basedpyright", "ruff" },
   sh         = { "bash-language-server" },

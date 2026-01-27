@@ -106,7 +106,8 @@ local function get_global_mapping_for_key(mode, key)
     if mapping_key == normalized_key then return mapping end
   end
 
-  -- vim.notify("Fallback mapping not found for key: " .. key .. " in mode: " .. mode, vim.log.levels.WARN)
+  -- TEST: On Jan 24, 2026
+  vim.notify("Fallback mapping not found for key: " .. key .. " in mode: " .. mode, vim.log.levels.WARN)
   return nil
 end
 

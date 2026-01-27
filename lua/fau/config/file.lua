@@ -40,7 +40,7 @@ return {
     "Makefile",
     "README.md", "readme.md",
     "CLAUDE.md",
-    "pyproject.toml",
+    "pyproject.toml", "uv.lock",
     ".gitignore", ".gitmodules",
   },
 

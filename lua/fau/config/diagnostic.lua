@@ -71,14 +71,14 @@ function M.setup()
       numhl = {
         [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
         [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
-        [vim.diagnostic.severity.INFO]  = "DiagnosticSignHint",
-        [vim.diagnostic.severity.HINT]  = "DiagnosticSignInfo",
+        [vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo",
+        -- [vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
       },
       linehl = {
         [vim.diagnostic.severity.ERROR] = "ErrorLine",
         [vim.diagnostic.severity.WARN]  = "WarnLine",
-        [vim.diagnostic.severity.INFO]  = "HintLine",
-        [vim.diagnostic.severity.HINT]  = "InfoLine",
+        -- [vim.diagnostic.severity.INFO]  = "InfoLine",
+        -- [vim.diagnostic.severity.HINT]  = "HintLine",
       },
     },
 
@@ -107,6 +107,8 @@ function M.setup()
       wrap = true,
     }
   })
+
+
 end
 
 

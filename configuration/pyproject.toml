@@ -148,6 +148,7 @@ preview = false
 # external = []
 ignore = [
   "E701", "E702",
+  "F403", "F405",
 ]
 
 # fixable =["ALL"]

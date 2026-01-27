@@ -45,9 +45,19 @@ return {
           reportUnusedCallResult = "none",
           reportUnusedParameter  = "hint",
           reportUnusedVariable   = "hint",
+
           reportUnreachable      = "information",
+
           reportMissingTypeStubs = "hint",
-          reportAny = "none"
+
+          reportUnannotatedClassAttribute = "hint",
+          reportMissingParameterType = "hint",
+
+          reportAny = "none",
+          reportUnknownVariableType = "none",
+          reportUnknownArgumentType = "none",
+          reportUnknownMemberType = "none",
+          reportUnknownParameterType = "none",
         }
       },
     },

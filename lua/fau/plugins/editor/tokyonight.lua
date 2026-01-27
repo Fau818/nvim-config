@@ -99,6 +99,7 @@ return {
       -- highlights["WarnLine"]  = { bg = fvim.colors.diagnostic.warn }
       -- highlights["InfoLine"]  = { bg = fvim.colors.diagnostic.info }
       -- highlights["HintLine"]  = { bg = fvim.colors.diagnostic.hint }
+      highlights["DiagnosticUnderlineHint"] = {}
 
 
       -- ==================== Plugins ====================
@@ -114,6 +115,7 @@ return {
 
       -- ---------- Copilot
       highlights["CopilotSuggestion"] = { fg = colors.comment }
+      highlights["CopilotAnnotation"] = { link = "CopilotSuggestion" }
 
       -- ---------- Lazy
       highlights["LazyReasonKeys"] = { fg = colors.magenta }

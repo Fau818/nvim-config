@@ -101,10 +101,13 @@ function M.setup_by_ft(filetype)
   local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
   if not status_ok then fvim.notify("[mason-lspconfig] is not installed!", vim.log.levels.ERROR); return end
 
-  -- Get servers for specific filetype.
+  -- Get servers for a specific filetype.
   local servers = mason_lspconfig.get_available_servers({ filetype = filetype })
-  local all_installed_servers = mason_lspconfig.get_installed_servers()
+  local extra_servers = vim.tbl_map(M.pkg_name_to_lsp_name, fvim.lsp.packages[filetype] or {})
+  extra_servers = vim.tbl_filter(function(server) return not vim.tbl_contains(servers, server) end, extra_servers)
+  servers = vim.list_extend(servers, extra_servers)
 
+  local all_installed_servers = mason_lspconfig.get_installed_servers()
   for _, server in pairs(servers) do
     if vim.tbl_contains(all_installed_servers, server) then
       fvim.lsp.setup_server(server)

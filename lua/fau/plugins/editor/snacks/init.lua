@@ -74,6 +74,8 @@ return {
 
     -- ==================== Toggle ====================
     -- TODO: Toggle diagnostics update in insert mode.
+    -- TODO: Toggle virtual text (false to disabled and with a default table value to enable).
+
     Snacks.toggle.dim():map("<LEADER><LEADER>t")
     Snacks.toggle.zen():map("<LEADER><LEADER>z")
     Snacks.toggle.inlay_hints():map("<LEADER>lh")
