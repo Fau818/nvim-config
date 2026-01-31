@@ -49,6 +49,7 @@ return {
           reportUnreachable      = "information",
 
           reportMissingTypeStubs = "hint",
+          reportMissingTypeArgument = "hint",
 
           reportUnannotatedClassAttribute = "hint",
           reportMissingParameterType = "hint",

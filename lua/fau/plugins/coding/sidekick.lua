@@ -7,6 +7,14 @@ return {
   keys = {
     -- ==================== NES ====================
     {
+      "<C-n>",
+      function()
+        require("sidekick.nes").toggle()
+        fvim.notify(("%s Next Edit Suggestion"):format(require("sidekick.nes").enabled and "Enabled" or "Disabled"), vim.log.levels.INFO, { title = "Sidekick NES" })
+      end,
+      desc = "Sidekick Next Edit Suggestion Toggle",
+    },
+    {
       "<C-y>", function()
         local nes = require("sidekick.nes")
         if not nes.have() then

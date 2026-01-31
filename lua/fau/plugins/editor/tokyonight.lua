@@ -103,9 +103,13 @@ return {
 
 
       -- ==================== Plugins ====================
+      -- Aerial
+      highlights["AerialLine"] = {}
+
       -- ---------- Blink Cmp
       highlights["BlinkCmpLabelMatch"] = { bold = true, nocombine = true }
       highlights["BlinkCmpGhostText"] = { fg = colors.comment }
+      highlights["LspKindVariable"] = { fg = fvim.colors.cobalt }
 
       -- ---------- Bufferline
       highlights["BufferLineIndicatorSelected"] = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.dark_purple, bold = true }
