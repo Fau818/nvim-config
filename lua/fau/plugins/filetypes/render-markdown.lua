@@ -9,6 +9,8 @@ return {
     { "<LEADER><LEADER>r", "<CMD>RenderMarkdown buf_toggle<CR>", desc = "Toggle Render Markdown", buffer = true, ft = "markdown" },
   },
 
+  -- TODO: Refactor
+  -- FIX: Status icons are over git signs.
   ---@type render.md.UserConfig
   opts = {
     enabled = true,
@@ -281,11 +283,11 @@ return {
     win_options = {
       conceallevel = {
         default = vim.o.conceallevel,
-        rendered = 3,
+        rendered = 2,
       },
       concealcursor = {
         default = vim.o.concealcursor,
-        rendered = "",
+        rendered = "nc",
       },
     },
 

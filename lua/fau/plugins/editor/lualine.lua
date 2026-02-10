@@ -148,7 +148,11 @@ local components = {
     ignore_lsp = { "copilot" },
     icon = "",
     symbols = { done = "", separator = ", " },
-    fmt = function(str) return str == "" and "" or string.format("[%s]", str) end,
+    fmt = function(str)
+      -- Simplify some lsp names.
+      str = str:gsub("otter%-ls%[%d+%]", " "):gsub("render%-markdown", " ")
+      return str == "" and "" or string.format("[%s]", str)
+    end,
   },
 
   copilot = { "copilot", padding = { left = 0, right = 1 } },  -- SEE: `AndreM222/copilot-lualine`.

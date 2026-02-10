@@ -19,6 +19,10 @@ return {
 
     return {
       custom_textobjects = {
+        A = ai.gen_spec.argument(),
+
+        b = false,  -- NOTE: mini.ai has alias `b` for `)` and `]` and `}`; set to false to revert to `b` for `)`.
+
         s = {
           {
             "%b''", '%b""', "%b``",

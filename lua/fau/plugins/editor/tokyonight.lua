@@ -86,6 +86,10 @@ return {
       highlights["@lsp.typemod.macro.declaration.cpp"] = { fg = colors.yellow, italic = true, bold = false }
       highlights["@lsp.type.macro.cpp"]                = { fg = colors.yellow, italic = true, bold = false }
 
+      -- ---------- HTML
+      highlights["@tag.html"] = { fg = colors.magenta, italic = true, bold = true }
+      highlights["@tag.css"] = { link = "@tag.html" }
+
       -- ---------- Gitcommit
       highlights["@keyword.gitcommit"] = { fg = colors.purple, italic = true, nocombine = true }
       highlights["@variable.parameter.gitcommit"] = { fg = colors.yellow, italic = true, bold = true, nocombine = true }

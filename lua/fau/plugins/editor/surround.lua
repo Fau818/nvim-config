@@ -12,6 +12,19 @@ return {
 
   ---@type user_options
   opts = {
+    surrounds = {
+      ["e"] = {
+        add = { "**", "**" },
+        find = "%*%*[^*]+%*%*",
+        delete = "^(%*%*)().-(%*%*)()$",
+      },
+      ["h"] = {
+        add = { "==", "==" },
+        find = "==[^=]+==",
+        delete = "^(==)().-(==)()$",
+      },
+    },
+
     keymaps = {
       insert      = false,
       insert_line = false,
@@ -31,6 +44,7 @@ return {
     },
 
     aliases = {
+      -- NOTE: `i` for input;  `t/T` for tag;  `f` for function
       ["B"] = "{",
       ["q"] = { '"', "'", "`" },
       ["s"] = { "}", "]", ")", ">", '"', "'", "`" },

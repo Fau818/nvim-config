@@ -20,7 +20,8 @@ return {
           variableTypes = true,
           callArgumentNames = true,
           callArgumentNamesMatching = false,
-          genericTypes = true,
+          functionReturnTypes = true,
+          genericTypes = false,
         },
 
         useTypingExtensions = false,
@@ -59,6 +60,8 @@ return {
           reportUnknownArgumentType = "none",
           reportUnknownMemberType = "none",
           reportUnknownParameterType = "none",
+
+          reportConstantRedefinition = "warning",
         }
       },
     },

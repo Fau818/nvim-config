@@ -116,7 +116,7 @@ return {
       indent    = {
         enable = true,
         disable = function(bufnr)
-          if vim.bo[bufnr].filetype == "python" then return true end
+          -- if vim.bo[bufnr].filetype == "python" then return true end
           return fvim.utils.is_large_file(bufnr)
         end,
       },
