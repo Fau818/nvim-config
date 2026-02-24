@@ -32,4 +32,12 @@ return {
     exclude_ft = fvim.file.excluded_filetypes,
     exclude_bt = fvim.file.excluded_buftypes,
   },
+
+  config = function(_, opts)
+    vim.api.nvim_set_hl(0, "TodoTag", { fg = fvim.colors.dark_green, bold = true, italic = true, default = true })
+    vim.api.nvim_set_hl(0, "InfoTag", { fg = fvim.colors.cyan_blue, bold = true, italic = true, default = true })
+    vim.api.nvim_set_hl(0, "FixTag",  { fg = fvim.colors.red1, bold = true, italic = true, default = true })
+
+    require("todotag").setup(opts)
+  end,
 }

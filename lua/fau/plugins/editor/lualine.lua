@@ -150,7 +150,7 @@ local components = {
     symbols = { done = "", separator = ", " },
     fmt = function(str)
       -- Simplify some lsp names.
-      str = str:gsub("otter%-ls%[%d+%]", " "):gsub("render%-markdown", " ")
+      str = str:gsub("otter%-ls%[%d+%]", " "):gsub("render%-markdown", " "):gsub("obsidian%-ls", "💎")
       return str == "" and "" or string.format("[%s]", str)
     end,
   },

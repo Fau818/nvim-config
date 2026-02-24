@@ -45,5 +45,5 @@ return {
   },
 
   -- NOTE: List of vim regex for file/directory names.
-  ignored_files = { "^\\.git$", "^\\.vscode$", "^\\.idea$", "^__pycache__$", "^\\.mypy_cache$", "^\\.DS_Store$", "^\\..*\\.iosinterface$" },
+  ignored_files = { "^\\.git$", "^\\.venv$", "^\\.vscode$", "^\\.idea$", "^__pycache__$", "^\\.mypy_cache$", "^\\.DS_Store$", "^\\..*\\.iosinterface$" },
 }

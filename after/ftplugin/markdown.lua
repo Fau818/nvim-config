@@ -21,6 +21,40 @@ end
 vim.api.nvim_win_set_hl_ns(0, ns)
 
 
+-- =============================================
+-- ========== NOTE: The content below is highly in experimental.
+-- =============================================
+
+-- TODO1: Move skip one empty line
+-- TODO2: Formatter, for lines
+
+local function is_concealed()
+  for _, cap in ipairs(vim.treesitter.get_captures_at_cursor()) do
+    if cap == "conceal" then return true end
+  end
+  return false
+end
+
+local function skip_conceal(dir)
+  local max = 50 -- 防止死循环
+  local i = 0
+  while is_concealed() and i < max do
+    vim.cmd("normal! " .. dir)
+    i = i + 1
+  end
+end
+
+vim.keymap.set("n", "l", function()
+  vim.cmd("normal! l")
+  skip_conceal("l")
+end, { buffer = false })
+
+vim.keymap.set("n", "h", function()
+  vim.cmd("normal! h")
+  skip_conceal("h")
+end, { buffer = false })
+
+
 -- ==================== Markdown Keymaps ====================
 -- NOTE: Smart `w` to skip concealed regions.
 -- local function is_in_conceal_region()

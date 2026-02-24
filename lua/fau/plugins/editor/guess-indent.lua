@@ -3,8 +3,10 @@ return {
   -- DESC: Detect file indentation automatically.
   ---@module "guess-indent"
   "nmac427/guess-indent.nvim",
-  cmd = "GuessIndent",
   event = "BufReadPre",
+
+  cmd = "GuessIndent",
+  keys = { { "<LEADER><LEADER>I", "<CMD>GuessIndent<CR>", desc = "Detect Indentation" } },
 
   ---@type GuessIndentConfig
   opts = {

@@ -43,6 +43,8 @@ return {
         sign = true,
         virtual_lines = true,
         table_border = true,
+        dash = true,
+        latex = true,
       },
     },
 
@@ -69,7 +71,7 @@ return {
     completions = {
       blink = { enabled = true },
       coq = { enabled = false },
-      lsp = { enabled = true },
+      lsp = { enabled = false },
       -- filter = {
       --   callout = function() return true end,
       --   checkbox = function() return true end,
