@@ -1,3 +1,4 @@
+-- FIX: Markdown sign icons are over git signs.
 ---@type LazySpec
 return {
   ---@module "render-markdown"
@@ -38,13 +39,14 @@ return {
       above = 0,
       below = 0,
       ignore = {
+        bullet = true,
         code_background = true,
-        indent = true,
-        sign = true,
-        virtual_lines = true,
-        table_border = true,
         dash = true,
+        indent = true,
         latex = true,
+        sign = true,
+        table_border = true,
+        virtual_lines = true,
       },
     },
 

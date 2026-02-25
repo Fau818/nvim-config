@@ -1,28 +1,42 @@
+---Generate keyword patterns for both "keyword:" and "[keyword]" forms.
+---@param keyword string
+---@param hl_group string
+---@param case_sensitive? boolean
+---@return Todotag.Config.KeywordOptions[]
+local function kw(keyword, hl_group, case_sensitive)
+  return {
+    { pattern = keyword .. ":", hl_part = keyword, hl_group = hl_group, case_sensitive = case_sensitive or false },
+    { pattern = "[" .. keyword .. "]", hl_group = hl_group, case_sensitive = case_sensitive or false },
+  }
+end
+
+
 ---@type LazySpec
 return {
   ---@module "todotag"
   "fau818/todotag.nvim",
   dependencies = "folke/todo-comments.nvim",
+  -- dir = "~/Documents/Fau/projects/todotag.nvim",  -- For development.
 
   cmd = { "TodotagStart", "TodotagStop" },
   event = { "BufReadPost", "BufNewFile" },
 
   ---@type Todotag.Config
   opts = {
-    keywords = {
-      todo = { hl_group = "TodoTag", case_sensitive = false },
+    keywords = vim.iter({
+      kw("todo",  "TodoTag"),
 
-      test = { hl_group = "InfoTag", case_sensitive = false },
-      note = { hl_group = "InfoTag", case_sensitive = false },
-      hint = { hl_group = "InfoTag", case_sensitive = false },
-      PS   = { hl_group = "InfoTag", case_sensitive = true },
+      kw("test",  "InfoTag"),
+      kw("note",  "InfoTag"),
+      kw("hint",  "InfoTag"),
+      kw("PS",    "InfoTag", true),
 
-      bug   = { hl_group = "FixTag", case_sensitive = false },
-      fix   = { hl_group = "FixTag", case_sensitive = false },
-      fixme = { hl_group = "FixTag", case_sensitive = false },
-      fixit = { hl_group = "FixTag", case_sensitive = false },
-      issue = { hl_group = "FixTag", case_sensitive = false },
-    },
+      kw("bug",   "FixTag"),
+      kw("fix",   "FixTag"),
+      kw("fixme", "FixTag"),
+      kw("fixit", "FixTag"),
+      kw("issue", "FixTag"),
+    }):flatten():totable(),
 
     only_visible = true,
 
