@@ -133,7 +133,18 @@ return {
         copilot = { name = "Copilot", module = "blink-copilot", score_offset = 9, async = true },
 
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 8 },
-        lsp = { score_offset = 8 },
+        lsp = {
+          score_offset = 8,
+          transform_items = function(_, items)
+            if vim.api.nvim_get_current_line():match("^%s*@") then
+              local Kind = require("blink.cmp.types").CompletionItemKind
+              for _, item in ipairs(items) do
+                if item.kind == Kind.Function or item.kind == Kind.Method then item.kind = Kind.Variable end
+              end
+            end
+            return items
+          end,
+        },
         env = { name = "Env", module = "blink-cmp-env", score_offset = 8, async = true },
 
         buffer = { score_offset = 3 },

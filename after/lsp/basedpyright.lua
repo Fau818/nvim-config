@@ -62,6 +62,7 @@ return {
           reportUnknownParameterType = "none",
 
           reportConstantRedefinition = "warning",
+          reportOperatorIssue = "warning",
         }
       },
     },
