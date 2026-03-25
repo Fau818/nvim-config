@@ -39,7 +39,7 @@ return {
   opts = {
     ---Whether to attach navic to language servers automatically.
     ---@type boolean
-    attach_navic = true,
+    attach_navic = false,
 
     ---Whether to create winbar updater autocmd.
     ---@type boolean
@@ -122,5 +122,23 @@ return {
     ---Icons for different context entry kinds.
     ---@type barbecue.Config.kinds
     kinds = fvim.icons.kinds,
-  }
+  },
+
+  config = function(_, opts)
+    require("barbecue").setup(opts)
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("barbecue_navic_attach", { clear = true }),
+      callback = function(args)
+        -- Ignore `markdown` filetype.
+        if vim.bo[args.buf].buftype ~= "" or vim.bo[args.buf].filetype == "markdown" then return end
+
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client or not client.server_capabilities.documentSymbolProvider then return end
+
+        require("nvim-navic").attach(client, args.buf)
+      end,
+    })
+  end,
+
 }

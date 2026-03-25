@@ -82,7 +82,9 @@ return {
       trigger = { events = { "ModeChanged i:n", "TextChanged", "User SidekickNesDone" } },
       clear = { events = { "TextChangedI", "InsertEnter" }, esc = true },
       ---@type sidekick.diff.Opts
-      diff = { inline = "words" },
+      diff = { inline = "words", show = "always" },
+      signs = true,     -- show signs for next edit suggestions
+      jumplist = true,  -- add an entry to the jumplist
     },
 
     -- Work with AI cli tools directly from within Neovim
@@ -120,7 +122,9 @@ return {
           hide_ctrl_q   = { "<c-q>", "hide", mode = "n",  desc = "hide the terminal window" },
           hide_ctrl_dot = { "<c-.>", "hide", mode = "nt", desc = "hide the terminal window" },
 
-          hide_ctrl_z   = { "<c-z>", "close", mode = "n", desc = "close the terminal window" },
+          close_ctrl_shift_q = { "<c-s-q>", "close", mode = "nt", desc = "close the terminal window" },
+
+          blur_ctrl_z   = { "<c-z>", "blur", mode = "nt", desc = "blur the terminal window" },
 
           -- hide_ctrl_z = false,
           -- Navigate windows in terminal mode. Only active when:

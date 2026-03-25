@@ -155,6 +155,7 @@ keymap("n", "P", "P`[v`]=", opts("PASTE with Auto Indent"))
 keymap("n", "<LEADER><LEADER>p", "p", opts("PASTE"))
 keymap("n", "<LEADER><LEADER>P", "P", opts("PASTE"))
 
+keymap("n", "<LEADER><D-v>", "p", opts("PASTE"))
 keymap("n", "<D-v>", "p`[v`]=", opts("PASTE with Auto Indent"))
 -- keymap("i", "<D-v>", "<C-r>+<Esc>`[v`]=`]a", opts("PASTE with Auto Indent"))
 keymap("i", "<D-v>", function()

@@ -5,6 +5,7 @@ return {
   "catgoose/nvim-colorizer.lua",
   event = { "BufReadPost", "BufNewFile" },
 
+  ---@type colorizer.Options
   opts = {
     -- NOTE: Exclusion Only makes sense if '*' is specified first!
     filetypes = { "*", "!c", "!cpp", "!lazy", "!sidekick_terminal", notify = { RGB = false } },
@@ -12,48 +13,88 @@ return {
     user_commands = true,  ---@type boolean | table Enable all or some usercommands
     lazy_load = false,  -- NOTE: If true, cmp_menu will not show colors.
 
-    user_default_options = {
-      names = false,         -- "Name" codes like Blue or red.  Added from `vim.api.nvim_get_color_map()`
-      names_opts = {         -- options for mutating/filtering names.
-        lowercase = true,    -- name:lower(), highlight `blue` and `red`
-        camelcase = true,    -- name, highlight `Blue` and `Red`
-        uppercase = false,   -- name:upper(), highlight `BLUE` and `RED`
-        strip_digits = false,  -- ignore names with digits, highlight `blue` and `red`, but not `blue3` and `red4`
+    options = {
+      parsers = {
+        css    = false,  -- preset: enables names, hex, rgb, hsl, oklch, css_var
+        css_fn = false,  -- preset: enables rgb, hsl, oklch
+
+        names = {
+          enable = false,          -- enable named colors (e.g. "Blue")
+          lowercase = true,        -- match lowercase names
+          camelcase = true,        -- match CamelCase names (e.g. "LightBlue")
+          uppercase = false,       -- match UPPERCASE names
+          strip_digits = false,    -- ignore names with trailing digits (e.g. "blue3")
+          custom = false,          -- custom name-to-hex mappings; table|function|false
+          extra_word_chars = "-",  -- extra chars treated as part of color name
+        },
+
+        hex = {
+          default = true,         -- default value for unset format keys (see above)
+          rgb = true,             -- #RGB (3-digit)
+          rgba = true,            -- #RGBA (4-digit)
+          rrggbb = true,          -- #RRGGBB (6-digit)
+          rrggbbaa = true,        -- #RRGGBBAA (8-digit)
+          hash_aarrggbb = false,  -- #AARRGGBB (QML-style, alpha first)
+          aarrggbb = true,        -- 0xAARRGGBB
+          no_hash = false,        -- hex without '#' at word boundaries
+        },
+
+        rgb   = { enable = false },  -- rgb()/rgba() functions
+        hsl   = { enable = false },  -- hsl()/hsla() functions
+        oklch = { enable = false },  -- oklch() function
+        hwb   = { enable = false },  -- hwb() function (CSS Color Level 4)
+        lab   = { enable = false },  -- lab() function (CIE Lab)
+        lch   = { enable = false },  -- lch() function (CIE LCH)
+
+        css_color = { enable = false },  -- color() function (srgb, display-p3, a98-rgb, etc.)
+        tailwind = {
+          enable = false,                   -- parse Tailwind color names
+          update_names = false,             -- feed LSP colors back into name parser (requires both enable + lsp.enable)
+          lsp = {                           -- accepts boolean, true is shortcut for { enable = true, disable_document_color = true }
+            enable = false,                 -- use Tailwind LSP documentColor
+            disable_document_color = true,  -- auto-disable vim.lsp.document_color on attach
+          },
+        },
+
+        sass = {
+          enable = false,                     -- parse Sass color variables
+          parsers = { css = true },           -- parsers for resolving variable values
+          variable_pattern = "^%$([%w_-]+)",  -- Lua pattern for variable names
+        },
+
+        xterm = { enable = true },         -- xterm 256-color codes (#xNN, \e[38;5;NNNm)
+        xcolor = { enable = false },       -- LaTeX xcolor expressions (e.g. red!30)
+        hsluv = { enable = false },        -- hsluv()/hsluvu() functions
+        css_var_rgb = { enable = false },  -- CSS vars with R,G,B (e.g. --color: 240,198,198)
+        css_var = {
+          enable = false,            -- resolve var(--name) references to their defined color
+          parsers = { css = true },  -- parsers for resolving variable values
+        },
+        custom = {},  -- list of custom parser definitions
       },
-      names_custom = false, -- Custom names to be highlighted: table|function|false
 
-      RGB      = true,  -- #RGB hex codes
-      RRGGBB   = true,  -- #RRGGBB hex codes
-      RRGGBBAA = true,  -- #RRGGBBAA hex codes
-      AARRGGBB = true,  -- 0xAARRGGBB hex codes
+      display = {
+        mode = "background",  ---@type "background"|"foreground"|"virtualtext"|"underline"
+        background = { bright_fg = "#000000", dark_fg = "#FFFFFF" },
+        virtualtext = {
+          char = "■",
+          position = "eol",  ---@type "eol"|"before"|"after"
+          hl_mode = "foreground",
+        },
 
-      rgb_fn = true,  -- CSS rgb() and rgba() functions
-      hsl_fn = true,  -- CSS hsl() and hsla() functions
-
-      css    = true,  -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-      css_fn = true,  -- Enable all CSS *functions*: rgb_fn, hsl_fn
-
-      tailwind      = true,  ---@type boolean | "normal" | "lsp" | "both"
-      tailwind_opts = { update_names = false },
-
-      sass = { enable = true, parsers = { "css" } },
-
-      xterm = false,  -- NOTE: Huge performance hit.
-
-      mode = "background",  ---@type "foreground" | "background" | "virtualtext"
-
-      virtualtext = "■",
-      virtualtext_inline = true,
-      virtualtext_mode = "foreground",  ---@type "background" | "foreground"
-
-      -- update color values even if buffer is not focused
-      -- example use: cmp_menu, cmp_docs
-      always_update = true,
+        priority = { default = 150, lsp = 200 },
+      },
 
       hooks = {
-        -- called before line parsing.  Accepts boolean or function that returns boolean
-        do_lines_parse = false,
+        should_highlight_line = false, -- function(line, bufnr, line_num) -> bool
+        should_highlight_color = false, -- function(rgb_hex, parser_name, ctx) -> bool
+        transform_color = false, -- function(rgb_hex, ctx) -> string
+        on_attach = false, -- function(bufnr, opts)
+        on_detach = false, -- function(bufnr)
       },
-    }
+
+      always_update = true,  -- For cmp menu
+      debounce_ms = fvim.settings.debounce.colorizer,
+    },
   }
 }

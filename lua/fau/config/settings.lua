@@ -12,6 +12,7 @@ return {
     diagnostics   = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
     gitsigns      = 11,  -- NOTE: Set to 11 means it will be covered by warn&error signs.
     todo_comments = 10,
+    markdown   = 9,
 
     git_blame = 100,
   },
@@ -23,6 +24,7 @@ return {
     copilot = 50,
     nes     = 1000,
 
+    colorizer = 75,
     highlight = 200,
     indentscope = 100,
 
