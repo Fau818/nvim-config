@@ -11,9 +11,9 @@ local conditions = {
 local utils = {
   env_cleanup = function(venv)
     if string.find(venv, "/") then
-      local final_venv = venv
-      for w in venv:gmatch("([^/]+)") do final_venv = w end
-      venv = final_venv
+      local project = venv:match("([^/]+)/%.venv$")
+      if project then return project end
+      for w in venv:gmatch("([^/]+)") do venv = w end
     end
     return venv
   end,

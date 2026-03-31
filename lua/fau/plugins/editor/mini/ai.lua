@@ -39,6 +39,7 @@ return {
 
         C = wrapper(ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), "v"),
 
+        -- @statement.outer
         c = wrapper(ai.gen_spec.treesitter({ a = "@call.outer", i = "@call.inner" }), "v"),
         f = wrapper(ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), "v"),
       },
