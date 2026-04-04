@@ -46,14 +46,15 @@ return {
           reportUnusedCallResult = "none",
           reportUnusedParameter  = "hint",
           reportUnusedVariable   = "hint",
+          reportUnusedImport     = "hint",
 
           reportUnreachable      = "information",
 
           reportMissingTypeStubs = "hint",
           reportMissingTypeArgument = "hint",
+          reportMissingParameterType = "hint",
 
           reportUnannotatedClassAttribute = "hint",
-          reportMissingParameterType = "hint",
 
           reportAny = "none",
           reportUnknownVariableType = "none",
@@ -63,6 +64,8 @@ return {
 
           reportConstantRedefinition = "warning",
           reportOperatorIssue = "warning",
+
+          -- reportAttributeAccessIssue = "warning",  -- If again, do it !!!
         }
       },
     },

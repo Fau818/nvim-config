@@ -76,9 +76,6 @@ keymap("n", "<LEADER><CR>", "<CR>",   opts("Edit: Normal Enter Key"))
 keymap("n", "<C-f>", "<CMD>Open %:p:h<CR>", opts("Editor: Reveal File"))
 keymap("n", "<C-b>", "<NOP>",               opts())
 
--- Get Current File Absolute Path
-keymap("n", "<LEADER><LEADER>p", "<CMD>let @+=expand('%:p')<CR>", opts("Editor: Copy Current File Absolute Path"))
-
 -- Open File Explorer
 keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Editor: Open File Explorer"))
 

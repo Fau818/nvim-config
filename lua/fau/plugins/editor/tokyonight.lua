@@ -35,6 +35,7 @@ return {
     on_colors = function(colors)
       -- colors.comment        = fvim.colors.gray
       colors.terminal.black = fvim.colors.gray
+      colors.terminal_black = fvim.colors.gray
     end,
 
     ---You can override specific highlights to use other groups or a hex color
@@ -96,6 +97,9 @@ return {
       highlights["@punctuation.delimiter.gitcommit"] = { fg = colors.cyan, nocombine = true }
       highlights["@markup.heading.gitcommit"] = { fg = colors.blue, bold = false, italic = false, nocombine = true }
       -- highlights["gitcommitSummary"] = { fg = fvim.colors.tokyonight.blue, bold = false, italic = false, nocombine = true }
+
+      -- ---------- Markdown
+      highlights["@markup.raw.markdown_inline"] = { fg = colors.blue, bg = colors.bg_highlight }
 
 
       -- ==================== Diagnostics ====================

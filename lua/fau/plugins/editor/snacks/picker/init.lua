@@ -94,6 +94,15 @@ return {
     regex    = { icon = "R", value = true },
   },
 
+  actions = {
+    grep_in_selected = function(picker)
+      local selected = picker:selected({ fallback = true })
+      local files = vim.iter(selected):map(function(item) return item.file end):totable()
+      picker:close()
+      vim.schedule(function() Snacks.picker.grep({ dirs = files }) end)
+    end,
+  },
+
   win = {
     -- input window
     input = {
@@ -130,19 +139,21 @@ return {
         ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
         ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
         ["<a-r>"] = { "toggle_regex", mode = { "i", "n" } },
-        ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
 
+        ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
+
         ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
         ["<c-b>"] = { "preview_scroll_up", mode = { "i", "n" } },
 
         ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
+        ["<c-s>"] = { "grep_in_selected", mode = { "i", "n" } },
 
         ["<c-q>"] = { "qflist", mode = { "i", "n" } },
-        -- ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
+        -- ["<c-q>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
 
-        ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
-        ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+        -- ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+        -- ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
         -- ["<c-t>"] = { "tab", mode = { "n", "i" } },
 
         ["<c-r>#"] = { "insert_alt",      mode = "i" },
@@ -210,9 +221,9 @@ return {
 
         ["<c-g>"] = "print_path",
 
-        ["<c-s>"] = "edit_split",
-        ["<c-v>"] = "edit_vsplit",
-        ["<c-t>"] = "tab",
+        -- ["<c-s>"] = "edit_split",
+        -- ["<c-v>"] = "edit_vsplit",
+        -- ["<c-t>"] = "tab",
 
         -- ["<c-w>H"] = "layout_left",
         -- ["<c-w>J"] = "layout_bottom",
