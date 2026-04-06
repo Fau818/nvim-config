@@ -33,6 +33,7 @@ return {
         find = "==[^=]+==",
         delete = "^(==)().-(==)()$",
       },
+      ["f"] = require("fau.plugins.editor.surround.surround_function").surrounds.f
     },
 
     aliases = {

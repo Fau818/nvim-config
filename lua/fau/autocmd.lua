@@ -92,6 +92,43 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
+-- ==================== Pinned Windows ====================
+-- Redirect buffer switches in non-regular windows to the alternate window.
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = "fau_vim",
+  desc = "Mark terminal windows as pinned.",
+  callback = function(ev) vim.w.pinned_buf = ev.buf end,
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = "fau_vim",
+  desc = "Pin windows for non-regular buffers.",
+  callback = function(env)
+    if vim.bo[env.buf].buftype ~= "" and vim.bo[env.buf].filetype ~= "snacks_dashboard" then
+      vim.w.pinned_buf = env.buf
+      -- NOTE: Prevent wipeable buffers from being destroyed on accidental buffer switches. (e.g. `aerial`)
+      local ft = vim.bo[env.buf].filetype
+      if ft == "aerial" then vim.bo[env.buf].bufhidden = "hide" end
+      return
+    end
+
+    local pinned_buf = vim.w.pinned_buf
+    if not pinned_buf or not vim.api.nvim_buf_is_valid(pinned_buf) then return end
+
+    local win = vim.api.nvim_get_current_win()
+    -- Find a non-pinned window to redirect to
+    local target
+    for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      if w ~= win and not vim.w[w].pinned_buf then target = w break end
+    end
+    if target then
+      vim.api.nvim_win_set_buf(win, pinned_buf)
+      vim.api.nvim_win_set_buf(target, env.buf)
+    else vim.notify("Switch buffer failed.", vim.log.levels.ERROR)
+    end
+  end,
+})
+
+
 -- =============================================
 -- ========== LSP
 -- =============================================
