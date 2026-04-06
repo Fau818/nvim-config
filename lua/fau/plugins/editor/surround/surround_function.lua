@@ -51,15 +51,15 @@ end
 ---@return string
 local function sanitize_func_name(input)
   if not input then return "" end
-  -- Take only the last line: LSP auto-import may prepend import statements.
+  -- NOTE: Take only the last line (LSP auto-import may prepend import statements).
   local last_line = input:match("[^\n]+$") or input
   local name = vim.trim(last_line)
   return (name:gsub("%(%s*%)$", ""))
 end
 
 ---Get the selection marks based on nvim-surround's current mode.
----pending_surround == true → normal mode (operator marks [ ]),
----otherwise → visual mode (visual marks < >).
+---pending_surround == true -> normal mode (operator marks [ ]),
+---otherwise -> visual mode (visual marks < >).
 ---@param bufnr integer
 ---@return integer[] mark_start {line(1-idx), col(0-idx)}
 ---@return integer[] mark_end   {line(1-idx), col(0-idx)}
@@ -74,7 +74,7 @@ end
 local function find_func_call_at_cursor()
   local selections = require("nvim-surround.utils").get_nearest_selections("f", "change")
   if not selections or not selections.left then return nil end
-  local s = selections.left.first_pos -- 1-indexed {row, col}
+  local s = selections.left.first_pos
   local e = selections.left.last_pos
   local row = s[1] - 1
   local name = vim.api.nvim_buf_get_text(0, row, s[2] - 1, e[1] - 1, e[2], {})[1]
@@ -94,16 +94,12 @@ M.surrounds = {
           return
         end
         vim.schedule(function()
-          -- Insert ")" FIRST (so start positions stay valid)
-          local end_line = mark_end[1] - 1  -- 0-indexed for nvim_buf_set_text
-          local line_text = vim.api.nvim_buf_get_lines(bufnr, end_line, end_line + 1, false)[1] or ""
-          local end_col = math.min(mark_end[2] + 1, #line_text)  -- clamp to line length
-          vim.api.nvim_buf_set_text(bufnr, end_line, end_col, end_line, end_col, { ")" })
-
-          -- Then insert "func_name(" before the selection
-          local start_line = mark_start[1] - 1
+          local row = mark_start[1] - 1  -- 0-indexed
           local start_col = mark_start[2]
-          vim.api.nvim_buf_set_text(bufnr, start_line, start_col, start_line, start_col, { func_name .. "(" })
+          local line_text = vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1] or ""
+          local end_col = math.min(mark_end[2] + 1, #line_text)
+          local selected = line_text:sub(start_col + 1, end_col)
+          vim.api.nvim_buf_set_text(bufnr, row, start_col, row, end_col, { func_name .. "(" .. selected .. ")" })
         end)
       end)
 
@@ -125,9 +121,7 @@ M.surrounds = {
             require("nvim-surround.buffer").clear_highlights()
             return
           end
-          vim.schedule(function()
-            vim.api.nvim_buf_set_text(bufnr, call.row, call.name_start, call.row, call.name_end, { func_name })
-          end)
+          vim.schedule(function() vim.api.nvim_buf_set_text(bufnr, call.row, call.name_start, call.row, call.name_end, { func_name }) end)
         end)
 
         -- Abort nvim-surround's own change; we handle it in the callback.
