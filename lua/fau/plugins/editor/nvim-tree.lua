@@ -1,3 +1,4 @@
+-- TODO: Refactor.
 ---If the file is binary, open it in system file explorer.
 ---@param mode "edit" | "preview"
 ---@return nil
@@ -255,7 +256,7 @@ return {
         exclude = false,
       },
 
-      system_open = vim.fn.has("mac") == 1 and { cmd = "open", args = { "-R" } } or nil,
+      -- system_open = vim.fn.has("mac") == 1 and { cmd = "open", args = { "-R" } } or nil,
 
       filters = {
         enable      = true,

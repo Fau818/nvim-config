@@ -15,6 +15,7 @@ return {
     -- BUG: See https://github.com/folke/flash.nvim/pull/419
     { "r", mode = "o", function() require("flash").remote() end, desc = "Flash: Remote" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Flash: Treesitter Search" },
+    -- NOTE: Neovim 0.12 supports `in` and `an` in operator-pending and visual mode to do the incremental selection with treesitter.
     { "<C-=>", mode = { "n", "x", "o" }, function() require("flash").treesitter({ actions = { ["<C-=>"] = "next", ["<C-->"] = "prev" } }) end, desc = "Treesitter incremental selection" },
   },
 
