@@ -43,10 +43,7 @@ return {
 
       max_concurrent_installers = 4,
 
-      registries = {
-        "github:mason-org/mason-registry",
-        "lua:fau.plugins.lsp.mason.custom_source",
-      },
+      registries = { "github:mason-org/mason-registry" },
 
       providers = nil,  -- Use default.
       github = nil,  -- Use default.
