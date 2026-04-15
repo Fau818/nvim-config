@@ -62,6 +62,7 @@ return {
     disable = {
       filetypes = fvim.file.excluded_filetypes,
       cond = nil,  -- Use default.
+      lsp = nil,  -- Use default.
     },
   },
 

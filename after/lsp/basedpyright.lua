@@ -31,7 +31,7 @@ return {
         -- configFilePath = nil,  -- Use default.
 
         -- ==================== pyproject.toml ====================
-        exclude = { "**/.git", "**/.idea", "**/.vscode", "**/.cache", "**/.venv", "**/__pycache__", "**/.mypy_cache", "**/node_modules" },
+        exclude = { "**/node_modules", "**/__pycache__", "**/.*" },
         -- extraPaths = nil,  -- Use default.
         -- stubPath = nil,  -- Use default.
         -- typeshedPaths = nil,  -- Use default.
