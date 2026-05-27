@@ -130,7 +130,7 @@ return {
         path = { score_offset = 12 },
         snippets = { score_offset = 10 },
 
-        copilot = { name = "Copilot", module = "blink-copilot", score_offset = 9, async = true },
+        -- copilot = { name = "Copilot", module = "blink-copilot", score_offset = 9, async = true },
 
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 8 },
         lsp = {

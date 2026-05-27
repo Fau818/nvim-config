@@ -13,8 +13,14 @@ vim.g.maplocalleader = " "
 local function close_editor()
   local tabs_count = #vim.api.nvim_list_tabpages()
 
-  -- `xall` doesn't work well when use toggle terminal
-  if tabs_count == 1 then vim.cmd("wall|qall")
+  if tabs_count == 1 then
+    -- Close the non-regular buffers
+    for _, b in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.bo[b].buftype ~= "" and not vim.bo[b].modifiable then
+        vim.api.nvim_buf_delete(b, { force = true })
+      end
+    end
+    vim.cmd("xall!")
   else vim.cmd("tabclose")
   end
 end

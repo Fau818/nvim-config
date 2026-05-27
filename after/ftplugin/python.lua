@@ -8,5 +8,5 @@ vim.bo.tabstop     = 2
 vim.bo.softtabstop = -1
 vim.bo.shiftwidth  = 0
 
--- LSP setup
--- if not vim.lsp.is_enabled("fylance") and vim.fn.executable("fylance") == 1 then fvim.lsp.setup_server("fylance") end
+-- TEST: Prevent autoindent.
+vim.schedule(function() vim.opt_local.indentkeys:remove({ "o", "O" }) end)

@@ -1,10 +1,9 @@
 ---@type LazySpec
 return {
   ---@module "neodim"
-  "zbirenbaum/neodim",
-  -- "ALVAROPING1/neodim",
-  -- branch = "fix-nvim-0.11",
-  enabled = false,
+  -- "zbirenbaum/neodim",
+  "ALVAROPING1/neodim",
+  branch = "fix-nvim-0.11",
 
   event = "LspAttach",
 
