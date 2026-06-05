@@ -36,35 +36,35 @@ return {
     },
 
     -- ==================== CLI ====================
-    {
-      "<c-.>",
-      function() require("sidekick.cli").focus() end,
-      mode = { "n", "t", "i", "x" },
-      desc = "Sidekick Toggle",
-    },
-    {
-      "<leader>ct",
-      function() require("sidekick.cli").send({ msg = "{this}" }) end,
-      mode = { "x", "n" },
-      desc = "Send This",
-    },
-    {
-      "<leader>cf",
-      function() require("sidekick.cli").send({ msg = "{file}" }) end,
-      desc = "Send File",
-    },
-    {
-      "<leader>cs",
-      function() require("sidekick.cli").send({ msg = "{selection}" }) end,
-      mode = { "x" },
-      desc = "Send Visual Selection",
-    },
-    {
-      "<leader>cp",
-      function() require("sidekick.cli").prompt() end,
-      mode = { "n", "x" },
-      desc = "Sidekick Select Prompt",
-    },
+    -- {
+    --   "<c-.>",
+    --   function() require("sidekick.cli").focus() end,
+    --   mode = { "n", "t", "i", "x" },
+    --   desc = "Sidekick Toggle",
+    -- },
+    -- {
+    --   "<leader>ct",
+    --   function() require("sidekick.cli").send({ msg = "{this}" }) end,
+    --   mode = { "x", "n" },
+    --   desc = "Send This",
+    -- },
+    -- {
+    --   "<leader>cf",
+    --   function() require("sidekick.cli").send({ msg = "{file}" }) end,
+    --   desc = "Send File",
+    -- },
+    -- {
+    --   "<leader>cs",
+    --   function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+    --   mode = { "x" },
+    --   desc = "Send Visual Selection",
+    -- },
+    -- {
+    --   "<leader>cp",
+    --   function() require("sidekick.cli").prompt() end,
+    --   mode = { "n", "x" },
+    --   desc = "Sidekick Select Prompt",
+    -- },
   },
 
   ---@type sidekick.Config
