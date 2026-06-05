@@ -6,8 +6,8 @@ return {
 
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle", "CsvViewInfo" },
     keys = {
-      { "<C-r>",      "<Cmd>CsvViewToggle<Cr>", desc = "Toggle CSV View", ft = "csv" },
-      { "<Leader>rf", "<Cmd>CsvViewInfo<Cr>",   desc = "Toggle CSV View", ft = "csv" },
+      { "<C-r>",      "<CMD>CsvViewToggle<CR>", desc = "Toggle CSV View", ft = "csv" },
+      { "<Leader>rf", "<CMD>CsvViewInfo<CR>",   desc = "Toggle CSV View", ft = "csv" },
     },
 
     init = function()

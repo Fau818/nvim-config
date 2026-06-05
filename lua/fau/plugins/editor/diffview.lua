@@ -159,7 +159,7 @@ return {
           { "n", "<down>",        actions.next_entry,          { desc = "Bring the cursor to the next file entry" } },
           { "n", "<up>",          actions.prev_entry,          { desc = "Bring the cursor to the previous file entry." } },
 
-          { "n", "<cr>",          actions.select_entry,        { desc = "Open the diff for the selected entry." } },
+          { "n", "<CR>",          actions.select_entry,        { desc = "Open the diff for the selected entry." } },
           { "n", "o",             actions.select_entry,        { desc = "Open the diff for the selected entry." } },
           { "n", "<2-LeftMouse>", actions.select_entry,        { desc = "Open the diff for the selected entry." } },
 
@@ -214,7 +214,7 @@ return {
           { "n", "<tab>",         actions.select_next_entry,          { desc = "Open the diff for the next file" } },
           { "n", "<s-tab>",       actions.select_prev_entry,          { desc = "Open the diff for the previous file" } },
 
-          { "n", "<cr>",          actions.select_entry,               { desc = "Open the diff for the selected entry." } },
+          { "n", "<CR>",          actions.select_entry,               { desc = "Open the diff for the selected entry." } },
           { "n", "o",             actions.select_entry,               { desc = "Open the diff for the selected entry." } },
           { "n", "<2-LeftMouse>", actions.select_entry,               { desc = "Open the diff for the selected entry." } },
 

@@ -17,7 +17,7 @@ return {
       TODO = { icon = fvim.icons.todo.TODO, color = fvim.colors.dark_green, alt = { "TASK", "QUES", "QUESTION" } },
 
       FIX  = { icon = fvim.icons.todo.BUG,  color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-      HACK = { icon = fvim.icons.todo.HACK, color = "warn",  alt = { "PATCH", "TRICK" } },
+      HACK = { icon = fvim.icons.todo.HACK, color = "warn",  alt = { "PATCH", "TRICK", "WORKAROUND" } },
       WARN = { icon = fvim.icons.todo.WARN, color = "warn",  alt = { "WARNING" } },
       IMPO = { icon = fvim.icons.todo.IMPORTANT, color = fvim.colors.lualine.red, alt = { "IMPORTANT" } },
 
