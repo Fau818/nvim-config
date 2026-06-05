@@ -3,16 +3,9 @@ local M = {}
 -- =============================================
 -- ========== Feedkeys
 -- =============================================
----Simulate pressing `keys` in `mode` mode.
----@param mode string
+---Simulate pressing `keys` in noremap mode.
 ---@param keys string
-function M.feedkeys(mode, keys)
-  vim.api.nvim_feedkeys(
-    vim.api.nvim_replace_termcodes(keys, true, true, true),
-    mode,
-    false
-  )
-end
+function M.feedkeys(keys) vim.api.nvim_feedkeys(vim.keycode(keys), "n", false) end
 
 
 -- =============================================
@@ -116,58 +109,35 @@ end
 -- =============================================
 -- ========== Fallback Mapping
 -- =============================================
----Get the global mapping for the specified key in the specified mode.
----@param mode string
----@param key string
----@return vim.api.keyset.get_keymap|nil mapping
-local function get_global_mapping_for_key(mode, key)
-  -- REF: https://github.com/saghen/blink.cmp/blob/2408f14f740f89d603cad33fe8cbd92ab068cc92/lua/blink/cmp/keymap/fallback.lua#L15
-  local normalized_key = vim.api.nvim_replace_termcodes(key, true, true, true)
-  local mappings = vim.api.nvim_get_keymap(mode)
-  for _, mapping in ipairs(mappings) do
-    local mapping_key = vim.api.nvim_replace_termcodes(mapping.lhs, true, true, true)
-    if mapping_key == normalized_key then return mapping end
-  end
-
-  -- TEST: On Jan 24, 2026
-  vim.notify("Fallback mapping not found for key: " .. key .. " in mode: " .. mode, vim.log.levels.WARN)
-  return nil
-end
-
-
----Execute the fallback mapping.
----@param mapping vim.api.keyset.get_keymap
----@return nil
-local function run_fallback_mapping(mapping)
-  if mapping == nil then fvim.notify("Fallback mapping is nil.", vim.log.levels.ERROR); return end
-
-  -- REF: https://github.com/saghen/blink.cmp/blob/2408f14f740f89d603cad33fe8cbd92ab068cc92/lua/blink/cmp/keymap/fallback.lua#L64
-  if type(mapping.callback) == "function" then
-    if mapping.expr ~= 1 then vim.schedule(mapping.callback) return end
-
-    local expr = mapping.callback()
-    if type(expr) == "string" and mapping.expr == 1 then
-      expr = vim.api.nvim_replace_termcodes(expr, true, true, true)
-    end
-    return expr
-  elseif mapping.rhs then
-    local rhs = vim.api.nvim_replace_termcodes(mapping.rhs, true, true, true)
-    if mapping.expr == 1 then rhs = vim.api.nvim_eval(rhs) end
-    return rhs
-  end
-
-  fvim.notify("Fallback mappings has no callback or rhs.", vim.log.levels.ERROR)
-  assert(false, "Fallback mappings has no callback or rhs.")
-end
-
-
----Create a fallback warp function for the specified key in the specified mode.
+---Capture the current mapping for `mode`+`key` and return a closure that invokes it.
+---If no mapping exists, the closure feeds the original key with the no-remap flag, falling through to vim's built-in behavior.
 ---@param mode string
 ---@param key string
 ---@return fun()
-function M.fallback_warp(mode, key)
-  local mapping = get_global_mapping_for_key(mode, key)
-  return function() if mapping then return run_fallback_mapping(mapping) end end
+function M.keymap_fallback_wrapper(mode, key)
+  local mapping = vim.fn.maparg(key, mode, false, true)
+
+  return function()
+    -- CASE1: No prior mapping → feed original key with no-remap, fall through to vim's built-in.
+    if vim.tbl_isempty(mapping) then M.feedkeys(key); return end
+
+    local is_expr = mapping.expr == 1
+
+    -- CASE2: Non-expr callback → call it
+    if mapping.callback and not is_expr then vim.schedule(mapping.callback); return end
+
+    -- CASE3: Resolve to a key string -> then feed it.
+    --   expr callback -> call it (returns the string)
+    --   expr rhs      -> eval the expression
+    --   plain rhs     -> use as-is
+    local key
+    if mapping.callback then key = mapping.callback()
+    elseif is_expr then key = vim.api.nvim_eval(mapping.rhs)
+    else key = mapping.rhs
+    end
+
+    if type(key) == "string" then M.feedkeys(key) end
+  end
 end
 
 

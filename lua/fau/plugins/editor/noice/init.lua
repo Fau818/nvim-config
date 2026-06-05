@@ -9,15 +9,15 @@ return {
 
   init = function()
     -- ==================== Smart Scroll ====================
-    local fallback_cf = fvim.utils.fallback_warp("n", "<C-f>")
-    local fallback_cb = fvim.utils.fallback_warp("n", "<C-b>")
+    local fallback_cf = fvim.utils.keymap_fallback_wrapper("n", "<C-f>")
+    local fallback_cb = fvim.utils.keymap_fallback_wrapper("n", "<C-b>")
 
     vim.keymap.set("n", "<C-f>", function()
-      if not require("noice.lsp").scroll(2) then return fallback_cf() end
+      if not require("noice.lsp").scroll(2) then fallback_cf() end
     end, { desc = "Editor: Scroll Down or Reveal File" })
 
     vim.keymap.set("n", "<C-b>", function()
-      if not require("noice.lsp").scroll(-2) then return fallback_cb() end
+      if not require("noice.lsp").scroll(-2) then fallback_cb() end
     end, { desc = "Editor: Scroll Up" })
   end,
 

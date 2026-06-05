@@ -117,8 +117,8 @@ keymap({ "n", "i" }, "<C-p>", function() vscode.call("editor.action.triggerParam
 
 keymap("n", "<LEADER>lf", function() vscode.call("editor.action.formatDocument") end, opts("VSCode LSP: Format Code"))
 keymap("n", "<LEADER>lF", function() vscode.call("editor.action.formatDocument") end, opts("VSCode LSP: Format Code (Force)"))
-keymap("x", "<LEADER>lf", function() vscode.call("editor.action.formatSelection"); fvim.utils.feedkeys("n", "<ESC>") end, opts("VSCode LSP: Format Code"))
-keymap("x", "<LEADER>lF", function() vscode.call("editor.action.formatSelection"); fvim.utils.feedkeys("n", "<ESC>") end, opts("VSCode LSP: Format Code (Force)"))
+keymap("x", "<LEADER>lf", function() vscode.call("editor.action.formatSelection"); fvim.utils.feedkeys("<ESC>") end, opts("VSCode LSP: Format Code"))
+keymap("x", "<LEADER>lF", function() vscode.call("editor.action.formatSelection"); fvim.utils.feedkeys("<ESC>") end, opts("VSCode LSP: Format Code (Force)"))
 
 keymap("n", "<LEADER>lh", function() vim.notify("Please Toggle Inlay Hints in Settings Manually.") end, opts("LSP: Toggle Inlay Hint"))
 
