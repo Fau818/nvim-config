@@ -5,8 +5,9 @@ return {
   version = "1.*",
   -- build = "cargo build --release",
   dependencies = {
-    ---@module "nvim-autopairs"
-    "windwp/nvim-autopairs" ,
+    ---@module "mini.pairs"
+    "nvim-mini/mini.pairs",
+
     ---@module "nvim-ts-autotag"
     "windwp/nvim-ts-autotag",
 
