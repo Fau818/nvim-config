@@ -90,7 +90,7 @@ keymap({ "n", "t" }, "<C-RIGHT>", function() vscode.call("workbench.action.incre
 keymap({ "n", "t" }, "<C-DOWN>",  function() vscode.call("workbench.action.decreaseViewHeight") end, opts("VSCode Window: Decrease Height"))
 keymap({ "n", "t" }, "<C-UP>",    function() vscode.call("workbench.action.increaseViewHeight") end, opts("VSCode Window: Increase Height"))
 
-keymap("n", "<C-v>", function() vscode.call("workbench.action.splitEditorRight") end, opts("VSCode Window: Split Right"))
+keymap("n", "<C-w>v", function() vscode.call("workbench.action.splitEditorRight") end, opts("VSCode Window: Split Right"))
 
 
 -- ==================== Diagnostics and LSP ====================

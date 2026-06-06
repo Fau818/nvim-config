@@ -46,8 +46,8 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "<C-f>",         api.node.run.system,                  opts("Open: Reveal in System"))
 
   vim.keymap.set("n", "<C-t>",         api.node.open.tab,              opts("Open: Open in Tab"))
-  vim.keymap.set("n", "<C-v>",         api.node.open.vertical,         opts("Open: Vertical Split"))
-  vim.keymap.set("n", "<C-x>",         api.node.open.horizontal,       opts("Open: Horizontal Split"))
+  vim.keymap.set("n", "<C-w>v",         api.node.open.vertical,         opts("Open: Vertical Split"))
+  vim.keymap.set("n", "<C-w>x",         api.node.open.horizontal,       opts("Open: Horizontal Split"))
 
   -- ==================== Change Work Directory ====================
   vim.keymap.set("n", "<C-]>",          api.tree.change_root_to_node, opts("CD: Change Root"))

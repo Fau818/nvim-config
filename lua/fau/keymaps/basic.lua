@@ -230,8 +230,8 @@ keymap({ "n", "t" }, "<C-DOWN>",  "<CMD>resize -1<CR>",          opts("Window: D
 keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts("Window: Increase Height"))
 
 -- Split Window
-keymap("n", "<C-v>", "<CMD>vsplit<CR>", opts("Editor: Vertical Split"))
--- keymap("n", "<C-x>", "<CMD>split<CR>",  opts)
+keymap("n", "<C-w>v", "<CMD>vsplit<CR>", opts("Editor: Vertical Split"))
+keymap("n", "<C-w>x", "<CMD>split<CR>",  opts("Editor: Horizontal Split"))
 
 
 

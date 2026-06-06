@@ -151,9 +151,10 @@ return {
 
         ["<c-q>"] = { "qflist", mode = { "i", "n" } },
         -- ["<c-q>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
+        -- ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
 
-        -- ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
-        -- ["<c-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+        -- ["<c-w>x"] = { "edit_split", mode = { "i", "n" } },
+        -- ["<c-w>v"] = { "edit_vsplit", mode = { "i", "n" } },
         -- ["<c-t>"] = { "tab", mode = { "n", "i" } },
 
         ["<c-r>#"] = { "insert_alt",      mode = "i" },
@@ -218,11 +219,13 @@ return {
         ["<c-k>"] = "list_up",
 
         ["<c-q>"] = "qflist",
+        -- ["<c-q>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
+        -- ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
 
         ["<c-g>"] = "print_path",
 
-        -- ["<c-s>"] = "edit_split",
-        -- ["<c-v>"] = "edit_vsplit",
+        -- ["<c-w>x"] = "edit_split",
+        -- ["<c-w>v"] = "edit_vsplit",
         -- ["<c-t>"] = "tab",
 
         -- ["<c-w>H"] = "layout_left",

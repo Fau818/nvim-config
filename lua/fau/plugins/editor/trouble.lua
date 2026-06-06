@@ -10,7 +10,10 @@ return {
       return vim.tbl_deep_extend("force", opts or {}, {
         picker = {
           actions = require("trouble.sources.snacks").actions,
-          win = { input = { keys = { ["<c-q>"] = { "trouble_open", mode = { "n", "i" } } } } },
+          win = {
+            input = { keys = { ["<c-q>"] = { "trouble_open", mode = { "n", "i" } }, ["<c-t>"] = { "trouble_open", mode = { "n", "i" } } } },
+            list = { keys = { ["<c-q>"] = { "trouble_open", mode = { "n", "i" } }, ["<c-t>"] = { "trouble_open", mode = { "n", "i" } } } },
+          },
         },
       })
     end,
@@ -82,8 +85,8 @@ return {
       ["<CR>"]  = "jump_close",
       ["<2-leftmouse>"] = "jump",
 
-      ["<C-s>"] = "jump_split",
-      ["<C-v>"] = "jump_vsplit",
+      ["<C-w>x"] = "jump_split",
+      ["<C-w>v"] = "jump_vsplit",
 
       j = "next",
       k = "prev",

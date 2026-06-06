@@ -75,8 +75,8 @@ return {
       ["<CR>"]          = "actions.jump",
       ["<2-LeftMouse>"] = "actions.jump",
 
-      ["<C-v>"] = "actions.jump_vsplit",
-      ["<C-s>"] = "actions.jump_split",
+      ["<C-w>v"] = "actions.jump_vsplit",
+      ["<C-w>x"] = "actions.jump_split",
 
       ["<TAB>"]  = "actions.scroll",
       ["<Down>"] = "actions.down_and_scroll",
@@ -344,8 +344,8 @@ return {
         ["h"] = "actions.left",
         ["l"] = "actions.right",
 
-        ["<C-v>"] = "actions.jump_vsplit",
-        ["<C-s>"] = "actions.jump_split",
+        ["<C-w>v"] = "actions.jump_vsplit",
+        ["<C-w>x"] = "actions.jump_split",
 
         ["q"]     = "actions.close",
         ["<ESC>"] = "actions.close",
