@@ -102,8 +102,8 @@ function M.setup()
     },
 
     jump = {
+      on_jump = nil,  -- Use default.
       severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.WARN },
-      float = false,
       wrap = true,
     }
   })

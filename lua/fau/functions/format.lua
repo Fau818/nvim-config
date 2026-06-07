@@ -50,7 +50,7 @@ function M.smart_format()
 
   -- By lsp capability
   local clients = vim.lsp.get_clients({ bufnr = 0 })
-  clients = vim.tbl_filter(function(client) return client.supports_method("textDocument/formatting") end, clients)
+  clients = vim.tbl_filter(function(client) return client:supports_method("textDocument/formatting") end, clients)
   if #clients == 0 then return M.auto_indent()
   else return vim.lsp.buf.format()
   end
