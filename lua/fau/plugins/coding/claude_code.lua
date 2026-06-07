@@ -13,7 +13,7 @@ return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim", "folke/sidekick.nvim", },
   enabled = vim.fn.executable("claude") == 1,
-  lazy = false,
+  event = "VeryLazy",
 
   keys = {
     { "<C-.>", "<CMD>ClaudeCode<CR>", desc = "Claude Code: Toggle", mode = { "n", "x" } },
