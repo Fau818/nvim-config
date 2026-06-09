@@ -59,6 +59,8 @@ return {
 
     -- on_create = fun(t: Terminal), -- function to run when the terminal is first created
     -- on_open   = fun(t: Terminal), -- function to run when the terminal opens
+    ---@param t Terminal
+    on_open = function(t) fvim.utils.backdrop(t.window) end
     -- on_close  = fun(t: Terminal), -- function to run when the terminal closes
     -- on_stdout = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stdout
     -- on_stderr = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stderr

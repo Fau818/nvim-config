@@ -45,23 +45,11 @@ return {
     vim.opt.fillchars:append([[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]])
 
 
-    -- ==================== Keymaps ====================
-    local function peek_fold()
-      local winid = require("ufo").peekFoldedLinesUnderCursor()
-      if not winid then vim.lsp.buf.hover() end
-    end
-
-    vim.keymap.set("n", "<C-d>", peek_fold, { desc = "ufo: Peek Fold" })
-    vim.keymap.set("n", "zr", function() require("ufo").openFoldsExceptKinds() end, { desc = "ufo: Open Fold" })
-    vim.keymap.set("n", "zm", function() require("ufo").closeFoldsWith()       end, { desc = "ufo: Close Fold" })
-    vim.keymap.set("n", "zR", function() require("ufo").openAllFolds()         end, { desc = "ufo: Open Fold (All)" })
-    vim.keymap.set("n", "zM", function() require("ufo").closeAllFolds()        end, { desc = "ufo: Close Fold (All)" })
-
-
     -- ==================== View Keeper ====================
-    vim.api.nvim_create_augroup("remember_folds", { clear = true })
+    local group_name = "remember_folds"
+    vim.api.nvim_create_augroup(group_name, { clear = true })
     vim.api.nvim_create_autocmd("BufWinLeave", {
-      group = "remember_folds",
+      group = group_name,
       callback = function(event)
         local buftype = vim.bo[event.buf].buftype
         local filetype = vim.bo[event.buf].filetype
@@ -71,7 +59,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd("BufWinEnter", {
-      group = "remember_folds",
+      group = group_name,
       callback = function(event)
         if vim.fn.empty(vim.fn.expand("%:p")) == 0 then pcall(vim.cmd.loadview) end
       end,
@@ -103,5 +91,24 @@ return {
         trace   = "<CR>"
       }
     }
-  }
+  },
+
+  config = function(_, opts)
+    local ufo = require("ufo")
+    ufo.setup(opts)
+
+    -- ==================== Keymaps ====================
+    local function peek_fold()
+      local winid = ufo.peekFoldedLinesUnderCursor()
+      if not winid then return vim.lsp.buf.hover() end
+      fvim.utils.backdrop(winid, { blend = 75 })
+    end
+    vim.keymap.set("n", "<C-d>", peek_fold, { desc = "ufo: Peek Fold" })
+
+    vim.keymap.set("n", "zr", function() ufo.openFoldsExceptKinds() end, { desc = "ufo: Open Fold" })
+    vim.keymap.set("n", "zm", function() ufo.closeFoldsWith()       end, { desc = "ufo: Close Fold" })
+    vim.keymap.set("n", "zR", function() ufo.openAllFolds()         end, { desc = "ufo: Open Fold (All)" })
+    vim.keymap.set("n", "zM", function() ufo.closeAllFolds()        end, { desc = "ufo: Close Fold (All)" })
+  end,
+
 }

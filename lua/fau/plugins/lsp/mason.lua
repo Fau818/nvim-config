@@ -53,7 +53,7 @@ return {
         check_outdated_packages_on_open = true,
 
         border = "double",
-        backdrop = 100,
+        backdrop = 60,
         width  = 0.9,
         height = 0.85,
 

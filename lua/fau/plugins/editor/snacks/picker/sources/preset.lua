@@ -18,53 +18,31 @@ M.classic_normal = { layout = { preset = M.default_layout }, on_show = M.normal_
 
 ---@type snacks.picker.Action.fn
 function M.open_float(picker, item, action)
-  local prev_buf = picker.preview.win.buf
-  if not prev_buf then fvim.notify("No preview buffer", vim.log.levels.ERROR) return end
+  if not item then vim.notify("No item selected", vim.log.levels.ERROR) return end
 
-  local new_buf = vim.api.nvim_create_buf(false, true)
-  ---@diagnostic disable-next-line: param-type-mismatch
-  local lines = vim.api.nvim_buf_get_lines(prev_buf, 0, -1, false)
-  -- Add padding to each line.
-  -- lines = vim.tbl_map(function(x) return string.format(" %s ", x) end, lines)
-  -- Copy lines to new buffer.
-  vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, lines)
-
-  -- Get text size.
+  local content = item.item.msg or "No content to display"
+  local lines = vim.split(content, "\n")
+  local text_width = math.max(1, unpack(vim.tbl_map(vim.fn.strdisplaywidth, lines))) + 2
   local text_height = #lines
-  local text_width = math.max(unpack(vim.tbl_map(function(x) return #x end, lines)))
-
-  -- Get UI size.
-  local ui = vim.api.nvim_list_uis()[1]
-  local win_height = math.ceil(math.min(text_height, ui.height*0.75))
-  local win_width  = math.ceil(math.min(text_width, ui.width*0.8))
 
   local win = Snacks.win({
-    show = false,
+    text = content,
     fixbuf = true,
     minimal = true,
     border = "rounded",
 
     relative = "editor",
     position = "float",
-    width = win_width + 2,
-    height = win_height,
+    width  = function(self) return math.ceil(math.min(text_width, vim.o.columns * 0.8)) end,
+    height = function(self) return math.ceil(math.min(text_height, vim.o.lines * 0.75)) end,
+    resize = true,
 
-    buf = new_buf,
-
-    bo = { modifiable = false, filetype = picker.preview.item.preview.ft },
-    wo = { conceallevel = 3, concealcursor = "nvic", spell = false, statuscolumn = " " },
+    bo = { modifiable = false, filetype = item.item.ft or "markdown" },
+    wo = { conceallevel = 3, concealcursor = "nvic", spell = false, statuscolumn = " " },  -- NOTE: `statuscolumn = " "` is for padding left.
 
     title = " Notification ",
-    title_pos = "center",
-
-    keys = { q = "close" },
-    footer_pos = "center",
     footer_keys = true,
   })
-
-  -- win:add_padding()
-  -- require("snacks.picker.util.markdown").render(new_buf)
-  win:show()
 
   picker:close()
 end

@@ -1,4 +1,6 @@
 return {
+  bg          = "#151518",
+
   wathet      = "#87CEEB",
   blue        = "#00A9EF",
   light_blue  = "#65BCFF",

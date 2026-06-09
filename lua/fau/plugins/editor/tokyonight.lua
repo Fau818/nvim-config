@@ -9,7 +9,7 @@ return {
   opts = {
     style           = "moon",  ---@type "moon" | "storm" | "night"
     light_style     = "day",
-    transparent     = true,
+    transparent     = false,
     terminal_colors = true,
 
     styles = {
@@ -36,6 +36,9 @@ return {
       -- colors.comment        = fvim.colors.gray
       colors.terminal.black = fvim.colors.gray
       colors.terminal_black = fvim.colors.gray
+
+      colors.bg      = fvim.colors.bg
+      colors.bg_dark = fvim.colors.bg
     end,
 
     ---You can override specific highlights to use other groups or a hex color

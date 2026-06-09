@@ -31,6 +31,8 @@ return {
   help = {},
 
   minimal = { wo = { foldenable = false } },
-  float = {},
+
+  float = { backdrop = { bg = "#151518", transparent = true, blend = 60 } },
+
   split = {},
 }

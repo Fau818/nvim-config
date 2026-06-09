@@ -141,4 +141,49 @@ function M.keymap_fallback_wrapper(mode, key)
 end
 
 
+-- =============================================
+-- ========== Backdrop
+-- =============================================
+---Creates a semi-transparent backdrop window behind the specified parent window.
+---@param parent integer A valid window ID to anchor the backdrop to.
+---@param opts? table Options for the backdrop. Supported keys: `blend` (number, default 60) and `bg` (string, default `fvim.colors.bg`).
+function M.backdrop(parent, opts)
+  local DEFAULT_OPTS = { blend = 60, bg = fvim.colors.bg }
+  local BACKDROP_NAME = "FauBackdrop"
+  local DEFAULT_INDEX = 50
+
+  opts = vim.tbl_deep_extend("force", DEFAULT_OPTS, opts or {})
+
+  if not vim.o.termguicolors or opts.blend >= 100 then return end
+  if not vim.api.nvim_win_is_valid(parent) then return end
+
+  vim.api.nvim_set_hl(0, BACKDROP_NAME, { bg = opts.bg })
+
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.bo[buf].buftype = "nofile"
+
+  local win = vim.api.nvim_open_win(buf, false, {
+    relative = "editor", row = 0, col = 0,
+    width = vim.o.columns, height = vim.o.lines,
+    focusable = false,
+    style = "minimal",
+    zindex = (vim.api.nvim_win_get_config(parent).zindex or DEFAULT_INDEX) - 1,
+  })
+
+  vim.wo[win].winhighlight = "Normal:FauBackdrop"
+  vim.wo[win].winblend = opts.blend
+
+  local function close()
+    pcall(vim.api.nvim_win_close, win, true)
+    pcall(vim.api.nvim_buf_delete, buf, true)
+  end
+
+  vim.api.nvim_create_autocmd("WinClosed", {
+    pattern = tostring(parent),
+    once = true,
+    callback = close,
+  })
+end
+
+
 return M

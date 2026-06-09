@@ -85,9 +85,7 @@ return {
 
       menu = {
         auto_show = true,
-        -- BUG: If set `auto_show_delay_ms`, Neovim may crash when typing. !!!
-        -- NOTE: Currently, the delay depends on `sources.providers` without `async=true`; mostly depends on `lsp` source.
-        -- auto_show_delay_ms = 250,
+        auto_show_delay_ms = 0,
         border = "rounded",
         draw = {
           padding = { 1, 1 },
@@ -109,7 +107,7 @@ return {
 
     signature = { enabled = true, window = { border = "single" } },
     -- TODO: Configure it.
-    snippet = nil,  -- Use default.
+    -- snippets = { preset = "mini_snippets" },
 
     appearance = { kind_icons = fvim.icons.kinds },
     fuzzy = nil,  -- Use default.

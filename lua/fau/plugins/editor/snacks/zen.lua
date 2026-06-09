@@ -32,9 +32,6 @@ return {
     toggles = {},
     center = false,
     show = { statusline = true, tabline = true },
-    win = {
-      backdrop = false,
-      width = 0,  -- full width
-    },
+    win = { backdrop = false, width = 0 },
   },
 }

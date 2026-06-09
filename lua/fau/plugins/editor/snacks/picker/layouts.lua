@@ -20,7 +20,6 @@ return {
 
   dropdown = {
     layout = {
-      backdrop = false,
       width = 0.8,
       min_width = 50,
       height = 0.85,
@@ -47,7 +46,6 @@ return {
   main = {
     preview = "main",
     layout = {
-      backdrop = false,
       row = 1,
       width = 0.4,
       min_width = 80,

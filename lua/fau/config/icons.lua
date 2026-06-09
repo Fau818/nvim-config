@@ -106,9 +106,9 @@ return {
 
   gitsigns = {
     -- LineLeft     = "│",
-    BoldLine     = "┃",  -- "┃", "▎"
-    Delete       = "┃",  -- "_"
-    TopDelete    = "┃",  -- "‾"
+    BoldLine     = "▒",  -- "▒", "┃", "▎"
+    Delete       = "▒",  -- "_"
+    TopDelete    = "▒",  -- "‾"
     ChangeDelete = "~",  -- "~"
     Untracked    = "┆",
   },

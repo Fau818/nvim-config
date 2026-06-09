@@ -35,7 +35,7 @@ return {
     hidden = true,
     follow = true,
     regex  = false,
-    args = { "--ignore-file", ("%s/git/ignore"):format(fvim.xdg_config_home) },
+    args = { "--ignore-file", ("%s/git/ignore"):format(fvim.xdg_config_home), "--glob", "!dictionary.txt" },
   },
   -- grep_buffers = { hidden = true, layout = "stack_rev", win = { preview = preset.normal_preview } },
   -- grep_word    = { hidden = true, layout = "stack_rev", win = { preview = preset.normal_preview } },
@@ -48,7 +48,7 @@ return {
   -- jumps = {},
 
   -- NOTE: <A-g> and <A-b> are mapped to go to toggle global and buffer keymaps.
-  keymaps = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview } },
+  keymaps = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview }, confirm = "jump" },
 
   lazy = { layout = { preset = preset.default_layout }, regex = false, win = { preview = preset.minimal_preview } },
 
@@ -71,7 +71,15 @@ return {
   -- man = {},
   -- martks = {},
 
-  notifications = { on_show = preset.normal_mode, confirm = preset.open_float, win = { preview  = preset.minimal_preview } },
+  notifications = {
+    on_show = preset.normal_mode,
+    win = { preview  = preset.minimal_preview },
+    confirm = preset.open_float,
+    transform = function(item)
+      item.preview = { text = item.item.msg or "", ft = item.item.ft or "markdown" }
+      return item
+    end,
+  },
 
   pickers = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview } },
   picker_actions = preset.classic_normal,
