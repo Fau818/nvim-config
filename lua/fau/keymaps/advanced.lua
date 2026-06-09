@@ -2,9 +2,12 @@ local keymap = vim.keymap.set
 local function opts(desc) return { silent = false, desc = desc } end
 
 
--- ==================== Yank and Paste ====================
-keymap("x", "y", function() fvim.utils.smart_visual_mode(); vim.api.nvim_command("normal! y") end, opts("Yank"))
-keymap("x", "<LEADER>d", function() fvim.utils.smart_visual_mode(); vim.api.nvim_command("normal! d") end, opts("Cut"))
+-- ==================== Edit ====================
+keymap("x", "y", function() fvim.utils.smart_visual_mode(); vim.api.nvim_command("normal! y") end, opts("Edit: Yank"))
+keymap("x", "<LEADER>d", function() fvim.utils.smart_visual_mode(); vim.api.nvim_command("normal! d") end, opts("Edit: Cut"))
+
+keymap("x", "c", function() fvim.utils.smart_visual_mode(); fvim.utils.feedkeys([["_c]]) end, opts("Edit: Change"))
+keymap("x", "C", function() fvim.utils.smart_visual_mode(); fvim.utils.feedkeys([["_C]]) end, opts("Edit: Change"))
 
 -- ==================== Buffer ====================
 keymap("n", "<A-q>", fvim.utils.buf_remove,       opts("Buffer: Close Current Buffer"))
