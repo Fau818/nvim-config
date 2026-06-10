@@ -132,6 +132,7 @@ return {
       callback = function(args)
         -- Ignore `markdown` filetype.
         if vim.bo[args.buf].buftype ~= "" or vim.bo[args.buf].filetype == "markdown" then return end
+        if vim.list_contains(fvim.file.excluded_filetypes, vim.bo[args.buf].filetype) then return end
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if not client or not client.server_capabilities.documentSymbolProvider then return end
