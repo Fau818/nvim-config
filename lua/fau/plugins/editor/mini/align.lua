@@ -68,5 +68,19 @@ return {
 
     -- Whether to disable showing non-error feedback
     silent = false,
-  }
+  },
+
+  config = function(_, opts)
+    require("mini.align").setup(opts)
+
+    local _align_user = MiniAlign.align_user
+    ---@diagnostic disable-next-line: duplicate-set-field
+    MiniAlign.align_user = function(...)
+      _align_user(...)
+
+      local notif = Snacks.notifier.get_history({ filter = function(notif) return notif.title == "mini.align" end })
+      assert(notif and #notif == 1, "Expected exactly one notification for mini.align")
+      Snacks.notifier.hide(notif[1].id)
+    end
+  end,
 }

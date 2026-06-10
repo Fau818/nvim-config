@@ -14,17 +14,11 @@ return {
     opts = { title = "Error", level = vim.log.levels.ERROR }
   },
 
-  -- Show `@recoring` Messages
-  {
-    view = "mini",
-    filter = { event = "msg_showmode" },  -- show @recording
-  },
-
 
   -- ==================== Mini Align ====================
   {
     view = "notify",
-    filter = { event = "msg_show", find = "(mini.align)" },
-    opts = { title = "mini.align" },
+    filter = { event = "msg_show", find = "(mini%.align)" },
+    opts = { title = "mini.align", timeout = 0, replace = true, merge = true },
   }
 }

@@ -18,9 +18,9 @@ M.classic_normal = { layout = { preset = M.default_layout }, on_show = M.normal_
 
 ---@type snacks.picker.Action.fn
 function M.open_float(picker, item, action)
-  if not item then vim.notify("No item selected", vim.log.levels.ERROR) return end
+  if not item then fvim.notify("No item selected", vim.log.levels.ERROR) return end
 
-  local content = item.item.msg or "No content to display"
+  local content = item.preview.text or "No content to display"
   local lines = vim.split(content, "\n")
   local text_width = math.max(1, unpack(vim.tbl_map(vim.fn.strdisplaywidth, lines))) + 2
   local text_height = #lines
@@ -37,7 +37,7 @@ function M.open_float(picker, item, action)
     height = function(self) return math.ceil(math.min(text_height, vim.o.lines * 0.75)) end,
     resize = true,
 
-    bo = { modifiable = false, filetype = item.item.ft or "markdown" },
+    bo = { modifiable = false, filetype = item.preview.ft or "markdown" },
     wo = { conceallevel = 3, concealcursor = "nvic", spell = false, statuscolumn = " " },  -- NOTE: `statuscolumn = " "` is for padding left.
 
     title = " Notification ",

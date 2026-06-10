@@ -183,8 +183,8 @@ end, opts("Paste with Auto Indent"))
 keymap("x", "<D-v>", [["_dP]], opts("Paste with Auto Indent"))
 keymap("c", "<D-v>", "<C-r>+", { desc = "PASTE from System Clipboard" })  -- NOTE: KEEP `silent = false` for command mode. (Otherwise, it won't work.)
 
--- Cancel Yank Selection Area When Paste sth in Vim Visual Mode
--- keymap("x", "p", [["_dP]], opts("Paste"))
+-- Use `P` in visual mode to paste without overwriting the default register.
+keymap("x", "p", "P", opts("Paste"))
 
 
 

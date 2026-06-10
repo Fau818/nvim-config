@@ -41,7 +41,7 @@ return {
   light_gray = "#A9B1D6",
   cyan_gray  = "#7D96AF",
 
-  bufferline_bg = "#232323",
+  bufferline = { bg = "#2B2B35", selected_bg = "#151518", visible_bg = "#2B2B35" },
 
   -- tokyonight = ...,  -- Loaded by the colorscheme module.
 

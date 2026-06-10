@@ -22,7 +22,7 @@ function M.input_with_lsp(bufnr, opts, callback)
   vim.schedule(function()
     local input_buf = vim.api.nvim_get_current_buf()
     if input_buf == bufnr then
-      vim.notify("Failed to open input buffer for LSP completion", vim.log.levels.ERROR)
+      fvim.notify("Failed to open input buffer for LSP completion", vim.log.levels.ERROR)
       return
     end
 

@@ -75,10 +75,7 @@ return {
     on_show = preset.normal_mode,
     win = { preview  = preset.minimal_preview },
     confirm = preset.open_float,
-    transform = function(item)
-      item.preview = { text = item.item.msg or "", ft = item.item.ft or "markdown" }
-      return item
-    end,
+    transform = function(item) item.preview.ft = item.item.ft end,
   },
 
   pickers = { layout = { preset = preset.default_layout }, win = { preview = preset.minimal_preview } },

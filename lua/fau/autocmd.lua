@@ -123,7 +123,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     if target then
       vim.api.nvim_win_set_buf(win, pinned_buf)
       vim.api.nvim_win_set_buf(target, env.buf)
-    else vim.notify("Switch buffer failed.", vim.log.levels.ERROR)
+    else fvim.notify("Switch buffer failed.", vim.log.levels.ERROR)
     end
   end,
 })

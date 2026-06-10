@@ -123,7 +123,7 @@ return {
       highlights["LspKindVariable"] = { fg = fvim.colors.cobalt }
 
       -- ---------- Bufferline
-      highlights["BufferLineIndicatorSelected"] = { bg = fvim.colors.bufferline_bg, fg = fvim.colors.dark_purple, bold = true }
+      highlights["BufferLineIndicatorSelected"] = { bg = fvim.colors.bufferline.selected_bg, fg = fvim.colors.bufferline.selected_bg, bold = true }
 
       -- ---------- ChatGPT
       -- highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }

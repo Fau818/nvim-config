@@ -30,6 +30,12 @@ local components = {
     end,
     padding = 2,
   },
+  recording = {
+    function() return "@" .. vim.fn.reg_recording() end,
+    cond = function() return vim.fn.reg_recording() ~= "" end,
+    color = { gui = "bold" },
+    padding = { left = 0, right = 1 },
+  },
 
   filename   = "filename",
   filetype   = { "filetype", padding = { left = 1, right = 2 } },
@@ -269,7 +275,7 @@ return {
     },
 
     sections = {
-      lualine_a = { components.mode, components.lazy },
+      lualine_a = { components.mode, components.recording, components.lazy },
       lualine_b = { components.branch, components.diff },
       lualine_c = { components.diagnostics, components.python_env, "b:obsidian_status" },
       lualine_x = { components.lsp_status, components.copilot, components.ai_agent, components.treesitter },

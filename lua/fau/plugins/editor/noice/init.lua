@@ -23,7 +23,7 @@ return {
 
   ---@type NoiceConfig
   opts = {
-    cmdline   = require("fau.plugins.editor.noice.config.cmdline"),
+    cmdline   = require("fau.plugins.editor.noice.config.cmdline").cmdline,
     messages  = nil,  -- Use default options.
     popupmenu = { enabled = false },
 
@@ -38,7 +38,7 @@ return {
 
     notify = { enabled = false, view = "notify" },
 
-    lsp = require("fau.plugins.editor.noice.config.lsp"),
+    lsp = require("fau.plugins.editor.noice.config.lsp").lsp,
 
     -- markdown = nil,  -- Use default.
 
