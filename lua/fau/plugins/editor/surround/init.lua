@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Quickly add, modify, and remove surround.
   ---@module "nvim-surround"

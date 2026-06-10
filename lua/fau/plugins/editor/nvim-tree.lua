@@ -126,7 +126,7 @@ local function on_attach(bufnr)
 end
 
 
----@type LazySpec[]
+---@type LazyPluginSpec[]
 return {
   {
     -- DESC: File explorer tree for Neovim.

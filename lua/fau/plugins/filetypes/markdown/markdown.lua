@@ -1,6 +1,6 @@
 -- DESC: This module is for markdown filetype.
 
----@type LazySpec[]
+---@type LazyPluginSpec[]
 return {
   {
     -- DESC: Quick table creation and editing in markdown.

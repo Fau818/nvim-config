@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Highlight the TODO comment-liked things.
   ---@module "todo-comments"

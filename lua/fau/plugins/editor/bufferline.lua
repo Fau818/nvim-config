@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: A snazzy bufferline for Neovim.
   ---@module "bufferline"

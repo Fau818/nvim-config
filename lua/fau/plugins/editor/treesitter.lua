@@ -78,7 +78,7 @@ end
 -- =============================================
 -- ========== Treesitter Plugin Specs
 -- =============================================
----@type LazySpec[]
+---@type LazyPluginSpec[]
 return {
   {
     ---@module "nvim-treesitter"

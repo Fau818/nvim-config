@@ -1,5 +1,5 @@
 -- WARNING: This plugin has been archived.
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: a powerful breadcrumb plugin based on navic.
   ---@module "barbecue"

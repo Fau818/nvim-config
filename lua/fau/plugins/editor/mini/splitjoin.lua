@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "mini.splitjoin"
   "nvim-mini/mini.splitjoin",

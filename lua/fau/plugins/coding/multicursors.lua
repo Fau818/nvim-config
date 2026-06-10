@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Multi-cursor support in Neovim.
   ---@module "multicursors"

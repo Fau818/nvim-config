@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Detect file indentation automatically.
   ---@module "guess-indent"

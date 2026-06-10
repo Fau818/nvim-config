@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: A snazzy colorscheme that can be customized.
   ---@module "tokyonight"

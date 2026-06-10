@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Auto remove trailing whitespaces and empty lines.
   ---@module "mini.trailspace"

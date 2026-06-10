@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: A snazzy jump plugin.
   ---@module "flash"

@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Auto convert normal string to template string.
   ---@module "template-string.nvim"

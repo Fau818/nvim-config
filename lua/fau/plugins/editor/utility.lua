@@ -1,6 +1,6 @@
 -- DESC: This module is for enhancing editor functionality.
 
----@type LazySpec[]
+---@type LazyPluginSpec[]
 return {
   {
     ---@module "ts-comments"

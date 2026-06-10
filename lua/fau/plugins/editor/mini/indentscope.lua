@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Indent guide line with animation.
   ---@module "mini.indentscope"

@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Press <TAB> to jump out of brakets.
   ---@module "tabout"

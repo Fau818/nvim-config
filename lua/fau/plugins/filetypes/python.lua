@@ -1,6 +1,6 @@
 -- DESC: This module is for python filetype.
 
----@type LazySpec[]
+---@type LazyPluginSpec[]
 return {
   {
     -- DESC: A set of type stubs for popular Python packages.

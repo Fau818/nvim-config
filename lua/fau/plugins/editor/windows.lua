@@ -1,5 +1,5 @@
 -- TASK: Clean?
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Add animation for Neovim window actions.
   ---@module "windows"

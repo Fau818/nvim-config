@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "CopilotChat"
   "CopilotC-Nvim/CopilotChat.nvim",

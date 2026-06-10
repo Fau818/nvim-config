@@ -1,5 +1,5 @@
 -- TODO: use native Neovim feature & remove this plugin.
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Colorizer for showing color.
   ---@module "colorizer"

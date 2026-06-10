@@ -1,5 +1,5 @@
 -- TODO: Configure obsidian.nvim more thoroughly.
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "obsidian"
   "obsidian-nvim/obsidian.nvim",

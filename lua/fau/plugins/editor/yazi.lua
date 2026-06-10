@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Support Yazi file browser in Neovim.
   ---@module "yazi"

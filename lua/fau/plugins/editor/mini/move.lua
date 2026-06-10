@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Smartly move lines or selections.
   ---@module "mini.move"

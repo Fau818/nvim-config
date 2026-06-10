@@ -1,5 +1,5 @@
 -- FIX: Markdown sign icons are over git signs.
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "render-markdown"
   "MeanderingProgrammer/render-markdown.nvim",

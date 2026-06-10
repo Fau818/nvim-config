@@ -1,4 +1,4 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "ts-node-action"
   "ckolkey/ts-node-action",

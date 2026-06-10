@@ -28,7 +28,7 @@ local function _fold_virt_text_handler(virtText, lnum, endLnum, width, truncate)
 end
 
 
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "ufo"
   "kevinhwang91/nvim-ufo",

@@ -11,7 +11,7 @@ local function kw(keyword, hl_group, case_sensitive)
 end
 
 
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "todotag"
   "fau818/todotag.nvim",

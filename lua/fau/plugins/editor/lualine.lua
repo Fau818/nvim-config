@@ -214,7 +214,7 @@ local components = {
 
 
 
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "lualine"
   "nvim-lualine/lualine.nvim",

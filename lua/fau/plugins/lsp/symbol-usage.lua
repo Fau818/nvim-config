@@ -45,7 +45,7 @@ local function text_format(symbol)
 end
 
 
----@type LazySpec
+---@type LazyPluginSpec
 return {
   -- DESC: Show references, definitions and implementations of symbols.
   ---@module "symbol-usage"

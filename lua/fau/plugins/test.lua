@@ -1,6 +1,6 @@
 -- DESC: This module is for testing new plugins.
 
----@type LazySpec[]
+---@type LazyPluginSpec[]
 return {
   {
     ---@module "competitest"

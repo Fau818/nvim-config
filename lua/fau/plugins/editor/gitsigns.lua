@@ -50,7 +50,7 @@ local function _on_attach(bufnr)
 end
 
 
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "gitsigns"
   "lewis6991/gitsigns.nvim",

@@ -7,7 +7,7 @@ local function send_to_cc()
 end
 
 
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "claudecode"
   "coder/claudecode.nvim",
