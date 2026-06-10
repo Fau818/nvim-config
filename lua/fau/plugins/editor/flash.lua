@@ -14,7 +14,15 @@ return {
     { "<LEADER>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash: Treesitter" },
     -- BUG: See https://github.com/folke/flash.nvim/pull/419
     { "r", mode = "o", function() require("flash").remote() end, desc = "Flash: Remote" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Flash: Treesitter Search" },
+    -- NOTE: `R` in operator-pending mode, means to do a remote operation on a treesitter node.
+    -- \     `R` in visual mode, means to select a treesitter node.
+    { "R", mode = { "x", "o" }, function()
+      -- BUG: When `R` is pressed in visual-block or visual-line mode, flash will select text from cursor position to the end of a treesitter node. (Unexpected)
+      -- WORKAROUND: Force to use visual-char mode, so that flash will select a treesitter node.
+      local mode = vim.fn.mode()
+      if mode == "V" or mode == "\22" then vim.api.nvim_command("normal! v") end
+      require("flash").treesitter_search()
+    end, desc = "Flash: Treesitter Search" },
     -- NOTE: Neovim 0.12 supports `in` and `an` in operator-pending and visual mode to do the incremental selection with treesitter.
     { "<C-=>", mode = { "n", "x", "o" }, function() require("flash").treesitter({ actions = { ["<C-=>"] = "next", ["<C-->"] = "prev" } }) end, desc = "Treesitter incremental selection" },
   },
@@ -59,17 +67,11 @@ return {
       char = {
         enabled = true,
         -- dynamic configuration for ftFT motions
-        config = nil,  -- Use default.
-        autohide = false,  -- hide after jump when not using jump labels
-        jump_labels = true,  -- show jump labels
-        multi_line = true,  -- set to `false` to use the current line only
+        multi_line = true,   -- set to `false` to use the current line only
         label = { exclude = "hjkliardcs" },
         -- keys = { "f", "F", "t", "T", ";", "," },
         keys = { "f", "F", "t", "T" },  -- Conflict with dashboard.
-        char_actions = nil,  -- Use default.
-        search = { wrap = false },
-        highlight = { backdrop = true },
-        jump = { register = false, autojump = false },
+        remote_op = { restore = true, motion = nil },
       },
 
       -- options used for treesitter selections
@@ -80,17 +82,20 @@ return {
         search = { incremental = false },
         label = { before = true, after = true, style = "inline" },
         highlight = { backdrop = false, matches = false },
+        remote_op = { restore = true, motion = nil },
       },
-      -- treesitter_search = nil,  -- Use default.
+      treesitter_search = {
+        remote_op = { restore = true, motion = true },  -- BUG: Keep `motion = true`; otherwise `restore = true` will not work.
+      },
 
       -- options used for remote flash
-      -- remote = nil,  -- Use default.
+      remote = { remote_op = { restore = true, motion = nil } },
     },
 
     -- options for the floating window that shows the prompt, for regular jumps
     prompt = nil,  -- Use default.
 
     -- options for remote operator pending mode
-    -- remote_op = nil,  -- Use default.
-  }
+    remote_op = { restore = true, motion = nil },
+  },
 }
