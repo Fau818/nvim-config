@@ -110,20 +110,16 @@ function M.restart_lsp(bufnr)
     return
   end
 
-  fvim.notify("Restarting LSP servers ...")
-  -- REF: https://github.com/neovim/nvim-lspconfig/blob/master/plugin/lspconfig.lua `LspRestart` command.
   -- Get active clients for current buffer (excluding copilot).
   local clients = vim.iter(vim.lsp.get_clients({ bufnr = bufnr })):map(function(client) if client.name ~= "copilot" then return client.name end end):totable()
+  if #clients == 0 then fvim.notify("No LSP clients attached to current buffer"); return end
 
-  -- Disable all clients first.
-  for _, name in ipairs(clients) do
-    if vim.lsp.config[name] == nil then fvim.notify(("Invalid server name '%s'"):format(name))
-    else vim.lsp.enable(name, false)
-    end
-  end
-
-  -- Restart clients after 500ms.
-  vim.defer_fn(function() for _, name in ipairs(clients) do vim.schedule(function() vim.lsp.enable(name, true) end) end end, 500)
+  fvim.notify("Restarting LSP servers ...")
+  -- Built-in `:lsp restart` (nvim 0.12+), see `:h :lsp-restart`. It stops each
+  -- client and starts a new one with the same config and attached buffers.
+  table.insert(clients, 1, "restart")
+  local success, err = pcall(vim.cmd.lsp, clients)
+  if not success then fvim.notify(err, vim.log.levels.WARN) end
 end
 
 

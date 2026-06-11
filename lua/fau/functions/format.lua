@@ -48,12 +48,16 @@ function M.smart_format()
   -- if filetype == "python" then return M.auto_indent()  -- TEST: Use ruff for python formatting. Nov 7, 2025.
   if filetype == "c" or filetype == "cpp" then return M.auto_indent() end
 
-  -- By lsp capability
-  local clients = vim.lsp.get_clients({ bufnr = 0 })
-  clients = vim.tbl_filter(function(client) return client:supports_method("textDocument/formatting") end, clients)
-  if #clients == 0 then return M.auto_indent()
-  else return vim.lsp.buf.format()
-  end
+  -- By lsp capability (visual mode uses rangeFormatting, see `vim.lsp.buf.format`)
+  local mode = vim.fn.mode()
+  local method = (mode == "v" or mode == "V") and "textDocument/rangeFormatting" or "textDocument/formatting"
+  local clients = vim.lsp.get_clients({ bufnr = 0, method = method })
+  if #clients == 0 then return M.auto_indent() end
+
+  vim.lsp.buf.format()
+
+  local names = vim.tbl_map(function(client) return client.name end, clients)
+  fvim.notify(("formatted by: %s"):format(table.concat(names, ", ")), vim.log.levels.INFO, { render = "minimal" })
 end
 
 

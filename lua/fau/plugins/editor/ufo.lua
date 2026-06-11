@@ -61,6 +61,7 @@ return {
     vim.api.nvim_create_autocmd("BufWinEnter", {
       group = group_name,
       callback = function(event)
+        if vim.bo[event.buf].buftype ~= "" then return end
         if vim.fn.empty(vim.fn.expand("%:p")) == 0 then pcall(vim.cmd.loadview) end
       end,
     })
