@@ -1,9 +1,14 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
   ---@module "grug-far"
   "MagicDuck/grug-far.nvim",
   keys = {
-    { mode = { "n", "x" }, "<LEADER>R", function() require("grug-far").open() end, desc = "Grug Far (Replace)" },
+    {
+      "<leader>R",
+      function() require("grug-far").toggle_instance({ instanceName = "far", staticTitle = "Find and Replace" }) end,
+      mode = { "n", "x" },
+      desc = "Grug Far (Replace)",
+    },
   },
 
   ---@type grug.far.Options
@@ -30,7 +35,7 @@ return {
     -- helpLine = { enabled = true },
 
     -- maxSearchCharsInTitles = 30,
-    -- staticTitle = nil,
+    -- staticTitle = "Find and Replace",
 
     startInInsertMode = false,
     -- startCursorRow = 1,
@@ -46,7 +51,7 @@ return {
     -- onStatusChange = nil,  -- Use default.
     onStatusChangeThrottleTime = 500,
 
-    transient = true,
+    -- transient = true,
     backspaceEol = true,
 
     visualSelectionUsage = "operate-within-range",
