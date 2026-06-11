@@ -18,7 +18,7 @@ return {
   keys = {
     { "<C-.>", "<CMD>ClaudeCode<CR>", desc = "Claude Code: Toggle", mode = { "n", "x" } },
     { "<LEADER>ct", send_to_cc, desc = "Claude Code: Send", mode = { "n", "x" } },
-    { "<LEADER>ct", "<CMD>ClaudeCodeTreeAdd<CR>", desc = "Claude Code: Send (File Tree)", mode = { "n", "x" }, ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" } },
+    { "<LEADER>ct", "<CMD>ClaudeCodeTreeAdd<CR>", desc = "Claude Code: Send (File Tree)", mode = { "n", "x" }, ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" } },
 
     -- { "<C-y>", accept_diff, desc = "Claude Code: Accept Diff", mode = "n" },
     -- { "<C-n>", reject_diff, desc = "Claude Code: Reject Diff", mode = "n" },
@@ -28,20 +28,15 @@ return {
     local group = vim.api.nvim_create_augroup("ClaudeCodeDiffKeymaps", { clear = true })
 
     -- Set up keymaps for diff buffers.
-    vim.api.nvim_create_autocmd("BufWinEnter", {
+    vim.api.nvim_create_autocmd("User", {
       group = group,
+      pattern = "ClaudeCodeDiffOpened",
       callback = function(args)
-        vim.schedule(function()
-          if not vim.api.nvim_buf_is_valid(args.buf) then return end
-          if vim.b[args.buf].claudecode_diff_tab_name == nil then return end
-          if vim.b[args.buf].claudecode_diff_keymaps_set then return end
+        if not vim.api.nvim_buf_is_valid(args.buf) then return end
 
-          vim.b[args.buf].claudecode_diff_keymaps_set = true
-
-          vim.keymap.set("n", "q", "<NOP>", { buffer = args.buf, silent = true })
-          vim.keymap.set("n", "<C-y>", "<CMD>ClaudeCodeDiffAccept<CR>", { buffer = args.buf, silent = true })
-          vim.keymap.set("n", "<C-n>", "<CMD>ClaudeCodeDiffDeny<CR>",   { buffer = args.buf, silent = true })
-        end)
+        vim.keymap.set("n", "q", "<NOP>", { buffer = args.buf, silent = true })
+        vim.keymap.set("n", "<C-y>", "<CMD>ClaudeCodeDiffAccept<CR>", { buffer = args.buf, silent = true })
+        vim.keymap.set("n", "<C-n>", "<CMD>ClaudeCodeDiffDeny<CR>",   { buffer = args.buf, silent = true })
       end,
     })
   end,
@@ -74,7 +69,7 @@ return {
           hide           = { "<C-.>", function(self) self:hide() end, mode = { "n", "t" }, desc = "Hide" },
           hide_ctrl_q    = { "<C-q>", function(self) self:hide() end, mode = "n", desc = "Hide" },
           stopinsert     = { "<C-q>", function() vim.cmd.stopinsert() end, mode = "t", desc = "Stop Insert" },
-          claude_hide_ct = { "<C-t>", function(self) self:hide() end, mode = "t", desc = "Hide" },
+          -- claude_hide_ct = { "<C-t>", function(self) self:hide() end, mode = "t", desc = "Hide" },
         },
         border = "double",
         title = "  Claude Code  ",
@@ -84,9 +79,10 @@ return {
     -- Diff Integration
     diff_opts = {
       layout = "vertical",  -- "vertical" or "horizontal"
-      open_in_new_tab = false,
+      open_in_new_tab = true,
       keep_terminal_focus = false,  -- If true, moves focus back to terminal after diff opens
       hide_terminal_in_new_tab = false,
+      auto_resize_terminal = true,
     },
   },
 }
