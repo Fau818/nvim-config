@@ -2,18 +2,10 @@
   "name": "personal-snippets",
   "contributes": {
     "snippets": [
-      {
-        "language": [
-          "sh", "bash", "zsh",
-          "conf", "sshconfig", "toml",
-          "dockfile"
-        ],
-        "path": "./conf.json"
-      },
+      { "language": "all", "path": "./all.json" },
 
       { "language": "cpp", "path": "./acm_cpp.json" },
       { "language": "html", "path": "./html.json" },
-      { "language": "lua", "path": "./lua.json" },
       { "language": "python", "path": "./python.json" }
     ]
   }

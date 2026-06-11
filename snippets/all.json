@@ -1,0 +1,26 @@
+{
+  "# Section Comment": {
+    "body": [
+      "$LINE_COMMENT =============================================",
+      "$LINE_COMMENT ========== ${1:Section Comment}",
+      "$LINE_COMMENT =============================================$0"
+    ],
+    "prefix": "seccom"
+  },
+  "# Section Separator": {
+    "body": "$LINE_COMMENT ==================== ${1:Section Separator} ====================$0",
+    "prefix": "secsep"
+  },
+  "# Subsection Comment": {
+    "body": [
+      "$LINE_COMMENT -----------------------------------",
+      "$LINE_COMMENT -------- ${1:Subsection Comment}",
+      "$LINE_COMMENT -----------------------------------$0"
+    ],
+    "prefix": "subseccom"
+  },
+  "# Subsection Separator": {
+    "body": "$LINE_COMMENT ---------- ${1:Subsection Separator}$0",
+    "prefix": "subsecsep"
+  }
+}
