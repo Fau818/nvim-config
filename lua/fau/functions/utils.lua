@@ -161,6 +161,7 @@ function M.backdrop(parent, opts)
 
   local buf = vim.api.nvim_create_buf(false, true)
   vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
 
   local win = vim.api.nvim_open_win(buf, false, {
     relative = "editor", row = 0, col = 0,
@@ -178,11 +179,20 @@ function M.backdrop(parent, opts)
     pcall(vim.api.nvim_buf_delete, buf, true)
   end
 
-  vim.api.nvim_create_autocmd("WinClosed", {
-    pattern = tostring(parent),
-    once = true,
-    callback = close,
-  })
+  vim.api.nvim_create_autocmd({ "WinClosed", "WinEnter" },
+    {
+      callback = function(event)
+        local parent_alive = vim.api.nvim_win_is_valid(parent)
+        and not vim.api.nvim_win_get_config(parent).hide
+        and not (event.event == "WinClosed" and event.match == tostring(parent))  -- Closing the parent
+
+        if parent_alive then return end
+
+        close()
+        return true
+      end,
+    }
+  )
 end
 
 
