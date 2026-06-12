@@ -9,4 +9,8 @@ vim.bo.softtabstop = -1
 vim.bo.shiftwidth  = 0
 
 -- TEST: Prevent autoindent.
-vim.schedule(function() vim.opt_local.indentkeys:remove({ "o", "O" }) end)
+local bufnr = vim.api.nvim_get_current_buf()
+vim.schedule(function()
+  if not vim.api.nvim_buf_is_valid(bufnr) then return end
+  vim.api.nvim_buf_call(bufnr, function() vim.opt_local.indentkeys:remove({ "o", "O" }) end)
+end)

@@ -3,9 +3,11 @@ if vim.bo.buftype ~= "" then return end
 if vim.b.fvim_markdown_ftplugin_loaded then return end
 vim.b.fvim_markdown_ftplugin_loaded = true
 
+local bufnr = vim.api.nvim_get_current_buf()
 vim.schedule(function()
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.formatoptions:append("or")
+  if not vim.api.nvim_buf_is_valid(bufnr) then return end
+---@diagnostic disable-next-line: undefined-field
+  vim.api.nvim_buf_call(bufnr, function() vim.opt_local.formatoptions:append("or") end)
 end)
 -- vim.opt_local.spell = true
 -- vim.opt_local.spelllang = "en_us"
@@ -40,7 +42,7 @@ local function is_concealed()
 end
 
 local function skip_conceal(dir)
-  local max = 50 -- 防止死循环
+  local max = 50
   local i = 0
   while is_concealed() and i < max do
     vim.cmd("normal! " .. dir)
@@ -48,15 +50,9 @@ local function skip_conceal(dir)
   end
 end
 
-vim.keymap.set("n", "l", function()
-  vim.cmd("normal! l")
-  skip_conceal("l")
-end, { buffer = false })
+vim.keymap.set("n", "l", function() vim.cmd("normal! " .. vim.v.count1 .. "l") skip_conceal("l") end, { buffer = true })
 
-vim.keymap.set("n", "h", function()
-  vim.cmd("normal! h")
-  skip_conceal("h")
-end, { buffer = false })
+vim.keymap.set("n", "h", function() vim.cmd("normal! " .. vim.v.count1 .. "h") skip_conceal("h") end, { buffer = true })
 
 
 -- ==================== Markdown Keymaps ====================
