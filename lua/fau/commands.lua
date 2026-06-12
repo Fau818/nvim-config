@@ -2,8 +2,11 @@
 -- DESC: Open fau_vim config directory.
 vim.api.nvim_create_user_command("FauvimConfig",
   function()
-    vim.api.nvim_command("chdir " .. fvim.nvim_config_path)
-    require("nvim-tree.api").tree.focus()
+    vim.cmd.chdir(vim.fn.fnameescape(fvim.nvim_config_path))
+    local ok, api = pcall(require, "nvim-tree.api")
+    if ok then api.tree.focus()
+    else fvim.notify("nvim-tree is not available", vim.log.levels.ERROR)
+    end
   end, {}
 )
 

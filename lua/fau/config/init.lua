@@ -18,8 +18,8 @@ fvim.icons    = require("fau.config.icons")
 fvim.settings = require("fau.config.settings")
 
 -- ==================== LSP ====================
-fvim.diagnositcs = require("fau.config.diagnostic")
+fvim.diagnostics = require("fau.config.diagnostic")
 fvim.lsp = require("fau.config.lsp")
 
 -- ==================== Setup ====================
-fvim.diagnositcs.setup()
+fvim.diagnostics.setup()

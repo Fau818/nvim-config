@@ -19,29 +19,33 @@ vim.g.snacks_animate = false
 -- -----------------------------------
 -- -------- Remove vscode-neovim default keymaps
 -- -----------------------------------
--- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/code_actions.lua
-vim.keymap.del({ "n", "x" }, "gq")
-vim.keymap.del("n", "gqq")
-vim.keymap.del({ "n", "x" }, "=")
-vim.keymap.del("n","==")
+-- NOTE: Use pcall so a missing default (after a vscode-neovim update) doesn't abort the rest of this file.
+local default_keymaps = {
+  -- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/code_actions.lua
+  { { "n", "x" }, "gq" },
+  { "n", "gqq" },
+  { { "n", "x" }, "=" },
+  { "n", "==" },
 
--- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/overrides/vscode-code-actions.vim
--- vim.keymap.del({ "n", "x" }, "K")
-vim.keymap.del({ "n", "x" }, "gh")
-vim.keymap.del({ "n", "x" }, "gf")
-vim.keymap.del({ "n", "x" }, "gd")
-vim.keymap.del({ "n", "x" }, "<C-]>")
--- vim.keymap.del({ "n", "x" }, "gO")
-vim.keymap.del({ "n", "x" }, "gF")
-vim.keymap.del({ "n", "x" }, "gD")
-vim.keymap.del({ "n", "x" }, "gH")
-vim.keymap.del({ "n", "x" }, "<C-w>gf")
-vim.keymap.del({ "n", "x" }, "<C-w>gd")
-vim.keymap.del("n", "z=")
+  -- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/overrides/vscode-code-actions.vim
+  -- { { "n", "x" }, "K" },
+  { { "n", "x" }, "gh" },
+  { { "n", "x" }, "gf" },
+  { { "n", "x" }, "gd" },
+  { { "n", "x" }, "<C-]>" },
+  -- { { "n", "x" }, "gO" },
+  { { "n", "x" }, "gF" },
+  { { "n", "x" }, "gD" },
+  { { "n", "x" }, "gH" },
+  { { "n", "x" }, "<C-w>gf" },
+  { { "n", "x" }, "<C-w>gd" },
+  { "n", "z=" },
 
--- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/overrides/vscode-file-commands.vim
-vim.keymap.del("n", "ZZ")
-vim.keymap.del("n", "ZQ")
+  -- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/overrides/vscode-file-commands.vim
+  { "n", "ZZ" },
+  { "n", "ZQ" },
+}
+for _, m in ipairs(default_keymaps) do pcall(vim.keymap.del, m[1], m[2]) end
 
 
 -- -----------------------------------
