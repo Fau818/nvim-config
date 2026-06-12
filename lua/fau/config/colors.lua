@@ -1,5 +1,6 @@
 return {
-  bg          = "#151518",
+  bg      = "#151518",
+  comment = "#717CBD",
 
   wathet      = "#87CEEB",
   blue        = "#00A9EF",
@@ -31,11 +32,11 @@ return {
   light_red = "#D7829F",
   red1      = "#C53B53",
 
-  pink        = "#FCA7EA",
-  light_pink  = "#FFC8E1",
+  pink       = "#FCA7EA",
+  light_pink = "#FFC8E1",
 
-  orange       = "#F59C4E",  -- #FF966C
-  nacarat      = "#C78B76",
+  orange  = "#F59C4E",  -- #FF966C
+  nacarat = "#C78B76",
 
   gray       = "#6F7A9A",  -- #697391
   light_gray = "#A9B1D6",
@@ -50,6 +51,13 @@ return {
     warn  = "#362716",
     info  = "#182A3A",
     hint  = "#1B251D",
+  },
+
+  diff = {
+    add          = "#233844",
+    delete       = "#3a2230",
+    addInline    = "#305f6f",
+    deleteInline = "#6b2e43",
   },
 
   lualine = {

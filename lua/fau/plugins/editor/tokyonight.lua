@@ -33,7 +33,11 @@ return {
     ---function will be called with a ColorScheme table
     ---@param colors ColorScheme
     on_colors = function(colors)
-      -- colors.comment        = fvim.colors.gray
+      colors.comment = fvim.colors.comment
+
+      colors.diff.add    = fvim.colors.diff.add
+      colors.diff.delete = fvim.colors.diff.delete
+
       colors.terminal.black = fvim.colors.gray
       colors.terminal_black = fvim.colors.gray
 
@@ -131,6 +135,11 @@ return {
       -- ---------- Copilot
       highlights["CopilotSuggestion"] = { fg = colors.comment }
       highlights["CopilotAnnotation"] = { link = "CopilotSuggestion" }
+
+      -- ---------- Gitsigns (inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined)
+      highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addInline }
+      highlights["GitSignsDeleteInline"] = { bg = fvim.colors.diff.deleteInline }
+      highlights["GitSignsChangeInline"] = { bg = colors.diff.text }
 
       -- ---------- Lazy
       highlights["LazyReasonKeys"] = { fg = colors.magenta }
