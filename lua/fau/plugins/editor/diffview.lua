@@ -17,11 +17,6 @@ return {
     { "<LEADER>gF", "<CMD>DiffviewFileHistory<CR>", desc = "Open Diffview for All Files" },
   },
 
-  init = function()
-    -- Use diagonal lines in place of deleted lines in diff mode.
-    vim.opt.fillchars:append{ diff = "╱" }
-  end,
-
   config = function()
     local diffview = require("diffview")
     local actions = require("diffview.actions")

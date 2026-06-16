@@ -1,6 +1,9 @@
 -- Let `-`, `$`, and `#` be keywords.
 vim.opt.iskeyword:append({ "-", "$", "#" })
 
+-- Use `╱` to indicate deleted lines in diff mode.
+vim.opt.fillchars:append{ diff = "╱" }
+
 
 local options = {
   undofile    = true,   -- enable persistent undo
