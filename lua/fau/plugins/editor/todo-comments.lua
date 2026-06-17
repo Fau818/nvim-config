@@ -39,7 +39,7 @@ return {
     highlight = {
       multiline         = true,
       -- multiline_pattern = "^\\",
-      multiline_pattern = "^.",
+      multiline_pattern = "^\\s",
       multiline_context = 10,
 
       before  = "",      ---@type "fg" | "bg" | ""
