@@ -38,7 +38,8 @@ return {
     merge_keywords = false,  -- The default keywords are defined manually.
     highlight = {
       multiline         = true,
-      multiline_pattern = "^\\",
+      -- multiline_pattern = "^\\",
+      multiline_pattern = "^.",
       multiline_context = 10,
 
       before  = "",      ---@type "fg" | "bg" | ""
