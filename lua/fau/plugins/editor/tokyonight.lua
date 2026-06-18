@@ -161,6 +161,9 @@ return {
 
       -- ---------- Snacks
       highlights["SnacksIndentScope"] = { fg = fvim.colors.cobalt }
+      highlights["SnacksPickerPreviewTitle"] = { bg = fvim.colors.cobalt, fg = fvim.colors.bg, bold = true }
+      highlights["FloatTitle"] = { fg = fvim.colors.cobalt, bg = fvim.colors.bg, bold = true }
+      highlights["SnacksTitle"] = { fg = fvim.colors.purple_blue, bg = fvim.colors.bg, bold = true }
 
       -- ---------- Telescope
       highlights["TelescopeBorder"]         = { fg = fvim.colors.cobalt }

@@ -55,7 +55,7 @@ return {
 
     colors = {
       -- #9370DB  #FF69B4  #FFD700  #6A5ACD  #4682B4  #20B2AA  #BDB76B  #556B2F  #2F4F4F  #8B4513  #B8860B  #4FD6BE
-      note = "DiagnosticInfo",
+      note  = "DiagnosticInfo",
       error = "DiagnosticError",
       warn  = "DiagnosticWarn",
     },
@@ -66,4 +66,15 @@ return {
       pattern = nil,  -- Use default.
     },
   },
+
+  config = function(_, opts)
+    require("todo-comments").setup(opts)
+
+    for _, name in ipairs(vim.fn.getcompletion("TodoBg", "highlight")) do
+      local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+      hl.bold = true
+      hl.nocombine = true
+      vim.api.nvim_set_hl(0, name, hl)
+    end
+  end,
 }
