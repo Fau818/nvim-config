@@ -8,6 +8,17 @@ vim.api.nvim_create_augroup("fau_vim", { clear = true })
 -- Keep cursor on the last closed position when enter a buffer.
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 
+---Disable horizonatal mouse scroll in terminal buffers.
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = "fau_vim",
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    for _, key in ipairs({ "<ScrollWheelLeft>", "<ScrollWheelRight>", "<S-ScrollWheelUp>", "<S-ScrollWheelDown>" }) do
+      vim.keymap.set({ "n", "t" }, key, "<Nop>", opts)
+    end
+  end,
+})
+
 -- ==================== Yank ====================
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
