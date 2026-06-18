@@ -70,7 +70,7 @@ return {
     require("todo-comments").setup(opts)
 
     for _, name in ipairs(vim.fn.getcompletion("TodoBg", "highlight")) do
-      local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+      local hl = vim.api.nvim_get_hl(0, { name = name, link = false })  --[[@as vim.api.keyset.highlight]]
       hl.bold = true
       hl.nocombine = true
       vim.api.nvim_set_hl(0, name, hl)
