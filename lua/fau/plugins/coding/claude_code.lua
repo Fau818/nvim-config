@@ -57,14 +57,20 @@ return {
     visual_demotion_delay_ms = fvim.settings.debounce.general,
 
     terminal = {
+      split_side = "right",  ---@type "left" | "right"
+      split_width_percentage = 0.30,
+      diff_split_width_percentage = nil,
+      fix_streamed_paste = "auto",
+
       auto_close = true,
       provider = "snacks",
       ---@module "snacks"
       ---@type snacks.win.Config
       snacks_win_opts = {
-        position = "float",
-        width = 0.88,
-        height = 0.85,
+        -- NOTE: Uncomment the following 3 lines to use a floating window instead of a split.
+        -- position = "float",
+        -- width = 0.88,
+        -- height = 0.85,
         keys = {
           hide           = { "<C-.>", function(self) self:hide() end, mode = { "n", "t" }, desc = "Hide" },
           hide_ctrl_q    = { "<C-q>", function(self) self:hide() end, mode = "n", desc = "Hide" },
