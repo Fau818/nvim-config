@@ -41,9 +41,18 @@ end
 
 
 ---Create inlay hint handler with custom text processors
----@param transformers function[]
 ---@return function
-local function inlay_hint_handler(transformers)
+local function init_inlay_hint_handler()
+  ---Text processors applied to every inlay hint label, in order.
+  local TRUNCATE_LEN = 25
+  local transformers = {
+    function(text) return text:sub(1, 2) == ": " and ": " .. text:sub(3):gsub(": ", ":") or text:gsub(": ", ":") end,
+    -- Remove spaces around `|` symbol.
+    function(text) return text:gsub("%s*|%s*", "|") end,
+    -- Truncate long hints.
+    function(text) return #text <= TRUNCATE_LEN and text or text:sub(1, TRUNCATE_LEN) .. "  " end,
+  }
+
   return function(err, result, ctx, config)
     if not result then vim.lsp.handlers["textDocument/inlayHint"](err, result, ctx, config); return end
 
@@ -66,28 +75,15 @@ local function inlay_hint_handler(transformers)
 end
 
 
----@type vim.lsp.client.on_attach_cb
-function M.on_attach(client, bufnr)
-  local TRUNCATE_LEN = 25
-  local transformers = {
-    function(text) return text:sub(1, 2) == ": " and ": " .. text:sub(3):gsub(": ", ":") or text:gsub(": ", ":") end,
-    -- Remove spaces around `|` symbol.
-    function(text) return text:gsub("%s*|%s*", "|") end,
-    -- Truncate long hints.
-    function(text) return #text <= TRUNCATE_LEN and text or text:sub(1, TRUNCATE_LEN) .. "  " end
-  }
-
-  client.handlers["textDocument/inlayHint"] = inlay_hint_handler(transformers)
-end
-
-
 ---Setup a LSP server
 ---@param server string server name
 ---@param opts vim.lsp.ClientConfig? configuration
 local function _setup_server(server, opts)
-  opts = opts or {}
-
   if vim.lsp.is_enabled(server) then return end
+
+  opts = opts or {}
+  opts.handlers = opts.handlers or {}
+  opts.handlers["textDocument/inlayHint"] = init_inlay_hint_handler()
 
   -- Setup LSP.
   vim.lsp.config(server, opts)

@@ -39,10 +39,8 @@ return {
     ["textDocument/diagnostic"] = function(err, result, ctx)
       if result and result.items then
         for _, d in ipairs(result.items) do
-          if d.code then
-            -- NOTE: Docstring diagnostics are considered INFO level.
-            if d.code:sub(1, 1) == "D" then d.severity = vim.diagnostic.severity.INFO end
-          end
+          -- NOTE: Docstring diagnostics are considered INFO level.
+          if d.code and d.code:sub(1, 1) == "D" then d.severity = vim.diagnostic.severity.INFO end
         end
       end
       vim.lsp.handlers["textDocument/diagnostic"](err, result, ctx)

@@ -170,14 +170,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- =============================================
 -- ========== LSP
 -- =============================================
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = "fau_vim",
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client then fvim.notify("Failed to get LSP client.", vim.log.levels.ERROR) return end
-    fvim.lsp.on_attach(client, args.buf)
-  end,
-})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   group = "fau_vim",
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if not client then fvim.notify("Failed to get LSP client.", vim.log.levels.ERROR) return end
+--     fvim.lsp.on_attach(client, args.buf)
+--   end,
+-- })
 
 
 -- =============================================
