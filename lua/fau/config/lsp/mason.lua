@@ -27,7 +27,7 @@ function M.hook_on_install_success()
   local registry = require("mason-registry")
   ---@param pkg Package
   registry:on("package:install:success", function(pkg, receipt)
-    if pkg.spec.languages == {} then return end  -- Not an LSP package.
+    if not vim.tbl_contains(pkg.spec.categories or {}, "LSP") then return end  -- Not an LSP package.
     local lsp_name = M.pkg_name_to_lsp_name(pkg.spec.name)
     fvim.lsp.setup_server(lsp_name)
   end)
