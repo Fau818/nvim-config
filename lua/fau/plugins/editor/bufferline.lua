@@ -193,12 +193,12 @@ return {
       end
     end
 
-    vim.keymap.set({ "n", "t" }, "<A-h>", wrapper("BufferLineCyclePrev"), { desc = "Buffer: Focus Shift Prev" })
-    vim.keymap.set({ "n", "t" }, "<A-l>", wrapper("BufferLineCycleNext"), { desc = "Buffer: Focus Shift Next" })
+    vim.keymap.set("n", "<A-h>", wrapper("BufferLineCyclePrev"), { desc = "Buffer: Focus Shift Prev" })
+    vim.keymap.set("n", "<A-l>", wrapper("BufferLineCycleNext"), { desc = "Buffer: Focus Shift Next" })
 
     -- Swap Buffers
-    vim.keymap.set({ "n", "t" }, "<A-left>",  wrapper("BufferLineMovePrev"), { desc = "Buffer: Move Buffer Prev" })
-    vim.keymap.set({ "n", "t" }, "<A-right>", wrapper("BufferLineMoveNext"), { desc = "Buffer: Move Buffer Next" })
+    vim.keymap.set("n", "<A-left>",  wrapper("BufferLineMovePrev"), { desc = "Buffer: Move Buffer Prev" })
+    vim.keymap.set("n", "<A-right>", wrapper("BufferLineMoveNext"), { desc = "Buffer: Move Buffer Next" })
 
     -- By Meta Key
     vim.keymap.set({ "n", "t" }, "<A-1>", wrapper("BufferLineGoToBuffer 1"),  { desc = "which_key_ignore" })
