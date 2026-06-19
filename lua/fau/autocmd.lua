@@ -104,8 +104,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
--- ==================== Pinned Windows ====================
-
+-- =============================================
+-- ========== Pinned Windows
+-- =============================================
 ---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.
 local function pin(buf)
   vim.w.pinned_buf = buf

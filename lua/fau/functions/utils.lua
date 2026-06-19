@@ -199,7 +199,6 @@ end
 -- =============================================
 -- ========== Window
 -- =============================================
-
 ---Find the first "main" window in the current tabpage: non-floating and showing a regular buffer.
 ---@param filter? fun(win: integer): boolean Extra acceptance test; the window is kept only if it returns true.
 ---@return integer? win The matching window id, or nil if none qualifies.
