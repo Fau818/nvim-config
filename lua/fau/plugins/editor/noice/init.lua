@@ -69,4 +69,9 @@ return {
     log = nil,  -- Use default.
     log_max_size = nil,  -- Use default.
   },
+
+  config = function(_, opts)
+    require("noice").setup(opts)
+    require("fau.plugins.editor.noice.hover").setup()
+  end,
 }
