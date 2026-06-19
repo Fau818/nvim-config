@@ -15,7 +15,6 @@ local M = {}
 ---@param contents string | MarkedString[] | MarkupContent
 ---@return any
 local function scrub(contents)
-  dd(contents)
   if type(contents) == "string" then return fvim.utils.doc_cleaner(contents)
   elseif type(contents) == "table" then
     if type(contents.value) == "string" then contents.value = fvim.utils.doc_cleaner(contents.value)
