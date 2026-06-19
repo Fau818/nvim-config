@@ -8,6 +8,7 @@ return {
 
   config = function()
     -- ==================== Configuration ====================
+
     local bufferline = require("bufferline")
 
     ---@type bufferline.UserConfig
@@ -179,37 +180,49 @@ return {
 
 
     -- ==================== Keymaps ====================
-    -- Cycle Buffers
-    vim.keymap.set("n", "<A-h>", "<CMD>BufferLineCyclePrev<CR>", { desc = "Buffer: Focus Shift Prev" })
-    vim.keymap.set("n", "<A-l>", "<CMD>BufferLineCycleNext<CR>", { desc = "Buffer: Focus Shift Next" })
+
+    ---Do buffer switching in the main window.
+    local function wrapper(cmd)
+      return function()
+        if vim.bo.buftype ~= "" then
+          local w = fvim.utils.get_main_win()
+          if not w then fvim.notify("No regular windows found!", vim.log.levels.ERROR) return end
+          vim.api.nvim_set_current_win(w)
+        end
+        vim.cmd(cmd)
+      end
+    end
+
+    vim.keymap.set({ "n", "t" }, "<A-h>", wrapper("BufferLineCyclePrev"), { desc = "Buffer: Focus Shift Prev" })
+    vim.keymap.set({ "n", "t" }, "<A-l>", wrapper("BufferLineCycleNext"), { desc = "Buffer: Focus Shift Next" })
 
     -- Swap Buffers
-    vim.keymap.set("n", "<A-left>",  "<CMD>BufferLineMovePrev<CR>", { desc = "Buffer: Move Buffer Prev" })
-    vim.keymap.set("n", "<A-right>", "<CMD>BufferLineMoveNext<CR>", { desc = "Buffer: Move Buffer Next" })
+    vim.keymap.set({ "n", "t" }, "<A-left>",  wrapper("BufferLineMovePrev"), { desc = "Buffer: Move Buffer Prev" })
+    vim.keymap.set({ "n", "t" }, "<A-right>", wrapper("BufferLineMoveNext"), { desc = "Buffer: Move Buffer Next" })
 
     -- By Meta Key
-    vim.keymap.set({ "n", "t" }, "<A-1>", "<CMD>BufferLineGoToBuffer 1<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-2>", "<CMD>BufferLineGoToBuffer 2<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-3>", "<CMD>BufferLineGoToBuffer 3<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-4>", "<CMD>BufferLineGoToBuffer 4<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-5>", "<CMD>BufferLineGoToBuffer 5<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-6>", "<CMD>BufferLineGoToBuffer 6<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-7>", "<CMD>BufferLineGoToBuffer 7<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-8>", "<CMD>BufferLineGoToBuffer 8<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-9>", "<CMD>BufferLineGoToBuffer 9<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set({ "n", "t" }, "<A-0>", "<CMD>BufferLineGoToBuffer -1<CR>", { desc = "Buffer: Focus on Last" })
+    vim.keymap.set({ "n", "t" }, "<A-1>", wrapper("BufferLineGoToBuffer 1"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-2>", wrapper("BufferLineGoToBuffer 2"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-3>", wrapper("BufferLineGoToBuffer 3"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-4>", wrapper("BufferLineGoToBuffer 4"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-5>", wrapper("BufferLineGoToBuffer 5"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-6>", wrapper("BufferLineGoToBuffer 6"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-7>", wrapper("BufferLineGoToBuffer 7"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-8>", wrapper("BufferLineGoToBuffer 8"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-9>", wrapper("BufferLineGoToBuffer 9"),  { desc = "which_key_ignore" })
+    vim.keymap.set({ "n", "t" }, "<A-0>", wrapper("BufferLineGoToBuffer -1"), { desc = "Buffer: Focus on Last" })
 
     -- By Leader Key
-    vim.keymap.set("n", "<leader>1", "<CMD>BufferLineGoToBuffer 1<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>2", "<CMD>BufferLineGoToBuffer 2<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>3", "<CMD>BufferLineGoToBuffer 3<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>4", "<CMD>BufferLineGoToBuffer 4<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>5", "<CMD>BufferLineGoToBuffer 5<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>6", "<CMD>BufferLineGoToBuffer 6<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>7", "<CMD>BufferLineGoToBuffer 7<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>8", "<CMD>BufferLineGoToBuffer 8<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>9", "<CMD>BufferLineGoToBuffer 9<CR>",  { desc = "which_key_ignore" })
-    vim.keymap.set("n", "<leader>0", "<CMD>BufferLineGoToBuffer -1<CR>", { desc = "Buffer: Focus on Last" })
+    vim.keymap.set("n", "<leader>1", wrapper("BufferLineGoToBuffer 1"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>2", wrapper("BufferLineGoToBuffer 2"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>3", wrapper("BufferLineGoToBuffer 3"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>4", wrapper("BufferLineGoToBuffer 4"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>5", wrapper("BufferLineGoToBuffer 5"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>6", wrapper("BufferLineGoToBuffer 6"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>7", wrapper("BufferLineGoToBuffer 7"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>8", wrapper("BufferLineGoToBuffer 8"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>9", wrapper("BufferLineGoToBuffer 9"),  { desc = "which_key_ignore" })
+    vim.keymap.set("n", "<leader>0", wrapper("BufferLineGoToBuffer -1"), { desc = "Buffer: Focus on Last" })
 
     -- TEST: Extra (from lunarvim)
     vim.keymap.set("n", "<leader>bj", "<CMD>BufferLinePick<CR>",      { desc = "BufferLine: Pick Buffer" })

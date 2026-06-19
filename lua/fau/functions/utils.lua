@@ -196,4 +196,22 @@ function M.backdrop(parent, opts)
 end
 
 
+-- =============================================
+-- ========== Window
+-- =============================================
+
+---Find the first "main" window in the current tabpage: non-floating and showing a regular buffer.
+---@param filter? fun(win: integer): boolean Extra acceptance test; the window is kept only if it returns true.
+---@return integer? win The matching window id, or nil if none qualifies.
+function M.get_main_win(filter)
+  for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_get_config(w).relative == ""
+      and vim.bo[vim.api.nvim_win_get_buf(w)].buftype == ""
+      and (not filter or filter(w)) then
+      return w
+    end
+  end
+end
+
+
 return M

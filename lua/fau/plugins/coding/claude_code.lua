@@ -77,6 +77,7 @@ return {
           stopinsert     = { "<C-q>", function() vim.cmd.stopinsert() end, mode = "t", desc = "Stop Insert" },
           -- claude_hide_ct = { "<C-t>", function(self) self:hide() end, mode = "t", desc = "Hide" },
         },
+        style = "terminal",
         border = "double",
         title = "  Claude Code  ",
       },

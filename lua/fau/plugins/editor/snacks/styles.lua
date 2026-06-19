@@ -19,7 +19,7 @@ return {
 
   snacks_image = {},
 
-  terminal = { position = "float", border = "rounded" },
+  terminal = { position = "float", border = "rounded", wo = { wrap = true} },
 
   zen = {},
   zoom_indicator = {},

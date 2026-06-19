@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     for _, key in ipairs({ "<ScrollWheelLeft>", "<ScrollWheelRight>", "<S-ScrollWheelUp>", "<S-ScrollWheelDown>" }) do
       vim.keymap.set({ "n", "t" }, key, "<Nop>", opts)
     end
+    vim.opt_local.wrap = true
   end,
 })
 
@@ -104,38 +105,63 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 -- ==================== Pinned Windows ====================
--- Redirect buffer switches in non-regular windows to the alternate window.
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = "fau_vim",
-  desc = "Mark terminal windows as pinned.",
-  callback = function(ev) vim.w.pinned_buf = ev.buf end,
-})
+
+---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.
+local function pin(buf)
+  vim.w.pinned_buf = buf
+  if vim.bo[buf].bufhidden == "wipe" then vim.bo[buf].bufhidden = "hide" vim.b[buf].wipe_on_unpin = true end
+end
+
+---Wipe a `hide`-demoted pinned buffer.
+local function unpin(buf)
+  if not buf or not vim.api.nvim_buf_is_valid(buf) then return end
+  if not vim.b[buf].wipe_on_unpin then return end
+  vim.api.nvim_buf_delete(buf, { force = true })
+end
+
+---Pin windows for non-regular buffers.
 vim.api.nvim_create_autocmd("BufEnter", {
   group = "fau_vim",
-  desc = "Pin windows for non-regular buffers.",
   callback = function(env)
-    if vim.bo[env.buf].buftype ~= "" and vim.bo[env.buf].filetype ~= "snacks_dashboard" then
-      vim.w.pinned_buf = env.buf
-      -- NOTE: Prevent wipeable buffers from being destroyed on accidental buffer switches. (e.g. `aerial`)
-      local ft = vim.bo[env.buf].filetype
-      if ft == "aerial" then vim.bo[env.buf].bufhidden = "hide" end
-      return
-    end
+    if vim.api.nvim_win_get_config(0).relative ~= "" then return end
+    if vim.bo[env.buf].buftype == "" or vim.bo[env.buf].filetype == "snacks_dashboard" then return end
 
+    if vim.w.pinned_buf then return end
+
+    -- Record the first non-regular buffer shown in the window as the pinned buffer.
+    pin(env.buf)
+  end,
+})
+
+---Wipe `hide`-demoted pinned buffers once their window closes (mirrors the original `wipe`).
+vim.api.nvim_create_autocmd("WinClosed", {
+  group = "fau_vim",
+  callback = function(env)
+    local win = tonumber(env.match)
+    if not win or not vim.api.nvim_win_is_valid(win) then return end
+    unpin(vim.w[win].pinned_buf)
+  end,
+})
+
+---Redirect buffer switches in pinned windows to an alternate window.
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = "fau_vim",
+  callback = function(env)
     local pinned_buf = vim.w.pinned_buf
-    if not pinned_buf or not vim.api.nvim_buf_is_valid(pinned_buf) then return end
+    if not pinned_buf or env.buf == pinned_buf then return end
+    if not vim.api.nvim_buf_is_valid(pinned_buf) then return end
 
-    local win = vim.api.nvim_get_current_win()
-    -- Find a non-pinned window to redirect to
-    local target
-    for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-      if w ~= win and not vim.w[w].pinned_buf then target = w break end
-    end
-    if target then
-      vim.api.nvim_win_set_buf(win, pinned_buf)
-      vim.api.nvim_win_set_buf(target, env.buf)
-    else fvim.notify("Switch buffer failed.", vim.log.levels.ERROR)
-    end
+    -- NOTE: Allow buffer switches within non-regular buffers (e.g. aerial refreshing its outline).
+    if vim.bo[env.buf].buftype ~= "" then unpin(pinned_buf) pin(env.buf) return end
+
+    -- Redirect into a real editing window.
+    local target = fvim.utils.get_main_win(function(w) return not vim.w[w].pinned_buf end)
+    if not target then fvim.notify("Switch buffer failed.", vim.log.levels.ERROR) return end
+
+    -- NOTE: Use `noautocmd` to place the buffer back silently.
+    vim.cmd("noautocmd buffer " .. pinned_buf)
+    vim.api.nvim_win_set_buf(target, env.buf)
+    vim.api.nvim_set_current_win(target)
   end,
 })
 
