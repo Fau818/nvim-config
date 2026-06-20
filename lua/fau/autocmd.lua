@@ -179,6 +179,37 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --   end,
 -- })
 
+-- FIX: On detach Neovim only resets the client's PUSH namespace (`vim/lsp/client.lua`
+-- `_on_detach`); PULL diagnostics are cleared by a separate handler that fires only
+-- once the LAST pull-capable client leaves the buffer. So with two pull servers on
+-- one buffer (e.g. python's `basedpyright` + `ruff`), stopping one leaves its
+-- diagnostics stuck. Mirror the per-client push cleanup for pull.
+vim.api.nvim_create_autocmd("LspDetach", {
+  group = "fau_vim",
+  desc = "Clear a detaching client's stale (pull) diagnostics.",
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then return end
+
+    -- Diagnostic namespaces (`vim/lsp/diagnostic.lua`, `get_namespace`):
+    --   push: `nvim.lsp.<name>.<id>`           -- one per client
+    --   pull: `nvim.lsp.<name>.<id>.<pull_id>` -- one per provider
+    -- Push is left alone (Neovim resets it on detach, `client.lua`). Pull can't be
+    -- resolved without its `pull_id`, which isn't exposed -- so clear every namespace
+    -- under the client's `...<id>.` prefix; the trailing dot selects pull only and
+    -- stops id `1` matching `12`.
+    local prefix = ("nvim.lsp.%s.%d."):format(client.name, client.id)
+    local bufnr = args.buf
+    -- Defer so any in-flight diagnostic response settles before we clear.
+    vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(bufnr) then return end
+      for name, ns in pairs(vim.api.nvim_get_namespaces()) do
+        if vim.startswith(name, prefix) then vim.diagnostic.reset(ns, bufnr) end
+      end
+    end)
+  end,
+})
+
 
 -- =============================================
 -- ========== Kitty
