@@ -96,7 +96,7 @@ return {
         --- Here you can change window options `terminal.opts`.
         ---@param terminal sidekick.cli.Terminal
         config = function(terminal) end,
-        wo = {},  ---@type vim.wo
+        wo = { wrap = true },  ---@type vim.wo
         bo = {},  ---@type vim.bo
 
         layout = "right",  ---@type "float"|"left"|"bottom"|"top"|"right"

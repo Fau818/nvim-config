@@ -140,6 +140,7 @@ return {
       highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addInline }
       highlights["GitSignsDeleteInline"] = { bg = fvim.colors.diff.deleteInline }
       highlights["GitSignsChangeInline"] = { bg = colors.diff.text }
+      highlights["GitSignsCurrentLineBlame"] = { fg = colors.dark5, italic = true, bold = true }
 
       -- ---------- Lazy
       highlights["LazyReasonKeys"] = { fg = colors.magenta }
