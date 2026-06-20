@@ -67,6 +67,7 @@ return {
       char = {
         enabled = true,
         -- dynamic configuration for ftFT motions
+        jump_labels = true,  -- show jump labels
         multi_line = true,   -- set to `false` to use the current line only
         label = { exclude = "hjkliardcs" },
         -- keys = { "f", "F", "t", "T", ";", "," },
