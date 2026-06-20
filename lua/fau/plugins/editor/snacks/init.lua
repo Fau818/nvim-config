@@ -168,7 +168,7 @@ return {
     { "<LEADER>fll", function() Snacks.picker.git_log_line() end, desc = "Picker: Git Log Line" },
     { "<LEADER>flf", function() Snacks.picker.git_log_file() end, desc = "Picker: Git Log File" },
 
-    { "<LEADER>flc", function() Snacks.picker.lsp_config() end, desc = "Picker: LSP Config" },
+    { "<LEADER>flc", function() Snacks.picker.lsp_config() end, desc = "Picker: LSP Config & Control" },
     { "<LEADER>fld", function() Snacks.picker.lsp_definitions() end, desc = "Picker: Definition" },
     { "<LEADER>flD", function() Snacks.picker.lsp_declarations() end, desc = "Picker: Declaration" },
     { "<LEADER>flI", function() Snacks.picker.lsp_implementations() end, desc = "Picker: Implementation" },

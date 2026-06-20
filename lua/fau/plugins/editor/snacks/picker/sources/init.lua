@@ -56,7 +56,7 @@ return {
 
   -- loclist = {},
 
-  lsp_config           = { layout = { preset = preset.default_layout }, on_show   = preset.normal_mode, win = { preview = preset.minimal_preview } },
+  lsp_config           = require("fau.plugins.editor.snacks.picker.sources.lsp").lsp_config_picker,
   lsp_declarations     = preset.lsp_action,
   lsp_definitions      = preset.lsp_action,
   lsp_type_definitions = preset.lsp_action,

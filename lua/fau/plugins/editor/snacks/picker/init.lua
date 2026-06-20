@@ -133,12 +133,13 @@ return {
         ["G"]  = "list_bottom",
         ["gg"] = "list_top",
 
-        ["<a-d>"] = { "inspect", mode = { "n", "i" } },
+        ["<c-d>"] = { "inspect", mode = { "n", "i" } },
 
         ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
         ["<a-h>"] = { "toggle_hidden", mode = { "i", "n" } },
         ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
         ["<a-r>"] = { "toggle_regex", mode = { "i", "n" } },
+        ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
 
         ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
         ["<c-p>"] = { "toggle_preview", mode = { "i", "n" } },
@@ -146,16 +147,15 @@ return {
         ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
         ["<c-b>"] = { "preview_scroll_up", mode = { "i", "n" } },
 
-        ["<c-g>"] = { "toggle_live", mode = { "i", "n" } },
         ["<c-s>"] = { "grep_in_selected", mode = { "i", "n" } },
 
         ["<c-q>"] = { "qflist", mode = { "i", "n" } },
         -- ["<c-q>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
         -- ["<c-t>"] = { "trouble_open", mode = { "n", "i" } },  -- NOTE: Set by trouble.nvim
 
-        -- ["<c-w>x"] = { "edit_split", mode = { "i", "n" } },
-        -- ["<c-w>v"] = { "edit_vsplit", mode = { "i", "n" } },
-        -- ["<c-t>"] = { "tab", mode = { "n", "i" } },
+        ["<c-w>x"] = { "edit_split", mode = { "n" } },
+        ["<c-w>v"] = { "edit_vsplit", mode = { "n" } },
+        ["<c-w>t"] = { "tab", mode = { "n" } },
 
         ["<c-r>#"] = { "insert_alt",      mode = "i" },
         ["<c-r>%"] = { "insert_filename", mode = "i" },
@@ -204,7 +204,7 @@ return {
         ["<S-Tab>"] = { "select_and_prev", mode = { "n", "x" } },
         ["<c-a>"]   = "select_all",
 
-        ["<a-d>"] = "inspect",
+        ["<c-d>"] = "inspect",
 
         ["<a-f>"] = "toggle_follow",
         ["<a-h>"] = "toggle_hidden",
@@ -224,9 +224,9 @@ return {
 
         ["<c-g>"] = "print_path",
 
-        -- ["<c-w>x"] = "edit_split",
-        -- ["<c-w>v"] = "edit_vsplit",
-        -- ["<c-t>"] = "tab",
+        ["<c-w>x"] = "edit_split",
+        ["<c-w>v"] = "edit_vsplit",
+        ["<c-w>t"] = "tab",
 
         -- ["<c-w>H"] = "layout_left",
         -- ["<c-w>J"] = "layout_bottom",
