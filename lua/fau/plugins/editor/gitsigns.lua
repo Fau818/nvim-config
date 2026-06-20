@@ -126,5 +126,29 @@ return {
       ignore_whitespace_change = nil,
       ignore_whitespace_change_at_eol = nil,
     },
-  }
+  },
+
+  config = function(_, opts)
+    require("gitsigns").setup(opts)
+
+    ---Dismiss a Gitsigns `diffthis` view in the current tabpage.
+    ---Gitsigns names its revision buffers `gitsigns://…` and creates them with
+    ---`bufhidden = "wipe"` plus a `BufHidden` autocmd that turns `diff` back off on the
+    ---source window. So closing the scratch window is enough — the buffer wipe and the
+    ---`diff` reset are handled by gitsigns itself.
+    ---@return boolean dismissed True if at least one diff window was closed.
+    local function dismiss_diff()
+      if not vim.wo.diff then return false end
+      local dismissed = false
+      for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        if vim.wo[win].diff and vim.api.nvim_buf_get_name(buf):match("^gitsigns://") then
+          if pcall(vim.api.nvim_win_close, win, true) then dismissed = true end
+        end
+      end
+      return dismissed
+    end
+
+    fvim.utils._diff_dismiss = dismiss_diff
+  end,
 }

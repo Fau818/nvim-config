@@ -14,24 +14,10 @@ function M.feedkeys(keys) vim.api.nvim_feedkeys(vim.keycode(keys), "n", false) e
 ---@type fun(bufnr?: number)
 M._buf_remove = nil
 
----Close any gitsigns diff windows + buffers whose target file matches `path`.
----Gitsigns buffer names look like: `gitsigns:<git-dir>:<commit>:<rel-path>`.
----@return boolean closed True if at least one linked gitsigns buffer was closed.
-local function close_linked_gitsigns_bufs(path)
-  if path == "" then return false end
-  local closed = false
-  for _, b in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_valid(b) then
-      local rel = vim.api.nvim_buf_get_name(b):match("^gitsigns:.*:(.+)$")
-      if rel and path:sub(-#rel) == rel then
-        for _, w in ipairs(vim.fn.win_findbuf(b)) do pcall(vim.api.nvim_win_close, w, true) end
-        pcall(vim.api.nvim_buf_delete, b, { force = true })
-        closed = true
-      end
-    end
-  end
-  return closed
-end
+---Dismiss a transient diff view (window + buffer), returning true if one was closed.
+---Registered by the diff provider — see `lua/fau/plugins/editor/gitsigns.lua`.
+---@type fun(): boolean?
+M._diff_dismiss = nil
 
 ---Delete the specified buffer.
 ---@param bufnr integer Default is the current buffer.
@@ -39,13 +25,11 @@ function M.buf_remove(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   if not vim.api.nvim_buf_is_valid(bufnr) then fvim.notify("Buffer " .. bufnr .. " is not valid.", vim.log.levels.ERROR) return end
 
-  -- NOTE: `checkhealth` opens in a new tab; bypass the custom handler and wipe directly.
+  -- CASE1: `checkhealth` opens in a new tab; bypass the custom handler and wipe directly.
   if vim.bo[bufnr].filetype == "checkhealth" then vim.api.nvim_buf_delete(bufnr, { force = false }) return end
 
-  -- If a gitsigns diff exists for this file, dismiss the diff (window + buffer)
-  -- instead of closing the real file — the diff is the transient view.
-  local name = vim.api.nvim_buf_get_name(bufnr)
-  if vim.wo.diff and close_linked_gitsigns_bufs(name) then return end
+  -- CASE2: In a diff view (e.g. gitsigns diffthis), dismiss the transient diff instead of closing the real file.
+  if vim.wo.diff and M._diff_dismiss and M._diff_dismiss() then return end
 
   -- Try to use the provided function to delete buffer.
   if M._buf_remove == nil or not pcall(M._buf_remove, bufnr) then vim.api.nvim_buf_delete(bufnr, { force = false }) end
