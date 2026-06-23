@@ -2,7 +2,7 @@
   "# Main Function": {
     "body": [
       "if __name__ == \"__main__\":",
-      "${1|one,two,three|}$0"
+      "\t${0:main()}"
     ],
     "prefix": "main"
   },
