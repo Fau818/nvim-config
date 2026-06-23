@@ -128,7 +128,7 @@ return {
     require("barbecue").setup(opts)
 
     vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("barbecue_navic_attach", { clear = true }),
+      group = vim.api.nvim_create_augroup("BarbecueNavicAttach", { clear = true }),
       callback = function(args)
         -- Ignore `markdown` filetype.
         if vim.bo[args.buf].buftype ~= "" or vim.bo[args.buf].filetype == "markdown" then return end

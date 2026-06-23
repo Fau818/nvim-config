@@ -1,5 +1,5 @@
 -- ==================== Initialization ====================
-vim.api.nvim_create_augroup("fau_vim", { clear = true })
+local fvim_augroup = vim.api.nvim_create_augroup("fau_vim", { clear = true })
 
 
 -- =============================================
@@ -10,7 +10,7 @@ vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 
 ---Disable horizonatal mouse scroll in terminal buffers.
 vim.api.nvim_create_autocmd("TermOpen", {
-  group = "fau_vim",
+  group = fvim_augroup,
   callback = function(ev)
     local opts = { buffer = ev.buf }
     for _, key in ipairs({ "<ScrollWheelLeft>", "<ScrollWheelRight>", "<S-ScrollWheelUp>", "<S-ScrollWheelDown>" }) do
@@ -22,8 +22,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- ==================== Yank ====================
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = fvim_augroup,
   pattern = "*",
-  group = "fau_vim",
   desc = "Highlight the yank section.",
   callback = function() vim.highlight.on_yank() end
 })
@@ -31,15 +31,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- ==================== Save ====================
 vim.api.nvim_create_autocmd("BufWritePre", {
+  group = fvim_augroup,
   pattern = "*",
-  group = "fau_vim",
   desc = "Trim blank lines and spaces before writing buffer to file.",
   callback = function() fvim.format.trim_text() end,
 })
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  group = fvim_augroup,
   pattern = "*",
-  group = "fau_vim",
   desc = "Auto save buffer.",
   callback = function() if vim.bo.buftype == "" and vim.bo.modifiable then vim.cmd("update") end end,
 })
@@ -47,22 +47,22 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
 
 -- ==================== Indentation ====================
 vim.api.nvim_create_autocmd("OptionSet", {
+  group = fvim_augroup,
   pattern = "tabstop",
-  group = "fau_vim",
   desc = "`tabstop` will be reset to 2 if tabstop >= 8.",
   callback = function() if vim.bo.tabstop >= 8 then vim.bo.tabstop = 2 end end,
 })
 
 vim.api.nvim_create_autocmd("OptionSet", {
+  group = fvim_augroup,
   pattern = "shiftwidth",
-  group = "fau_vim",
   desc = "Lock `shiftwidth` to 0",
   callback = function() vim.bo.shiftwidth = 0 end,
 })
 
 vim.api.nvim_create_autocmd("OptionSet", {
+  group = fvim_augroup,
   pattern = "softtabstop",
-  group = "fau_vim",
   desc = "Lock `softtabstop` to -1",
   callback = function() vim.bo.softtabstop = -1 end,
 })
@@ -71,34 +71,36 @@ vim.api.nvim_create_autocmd("OptionSet", {
 -- =============================================
 -- ========== Filetypes
 -- =============================================
--- DESC: Take `*.dconf` as `conf` filetype. (For Surge Detached Configuration)
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+  group = fvim_augroup,
   pattern = "*.dconf",
-  group = "fau_vim",
-  desc = "Take `*.dconf` as `conf` filetype.",
+  desc = "Take `*.dconf` as `conf` filetype. (For Surge Detached Configuration)",
   callback = function() vim.opt_local.filetype = "conf" end
 })
 
--- DESC: Treat docker-compose.yaml and docker-compose.yml to docker-compose filetype.
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
-  group = "fau_vim",
-  desc = "Correct filetype for docker-compose.",
+  group = fvim_augroup,
   pattern = { "docker-compose.yaml", "docker-compose.yml" },
+  desc = "Correct filetype for docker-compose.",
   callback = function() vim.opt_local.filetype = "yaml.docker-compose" end
 })
 
--- DESC: Use `q` to close certain filetypes.
 vim.api.nvim_create_autocmd("FileType", {
-  group = "fau_vim",
-  desc = "Use `q` to close window.",
+  group = fvim_augroup,
   pattern = { "snacks_notif", "git", "checkhealth", "grug-far-history", "help", "qf" },
+  desc = "Use `q` to close window.",
   callback = function(args)
-    vim.bo[args.buf].buflisted = false
+    -- vim.bo[args.buf].buflisted = false
+    -- vim.schedule(function()
+    --   vim.keymap.set("n", "q", function()
+    --     vim.cmd("close")
+    --     pcall(vim.api.nvim_buf_delete, args.buf, { force = true })
+    --   end, { buffer = args.buf, silent = true, desc = "Quit buffer" })
+    -- end)
+
+    -- TEST: Use fvim.utils.buf_remove() to remove the buffer. (On Jun 23, 2026)
     vim.schedule(function()
-      vim.keymap.set("n", "q", function()
-        vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, args.buf, { force = true })
-      end, { buffer = args.buf, silent = true, desc = "Quit buffer" })
+      vim.keymap.set("n", "q", function() fvim.utils.buf_remove(args.buf) end, { buffer = args.buf, desc = "Quit buffer" })
     end)
   end,
 })
@@ -122,7 +124,7 @@ end
 
 ---Pin windows for non-regular buffers.
 vim.api.nvim_create_autocmd("BufEnter", {
-  group = "fau_vim",
+  group = fvim_augroup,
   callback = function(env)
     if vim.api.nvim_win_get_config(0).relative ~= "" then return end
     if vim.bo[env.buf].buftype == "" or vim.bo[env.buf].filetype == "snacks_dashboard" then return end
@@ -136,7 +138,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 ---Wipe `hide`-demoted pinned buffers once their window closes (mirrors the original `wipe`).
 vim.api.nvim_create_autocmd("WinClosed", {
-  group = "fau_vim",
+  group = fvim_augroup,
   callback = function(env)
     local win = tonumber(env.match)
     if not win or not vim.api.nvim_win_is_valid(win) then return end
@@ -146,7 +148,7 @@ vim.api.nvim_create_autocmd("WinClosed", {
 
 ---Redirect buffer switches in pinned windows to an alternate window.
 vim.api.nvim_create_autocmd("BufEnter", {
-  group = "fau_vim",
+  group = fvim_augroup,
   callback = function(env)
     local pinned_buf = vim.w.pinned_buf
     if not pinned_buf or env.buf == pinned_buf then return end
@@ -171,7 +173,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- ========== LSP
 -- =============================================
 -- vim.api.nvim_create_autocmd("LspAttach", {
---   group = "fau_vim",
+--   group = fvim_augroup,
 --   callback = function(args)
 --     local client = vim.lsp.get_client_by_id(args.data.client_id)
 --     if not client then fvim.notify("Failed to get LSP client.", vim.log.levels.ERROR) return end
@@ -185,7 +187,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- one buffer (e.g. python's `basedpyright` + `ruff`), stopping one leaves its
 -- diagnostics stuck. Mirror the per-client push cleanup for pull.
 vim.api.nvim_create_autocmd("LspDetach", {
-  group = "fau_vim",
+  group = fvim_augroup,
   desc = "Clear a detaching client's stale (pull) diagnostics.",
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -217,22 +219,22 @@ vim.api.nvim_create_autocmd("LspDetach", {
 if fvim.kitty.is_enabled then
   -- SEE: https://sw.kovidgoyal.net/kitty/mapping/#conditional-mappings-depending-on-the-state-of-the-focused-window
   vim.api.nvim_create_autocmd({ "VimEnter", "VimResume" }, {
-    group = vim.api.nvim_create_augroup("KittySetVarVimEnter", { clear = true }),
+    group = fvim_augroup,
     callback = fvim.kitty.activate_in_editor,
   })
 
   vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
-    group = vim.api.nvim_create_augroup("KittyUnsetVarVimLeave", { clear = true }),
+    group = fvim_augroup,
     callback = fvim.kitty.deactivate_in_editor,
   })
 
   vim.api.nvim_create_autocmd("TermEnter", {
-    group = "fau_vim",
+    group = fvim_augroup,
     callback = function() fvim.kitty.deactivate_in_editor() end,
   })
 
   vim.api.nvim_create_autocmd("TermLeave", {
-    group = "fau_vim",
+    group = fvim_augroup,
     callback = function() fvim.kitty.activate_in_editor() end,
   })
 end

@@ -163,20 +163,18 @@ function M.backdrop(parent, opts)
     pcall(vim.api.nvim_buf_delete, buf, true)
   end
 
-  vim.api.nvim_create_autocmd({ "WinClosed", "WinEnter" },
-    {
-      callback = function(event)
-        local parent_alive = vim.api.nvim_win_is_valid(parent)
-        and not vim.api.nvim_win_get_config(parent).hide
-        and not (event.event == "WinClosed" and event.match == tostring(parent))  -- Closing the parent
+  vim.api.nvim_create_autocmd({ "WinClosed", "WinEnter" }, {
+    callback = function(event)
+      local parent_alive = vim.api.nvim_win_is_valid(parent)
+          and not vim.api.nvim_win_get_config(parent).hide
+          and not (event.event == "WinClosed" and event.match == tostring(parent))
 
-        if parent_alive then return end
+      if parent_alive then return end
 
-        close()
-        return true
-      end,
-    }
-  )
+      close()
+      return true  -- NOTE: Remove the autocmd.
+    end,
+  })
 end
 
 

@@ -11,30 +11,24 @@ return {
     },
 
     init = function()
-      local group = vim.api.nvim_create_augroup("CsvViewEvents", {})
+      local group = vim.api.nvim_create_augroup("CsvViewEvents", { clear = true })
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = "csv",
         group = group,
+        pattern = "csv",
         callback = function(args) vim.cmd("CsvViewEnable") end,
       })
 
       vim.api.nvim_create_autocmd("User", {
-        pattern = "CsvViewAttach",
         group = group,
-        callback = function(args)
-          local bufnr = tonumber(args.data)
-          fvim.notify("CSV view enabled. (Use `<C-r>` to toggle)")
-        end,
+        pattern = "CsvViewAttach",
+        callback = function() fvim.notify("CSV view enabled. (Use `<C-r>` to toggle)") end,
       })
 
       vim.api.nvim_create_autocmd("User", {
-        pattern = "CsvViewDetach",
         group = group,
-        callback = function(args)
-          local bufnr = tonumber(args.data)
-          fvim.notify("CSV view disabled. (Use `<C-r>` to toggle)")
-        end,
+        pattern = "CsvViewDetach",
+        callback = function(args) fvim.notify("CSV view disabled. (Use `<C-r>` to toggle)") end,
       })
     end,
 

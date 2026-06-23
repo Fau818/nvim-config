@@ -148,6 +148,7 @@ return {
       vim.g.loaded_netrwPlugin = 1
 
       vim.api.nvim_create_autocmd("VimEnter", {
+        group = vim.api.nvim_create_augroup("NvimTreeOpenDir", { clear = true }),
         desc = "Show nvim-tree when opening a directory in Neovim.",
         callback = function(data)
           local directory = vim.fn.isdirectory(data.file) == 1

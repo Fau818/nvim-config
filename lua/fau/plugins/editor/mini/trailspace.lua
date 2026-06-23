@@ -9,6 +9,7 @@ return {
     fvim.format._trim_text_source = "mini"
 
     vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("MiniTrailspaceConfig", { clear = true }),
       pattern = fvim.file.excluded_filetypes,
       desc = "Disable trailspace in some filetypes.",
       callback = function() vim.b.minitrailspace_disable = true end,

@@ -33,6 +33,10 @@ return {
     local otter = require("otter")
     otter.setup(opts)
 
-    vim.api.nvim_create_autocmd("FileType", { pattern = "markdown", callback = function(args) otter.activate() end })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("OtterMarkdownConfig", { clear = true }),
+      pattern = "markdown",
+      callback = function(args) otter.activate() end,
+    })
   end,
 }

@@ -138,6 +138,7 @@ return {
       if #missing_langs > 0 then ts_install(missing_langs) end
 
       vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("TreesitterAutoInstall", { clear = true }),
         callback = function(args)
           local filetype, lang = args.match, vim.treesitter.language.get_lang(args.match)
           if not lang or not parsers[lang] then return end

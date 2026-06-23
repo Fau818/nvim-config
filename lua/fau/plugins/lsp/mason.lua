@@ -12,7 +12,7 @@ return {
       vim.lsp.inlay_hint.enable(true)
 
       vim.api.nvim_create_autocmd("FileType", {
-        group = "fau_vim",
+        group = vim.api.nvim_create_augroup("MasonAutoLSP", { clear = true }),
         pattern = "*",
         callback = function(args)
           if vim.bo[args.buf].buftype ~= "" then return end

@@ -5,7 +5,7 @@ return {
   lazy = true,  -- Loaded by blink.cmp
 
   init = function()
-    local augroup = vim.api.nvim_create_augroup("MiniPairsDisable", { clear = true })
+    local augroup = vim.api.nvim_create_augroup("MiniPairsAutoDisable", { clear = true })
 
     local function recording() return vim.fn.reg_recording() ~= "" end
 

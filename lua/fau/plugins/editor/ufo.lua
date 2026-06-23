@@ -46,10 +46,9 @@ return {
 
 
     -- ==================== View Keeper ====================
-    local group_name = "remember_folds"
-    vim.api.nvim_create_augroup(group_name, { clear = true })
+    local augroup = vim.api.nvim_create_augroup("UfoViewKeeper", { clear = true })
     vim.api.nvim_create_autocmd("BufWinLeave", {
-      group = group_name,
+      group = augroup,
       callback = function(event)
         local buftype = vim.bo[event.buf].buftype
         local filetype = vim.bo[event.buf].filetype
@@ -59,7 +58,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd("BufWinEnter", {
-      group = group_name,
+      group = augroup,
       callback = function(event)
         if vim.bo[event.buf].buftype ~= "" then return end
         if vim.fn.empty(vim.fn.expand("%:p")) == 0 then pcall(vim.cmd.loadview) end

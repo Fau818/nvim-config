@@ -7,23 +7,26 @@ return {
   event = { "BufReadPost", "BufNewFile" },
 
   init = function()
-    if vim.g.vscode then vim.g.miniindentscope_disable = true end
+    local group = vim.api.nvim_create_augroup("MiniIndentscopeConfig", { clear = true })
 
     vim.api.nvim_create_autocmd("FileType", {
+      group = group,
       pattern = "python",
       desc = "Config mini.indentscope for python.",
-      callback = function() vim.b.miniindentscope_config = { options = { border = "top" } } end,
+      callback = function(args) vim.b[args.buf].miniindentscope_config = { options = { border = "top" } } end,
     })
 
     vim.api.nvim_create_autocmd("FileType", {
+      group = group,
       pattern = fvim.file.excluded_filetypes,
       desc = "Disable indentscope in excluded filetypes.",
-      callback = function() vim.b.miniindentscope_disable = true end,
+      callback = function(args) vim.b[args.buf].miniindentscope_disable = true end,
     })
 
     vim.api.nvim_create_autocmd("FileType", {
+      group = group,
       desc = "Disable indentscope in non regular buffers.",
-      callback = function() vim.b.miniindentscope_disable = vim.bo.buftype ~= "" end,
+      callback = function(args) vim.b[args.buf].miniindentscope_disable = vim.bo[args.buf].buftype ~= "" end,
     })
   end,
 
