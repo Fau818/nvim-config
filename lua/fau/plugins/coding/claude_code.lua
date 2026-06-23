@@ -63,6 +63,7 @@ return {
       fix_streamed_paste = "auto",
 
       auto_close = true,
+      auto_insert = true,
       provider = "snacks",
       ---@module "snacks"
       ---@type snacks.win.Config
@@ -85,7 +86,7 @@ return {
 
     -- Diff Integration
     diff_opts = {
-      layout = "vertical",  -- "vertical" or "horizontal"
+      layout = "vertical",  ---@type "vertical" | "horizontal" | "unified"
       open_in_new_tab = true,
       keep_terminal_focus = false,  -- If true, moves focus back to terminal after diff opens
       hide_terminal_in_new_tab = false,
