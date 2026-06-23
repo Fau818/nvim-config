@@ -5,7 +5,7 @@ return {
   conda = vim.fn.executable("conda") == 1 and require("fau.plugins.editor.snacks.picker.sources.conda").conda_picker or {},
   autocmds = { layout = { preset = "telescope" }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
 
-  buffers = { layout = { preset = "stack" }, on_show = preset.normal_mode, win = { preview = preset.normal_preview } },
+  buffers = { layout = { preset = "stack" }, win = { preview = preset.normal_preview } },
 
   -- cliphist = {},
   -- colorschemes = {},

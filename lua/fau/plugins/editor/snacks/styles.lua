@@ -21,7 +21,7 @@ return {
 
   terminal = { position = "float", border = "rounded", wo = { wrap = true} },
 
-  zen = {},
+  zen = { backdrop = { transparent = false } },
   zoom_indicator = {},
 
 
