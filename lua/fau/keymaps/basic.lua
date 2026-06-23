@@ -74,9 +74,10 @@ keymap("n", "<A-m>", "J", opts("Edit: Merge Line"))
 -- Default Visual-Block Mode
 keymap("n", "v", "<C-v>", opts("Visual-Block Mode"))
 
--- Use Enter Key to Break Line in Normal Mode
-keymap("n", "<CR>",         "o<ESC>", opts("Edit: Add New Line"))
-keymap("n", "<LEADER><CR>", "<CR>",   opts("Edit: Normal Enter Key"))
+-- Use Enter Key to Break Line
+keymap("n", "<CR>",         "o<ESC>",     opts("Edit: Add New Line"))
+keymap("n", "<LEADER><CR>", "<CR>",       opts("Edit: Normal Enter Key"))
+keymap("i", "<S-CR>",       "<C-g>u<CR>", opts("Edit: Add New Line"))
 
 -- Reveal File
 keymap("n", "<C-f>", "<CMD>Open %:p:h<CR>", opts("Editor: Reveal File"))
