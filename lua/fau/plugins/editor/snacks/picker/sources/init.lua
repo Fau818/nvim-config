@@ -2,6 +2,8 @@ local preset = require("fau.plugins.editor.snacks.picker.sources.preset")
 
 ---@type snacks.picker.sources.Config|{}|table<string, snacks.picker.Config|{}>
 return {
+  claude = vim.fn.executable("claude") == 1 and require("fau.plugins.editor.snacks.picker.sources.claude").claude_picker or {},
+
   conda = vim.fn.executable("conda") == 1 and require("fau.plugins.editor.snacks.picker.sources.conda").conda_picker or {},
   autocmds = { layout = { preset = "telescope" }, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
 

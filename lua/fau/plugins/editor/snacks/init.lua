@@ -124,6 +124,9 @@ return {
     -- Top Pickers
     { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Pickers" },
 
+    -- Claude Sessions
+    { "<LEADER>cs", function() Snacks.picker("claude") end, desc = "Picker: Claude Sessions" },
+
     -- { "<LEADER>F",  function() Snacks.picker.files() end,    desc = "Find Files" },
     { "<LEADER>ff", function() Snacks.picker.smart() end,    desc = "Picker: Smart Find Files" },
     { "<LEADER>fb", function() Snacks.picker.buffers() end,  desc = "Picker: Buffers" },
