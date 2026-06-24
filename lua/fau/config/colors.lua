@@ -53,6 +53,15 @@ return {
     hint  = "#1B251D",
   },
 
+  -- Snippet tabstop backgrounds (mini.snippets), tuned to be visible over `bg`.
+  snippet = {
+    current   = "#274E33",  -- active tabstop ($1, $2, …)     — green
+    replace   = "#5C3A1B",  -- active tabstop, to replace     — orange
+    unvisited = "#4A2740",  -- not yet filled                 — pink
+    visited   = "#26405E",  -- already filled                 — blue
+    final     = "#372E5C",  -- final tabstop ($0)             — purple
+  },
+
   diff = {
     add          = "#233844",
     delete       = "#3a2230",

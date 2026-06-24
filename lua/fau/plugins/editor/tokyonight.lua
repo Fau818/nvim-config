@@ -154,6 +154,19 @@ return {
       highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
       highlights["MiniIndentscopeSymbol"] = { fg = fvim.colors.cobalt }
 
+      -- ---------- Mini Snippets
+      -- highlights["MiniSnippetsCurrent"]        = { bg = fvim.colors.snippet.current, bold = true }
+      -- highlights["MiniSnippetsCurrentReplace"] = { bg = fvim.colors.snippet.replace, bold = true }
+      -- highlights["MiniSnippetsUnvisited"]      = { bg = fvim.colors.snippet.unvisited }
+      -- highlights["MiniSnippetsVisited"]        = { bg = fvim.colors.snippet.visited }
+      -- highlights["MiniSnippetsFinal"]          = { bg = fvim.colors.snippet.final }
+
+      highlights["MiniSnippetsCurrent"]        = { sp = fvim.colors.yellow_orange, underline = true }
+      highlights["MiniSnippetsCurrentReplace"] = { sp = fvim.colors.dark_green, underline = true }
+      highlights["MiniSnippetsUnvisited"]      = { sp = fvim.colors.pink, underline = true }
+      highlights["MiniSnippetsVisited"]        = { sp = fvim.colors.dark_blue, underline = true }
+      highlights["MiniSnippetsFinal"]          = { sp = fvim.colors.cobalt, underline = true }
+
       -- ---------- Nvim-tree
       highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }
       highlights["NvimTreeSpecialFile"] = { fg = colors.purple }

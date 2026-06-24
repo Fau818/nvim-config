@@ -21,14 +21,8 @@ return {
 
     { "Kaiser-Yang/blink-cmp-dictionary", dependencies = "nvim-lua/plenary.nvim" },
 
-    -- {
-    --   ---@module "blink-copilot"
-    --   "fang2hou/blink-copilot",
-    --   dependencies = "zbirenbaum/copilot.lua",
-    --   enabled = false,
-    --   ---@type Config
-    --   opts = { max_completions = 2, max_attempts = 2 },
-    -- },
+    ---@module "mini.snippets"
+    "nvim-mini/mini.snippets",
   },
 
   event = { "InsertEnter", "CmdlineEnter", "LspAttach" },
@@ -41,27 +35,61 @@ return {
       preset = "none",
       -- ["<TAB>"] = { "accept", "snippet_forward", "fallback" },
       ["<TAB>"] = {
-        function(cmp)
-          ---Accept the copilot suggestion if it's visible
-          ---@return boolean
-          local function copilot_is_visible()
-            local copilot_ok, copilot = pcall(require, "copilot.suggestion")
-            return copilot_ok and copilot.is_visible() ~= nil
-          end
-
-          if cmp.is_menu_visible() then return cmp.accept()
-          elseif cmp.snippet_active() then return cmp.snippet_forward()
-          elseif copilot_is_visible() then return pcall(function() require("copilot.suggestion").accept() end)
-          else
-            local tabout_ok, tabout = pcall(require, "tabout")
-            vim.schedule(function() pcall(function() tabout.tabout() end) end)
-            return tabout_ok
-          end
+        "accept", "snippet_forward",
+        ---Copilot suggestion
+        function()
+          local copilot_ok, copilot = pcall(require, "copilot.suggestion")
+          return copilot_ok and copilot.is_visible() ~= nil and pcall(copilot.accept)
+        end,
+        ---Tabout
+        function()
+          local tabout_ok, tabout = pcall(require, "tabout")
+          vim.schedule(function() pcall(tabout.tabout) end)
+          return tabout_ok
         end,
         "fallback"
       },
-      ["<S-TAB>"] = { "select_prev", "fallback" },
-      ["<CR>"]    = { "snippet_forward", "fallback" },
+      ["<S-TAB>"] = { "select_prev", "snippet_backward", "fallback" },
+
+      ["<CR>"]    = {
+        function(cmp)
+          if not cmp.snippet_active() then return false end
+          local s = MiniSnippets.session.get()
+
+          local function jump_to_final_tabstop()
+            local hops, id = 0, s.cur_tabstop
+            while id ~= "0" and hops < vim.tbl_count(s.tabstops) do id = s.tabstops[id].next hops = hops + 1 end
+            for _ = 1, hops do vim.schedule(function() MiniSnippets.session.jump("next") end) end
+          end
+
+          local function stop_snippet()
+            local final_node = nil
+            for _, n in ipairs(s.nodes) do if n.tabstop == "0" then final_node = n break end end
+
+            -- Read $0's position before stop() clears its extmark.
+            local pos = nil
+            if final_node and final_node.extmark_id then
+              local m = vim.api.nvim_buf_get_extmark_by_id(s.buf_id, s.ns_id, final_node.extmark_id, { details = true })
+              if m and m[1] then
+                local d = m[3] or {}
+                pos = { (d.end_row or m[1]) + 1, d.end_col or m[2] }
+              end
+            end
+
+            vim.schedule(function()
+              MiniSnippets.session.stop()
+              if pos then pcall(vim.api.nvim_win_set_cursor, 0, pos) end
+            end)
+          end
+
+          -- CASE1: If the current tabstop is not the final one ($0), jump to the final tabstop.
+          -- CASE2: If the current tabstop is the final one ($0), stop the snippet session and move the cursor to the end of $0.
+          if s.cur_tabstop ~= "0" then jump_to_final_tabstop() else stop_snippet() end
+
+          return true
+        end,
+        "fallback"
+      },
 
       ["<Up>"]   = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
@@ -106,15 +134,30 @@ return {
     },
 
     signature = { enabled = true, window = { border = "single" } },
-    -- TODO: Configure it.
-    -- snippets = { preset = "mini_snippets" },
+
+    snippets = {
+      preset = "mini_snippets",
+
+      -- HACK: Override the default jump behavior to skip the final tabstop ($0) if it's reached.
+      jump = function(direction)
+        if not _G.MiniSnippets then error("mini.snippets has not been setup") end
+        local function mini_jump() MiniSnippets.session.jump(direction == -1 and "prev" or "next") end
+
+        mini_jump()
+
+        vim.schedule(function()
+          local session = MiniSnippets.session.get()
+          assert(session, "No active snippet session")
+          if session.cur_tabstop == "0" then mini_jump() end
+        end)
+      end,
+    },
 
     appearance = { kind_icons = fvim.icons.kinds },
     fuzzy = nil,  -- Use default.
 
     sources = {
       default = {
-        -- "copilot",
         "lsp",
         "snippets",
         "env", "path",
@@ -127,9 +170,42 @@ return {
       providers = {
         commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 15, async = true },
         path = { score_offset = 12 },
-        snippets = { score_offset = 10 },
+        snippets = {
+          score_offset = 10,
 
-        -- copilot = { name = "Copilot", module = "blink-copilot", score_offset = 9, async = true },
+          ---Don't offer snippets right after a member access (`field.xxx`, `obj:method`).
+          should_show_items = function(ctx)
+            local col = ctx.bounds.start_col
+            local char_before = ctx.line:sub(col - 1, col - 1)
+            return char_before ~= "." and char_before ~= ":"
+          end,
+
+          ---Resolve snippet variables ($LINE_COMMENT, $TM_FILENAME, …) for the docs preview.
+          transform_items = function(_, items)
+            if not _G.MiniSnippets then return items end
+
+            local function render(nodes)
+              local out = {}
+              for _, n in ipairs(nodes) do
+                if n.text ~= nil then out[#out + 1] = n.text
+                elseif n.placeholder ~= nil then out[#out + 1] = render(n.placeholder)
+                end
+              end
+              return table.concat(out)
+            end
+
+            for _, item in ipairs(items) do
+              local snip = item.data and item.data.snip  --[[@as { body: string|string[] }?]]
+              local body = snip and snip.body
+              if type(body) == "table" then body = table.concat(body, "\n") end
+              if type(body) == "string" then
+                local ok, nodes = pcall(MiniSnippets.parse, body, { normalize = true })
+                if ok then item.detail = render(nodes) end
+              end
+            end
+            return items
+          end,
+        },
 
         lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 8 },
         lsp = {
@@ -188,19 +264,18 @@ return {
 
     -- ==================== Copilot Auto Hide ====================
     if require("blink.cmp.config").completion.ghost_text.enabled then
-      local copilot_status, _ = pcall(require, "copilot")
-      if not copilot_status then return end
+      if not package.loaded["copilot"] then return end
 
+      local group = vim.api.nvim_create_augroup("CopilotAutoDismiss", { clear = true })
       local suggestion = require("copilot.suggestion")
       vim.api.nvim_create_autocmd("User", {
+        group = group,
         pattern = "BlinkCmpMenuOpen",
-        callback = function()
-          vim.b.copilot_suggestion_hidden = true
-          suggestion.dismiss()
-        end,
+        callback = function() vim.b.copilot_suggestion_hidden = true suggestion.dismiss() end,
       })
 
       vim.api.nvim_create_autocmd("User", {
+        group = group,
         pattern = "BlinkCmpMenuClose",
         callback = function()
           vim.b.copilot_suggestion_hidden = false
