@@ -63,6 +63,7 @@ return {
       highlights["Number"]    = { fg = fvim.colors.light_blue }
 
       -- ---------- Editor UI
+      highlights["FloatTitle"] = { bg = fvim.colors.cobalt, fg = fvim.colors.bg, bold = true }
       highlights["FloatBorder"]  = { fg = fvim.colors.cobalt }
       highlights["WinSeparator"] = { fg = fvim.colors.light_blue }
 
@@ -175,16 +176,25 @@ return {
 
       -- ---------- Snacks
       highlights["SnacksIndentScope"] = { fg = fvim.colors.cobalt }
-      highlights["SnacksPickerPreviewTitle"] = { bg = fvim.colors.cobalt, fg = fvim.colors.bg, bold = true }
-      highlights["FloatTitle"] = { fg = fvim.colors.cobalt, bg = fvim.colors.bg, bold = true }
-      highlights["SnacksTitle"] = { fg = fvim.colors.purple_blue, bg = fvim.colors.bg, bold = true }
+
+      highlights["SnacksPickerListCursorLine"] = { bg = fvim.colors.visual, bold = true }
+      highlights["SnacksPickerInputBorder"] = { fg = fvim.colors.gold }
+
+      highlights["SnacksTitle"]              = { link = "FloatTitle" }
+      highlights["SnacksPickerTitle"]        = { link = "FloatTitle" }
+      highlights["SnacksPickerInputTitle"]   = { link = "FloatTitle" }
+      highlights["SnacksPickerListTitle"]    = { link = "FloatTitle" }
+      highlights["SnacksPickerPreviewTitle"] = { link = "FloatTitle" }
+      highlights["SnacksPickerBoxTitle"]     = { link = "FloatTitle" }
+
+      highlights["SnacksPickerToggle"] = { fg = fvim.colors.gold, bg = fvim.colors.bg, bold = true }
 
       -- ---------- Telescope
       highlights["TelescopeBorder"]         = { fg = fvim.colors.cobalt }
       highlights["TelescopePromptTitle"]    = { fg = fvim.colors.cobalt }
       highlights["TelescopePromptPrefix"]   = { fg = fvim.colors.purple_blue }
       highlights["TelescopePromptBorder"]   = { fg = fvim.colors.cobalt }
-      highlights["TelescopeSelectionCaret"] = { fg = fvim.colors.cobalt, bg = "#2D3F76" }
+      highlights["TelescopeSelectionCaret"] = { fg = fvim.colors.cobalt, bg = fvim.colors.visual }
 
       highlights["@module.python"] = { fg = colors.fg }
     end,

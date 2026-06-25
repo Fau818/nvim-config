@@ -1,6 +1,7 @@
 return {
   bg      = "#151518",
   comment = "#717CBD",
+  visual  = "#2D3F76",
 
   wathet      = "#87CEEB",
   blue        = "#00A9EF",
@@ -22,7 +23,9 @@ return {
   dark_yellow   = "#C8C864",
   orange_yellow = "#FBBF24",
   yellow_orange = "#FFC777",
+  gold          = "#E5C07B",
 
+  emerald     = "#50C878",
   green       = "#6ECD82",
   light_green = "#ADEB96",  -- #AFEBB9
   dark_green  = "#39CC8F",
