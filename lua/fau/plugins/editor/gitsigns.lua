@@ -115,7 +115,7 @@ return {
     -- worktrees = nil,  -- Use default.
     -- watch_gitdir = nil,  -- Use default.
     diff_opts = {
-      algorithm = "histogram",
+      algorithm = "minimal",  -- TEST: On Jun 24, 2026
       internal = true,
       indent_heuristic = true,
       linematch = 60,

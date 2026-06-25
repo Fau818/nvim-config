@@ -187,7 +187,7 @@ return {
       highlights["SnacksPickerPreviewTitle"] = { link = "FloatTitle" }
       highlights["SnacksPickerBoxTitle"]     = { link = "FloatTitle" }
 
-      highlights["SnacksPickerToggle"] = { fg = fvim.colors.gold, bg = fvim.colors.bg, bold = true }
+      highlights["SnacksPickerToggle"] = { fg = fvim.colors.bg, bg = fvim.colors.lemon, bold = true }
 
       -- ---------- Telescope
       highlights["TelescopeBorder"]         = { fg = fvim.colors.cobalt }

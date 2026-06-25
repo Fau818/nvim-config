@@ -15,17 +15,19 @@ return {
   light_cyan = "#4FD6BE",
   dark_cyan  = "#20B2AA",
 
-  purple      = "#C099FF",
-  dark_purple = "#7D7DFF",
-  cobalt      = "#9999FF",
+  purple       = "#C099FF",
+  dark_purple  = "#7D7DFF",
+  light_purple = "#CBC3E3",
+  cobalt       = "#9999FF",
 
+  lemon         = "#FFFDA7",
   yellow        = "#FFFF00",
   dark_yellow   = "#C8C864",
   orange_yellow = "#FBBF24",
   yellow_orange = "#FFC777",
   gold          = "#E5C07B",
 
-  emerald     = "#50C878",
+  emerald     = "#50C878",  -- "#DDE3C3"
   green       = "#6ECD82",
   light_green = "#ADEB96",  -- #AFEBB9
   dark_green  = "#39CC8F",
