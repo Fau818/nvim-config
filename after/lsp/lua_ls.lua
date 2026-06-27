@@ -203,7 +203,7 @@ local settings = {
       -- inferTableSize = 10,
       inferParamType = true,
 
-      weakNilCheck   = false,  -- Whether it is permitted to assign a union type that contains nil to a variable that does not permit it.
+      weakNilCheck   = true,  -- Whether it is permitted to assign a union type that contains nil to a variable that does not permit it.
       weakUnionCheck = false,  -- Whether it is permitted to assign a union type which only has one matching type to a variable.
     },
 

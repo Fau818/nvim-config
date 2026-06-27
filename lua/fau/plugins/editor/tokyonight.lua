@@ -177,7 +177,7 @@ return {
       -- ---------- Snacks
       highlights["SnacksIndentScope"] = { fg = fvim.colors.cobalt }
 
-      highlights["SnacksPickerListCursorLine"] = { bg = fvim.colors.visual, bold = true }
+      -- highlights["SnacksPickerListCursorLine"] = { bg = fvim.colors.visual, bold = true }
       highlights["SnacksPickerInputBorder"] = { fg = fvim.colors.gold }
 
       highlights["SnacksTitle"]              = { link = "FloatTitle" }

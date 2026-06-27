@@ -42,6 +42,9 @@ return {
     -- HACK: Remove std_data path from default config.
     Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }
 
+    -- HACK: Enable nested-field filtering in the matcher, e.g. `item.buf:2`.
+    require("fau.plugins.editor.snacks.picker.nested_field").setup()
+
 
     -- ==================== Buffer Remove ====================
     fvim.utils._buf_remove = Snacks.bufdelete.delete
