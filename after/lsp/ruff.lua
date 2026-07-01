@@ -3,7 +3,7 @@ return {
   init_options = {
     settings = {
       configuration = string.format("%s/configuration/pyproject.toml", fvim.nvim_config_path),
-      configurationPreference = nil,  -- Use default.
+      configurationPreference = "filesystemFirst",  ---@type "editorFirst" | "filesystemFirst" | "editorOnly"
 
       -- exclude = {},  -- Use default.
       -- lineLength = nil,  -- Use default.
