@@ -145,7 +145,7 @@ return {
 
         -- the path name in italic
         duplicate          = { bg = fvim.colors.bufferline.bg, fg = fvim.colors.gray, bold = true, italic = true },
-        duplicate_visible  = { bg = fvim.colors.bufferline.visible_bg, fg = fvim.colors.gray, bold = true, italic = true },
+        duplicate_visible  = { bg = fvim.colors.bufferline.selected_bg, fg = fvim.colors.gray, bold = true, italic = true },
         duplicate_selected = { bg = fvim.colors.bufferline.selected_bg, fg = fvim.colors.cyan_gray, bold = true, italic = true },
 
         modified          = { bg = fvim.colors.bufferline.bg },
