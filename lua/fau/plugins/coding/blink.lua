@@ -171,13 +171,22 @@ return {
         commits = { name = "Git", module = "blink-cmp-conventional-commits", score_offset = 15, async = true },
         path = { score_offset = 12 },
         snippets = {
-          score_offset = 10,
+          score_offset = 8,
 
-          ---Don't offer snippets right after a member access (`field.xxx`, `obj:method`).
+          ---Don't offer snippets right after a member access (`field.xxx`, `obj:method`), or while inside a comment/string.
           should_show_items = function(ctx)
             local col = ctx.bounds.start_col
             local char_before = ctx.line:sub(col - 1, col - 1)
-            return char_before ~= "." and char_before ~= ":"
+            if char_before == "." or char_before == ":" then return false end
+
+            -- `ctx.cursor` sits right after the last typed char, i.e. past the end of that
+            -- char's node range, so query one column to the left to catch its syntax context.
+            local row, ccol = ctx.cursor[1] - 1, math.max(ctx.cursor[2] - 1, 0)
+            for _, capture in ipairs(vim.treesitter.get_captures_at_pos(ctx.bufnr, row, ccol)) do
+              if capture.capture:match("^comment") or capture.capture:match("^string") then return false end
+            end
+
+            return true
           end,
 
           ---Resolve snippet variables ($LINE_COMMENT, $TM_FILENAME, …) for the docs preview.
