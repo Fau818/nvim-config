@@ -34,6 +34,7 @@ return {
         exclude = { "**/node_modules", "**/__pycache__", "**/.*" },
         -- extraPaths = nil,  -- Use default.
         -- stubPath = nil,  -- Use default.
+        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",
         -- typeshedPaths = nil,  -- Use default.
         -- baselineFile = nil,  -- Use default.
 
@@ -65,7 +66,7 @@ return {
           reportConstantRedefinition = "warning",
           reportOperatorIssue = "warning",
 
-          -- reportAttributeAccessIssue = "warning",  -- If again, do it !!!
+          reportAttributeAccessIssue = "warning",
         }
       },
     },
