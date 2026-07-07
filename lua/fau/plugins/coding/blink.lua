@@ -265,6 +265,16 @@ return {
   config = function(_, opts)
     require("blink.cmp").setup(opts)
 
+    -- ==================== <CR> in normal mode to stop snippet ====================
+    local cr_callback = fvim.utils.keymap_fallback_wrapper("n", "<CR>")
+    vim.keymap.set("n", "<CR>", function()
+      local session = _G.MiniSnippets and MiniSnippets.session.get()
+      if not session then cr_callback()
+      else vim.schedule(MiniSnippets.session.stop)
+      end
+    end, { noremap = true, silent = true })
+
+
     -- ==================== Copilot Auto Hide ====================
     if require("blink.cmp.config").completion.ghost_text.enabled then
       if not package.loaded["copilot"] then return end
