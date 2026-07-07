@@ -63,6 +63,8 @@ return {
           reportUnknownMemberType = "none",
           reportUnknownParameterType = "none",
 
+          reportArgumentType = "warning",
+
           reportConstantRedefinition = "warning",
           reportOperatorIssue = "warning",
 

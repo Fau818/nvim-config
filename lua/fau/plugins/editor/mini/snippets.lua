@@ -24,7 +24,7 @@ return {
         -- Created for the duration of active session(s)
         jump_next = "",
         jump_prev = "",
-        stop = "<C-c>",
+        stop = "",
       },
 
       -- Functions describing snippet expansion. If `nil`, default values

@@ -1,3 +1,16 @@
+local function copilot_suggest()
+  local copilot_ok, copilot = pcall(require, "copilot.suggestion")
+  return copilot_ok and copilot.is_visible() ~= nil and pcall(copilot.accept)
+end
+
+
+local function tabout()
+  local tabout_ok, tabout = pcall(require, "tabout")
+  vim.schedule(function() pcall(tabout.tabout) end)
+  return tabout_ok
+end
+
+
 ---@type LazyPluginSpec
 return {
   ---@module "blink.cmp"
@@ -34,21 +47,7 @@ return {
     keymap = {
       preset = "none",
       -- ["<TAB>"] = { "accept", "snippet_forward", "fallback" },
-      ["<TAB>"] = {
-        "accept", "snippet_forward",
-        ---Copilot suggestion
-        function()
-          local copilot_ok, copilot = pcall(require, "copilot.suggestion")
-          return copilot_ok and copilot.is_visible() ~= nil and pcall(copilot.accept)
-        end,
-        ---Tabout
-        function()
-          local tabout_ok, tabout = pcall(require, "tabout")
-          vim.schedule(function() pcall(tabout.tabout) end)
-          return tabout_ok
-        end,
-        "fallback"
-      },
+      ["<TAB>"] = { "accept", copilot_suggest, "snippet_forward", tabout, "fallback" },
       ["<S-TAB>"] = { "select_prev", "snippet_backward", "fallback" },
 
       ["<CR>"]    = {
@@ -95,7 +94,11 @@ return {
       ["<Down>"] = { "select_next", "fallback" },
 
       ["<ESC>"] = { "hide", "fallback" },
-      ["<C-c>"] = { "cancel", "fallback" },
+      ["<C-c>"] = {
+        "cancel",
+        function(cmp) return (cmp.snippet_active() and vim.schedule(MiniSnippets.session.stop) or true) or false end,
+        "fallback",
+      },
 
       ["<C-space>"] = { "show", "show_documentation", "hide" },
 
@@ -173,20 +176,11 @@ return {
         snippets = {
           score_offset = 8,
 
-          ---Don't offer snippets right after a member access (`field.xxx`, `obj:method`), or while inside a comment/string.
+          ---Only offer snippets on an empty line (ignoring the prefix being typed and surrounding whitespace).
           should_show_items = function(ctx)
-            local col = ctx.bounds.start_col
-            local char_before = ctx.line:sub(col - 1, col - 1)
-            if char_before == "." or char_before == ":" then return false end
-
-            -- `ctx.cursor` sits right after the last typed char, i.e. past the end of that
-            -- char's node range, so query one column to the left to catch its syntax context.
-            local row, ccol = ctx.cursor[1] - 1, math.max(ctx.cursor[2] - 1, 0)
-            for _, capture in ipairs(vim.treesitter.get_captures_at_pos(ctx.bufnr, row, ccol)) do
-              if capture.capture:match("^comment") or capture.capture:match("^string") then return false end
-            end
-
-            return true
+            local before = ctx.line:sub(1, ctx.bounds.start_col - 1)
+            local after = ctx.line:sub(ctx.bounds.start_col + ctx.bounds.length)
+            return before:match("^%s*$") ~= nil and after:match("^%s*$") ~= nil
           end,
 
           ---Resolve snippet variables ($LINE_COMMENT, $TM_FILENAME, …) for the docs preview.
