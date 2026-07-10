@@ -10,6 +10,7 @@ local options = {
   swapfile    = false,  -- create a swapfile
   backup      = false,  -- create a backup file
   writebackup = false,  -- create a backup file when written
+  autoread    = true,   -- reload buffers changed outside Neovim
 
   termguicolors = true,  -- set term gui colors
   clipboard = vim.fn.has("clipboard") == 1 and "unnamedplus" or "",  -- allows neovim to access the system clipboard

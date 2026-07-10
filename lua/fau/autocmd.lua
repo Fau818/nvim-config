@@ -45,6 +45,18 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
 })
 
 
+-- ==================== Autoread ====================
+-- NOTE: `autoread` only takes effect when Neovim explicitly checks a file's
+-- mtime; it does not poll on its own. Trigger that check on the events most
+-- likely to mean the file changed on disk.
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  group = fvim_augroup,
+  pattern = "*",
+  desc = "Check if the current file has changed on disk and reload it.",
+  callback = function() if vim.fn.mode() ~= "c" then vim.cmd("checktime") end end,
+})
+
+
 -- ==================== Indentation ====================
 vim.api.nvim_create_autocmd("OptionSet", {
   group = fvim_augroup,
