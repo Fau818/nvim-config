@@ -16,7 +16,7 @@ return {
   event = "VeryLazy",
 
   keys = {
-    { "<C-.>", "<CMD>ClaudeCode<CR>", desc = "Claude Code: Toggle", mode = { "n", "x" } },
+    { "<C-.>", "<CMD>ClaudeCodeFocus<CR>", desc = "Claude Code: Focus", mode = { "n", "x" } },
     { "<LEADER>ct", send_to_cc, desc = "Claude Code: Send", mode = { "n", "x" } },
     { "<LEADER>ct", "<CMD>ClaudeCodeTreeAdd<CR>", desc = "Claude Code: Send (File Tree)", mode = { "n", "x" }, ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" } },
 

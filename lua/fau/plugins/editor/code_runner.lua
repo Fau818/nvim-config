@@ -36,13 +36,13 @@ return {
 
       -- java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
       python = function()
-        -- CASE1: Virtual environment is activated, use the python from the virtual environment.
-        local use_venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_DEFAULT_ENV")
-        if use_venv then return { "python3", "$file" } end
-
-        -- CASE2: Project has uv.lock, use uv to run the project.
+        -- CASE1: Project has uv.lock, use uv to run the project.
         local use_uv = vim.fn.executable("uv") == 1 and vim.uv.fs_stat("uv.lock") ~= nil
         if use_uv then return { "uv run", "$file" } end
+
+        -- CASE2: Virtual environment is activated, use the python from the virtual environment.
+        local use_venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_DEFAULT_ENV")
+        if use_venv then return { "python3", "$file" } end
 
         -- CASE3: Fallback to system python.
         return { "python3", "$file" }
