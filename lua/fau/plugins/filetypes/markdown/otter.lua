@@ -36,7 +36,10 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       group = vim.api.nvim_create_augroup("OtterMarkdownConfig", { clear = true }),
       pattern = "markdown",
-      callback = function(args) otter.activate() end,
+      callback = function(args)
+        if vim.bo[args.buf].buftype ~= "" then return end
+        otter.activate()
+      end,
     })
   end,
 }

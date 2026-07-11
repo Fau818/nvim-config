@@ -7,7 +7,7 @@ return {
   keys = {
     -- ==================== NES ====================
     {
-      "<C-n>",
+      "<LEADER>cn",
       function()
         require("sidekick.nes").toggle()
         fvim.notify(("%s Next Edit Suggestion"):format(require("sidekick.nes").enabled and "Enabled" or "Disabled"), vim.log.levels.INFO, { title = "Sidekick NES" })
