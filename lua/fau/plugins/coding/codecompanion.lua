@@ -29,10 +29,9 @@ return {
       return spinner_frames[spinner_index]
     end
 
-    local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", { clear = true })
     vim.api.nvim_create_autocmd("User", {
       pattern = { "CodeCompanionRequestStarted", "CodeCompanionRequestFinished" },
-      group = group,
+      group = vim.api.nvim_create_augroup("CodeCompanionHooks", { clear = true }),
       callback = function(args)
         local started = args.match == "CodeCompanionRequestStarted"
         if not started then spinner_index = 0 end
@@ -44,6 +43,14 @@ return {
           opts = function(notif) notif.icon = started and next_spinner_frame() or " " end,
         })
       end,
+    })
+
+    -- ==================== Keymappings ====================
+    -- NOTE: Hide the chat buffer with `<A-q>` (the same behavior as `<S-q>`).
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "codecompanion",
+      group = vim.api.nvim_create_augroup("CodeCompanionChatHooks", { clear = true }),
+      callback = function() vim.keymap.set("n", "<A-q>", "<CMD>q<CR>", { buffer = true }) end,
     })
   end,
 
