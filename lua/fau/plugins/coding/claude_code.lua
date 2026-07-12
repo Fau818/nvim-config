@@ -1,9 +1,43 @@
-local function send_to_cc()
-  local mode = vim.fn.mode()
-  if mode == "v" or mode == "V" or mode == "\22" then vim.api.nvim_command("ClaudeCodeSend") return end
-  if mode == "n" then vim.api.nvim_command("ClaudeCodeAdd %") return end
+---Update the selection of current window to Claude Code client.
+local function broadcast_cursor_position(win)
+  local selection = require("claudecode.selection")
+  pcall(vim.api.nvim_win_call, win, function() selection.send_selection_update(selection.get_cursor_position()) end)
+end
 
-  assert(false, "Mode " .. mode .. " not supported!")
+
+---Send the current selection or file to Claude Code client.
+local function send_to_cc()
+  local win = vim.api.nvim_get_current_win()
+
+  local mode = vim.fn.mode()
+  if mode == "v" or mode == "V" or mode == "\22" then vim.api.nvim_command("ClaudeCodeSend")
+  elseif mode == "n" then vim.api.nvim_command("ClaudeCodeAdd %")
+  else assert(false, "Mode " .. mode .. " not supported!")
+  end
+
+  vim.schedule(function() broadcast_cursor_position(win) end)
+end
+
+
+--- Focus to Claude Code window and broadcast the current selection or file to Claude Code client.
+local function focus_cc()
+  local MAX_TRY = 5
+  local TIMEOUT = 200
+
+  local claudecode = require("claudecode")
+  local win = vim.api.nvim_get_current_win()
+  vim.api.nvim_command("ClaudeCodeFocus")
+
+  local tries = 0
+  local function try_broadcast()
+    tries = tries + 1
+    if tries > MAX_TRY then vim.notify("Failed to broadcast selection to Claude Code client after " .. MAX_TRY .. " tries.", vim.log.levels.WARN) return end
+    if claudecode.is_claude_connected() then broadcast_cursor_position(win)
+    else vim.defer_fn(try_broadcast, TIMEOUT)
+    end
+  end
+
+  vim.defer_fn(try_broadcast, TIMEOUT * 2)
 end
 
 
@@ -16,7 +50,7 @@ return {
   event = "VeryLazy",
 
   keys = {
-    { "<C-.>", "<CMD>ClaudeCodeFocus<CR>", desc = "Claude Code: Focus", mode = { "n", "x" } },
+    { "<C-.>", focus_cc, desc = "Claude Code: Focus", mode = { "n", "x" } },
     { "<LEADER>ct", send_to_cc, desc = "Claude Code: Send", mode = { "n", "x" } },
     { "<LEADER>ct", "<CMD>ClaudeCodeTreeAdd<CR>", desc = "Claude Code: Send (File Tree)", mode = { "n", "x" }, ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" } },
 

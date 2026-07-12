@@ -3,7 +3,7 @@ local M = {}
 -- =============================================
 -- ========== Feedkeys
 -- =============================================
----Simulate pressing `keys` in noremap mode.
+---Simulate pressing `keys` in noremap mode (asynchronously).
 ---@param keys string
 function M.feedkeys(keys) vim.api.nvim_feedkeys(vim.keycode(keys), "n", false) end
 

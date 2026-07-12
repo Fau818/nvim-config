@@ -141,7 +141,7 @@ local function resync_curswant() if vim.fn.winsaveview().curswant < MAXCOL then 
 ---@param bufnr integer
 local function fixup_curswant_after_restore(win, bufnr)
   local pos = vim.api.nvim_win_get_cursor(win)
-  local tries = MAX_TRY
+  local tries = 0
 
   local function is_valid()
     return vim.api.nvim_win_is_valid(win)
@@ -152,8 +152,8 @@ local function fixup_curswant_after_restore(win, bufnr)
   end
 
   local function fixup()
-    tries = tries - 1
-    if tries < 0 or not is_valid() then return end
+    tries = tries + 1
+    if tries > MAX_TRY or not is_valid() then return end
     if #vim.lsp.inlay_hint.get({ bufnr = bufnr }) == 0 then vim.defer_fn(fixup, DELAY) return end
     vim.cmd("redraw")  -- make the decoration provider apply the extmarks now
     vim.api.nvim_win_call(win, resync_curswant)
