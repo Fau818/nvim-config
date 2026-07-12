@@ -179,27 +179,6 @@ end
 
 
 -- =============================================
--- ========== Documentation Cleanup
--- =============================================
----Strip decorative section-separator comment lines from a markdown doc string.
----These come from the `seccom`/`secsep`/`subseccom`/`subsecsep` snippets, which
----LSP servers bind as a symbol's documentation.
----A line is dropped when (ignoring leading whitespace and any backslashes)
----it starts with `===` (3+ `=`) or `----` (4+ `-`, so the markdown `---` rule lives).
----@param value string
----@return string
-function M.doc_cleaner(value)
-  local kept = {}
-  for _, line in ipairs(vim.split(value, "\n", { plain = true })) do
-    local probe = line:gsub("^%s+", ""):gsub("\\", "")
-    if not (probe:match("^===") or probe:match("^%-%-%-%-")) then kept[#kept + 1] = line end
-  end
-
-  return table.concat(kept, "\n")
-end
-
-
--- =============================================
 -- ========== Window
 -- =============================================
 ---Find the first "main" window in the current tabpage: non-floating and showing a regular buffer.

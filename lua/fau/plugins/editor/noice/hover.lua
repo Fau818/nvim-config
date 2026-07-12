@@ -1,24 +1,43 @@
--- ==================== Hover: strip decorative comment lines ====================
--- lua_ls (and other servers) bind a comment touching a definition as its
--- documentation, so our section separators (`seccom`/`secsep`/`subseccom`/
--- `subsecsep` snippets) leak into the hover doc. noice renders hover via its own
--- pipeline (`vim.lsp.buf.hover = noice M.hover` -> `noice.lsp.hover.on_hover` ->
--- `Format.format(message, result.contents)`), bypassing `vim.lsp.handlers` and
--- `vim.lsp.util.convert_input_to_markdown_lines`. So we wrap `on_hover` and scrub
--- `result.contents` before noice ever formats it.
-
 local M = {}
 
--- LSP hover `contents` can be a string, a { value = ... } object, or a list of
--- either (MarkedString | MarkedString[] | MarkupContent). Scrub each variant via
--- the shared `fvim.utils.strip_doc_separators`.
----@param contents string | MarkedString[] | MarkupContent
----@return any
+
+-- ==================== CLeanup Functions ====================
+---Strip decorative section-separator comment lines from a markdown doc string.
+---A line is dropped when (ignoring leading whitespace and any backslashes)
+---it starts with `===` (3+ `=`) or `----` (4+ `-`, so the markdown `---` rule lives).
+---@param value string
+---@return string
+function M.doc_cleaner(value)
+  local kept = {}
+  for _, line in ipairs(vim.split(value, "\n", { plain = true })) do
+    local probe = line:gsub("^%s+", ""):gsub("\\", "")
+    if not (probe:match("^===") or probe:match("^%-%-%-%-")) then kept[#kept + 1] = line end
+  end
+
+  return table.concat(kept, "\n")
+end
+
+
+---Strip Markdown backslash-escapes (`\_` -> `_`, `\*` -> `*`, ...) that pyright/basedpyright add
+---defensively when turning a docstring into hover Markdown, even though a lone `_`/`*` fully inside a word
+---@param value string
+---@return string
+function M.unescape_markdown(value)
+  local chars = "\\`*_{}[]()#+-.!"
+  local class = chars:gsub(".", "%%%0")  -- escape every char for use inside a Lua pattern class
+  local result = value:gsub("\\([" .. class .. "])", "%1")
+  return result
+end
+
+
+---LSP hover `contents` can be a string, a { value = ... } object, or a list of either (MarkedString | MarkedString[] | MarkupContent).
+---@param contents lsp.MarkedString | lsp.MarkedString[] | lsp.MarkupContent
+---@return lsp.MarkedString | lsp.MarkedString[] | lsp.MarkupContent
 local function scrub(contents)
-  if type(contents) == "string" then return fvim.utils.doc_cleaner(contents)
+  if type(contents) == "string" then return M.unescape_markdown(M.doc_cleaner(contents))
   elseif type(contents) == "table" then
-    if type(contents.value) == "string" then contents.value = fvim.utils.doc_cleaner(contents.value)
-    elseif vim.islist(contents) then for i, c in ipairs(contents) do contents[i] = scrub(c) end end
+    if type(contents.value) == "string" then contents.value = scrub(contents.value)  --[[@as string]]
+    elseif vim.islist(contents) then for i, c in ipairs(contents) do contents[i] = scrub(c)  --[[@as lsp.MarkedString]] end end
   end
   return contents
 end
@@ -29,14 +48,14 @@ end
 function M.setup()
   local ok, Hover = pcall(require, "noice.lsp.hover")
   if not ok then return end
-  if Hover.__strip_decorative then return end
-  Hover.__strip_decorative = true
+  if Hover._hover_patched then return end
+  Hover._hover_patched = true
 
-  local on_hover = Hover.on_hover
+  local _on_hover = Hover.on_hover
   ---@diagnostic disable-next-line: duplicate-set-field
   Hover.on_hover = function(err, result, ctx)
     if result and result.contents then result.contents = scrub(result.contents) end
-    return on_hover(err, result, ctx)
+    return _on_hover(err, result, ctx)
   end
 end
 
