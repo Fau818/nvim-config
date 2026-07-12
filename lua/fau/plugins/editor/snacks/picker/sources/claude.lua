@@ -38,8 +38,7 @@ local function session_meta(path)
         if ty == "ai-title" and type(e.aiTitle) == "string" then ai = e.aiTitle  -- keep the latest title
         elseif ty == "summary" and type(e.summary) == "string" then summary = e.summary
         elseif ty == "last-prompt" and type(e.lastPrompt) == "string" then last_prompt = e.lastPrompt
-        elseif not first_user and ty == "user" and not e.isMeta
-          and type(e.message) == "table" and e.message.role == "user" then
+        elseif not first_user and ty == "user" and not e.isMeta and type(e.message) == "table" and e.message.role == "user" then
           local content, text = e.message.content, nil
           if type(content) == "string" then text = content
           elseif type(content) == "table" then
@@ -73,7 +72,7 @@ local function render_conversation(path)
   if c and c.mtime == mtime then return c.lines end
 
   local out = {}
-  local function add(s) for _, l in ipairs(vim.split(s, "\n", { plain = true })) do out[#out + 1] = l end end
+  local function add(s) for _, l in ipairs(vim.split(s, "\n", { plain = true })) do out[#out+1] = l end end
 
   local ok, lines = pcall(vim.fn.readfile, path)
   if ok then
@@ -81,16 +80,15 @@ local function render_conversation(path)
       local ok2, e = pcall(vim.json.decode, line)
       local msg = ok2 and type(e) == "table" and e.message
       -- main-thread user/assistant turns only (skip subagents + meta)
-      if msg and type(msg) == "table" and not e.isSidechain and not e.isMeta
-        and (e.type == "user" or e.type == "assistant") then
+      if msg and type(msg) == "table" and not e.isSidechain and not e.isMeta and (e.type == "user" or e.type == "assistant") then
         local texts, tools = {}, {}
         local content = msg.content
-        if type(content) == "string" then texts[#texts + 1] = content
+        if type(content) == "string" then texts[#texts+1] = content
         elseif type(content) == "table" then
           for _, b in ipairs(content) do
             if type(b) == "table" then
-              if b.type == "text" and type(b.text) == "string" and b.text ~= "" then texts[#texts + 1] = b.text
-              elseif b.type == "tool_use" and b.name then tools[#tools + 1] = b.name
+              if b.type == "text" and type(b.text) == "string" and b.text ~= "" then texts[#texts+1] = b.text
+              elseif b.type == "tool_use" and b.name then tools[#tools+1] = b.name
               end
               -- tool_result / thinking / image blocks are skipped
             end
@@ -99,7 +97,7 @@ local function render_conversation(path)
 
         -- drop slash-command wrappers and empty turns
         local body = {}
-        for _, t in ipairs(texts) do if not t:match("^%s*<command") and not t:match("^%s*<local%-command") then body[#body + 1] = t end end
+        for _, t in ipairs(texts) do if not t:match("^%s*<command") and not t:match("^%s*<local%-command") then body[#body+1] = t end end
 
         if #body > 0 or #tools > 0 then
           add(msg.role == "user" and "## 👤 User" or "## 🤖 Claude")
@@ -131,8 +129,8 @@ return {
     ---@param opts claude.Opts
     finder = function(opts)
       local slug = vim.fn.getcwd():gsub("[/.]", "-")
-      local pattern = opts.all and "/projects/*/*.jsonl" -- every project
-        or ("/projects/" .. slug .. "/*.jsonl")          -- just this project
+      local pattern = opts.all and "/projects/*/*.jsonl"  -- every project
+          or ("/projects/" .. slug .. "/*.jsonl")                 -- just this project
 
       local items = {}
       for _, path in ipairs(vim.fn.glob(claude_root() .. pattern, false, true)) do
@@ -141,13 +139,13 @@ return {
         local title = m.title or vim.fn.fnamemodify(path, ":t:r")
         -- project label from the recorded cwd, falling back to the dir slug
         local proj = m.cwd and vim.fn.fnamemodify(m.cwd, ":t") or vim.fn.fnamemodify(path, ":h:t")
-        items[#items + 1] = {
+        items[#items+1] = {
           file = path,
           title = clean(title),
           proj = proj,
           when = os.date("%Y-%m-%d %H:%M", t),
           sort = t,
-          text = (m.title or "") .. " " .. proj .. " " .. path, -- matchable
+          text = (m.title or "") .. " " .. proj .. " " .. path,  -- matchable
         }
       end
       table.sort(items, function(a, b) return a.sort > b.sort end)
@@ -156,10 +154,10 @@ return {
 
     format = function(item, picker)
       local out = {}
-      local opts = picker.opts --[[@as claude.Opts]]
-      if opts.all then out[#out + 1] = { "[" .. item.proj .. "] ", "SnacksPickerDir" } end
-      out[#out + 1] = { item.title, "SnacksPickerLabel" }
-      out[#out + 1] = { "  " .. item.when, "SnacksPickerComment" }
+      local opts = picker.opts  --[[@as claude.Opts]]
+      if opts.all then out[#out+1] = { "[" .. item.proj .. "] ", "SnacksPickerDir" } end
+      out[#out+1] = { item.title, "SnacksPickerLabel" }
+      out[#out+1] = { "  " .. item.when, "SnacksPickerComment" }
       return out
     end,
 
@@ -184,14 +182,20 @@ return {
           vim.fn.delete(item.file)
           meta_cache[item.file] = nil
           convo_cache[item.file] = nil
-          picker:find()
+          local idx = picker.list.cursor
+          picker:find({
+            on_done = function()
+              local count = picker.list:count()
+              if count > 0 then picker.list:view(math.min(idx, count)) end
+            end,
+          })
         end
       end,
 
       toggle_scope = function(picker)
-        local opts = picker.opts --[[@as claude.Opts]]
+        local opts = picker.opts  --[[@as claude.Opts]]
         opts.all = not opts.all
-        picker:find() -- re-run the finder with the new scope
+        picker:find()  -- re-run the finder with the new scope
       end,
     },
 
