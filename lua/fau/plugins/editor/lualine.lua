@@ -156,7 +156,7 @@ local components = {
     symbols = { done = "", separator = ", " },
     fmt = function(str)
       -- Simplify some lsp names.
-      str = str:gsub("otter%-ls%[%d+%]", " "):gsub("render%-markdown", " "):gsub("obsidian%-ls", "💎")
+      str = str:gsub("otter%-ls%[%d+%]", "🦦"):gsub("render%-markdown", " "):gsub("obsidian%-ls", "💎")
       return str == "" and "" or string.format("[%s]", str)
     end,
   },
@@ -164,9 +164,9 @@ local components = {
   copilot = { "copilot", padding = { left = 0, right = 1 } },  -- SEE: `AndreM222/copilot-lualine`.
 
   ai_agent = {
-    function() local status = require("sidekick.status").cli() return " " .. (#status > 1 and #status or "") end,
-    color = function() return #require("sidekick.status").cli() > 0 and "Special" or { fg = fvim.colors.lualine.red } end,
-    cond = function() return package.loaded["sidekick"] ~= nil end,
+    function() return " " end,
+    color = function() return require("claudecode").is_claude_connected() and "Special" or { fg = fvim.colors.lualine.red } end,
+    cond = function() return package.loaded["claudecode"] ~= nil end,
     padding = { right = 1 },
   },
 
