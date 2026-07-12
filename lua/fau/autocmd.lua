@@ -119,6 +119,80 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 -- =============================================
+-- ========== Visual Block Mode
+-- =============================================
+-- SEE: https://github.com/neovim/neovim/issues/25926
+-- WORKAROUND: Blockwise visual ops resolve their block boundaries from screen columns,
+-- which inline inlay-hint virt_text inflates. Hide hints for the whole
+-- lifetime of a blockwise edit, including the insert phase of c/I/A.
+
+local MAXCOL = 2147483647  -- curswant of `$`; drives the blockwise-$ feature
+local MAX_TRY = 50
+local DELAY = 20   -- ms
+
+---Re-sync curswant with the cursor's current screen column, preserving `$`.
+local function resync_curswant() if vim.fn.winsaveview().curswant < MAXCOL then vim.fn.winrestview({ curswant = vim.fn.virtcol(".") - 1 }) end end
+
+---After hints are re-enabled, they reappear only once the LSP round-trip
+---finishes. Anything reading the cursor in that window (statusline etc.)
+---locks curswant to the hint-less layout, so j/k later drift left by the
+---hint width. Poll until the hints are actually back, then re-sync.
+---@param win integer
+---@param bufnr integer
+local function fixup_curswant_after_restore(win, bufnr)
+  local pos = vim.api.nvim_win_get_cursor(win)
+  local tries = MAX_TRY
+
+  local function is_valid()
+    return vim.api.nvim_win_is_valid(win)
+      and vim.api.nvim_win_get_buf(win) == bufnr
+      and vim.api.nvim_get_mode().mode == "n"
+      and not vim.b[bufnr].inlay_hint_restore
+      and vim.deep_equal(vim.api.nvim_win_get_cursor(win), pos)
+  end
+
+  local function fixup()
+    tries = tries - 1
+    if tries < 0 or not is_valid() then return end
+    if #vim.lsp.inlay_hint.get({ bufnr = bufnr }) == 0 then vim.defer_fn(fixup, DELAY) return end
+    vim.cmd("redraw")  -- make the decoration provider apply the extmarks now
+    vim.api.nvim_win_call(win, resync_curswant)
+  end
+
+  fixup()
+end
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = fvim_augroup,
+  callback = function(args)
+    ---@diagnostic disable-next-line: undefined-field
+    local mode = vim.v.event.new_mode
+
+    if mode:find("\22") then
+      -- The `inlay_hint_restore` check covers re-entering blockwise mode
+      -- before a pending scheduled restore has run.
+      if vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }) or vim.b[args.buf].inlay_hint_restore then
+        vim.b[args.buf].inlay_hint_restore = true
+        vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+        -- curswant was computed while hints were visible; recompute it so
+        -- j/k don't jump to the stale, hint-inflated screen column.
+        resync_curswant()
+      end
+    elseif vim.b[args.buf].inlay_hint_restore and not mode:find("[i\22]") then
+      -- NOTE: `c/I/A` in V-B mode pass through insert mode, and <Esc> replication is screen-column based.
+      -- Hints must stay hidden until back in normal mode. ModeChanged fires before replication, hence scheduling past current key processing.
+      vim.b[args.buf].inlay_hint_restore = nil
+      vim.schedule(function()
+        if not vim.api.nvim_buf_is_valid(args.buf) or vim.b[args.buf].inlay_hint_restore then return end
+        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+        fixup_curswant_after_restore(vim.api.nvim_get_current_win(), args.buf)
+      end)
+    end
+  end,
+})
+
+
+-- =============================================
 -- ========== Pinned Windows
 -- =============================================
 ---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.
