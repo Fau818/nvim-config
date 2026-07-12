@@ -13,11 +13,10 @@ return {
     },
 
     buffers = {
-      set_filetype = false,
       write_to_disk = false,
       preambles = {},
       postambles = {},
-      ignore_pattern = { python = "^(%s*[%%!].*)" },
+      -- ignore_pattern = nil,  -- Use default.
     },
 
     strip_wrapping_quote_characters = { "'", '"', "`" },

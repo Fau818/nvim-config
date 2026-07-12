@@ -38,7 +38,7 @@ function M.open_float(picker, item, action)
     resize = true,
 
     bo = { modifiable = false, filetype = item.preview.ft or "markdown" },
-    wo = { conceallevel = 3, concealcursor = "nvic", spell = false, statuscolumn = " " },  -- NOTE: `statuscolumn = " "` is for padding left.
+    wo = { conceallevel = 2, concealcursor = "nvic", spell = false, statuscolumn = " " },  -- NOTE: `statuscolumn = " "` is for padding left.
 
     title = " Notification ",
     footer_keys = true,

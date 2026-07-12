@@ -59,7 +59,7 @@ return {
         replace = true,
         render = "plain",
         format = { "{message}" },
-        win_options = { concealcursor = "n", conceallevel = 3, scrolloff = 2 },
+        win_options = { concealcursor = "n", conceallevel = 2, scrolloff = 2 },
       },
     },
   }

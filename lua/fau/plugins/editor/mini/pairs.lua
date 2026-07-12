@@ -61,7 +61,7 @@ return {
       -- "^[^%w%-%_\\]"
       ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "^[^\\%w_]", register = { cr = false } },
       ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "^[^\\%w_]", register = { cr = false } },
-      ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "^[^\\%w_]", register = { cr = false } },
+      ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "^[^\\%w_`]", register = { cr = false } },
 
       [" "] = { action = "open", pair = "  ", neigh_pattern = "[%(%[{][%)%]}]" },
     },

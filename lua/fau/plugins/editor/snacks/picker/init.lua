@@ -249,7 +249,7 @@ return {
         ["<a-w>"] = "cycle_win",
       },
       wo = {
-        conceallevel = 3,
+        conceallevel = 2,
         concealcursor = "nvic",
 
         wrap = false,

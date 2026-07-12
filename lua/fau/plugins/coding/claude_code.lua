@@ -53,7 +53,7 @@ return {
     focus_after_send = true,
 
     -- Selection Tracking
-    track_selection = true,
+    track_selection = false,
     visual_demotion_delay_ms = fvim.settings.debounce.general,
 
     terminal = {

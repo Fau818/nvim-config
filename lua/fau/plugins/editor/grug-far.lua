@@ -61,6 +61,7 @@ return {
     -- resultsSeparatorLineChar = "",
     resultsHighlight = true,
     inputsHighlight = true,
+    highlightCurrentMatch = true,
 
     -- lineNumberLabel = nil,  -- Use default.
     -- filePathConceal = nil,  -- Use default.
