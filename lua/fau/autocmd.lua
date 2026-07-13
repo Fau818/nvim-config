@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- which inline inlay-hint virt_text inflates. Hide hints for the whole
 -- lifetime of a blockwise edit, including the insert phase of c/I/A.
 
-local MAXCOL = 2147483647  -- curswant of `$`; drives the blockwise-$ feature
+local MAXCOL = vim.v.maxcol  -- curswant of `$`; drives the blockwise-$ feature
 local MAX_TRY = 50
 local DELAY = 20   -- ms
 

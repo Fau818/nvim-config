@@ -79,10 +79,12 @@ return {
 
       -- ==================== Syntax ====================
       -- ---------- General
-      highlights["@markup.italic"] = { bold = true, italic = true }
       highlights["@function.builtin"] = { fg = fvim.colors.purple_blue, italic = true }
       highlights["@keyword.function"] = { fg = colors.magenta, italic = true }
       highlights["@string.documentation"] = { fg = fvim.colors.cyan_gray }
+
+      highlights["@markup.strong"] = { fg = fvim.colors.pink, bold = true }
+      highlights["@markup.italic"] = { fg = fvim.colors.light_red, bold = true, italic = true }
 
       -- ---------- Cpp
       highlights["cBlock"]     = { fg = colors.blue5, italic = true, bold = true }
