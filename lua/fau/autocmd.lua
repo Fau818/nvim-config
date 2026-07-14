@@ -193,6 +193,26 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 
 
 -- =============================================
+-- ========== Markdown Highlighting
+-- =============================================
+---Colored bold/italic markup for regular markdown buffers.
+local fvim_markdown_hl_ns = vim.api.nvim_create_namespace("fvim_markdown_hl_ns")
+vim.api.nvim_set_hl(fvim_markdown_hl_ns, "@markup.strong", { fg = fvim.colors.pink, bold = true })
+vim.api.nvim_set_hl(fvim_markdown_hl_ns, "@markup.italic", { fg = fvim.colors.light_red, bold = true, italic = true })
+
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
+  group = vim.api.nvim_create_augroup("fau_tokyonight_markdown_regular_only", { clear = true }),
+  callback = function(args)
+    if vim.bo[args.buf].buftype ~= "" then return end
+    if vim.bo[args.buf].filetype ~= "markdown" then return end
+
+    local win = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_hl_ns(win, fvim_markdown_hl_ns)
+  end,
+})
+
+
+-- =============================================
 -- ========== Pinned Windows
 -- =============================================
 ---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.

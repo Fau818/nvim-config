@@ -83,9 +83,6 @@ return {
       highlights["@keyword.function"] = { fg = colors.magenta, italic = true }
       highlights["@string.documentation"] = { fg = fvim.colors.cyan_gray }
 
-      highlights["@markup.strong"] = { fg = fvim.colors.pink, bold = true }
-      highlights["@markup.italic"] = { fg = fvim.colors.light_red, bold = true, italic = true }
-
       -- ---------- Cpp
       highlights["cBlock"]     = { fg = colors.blue5, italic = true, bold = true }
       highlights["cPreCondit"] = { fg = colors.blue5, italic = true, bold = true }
