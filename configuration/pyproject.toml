@@ -150,7 +150,7 @@ preview = false
 extend-select = ["D"]
 # external = []
 ignore = [
-  "D100", "D103", "D105",
+  "D100", "D101", "D103", "D105",
 
   "E701", "E702",
 
@@ -177,3 +177,7 @@ typing-extensions = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E402"]
