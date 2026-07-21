@@ -65,7 +65,7 @@ return {
 
           reportArgumentType = "warning",
 
-          reportConstantRedefinition = "warning",
+          reportConstantRedefinition = "information",
           reportOperatorIssue = "warning",
 
           reportAttributeAccessIssue = "warning",

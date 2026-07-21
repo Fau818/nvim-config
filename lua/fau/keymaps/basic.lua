@@ -240,6 +240,7 @@ keymap("n", "<C-w>x", "<CMD>split<CR>",  opts("Editor: Horizontal Split"))
 -- ========== Terminal
 -- =============================================
 keymap("t", "<C-r>", "<NOP>", opts())
+keymap("t", "<C-q>", [[<C-\><C-n>]])
 
 
 

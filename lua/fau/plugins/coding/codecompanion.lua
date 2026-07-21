@@ -85,7 +85,7 @@ return {
           })
         end,
 
-        extend = { copilot = { schema = { model = { default = "" } } } },
+        extend = { copilot = { schema = { model = { default = "auto" } } } },
 
         opts = {
           allow_insecure = false,     -- Allow insecure connections?
