@@ -11,7 +11,7 @@ return {
   ---@type GuessIndentConfig
   opts = {
     auto_cmd              = true,
-    override_editorconfig = false,
+    override_editorconfig = true,
 
     filetype_exclude = vim.list_extend({ "gitcommit" }, fvim.file.excluded_filetypes),
     buftype_exclude  = fvim.file.excluded_buftypes,

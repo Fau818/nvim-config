@@ -65,7 +65,18 @@ return {
     preview = {
       type = "main",
       scratch = true,
-      on_mount = function(self) vim.w.snacks_indent = true end,
+      on_mount = function(self)
+        -- NOTE: `on_mount` fires before trouble swaps in the real preview buffer (`set_buf` runs right after, synchronously).
+        -- Capture `win` now (not `self.win`, which mutates on every remount) and defer past the swap with `vim.schedule`.
+        local win = self.win
+        vim.schedule(function()
+          if not vim.api.nvim_win_is_valid(win) then return end
+          vim.w[win].snacks_indent = true
+          local bufnr = vim.api.nvim_win_get_buf(win)
+          ---@diagnostic disable-next-line: param-type-mismatch
+          if package.loaded["guess-indent"] then require("guess-indent").set_from_buffer(bufnr, false, true) end
+        end)
+      end,
     },
 
     -- Throttle/Debounce settings. Should usually not be changed.
