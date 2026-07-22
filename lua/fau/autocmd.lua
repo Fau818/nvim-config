@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
   group = fvim_augroup,
   pattern = "tabstop",
   desc = "`tabstop` will be reset to 2 if tabstop >= 8.",
-  callback = function() if vim.bo.tabstop >= 8 then vim.bo.tabstop = 2 end end,
+  callback = function() if vim.bo.tabstop >= 8 then vim.bo.tabstop = vim.go.tabstop end end,
 })
 
 vim.api.nvim_create_autocmd("OptionSet", {
