@@ -56,6 +56,39 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   callback = function() if vim.fn.mode() ~= "c" then vim.cmd("checktime") end end,
 })
 
+local checktime_debounce = vim.uv.new_timer()
+if checktime_debounce then
+  vim.api.nvim_create_autocmd("TextChangedT", {
+    group = fvim_augroup,
+    pattern = "*",
+    desc = "Recheck all buffers 1s after the Claude Code terminal last printed something.",
+    callback = function(args)
+      local ok, terminal = pcall(require, "claudecode.terminal")
+      if not ok or args.buf ~= terminal.get_active_terminal_bufnr() then return end
+      checktime_debounce:stop()
+      checktime_debounce:start(1000, 0, vim.schedule_wrap(function()
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then vim.cmd("checktime " .. buf) end
+        end
+      end))
+    end,
+  })
+end
+
+-- WORKAROUND: A same-filetype reload re-fires `FileType`, and stock ftplugins unconditionally undo buffer settings via `b:undo_ftplugin`.
+-- Scope to affected filetypes and unchanged-filetype refires only, so real switches (json -> jsonc) still use Vim's normal undo-then-reload flow.
+-- SEE: Only work around for filetypes disabled by `*_recommended_style`; check `lua/fau/config/init.lua`
+vim.api.nvim_create_autocmd("FileType", {
+  group = fvim_augroup,
+  pattern = { "go", "markdown", "python", "rust", "yaml" },
+  desc = "Don't let ftplugins undo their own settings on a same-filetype reload.",
+  callback = function(args)
+    if vim.bo[args.buf].buftype ~= "" then return end
+    if vim.b[args.buf].fvim_last_filetype == args.match then vim.b[args.buf].undo_ftplugin = nil end
+    vim.b[args.buf].fvim_last_filetype = args.match
+  end,
+})
+
 
 -- ==================== Indentation ====================
 vim.api.nvim_create_autocmd("OptionSet", {

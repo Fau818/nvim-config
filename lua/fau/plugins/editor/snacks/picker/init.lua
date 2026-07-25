@@ -156,6 +156,7 @@ return {
         ["<c-w>x"] = { "edit_split", mode = { "n" } },
         ["<c-w>v"] = { "edit_vsplit", mode = { "n" } },
         ["<c-w>t"] = { "tab", mode = { "n" } },
+        ["<c-v>"] = false,
 
         ["<c-r>#"] = { "insert_alt",      mode = "i" },
         ["<c-r>%"] = { "insert_filename", mode = "i" },
@@ -227,6 +228,7 @@ return {
         ["<c-w>x"] = "edit_split",
         ["<c-w>v"] = "edit_vsplit",
         ["<c-w>t"] = "tab",
+        ["<c-v>"] = false,
 
         -- ["<c-w>H"] = "layout_left",
         -- ["<c-w>J"] = "layout_bottom",
