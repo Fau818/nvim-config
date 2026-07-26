@@ -269,10 +269,9 @@ return {
     if not vim.g.blink_cmp_cr_patch then
       vim.g.blink_cmp_cr_patch = true
       vim.schedule(function()
-        local cr_callback = fvim.utils.keymap_fallback_wrapper("n", "<CR>")
         vim.keymap.set("n", "<CR>", function()
           local session = _G.MiniSnippets and MiniSnippets.session.get()
-          if not session then cr_callback()
+          if not session then fvim.utils.feedkeys("o<ESC>")
           else vim.schedule(MiniSnippets.session.stop)
           end
         end, { noremap = true, silent = true })
