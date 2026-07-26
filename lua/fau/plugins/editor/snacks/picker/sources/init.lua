@@ -86,7 +86,18 @@ return {
   picker_layouts = preset.classic_normal,
   picker_preview = preset.classic_normal,
 
-  projects = { layout = { preset = preset.default_layout }, regex = false, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
+  projects = {
+    layout = { preset = preset.default_layout },
+    regex = false,
+    on_show = preset.normal_mode,
+    win = {
+      preview = preset.minimal_preview,
+      ---@diagnostic disable-next-line: assign-type-mismatch
+      input = { keys = { ["<C-]>"] = { { "cd", "close" } } } },
+      ---@diagnostic disable-next-line: assign-type-mismatch
+      list = { keys = { ["<C-]>"] = { { "cd", "close" } } } },
+    },
+  },
 
   -- qlist = {},
 

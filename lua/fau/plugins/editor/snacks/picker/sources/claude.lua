@@ -118,6 +118,13 @@ local function render_conversation(path)
 end
 
 
+local keys = {
+  ["<c-d>"] = { "delete_session", mode = { "n", "i" } },
+  ["dd"]    = { "delete_session", mode = "n" },
+  ["<c-a>"] = { "toggle_scope", mode = { "n", "i" } },
+}
+
+
 return {
   ---@class claude.Opts: snacks.picker.Config
   ---@field all boolean Show sessions from every project instead of just the cwd.
@@ -200,13 +207,9 @@ return {
     },
 
     win = {
-      input = {
-        keys = {
-          ["<c-d>"] = { "delete_session", mode = { "n", "i" } },
-          ["dd"]    = { "delete_session", mode = "n" },
-          ["<c-a>"] = { "toggle_scope", mode = { "n", "i" } },
-        },
-      },
+      input = { keys = keys },
+      list = { keys = keys },
+      preview = { keys = keys },
     },
   },
 }

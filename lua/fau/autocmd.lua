@@ -391,6 +391,25 @@ end
 
 
 -- =============================================
+-- ========== Shell Cwd Sync
+-- =============================================
+
+---The `nvim` wrapper in `zsh/plugins/neovim.zsh` sets this to a temp file path
+---so that the shell can read the current working directory.
+if vim.env.NVIM_CWD_FILE then
+  vim.api.nvim_create_autocmd("VimLeave", {
+    group = fvim_augroup,
+    callback = function()
+      local file = io.open(vim.env.NVIM_CWD_FILE, "w")
+      if not file then return end
+      file:write(vim.fn.getcwd())
+      file:close()
+    end,
+  })
+end
+
+
+-- =============================================
 -- ========== Kitty
 -- =============================================
 
