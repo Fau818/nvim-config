@@ -119,4 +119,21 @@ function M.restart_lsp(bufnr)
 end
 
 
+---@class vim.lsp.Client
+---@field conda_manual boolean? true once this client's project was pointed at an env via the conda picker.
+
+
+---Reconfigure a basedpyright client with a new interpreter, without restarting
+---it. Takes the client directly since `LspAttach` fires before the buffer is
+---registered in `client.attached_buffers`, so a bufnr-based lookup would miss it.
+---@param client vim.lsp.Client
+---@param python_path string? interpreter path (nil restores auto-detection)
+function M.reconfigure_python_path(client, python_path)
+  local settings = client.settings
+  settings.python = settings.python or {}
+  settings.python.pythonPath = python_path
+  client:notify("workspace/didChangeConfiguration", { settings = nil })
+end
+
+
 return M

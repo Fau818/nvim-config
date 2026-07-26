@@ -1,3 +1,4 @@
+-- TODO: The guard for each filetype might be removed since the AI Agent might trigger external changes which could cause the buffer to be reloaded.
 -- IMPORTANT: If use `vim.schedule` to set buffer-local options in a ftplugin,
 -- make sure to capture the buffer number first since the current buffer might have changed by the time the schedule runs.
 

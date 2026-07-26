@@ -182,9 +182,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- =============================================
 
 -- SEE: https://github.com/neovim/neovim/issues/25926
--- WORKAROUND: Blockwise visual ops resolve their block boundaries from screen columns,
--- which inline inlay-hint virt_text inflates. Hide hints for the whole
--- lifetime of a blockwise edit, including the insert phase of c/I/A.
+-- WORKAROUND: Blockwise visual ops resolve their block boundaries from screen columns, which inline inlay-hint virt_text inflates.
+-- Hide hints for the whole lifetime of a blockwise edit, including the insert phase of c/I/A.
 
 local MAXCOL = vim.v.maxcol  -- curswant of `$`; drives the blockwise-$ feature
 local MAX_TRY = 50
@@ -347,6 +346,52 @@ vim.api.nvim_create_autocmd("LspDetach", {
     end)
   end,
 })
+
+---Neovim never stops a client just because its last buffer detached, so stop it once nothing is attached.
+---Delayed so a quick buffer swap within the same project doesn't cause a pointless restart.
+vim.api.nvim_create_autocmd("LspDetach", {
+  group = fvim_augroup,
+  desc = "Stop a client once its last attached buffer closes.",
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client or client.name == "copilot" then return end
+    vim.defer_fn(function()
+      if not client:is_stopped() and vim.tbl_isempty(client.attached_buffers) then client:stop() end
+    end, 5000)
+  end,
+})
+
+
+-- =============================================
+-- ========== Conda Auto-Env
+-- =============================================
+
+---Mirrors `zsh/plugins/conda_auto_env.zsh`, which only reacts to the shell's `cd`
+---and thus misses projects opened directly in nvim (e.g. via a picker).
+if vim.fn.executable("conda") == 1 then
+  vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
+    group = fvim_augroup,
+    callback = function() fvim.utils.conda.check() end,
+  })
+
+  ---Servers have one client per project root, so give each its own
+  ---interpreter here rather than via the single global "active" env above.
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = fvim_augroup,
+    callback = function(args)
+      if vim.bo[args.buf].filetype ~= "python" or vim.bo[args.buf].buftype ~= "" then return end
+
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if not client or not client.config.root_dir then return end
+      if client.conda_manual then return end  -- a picker choice for this root outranks the auto-mapping
+      local settings = client.settings
+      if not (settings and settings.python) then return end
+
+      local python_path = fvim.utils.conda.python_path_for(client.config.root_dir)
+      if python_path then fvim.lsp.reconfigure_python_path(client, python_path) end
+    end,
+  })
+end
 
 
 -- =============================================

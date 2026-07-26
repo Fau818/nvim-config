@@ -60,14 +60,21 @@ return {
     -- on_create = fun(t: Terminal), -- function to run when the terminal is first created
     -- on_open   = fun(t: Terminal), -- function to run when the terminal opens
     ---@param t Terminal
-    on_open = function(t) fvim.utils.backdrop(t.window) end
+    on_open = function(t)
+      fvim.utils.backdrop(t.window)
+
+      local env = os.getenv("CONDA_DEFAULT_ENV")
+      if env == nil then return end
+      if not t.conda_env then t.conda_env = env return end
+      if t.conda_env ~= env then
+        local msg = vim.fn.shellescape(("\\e[1;33m[WARN]\\e[0m nvim's active conda env is now [%s], different from this terminal's starting env [%s]"):format(env, t.conda_env))
+        t:send(("echo %s"):format(msg))
+      end
+    end
     -- on_close  = fun(t: Terminal), -- function to run when the terminal closes
     -- on_stdout = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stdout
     -- on_stderr = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stderr
     -- on_exit   = fun(t: Terminal, job: number, exit_code: number, name: string) -- function to run when terminal process exits
-
-    -- on_open  = function(t) fvim.kitty.deactivate_in_editor() end,
-    -- on_close = function(t) fvim.kitty.activate_in_editor() end,
   },
 
   config = function(_, opts)

@@ -192,11 +192,18 @@ local components = {
   -- ==================== Python ====================
   python_env = {
     function()
-      if vim.bo.filetype == "python" then
-        local venv = os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
-        return venv and string.format(" (%s)", utils.env_cleanup(venv)) or ""
+      if vim.bo.filetype ~= "python" then return "" end
+
+      -- Prefer this buffer's actual interpreter (set per-root by the `LspAttach` hook) over the global CONDA_DEFAULT_ENV,
+      -- which can disagree with this buffer's LSP when multiple envs are open at once.
+      local python_path
+      for _, name in ipairs(fvim.lsp.packages.python) do
+        local client = vim.lsp.get_clients({ bufnr = 0, name = name })[1]
+        local settings = client and client.settings  ---@type table<string, any>?
+        if settings and settings.python and settings.python.pythonPath then python_path = settings.python.pythonPath break end
       end
-      return ""
+      local venv = python_path and vim.fn.fnamemodify(python_path, ":h:h") or os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
+      return venv and string.format(" (%s)", utils.env_cleanup(venv)) or ""
     end,
     color = { fg = fvim.colors.purple },
     cond = conditions.hide_in_width,
