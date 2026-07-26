@@ -3,6 +3,11 @@ local function copilot_suggest()
   return copilot_ok and copilot.is_visible() ~= nil and pcall(copilot.accept)
 end
 
+local function copilot_dismiss()
+  local copilot_ok, copilot = pcall(require, "copilot.suggestion")
+  return copilot_ok and copilot.is_visible() ~= nil and pcall(copilot.dismiss)
+end
+
 
 local function tabout()
   local tabout_ok, tabout = pcall(require, "tabout")
@@ -93,7 +98,7 @@ return {
       ["<Up>"]   = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
 
-      ["<ESC>"] = { "hide", "fallback" },
+      ["<ESC>"] = { "hide", copilot_dismiss, "fallback" },
       ["<C-c>"] = {
         "cancel",
         function(cmp) return (cmp.snippet_active() and vim.schedule(MiniSnippets.session.stop) or true) or false end,
