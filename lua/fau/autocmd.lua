@@ -154,13 +154,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- ========== Filetypes
 -- =============================================
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
-  group = fvim_augroup,
-  pattern = { "docker-compose.yaml", "docker-compose.yml" },
-  desc = "Correct filetype for docker-compose.",
-  callback = function() vim.bo.filetype = "yaml.docker-compose" end
-})
-
 vim.api.nvim_create_autocmd("FileType", {
   group = fvim_augroup,
   pattern = { "snacks_notif", "git", "checkhealth", "grug-far-history", "help", "qf" },
@@ -349,6 +342,8 @@ vim.api.nvim_create_autocmd("LspDetach", {
 
 ---Neovim never stops a client just because its last buffer detached, so stop it once nothing is attached.
 ---Delayed so a quick buffer swap within the same project doesn't cause a pointless restart.
+
+local LSP_STOP_DEBOUNCE = 3000
 vim.api.nvim_create_autocmd("LspDetach", {
   group = fvim_augroup,
   desc = "Stop a client once its last attached buffer closes.",
@@ -357,7 +352,7 @@ vim.api.nvim_create_autocmd("LspDetach", {
     if not client or client.name == "copilot" then return end
     vim.defer_fn(function()
       if not client:is_stopped() and vim.tbl_isempty(client.attached_buffers) then client:stop() end
-    end, 5000)
+    end, LSP_STOP_DEBOUNCE)
   end,
 })
 
@@ -383,10 +378,11 @@ if vim.fn.executable("conda") == 1 then
 
       local client = vim.lsp.get_client_by_id(args.data.client_id)
       if not client or not client.config.root_dir then return end
-      if client.conda_manual then return end  -- a picker choice for this root outranks the auto-mapping
+      if client.conda_manual then return end  -- conda env is manually pinned to a specific env, don't override it.
       local settings = client.settings
-      if not (settings and settings.python) then return end
+      if not settings or not settings.python then return end
 
+      -- Try to find a conda env for the project root, and reconfigure the client to use it if found.
       local python_path = fvim.utils.conda.python_path_for(client.config.root_dir)
       if python_path then fvim.lsp.reconfigure_python_path(client, python_path) end
     end,
@@ -397,6 +393,7 @@ end
 -- =============================================
 -- ========== Kitty
 -- =============================================
+
 if fvim.kitty.is_enabled then
   -- SEE: https://sw.kovidgoyal.net/kitty/mapping/#conditional-mappings-depending-on-the-state-of-the-focused-window
   vim.api.nvim_create_autocmd({ "VimEnter", "VimResume" }, {
