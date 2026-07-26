@@ -24,15 +24,12 @@ if vim.bo.buftype ~= "" then return end
 
 
 -- ==================== Markdown Buffer Configs ====================
-if vim.b.fvim_markdown_ftplugin_loaded then return end
-vim.b.fvim_markdown_ftplugin_loaded = true
 
-local bufnr = vim.api.nvim_get_current_buf()
-vim.schedule(function()
-  if not vim.api.nvim_buf_is_valid(bufnr) then return end
-  ---@diagnostic disable-next-line: undefined-field
-  vim.api.nvim_buf_call(bufnr, function() vim.opt_local.formatoptions:append("or") end)
-end)
+-- NOTE: Assuming the configuration is idempotent.
+
+-- if vim.b.fvim_markdown_ftplugin_loaded then return end
+-- vim.b.fvim_markdown_ftplugin_loaded = true
+
 -- vim.opt_local.spell = true
 -- vim.opt_local.spelllang = "en_us"
 
