@@ -1,2 +1,2 @@
 ---@type vim.lsp.Config
-return { filetypes = { "sh", "bash", "zsh" } }
+return { filetypes = { "sh", "bash" } }

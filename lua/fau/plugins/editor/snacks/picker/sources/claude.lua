@@ -119,8 +119,7 @@ end
 
 
 local keys = {
-  ["<c-d>"] = { "delete_session", mode = { "n", "i" } },
-  ["dd"]    = { "delete_session", mode = "n" },
+  ["<c-x>"] = { "delete_session", mode = { "n", "i" } },
   ["<c-a>"] = { "toggle_scope", mode = { "n", "i" } },
 }
 
