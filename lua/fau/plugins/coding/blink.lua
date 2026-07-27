@@ -23,6 +23,9 @@ return {
   version = "1.*",
   -- build = "cargo build --release",
   dependencies = {
+    ---@module "copilot"
+    "zbirenbaum/copilot.lua",
+
     ---@module "mini.pairs"
     "nvim-mini/mini.pairs",
 
@@ -300,7 +303,7 @@ return {
         pattern = "BlinkCmpMenuClose",
         callback = function()
           vim.b.copilot_suggestion_hidden = false
-          vim.defer_fn(function() suggestion.update_preview() end, fvim.settings.debounce.copilot)
+          vim.defer_fn(function() suggestion.update_preview() end, fvim.settings.debounce.inline_suggestion)
         end,
       })
     end

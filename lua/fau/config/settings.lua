@@ -21,8 +21,9 @@ return {
   debounce = {
     general = 250,  -- Fau: It should be the same as `vim.opt.updatetime`.
 
-    copilot = 50,
-    nes     = 1000,
+    copilot = 100,
+    inline_suggestion = 500,
+    nes = 1000,
 
     colorizer = 75,
     highlight = 200,
