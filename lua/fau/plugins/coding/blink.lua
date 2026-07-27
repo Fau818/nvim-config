@@ -99,7 +99,7 @@ return {
       ["<ESC>"] = { "hide", "fallback" },
       ["<C-c>"] = {
         "cancel",
-        function(cmp) return (cmp.snippet_active() and vim.schedule(MiniSnippets.session.stop) or true) or false end,
+        function(cmp) return cmp.snippet_active() and (vim.schedule(MiniSnippets.session.stop) or true) or false end,
         "fallback",
       },
 
@@ -298,7 +298,7 @@ return {
         pattern = "BlinkCmpMenuClose",
         callback = function()
           vim.b.copilot_suggestion_hidden = false
-          vim.defer_fn(function() suggestion.update_preview() end, fvim.settings.debounce.inline_suggestion)
+          vim.defer_fn(function() suggestion.update_preview() end, fvim.settings.debounce.copilot)
         end,
       })
     end

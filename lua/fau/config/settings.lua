@@ -22,7 +22,6 @@ return {
     general = 250,  -- Fau: It should be the same as `vim.opt.updatetime`.
 
     copilot = 100,
-    inline_suggestion = 500,
     nes = 1000,
 
     colorizer = 75,
