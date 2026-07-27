@@ -254,7 +254,11 @@ return {
       update_focused_file = {
         enable = true,
         update_root = { enable = true, ignore_list = {} },
-        exclude = false,
+        -- Files entirely outside `$HOME` are never real projects, so skip them outright rather than re-rooting onto them.
+        exclude = function(args)
+          local path = vim.api.nvim_buf_get_name(args.buf)
+          return path == "" or not vim.startswith(path, vim.env.HOME .. "/")
+        end,
       },
 
       -- system_open = vim.fn.has("mac") == 1 and { cmd = "open", args = { "-R" } } or nil,
