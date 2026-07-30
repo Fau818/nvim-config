@@ -9,6 +9,9 @@ local conditions = {
 }
 
 local utils = {
+  -- `os.getenv` returns "" for an exported-but-empty var, which is truthy and would short-circuit an `or` chain.
+  nonempty = function(s) return s ~= "" and s or nil end,
+
   env_cleanup = function(venv)
     if string.find(venv, "/") then
       local project = venv:match("([^/]+)/%.venv$")
@@ -200,10 +203,14 @@ local components = {
       for _, name in ipairs(fvim.lsp.packages.python) do
         local client = vim.lsp.get_clients({ bufnr = 0, name = name })[1]
         local settings = client and client.settings  ---@type table<string, any>?
-        if settings and settings.python and settings.python.pythonPath then python_path = settings.python.pythonPath break end
+        local path = settings and settings.python and utils.nonempty(settings.python.pythonPath)
+        if path then python_path = path break end
       end
-      local venv = python_path and vim.fn.fnamemodify(python_path, ":h:h") or os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
-      return venv and string.format(" (%s)", utils.env_cleanup(venv)) or ""
+      local venv = python_path and vim.fn.fnamemodify(python_path, ":h:h")
+          or utils.nonempty(os.getenv("CONDA_DEFAULT_ENV"))
+          or utils.nonempty(os.getenv("VIRTUAL_ENV"))
+      local env_name = venv and utils.env_cleanup(venv) or ""
+      return env_name ~= "" and string.format(" (%s)", env_name) or ""
     end,
     color = { fg = fvim.colors.purple },
     cond = conditions.hide_in_width,
