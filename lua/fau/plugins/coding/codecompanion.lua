@@ -64,24 +64,11 @@ return {
             name = "chatanywhere",
             formatted_name = "ChatAnywhere",
             env = {
-              api_key = ([[cmd:zsh -c "%s"]]):format(fvim.settings.openai.api_path),
-              url     = ([[cmd:zsh -c "%s"]]):format(fvim.settings.openai.host_path),
-              chat_url = "/v1/chat/completions",
-            },
-            schema = { model = { default = "gpt-5.6-luna", choices = {} } },
-          })
-        end,
-
-        chatanywhere_cost = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            name = "chatanywhere_cost",
-            formatted_name = "ChatAnywhere Cost",
-            env = {
               api_key = ([[cmd:zsh -c "%s_cost"]]):format(fvim.settings.openai.api_path),
               url     = ([[cmd:zsh -c "%s"]]):format(fvim.settings.openai.host_path),
               chat_url = "/v1/chat/completions",
             },
-            schema = { model = { default = "gpt-5.6-luna", choices = {} } },
+            schema = { model = { default = "gpt-5.6-terra", choices = { "gpt-5.6-terra", "gpt-5.6-luna" } } },
           })
         end,
 
@@ -106,7 +93,7 @@ return {
     interactions = {
       background = { adapter = "copilot" },  -- { adapter = { name = "copilot", model = "" } }
       chat = { adapter = "copilot_acp" },
-      inline = { adapter = "copilot" },
+      inline = { adapter = "chatanywhere" },
       cmd = { adapter = "copilot" },
       shared = {
         keymaps = {

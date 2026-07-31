@@ -31,7 +31,7 @@ return {
         -- configFilePath = nil,  -- Use default.
 
         -- ==================== pyproject.toml ====================
-        exclude = { "**/node_modules", "**/__pycache__", "**/.*" },
+        exclude = nil,  -- NOTE: Use default; and don't change it if it's not necessary since there a special mechianism only works when exclude is nil.
         -- extraPaths = nil,  -- Use default.
         -- stubPath = nil,  -- Use default.
         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",

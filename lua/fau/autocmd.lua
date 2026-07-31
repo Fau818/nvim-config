@@ -342,7 +342,6 @@ vim.api.nvim_create_autocmd("LspDetach", {
 
 ---Neovim never stops a client just because its last buffer detached, so stop it once nothing is attached.
 ---Delayed so a quick buffer swap within the same project doesn't cause a pointless restart.
-
 local LSP_STOP_DEBOUNCE = 3000
 vim.api.nvim_create_autocmd("LspDetach", {
   group = fvim_augroup,
