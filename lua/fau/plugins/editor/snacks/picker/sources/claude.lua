@@ -27,7 +27,7 @@ local function session_meta(path)
   local c = meta_cache[path]
   if c and c.mtime == mtime then return c end
 
-  local ai, summary, last_prompt, first_user, cwd
+  local custom, ai, summary, last_prompt, first_user, cwd
   local ok, lines = pcall(vim.fn.readfile, path)
   if ok then
     for _, line in ipairs(lines) do
@@ -35,7 +35,8 @@ local function session_meta(path)
       if ok2 and type(e) == "table" then
         if not cwd and type(e.cwd) == "string" then cwd = e.cwd end
         local ty = e.type
-        if ty == "ai-title" and type(e.aiTitle) == "string" then ai = e.aiTitle  -- keep the latest title
+        if ty == "custom-title" and type(e.customTitle) == "string" then custom = e.customTitle  -- session renamed by hand
+        elseif ty == "ai-title" and type(e.aiTitle) == "string" then ai = e.aiTitle  -- keep the latest title
         elseif ty == "summary" and type(e.summary) == "string" then summary = e.summary
         elseif ty == "last-prompt" and type(e.lastPrompt) == "string" then last_prompt = e.lastPrompt
         elseif not first_user and ty == "user" and not e.isMeta and type(e.message) == "table" and e.message.role == "user" then
@@ -53,7 +54,7 @@ local function session_meta(path)
 
   local m = {
     mtime = mtime,
-    title = ai or summary or last_prompt or first_user,
+    title = custom or ai or summary or last_prompt or first_user,
     cwd = cwd,
   }
   meta_cache[path] = m
@@ -130,7 +131,7 @@ return {
 
   ---@type snacks.picker.Config
   claude_picker = {
-    title = "Claude sessions  (<C-d> delete  <C-a> scope)",
+    title = "Claude sessions  (<C-x> delete  <C-a> scope)",
 
     ---@param opts claude.Opts
     finder = function(opts)

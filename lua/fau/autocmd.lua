@@ -383,7 +383,19 @@ if vim.fn.executable("conda") == 1 then
 
       -- Try to find a conda env for the project root, and reconfigure the client to use it if found.
       local python_path = fvim.utils.conda.python_path_for(client.config.root_dir)
-      if python_path then fvim.lsp.reconfigure_python_path(client, python_path) end
+      if not python_path then return end
+
+      -- Conda wins over the local venv from after/lsp/basedpyright.lua.
+      local venv_path = vim.tbl_get(settings, "python", "pythonPath")
+      if venv_path and venv_path ~= python_path then
+        fvim.notify(("Conda env and local venv both found for %s\n  using:   %s\n  ignored: %s"):format(
+          vim.fn.fnamemodify(client.config.root_dir, ":~"),
+          python_path,
+          venv_path
+        ), vim.log.levels.WARN)
+      end
+
+      fvim.lsp.reconfigure_python_path(client, python_path)
     end,
   })
 end
