@@ -1,5 +1,5 @@
+-- REF: https://github.com/Wansmer/symbol-usage.nvim?tab=readme-ov-file#bubbles
 local function text_format(symbol)
-  -- REF: https://github.com/Wansmer/symbol-usage.nvim?tab=readme-ov-file#bubbles
   local res = {}
 
   local round_start = { "", "SymbolUsageRounding" }
@@ -61,7 +61,13 @@ return {
 
     disable = {
       filetypes = fvim.file.excluded_filetypes,
-      cond = nil,  -- Use default.
+      cond = {
+        function(bufnr)
+          if vim.bo[bufnr].buftype ~= "" then return true end
+          -- NOTE: Diagnosing python library files is resource intensive.
+          if vim.bo[bufnr].filetype == "python" then return fvim.utils.python_library_root(bufnr) end
+        end
+      },
       lsp = nil,  -- Use default.
     },
   },
