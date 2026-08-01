@@ -68,7 +68,12 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   group = fvim_augroup,
   pattern = "*",
   desc = "Auto save buffer.",
-  callback = function() if vim.bo.buftype == "" and vim.bo.modifiable then vim.cmd("update") end end,
+  -- NOTE: `update` throws E32 on a nameless buffer, which passes both other guards.
+  callback = function()
+    if vim.bo.buftype == "" and vim.bo.modifiable and vim.api.nvim_buf_get_name(0) ~= "" then
+      vim.cmd("update")
+    end
+  end,
 })
 
 
