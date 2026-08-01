@@ -7,7 +7,9 @@ return {
   event = { "BufReadPre", "BufNewFile" },
 
   config = function()
-    -- ==================== Configuration ====================
+    -- ════════════════════════════════════════════════════════
+    -- ════════════════════ Configuration ═════════════════════
+    -- ════════════════════════════════════════════════════════
 
     local bufferline = require("bufferline")
 
@@ -179,9 +181,13 @@ return {
     bufferline.setup(config)
 
 
-    -- ==================== Keymaps ====================
+    -- ════════════════════════════════════════════════════════
+    -- ═══════════════════════ Keymaps ════════════════════════
+    -- ════════════════════════════════════════════════════════
 
-    ---Do buffer switching in the main window.
+    -- ─── Switch Buffers ─────────────────────────────────────
+    ---A wrapper to ensure that the bufferline commands are executed in a regular window.
+    ---@param cmd string The bufferline command to be executed.
     local function wrapper(cmd)
       return function()
         if vim.bo.buftype ~= "" then
@@ -196,11 +202,13 @@ return {
     vim.keymap.set("n", "<A-h>", wrapper("BufferLineCyclePrev"), { desc = "Buffer: Focus Shift Prev" })
     vim.keymap.set("n", "<A-l>", wrapper("BufferLineCycleNext"), { desc = "Buffer: Focus Shift Next" })
 
-    -- Swap Buffers
+
+    -- ─── Swap Buffers ───────────────────────────────────────
     vim.keymap.set("n", "<A-left>",  wrapper("BufferLineMovePrev"), { desc = "Buffer: Move Buffer Prev" })
     vim.keymap.set("n", "<A-right>", wrapper("BufferLineMoveNext"), { desc = "Buffer: Move Buffer Next" })
 
-    -- By Meta Key
+
+    -- ─── By Meta Key ────────────────────────────────────────
     vim.keymap.set({ "n", "t" }, "<A-1>", wrapper("BufferLineGoToBuffer 1"),  { desc = "which_key_ignore" })
     vim.keymap.set({ "n", "t" }, "<A-2>", wrapper("BufferLineGoToBuffer 2"),  { desc = "which_key_ignore" })
     vim.keymap.set({ "n", "t" }, "<A-3>", wrapper("BufferLineGoToBuffer 3"),  { desc = "which_key_ignore" })
@@ -212,7 +220,8 @@ return {
     vim.keymap.set({ "n", "t" }, "<A-9>", wrapper("BufferLineGoToBuffer 9"),  { desc = "which_key_ignore" })
     vim.keymap.set({ "n", "t" }, "<A-0>", wrapper("BufferLineGoToBuffer -1"), { desc = "Buffer: Focus on Last" })
 
-    -- By Leader Key
+
+    -- ─── By Leader Key ──────────────────────────────────────
     vim.keymap.set("n", "<leader>1", wrapper("BufferLineGoToBuffer 1"),  { desc = "which_key_ignore" })
     vim.keymap.set("n", "<leader>2", wrapper("BufferLineGoToBuffer 2"),  { desc = "which_key_ignore" })
     vim.keymap.set("n", "<leader>3", wrapper("BufferLineGoToBuffer 3"),  { desc = "which_key_ignore" })

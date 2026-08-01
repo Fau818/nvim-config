@@ -21,7 +21,7 @@ return {
   },
 
   init = function()
-    -- ==================== Spinner ====================
+    -- ═══════════════════════ Spinner ════════════════════════
 
     local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
     local spinner_index = 0
@@ -47,7 +47,7 @@ return {
     })
 
 
-    -- ==================== Keymappings ====================
+    -- ═════════════════════ Keymappings ══════════════════════
 
     -- NOTE: Hide the chat buffer with `<A-q>` (the same behavior as `<S-q>`).
     vim.api.nvim_create_autocmd("FileType", {
@@ -58,7 +58,8 @@ return {
   end,
 
   opts = {
-    -- ==================== Adapters ====================
+    -- ═══════════════════════ Adapters ═══════════════════════
+
     adapters = {
       http = {
         -- OpenAI-compatible adapter for CodeCompanion
@@ -93,7 +94,8 @@ return {
     },
 
 
-    -- ==================== Interactions ====================
+    -- ═════════════════════ Interactions ═════════════════════
+
     interactions = {
       background = { adapter = "copilot" },  -- { adapter = { name = "copilot", model = "" } }
       chat = { adapter = "copilot_acp" },

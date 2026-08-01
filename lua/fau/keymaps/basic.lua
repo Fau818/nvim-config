@@ -1,6 +1,6 @@
--- =============================================
--- ========== Global Config
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ══════════════════════ Global Config ═══════════════════════
+-- ════════════════════════════════════════════════════════════
 
 local keymap = vim.keymap.set
 local function opts(desc) return { silent = true, desc = desc } end
@@ -27,136 +27,114 @@ local function close_editor()
 end
 
 
--- =============================================
--- ========== Quick Move
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ══════════════════ Motion & Text Objects ═══════════════════
+-- ════════════════════════════════════════════════════════════
 
+-- ─── Quick Move ─────────────────────────────────────────────
 keymap({ "n", "x", "o" }, "H", "^",  opts("Goto: Line Begin"))
 keymap({ "n", "x", "o" }, "J", "5j", opts("Goto: Five Lines Down"))
 keymap({ "n", "x", "o" }, "K", "5k", opts("Goto: Five Lines Up"))
 keymap({ "n", "x", "o" }, "L", "g_", opts("Goto: Line End"))
 
 
--- =============================================
--- ========== Buffer Operations
--- =============================================
-
-keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
-
-keymap("n", "<A-h>", "<CMD>bprevious<CR>", opts("Editor: Previous Buffer"))
-keymap("n", "<A-l>", "<CMD>bnext<CR>",     opts("Editor: Next Buffer"))
-
-keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
-keymap("n", "<D-s>",     "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
-keymap("n", "<LEADER>w", "<CMD>wall<CR>",    opts("Editor: Save All Buffers"))
-keymap("n", "<A-q>",     "<CMD>bdelete<CR>", opts("Editor: Close Current Buffer"))
-
-keymap("n", "Q",       "<CMD>q<CR>", opts("Editor: Quit Current Window"))
-keymap("n", "<C-S-q>", close_editor, opts("Editor: Quit Neovim"))
-
-
--- =============================================
--- ========== Personal Preferences
--- =============================================
-
--- Search Word Under Cursor and Clear Highlight Search
-keymap("n",          "?",         "*",                        opts("Search Word Under Cursor"))
-keymap("n",          "<LEADER>N", "<CMD>nohlsearch<CR>",      opts("Editor: No Highlight Search"))
-keymap({ "n", "i" }, "<ESC>",     "<CMD>nohlsearch<CR><ESC>", opts("Escape and Clear Highlight Search"))
-
--- Undo Preferences
-keymap("n", "<C-r>", "<Nop>", opts())
-keymap("n", "U",     "<C-r>", opts("Edit: Redo"))
-keymap("n", "<A-u>", "U",     opts("Edit: Undo Line"))
-
--- Merge Line
-keymap("n", "<A-m>", "J", opts("Edit: Merge Line"))
-
--- Default Visual-Block Mode
-keymap("n", "v", "<C-v>", opts("Visual-Block Mode"))
-
--- Use Enter Key to Break Line
-keymap("n", "<CR>",         "o<ESC>",     opts("Edit: Add New Line"))
-keymap("n", "<LEADER><CR>", "<CR>",       opts("Edit: Normal Enter Key"))
-keymap("i", "<S-CR>",       "<C-g>u<CR>", opts("Edit: Add New Line"))
-
--- Reveal File
-keymap("n", "<C-f>", "<CMD>Open %:p:h<CR>", opts("Editor: Reveal File"))
-keymap("n", "<C-b>", "<NOP>",               opts())
-
--- Open File Explorer
-keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Editor: Open File Explorer"))
-
--- Inspect
-keymap("n", "<LEADER>i", "<CMD>Inspect<CR>",     opts("Editor: Inspect Element under Cursor"))
-keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Syntax Tree"))
-
--- Disable Built-in Completion
-keymap("i", "<C-n>", "<NOP>", opts())
-
--- Add Undo Breakpoints
-keymap("i", ",", ",<c-g>u", opts("Add Undo Breakpoint"))
-keymap("i", ".", "<c-g>u.", opts("Add Undo Breakpoint"))
-keymap("i", ";", ";<c-g>u", opts("Add Undo Breakpoint"))
-
-
--- =============================================
--- ========== Quick Range Operations
--- =============================================
-
--- Word
+-- ─── Quick Range Operations ─────────────────────────────────
+-- ┄┄┄ Word
 keymap({ "x", "o" }, "w", "iw", opts("Range: Inner Word"))
 keymap({ "x", "o" }, "W", "iW", opts("Range: Inner WORD"))
 
--- Brackets
+-- ┄┄┄ Brackets
 keymap({ "x", "o" }, "ia", "i>", opts("Range: Inner Angle Bracket"))
 keymap({ "x", "o" }, "ir", "i]", opts("Range: Inner Square Bracket"))
 keymap({ "x", "o" }, "aa", "a>", opts("Range: Around Angle Bracket"))
 keymap({ "x", "o" }, "ar", "a]", opts("Range: Around Square Bracket"))
 
--- Quotes: for trimming leading/trailing spaces.
+-- ┄┄┄ Quotes (trim leading/trailing spaces)
 keymap({ "x", "o" }, [[a"]], [[2i"]], opts("Range: Around Double Quote"))
 keymap({ "x", "o" }, [[a']], [[2i']], opts("Range: Around Single Quote"))
 keymap({ "x", "o" }, [[a`]], [[2i`]], opts("Range: Around Back Quote"))
 
--- Paragraph
+-- ┄┄┄ Paragraph
 keymap("o", "p", "ip", opts("Range: Inner Paragraph"))
 
 
--- =============================================
--- ========== Yank Paste Delete(Cut) Preferences
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═════════════════════════ Editing ══════════════════════════
+-- ════════════════════════════════════════════════════════════
 
--- `x` and `X` using "_ register
+-- ─── Personal Preferences ───────────────────────────────────
+-- ┄┄┄ Search Word Under Cursor and Clear Highlight Search
+keymap("n",          "?",         "*",                        opts("Search Word Under Cursor"))
+keymap("n",          "<LEADER>N", "<CMD>nohlsearch<CR>",      opts("Editor: No Highlight Search"))
+keymap({ "n", "i" }, "<ESC>",     "<CMD>nohlsearch<CR><ESC>", opts("Escape and Clear Highlight Search"))
+
+-- ┄┄┄ Undo Preferences
+keymap("n", "<C-r>", "<Nop>", opts())
+keymap("n", "U",     "<C-r>", opts("Edit: Redo"))
+keymap("n", "<A-u>", "U",     opts("Edit: Undo Line"))
+
+-- ┄┄┄ Merge Line
+keymap("n", "<A-m>", "J", opts("Edit: Merge Line"))
+
+-- ┄┄┄ Default Visual-Block Mode
+keymap("n", "v", "<C-v>", opts("Visual-Block Mode"))
+
+-- ┄┄┄ Use Enter Key to Break Line
+keymap("n", "<CR>",         "o<ESC>",     opts("Edit: Add New Line"))
+keymap("n", "<LEADER><CR>", "<CR>",       opts("Edit: Normal Enter Key"))
+keymap("i", "<S-CR>",       "<C-g>u<CR>", opts("Edit: Add New Line"))
+
+-- ┄┄┄ Reveal File
+keymap("n", "<C-f>", "<CMD>Open %:p:h<CR>", opts("Editor: Reveal File"))
+keymap("n", "<C-b>", "<NOP>",               opts())
+
+-- ┄┄┄ Open File Explorer
+keymap("n", "<LEADER>e", "<CMD>Lexplore 25<CR>", opts("Editor: Open File Explorer"))
+
+-- ┄┄┄ Inspect
+keymap("n", "<LEADER>i", "<CMD>Inspect<CR>",     opts("Editor: Inspect Element under Cursor"))
+keymap("n", "<LEADER>I", "<CMD>InspectTree<CR>", opts("Editor: Show Parsed Syntax Tree"))
+
+-- ┄┄┄ Disable Built-in Completion
+keymap("i", "<C-n>", "<NOP>", opts())
+
+-- ┄┄┄ Add Undo Breakpoints
+keymap("i", ",", ",<c-g>u", opts("Add Undo Breakpoint"))
+keymap("i", ".", "<c-g>u.", opts("Add Undo Breakpoint"))
+keymap("i", ";", ";<c-g>u", opts("Add Undo Breakpoint"))
+
+
+-- ─── Yank Paste Delete(Cut) Preferences ─────────────────────
+-- ┄┄┄ `x` and `X` using "_ register
 keymap({ "n", "x" }, "x", [["_x]], opts("Edit: Delete Char"))
 keymap({ "n", "x" }, "X", [["_X]], opts("Edit: DELETE Char"))
 
--- `c` and `C` using "_ register
+-- ┄┄┄ `c` and `C` using "_ register
 keymap({ "n", "x" }, "c", [["_c]], opts("Edit: Change"))
 keymap({ "n", "x" }, "C", [["_C]], opts("Edit: Change Line"))
 
--- `d` and `D` using default register
+-- ┄┄┄ `d` and `D` using default register
 keymap({ "n", "x" }, "d",         [[""d]], opts("Edit: Cut with Vim Clipboard"))
 keymap({ "n", "x" }, "D",         [[""D]], opts("Edit: Cut to End of Line with Vim Clipboard"))
 keymap({ "n", "x" }, "<LEADER>d", "d",     opts("Edit: Cut with System Clipboard"))
 keymap({ "n", "x" }, "<LEADER>D", "D",     opts("Edit: Cut to End of Line with System Clipboard"))
 
--- '<LEADER>y' and '<LEADER>Y' using default register
+-- ┄┄┄ '<LEADER>y' and '<LEADER>Y' using default register
 keymap({ "n", "x" }, "<LEADER>y", [[""y]], opts("Yank with Vim Clipboard"))
 keymap({ "n", "x" }, "<LEADER>Y", [[""Y]], opts("Yank Line with Vim Clipboard"))
 
--- '<LEADER>p' and '<LEADER>P' using default register
+-- ┄┄┄ '<LEADER>p' and '<LEADER>P' using default register
 keymap({ "n", "x" }, "<LEADER>p", [[""p]], opts("Paste from Vim Clipboard"))
 keymap({ "n", "x" }, "<LEADER>P", [[""P]], opts("PASTE from Vim Clipboard"))
 
--- Delete Neovim Default Keymap `Y -> Y$`.  => `Y = yy`
+-- ┄┄┄ Delete Neovim Default Keymap `Y -> Y$`.  => `Y = yy`
 vim.keymap.del("n", "Y")
 
--- Paste with Auto Indent
+-- ┄┄┄ Paste with Auto Indent
 keymap("n", "p", "p`[v`]=", opts("PASTE with Auto Indent"))
 keymap("n", "P", "P`[v`]=", opts("PASTE with Auto Indent"))
 
--- Paste from System Clipboard
+-- ┄┄┄ Paste from System Clipboard
 keymap("n", "<LEADER><LEADER>p", "p", opts("PASTE"))
 keymap("n", "<LEADER><LEADER>P", "P", opts("PASTE"))
 
@@ -189,10 +167,7 @@ keymap("c", "<D-v>", "<C-r>+", { desc = "PASTE from System Clipboard" })  -- NOT
 keymap("x", "p", "P", opts("Paste"))
 
 
--- =============================================
--- ========== Move Line(s)
--- =============================================
-
+-- ─── Move Line(s) ───────────────────────────────────────────
 keymap("n", "<A-j>", "<CMD>execute 'move .+' . v:count1<CR>==",       opts("Move: Line Down"))
 keymap("n", "<A-k>", "<CMD>execute 'move .-' . (v:count1 + 1)<CR>==", opts("Move: Line Up"))
 keymap("i", "<A-j>", "<ESC><CMD>m .+1<CR>==gi", opts("Move: Line Down"))
@@ -201,57 +176,68 @@ keymap("x", "<A-j>", [[:<C-u>execute "'<, '>move '>+" . v:count1<cr>gv=gv]],    
 keymap("x", "<A-k>", [[:<C-u>execute "'<, '>move '<-" . (v:count1 + 1)<cr>gv=gv]], opts("Move: Line Up"))
 
 
--- =============================================
--- ========== Indent and Unindent Line(s)
--- =============================================
-
--- Normal Mode
+-- ─── Indent and Unindent Line(s) ────────────────────────────
+-- ┄┄┄ Normal Mode
 keymap("n", "<TAB>",   ">>",    opts("Indent: Add Indent Level"))
 keymap("n", "<S-TAB>", "<<",    opts("Indent: Red Indent Level"))  -- Reduce indent level.
 keymap("n", "<C-i>",   "<C-i>", opts())  -- For keeping `<C-i>` functionality.
 
--- Visual Mode
+-- ┄┄┄ Visual Mode
 keymap("x", "<TAB>",   ">gv", opts("Indent: Add Indent Level"))
 keymap("x", "<S-TAB>", "<gv", opts("Indent: Red Indent Level"))  -- Reduce indent level.
 
 
--- =============================================
--- ========== Window Operations
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ════════════════════ Windows & Buffers ═════════════════════
+-- ════════════════════════════════════════════════════════════
 
--- Focus in Window
+-- ─── Buffer Operations ──────────────────────────────────────
+keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
+
+keymap("n", "<A-h>", "<CMD>bprevious<CR>", opts("Editor: Previous Buffer"))
+keymap("n", "<A-l>", "<CMD>bnext<CR>",     opts("Editor: Next Buffer"))
+
+keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
+keymap("n", "<D-s>",     "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))
+keymap("n", "<LEADER>w", "<CMD>wall<CR>",    opts("Editor: Save All Buffers"))
+keymap("n", "<A-q>",     "<CMD>bdelete<CR>", opts("Editor: Close Current Buffer"))
+
+keymap("n", "Q",       "<CMD>q<CR>", opts("Editor: Quit Current Window"))
+keymap("n", "<C-S-q>", close_editor, opts("Editor: Quit Neovim"))
+
+
+-- ─── Window Operations ──────────────────────────────────────
+-- ┄┄┄ Focus in Window
 keymap({ "n", "t" }, "<C-h>", "<CMD>wincmd h<CR>", opts("Window: Focus Shift Left"))
 keymap({ "n", "t" }, "<C-j>", "<CMD>wincmd j<CR>", opts("Window: Focus Shift Down"))
 keymap({ "n", "t" }, "<C-k>", "<CMD>wincmd k<CR>", opts("Window: Focus Shift Up"))
 keymap({ "n", "t" }, "<C-l>", "<CMD>wincmd l<CR>", opts("Window: Focus Shift Right"))
 
--- Resize Window
+-- ┄┄┄ Resize Window
 keymap({ "n", "t" }, "<C-LEFT>",  "<CMD>vertical resize -2<CR>", opts("Window: Decrease Width"))
 keymap({ "n", "t" }, "<C-RIGHT>", "<CMD>vertical resize +2<CR>", opts("Window: Increase Width"))
 keymap({ "n", "t" }, "<C-DOWN>",  "<CMD>resize -1<CR>",          opts("Window: Decrease Height"))
 keymap({ "n", "t" }, "<C-UP>",    "<CMD>resize +1<CR>",          opts("Window: Increase Height"))
 
--- Split Window
+-- ┄┄┄ Split Window
 keymap("n", "<C-w>v", "<CMD>vsplit<CR>", opts("Editor: Vertical Split"))
 keymap("n", "<C-w>x", "<CMD>split<CR>",  opts("Editor: Horizontal Split"))
 
 
--- =============================================
--- ========== Terminal
--- =============================================
-
-keymap("t", "<C-r>", "<NOP>", opts())
-keymap("t", "<C-q>", [[<C-\><C-n>]])
+-- ─── Terminal ───────────────────────────────────────────────
+keymap("t", "<C-r>", "<NOP>", opts("Terminal: Disable <C-r>"))
+keymap("t", "<C-q>", [[<C-\><C-n>]], opts("Terminal: Exit Terminal Mode"))
 
 
--- =============================================
--- ========== Diagnostics
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═══════════════════════════ LSP ════════════════════════════
+-- ════════════════════════════════════════════════════════════
 
--- Full Diagnostics Infomation
+-- ─── Diagnostics ────────────────────────────────────────────
+-- ┄┄┄ Full Diagnostics Information
 keymap("n", "gl", vim.diagnostic.open_float, opts("LSP: Full Diagnostics"))
 
--- Navigation
+-- ┄┄┄ Navigation
 keymap("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts("LSP: Prev Diagnostics"))
 keymap("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end,  opts("LSP: Next Diagnostics"))
 keymap("n", "[e", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end, opts("LSP: Prev Error"))
@@ -259,15 +245,12 @@ keymap("n", "]e", function() vim.diagnostic.jump({ count = 1, severity = vim.dia
 keymap("n", "[w", function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN }) end,  opts("LSP: Prev Warning"))
 keymap("n", "]w", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end,  opts("LSP: Next Warning"))
 
--- Diagnostics List
+-- ┄┄┄ Diagnostics List
 keymap("n", "<LEADER>ld", vim.diagnostic.setqflist, opts("LSP: Workspace Diagnostics"))
 
 
--- =============================================
--- ========== LSP
--- =============================================
-
--- Remove Default LSP Keymaps
+-- ─── LSP ────────────────────────────────────────────────────
+-- ┄┄┄ Remove Default LSP Keymaps
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "grn")
@@ -281,7 +264,7 @@ vim.keymap.del({ "i", "s" }, "<C-s>")
 vim.keymap.del({ "i", "s" }, "<Tab>")
 vim.keymap.del({ "i", "s" }, "<S-Tab>")
 
--- Navigation
+-- ┄┄┄ Navigation
 keymap("n", "gd", vim.lsp.buf.definition,      opts("LSP: Definition"))
 keymap("n", "gD", vim.lsp.buf.declaration,     opts("LSP: Declaration"))
 keymap("n", "gt", vim.lsp.buf.type_definition, opts("LSP: Type Definition"))

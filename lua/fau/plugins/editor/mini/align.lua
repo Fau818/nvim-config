@@ -28,7 +28,7 @@ return {
       end,
 
 
-      -- ==================== Default ====================
+      -- ══════════════════════ Default ═══════════════════════
 
       -- -- Main option modifiers
       -- ['s'] = --<function: enter split pattern>,

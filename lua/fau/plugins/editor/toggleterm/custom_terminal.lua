@@ -1,10 +1,10 @@
 local Terminal = require("toggleterm.terminal").Terminal
 
--- ==================== Custom Layouts ====================
+
+-- ═════════════════════ Custom Terminal ══════════════════════
+
 local full_screen = { border = "none", width = 888888, height = 888888 }
 
-
--- ==================== Custom Terminal ====================
 local custom_terminal = {
   -- cmd = string -- command to execute when creating the terminal e.g. 'top'
   -- display_name = string -- the name of the terminal

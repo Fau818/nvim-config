@@ -14,29 +14,29 @@ return {
 
     ---@type wk.Spec
     spec = {
-      -- ==================== Whichkey Ignore ====================
+      -- ─── Whichkey Ignore ──────────────────────────────────
       { "<MouseMove>", desc = "which_key_ignore" },
       { "<LeftMouse>", desc = "which_key_ignore" },
       { "<Tab>",       desc = "which_key_ignore" },
       { "<S-Tab>",     desc = "which_key_ignore" },
 
 
-      -- ==================== Navigation ====================
+      -- ─── Navigation ───────────────────────────────────────
       { "]", group = "Next", mode = { "n", "x" } },
       { "[", group = "Prev", mode = { "n", "x" } },
 
 
-      -- ==================== LSP ====================
+      -- ─── LSP ──────────────────────────────────────────────
       { "g", group = "+LSP" },
       { "<LEADER>l", group = "+LSP", mode = { "n", "x" } },
 
 
-      -- ==================== Git ====================
+      -- ─── Git ──────────────────────────────────────────────
       { "<LEADER>g", "<Nop>", group = "Git", mode = { "n", "x" } },
       -- { "<LEADER>gt", group = "Gitsigns: Toggle" },
 
 
-      -- ==================== Surround ====================
+      -- ─── Surround ─────────────────────────────────────────
       { "s", group = "Surround", mode = { "n", "x" } },
       { "S", group = "SURROUND", mode = { "n", "x" } },
     },

@@ -37,7 +37,8 @@ local function on_attach(bufnr)
   local api = require("nvim-tree.api")
   local function opts(desc) return { desc = desc, buffer = bufnr } end
 
-  -- ==================== Open ====================
+
+  -- ─── Open ─────────────────────────────────────────────────
   vim.keymap.set("n", "<CR>",          function() _smart_open("edit") end,    opts("Open: Smart Open"))
   vim.keymap.set("n", "<2-LeftMouse>", function() _smart_open("edit") end,    opts("Open: Smart Open"))
   vim.keymap.set("n", "o",             api.node.open.edit,                   opts("Open: Edit"))
@@ -50,31 +51,31 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "<C-w>x",         api.node.open.horizontal,       opts("Open: Horizontal Split"))
 
 
-  -- ==================== Change Work Directory ====================
+  -- ─── Change Work Directory ────────────────────────────────
   vim.keymap.set("n", "<C-]>",          api.tree.change_root_to_node, opts("CD: Change Root"))
   vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD: Change Root"))
 
 
-  -- ==================== Filter ====================
+  -- ─── Filter ───────────────────────────────────────────────
   vim.keymap.set("n", "f", api.live_filter.start, opts("Filter: Start"))
   vim.keymap.set("n", "F", api.live_filter.clear, opts("Filter: Clear"))
   -- vim.keymap.set("n", "s", api.tree.search_node,  opts("Search File"))
 
 
-  -- ==================== Rename ====================
+  -- ─── Rename ───────────────────────────────────────────────
   vim.keymap.set("n", "r",     api.fs.rename_basename, opts("Rename: Basename"))
   vim.keymap.set("n", "lr",    api.fs.rename,          opts("Rename: Filename"))
   vim.keymap.set("n", "<C-r>", api.fs.rename_full,     opts("Rename: Full Path"))
 
 
-  -- ==================== Copy Name/Path ====================
+  -- ─── Copy Name/Path ───────────────────────────────────────
   vim.keymap.set("n", "ge", api.fs.copy.basename,      opts("Copy: Basename"))
   vim.keymap.set("n", "y",  api.fs.copy.filename,      opts("Copy: Filename"))
   vim.keymap.set("n", "Y",  api.fs.copy.relative_path, opts("Copy: Relative Path"))
   vim.keymap.set("n", "gy", api.fs.copy.absolute_path, opts("Copy: Absolute Path"))
 
 
-  -- ==================== File Operations ====================
+  -- ─── File Operations ──────────────────────────────────────
   vim.keymap.set("n", "a", api.fs.create,    opts("File: Create"))
   vim.keymap.set("n", "x", api.fs.cut,       opts("File: Cut"))
   vim.keymap.set("n", "c", api.fs.copy.node, opts("File: Copy"))
@@ -83,19 +84,19 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "p", api.fs.paste,     opts("File: Paste"))
 
 
-  -- ==================== View ====================
+  -- ─── View ─────────────────────────────────────────────────
   vim.keymap.set("n", "B", api.tree.toggle_no_buffer_filter, opts("View: Toggle Buffer"))
   vim.keymap.set("n", "C", api.tree.toggle_git_clean_filter, opts("View: Toggle Git"))
   vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts("View: Toggle Ignore"))
   vim.keymap.set("n", "U", api.tree.toggle_custom_filter,    opts("View: Toggle Hidden"))
 
 
-  -- ==================== Expand/Collapse ====================
+  -- ─── Expand/Collapse ──────────────────────────────────────
   vim.keymap.set("n", "E", api.tree.expand_all,   opts("Node: Expand All"))
   vim.keymap.set("n", "W", api.tree.collapse_all, opts("Node: Collapse All"))
 
 
-  -- ==================== Navigation ====================
+  -- ─── Navigation ───────────────────────────────────────────
   vim.keymap.set("n", "P",    api.node.navigate.parent,        opts("Node: Parent Directory"))
   vim.keymap.set("n", "<BS>", api.node.navigate.parent_close,  opts("Node: Close Directory"))
   vim.keymap.set("n", "H",    api.node.navigate.sibling.first, opts("Node: First Sibling"))
@@ -108,12 +109,12 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "]d", api.node.navigate.diagnostics.next, opts("Diagnostic: Next"))
 
 
-  -- ==================== Node Operations ====================
+  -- ─── Node Operations ──────────────────────────────────────
   vim.keymap.set("n", "i", api.node.show_info_popup, opts("Node: Info"))
   vim.keymap.set("n", ".", api.node.run.cmd,         opts("Node: Run Command"))
 
 
-  -- ==================== Tree Operations ====================
+  -- ─── Tree Operations ──────────────────────────────────────
   vim.keymap.set("n", "R",     api.tree.reload,      opts("Tree: Refresh"))
   vim.keymap.set("n", "g?",    api.tree.toggle_help, opts("Tree: Help"))
   vim.keymap.set("n", "?",     api.tree.toggle_help, opts("Tree: Help"))
@@ -121,7 +122,7 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "<ESC>", api.tree.close,       opts("Tree: Close"))
 
 
-  -- ==================== Marks ====================
+  -- ─── Marks ────────────────────────────────────────────────
   -- vim.keymap.set("n", "m",   api.marks.toggle,                   opts("Bookmark: Toggle"))
   -- vim.keymap.set("n", "bmv", api.marks.bulk.move,                opts("Bookmark: Move"))
   -- vim.keymap.set("n", "bt",  api.marks.bulk.trash,               opts("Bookmark: Trash"))

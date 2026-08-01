@@ -37,7 +37,8 @@ return {
   cmd = { "UfoEnable", "UfoDisable", "UfoInspect", "UfoAttach", "UfoDetach", "UfoEnableFold", "UfoDisableFold" },
 
   init = function()
-    -- ==================== Fold Options ====================
+    -- ═════════════════════ Fold Options ═════════════════════
+
     vim.opt.foldcolumn     = "auto"
     vim.opt.foldlevel      = 999
     vim.opt.foldlevelstart = 999
@@ -45,7 +46,8 @@ return {
     vim.opt.fillchars:append([[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]])
 
 
-    -- ==================== View Keeper ====================
+    -- ═════════════════════ View Keeper ══════════════════════
+
     local augroup = vim.api.nvim_create_augroup("UfoViewKeeper", { clear = true })
     vim.api.nvim_create_autocmd("BufWinLeave", {
       group = augroup,
@@ -98,7 +100,6 @@ return {
     ufo.setup(opts)
 
 
-    -- ==================== Keymaps ====================
     local function peek_fold()
       local winid = ufo.peekFoldedLinesUnderCursor()
       if not winid then return vim.lsp.buf.hover() end

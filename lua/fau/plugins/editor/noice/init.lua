@@ -8,7 +8,7 @@ return {
   event = "UIEnter",
 
   init = function()
-    -- ==================== Smart Scroll ====================
+    -- ═════════════════════ Smart Scroll ═════════════════════
 
     local fallback_cf = fvim.utils.keymap_fallback_wrapper("n", "<C-f>")
     local fallback_cb = fvim.utils.keymap_fallback_wrapper("n", "<C-b>")

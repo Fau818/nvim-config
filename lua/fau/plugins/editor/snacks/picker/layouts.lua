@@ -1,6 +1,6 @@
 ---@type table<string, snacks.picker.layout.Config>
 return {
-  -- ==================== Presets ====================
+  -- ════════════════════════ Presets ═════════════════════════
 
   default = {
     layout = {
@@ -43,7 +43,7 @@ return {
   telescope = { layout = { height = 0.8 } },
 
 
-  -- ==================== Custom ====================
+  -- ═════════════════════════ Custom ═════════════════════════
 
   main = {
     preview = "main",

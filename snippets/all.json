@@ -1,26 +1,22 @@
 {
-  "# Section Comment": {
+  "# Weight 1 -- box (top level, heavy)": {
     "body": [
-      "$LINE_COMMENT =============================================",
-      "$LINE_COMMENT ========== ${1:Section Comment}",
-      "$LINE_COMMENT =============================================$0"
+      "$LINE_COMMENT ════════════════════════════════════════════════════════════",
+      "$LINE_COMMENT ══════════════════════════ ${1:Region} ══════════════════════════",
+      "$LINE_COMMENT ════════════════════════════════════════════════════════════$0"
     ],
-    "prefix": "seccom"
+    "prefix": "sec1"
   },
-  "# Section Separator": {
-    "body": "$LINE_COMMENT ==================== ${1:Section Separator} ====================$0",
-    "prefix": "secsep"
+  "# Weight 2 -- single line (top level, light)": {
+    "body": "$LINE_COMMENT ══════════════════════════ ${1:Region} ══════════════════════════$0",
+    "prefix": "sec2"
   },
-  "# Subsection Comment": {
-    "body": [
-      "$LINE_COMMENT -----------------------------------",
-      "$LINE_COMMENT -------- ${1:Subsection Comment}",
-      "$LINE_COMMENT -----------------------------------$0"
-    ],
-    "prefix": "subseccom"
+  "# Weight 3 -- section": {
+    "body": "$LINE_COMMENT ─── ${1:Section} ────────────────────────────────────────────────$0",
+    "prefix": "sec3"
   },
-  "# Subsection Separator": {
-    "body": "$LINE_COMMENT ---------- ${1:Subsection Separator}$0",
-    "prefix": "subsecsep"
+  "# Weight 4 -- subsection": {
+    "body": "$LINE_COMMENT ┄┄┄ ${1:Subsection}$0",
+    "prefix": "sec4"
   }
 }

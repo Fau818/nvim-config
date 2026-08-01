@@ -1,11 +1,13 @@
 local fvim_augroup = vim.api.nvim_create_augroup("fau_vim", { clear = true })
 
 
--- =============================================
--- ========== Basic
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═══════════════════════════ Core ═══════════════════════════
+-- ════════════════════════════════════════════════════════════
 
--- Keep cursor on the last closed position when enter a buffer.
+-- ══════════════════════════ Basic ═══════════════════════════
+
+---Keep cursor on the last closed position when enter a buffer.
 vim.cmd [[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
 
 ---Disable horizonatal mouse scroll in terminal buffers.
@@ -21,7 +23,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 
--- ==================== Indentation ====================
+-- ═══════════════════════ Indentation ════════════════════════
 
 vim.api.nvim_create_autocmd("OptionSet", {
   group = fvim_augroup,
@@ -45,7 +47,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
 })
 
 
--- ==================== Yank ====================
+-- ═══════════════════════════ Yank ═══════════════════════════
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = fvim_augroup,
@@ -55,7 +57,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 
--- ==================== Save ====================
+-- ═══════════════════════════ Save ═══════════════════════════
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = fvim_augroup,
@@ -77,18 +79,16 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
 })
 
 
--- ==========================================================================================
--- ====== IMPORTANT: The Following Autocmds Are Only Loaded in Non-VSCode Environment =======
--- ==========================================================================================
+-- ════════════════════════════════════════════════════════════
+-- ═════════════════════ Non-VSCode Only ══════════════════════
+-- ════════════════════════════════════════════════════════════
+
+-- IMPORTANT: The following autocmds are only loaded in non-VSCode environment.
 if vim.g.vscode then return end
--- ==========================================================================================
--- ====== WARNING:   The Following Autocmds Are Only Loaded in Non-VSCode Environment =======
--- ==========================================================================================
+-- WARNING: The following autocmds are only loaded in non-VSCode environment.
 
 
--- =============================================
--- ========== Markdown Highlighting
--- =============================================
+-- ══════════════════ Markdown Highlighting ═══════════════════
 
 ---Colored bold/italic markup for regular markdown buffers.
 local fvim_markdown_hl_ns = vim.api.nvim_create_namespace("fvim_markdown_hl_ns")
@@ -106,9 +106,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
 })
 
 
--- =============================================
--- ========== Auto Reload
--- =============================================
+-- ═══════════════════════ Auto Reload ════════════════════════
 
 -- WORKAROUND: `autoread` only takes effect when Neovim explicitly checks a file's mtime.
 -- Trigger it check on the events most likely to mean the file changed on disk.
@@ -155,9 +153,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
--- =============================================
--- ========== Filetypes
--- =============================================
+-- ════════════════════════ Filetypes ═════════════════════════
 
 vim.api.nvim_create_autocmd("FileType", {
   group = fvim_augroup,
@@ -175,9 +171,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
--- =============================================
--- ========== Visual Block Mode
--- =============================================
+-- ════════════════════ Visual Block Mode ═════════════════════
 
 -- SEE: https://github.com/neovim/neovim/issues/25926
 -- WORKAROUND: Blockwise visual ops resolve their block boundaries from screen columns, which inline inlay-hint virt_text inflates.
@@ -247,7 +241,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 
--- =============================================
+-- ══════════════════════ Pinned Windows ══════════════════════
 -- ========== Pinned Windows
 -- =============================================
 
@@ -311,9 +305,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 
--- =============================================
--- ========== LSP
--- =============================================
+-- ═══════════════════════════ LSP ════════════════════════════
 
 -- WORKAROUND: On detach Neovim only resets the client's PUSH namespace (`vim/lsp/client.lua` `_on_detach`);
 -- PULL diagnostics are cleared by a separate handler that fires only once the LAST pull-capable client
@@ -361,9 +353,7 @@ vim.api.nvim_create_autocmd("LspDetach", {
 })
 
 
--- =============================================
--- ========== Shell Cwd Sync
--- =============================================
+-- ══════════════════════ Shell Cwd Sync ══════════════════════
 
 ---The `nvim` wrapper in `zsh/plugins/neovim.zsh` sets this to a temp file path
 ---so that the shell can read the current working directory.
@@ -380,9 +370,7 @@ if vim.env.NVIM_CWD_FILE then
 end
 
 
--- =============================================
--- ========== Kitty
--- =============================================
+-- ══════════════════════════ Kitty ═══════════════════════════
 
 if fvim.kitty.is_enabled then
   -- SEE: https://sw.kovidgoyal.net/kitty/mapping/#conditional-mappings-depending-on-the-state-of-the-focused-window

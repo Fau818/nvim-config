@@ -1,7 +1,7 @@
 ---@module "noice"
 ---@type table<string, NoiceViewOptions>
 local views = {
-  -- ==================== Preset Modification ====================
+  -- ══════════════════ Preset Modification ═══════════════════
 
   notify = { replace = true, merge = true },
 
@@ -16,7 +16,7 @@ local views = {
   mini = { timeout = 500, replace = true, merge = true },
 
 
-  -- ==================== Custom ====================
+  -- ═════════════════════════ Custom ═════════════════════════
 
   cmdline_popup_top = { view = "cmdline_popup", position = { row = 3, col = "50%" } },
 }

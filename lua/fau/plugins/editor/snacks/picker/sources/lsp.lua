@@ -4,10 +4,6 @@ local preset = require("fau.plugins.editor.snacks.picker.sources.preset")
 ---@alias SnacksPickerOpts table|{ lsp_buf: integer, lsp_ft: string, lsp_show_all?: boolean }
 
 
--- =============================================
--- ========== Control Actions
--- =============================================
-
 ---Get available control actions based on the server state.
 ---@param item snacks.picker.Item item from the `lsp_config` source
 ---@param bufnr integer origin buffer of the picker

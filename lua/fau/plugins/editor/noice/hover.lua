@@ -1,7 +1,6 @@
 local M = {}
 
 
--- ==================== CLeanup Functions ====================
 ---Strip decorative section-separator comment lines from a markdown doc string.
 ---A line is dropped when (ignoring leading whitespace and any backslashes)
 ---it starts with `===` (3+ `=`) or `----` (4+ `-`, so the markdown `---` rule lives).

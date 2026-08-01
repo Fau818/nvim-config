@@ -268,7 +268,8 @@ return {
   config = function(_, opts)
     require("blink.cmp").setup(opts)
 
-    -- ==================== <CR> in normal mode to stop snippet ====================
+
+    -- ═════════ <CR> in normal mode to stop snippet ══════════
 
     if not vim.g.blink_cmp_cr_patch then
       vim.g.blink_cmp_cr_patch = true
@@ -283,7 +284,7 @@ return {
     end
 
 
-    -- ==================== Copilot Auto Hide ====================
+    -- ══════════════════ Copilot Auto Hide ═══════════════════
 
     if require("blink.cmp.config").completion.ghost_text.enabled then
       if not package.loaded["copilot"] then return end

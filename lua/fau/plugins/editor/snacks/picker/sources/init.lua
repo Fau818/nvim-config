@@ -117,7 +117,8 @@ return {
   -- undo = {},
   -- zoxide = {},
 
-  -- ==================== Custom ====================
+
+  -- ═════════════════════════ Custom ═════════════════════════
 
   todo_comments = { on_show = preset.normal_mode },
 }

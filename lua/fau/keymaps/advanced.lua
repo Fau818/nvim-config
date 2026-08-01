@@ -1,7 +1,9 @@
 local keymap = vim.keymap.set
 local function opts(desc) return { silent = false, desc = desc } end
 
--- ==================== Move ====================
+
+-- ═══════════════════════════ Move ═══════════════════════════
+
 ---In blockwise visual mode, pressing `L` again at the `g_` position escalates
 ---to `$` (curswant = MAXCOL), enabling the ragged to-line-end block selection.
 keymap("x", "L", function()
@@ -12,7 +14,8 @@ keymap("x", "L", function()
 end, opts("Goto: Line End (twice for `$` in V-Block)"))
 
 
--- ==================== Edit ====================
+-- ═══════════════════════════ Edit ═══════════════════════════
+
 keymap("x", "y", function() fvim.utils.smart_visual_mode(); vim.api.nvim_command("normal! y") end, opts("Edit: Yank"))
 keymap("x", "<LEADER>d", function() fvim.utils.smart_visual_mode(); vim.api.nvim_command("normal! d") end, opts("Edit: Cut"))
 
@@ -20,16 +23,19 @@ keymap("x", "c", function() fvim.utils.smart_visual_mode(); fvim.utils.feedkeys(
 keymap("x", "C", function() fvim.utils.smart_visual_mode(); fvim.utils.feedkeys([["_C]]) end, opts("Edit: Change"))
 
 
--- ==================== Buffer ====================
+-- ══════════════════════════ Buffer ══════════════════════════
+
 keymap("n", "<A-q>", fvim.utils.buf_remove,       opts("Buffer: Close Current Buffer"))
 keymap("n", "<C-f>", fvim.utils.reveal_in_system, opts("Buffer: Reveal in System"))
 
 
--- ==================== Indent ====================
+-- ══════════════════════════ Indent ══════════════════════════
+
 keymap("n", "<LEADER><LEADER>i", fvim.indent.toggle_indent_width, opts("Indent: Toggle Width"))
 
 
--- ==================== LSP ====================
+-- ═══════════════════════════ LSP ════════════════════════════
+
 keymap("n", "<LEADER>lf", fvim.format.smart_format, opts("LSP: Format Code (Smart)"))
 keymap("x", "<LEADER>lf", function()
   fvim.format.smart_format()

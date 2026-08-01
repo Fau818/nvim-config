@@ -1,11 +1,14 @@
 fvim = {}
 
--- ==================== Basic ====================
+
+-- ══════════════════════════ Basic ═══════════════════════════
+
 require("fau.options")
 require("fau.keymaps.basic")
 
 
--- ==================== Core ====================
+-- ═══════════════════════════ Core ═══════════════════════════
+
 require("fau.config")
 require("fau.functions")
 require("fau.commands")
@@ -13,5 +16,6 @@ require("fau.autocmd")
 require("fau.keymaps.advanced")
 
 
--- ==================== Lazy ====================
+-- ═══════════════════════════ Lazy ═══════════════════════════
+
 require("fau.lazy")

@@ -1,4 +1,5 @@
--- ==================== Commands ====================
+-- ═════════════════════════ Commands ═════════════════════════
+
 -- DESC: Open fau_vim config directory.
 vim.api.nvim_create_user_command("FauvimConfig",
   function()
@@ -18,6 +19,7 @@ vim.api.nvim_create_user_command("GetPyprojectFile",
 )
 
 
--- ==================== Keymaps ====================
+-- ═════════════════════════ Keymaps ══════════════════════════
+
 vim.keymap.set("n", "<LEADER>E",  "<Nop>",                 { desc = "+Edit" })
 vim.keymap.set("n", "<LEADER>Ec", "<CMD>FauvimConfig<CR>", { desc = "fau_vim: Config" })

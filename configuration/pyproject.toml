@@ -2,16 +2,18 @@
 # name = "default"
 # requires-python = ">=3.12"
 
-# =============================================
-# ========== Basedpyright
-# =============================================
+
+# ════════════════════════════════════════════════════════════
+# ═══════════════════════ Basedpyright ═══════════════════════
+# ════════════════════════════════════════════════════════════
 
 # IMPORTANT: !!!!!! This won't work since neovim handled the LSP config.
 [tool.basedpyright]
 # SEE: Pyright: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
 # SEE: Basedpyright: https://docs.basedpyright.com/dev/configuration/config-files
 
-# ==================== Environment Options ====================
+
+# ═══════════════════ Environment Options ════════════════════
 
 # include = ["src"]
 # exclude = []
@@ -32,7 +34,7 @@
 # useLibraryCodeForTypes = true
 
 
-# ==================== Type Evaluation Settings ====================
+# ═════════════════ Type Evaluation Settings ═════════════════
 
 # strictListInference        = false
 # strictSetInference         = false
@@ -46,21 +48,17 @@
 # disableBytesTypePromotions = true
 # enableExperimentalFeatures = false
 
-# ---------- Basedpyright Exclusive Settings
+# ┄┄┄ Basedpyright Exclusive Settings
 # strictGenericNarrowing = true
 # enableBasedFeatures = false
 
-# ---------- Discouraged Settings
-enableTypeIgnoreComments = true
-# enableReachabilityAnalysis = false
 
-
-# ==================== Diagnostics ====================
+# ═══════════════════════ Diagnostics ════════════════════════
 
 typeCheckingMode = "recommended"  # values: "off" | "basic" | "standard" | "strict" | "recommended" | "all"
 # ignore = []
 
-# ---------- Type Check Rule Overrides [Not All Settings Shown]
+# ┄┄┄ Type Check Rule Overrides [Not All Settings Shown]
 # Values: "error" | "warning" | "information" | "hint" | "none" | boolean
 reportUnusedCallResult = "none"
 reportUnusedParameter  = "hint"
@@ -68,10 +66,9 @@ reportUnusedVariable   = "hint"
 reportUnreachable      = "information"
 
 
-
-# =============================================
-# ========== Ruff
-# =============================================
+# ════════════════════════════════════════════════════════════
+# ═══════════════════════════ Ruff ═══════════════════════════
+# ════════════════════════════════════════════════════════════
 
 # SEE: https://docs.astral.sh/ruff/settings/       (Full settings)
 # SEE: https://docs.astral.sh/ruff/configuration/  (Basic configuration)

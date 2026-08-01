@@ -3,14 +3,15 @@ local function _on_attach(bufnr)
   local keymap  = vim.keymap.set
   local function opts(desc) return { desc = "Gitsigns: " .. desc, buffer = bufnr } end
 
-  -- ==================== Navigation ====================
+
+  -- ─── Navigation ───────────────────────────────────────────
   ---@diagnostic disable-next-line: param-type-mismatch
   keymap("n", "]g", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gitsigns.nav_hunk("next") end end, opts("Next Hunk"))
   ---@diagnostic disable-next-line: param-type-mismatch
   keymap("n", "[g", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk("prev") end end, opts("Prev Hunk"))
 
 
-  -- ==================== Stage & Reset ====================
+  -- ─── Stage & Reset ────────────────────────────────────────
   keymap("n", "<LEADER>gs", gitsigns.stage_hunk,   opts("Stage Hunk"))
   keymap("n", "<LEADER>gS", gitsigns.stage_buffer, opts("Stage Buffer"))
   keymap("n", "<LEADER>gr", gitsigns.reset_hunk,   opts("Reset Hunk"))
@@ -20,30 +21,30 @@ local function _on_attach(bufnr)
   keymap("n", "<LEADER>gu", gitsigns.undo_stage_hunk, opts("Gitsigns: Undo"))
 
 
-  -- ==================== Preview ====================
+  -- ─── Preview ──────────────────────────────────────────────
   keymap({ "n", "x" }, "<LEADER>gc", gitsigns.preview_hunk_inline, opts("Preview Changes Inline"))
   keymap({ "n", "x" }, "<LEADER>gC", gitsigns.preview_hunk,        opts("Preview Changes Float"))
 
 
-  -- ==================== Blame ====================
+  -- ─── Blame ────────────────────────────────────────────────
   keymap("n", "<LEADER>gb", function() gitsigns.blame_line({ full = true }) end, opts("Show Full Blame"))
 
 
-  -- ==================== Select Hunk ====================
+  -- ─── Select Hunk ──────────────────────────────────────────
   keymap("n", "<LEADER>gv", gitsigns.select_hunk, opts("Select Hunk"))
   keymap({ "o", "x" }, "ih", gitsigns.select_hunk, opts("Git Hunk"))
 
 
-  -- ==================== Diffthis ====================
+  -- ─── Diffthis ─────────────────────────────────────────────
   ---@diagnostic disable-next-line: param-type-mismatch
   keymap("n", "<LEADER>gf", function() gitsigns.diffthis("HEAD") end, opts("Diff Current Buffer"))
 
 
-  -- ==================== Quickfix ====================
+  -- ─── Quickfix ─────────────────────────────────────────────
   keymap("n", "<LEADER>gq", gitsigns.setloclist, opts("Gitsigns: Show in List"))
 
 
-  -- ==================== Toggle ====================
+  -- ─── Toggle ───────────────────────────────────────────────
   -- keymap("n", "<LEADER>gtb", gitsigns.toggle_current_line_blame, opts("Toggle Line Blame"))
   -- keymap("n", "<LEADER>gts", gitsigns.toggle_signs,              opts("Toggle Column Signs"))
   -- keymap("n", "<LEADER>gtn", gitsigns.toggle_numhl,              opts("Toggle Number Highlight"))

@@ -16,21 +16,23 @@ return {
       bt_ignore = vim.list_slice(fvim.file.excluded_buftypes, 2),   -- NOTE: Filtered buftype `"nofile"`
 
       segments = {
-        -- Sign (Default statuscolumn)
+        -- ─── Sign (Default statuscolumn) ────────────────────
         {
           text = { "%s" },
           click = "v:lua.ScSa",
           sign = { auto = true },
         },
 
-        -- Line number
+
+        -- ─── Line Number ────────────────────────────────────
         {
           text = { builtin.lnumfunc, " " },
           condition = { true, builtin.not_empty },
           click = "v:lua.ScLa",
         },
 
-        -- Fold
+
+        -- ─── Fold ───────────────────────────────────────────
         {
           text = { builtin.foldfunc, " " },
           condition = { true, builtin.not_empty },

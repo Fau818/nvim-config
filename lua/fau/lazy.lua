@@ -1,4 +1,7 @@
--- ==================== Lazy Installation ====================
+-- ════════════════════════════════════════════════════════════
+-- ════════════════════ Lazy Installation ═════════════════════
+-- ════════════════════════════════════════════════════════════
+
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/lazy.nvim")
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -13,13 +16,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
+-- ════════════════════════════════════════════════════════════
+-- ══════════════════════ Configuration ═══════════════════════
+-- ════════════════════════════════════════════════════════════
 
--- ==================== Configuration ====================
--- ---------- Keymaps
+-- ─── Keymaps ────────────────────────────────────────────────
 local ViewConfig = require("lazy.view.config")
 ViewConfig.keys.hover = "<C-d>"
 
--- ---------- Options
+
+-- ─── Options ────────────────────────────────────────────────
 ---@type LazyConfig
 local config = {
   root = nil,  -- Use default.

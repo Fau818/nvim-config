@@ -1,6 +1,6 @@
--- =============================================
--- ========== Treesitter Utilities
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═══════════════════ Treesitter Utilities ═══════════════════
+-- ════════════════════════════════════════════════════════════
 
 local _installed = {}  ---@type table<string,boolean>
 local _queries   = {}  ---@type table<string,boolean>
@@ -75,9 +75,9 @@ local function ts_ensure_install(lang, callback)
 end
 
 
--- =============================================
--- ========== Treesitter Plugin Specs
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═════════════════ Treesitter Plugin Specs ══════════════════
+-- ════════════════════════════════════════════════════════════
 
 ---@type LazyPluginSpec[]
 return {
@@ -99,7 +99,8 @@ return {
     opts = {
       -- install_dir = nil,  -- Use default.
 
-      -- ==================== Custom Fields ====================
+
+      -- ─── Custom Fields ────────────────────────────────────
       ensure_installed = {
         "vim", "vimdoc", "regex","query",
         "bash", "toml", "yaml", "json",

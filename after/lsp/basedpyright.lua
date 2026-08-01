@@ -76,7 +76,9 @@ return {
 
         -- configFilePath = nil,  -- Use default.
 
-        -- ==================== pyproject.toml ====================
+
+        -- ══════════════════ pyproject.toml ══════════════════
+
         exclude = nil,  -- NOTE: Use default; and don't change it if it's not necessary since there a special mechianism only works when exclude is nil.
         -- extraPaths = nil,  -- Use default.
         -- stubPath = nil,  -- Use default.

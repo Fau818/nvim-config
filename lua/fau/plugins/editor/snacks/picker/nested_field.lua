@@ -1,6 +1,7 @@
--- =============================================================================
+-- ════════════════════════════════════════════════════════════
 -- HACK: nested-field filtering for the snacks.picker matcher.
--- =============================================================================
+-- ════════════════════════════════════════════════════════════
+--
 -- snacks supports `field:value`, but only for TOP-LEVEL fields: internally it
 -- does `tostring(item[field])`. Values that live in a sub-table, e.g. the
 -- `keymaps` source where the buffer number sits at `item.item.buf`, are not
@@ -8,9 +9,9 @@
 --
 -- This patch teaches the matcher to walk a dotted path:
 --
---     item.buf:2         -> item.item.buf       (fuzzy "2")
---     item.item.desc:diff-> item.item.desc
---     info.what:Lua$     -> item.info.what      (all value modifiers still work)
+--    item.buf:2         -> item.item.buf       (fuzzy "2")
+--    item.item.desc:diff-> item.item.desc
+--    info.what:Lua$     -> item.info.what      (all value modifiers still work)
 --
 -- A field with a dot (`a.b...:value`) is treated as a path relative to the
 -- picker item. The original `field:value` behavior (single, dot-less field) is
@@ -21,7 +22,6 @@
 -- path. Otherwise we fall back to snacks' original handling, so e.g.
 -- `gitsigns.lua:34` still jumps to line 34 in a files picker (no item there has
 -- an `item.gitsigns.lua` field, so it falls back).
--- =============================================================================
 
 local M = {}
 

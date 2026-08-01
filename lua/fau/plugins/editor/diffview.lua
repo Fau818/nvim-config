@@ -10,7 +10,6 @@ return {
     "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory",
     "DiffviewRefresh",
   },
-  -- ---------- Diffview
   keys = {
     { "<LEADER>gd", "<CMD>DiffviewOpen<CR>",        desc = "Open Diffview" },
     -- { "<LEADER>gf", "<CMD>DiffviewFileHistory %<CR>", mode = mode, desc = "Open Diffview for Current File" },

@@ -1,6 +1,6 @@
 -- SEE: https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
 local format_config = {
-  -- ==================== Basic ====================
+  -- ═════════════════════════ Basic ══════════════════════════
 
   max_line_length                 = "120",
   auto_collapse_lines             = "false",
@@ -22,7 +22,7 @@ local format_config = {
   quote_style = "double",  ---@type "none"|"single"|"double"
 
 
-  -- ==================== Function ====================
+  -- ════════════════════════ Function ════════════════════════
 
   align_call_args       = "true",
   align_function_params = "true",
@@ -39,7 +39,7 @@ local format_config = {
   ignore_spaces_inside_function_call = "false",
 
 
-  -- ==================== Table ====================
+  -- ═════════════════════════ Table ══════════════════════════
 
   align_array_table                  = "true",
   align_continuous_rect_table_field  = "true",
@@ -52,7 +52,7 @@ local format_config = {
   space_around_table_append_operator = "true",
 
 
-  -- ==================== Statement ====================
+  -- ═══════════════════════ Statement ════════════════════════
 
   align_continuous_assign_statement = "true",
 
@@ -62,7 +62,7 @@ local format_config = {
   space_after_comma_in_for_statement = "true",
 
 
-  -- ==================== Conditional ====================
+  -- ══════════════════════ Conditional ═══════════════════════
 
   align_if_branch = "false",
 
@@ -70,7 +70,7 @@ local format_config = {
   never_indent_comment_on_if_branch = "false",
 
 
-  -- ==================== Space ====================
+  -- ═════════════════════════ Space ══════════════════════════
 
   space_before_open_square_bracket = "false",
   space_inside_square_brackets     = "false",
@@ -81,7 +81,7 @@ local format_config = {
   space_around_assign_operator  = "true",
 
 
-  -- ==================== Line Space ====================
+  -- ═══════════════════════ Line Space ═══════════════════════
 
   ---@type "keep"|"fixed(n)"|"min(n)"|"max(n)"
   line_space_after_if_statement              = "keep",
@@ -102,7 +102,7 @@ local format_config = {
   end_statement_with_semicolon             = "same_line",
 
 
-  -- ==================== Unknown ====================
+  -- ════════════════════════ Unknown ═════════════════════════
 
   align_chain_expr = "none",
   align_continuous_line_space = "1",

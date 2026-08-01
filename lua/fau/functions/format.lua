@@ -1,6 +1,7 @@
 local M = {}
 
--- ==================== Trim Blank Lines and Spaces ====================
+
+-- ═══════════════ Trim Blank Lines and Spaces ════════════════
 
 M._trim_text_source = "default"
 
@@ -24,7 +25,7 @@ M.trim_text = function()
 end
 
 
--- ==================== Smart Format ====================
+-- ═══════════════════════ Smart Format ═══════════════════════
 
 ---Smart indent a file or range.
 function M.auto_indent()

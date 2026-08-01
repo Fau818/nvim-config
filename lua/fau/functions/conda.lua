@@ -6,9 +6,9 @@ local M = {}
 ---@field idx? integer Position in the list, which the picker orders by.
 
 
--- =============================================
--- ========== Helpers
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═════════════════════════ Helpers ══════════════════════════
+-- ════════════════════════════════════════════════════════════
 
 ---Get conda installation path.
 ---@return string? conda_path
@@ -63,9 +63,9 @@ local function build_conda_env_list()
 end
 
 
--- =============================================
--- ========== Conda Env Management
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═══════════════════ Conda Env Management ═══════════════════
+-- ════════════════════════════════════════════════════════════
 
 local _conda_env_list = nil
 
@@ -128,9 +128,9 @@ function M.deactivate(item)
 end
 
 
--- =============================================
--- ========== Auto-Env Mapping
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ═════════════════════ Auto-Env Mapping ═════════════════════
+-- ════════════════════════════════════════════════════════════
 
 ---Shared with `zsh/plugins/conda_auto_env.zsh` via `$CONDA_AUTO_ENVS_CONF` (set in `.zshenv`), so a
 ---project opened without `cd`ing there first still gets the right interpreter. This side only reads

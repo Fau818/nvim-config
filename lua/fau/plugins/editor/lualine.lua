@@ -1,6 +1,6 @@
--- =============================================
--- ========== Components
--- =============================================
+-- ════════════════════════════════════════════════════════════
+-- ════════════════════════ Components ════════════════════════
+-- ════════════════════════════════════════════════════════════
 
 local conditions = {
   hide_in_width = function(window_width_limit)
@@ -24,7 +24,8 @@ local utils = {
 }
 
 local components = {
-  -- ==================== Basic ====================
+  -- ═════════════════════════ Basic ══════════════════════════
+
   mode = {
     function()
       local mode = vim.fn.mode():sub(1, 1):lower()
@@ -67,7 +68,8 @@ local components = {
   selectioncount = "selectioncount",
 
 
-  -- ==================== Command ====================
+  -- ════════════════════════ Command ═════════════════════════
+
   command = {  -- Included `selectioncount` feature.
     ---@diagnostic disable-next-line: undefined-field
     function() return require("noice").api.status.command.get() end,
@@ -78,7 +80,8 @@ local components = {
   },
 
 
-  -- ==================== Indent ====================
+  -- ═════════════════════════ Indent ═════════════════════════
+
   indent = {
     function()
       local TIMEOUT = 10   -- Pattern search timeout in milliseconds.
@@ -107,7 +110,8 @@ local components = {
   },
 
 
-  -- ==================== Git ====================
+  -- ══════════════════════════ Git ═══════════════════════════
+
   branch = { "branch", icon = fvim.icons.git.Branch, color = { gui = "bold" }, padding = { left = 1 } },
 
   diff = {
@@ -131,7 +135,8 @@ local components = {
   },
 
 
-  -- ==================== Diagnostics ====================
+  -- ══════════════════════ Diagnostics ═══════════════════════
+
   diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
@@ -146,7 +151,8 @@ local components = {
   },
 
 
-  -- ==================== LSP ====================
+  -- ══════════════════════════ LSP ═══════════════════════════
+
   -- dap = {  -- WARN: Unchecked.
   --   function() return "  " .. require("dap").status() end,
   --   cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
@@ -179,7 +185,8 @@ local components = {
   },
 
 
-  -- ==================== Treesitter ====================
+  -- ═══════════════════════ Treesitter ═══════════════════════
+
   treesitter = {
     function() return fvim.icons.ui.Tree end,
     color = function()
@@ -197,7 +204,8 @@ local components = {
   },
 
 
-  -- ==================== Python ====================
+  -- ═════════════════════════ Python ═════════════════════════
+
   python_env = {
     function()
       if vim.bo.filetype ~= "python" then return "" end
@@ -223,7 +231,8 @@ local components = {
   },
 
 
-  -- ==================== Lazy ====================
+  -- ══════════════════════════ Lazy ══════════════════════════
+
   lazy = {
     require("lazy.status").updates,
     cond = require("lazy.status").has_updates,
@@ -232,6 +241,9 @@ local components = {
 }
 
 
+-- ════════════════════════════════════════════════════════════
+-- ══════════════════════ Configuration ═══════════════════════
+-- ════════════════════════════════════════════════════════════
 
 ---@type LazyPluginSpec
 return {

@@ -1,6 +1,6 @@
 ---@type table<string, snacks.win.Config>
 return {
-  -- ==================== Module-based ====================
+  -- ══════════════════════ Module-based ══════════════════════
 
   blame_line = {},
 
@@ -26,7 +26,7 @@ return {
   zoom_indicator = {},
 
 
-  -- ==================== Universal ====================
+  -- ═══════════════════════ Universal ════════════════════════
 
   input = { b = { completion = true }, wo = { foldenable = false } },
 

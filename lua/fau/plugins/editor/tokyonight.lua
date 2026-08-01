@@ -50,40 +50,50 @@ return {
     ---@param highlights tokyonight.Highlights
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors)
-      -- ==================== General ====================
-      -- ---------- Basic
+      -- ══════════════════════ General ═══════════════════════
+
+      -- ─── Basic ────────────────────────────────────────────
       highlights["Bold"]       = { bold = true }
       highlights["Italic"]     = { italic = true }
       highlights["MatchParen"] = { fg = fvim.colors.yellow, bold = true }
       highlights["Todo"]       = { bg = colors.bg_highlight, nocombine = true }
 
-      -- ---------- Type
+
+      -- ─── Type ─────────────────────────────────────────────
       highlights["Statement"] = { fg = colors.magenta, italic = true }
       highlights["Boolean"]   = { fg = colors.orange, italic = true, force = true }
       highlights["Number"]    = { fg = fvim.colors.light_blue }
 
-      -- ---------- Editor UI
-      highlights["FloatTitle"] = { bg = fvim.colors.cobalt, fg = fvim.colors.bg, bold = true }
+
+      -- ─── Editor UI ────────────────────────────────────────
+      highlights["FloatTitle"]   = { bg = fvim.colors.cobalt, fg = fvim.colors.bg, bold = true }
       highlights["FloatBorder"]  = { fg = fvim.colors.cobalt }
       highlights["WinSeparator"] = { fg = fvim.colors.light_blue }
 
-      -- ---------- Statusline (make it transparent)
+      highlights["LineNrBelow"] = { fg = fvim.colors.dark_gray }
+      highlights["LineNrAbove"] = { fg = fvim.colors.dark_gray }
+
+
+      -- ─── Statusline (make it transparent) ─────────────────
       highlights["StatusLine"]   = { fg = colors.fg_dark }
       highlights["StatusLineNC"] = { fg = colors.fg_gutter }
 
-      -- ---------- TodoTag
+
+      -- ─── TodoTag ──────────────────────────────────────────
       highlights["TodoTag"] = { fg = fvim.colors.dark_green, bold = true, italic = true }
       highlights["InfoTag"] = { fg = colors.blue2, bold = true, italic = true }
       highlights["FixTag"]  = { fg = colors.red1, bold = true, italic = true }
 
 
-      -- ==================== Syntax ====================
-      -- ---------- General
+      -- ═══════════════════════ Syntax ═══════════════════════
+
+      -- ─── General ──────────────────────────────────────────
       highlights["@function.builtin"] = { fg = fvim.colors.purple_blue, italic = true }
       highlights["@keyword.function"] = { fg = colors.magenta, italic = true }
       highlights["@string.documentation"] = { fg = fvim.colors.cyan_gray }
 
-      -- ---------- Cpp
+
+      -- ─── Cpp ──────────────────────────────────────────────
       highlights["cBlock"]     = { fg = colors.blue5, italic = true, bold = true }
       highlights["cPreCondit"] = { fg = colors.blue5, italic = true, bold = true }
 
@@ -94,22 +104,26 @@ return {
       highlights["@lsp.typemod.macro.declaration.cpp"] = { fg = colors.yellow, italic = true, bold = false }
       highlights["@lsp.type.macro.cpp"]                = { fg = colors.yellow, italic = true, bold = false }
 
-      -- ---------- HTML
+
+      -- ─── HTML ─────────────────────────────────────────────
       highlights["@tag.html"] = { fg = colors.magenta, italic = true, bold = true }
       highlights["@tag.css"] = { link = "@tag.html" }
 
-      -- ---------- Gitcommit
+
+      -- ─── Gitcommit ────────────────────────────────────────
       highlights["@keyword.gitcommit"] = { fg = colors.purple, italic = true, nocombine = true }
       highlights["@variable.parameter.gitcommit"] = { fg = colors.yellow, italic = true, bold = true, nocombine = true }
       highlights["@punctuation.delimiter.gitcommit"] = { fg = colors.cyan, nocombine = true }
       highlights["@markup.heading.gitcommit"] = { fg = colors.blue, bold = false, italic = false, nocombine = true }
       -- highlights["gitcommitSummary"] = { fg = fvim.colors.tokyonight.blue, bold = false, italic = false, nocombine = true }
 
-      -- ---------- Markdown
+
+      -- ─── Markdown ─────────────────────────────────────────
       highlights["@markup.raw.markdown_inline"] = { fg = colors.blue, bg = colors.bg_highlight }
 
 
-      -- ==================== Diagnostics ====================
+      -- ════════════════════ Diagnostics ═════════════════════
+
       highlights["ErrorLine"] = { bg = fvim.colors.diagnostic.error }
       -- highlights["WarnLine"]  = { bg = fvim.colors.diagnostic.warn }
       -- highlights["InfoLine"]  = { bg = fvim.colors.diagnostic.info }
@@ -117,44 +131,54 @@ return {
       highlights["DiagnosticUnderlineHint"] = {}
 
 
-      -- ==================== Plugins ====================
-      -- Aerial
+      -- ══════════════════════ Plugins ═══════════════════════
+
+      -- ─── Aerial ───────────────────────────────────────────
       highlights["AerialLine"] = {}
 
-      -- ---------- Blink Cmp
+
+      -- ─── Blink Cmp ────────────────────────────────────────
       highlights["BlinkCmpLabelMatch"] = { bold = true, nocombine = true }
       highlights["BlinkCmpGhostText"] = { fg = colors.comment }
       highlights["LspKindVariable"] = { fg = fvim.colors.cobalt }
 
-      -- ---------- Bufferline
+
+      -- ─── Bufferline ───────────────────────────────────────
       highlights["BufferLineIndicatorSelected"] = { bg = fvim.colors.bufferline.selected_bg, fg = fvim.colors.bufferline.selected_bg, bold = true }
 
-      -- ---------- ChatGPT
+
+      -- ─── ChatGPT ──────────────────────────────────────────
       -- highlights["ChatGPTQuestion"] = { fg = "#b4befe", bold = true }
 
-      -- ---------- Copilot
+
+      -- ─── Copilot ──────────────────────────────────────────
       highlights["CopilotSuggestion"] = { fg = colors.comment }
       highlights["CopilotAnnotation"] = { link = "CopilotSuggestion" }
 
-      -- ---------- Gitsigns (inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined)
+
+      -- ─── Gitsigns (inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined) ───
       highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addInline }
       highlights["GitSignsDeleteInline"] = { bg = fvim.colors.diff.deleteInline }
       highlights["GitSignsChangeInline"] = { bg = colors.diff.text }
       highlights["GitSignsCurrentLineBlame"] = { fg = colors.dark5, italic = true, bold = true }
 
-      -- ---------- Lazy
+
+      -- ─── Lazy ─────────────────────────────────────────────
       highlights["LazyReasonKeys"] = { fg = colors.magenta }
       highlights["LazyReasonCmd"]  = { fg = colors.blue5, nocombine = true }
 
-      -- ---------- Lspconfig
+
+      -- ─── Lspconfig ────────────────────────────────────────
       highlights["LspInfoBorder"] = { fg = fvim.colors.cobalt }
       highlights["LspInlayHint"]  = { fg = colors.dark3 }
 
-      -- ---------- Mini Library
+
+      -- ─── Mini Library ─────────────────────────────────────
       highlights["MiniTrailspace"]        = { link = "DiagnosticUnderlineWarn" }
       highlights["MiniIndentscopeSymbol"] = { fg = fvim.colors.cobalt }
 
-      -- ---------- Mini Snippets
+
+      -- ─── Mini Snippets ────────────────────────────────────
       -- highlights["MiniSnippetsCurrent"]        = { bg = fvim.colors.snippet.current, bold = true }
       -- highlights["MiniSnippetsCurrentReplace"] = { bg = fvim.colors.snippet.replace, bold = true }
       -- highlights["MiniSnippetsUnvisited"]      = { bg = fvim.colors.snippet.unvisited }
@@ -167,13 +191,15 @@ return {
       highlights["MiniSnippetsVisited"]        = { sp = fvim.colors.dark_blue, underline = true }
       highlights["MiniSnippetsFinal"]          = { sp = fvim.colors.cobalt, underline = true }
 
-      -- ---------- Nvim-tree
+
+      -- ─── Nvim-tree ────────────────────────────────────────
       highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }
       highlights["NvimTreeSpecialFile"] = { fg = colors.purple }
       highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
       highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
 
-      -- ---------- Snacks
+
+      -- ─── Snacks ───────────────────────────────────────────
       highlights["SnacksIndentScope"] = { fg = fvim.colors.cobalt }
 
       -- highlights["SnacksPickerListCursorLine"] = { bg = fvim.colors.visual, bold = true }
@@ -188,7 +214,8 @@ return {
 
       highlights["SnacksPickerToggle"] = { fg = fvim.colors.bg, bg = fvim.colors.lemon, bold = true }
 
-      -- ---------- Telescope
+
+      -- ─── Telescope ────────────────────────────────────────
       highlights["TelescopeBorder"]         = { fg = fvim.colors.cobalt }
       highlights["TelescopePromptTitle"]    = { fg = fvim.colors.cobalt }
       highlights["TelescopePromptPrefix"]   = { fg = fvim.colors.purple_blue }

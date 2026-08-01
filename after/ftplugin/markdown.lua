@@ -1,6 +1,8 @@
 if vim.bo.buftype ~= "" then return end
 
--- -- ==================== Keep Fence Lines Visible (raw query) ====================
+
+-- -- ═════════ Keep Fence Lines Visible (raw query) ══════════
+
 -- -- nvim's markdown highlights query hides code-fence delimiter lines outright via
 -- -- `(#set! conceal_lines "")` (active at conceallevel >= 2, i.e. also in edit mode since the
 -- -- global conceallevel is 2). render-markdown disables those query patterns so that *it* owns
@@ -23,7 +25,7 @@ if vim.bo.buftype ~= "" then return end
 -- end
 
 
--- ==================== Markdown Buffer Configs ====================
+-- ═════════════════ Markdown Buffer Configs ══════════════════
 
 -- NOTE: Assuming the configuration is idempotent.
 
@@ -37,11 +39,11 @@ vim.keymap.set({ "n", "x", "o" }, "J", "5j", { buffer = true, remap = true, desc
 vim.keymap.set({ "n", "x", "o" }, "K", "5k", { buffer = true, remap = true, desc = "Goto: Five Lines Up" })
 
 
--- ================================================================================
--- ===== WARNING: The following code is written by AI and not fully reviewed! =====
--- ================================================================================
+--  WARNING: The following code is written by AI and not fully reviewed!
 
--- ==================== Conceal-aware Motions ====================
+
+-- ══════════════════ Conceal-aware Motions ═══════════════════
+
 -- In "render mode" (`<C-r>`, see render-markdown.lua: conceallevel=2 + concealcursor=nc),
 -- concealed markdown syntax (`**`, `[](...)`, fences, ...) stays hidden even under the cursor, so
 -- plain motions leave the cursor on invisible characters (h/l/w/b/e) or on the visually wrong

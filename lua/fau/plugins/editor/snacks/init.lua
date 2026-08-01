@@ -33,15 +33,15 @@ return {
   },
 
 
-  -- =============================================
-  -- ========== Configuration
-  -- =============================================
+  -- ══════════════════════════════════════════════════════════
+  -- ═════════════════════ Configuration ══════════════════════
+  -- ══════════════════════════════════════════════════════════
 
   config = function(_, opts)
     require("snacks").setup(opts)
 
-    -- ==================== Picker ====================
 
+    -- ─── Picker ─────────────────────────────────────────────
     -- HACK: Remove std_data path from default config.
     Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }
 
@@ -49,13 +49,11 @@ return {
     require("fau.plugins.editor.snacks.picker.nested_field").setup()
 
 
-    -- ==================== Buffer Remove ====================
-
+    -- ─── Buffer Remove ──────────────────────────────────────
     fvim.utils._buf_remove = Snacks.bufdelete.delete
 
 
-    -- ==================== Rename (LSP) ====================
-
+    -- ─── Rename (LSP) ───────────────────────────────────────
     -- REF: https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#nvim-tree
     local prev = { new_name = "", old_name = "" }  -- Prevents duplicate events
     vim.api.nvim_create_autocmd("User", {
@@ -73,8 +71,7 @@ return {
     })
 
 
-    -- ==================== Notification ====================
-
+    -- ─── Notification ───────────────────────────────────────
     -- Global debug functions.
     _G.dd = function(...) Snacks.debug.inspect(...) end
     _G.bt = function() Snacks.debug.backtrace() end
@@ -82,8 +79,7 @@ return {
     if vim.fn.has("nvim-0.11") == 1 then vim._print = function(_, ...) dd(...) end else vim.print = dd end
 
 
-    -- ==================== Toggle ====================
-
+    -- ─── Toggle ─────────────────────────────────────────────
     -- TODO: Toggle diagnostics update in insert mode.
     -- TODO: Toggle virtual text (false to disabled and with a default table value to enable).
 
@@ -94,12 +90,12 @@ return {
   end,
 
 
-  -- =============================================
-  -- ========== Keymaps
-  -- =============================================
+  -- ══════════════════════════════════════════════════════════
+  -- ════════════════════════ Keymaps ═════════════════════════
+  -- ══════════════════════════════════════════════════════════
 
   keys = {
-    -- ==================== Words ====================
+    -- ─── Words ──────────────────────────────────────────────
     {
       mode = { "n", "i" }, "<A-n>",
       function()
@@ -120,27 +116,24 @@ return {
     },
 
 
-    -- ==================== Gitbrowse ====================
+    -- ─── Gitbrowse ──────────────────────────────────────────
     { "<LEADER>gB", function() Snacks.gitbrowse.open() end, desc = "Git Browse", mode = { "n", "x" } },
 
 
-    -- ==================== Lazygit ====================
-
+    -- ─── Lazygit ────────────────────────────────────────────
     -- { "<LEADER>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
 
 
-    -- ==================== Scratch ====================
-
+    -- ─── Scratch ────────────────────────────────────────────
     { "<LEADER><LEADER>s", function() Snacks.scratch() end,        desc = "Toggle Scratch Buffer" },
     { "<LEADER><LEADER>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 
 
-    -- ==================== Picker ====================
-
-    -- Top Pickers
+    -- ─── Picker ─────────────────────────────────────────────
+    -- ┄┄┄ Top Pickers
     { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Pickers" },
 
-    -- Claude Sessions
+    -- ┄┄┄ Claude Sessions
     { "<LEADER>cs", function() Snacks.picker("claude") end, desc = "Picker: Claude Sessions" },
 
     -- { "<LEADER>F",  function() Snacks.picker.files() end,    desc = "Find Files" },
