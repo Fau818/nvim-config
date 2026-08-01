@@ -357,39 +357,6 @@ vim.api.nvim_create_autocmd("LspDetach", {
 
 
 -- =============================================
--- ========== Python Library Files
--- =============================================
-
----Make third-party and stdlib Python files read-only.
-vim.api.nvim_create_autocmd("FileType", {
-  group = fvim_augroup,
-  pattern = "python",
-  desc = "Third-party/stdlib Python sources: read-only.",
-  callback = function(args)
-    if vim.bo[args.buf].buftype ~= "" then return end
-    if not fvim.python.library_root(args.buf) then return end
-
-    vim.bo[args.buf].modifiable = false
-    vim.bo[args.buf].readonly = true
-  end,
-})
-
-
--- =============================================
--- ========== Conda Auto-Env
--- =============================================
-
----Mirrors `zsh/plugins/conda_auto_env.zsh`, which only reacts to the shell's `cd`
----and thus misses projects opened directly in nvim (e.g. via a picker).
-if vim.fn.executable("conda") == 1 then
-  vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
-    group = fvim_augroup,
-    callback = function() fvim.python.conda.check() end,
-  })
-end
-
-
--- =============================================
 -- ========== Shell Cwd Sync
 -- =============================================
 

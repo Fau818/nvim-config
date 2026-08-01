@@ -129,12 +129,12 @@ end
 
 
 -- =============================================
--- ========== Auto-Env (cwd-based)
+-- ========== Auto-Env Mapping
 -- =============================================
 
--- Shared with `zsh/plugins/conda_auto_env.zsh` via `$CONDA_AUTO_ENVS_CONF` (set in
--- `.zshenv`), so nvim gets the right env even when opened without `cd`ing there
--- first. Only plain directory prefixes are supported; the zsh side also allows globs.
+---Shared with `zsh/plugins/conda_auto_env.zsh` via `$CONDA_AUTO_ENVS_CONF` (set in `.zshenv`), so a
+---project opened without `cd`ing there first still gets the right interpreter. This side only reads
+---the mapping; activating is left to zsh (on `cd`) and the picker. Only zsh's patterns may glob.
 local CONF_PATH = os.getenv("CONDA_AUTO_ENVS_CONF")
 
 ---@type {pattern: string, env: string}[]?
@@ -168,23 +168,6 @@ local function lookup(path)
 end
 
 
-local active = nil  -- env we auto-activated, mirrors the zsh plugin's _CAE_ACTIVE
-
-local function auto_activate(name)
-  local item = find_env(name)
-  if not item then fvim.notify("conda_auto_env: env not found: " .. name, vim.log.levels.WARN) return end
-  M.activate(item)
-  active = name
-end
-
-
-local function auto_deactivate(name)
-  local item = find_env(name)
-  if item then M.deactivate(item) end
-  active = nil
-end
-
-
 ---Get the interpreter path of the env `$CONDA_AUTO_ENVS_CONF` maps `dir` to, or nil.
 ---Independent of whichever env happens to be active.
 ---@param dir string
@@ -199,36 +182,18 @@ function M.get_mapped_python_path(dir)
 end
 
 
----Get the interpreter path of an env you selected yourself, or nil. `base` and an env `check()`
----auto-activated for the cwd doesn't count: neither is a decision, so a root's map may outrank them.
+---Get the interpreter path of an env you selected yourself, or nil. `base` and the env the conf
+---maps the cwd to don't count: neither is a decision, so a root's map may outrank them.
 ---@return string?
 function M.get_manual_python_path()
   local name = os.getenv("CONDA_DEFAULT_ENV")
   local prefix = os.getenv("CONDA_PREFIX")
-  if not prefix or not name or name == "" or name == "base" or name == active then return end
+  if not prefix or not name or name == "" or name == "base" then return end
+  -- Current conda env is auto activated for this project, so it doesn't count as a manual selection.
+  if name == lookup(vim.env.PWD or vim.fn.getcwd()) then return end
 
   local python_path = vim.fs.joinpath(prefix, "bin/python")
   return vim.fn.executable(python_path) == 1 and python_path or nil
-end
-
-
----Re-evaluate the cwd against the mapping and (de)activate as needed. Mirrors
----`_cae_chpwd` in the zsh plugin; never touches a manually-selected env.
-function M.check()
-  local cur = os.getenv("CONDA_DEFAULT_ENV")
-  local target = lookup(vim.fn.getcwd())
-
-  -- Adopt an inherited env matching this cwd (e.g. auto-activated by zsh before
-  -- nvim started) as ours, so later cwd changes can still switch away from it.
-  if not active and target and target == cur then active = target end
-
-  local not_active = not cur or cur == "" or cur == "base"
-  local is_managed = cur == active
-  if target and target ~= cur then
-    if not_active or is_managed then auto_activate(target) end
-  elseif not target and active then
-    if is_managed then auto_deactivate(active) else active = nil end  -- else: env changed manually; stop tracking it
-  end
 end
 
 
