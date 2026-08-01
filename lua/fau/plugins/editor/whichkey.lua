@@ -20,17 +20,21 @@ return {
       { "<Tab>",       desc = "which_key_ignore" },
       { "<S-Tab>",     desc = "which_key_ignore" },
 
+
       -- ==================== Navigation ====================
       { "]", group = "Next", mode = { "n", "x" } },
       { "[", group = "Prev", mode = { "n", "x" } },
+
 
       -- ==================== LSP ====================
       { "g", group = "+LSP" },
       { "<LEADER>l", group = "+LSP", mode = { "n", "x" } },
 
+
       -- ==================== Git ====================
       { "<LEADER>g", "<Nop>", group = "Git", mode = { "n", "x" } },
       -- { "<LEADER>gt", group = "Gitsigns: Toggle" },
+
 
       -- ==================== Surround ====================
       { "s", group = "Surround", mode = { "n", "x" } },

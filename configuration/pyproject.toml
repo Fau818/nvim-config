@@ -5,23 +5,16 @@
 # =============================================
 # ========== Basedpyright
 # =============================================
+
 # IMPORTANT: !!!!!! This won't work since neovim handled the LSP config.
 [tool.basedpyright]
 # SEE: Pyright: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
 # SEE: Basedpyright: https://docs.basedpyright.com/dev/configuration/config-files
+
 # ==================== Environment Options ====================
+
 # include = ["src"]
-exclude = [
-  "**/.git",
-  "**/.idea",
-  "**/.vscode",
-  "**/.cache",
-  "**/.venv",
-  "**/.venv.nosync",
-  "**/__pycache__",
-  "**/.mypy_cache",
-  "**/node_modules",
-]
+# exclude = []
 
 # strict  = []
 # extends = ""
@@ -36,10 +29,11 @@ exclude = [
 
 # executionEnvironments = []
 
-useLibraryCodeForTypes = true
+# useLibraryCodeForTypes = true
 
 
 # ==================== Type Evaluation Settings ====================
+
 # strictListInference        = false
 # strictSetInference         = false
 # strictDictionaryInferencet = false
@@ -62,6 +56,7 @@ enableTypeIgnoreComments = true
 
 
 # ==================== Diagnostics ====================
+
 typeCheckingMode = "recommended"  # values: "off" | "basic" | "standard" | "strict" | "recommended" | "all"
 # ignore = []
 
@@ -77,6 +72,7 @@ reportUnreachable      = "information"
 # =============================================
 # ========== Ruff
 # =============================================
+
 # SEE: https://docs.astral.sh/ruff/settings/       (Full settings)
 # SEE: https://docs.astral.sh/ruff/configuration/  (Basic configuration)
 [tool.ruff]

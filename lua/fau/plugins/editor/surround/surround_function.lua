@@ -7,8 +7,8 @@
 
 local M = {}
 
---- Open vim.ui.input with LSP clients from the original buffer attached
---- to the snacks_input buffer, so blink.cmp can provide LSP completions.
+---Open vim.ui.input with LSP clients from the original buffer attached
+---to the snacks_input buffer, so blink.cmp can provide LSP completions.
 ---@param bufnr integer
 ---@param opts table  vim.ui.input options (prompt, default, etc.)
 ---@param callback fun(input: string?)

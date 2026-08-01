@@ -3,6 +3,7 @@ local M = {}
 -- =============================================
 -- ========== Fields
 -- =============================================
+
 ---@type table<string, boolean> Keep track of filetypes that have been configured
 M.configured_ft = {}
 
@@ -29,6 +30,7 @@ M.packages = {
 -- =============================================
 -- ========== Functions
 -- =============================================
+
 ---Apply a series of text transformations
 ---@param text string
 ---@param transformers function[]

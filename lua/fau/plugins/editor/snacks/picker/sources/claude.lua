@@ -11,6 +11,7 @@ local function claude_root()
   return vim.fn.expand("~/.claude")
 end
 
+
 ---@param s string
 ---@return string
 local function clean(s)
@@ -18,6 +19,7 @@ local function clean(s)
   if vim.fn.strchars(s) > 60 then s = vim.fn.strcharpart(s, 0, 57) .. "..." end
   return s
 end
+
 
 -- Parse a transcript for a readable title and its project cwd. Cached by
 -- mtime so unchanged sessions are not re-read.

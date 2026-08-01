@@ -118,5 +118,6 @@ return {
   -- zoxide = {},
 
   -- ==================== Custom ====================
+
   todo_comments = { on_show = preset.normal_mode },
 }

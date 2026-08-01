@@ -1,6 +1,7 @@
 ---@type table<string, snacks.win.Config>
 return {
   -- ==================== Module-based ====================
+
   blame_line = {},
 
   dashboard = { wo = { foldenable = false } },
@@ -26,6 +27,7 @@ return {
 
 
   -- ==================== Universal ====================
+
   input = { b = { completion = true }, wo = { foldenable = false } },
 
   help = {},

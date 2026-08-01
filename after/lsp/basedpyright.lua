@@ -47,8 +47,7 @@ return {
     config.settings = settings
   end,
 
-  -- NOTE: LSP settings may be ignored. (More info in the link below.)
-  -- SEE: https://docs.basedpyright.com/dev/configuration/config-files/#overriding-language-server-settings
+  -- SEE: https://docs.basedpyright.com/latest/configuration/language-server-settings/
   settings = {
     python = { pythonPath = nil, venvPath = nil },
     basedpyright = {

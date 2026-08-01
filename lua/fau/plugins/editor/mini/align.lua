@@ -27,7 +27,9 @@ return {
         opts.merge_delimiter = " "
       end,
 
+
       -- ==================== Default ====================
+
       -- -- Main option modifiers
       -- ['s'] = --<function: enter split pattern>,
       -- ['j'] = --<function: choose justify side>,

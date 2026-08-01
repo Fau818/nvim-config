@@ -41,7 +41,7 @@ return {
     "trouble",
     "yazi",
   },
-  excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },      -- NOTE: Keep `nofile` as the first element.
+  excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },  -- NOTE: Keep `nofile` as the first element.
 
   special_files = {
     "Cargo.toml",

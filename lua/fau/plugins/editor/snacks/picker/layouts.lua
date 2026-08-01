@@ -1,6 +1,7 @@
 ---@type table<string, snacks.picker.layout.Config>
 return {
   -- ==================== Presets ====================
+
   default = {
     layout = {
       box = "horizontal",
@@ -43,6 +44,7 @@ return {
 
 
   -- ==================== Custom ====================
+
   main = {
     preview = "main",
     layout = {

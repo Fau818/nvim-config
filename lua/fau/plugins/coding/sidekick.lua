@@ -6,6 +6,7 @@ return {
 
   keys = {
     -- ==================== NES ====================
+
     {
       "<LEADER>cn",
       function()
@@ -35,7 +36,9 @@ return {
       desc = "Sidekick Next Edit Suggestion Apply",
     },
 
+
     -- ==================== CLI ====================
+
     -- {
     --   "<c-.>",
     --   function() require("sidekick.cli").focus() end,

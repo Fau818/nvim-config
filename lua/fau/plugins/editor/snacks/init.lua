@@ -32,13 +32,16 @@ return {
     zen          = require("fau.plugins.editor.snacks.zen"),
   },
 
+
   -- =============================================
   -- ========== Configuration
   -- =============================================
+
   config = function(_, opts)
     require("snacks").setup(opts)
 
     -- ==================== Picker ====================
+
     -- HACK: Remove std_data path from default config.
     Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }
 
@@ -47,10 +50,12 @@ return {
 
 
     -- ==================== Buffer Remove ====================
+
     fvim.utils._buf_remove = Snacks.bufdelete.delete
 
 
     -- ==================== Rename (LSP) ====================
+
     -- REF: https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#nvim-tree
     local prev = { new_name = "", old_name = "" }  -- Prevents duplicate events
     vim.api.nvim_create_autocmd("User", {
@@ -69,6 +74,7 @@ return {
 
 
     -- ==================== Notification ====================
+
     -- Global debug functions.
     _G.dd = function(...) Snacks.debug.inspect(...) end
     _G.bt = function() Snacks.debug.backtrace() end
@@ -77,6 +83,7 @@ return {
 
 
     -- ==================== Toggle ====================
+
     -- TODO: Toggle diagnostics update in insert mode.
     -- TODO: Toggle virtual text (false to disabled and with a default table value to enable).
 
@@ -86,9 +93,11 @@ return {
     Snacks.toggle.diagnostics():map("<LEADER>lv")
   end,
 
+
   -- =============================================
   -- ========== Keymaps
   -- =============================================
+
   keys = {
     -- ==================== Words ====================
     {
@@ -110,20 +119,24 @@ return {
       desc = "Snacks.words: Prev",
     },
 
+
     -- ==================== Gitbrowse ====================
     { "<LEADER>gB", function() Snacks.gitbrowse.open() end, desc = "Git Browse", mode = { "n", "x" } },
 
 
     -- ==================== Lazygit ====================
+
     -- { "<LEADER>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
 
 
     -- ==================== Scratch ====================
+
     { "<LEADER><LEADER>s", function() Snacks.scratch() end,        desc = "Toggle Scratch Buffer" },
     { "<LEADER><LEADER>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 
 
     -- ==================== Picker ====================
+
     -- Top Pickers
     { "<LEADER><LEADER>f", function() Snacks.picker() end, desc = "Pickers" },
 

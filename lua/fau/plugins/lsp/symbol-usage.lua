@@ -75,6 +75,7 @@ return {
   config = function(_, opts)
     require("symbol-usage").setup(opts)
 
+
     -- ==================== Bubbles Style ====================
     -- NOTE: The highlight groups should be defined in `config` instead of `init` since colorscheme may change highlights.
     -- REF: https://github.com/Wansmer/symbol-usage.nvim?tab=readme-ov-file#bubbles

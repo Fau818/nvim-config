@@ -8,6 +8,7 @@ return {
 
   config = function()
     -- ==================== Configuration ====================
+
     local bufferline = require("bufferline")
 
     ---@type bufferline.UserConfig
@@ -179,6 +180,7 @@ return {
 
 
     -- ==================== Keymaps ====================
+
     ---Do buffer switching in the main window.
     local function wrapper(cmd)
       return function()

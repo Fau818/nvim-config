@@ -1,6 +1,7 @@
 -- =============================================
 -- ========== Global Config
 -- =============================================
+
 local keymap = vim.keymap.set
 local function opts(desc) return { silent = true, desc = desc } end
 
@@ -26,20 +27,20 @@ local function close_editor()
 end
 
 
-
 -- =============================================
 -- ========== Quick Move
 -- =============================================
+
 keymap({ "n", "x", "o" }, "H", "^",  opts("Goto: Line Begin"))
 keymap({ "n", "x", "o" }, "J", "5j", opts("Goto: Five Lines Down"))
 keymap({ "n", "x", "o" }, "K", "5k", opts("Goto: Five Lines Up"))
 keymap({ "n", "x", "o" }, "L", "g_", opts("Goto: Line End"))
 
 
-
 -- =============================================
 -- ========== Buffer Operations
 -- =============================================
+
 keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
 
 keymap("n", "<A-h>", "<CMD>bprevious<CR>", opts("Editor: Previous Buffer"))
@@ -54,10 +55,10 @@ keymap("n", "Q",       "<CMD>q<CR>", opts("Editor: Quit Current Window"))
 keymap("n", "<C-S-q>", close_editor, opts("Editor: Quit Neovim"))
 
 
-
 -- =============================================
 -- ========== Personal Preferences
 -- =============================================
+
 -- Search Word Under Cursor and Clear Highlight Search
 keymap("n",          "?",         "*",                        opts("Search Word Under Cursor"))
 keymap("n",          "<LEADER>N", "<CMD>nohlsearch<CR>",      opts("Editor: No Highlight Search"))
@@ -99,10 +100,10 @@ keymap("i", ".", "<c-g>u.", opts("Add Undo Breakpoint"))
 keymap("i", ";", ";<c-g>u", opts("Add Undo Breakpoint"))
 
 
-
 -- =============================================
 -- ========== Quick Range Operations
 -- =============================================
+
 -- Word
 keymap({ "x", "o" }, "w", "iw", opts("Range: Inner Word"))
 keymap({ "x", "o" }, "W", "iW", opts("Range: Inner WORD"))
@@ -122,10 +123,10 @@ keymap({ "x", "o" }, [[a`]], [[2i`]], opts("Range: Around Back Quote"))
 keymap("o", "p", "ip", opts("Range: Inner Paragraph"))
 
 
-
 -- =============================================
 -- ========== Yank Paste Delete(Cut) Preferences
 -- =============================================
+
 -- `x` and `X` using "_ register
 keymap({ "n", "x" }, "x", [["_x]], opts("Edit: Delete Char"))
 keymap({ "n", "x" }, "X", [["_X]], opts("Edit: DELETE Char"))
@@ -188,10 +189,10 @@ keymap("c", "<D-v>", "<C-r>+", { desc = "PASTE from System Clipboard" })  -- NOT
 keymap("x", "p", "P", opts("Paste"))
 
 
-
 -- =============================================
 -- ========== Move Line(s)
 -- =============================================
+
 keymap("n", "<A-j>", "<CMD>execute 'move .+' . v:count1<CR>==",       opts("Move: Line Down"))
 keymap("n", "<A-k>", "<CMD>execute 'move .-' . (v:count1 + 1)<CR>==", opts("Move: Line Up"))
 keymap("i", "<A-j>", "<ESC><CMD>m .+1<CR>==gi", opts("Move: Line Down"))
@@ -200,10 +201,10 @@ keymap("x", "<A-j>", [[:<C-u>execute "'<, '>move '>+" . v:count1<cr>gv=gv]],    
 keymap("x", "<A-k>", [[:<C-u>execute "'<, '>move '<-" . (v:count1 + 1)<cr>gv=gv]], opts("Move: Line Up"))
 
 
-
 -- =============================================
 -- ========== Indent and Unindent Line(s)
 -- =============================================
+
 -- Normal Mode
 keymap("n", "<TAB>",   ">>",    opts("Indent: Add Indent Level"))
 keymap("n", "<S-TAB>", "<<",    opts("Indent: Red Indent Level"))  -- Reduce indent level.
@@ -214,10 +215,10 @@ keymap("x", "<TAB>",   ">gv", opts("Indent: Add Indent Level"))
 keymap("x", "<S-TAB>", "<gv", opts("Indent: Red Indent Level"))  -- Reduce indent level.
 
 
-
 -- =============================================
 -- ========== Window Operations
 -- =============================================
+
 -- Focus in Window
 keymap({ "n", "t" }, "<C-h>", "<CMD>wincmd h<CR>", opts("Window: Focus Shift Left"))
 keymap({ "n", "t" }, "<C-j>", "<CMD>wincmd j<CR>", opts("Window: Focus Shift Down"))
@@ -235,18 +236,18 @@ keymap("n", "<C-w>v", "<CMD>vsplit<CR>", opts("Editor: Vertical Split"))
 keymap("n", "<C-w>x", "<CMD>split<CR>",  opts("Editor: Horizontal Split"))
 
 
-
 -- =============================================
 -- ========== Terminal
 -- =============================================
+
 keymap("t", "<C-r>", "<NOP>", opts())
 keymap("t", "<C-q>", [[<C-\><C-n>]])
-
 
 
 -- =============================================
 -- ========== Diagnostics
 -- =============================================
+
 -- Full Diagnostics Infomation
 keymap("n", "gl", vim.diagnostic.open_float, opts("LSP: Full Diagnostics"))
 
@@ -262,10 +263,10 @@ keymap("n", "]w", function() vim.diagnostic.jump({ count = 1, severity = vim.dia
 keymap("n", "<LEADER>ld", vim.diagnostic.setqflist, opts("LSP: Workspace Diagnostics"))
 
 
-
 -- =============================================
 -- ========== LSP
 -- =============================================
+
 -- Remove Default LSP Keymaps
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grr")

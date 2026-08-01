@@ -2,6 +2,7 @@
 ---@type table<string, NoiceViewOptions>
 local views = {
   -- ==================== Preset Modification ====================
+
   notify = { replace = true, merge = true },
 
   hover = {
@@ -16,6 +17,7 @@ local views = {
 
 
   -- ==================== Custom ====================
+
   cmdline_popup_top = { view = "cmdline_popup", position = { row = 3, col = "50%" } },
 }
 

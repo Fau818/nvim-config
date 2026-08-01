@@ -97,6 +97,7 @@ return {
     local ufo = require("ufo")
     ufo.setup(opts)
 
+
     -- ==================== Keymaps ====================
     local function peek_fold()
       local winid = ufo.peekFoldedLinesUnderCursor()

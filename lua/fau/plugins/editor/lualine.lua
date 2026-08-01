@@ -1,6 +1,7 @@
 -- =============================================
 -- ========== Components
 -- =============================================
+
 local conditions = {
   hide_in_width = function(window_width_limit)
     window_width_limit = window_width_limit or 100

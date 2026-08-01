@@ -22,6 +22,7 @@ return {
 
   init = function()
     -- ==================== Spinner ====================
+
     local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
     local spinner_index = 0
     local function next_spinner_frame()
@@ -45,7 +46,9 @@ return {
       end,
     })
 
+
     -- ==================== Keymappings ====================
+
     -- NOTE: Hide the chat buffer with `<A-q>` (the same behavior as `<S-q>`).
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "codecompanion",
@@ -88,6 +91,7 @@ return {
         opts = { show_presets = true },
       },
     },
+
 
     -- ==================== Interactions ====================
     interactions = {

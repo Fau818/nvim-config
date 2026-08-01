@@ -3,6 +3,7 @@ local M = {}
 -- =============================================
 -- ========== Feedkeys
 -- =============================================
+
 ---Simulate pressing `keys` in noremap mode (asynchronously).
 ---@param keys string
 function M.feedkeys(keys) vim.api.nvim_feedkeys(vim.keycode(keys), "n", false) end
@@ -11,6 +12,7 @@ function M.feedkeys(keys) vim.api.nvim_feedkeys(vim.keycode(keys), "n", false) e
 -- =============================================
 -- ========== Buffer Remove
 -- =============================================
+
 ---@type fun(bufnr?: number)
 M._buf_remove = nil
 
@@ -39,6 +41,7 @@ end
 -- =============================================
 -- ========== Large File Detection
 -- =============================================
+
 ---Determine if the specified buffer is a large file.
 ---@param bufnr? integer Default is the current buffer.
 ---@return boolean flag True if the buffer is a large file, otherwise false.
@@ -65,6 +68,7 @@ end
 -- =============================================
 -- ========== Reveal in System
 -- =============================================
+
 ---Reveal a file in the system's file manager.
 ---@param path? string The file path to reveal. If nil, the current buffer's path is used.
 function M.reveal_in_system(path)
@@ -79,6 +83,7 @@ end
 -- =============================================
 -- ========== Smart Visual Mode
 -- =============================================
+
 ---If there is no line crossing when selecting in Visual-Block mode, switch to Visual mode.
 ---This is useful to trim line break when yanking in Visual-Block mode.
 ---E.g., when you are in normal mode and press `vg_`, although you didn't copy the line break, the macOS clipboard will
@@ -95,6 +100,7 @@ end
 -- =============================================
 -- ========== Fallback Mapping
 -- =============================================
+
 ---Capture the current mapping for `mode`+`key` and return a closure that invokes it.
 ---If no mapping exists, the closure feeds the original key with the no-remap flag, falling through to vim's built-in behavior.
 ---@param mode string
@@ -130,6 +136,7 @@ end
 -- =============================================
 -- ========== Backdrop
 -- =============================================
+
 ---Creates a semi-transparent backdrop window behind the specified parent window.
 ---@param parent integer A valid window ID to anchor the backdrop to.
 ---@param opts? table Options for the backdrop. Supported keys: `blend` (number, default 60) and `bg` (string, default `fvim.colors.bg`).
@@ -183,6 +190,7 @@ end
 -- =============================================
 -- ========== Window
 -- =============================================
+
 ---Find the first "main" window in the current tabpage: non-floating and showing a regular buffer.
 ---@param filter? fun(win: integer): boolean Extra acceptance test; the window is kept only if it returns true.
 ---@return integer? win The matching window id, or nil if none qualifies.

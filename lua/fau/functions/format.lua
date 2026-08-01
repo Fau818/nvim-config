@@ -1,6 +1,7 @@
 local M = {}
 
 -- ==================== Trim Blank Lines and Spaces ====================
+
 M._trim_text_source = "default"
 
 
@@ -24,7 +25,8 @@ end
 
 
 -- ==================== Smart Format ====================
--- DESC: Smart indent a file or range.
+
+---Smart indent a file or range.
 function M.auto_indent()
   local mode = vim.fn.mode()
   if mode == "v" or mode == "V" or mode == "\22" then
@@ -40,7 +42,7 @@ function M.auto_indent()
 end
 
 
--- DESC: Smart format (if no lsp formatter: use auto_indent)
+---Smart format (if no lsp formatter: use auto_indent)
 function M.smart_format()
   local filetype = vim.bo.filetype
 

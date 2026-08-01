@@ -1,6 +1,7 @@
 -- SEE: https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/docs/format_config_EN.md
 local format_config = {
   -- ==================== Basic ====================
+
   max_line_length                 = "120",
   auto_collapse_lines             = "false",
   break_all_list_when_line_exceed = "false",
@@ -22,6 +23,7 @@ local format_config = {
 
 
   -- ==================== Function ====================
+
   align_call_args       = "true",
   align_function_params = "true",
 
@@ -38,6 +40,7 @@ local format_config = {
 
 
   -- ==================== Table ====================
+
   align_array_table                  = "true",
   align_continuous_rect_table_field  = "true",
   align_continuous_similar_call_args = "true",
@@ -50,6 +53,7 @@ local format_config = {
 
 
   -- ==================== Statement ====================
+
   align_continuous_assign_statement = "true",
 
   space_before_attribute = "true",
@@ -59,6 +63,7 @@ local format_config = {
 
 
   -- ==================== Conditional ====================
+
   align_if_branch = "false",
 
   never_indent_before_if_condition  = "false",
@@ -66,6 +71,7 @@ local format_config = {
 
 
   -- ==================== Space ====================
+
   space_before_open_square_bracket = "false",
   space_inside_square_brackets     = "false",
 
@@ -76,6 +82,7 @@ local format_config = {
 
 
   -- ==================== Line Space ====================
+
   ---@type "keep"|"fixed(n)"|"min(n)"|"max(n)"
   line_space_after_if_statement              = "keep",
   line_space_after_do_statement              = "keep",
@@ -89,12 +96,14 @@ local format_config = {
   line_space_around_block                    = "keep",
 
   ---@type "keep"|"always"|"same_line"|"replace_with_newline"|"never"
+
   ignore_space_after_colon                 = "same_line",
   remove_call_expression_list_finish_comma = "same_line",
   end_statement_with_semicolon             = "same_line",
 
 
   -- ==================== Unknown ====================
+
   align_chain_expr = "none",
   align_continuous_line_space = "1",
   keep_indents_on_empty_lines = "false",
@@ -130,7 +139,7 @@ local settings = {
       enable = true,
 
       disable = { "missing-fields", "inject-field" },
-      disableScheme = { "git" },  -- Do not diagnose Lua files that use the following scheme.
+      -- disableScheme = { "git" },  -- Do not diagnose Lua files that use the following scheme.
 
       -- globals = { "vim", "fvim" },  -- Defined global variables.
       -- globalsRegex = {},
@@ -211,7 +220,7 @@ local settings = {
     -- window = {},  -- For VSCode
 
     workspace = {
-      checkThirdParty = "Disable",  -- Whether third party libraries can be automatically detected and applied.
+      checkThirdParty = false,  -- Whether third party libraries can be automatically detected and applied.
       ignoreDir = { ".vscode", ".git" },
       ignoreSubmodules = true,  -- Whether git submodules should be ignored and not included in the workspace diagnosis.
       -- library = {},

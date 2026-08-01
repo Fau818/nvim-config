@@ -73,7 +73,6 @@ function M.install_missing_packages(filetype)
   local package_list = fvim.lsp.packages[filetype]
   if package_list == nil then return true end
 
-  -- ==================== Install Missing Packages ====================
   -- NOTE: Please make sure you have `mason.nvim` and `mason-lspconfig.nvim` installed.
   -- local mason_lspconfig = require("mason-lspconfig")
   local mason_registry = require("mason-registry")
@@ -97,7 +96,6 @@ function M.setup_by_ft(filetype)
   -- EXIT: LSP is already configured.
   if not filetype or fvim.lsp.configured_ft[filetype] then return end
 
-  -- ==================== Setup Servers ====================
   local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
   if not status_ok then fvim.notify("[mason-lspconfig] is not installed!", vim.log.levels.ERROR); return end
 

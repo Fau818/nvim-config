@@ -14,6 +14,7 @@ return {
     Snacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
     vim.schedule(function() if vim.api.nvim_buf_is_valid(ctx.buf) then vim.bo[ctx.buf].syntax = ctx.ft end end)
 
+
     -- ==================== Custom ====================
     -- DIsable Snacks
     vim.b.snacks_indent = false

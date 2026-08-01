@@ -9,6 +9,7 @@ local function _on_attach(bufnr)
   ---@diagnostic disable-next-line: param-type-mismatch
   keymap("n", "[g", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk("prev") end end, opts("Prev Hunk"))
 
+
   -- ==================== Stage & Reset ====================
   keymap("n", "<LEADER>gs", gitsigns.stage_hunk,   opts("Stage Hunk"))
   keymap("n", "<LEADER>gS", gitsigns.stage_buffer, opts("Stage Buffer"))
@@ -18,23 +19,29 @@ local function _on_attach(bufnr)
   keymap("x", "<LEADER>gr", function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, opts("Reset Hunk"))
   keymap("n", "<LEADER>gu", gitsigns.undo_stage_hunk, opts("Gitsigns: Undo"))
 
+
   -- ==================== Preview ====================
   keymap({ "n", "x" }, "<LEADER>gc", gitsigns.preview_hunk_inline, opts("Preview Changes Inline"))
   keymap({ "n", "x" }, "<LEADER>gC", gitsigns.preview_hunk,        opts("Preview Changes Float"))
 
+
   -- ==================== Blame ====================
   keymap("n", "<LEADER>gb", function() gitsigns.blame_line({ full = true }) end, opts("Show Full Blame"))
+
 
   -- ==================== Select Hunk ====================
   keymap("n", "<LEADER>gv", gitsigns.select_hunk, opts("Select Hunk"))
   keymap({ "o", "x" }, "ih", gitsigns.select_hunk, opts("Git Hunk"))
 
+
   -- ==================== Diffthis ====================
   ---@diagnostic disable-next-line: param-type-mismatch
   keymap("n", "<LEADER>gf", function() gitsigns.diffthis("HEAD") end, opts("Diff Current Buffer"))
 
+
   -- ==================== Quickfix ====================
   keymap("n", "<LEADER>gq", gitsigns.setloclist, opts("Gitsigns: Show in List"))
+
 
   -- ==================== Toggle ====================
   -- keymap("n", "<LEADER>gtb", gitsigns.toggle_current_line_blame, opts("Toggle Line Blame"))

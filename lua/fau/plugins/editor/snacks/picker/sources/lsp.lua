@@ -7,6 +7,7 @@ local preset = require("fau.plugins.editor.snacks.picker.sources.preset")
 -- =============================================
 -- ========== Control Actions
 -- =============================================
+
 ---Get available control actions based on the server state.
 ---@param item snacks.picker.Item item from the `lsp_config` source
 ---@param bufnr integer origin buffer of the picker
@@ -124,7 +125,6 @@ local control_keys = {
   ["<c-x>"] = { "lsp_disable",    mode = { "n", "i" }, desc = "Disable Server" },
   ["<c-b>"] = { "lsp_toggle_all", mode = { "n", "i" }, desc = "Toggle All Servers" },
 }
-
 
 
 return {

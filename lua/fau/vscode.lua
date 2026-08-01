@@ -19,6 +19,7 @@ vim.g.snacks_animate = false
 -- -----------------------------------
 -- -------- Remove vscode-neovim default keymaps
 -- -----------------------------------
+
 -- NOTE: Use pcall so a missing default (after a vscode-neovim update) doesn't abort the rest of this file.
 local default_keymaps = {
   -- SEE: https://github.com/vscode-neovim/vscode-neovim/blob/master/runtime/vscode/code_actions.lua
@@ -51,10 +52,13 @@ for _, m in ipairs(default_keymaps) do pcall(vim.keymap.del, m[1], m[2]) end
 -- -----------------------------------
 -- -------- Rewrite Basic Keymaps
 -- -----------------------------------
+
 local keymap = vim.keymap.set
 local function opts(desc) return { silent = true, desc = desc } end
 
+
 -- ==================== Buffer Operations ====================
+
 keymap("n", "<A-h>", function() vscode.call("workbench.action.previousEditor") end, opts("VSCode: Previous Tab"))
 keymap("n", "<A-l>", function() vscode.call("workbench.action.nextEditor") end,     opts("VSCode: Next Tab"))
 keymap("n", "<A-left>",  function() vscode.call("workbench.action.moveEditorLeftInGroup") end,  opts("VSCode: Move Buffer Prev"))
@@ -73,17 +77,20 @@ keymap("n", "<C-S-q>", function() vscode.call("workbench.action.closeWindow") en
 
 
 -- ==================== Personal Preferences ====================
+
 keymap("n", "<LEADER>e", function() vscode.call("workbench.files.action.focusFilesExplorer") end, opts("VSCode: Focus on File Explorer"))
 
 keymap("n", "<LEADER>i", function() vscode.call("editor.action.inspectTMScopes") end, opts("VSCode: Inspect TM Scopes"))
 
 
 -- ==================== Navigation ====================
+
 keymap("n", "<C-i>", function() vscode.call("workbench.action.navigateForward") end, opts("VSCode: Navigate Forward"))
 keymap("n", "<C-o>", function() vscode.call("workbench.action.navigateBack") end,    opts("VSCode: Navigate Back"))
 
 
 -- ==================== Window Operations ====================
+
 keymap({ "n", "t" }, "<C-h>", function() vscode.call("workbench.action.navigateLeft") end,  opts("VSCode Window: Focus Left"))
 keymap({ "n", "t" }, "<C-j>", function() vscode.call("workbench.action.navigateDown") end,  opts("VSCode Window: Focus Down"))
 keymap({ "n", "t" }, "<C-k>", function() vscode.call("workbench.action.navigateUp") end,    opts("VSCode Window: Focus Up"))
@@ -98,6 +105,7 @@ keymap("n", "<C-w>v", function() vscode.call("workbench.action.splitEditorRight"
 
 
 -- ==================== Diagnostics and LSP ====================
+
 keymap("n", "gl", function() vscode.call("editor.action.showHover") end, opts("VSCode: Show Hover"))
 
 keymap("n", "[d", function() vscode.call("editor.action.marker.prev") end, opts("VSCode: Prev Diagnostic"))
@@ -130,6 +138,7 @@ keymap("n", "<LEADER>lo", function() vscode.call("outline.focus") end, opts("Sym
 
 
 -- ==================== Pickers ====================
+
 keymap("n", "<LEADER>ff", function() vscode.call("workbench.action.quickOpen") end,        opts("VSCode: Find Files"))
 keymap("n", "<LEADER>fs", function() vscode.call("workbench.action.findInFiles") end,      opts("VSCode: Find in Files"))
 keymap("n", "<LEADER>fr", function() vscode.call("workbench.action.openRecent") end,       opts("VSCode: Open Recent"))
@@ -145,10 +154,12 @@ keymap("n", "<LEADER>lS", function() vscode.call("workbench.action.showAllSymbol
 
 
 -- ==================== Terminal ====================
+
 keymap("n", "<C-t>", function() vscode.call("workbench.action.terminal.toggleTerminal") end, opts("VSCode: Toggle Terminal"))
 
 
 -- ==================== Fold ====================
+
 keymap("n", "za", function() vscode.call("editor.toggleFold") end, opts("VSCode: Toggle Fold"))
 keymap("n", "zM", function() vscode.call("editor.foldAll") end,    opts("VSCode: Fold All"))
 keymap("n", "zR", function() vscode.call("editor.unfoldAll") end,  opts("VSCode: Unfold All"))

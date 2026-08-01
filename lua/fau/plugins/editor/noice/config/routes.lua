@@ -2,6 +2,7 @@
 ---@type NoiceRouteConfig[]
 return {
   -- ==================== Basic Info ====================
+
   {
     view = "notify",
     filter = { warning = true },
@@ -16,6 +17,7 @@ return {
 
 
   -- ==================== Mini Align ====================
+
   {
     view = "notify",
     filter = { event = "msg_show", find = "(mini%.align)" },

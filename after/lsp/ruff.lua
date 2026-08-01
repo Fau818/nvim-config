@@ -1,5 +1,8 @@
 ---@type vim.lsp.Config
 return {
+  -- NOTE: ruff reads these only from `initializationOptions` at startup; a top-level `settings` table
+  -- (sent as `workspace/didChangeConfiguration`) is silently ignored, unlike pyright-based servers.
+  -- So changing a key here needs a client restart, while `configuration` file below is hot-reloaded by ruff.
   init_options = {
     settings = {
       configuration = vim.fs.joinpath(fvim.nvim_config_path, "configuration/pyproject.toml"),
