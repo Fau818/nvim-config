@@ -6,7 +6,7 @@ local function claude_root()
   local env = vim.env.CLAUDE_CONFIG_DIR
   if env and env ~= "" then return env end
   for _, c in ipairs({ vim.fn.expand("~/.claude"), vim.fn.expand("~/.config/claude") }) do
-    if vim.fn.isdirectory(c .. "/projects") == 1 then return c end
+    if vim.fn.isdirectory(vim.fs.joinpath(c, "projects")) == 1 then return c end
   end
   return vim.fn.expand("~/.claude")
 end

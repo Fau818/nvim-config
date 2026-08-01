@@ -2,6 +2,7 @@
 return {
   ---@module "mini.snippets"
   "nvim-mini/mini.snippets",
+  lazy = true,
 
   opts = function()
     local gen_loader = require("mini.snippets").gen_loader

@@ -357,6 +357,25 @@ vim.api.nvim_create_autocmd("LspDetach", {
 
 
 -- =============================================
+-- ========== Python Library Files
+-- =============================================
+
+---Make third-party and stdlib Python files read-only.
+vim.api.nvim_create_autocmd("FileType", {
+  group = fvim_augroup,
+  pattern = "python",
+  desc = "Third-party/stdlib Python sources: read-only.",
+  callback = function(args)
+    if vim.bo[args.buf].buftype ~= "" then return end
+    if not fvim.utils.python_library_root(args.buf) then return end
+
+    vim.bo[args.buf].modifiable = false
+    vim.bo[args.buf].readonly = true
+  end,
+})
+
+
+-- =============================================
 -- ========== Conda Auto-Env
 -- =============================================
 
@@ -368,8 +387,8 @@ if vim.fn.executable("conda") == 1 then
     callback = function() fvim.utils.conda.check() end,
   })
 
-  ---Servers have one client per project root, so give each its own
-  ---interpreter here rather than via the single global "active" env above.
+  ---Give each client its own interpreter, since servers run one client per project root: the env
+  ---mapped to that root if there is one, else whichever env is active right now.
   vim.api.nvim_create_autocmd("LspAttach", {
     group = fvim_augroup,
     callback = function(args)
@@ -381,8 +400,8 @@ if vim.fn.executable("conda") == 1 then
       local settings = client.settings
       if not settings or not settings.python then return end
 
-      -- Try to find a conda env for the project root, and reconfigure the client to use it if found.
-      local python_path = fvim.utils.conda.python_path_for(client.config.root_dir)
+      -- A mapped env is a deliberate per-project choice, so it beats the merely active one.
+      local python_path = fvim.utils.conda.python_path_for(client.config.root_dir) or fvim.utils.conda.get_active_python_path()
       if not python_path then return end
 
       -- Conda wins over the local venv from after/lsp/basedpyright.lua.

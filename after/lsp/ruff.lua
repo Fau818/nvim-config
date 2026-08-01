@@ -2,7 +2,7 @@
 return {
   init_options = {
     settings = {
-      configuration = string.format("%s/configuration/pyproject.toml", fvim.nvim_config_path),
+      configuration = vim.fs.joinpath(fvim.nvim_config_path, "configuration/pyproject.toml"),
       configurationPreference = "filesystemFirst",  ---@type "editorFirst" | "filesystemFirst" | "editorOnly"
 
       -- exclude = {},  -- Use default.

@@ -1,9 +1,9 @@
 return {
-  copilot = { enable = vim.uv.fs_stat(string.format("%s/github-copilot", fvim.xdg_config_home)) and true or false },
+  copilot = { enable = vim.uv.fs_stat(vim.fs.joinpath(fvim.xdg_config_home, "github-copilot")) and true or false },
 
   openai  = {
-    api_path  = ("%s/apikey"):format(os.getenv("OPENAI_API_PATH") or vim.fn.expand("$HOME")),
-    host_path = ("%s/host"):format(os.getenv("OPENAI_API_PATH") or vim.fn.expand("$HOME")),
+    api_path  = vim.fs.joinpath(os.getenv("OPENAI_API_PATH") or vim.fn.expand("$HOME"), "apikey"),
+    host_path = vim.fs.joinpath(os.getenv("OPENAI_API_PATH") or vim.fn.expand("$HOME"), "host"),
   },
 
   sign_priority = {

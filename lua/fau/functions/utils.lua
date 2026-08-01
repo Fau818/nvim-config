@@ -63,8 +63,51 @@ end
 
 
 -- =============================================
+-- ========== Python Library Files
+-- =============================================
+---Dirs marking a file as third-party/stdlib source.
+local python_library_patterns = {
+  "^(.*/site%-packages)/", "^(.*/dist%-packages)/", "^(.*/lib/python%d+%.%d+)/",
+  "^(.*/typeshed%-fallback)/", "^(.*/python%-type%-stubs)/",
+}
+
+---Determine if the specified buffer holds someone else's code.
+---@param bufnr? integer Default is the current buffer.
+---@return string? library_root The library root containing the file, or nil for project code.
+function M.python_library_root(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  if not vim.api.nvim_buf_is_valid(bufnr) then return end
+
+  local path = vim.api.nvim_buf_get_name(bufnr)
+  for _, pattern in ipairs(python_library_patterns) do
+    local library_root = path:match(pattern)
+    if library_root then return library_root end
+  end
+end
+
+
+-- =============================================
+-- ========== Python Venv
+-- =============================================
+---Venv dir names to look for, in priority order.
+local venv_names = { ".venv", "venv.nosync", "venv" }
+
+---Find the interpreter under `root_dir`, trying each `venv_names` entry in order.
+---@param root_dir string
+---@return string? python_bin The interpreter of the first venv that has one, or nil if none does.
+function M.find_venv_python(root_dir)
+  for _, name in ipairs(venv_names) do
+    local python_bin = vim.fs.joinpath(root_dir, name, "bin", "python")
+    if vim.fn.executable(python_bin) == 1 then return python_bin end
+  end
+end
+
+
+-- =============================================
 -- ========== Reveal in System
 -- =============================================
+---Reveal a file in the system's file manager.
+---@param path? string The file path to reveal. If nil, the current buffer's path is used.
 function M.reveal_in_system(path)
   local file = path or vim.fn.expand("%:p")
   if vim.fn.has("mac") == 1 then vim.fn.system({ "open", "-R", file })

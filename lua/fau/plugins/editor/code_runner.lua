@@ -70,8 +70,8 @@ return {
     },
 
     -- NOTE: If use json to config code_runner, uncomment the following codes.
-    -- filetype_path = string.format("%s/configuration/code_runner/filetype.json", fvim.nvim_config_path),
-    -- project_path =  string.format("%s/configuration/code_runner/project.json", fvim.nvim_config_path),
+    -- filetype_path = vim.fs.joinpath(fvim.nvim_config_path, "configuration/code_runner/filetype.json"),
+    -- project_path =  vim.fs.joinpath(fvim.nvim_config_path, "configuration/code_runner/project.json"),
 
     hot_reload = false,
   }

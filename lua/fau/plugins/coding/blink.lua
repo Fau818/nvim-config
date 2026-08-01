@@ -232,7 +232,7 @@ return {
         dictionary = {
           name = "Dict", module = "blink-cmp-dictionary",
           min_keyword_length = 2, max_items = 15, score_offset = -5,
-          opts = { dictionary_files = { fvim.nvim_config_path .. "/spell/mydict.txt", fvim.nvim_config_path .. "/spell/dictionary.txt" } },
+          opts = { dictionary_files = { vim.fs.joinpath(fvim.nvim_config_path, "spell/mydict.txt"), vim.fs.joinpath(fvim.nvim_config_path, "spell/dictionary.txt") } },
         },
       },
     },

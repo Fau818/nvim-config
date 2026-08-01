@@ -23,7 +23,7 @@ local function get_conda_path()
 
   for _, path in ipairs(conda_path_list) do
     if path and vim.fn.isdirectory(path) == 1 then
-      if vim.fn.executable(path .. "/bin/conda") == 1 then return path end
+      if vim.fn.executable(vim.fs.joinpath(path, "bin/conda")) == 1 then return path end
     end
   end
 
@@ -38,7 +38,7 @@ local function build_conda_env_list()
   local conda_path = get_conda_path()
   if not conda_path then return {} end
 
-  local conda_envs_path = conda_path .. "/envs"
+  local conda_envs_path = vim.fs.joinpath(conda_path, "envs")
   if vim.fn.isdirectory(conda_envs_path) ~= 1 then
     fvim.notify("Conda envs directory not found: " .. conda_envs_path, vim.log.levels.WARN)
     return {}
@@ -47,7 +47,7 @@ local function build_conda_env_list()
   local env_list = { { name = "base", path = conda_path, idx = 1 } }
   for _, file in ipairs(vim.fn.readdir(conda_envs_path)) do
     if file:sub(1, 1) ~= "." then  -- Ignore hidden files
-      local full_path = string.format("%s/%s", conda_envs_path, file)
+      local full_path = vim.fs.joinpath(conda_envs_path, file)
       if vim.fn.isdirectory(full_path) == 1 then
         table.insert(env_list, { name = file, path = full_path, idx = #env_list + 1 })
       end
@@ -177,7 +177,18 @@ end
 ---@return string?
 function M.python_path_for(dir)
   local item = M.find_env(lookup(dir))
-  return item and (item.path .. "/bin/python") or nil
+  return item and vim.fs.joinpath(item.path, "bin/python") or nil
+end
+
+---Get the interpreter path of the env that is active right now, or nil . (excludes `base` env)
+---@return string?
+function M.get_active_python_path()
+  local name = os.getenv("CONDA_DEFAULT_ENV")
+  local prefix = os.getenv("CONDA_PREFIX")
+  if not prefix or not name or name == "" or name == "base" then return end
+
+  local python_path = vim.fs.joinpath(prefix, "bin/python")
+  return vim.fn.executable(python_path) == 1 and python_path or nil
 end
 
 ---Re-evaluate the cwd against the mapping and (de)activate as needed. Mirrors

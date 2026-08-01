@@ -37,7 +37,7 @@ return {
     hidden = true,
     follow = true,
     regex  = false,
-    args = { "--ignore-file", ("%s/git/ignore"):format(fvim.xdg_config_home), "--glob", "!dictionary.txt" },
+    args = { "--ignore-file", vim.fs.joinpath(fvim.xdg_config_home, "git/ignore"), "--glob", "!dictionary.txt" },
   },
   -- grep_buffers = { hidden = true, layout = "stack_rev", win = { preview = preset.normal_preview } },
   -- grep_word    = { hidden = true, layout = "stack_rev", win = { preview = preset.normal_preview } },

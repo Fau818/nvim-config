@@ -10,7 +10,7 @@ return {
 
   ---@type Scissors.Config
   opts = {
-    snippetDir = fvim.nvim_config_path .. "/snippets",
+    snippetDir = vim.fs.joinpath(fvim.nvim_config_path, "snippets"),
 
     editSnippetPopup = {
       height = 0.4,
