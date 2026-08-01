@@ -386,37 +386,6 @@ if vim.fn.executable("conda") == 1 then
     group = fvim_augroup,
     callback = function() fvim.utils.conda.check() end,
   })
-
-  ---Give each client its own interpreter, since servers run one client per project root: the env
-  ---mapped to that root if there is one, else whichever env is active right now.
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = fvim_augroup,
-    callback = function(args)
-      if vim.bo[args.buf].filetype ~= "python" or vim.bo[args.buf].buftype ~= "" then return end
-
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if not client or not client.config.root_dir then return end
-      if client.conda_manual then return end  -- conda env is manually pinned to a specific env, don't override it.
-      local settings = client.settings
-      if not settings or not settings.python then return end
-
-      -- A mapped env is a deliberate per-project choice, so it beats the merely active one.
-      local python_path = fvim.utils.conda.python_path_for(client.config.root_dir) or fvim.utils.conda.get_active_python_path()
-      if not python_path then return end
-
-      -- Conda wins over the local venv from after/lsp/basedpyright.lua.
-      local venv_path = vim.tbl_get(settings, "python", "pythonPath")
-      if venv_path and venv_path ~= python_path then
-        fvim.notify(("Conda env and local venv both found for %s\n  using:   %s\n  ignored: %s"):format(
-          vim.fn.fnamemodify(client.config.root_dir, ":~"),
-          python_path,
-          venv_path
-        ), vim.log.levels.WARN)
-      end
-
-      fvim.lsp.reconfigure_python_path(client, python_path)
-    end,
-  })
 end
 
 

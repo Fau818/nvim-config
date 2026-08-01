@@ -180,12 +180,13 @@ function M.python_path_for(dir)
   return item and vim.fs.joinpath(item.path, "bin/python") or nil
 end
 
----Get the interpreter path of the env that is active right now, or nil . (excludes `base` env)
+---Get the interpreter path of an env you selected yourself, or nil. `base` and an env `check()`
+---auto-activated for the cwd doesn't count: neither is a decision, so a root's map may outrank them.
 ---@return string?
-function M.get_active_python_path()
+function M.get_manual_python_path()
   local name = os.getenv("CONDA_DEFAULT_ENV")
   local prefix = os.getenv("CONDA_PREFIX")
-  if not prefix or not name or name == "" or name == "base" then return end
+  if not prefix or not name or name == "" or name == "base" or name == active then return end
 
   local python_path = vim.fs.joinpath(prefix, "bin/python")
   return vim.fn.executable(python_path) == 1 and python_path or nil

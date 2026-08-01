@@ -1,28 +1,16 @@
 local root_markers = { { "pyrightconfig.json", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile" }, ".git" }
 
-local venv_names = { ".venv", "venv.nosync", "venv" }
-
----First `venv_names` entry under `root_dir` that actually holds an interpreter.
----@param root_dir string
----@return string? python_bin
-local function venv_python(root_dir)
-  for _, name in ipairs(venv_names) do
-    local python_bin = root_dir .. "/" .. name .. "/bin/python"
-    if vim.fn.executable(python_bin) == 1 then return python_bin end
-  end
-end
-
----Root of the running client whose project dir or live interpreter's env dir contains `bufname`
----(conda and out-of-project venvs keep site-packages and stdlib under the env dir, not the root).
----Longest match wins; reading it live keeps this in step with `reconfigure_python_path`.
+---Find the root of the running client that owns `bufname`: the one whose project dir or live interpreter env dir contains it, longest match first.
 ---@param bufname string
----@return string? root_dir
-local function owner_root(bufname)
+---@return string? root_dir The owning client's root, or nil if no client contains the file.
+local function find_owner_root(bufname)
   local best_root, best_len = nil, -1
   for _, client in ipairs(vim.lsp.get_clients({ name = "basedpyright" })) do
     local root_dir = client.config.root_dir
     local python_bin = vim.tbl_get(client.settings or {}, "python", "pythonPath")
+    -- NOTE: Conda and out-of-project venvs keep site-packages under the env dir, not under the root.
     local env_dir = python_bin and vim.fn.fnamemodify(python_bin, ":h:h")
+
     for _, dir in ipairs(env_dir and { root_dir, env_dir } or { root_dir }) do
       if #dir > best_len and vim.fs.relpath(dir, bufname) then best_root, best_len = root_dir, #dir end
     end
@@ -30,36 +18,32 @@ local function owner_root(bufname)
   return best_root
 end
 
----Where to root a dependency file that no client owns yet. Stopping at the library dir keeps
----the marker walk from climbing into an unrelated repo above it (Homebrew's own `.git`). The
----third pattern is the stdlib dir itself -- `typing.py` and friends sit directly under it.
----@param bufname string
----@return string? root_dir
-local function library_boundary(bufname)
-  return bufname:match("^(.*/site%-packages)/")
-    or bufname:match("^(.*/dist%-packages)/")
-    or bufname:match("^(.*/lib/python%d+%.%d+)/")
-end
-
 ---@type vim.lsp.Config
 return {
-  -- Matching an owning client's root_dir is what makes the default `reuse_client` attach to
-  -- it instead of spawning a second server. Else a library boundary, else the marker walk.
+  ---Reusing an owner's root makes `reuse_client` attach to it instead of starting a second server.
+  ---The library dir keeps the marker walk out of an unrelated repo above it (Homebrew's `.git`).
   root_dir = function(bufnr, on_dir)
     local bufname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(owner_root(bufname) or library_boundary(bufname) or vim.fs.root(bufnr, root_markers))
+    on_dir(find_owner_root(bufname) or fvim.utils.python_library_root(bufnr) or vim.fs.root(bufnr, root_markers))
   end,
 
-  -- basedpyright only finds `<root_dir>/.venv` unaided; other names silently fall back to `python3`
-  -- on PATH, breaking every import with no other symptom. `VIRTUAL_ENV` is only read as a literal
-  -- `${env:VIRTUAL_ENV}` off Neovim's own env -- one value for every project. So resolve per root
-  -- here; nil leaves the PATH tiers in charge, and a conda mapping still wins (fau/autocmd.lua).
+  ---Set it before initialization, so the server never analyzes the project on the wrong interpreter.
+  ---basedpyright finds only `.venv` by itself, and `${env:VIRTUAL_ENV}` is one value for every project.
   before_init = function(_, config)
     if not config.root_dir then return end
 
+    local python_path, shadowed_venv = fvim.utils.resolve_python_path(config.root_dir)
+    if shadowed_venv then
+      fvim.notify(("Conda env and local venv both found for %s\n  using:   %s\n  ignored: %s"):format(
+        vim.fn.fnamemodify(config.root_dir, ":~"),
+        python_path,
+        shadowed_venv
+      ), vim.log.levels.WARN)
+    end
+
     local settings = config.settings or {}
     settings.python = settings.python or {}
-    settings.python.pythonPath = venv_python(config.root_dir)
+    settings.python.pythonPath = python_path
     config.settings = settings
   end,
 
@@ -97,7 +81,7 @@ return {
         exclude = nil,  -- NOTE: Use default; and don't change it if it's not necessary since there a special mechianism only works when exclude is nil.
         -- extraPaths = nil,  -- Use default.
         -- stubPath = nil,  -- Use default.
-        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs/stubs",
+        stubPath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy/python-type-stubs/stubs"),
         -- typeshedPaths = nil,  -- Use default.
         -- baselineFile = nil,  -- Use default.
 

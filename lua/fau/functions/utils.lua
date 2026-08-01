@@ -102,6 +102,24 @@ function M.find_venv_python(root_dir)
   end
 end
 
+---Decide which interpreter a python project should use, first match wins:
+---  1. a conda env you selected yourself
+---  2. the conda env `$CONDA_AUTO_ENVS_CONF` maps `root_dir` to
+---  3. a venv under `root_dir`
+---@param root_dir string
+---@return string? python_path nil hands the choice back to the server, i.e. `python3` on PATH.
+---@return string? shadowed_venv The local venv a conda env is overriding, if both are present.
+function M.resolve_python_path(root_dir)
+  local venv_python = M.find_venv_python(root_dir)
+  -- EXIT: No conda on this machine, so there is nothing that could outrank the venv.
+  if vim.fn.executable("conda") ~= 1 then return venv_python end
+
+  local conda_python = M.conda.get_manual_python_path() or M.conda.python_path_for(root_dir)
+  if not conda_python then return venv_python end
+
+  return conda_python, venv_python ~= conda_python and venv_python or nil
+end
+
 
 -- =============================================
 -- ========== Reveal in System
