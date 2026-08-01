@@ -168,7 +168,11 @@ local components = {
 
   ai_agent = {
     function() return " " end,
-    color = function() return require("claudecode").is_claude_connected() and "Special" or { fg = fvim.colors.lualine.red } end,
+    -- NOTE: color is evaluated even if `cond` is false, so we need to check if the module is loaded first.
+    color = function()
+      local claudecode = package.loaded["claudecode"]
+      return claudecode and claudecode.is_claude_connected() and "Special" or { fg = fvim.colors.lualine.red }
+    end,
     cond = function() return package.loaded["claudecode"] ~= nil end,
     padding = { right = 1 },
   },
