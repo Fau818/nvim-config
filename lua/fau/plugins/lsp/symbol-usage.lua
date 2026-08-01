@@ -65,7 +65,7 @@ return {
         function(bufnr)
           if vim.bo[bufnr].buftype ~= "" then return true end
           -- NOTE: Diagnosing python library files is resource intensive.
-          if vim.bo[bufnr].filetype == "python" then return fvim.utils.python_library_root(bufnr) end
+          if vim.bo[bufnr].filetype == "python" then return fvim.python.library_root(bufnr) end
         end
       },
       lsp = nil,  -- Use default.

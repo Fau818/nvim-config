@@ -11,6 +11,7 @@ M.conda_picker = {
   finder = function(opts, ctx) return conda.get_conda_envs() end,
 
   format = function(item, picker)
+    ---@cast item fvim.CondaEnv
     return {
       { string.format("%-12s", item.name), "SnacksPickerFile" },
       { item.path, "SnacksPickerDir" },
@@ -19,20 +20,13 @@ M.conda_picker = {
 
   actions = {
     confirm = function(picker, item)
+      ---@cast item fvim.CondaEnv
       local venv_name = os.getenv("CONDA_DEFAULT_ENV")
       local deactivating = venv_name == item.name
       if deactivating then conda.deactivate(item) else conda.activate(item) end
       picker:close()
 
-      for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-        if client.settings.python then
-          local root_dir = client.config.root_dir
-          -- Deactivating re-runs the decision `before_init` made, now without this env in the way.
-          local python_path = vim.fs.joinpath(item.path, "bin/python")
-          if deactivating then python_path = root_dir and fvim.utils.resolve_python_path(root_dir) end
-          fvim.lsp.reconfigure_python_path(client, python_path)
-        end
-      end
+      fvim.python.resync_path()
     end,
   },
 

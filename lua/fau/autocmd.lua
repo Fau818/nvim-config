@@ -367,7 +367,7 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Third-party/stdlib Python sources: read-only.",
   callback = function(args)
     if vim.bo[args.buf].buftype ~= "" then return end
-    if not fvim.utils.python_library_root(args.buf) then return end
+    if not fvim.python.library_root(args.buf) then return end
 
     vim.bo[args.buf].modifiable = false
     vim.bo[args.buf].readonly = true
@@ -384,7 +384,7 @@ vim.api.nvim_create_autocmd("FileType", {
 if vim.fn.executable("conda") == 1 then
   vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
     group = fvim_augroup,
-    callback = function() fvim.utils.conda.check() end,
+    callback = function() fvim.python.conda.check() end,
   })
 end
 

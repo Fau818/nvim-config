@@ -1,5 +1,10 @@
 local M = {}
 
+---@class fvim.CondaEnv
+---@field name string Conda env name; `base` for the installation root itself.
+---@field path string Conda env prefix, i.e. the dir holding `bin/python`.
+---@field idx? integer Position in the list, which the picker orders by.
+
 
 -- =============================================
 -- ========== Helpers
@@ -33,7 +38,7 @@ end
 
 
 ---Build list of conda environments.
----@return snacks.picker.Item[]
+---@return fvim.CondaEnv[]
 local function build_conda_env_list()
   local conda_path = get_conda_path()
   if not conda_path then return {} end
@@ -65,7 +70,7 @@ end
 local _conda_env_list = nil
 
 ---Get list of conda environments (cached).
----@return snacks.picker.Item[]
+---@return fvim.CondaEnv[]
 function M.get_conda_envs()
   if not _conda_env_list then _conda_env_list = build_conda_env_list() end
   return _conda_env_list
@@ -74,23 +79,22 @@ end
 
 ---Find a conda environment by name.
 ---@param name string
----@return snacks.picker.Item?
-function M.find_env(name)
+---@return fvim.CondaEnv?
+local function find_env(name)
   for _, item in ipairs(M.get_conda_envs()) do
     if item.name == name then return item end
   end
 end
 
 
----Activate conda environment. Deactivates whatever else is currently active
----first, so switching directly between two envs doesn't leave the old one's
----bin dir stuck in PATH and CONDA_SHLVL climbing forever.
----@param item snacks.picker.Item
+---Activate a conda environment, deactivating the current one first; switching straight
+---from one to another would leave the old bin dir in PATH and let CONDA_SHLVL climb forever.
+---@param item fvim.CondaEnv
 function M.activate(item)
   local cur_name = os.getenv("CONDA_DEFAULT_ENV")
   local cur_prefix = os.getenv("CONDA_PREFIX")
   if cur_prefix and cur_name and cur_name ~= "" and cur_name ~= "base" and cur_name ~= item.name then
-    M.deactivate({ path = cur_prefix })
+    M.deactivate({ name = cur_name, path = cur_prefix })
   end
 
   fvim.notify("Activating conda environment: " .. item.name, vim.log.levels.INFO)
@@ -104,10 +108,16 @@ function M.activate(item)
 end
 
 
----Deactivate the current conda environment.
----@param item snacks.picker.Item
+---Deactivate `item`, which has to be the env that is currently active.
+---@param item fvim.CondaEnv
 function M.deactivate(item)
-  fvim.notify("Deactivating conda environment.", vim.log.levels.INFO)
+  local cur_name = os.getenv("CONDA_DEFAULT_ENV")
+  if cur_name ~= item.name then
+    fvim.notify(("Not deactivating %s: %s is active."):format(item.name, cur_name or "no env"), vim.log.levels.WARN)
+    return
+  end
+
+  fvim.notify("Deactivating conda environment: " .. item.name, vim.log.levels.INFO)
 
   local shlvl = tonumber(os.getenv("CONDA_SHLVL")) or 1
 
@@ -142,6 +152,7 @@ local function load_mappings()
   return result
 end
 
+
 ---Env mapped to the longest pattern matching `path`, or nil.
 ---@param path string
 ---@return string?
@@ -156,29 +167,37 @@ local function lookup(path)
   return best_env
 end
 
+
 local active = nil  -- env we auto-activated, mirrors the zsh plugin's _CAE_ACTIVE
 
 local function auto_activate(name)
-  local item = M.find_env(name)
+  local item = find_env(name)
   if not item then fvim.notify("conda_auto_env: env not found: " .. name, vim.log.levels.WARN) return end
   M.activate(item)
   active = name
 end
 
+
 local function auto_deactivate(name)
-  local item = M.find_env(name)
+  local item = find_env(name)
   if item then M.deactivate(item) end
   active = nil
 end
 
 
----Python interpreter path for the env mapped to `dir`, or nil. Independent of the globally "active" env.
+---Get the interpreter path of the env `$CONDA_AUTO_ENVS_CONF` maps `dir` to, or nil.
+---Independent of whichever env happens to be active.
 ---@param dir string
 ---@return string?
-function M.python_path_for(dir)
-  local item = M.find_env(lookup(dir))
+function M.get_mapped_python_path(dir)
+  local name = lookup(dir)
+  -- EXIT: This dir is not in the map, so no env is pinned to it.
+  if not name then return end
+
+  local item = find_env(name)
   return item and vim.fs.joinpath(item.path, "bin/python") or nil
 end
+
 
 ---Get the interpreter path of an env you selected yourself, or nil. `base` and an env `check()`
 ---auto-activated for the cwd doesn't count: neither is a decision, so a root's map may outrank them.
@@ -191,6 +210,7 @@ function M.get_manual_python_path()
   local python_path = vim.fs.joinpath(prefix, "bin/python")
   return vim.fn.executable(python_path) == 1 and python_path or nil
 end
+
 
 ---Re-evaluate the cwd against the mapping and (de)activate as needed. Mirrors
 ---`_cae_chpwd` in the zsh plugin; never touches a manually-selected env.

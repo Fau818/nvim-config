@@ -90,6 +90,7 @@ local function _setup_server(server, opts)
   vim.lsp.enable(server, true)
 end
 
+
 ---@type fun(server: string, opts?: vim.lsp.ClientConfig)
 M.setup_server = vim.schedule_wrap(_setup_server)
 
@@ -116,17 +117,6 @@ function M.restart_lsp(bufnr)
   table.insert(clients, 1, "restart")
   local success, err = pcall(vim.cmd.lsp, clients)
   if not success then fvim.notify(err, vim.log.levels.WARN) end
-end
-
-
----Reconfigure a basedpyright client with a new interpreter, without restarting it.
----@param client vim.lsp.Client
----@param python_path string? interpreter path (nil restores auto-detection)
-function M.reconfigure_python_path(client, python_path)
-  local settings = client.settings
-  settings.python = settings.python or {}
-  settings.python.pythonPath = python_path
-  client:notify("workspace/didChangeConfiguration", { settings = nil })
 end
 
 

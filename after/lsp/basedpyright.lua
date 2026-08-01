@@ -24,7 +24,7 @@ return {
   ---The library dir keeps the marker walk out of an unrelated repo above it (Homebrew's `.git`).
   root_dir = function(bufnr, on_dir)
     local bufname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(find_owner_root(bufname) or fvim.utils.python_library_root(bufnr) or vim.fs.root(bufnr, root_markers))
+    on_dir(find_owner_root(bufname) or fvim.python.library_root(bufnr) or vim.fs.root(bufnr, root_markers))
   end,
 
   ---Set it before initialization, so the server never analyzes the project on the wrong interpreter.
@@ -32,7 +32,7 @@ return {
   before_init = function(_, config)
     if not config.root_dir then return end
 
-    local python_path, shadowed_venv = fvim.utils.resolve_python_path(config.root_dir)
+    local python_path, shadowed_venv = fvim.python.resolve_path(config.root_dir)
     if shadowed_venv then
       fvim.notify(("Conda env and local venv both found for %s\n  using:   %s\n  ignored: %s"):format(
         vim.fn.fnamemodify(config.root_dir, ":~"),
