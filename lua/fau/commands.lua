@@ -11,6 +11,16 @@ vim.api.nvim_create_user_command("FauvimConfig",
   end, {}
 )
 
+-- DESC: Re-pad separator comments. Takes a range; `!` applies the `---`/`===` shorthand
+-- DESC: even in a file that draws its own rules in ASCII.
+vim.api.nvim_create_user_command("NormalizeSeparators",
+  function(ev)
+    local from, to
+    if ev.range > 0 then from, to = ev.line1 - 1, ev.line2 end
+    fvim.format.normalize_separators(from, to, ev.bang)
+  end, { bang = true, range = true }
+)
+
 -- DESC: Copy pyproject.toml file
 vim.api.nvim_create_user_command("GetPyprojectFile",
   function()

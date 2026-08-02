@@ -1,16 +1,36 @@
 local M = {}
 
 
----Strip decorative section-separator comment lines from a markdown doc string.
----A line is dropped when (ignoring leading whitespace and any backslashes)
----it starts with `===` (3+ `=`) or `----` (4+ `-`, so the markdown `---` rule lives).
+---Opening section marker; UTF-8 glyphs need no escaping.
+local SEP_MARKERS = {
+  "^═══",       -- `sec1`/`sec2`: a box frame line, or a centred banner
+  "^───",       -- `sec3`: a tailed section
+  "^┄┄┄",       -- `sec4`: a bare subsection
+  "^===",       -- legacy ASCII section (3+ `=`)
+  "^%-%-%-%-",  -- legacy ASCII subsection (4+ `-`, so the markdown `---` rule lives)
+}
+
+
+---Comment leaders that can still be riding on a marker -- lua_ls strips them from its doc
+---comments, but a marker inside a python docstring keeps its own. The trailing `%s+` keeps
+---a legacy `----` run from reading as a lua leader.
+local SEP_LEADERS = { "^#+%s+", "^%-%-%s+", "^//%s+", "^;+%s+", "^%%%s+" }
+
+
+---Strip decorative section-marker comment lines from a markdown doc string.
+---A line is dropped when, ignoring leading whitespace, any backslashes and any leftover
+---comment leader, it opens with one of `SEP_MARKERS` -- so a marker's frame lines and its
+---labelled line both go.
 ---@param value string
 ---@return string
 function M.doc_cleaner(value)
   local kept = {}
   for _, line in ipairs(vim.split(value, "\n", { plain = true })) do
     local probe = line:gsub("^%s+", ""):gsub("\\", "")
-    if not (probe:match("^===") or probe:match("^%-%-%-%-")) then kept[#kept + 1] = line end
+    for _, leader in ipairs(SEP_LEADERS) do probe = probe:gsub(leader, "", 1) end
+    if not vim.iter(SEP_MARKERS):any(function(pat) return probe:match(pat) ~= nil end) then
+      kept[#kept + 1] = line
+    end
   end
 
   return table.concat(kept, "\n")

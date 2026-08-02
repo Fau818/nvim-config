@@ -59,11 +59,58 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- ═══════════════════════════ Save ═══════════════════════════
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = fvim_augroup,
+  pattern = "*",
+  -- NOTE: The snapshot has to be taken while the file is untouched: a rule typed later
+  -- on is indistinguishable from one the file came with. Deferred because this group is
+  -- registered from `init.lua`, so it runs before filetype detection does and there is
+  -- no `commentstring` to read yet.
+  desc = "Opt a file that draws its own rules in ASCII out of the `---`/`===` shorthand.",
+  callback = function(ev)
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(ev.buf) then
+        vim.api.nvim_buf_call(ev.buf, fvim.format.detect_ascii_separators)
+      end
+    end)
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = fvim_augroup,
+  pattern = "*",
+  -- NOTE: The snapshot has to be taken while the file is untouched: a rule typed later
+  -- on is indistinguishable from one the file came with. Deferred because this group is
+  -- registered from `init.lua`, so it runs before filetype detection does and there is
+  -- no `commentstring` to read yet.
+  desc = "Opt a file that draws its own rules in ASCII out of the `---`/`===` shorthand.",
+  callback = function(ev)
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(ev.buf) then
+        vim.api.nvim_buf_call(ev.buf, fvim.format.detect_ascii_separators)
+      end
+    end)
+  end,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = fvim_augroup,
   pattern = "*",
-  desc = "Trim blank lines and spaces before writing buffer to file.",
-  callback = function() fvim.format.trim_text() end,
+  desc = "Trim blank lines and spaces, and re-pad separator comments, before writing buffer to file.",
+  callback = function()
+    fvim.format.trim_text()
+    fvim.format.normalize_separators()
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  group = fvim_augroup,
+  pattern = "MiniSnippetsSessionStop",
+  desc = "Re-pad the separator tail right after a `sec1`/`sec2` snippet is finished.",
+  callback = function()
+    local line = vim.fn.line(".")
+    fvim.format.normalize_separators(line - 3, line + 2)
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
@@ -232,6 +279,11 @@ vim.api.nvim_create_autocmd("ModeChanged", {
       -- Hints must stay hidden until back in normal mode. ModeChanged fires before replication, hence scheduling past current key processing.
       vim.schedule(function()
         if not vim.api.nvim_buf_is_valid(buf) then return end
+        -- FIX: VB mode -> insert -> <C-d>
+        -- An insert-mode mapping running `normal!` (e.g. the `<D-v>` paste) round-trips i -> n -> v -> n and lands here,
+        -- but we're back in the blockwise insert by now -- keep the hints hidden and wait for the edit to really end.
+        if not vim.b[buf].inlay_hint_hidden then return end
+        if vim.api.nvim_get_mode().mode:find("[i\22]") then return end
         vim.b[buf].inlay_hint_hidden = nil
         vim.lsp.inlay_hint.enable(true, { bufnr = buf })
         fixup_curswant_after_restore(vim.api.nvim_get_current_win(), buf)
@@ -242,12 +294,22 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 
 
 -- ══════════════════════ Pinned Windows ══════════════════════
--- ========== Pinned Windows
--- =============================================
+
+-- ─── Pin & Redirect ─────────────────────────────────────────
+---The side of the current window a main window belongs on: whichever one faces the editor's centre.
+---@return "left"|"right"|"above"|"below"
+local function main_side()
+  local row, col = unpack(vim.api.nvim_win_get_position(0))
+  local width, height = vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
+  if width < vim.o.columns then return col * 2 + width > vim.o.columns and "left" or "right" end
+  return row * 2 + height > vim.o.lines and "above" or "below"
+end
 
 ---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.
 local function pin(buf)
   vim.w.pinned_buf = buf
+  -- Taken now, while the window still has the neighbours that give the answer meaning.
+  vim.w.main_side = main_side()
   if vim.bo[buf].bufhidden == "wipe" then vim.bo[buf].bufhidden = "hide" vim.b[buf].wipe_on_unpin = true end
 end
 
@@ -295,11 +357,21 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
     -- Redirect into a real editing window.
     local target = fvim.utils.get_main_win(function(w) return not vim.w[w].pinned_buf end)
-    if not target then fvim.notify("Switch buffer failed.", vim.log.levels.ERROR) return end
 
     -- NOTE: Use `noautocmd` to place the buffer back silently.
     vim.cmd("noautocmd buffer " .. pinned_buf)
-    vim.api.nvim_win_set_buf(target, env.buf)
+
+    if target then
+      vim.api.nvim_win_set_buf(target, env.buf)
+    else
+      -- Every window is pinned -- the last main window is gone, so put one back where it used to sit.
+      -- NOTE: `nvim_open_win` starts a split from the global option values; `:split` would copy the pinned window's.
+      fvim.notify("No main window found, opening one.", vim.log.levels.ERROR)
+      local ok, win = pcall(vim.api.nvim_open_win, env.buf, false, { win = 0, split = vim.w.main_side or "left" })
+      if not ok then return end  -- NOTE: Too cramped to hold another window.
+      target = win
+    end
+
     vim.api.nvim_set_current_win(target)
   end,
 })
