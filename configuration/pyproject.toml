@@ -143,15 +143,13 @@ preview = false
 extend-select = ["D"]
 # external = []
 ignore = [
-  "D100", "D101", "D103", "D105",
+  "D100", "D101", "D102", "D103", "D105", "D107",
+  "D212",
 
   "E701", "E702",
 
   "F401",  # LSP will handle unused imports.
   "F403", "F405",
-
-  "D102", "D107",
-  "D205", "D212",
 ]
 
 # fixable =["ALL"]
