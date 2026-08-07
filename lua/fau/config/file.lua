@@ -48,7 +48,7 @@ return {
     "Makefile",
     "README.md", "readme.md",
     "CLAUDE.md",
-    "pyproject.toml", "uv.lock",
+    "pyproject.toml", "uv.lock", ".venv", "venv.nosync",
     ".gitignore", ".gitmodules",
   },
 
