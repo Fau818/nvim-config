@@ -5,7 +5,8 @@ return {
   lazy = true,
 
   opts = function()
-    local gen_loader = require("mini.snippets").gen_loader
+    local mini_snippets = require("mini.snippets")
+    local gen_loader = mini_snippets.gen_loader
 
     return {
       -- Array of snippets and loaders (see |MiniSnippets.config| for details).
@@ -37,8 +38,12 @@ return {
         match = nil,
         -- Possibly choose among matched snippets
         select = nil,
-        -- Insert selected snippet
-        insert = nil,
+
+        insert = function(snippet, opts)
+          -- NOTE: Don't allow nested snippet sessions.
+          while mini_snippets.session.get() do mini_snippets.session.stop() end
+          mini_snippets.default_insert(snippet, opts)
+        end,
       },
     }
   end,
