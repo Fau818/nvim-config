@@ -1,4 +1,3 @@
--- FIX: Markdown sign icons are over git signs.
 ---@type LazyPluginSpec
 return {
   ---@module "render-markdown"

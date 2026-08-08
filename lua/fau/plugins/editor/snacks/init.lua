@@ -20,7 +20,7 @@ return {
     notifier     = require("fau.plugins.editor.snacks.notifier"),
     picker       = require("fau.plugins.editor.snacks.picker"),
     profiler     = { enabled = false, autocmds = true },
-    quickfile    = { enabled = false, exclude = { "latex", "gitcommit" } },  -- BUG: Conflicts with treesitter.
+    quickfile    = { enabled = false, exclude = { "latex", "gitcommit" } },  -- NOTE: Conflicts with treesitter.
     scope        = require("fau.plugins.editor.snacks.scope"),
     scratch      = require("fau.plugins.editor.snacks.scratch"),
     scroll       = require("fau.plugins.editor.snacks.scroll"),
