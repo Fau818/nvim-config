@@ -59,12 +59,11 @@ local function init_inlay_hint_handler()
     if not result then vim.lsp.handlers["textDocument/inlayHint"](err, result, ctx, config); return end
 
     for _, hint in ipairs(result) do
-      if type(hint.label) == "string" then
-        hint.label = apply_transformations(hint.label, transformers)
-      elseif type(hint.label) == "table" then
-        -- BUG: Wrong inferred type from lua_ls.
-        ---@diagnostic disable-next-line: param-type-mismatch
-        for _, part in ipairs(hint.label) do
+      local label = hint.label
+      if type(label) == "string" then
+        hint.label = apply_transformations(label, transformers)
+      elseif type(label) == "table" then
+        for _, part in ipairs(label) do
           if type(part) == "table" and part.value and type(part.value) == "string" then
             part.value = apply_transformations(part.value, transformers)
           end
