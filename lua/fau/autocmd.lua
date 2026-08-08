@@ -232,6 +232,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
       -- Hints must stay hidden until back in normal mode. ModeChanged fires before replication, hence scheduling past current key processing.
       vim.schedule(function()
         if not vim.api.nvim_buf_is_valid(buf) then return end
+        -- WORKAROUND: An insert-mode mapping running `normal!` round-trips i -> n -> v -> n and lands here while the blockwise insert is still going.
+        if not vim.b[buf].inlay_hint_hidden then return end
+        if vim.api.nvim_get_mode().mode:find("[i\22]") then return end
         vim.b[buf].inlay_hint_hidden = nil
         vim.lsp.inlay_hint.enable(true, { bufnr = buf })
         fixup_curswant_after_restore(vim.api.nvim_get_current_win(), buf)
