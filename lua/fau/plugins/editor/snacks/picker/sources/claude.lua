@@ -187,18 +187,16 @@ return {
 
       delete_session = function(picker, item)
         if not item then return end
-        if vim.fn.confirm("Delete '" .. item.title .. "'?", "&Yes\n&No", 2) == 1 then
-          vim.fn.delete(item.file)
-          meta_cache[item.file] = nil
-          convo_cache[item.file] = nil
-          local idx = picker.list.cursor
-          picker:find({
-            on_done = function()
-              local count = picker.list:count()
-              if count > 0 then picker.list:view(math.min(idx, count)) end
-            end,
-          })
-        end
+        vim.fn.delete(item.file)
+        meta_cache[item.file] = nil
+        convo_cache[item.file] = nil
+        local idx = picker.list.cursor
+        picker:find({
+          on_done = function()
+            local count = picker.list:count()
+            if count > 0 then picker.list:view(math.min(idx, count)) end
+          end,
+        })
       end,
 
       toggle_scope = function(picker)
