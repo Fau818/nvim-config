@@ -1,30 +1,6 @@
 if vim.bo.buftype ~= "" then return end
 
 
--- -- ═════════ Keep Fence Lines Visible (raw query) ══════════
-
--- -- nvim's markdown highlights query hides code-fence delimiter lines outright via
--- -- `(#set! conceal_lines "")` (active at conceallevel >= 2, i.e. also in edit mode since the
--- -- global conceallevel is 2). render-markdown disables those query patterns so that *it* owns
--- -- line-hiding (render mode only, via its own extmarks) -- but it does so once per session,
--- -- against the query object cached at that moment. nvim clears that cache on every 'runtimepath'
--- -- change (:h treesitter, nvim.treesitter.query_cache_reset augroup), and every lazy-loaded
--- -- plugin changes rtp, so a later markdown buffer can get a fresh query with the hiding
--- -- re-enabled. Symptom: ``` lines invisible even in edit mode, popping back in after an edit
--- -- (the edit clears the highlighter's materialized marks). Re-apply the disable on every
--- -- FileType event instead: cheap, idempotent, self-healing, ids computed from the live query.
--- do
---   local ok, query = pcall(vim.treesitter.query.get, "markdown", "highlights")
---   if ok and query and query.query.disable_pattern then
---     for id, directives in pairs(query.info.patterns) do
---       for _, d in ipairs(directives) do
---         if d[1] == "set!" and d[2] == "conceal_lines" then query.query:disable_pattern(id) end
---       end
---     end
---   end
--- end
-
-
 -- ═════════════════ Markdown Buffer Configs ══════════════════
 
 -- NOTE: Assuming the configuration is idempotent.

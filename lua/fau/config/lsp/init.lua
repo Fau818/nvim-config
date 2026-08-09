@@ -42,6 +42,20 @@ local function apply_transformations(text, transformers)
 end
 
 
+---An inlay hint `label` is a string, or a list of `{ value = ... }` parts; only the strings are ours to touch.
+---@param label string|lsp.InlayHintLabelPart|lsp.InlayHintLabelPart[]
+---@param transformers function[]
+---@return string|lsp.InlayHintLabelPart|lsp.InlayHintLabelPart[]
+local function scrub_label(label, transformers)
+  if type(label) == "string" then return apply_transformations(label, transformers)
+  elseif type(label) == "table" then
+    if type(label.value) == "string" then label.value = scrub_label(label.value, transformers)  --[[@as string]]
+    elseif vim.islist(label) then for i, part in ipairs(label) do label[i] = scrub_label(part, transformers)  --[[@as lsp.InlayHintLabelPart]] end end
+  end
+  return label
+end
+
+
 ---Create inlay hint handler with custom text processors
 ---@return function
 local function init_inlay_hint_handler()
@@ -58,18 +72,7 @@ local function init_inlay_hint_handler()
   return function(err, result, ctx, config)
     if not result then vim.lsp.handlers["textDocument/inlayHint"](err, result, ctx, config); return end
 
-    for _, hint in ipairs(result) do
-      local label = hint.label
-      if type(label) == "string" then
-        hint.label = apply_transformations(label, transformers)
-      elseif type(label) == "table" then
-        for _, part in ipairs(label) do
-          if type(part) == "table" and part.value and type(part.value) == "string" then
-            part.value = apply_transformations(part.value, transformers)
-          end
-        end
-      end
-    end
+    for _, hint in ipairs(result) do hint.label = scrub_label(hint.label, transformers) end
 
     vim.lsp.handlers["textDocument/inlayHint"](err, result, ctx, config)
   end

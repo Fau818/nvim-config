@@ -95,13 +95,19 @@ local fvim_markdown_hl_ns = vim.api.nvim_create_namespace("fvim_markdown_hl_ns")
 vim.api.nvim_set_hl(fvim_markdown_hl_ns, "@markup.strong", { fg = fvim.colors.pink, bold = true })
 vim.api.nvim_set_hl(fvim_markdown_hl_ns, "@markup.italic", { fg = fvim.colors.light_red, bold = true, italic = true })
 
+-- NOTE: The namespace is window-scoped, and `WinNew` fires before the new window settles on its
+-- buffer (a `:tabnew` off a markdown window still reports the markdown one), so ask a tick later.
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
   group = vim.api.nvim_create_augroup("fau_tokyonight_markdown_regular_only", { clear = true }),
-  callback = function(args)
-    if vim.bo[args.buf].buftype ~= "" or vim.bo[args.buf].filetype ~= "markdown" then return end
-
+  callback = function()
     local win = vim.api.nvim_get_current_win()
-    vim.api.nvim_win_set_hl_ns(win, fvim_markdown_hl_ns)
+    vim.schedule(function()
+      if not vim.api.nvim_win_is_valid(win) then return end
+
+      local buf = vim.api.nvim_win_get_buf(win)
+      local markdown = vim.bo[buf].buftype == "" and vim.bo[buf].filetype == "markdown"
+      vim.api.nvim_win_set_hl_ns(win, markdown and fvim_markdown_hl_ns or 0)
+    end)
   end,
 })
 
@@ -232,7 +238,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
       -- Hints must stay hidden until back in normal mode. ModeChanged fires before replication, hence scheduling past current key processing.
       vim.schedule(function()
         if not vim.api.nvim_buf_is_valid(buf) then return end
-        -- WORKAROUND: An insert-mode mapping running `normal!` round-trips i -> n -> v -> n and lands here while the blockwise insert is still going.
+        -- NOTE: An insert-mode mapping running `normal!` round-trips i -> n -> v -> n and lands here while the blockwise insert is still going.
         if not vim.b[buf].inlay_hint_hidden then return end
         if vim.api.nvim_get_mode().mode:find("[i\22]") then return end
         vim.b[buf].inlay_hint_hidden = nil

@@ -1,27 +1,35 @@
 local M = {}
 
 
----Strip decorative section-separator comment lines from a markdown doc string.
----A line is dropped when (ignoring leading whitespace and any backslashes)
----it starts with `===` (3+ `=`) or `----` (4+ `-`, so the markdown `---` rule lives).
+---Opening section marker; UTF-8 glyphs need no escaping.
+local SEP_MARKERS = {
+  "^═══",       -- `sec1`/`sec2`: a box frame line, or a centred banner
+  "^───",       -- `sec3`: a tailed section
+  "^┄┄┄",       -- `sec4`: a bare subsection
+  "^===",       -- legacy ASCII section (3+ `=`)
+  "^%-%-%-%-",  -- legacy ASCII subsection (4+ `-`, so the markdown `---` rule lives)
+}
+
+
+---Strip decorative section-marker comment lines from a markdown doc string.
+---Run it on unescaped text: a legacy `----` marker reaches us as `\-\-\-\-`.
 ---@param value string
 ---@return string
 function M.doc_cleaner(value)
   local kept = {}
   for _, line in ipairs(vim.split(value, "\n", { plain = true })) do
-    local probe = line:gsub("^%s+", ""):gsub("\\", "")
-    if not (probe:match("^===") or probe:match("^%-%-%-%-")) then kept[#kept + 1] = line end
+    local probe = line:gsub("^%s+", "")
+    if not vim.iter(SEP_MARKERS):any(function(pat) return probe:match(pat) ~= nil end) then kept[#kept + 1] = line end
   end
 
   return table.concat(kept, "\n")
 end
 
 
----Strip Markdown backslash-escapes (`\_` -> `_`, `\*` -> `*`, ...) that pyright/basedpyright add
----defensively when turning a docstring into hover Markdown, even though a lone `_`/`*` fully inside a word
+---Strip the escapes (`\_` -> `_`) pyright/basedpyright put on every Markdown special char in a docstring.
 ---@param value string
 ---@return string
-function M.unescape_markdown(value)
+function M.strip_escapes(value)
   local chars = "\\`*_{}[]()#+-.!"
   local class = chars:gsub(".", "%%%0")  -- escape every char for use inside a Lua pattern class
   local result = value:gsub("\\([" .. class .. "])", "%1")
@@ -33,7 +41,7 @@ end
 ---@param contents lsp.MarkedString | lsp.MarkedString[] | lsp.MarkupContent
 ---@return lsp.MarkedString | lsp.MarkedString[] | lsp.MarkupContent
 local function scrub(contents)
-  if type(contents) == "string" then return M.unescape_markdown(M.doc_cleaner(contents))
+  if type(contents) == "string" then return M.doc_cleaner(M.strip_escapes(contents))
   elseif type(contents) == "table" then
     if type(contents.value) == "string" then contents.value = scrub(contents.value)  --[[@as string]]
     elseif vim.islist(contents) then for i, c in ipairs(contents) do contents[i] = scrub(c)  --[[@as lsp.MarkedString]] end end

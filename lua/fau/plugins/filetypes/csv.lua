@@ -16,7 +16,10 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         group = group,
         pattern = "csv",
-        callback = function(args) vim.cmd("CsvViewEnable") end,
+        callback = function(args)
+          if vim.bo[args.buf].buftype ~= "" then return end
+          require("csvview").enable(args.buf)
+        end,
       })
 
       vim.api.nvim_create_autocmd("User", {

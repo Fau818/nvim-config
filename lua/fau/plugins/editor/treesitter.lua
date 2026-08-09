@@ -2,36 +2,28 @@
 -- ═══════════════════ Treesitter Utilities ═══════════════════
 -- ════════════════════════════════════════════════════════════
 
-local _installed = {}  ---@type table<string,boolean>
-local _queries   = {}  ---@type table<string,boolean>
+-- NOTE: `main` only installs parsers and hands out `indentexpr`; `ensure_installed`,
+-- `auto_install` and the feature switches are gone, so everything below puts them back.
+
+local _installed = {}  ---@type table<string,boolean> Installed parsers, as a set.
 
 
----Get treesitter installed parsers.
----@param update? boolean Whether to update the installed parsers cache.
----@return table<string,boolean> installed Indicates whether a parser for a language is installed.
-local function ts_get_installed(update)
-  if update then
-    _installed, _queries = {}, {}
-    local installed_parsers = require("nvim-treesitter").get_installed("parsers")
-    for _, lang in ipairs(installed_parsers) do _installed[lang] = true end
-  end
-  return _installed
+---Rebuild the installed-parser cache; `get_installed` rescans two directories on every call.
+local function ts_refresh_installed()
+  _installed = {}
+  for _, lang in ipairs(require("nvim-treesitter").get_installed("parsers")) do _installed[lang] = true end
 end
 
 
 ---Check whether a parser for a language is installed.
-local function ts_is_installed(lang) return ts_get_installed()[lang] == true end
+local function ts_is_installed(lang) return _installed[lang] == true end
 
 
----Check whether a query type is available for a language.
+---Check whether a query type is available for a language. Neovim memoizes the lookup itself.
 ---@param lang string Language name.
 ---@param query "highlights"|"indents"|"folds"|"injections"|"locals" Query type.
 ---@return boolean
-local function ts_has_query(lang, query)
-  local key = lang .. ":" .. query
-  if _queries[key] == nil then _queries[key] = vim.treesitter.query.get(lang, query) ~= nil end
-  return _queries[key]
-end
+local function ts_has_query(lang, query) return vim.treesitter.query.get(lang, query) ~= nil end
 
 
 ---Ensure that the `tree-sitter` CLI is installed.
@@ -51,29 +43,22 @@ end
 
 ---Install treesitter parser(s) for specific language(s).
 ---@param lang string|string[] Language name or list of language names.
+---@param callback? fun() Called once the parsers are in place.
 local function ts_install(lang, callback)
   local notif_opts = { title = "nvim-treesitter", id = "ts_install" }
   _ensure_ts_cli(vim.schedule_wrap(function()
     require("nvim-treesitter").install(lang, { summary = true }):await(function(err)
-      if err then fvim.notify(err, vim.log.levels.ERROR, notif_opts)
-      else
-        fvim.notify("Neovim needs to be restarted to load the newly installed parser.", vim.log.levels.INFO, notif_opts)
-        if vim.fn.has("nvim-0.12") == 1 then
-          fvim.notify("Restarting Neovim in 3 seconds...", vim.log.levels.INFO, notif_opts)
-          vim.defer_fn(function() vim.cmd("restart") end, 3000)
-        end
-        ts_get_installed(true)
-        if type(callback) == "function" then callback() end
-      end
+      if err then fvim.notify(err, vim.log.levels.ERROR, notif_opts) return end
+
+      -- NOTE: `get` caches misses as well as hits, so clear the entire cache to force a rescan of the installed parsers.
+      ---@diagnostic disable-next-line: undefined-field
+      vim.treesitter.query.get:clear()
+      ts_refresh_installed()
+
+      fvim.notify("The newly installed parser is ready.", vim.log.levels.INFO, notif_opts)
+      if callback then callback() end
     end)
   end))
-end
-
-
-local function ts_ensure_install(lang, callback)
-  if ts_is_installed(lang) then callback()
-  else ts_install(lang, callback)
-  end
 end
 
 
@@ -124,10 +109,7 @@ return {
           return fvim.utils.is_large_file(bufnr)
         end,
       },
-      fold      = {
-        enable = false,
-        disable = function(bufnr) return fvim.utils.is_large_file() end,
-      },
+      -- fold = { enable = false },  -- NOTE: `nvim-ufo` handles folding
     },
 
     ---@param opts fvim.TSConfig
@@ -136,27 +118,24 @@ return {
       local parsers = require("nvim-treesitter.parsers")
       treesitter.setup(opts)
 
-      ts_get_installed(true)  -- Initialization
+      ts_refresh_installed()  -- Initialization
       -- Install Missing Parsers
-      local missing_langs = vim.tbl_filter(function(filetype) return not ts_is_installed(filetype) end, opts.ensure_installed or {})
+      local missing_langs = vim.tbl_filter(function(lang) return not ts_is_installed(lang) end, opts.ensure_installed or {})
       if #missing_langs > 0 then ts_install(missing_langs) end
 
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("TreesitterAutoInstall", { clear = true }),
         callback = function(args)
-          local filetype, lang = args.match, vim.treesitter.language.get_lang(args.match)
+          local lang = vim.treesitter.language.get_lang(args.match)
           if not lang or not parsers[lang] then return end
 
           local function ts_buf_enable()
+            if not vim.api.nvim_buf_is_valid(args.buf) then return end
             if opts.highlight.enable and not opts.highlight.disable(args.buf) and ts_has_query(lang, "highlights") then pcall(vim.treesitter.start, args.buf) end
             if opts.indent.enable and not opts.indent.disable(args.buf) and ts_has_query(lang, "indents") then vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
-            if opts.fold.enable and not opts.fold.disable(args.buf) and ts_has_query(lang, "folds") then vim.wo[args.buf].foldexpr = "v:lua.vim.treesitter.foldexpr()" end
           end
 
-          -- BUG: If a parser is installed, vim.treesitter.query.get still return `nil`.
-          -- \    Which means ts features won't be enabled on the first time after installation.
-          -- HACK: Restart neovim.
-          if opts.auto_install then ts_ensure_install(lang, ts_buf_enable)
+          if opts.auto_install and not ts_is_installed(lang) then ts_install(lang, ts_buf_enable)
           else ts_buf_enable()
           end
         end,

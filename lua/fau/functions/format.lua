@@ -3,7 +3,7 @@ local M = {}
 
 -- ═══════════════ Trim Blank Lines and Spaces ════════════════
 
-M._trim_text_source = "default"
+M._trim_text_source = nil
 
 
 function M.__trim_text()
@@ -14,7 +14,7 @@ function M.__trim_text()
 end
 
 M.trim_text = function()
-  if M._trim_text_source == "default" then M.__trim_text()
+  if M._trim_text_source == nil then M.__trim_text()
   elseif M._trim_text_source == "mini" then
     local trailspace = require("mini.trailspace")
     trailspace.trim_last_lines(); trailspace.trim()

@@ -192,7 +192,7 @@ local components = {
     color = function()
       local buf = vim.api.nvim_get_current_buf()
       local ts = vim.treesitter.highlighter.active[buf]
-      return { fg = ts and not vim.tbl_isempty(ts) and fvim.colors.lualine.green or fvim.colors.lualine.red }
+      return { fg = ts and fvim.colors.lualine.green or fvim.colors.lualine.red }
     end,
     on_click = function(number, button, modifier)
       local bufnr = vim.api.nvim_get_current_buf()
