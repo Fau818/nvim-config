@@ -243,6 +243,7 @@ return {
 
     -- CASE   = " ",
     EXIT      = "󰗼 ",
+    STEP      = " ",
     ASSERT    = "󰞏 ",
     IMPORTANT = "󱈸 ",
     -- SPECIAL   = "󰅳 ",

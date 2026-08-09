@@ -192,17 +192,30 @@ end
 -- ══════════════════════════ Window ══════════════════════════
 -- ════════════════════════════════════════════════════════════
 
----Find the first "main" window in the current tabpage: non-floating and showing a regular buffer.
----@param filter? fun(win: integer): boolean Extra acceptance test; the window is kept only if it returns true.
+---Whether a main window could live in `win`: it is not floating, and not one of the pinned sidebars.
+---@param win integer
+---@return boolean
+local function can_host_main(win)
+  return vim.api.nvim_win_get_config(win).relative == "" and not vim.w[win].pinned_buf
+end
+
+---Whether `win` is a "main" window: one that could host a main buffer, and does.
+---@param win integer
+---@return boolean
+function M.is_main_win(win)
+  return can_host_main(win) and vim.bo[vim.api.nvim_win_get_buf(win)].buftype == ""
+end
+
+---Find the first "main" window in the current tabpage.
+---Rather than give up, fall back to a window that could host one but is occupied by a panel, e.g. the dashboard.
 ---@return integer? win The matching window id, or nil if none qualifies.
-function M.get_main_win(filter)
+function M.get_main_win()
+  local occupied  ---@type integer?
   for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if vim.api.nvim_win_get_config(w).relative == ""
-      and vim.bo[vim.api.nvim_win_get_buf(w)].buftype == ""
-      and (not filter or filter(w)) then
-      return w
-    end
+    if M.is_main_win(w) then return w end
+    if not occupied and can_host_main(w) then occupied = w end
   end
+  return occupied
 end
 
 

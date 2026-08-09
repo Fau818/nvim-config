@@ -34,6 +34,12 @@ function M.hook_on_install_success()
 end
 
 
+---The notification slot shared by a package's install messages, so progress, success and failure replace one another.
+---@param pkg_name string Mason package name
+---@return string id
+function M.install_notif(pkg_name) return "mason_install_" .. pkg_name end
+
+
 ---Install a specific package via Mason.
 ---@param pkg_name string Mason package name
 ---@param filetype string? filetype
@@ -45,13 +51,14 @@ function M.mason_install(pkg_name, filetype, callback)
     local pkg = mason_registry.get_package(pkg_name)
     if not pkg:is_installed() then
       if not pkg:is_installing() then
-        fvim.notify(("Mason: installing %s ..."):format(pkg_name))
+        local notif_opts = { id = M.install_notif(pkg_name) }
+        fvim.notify(("Mason: installing %s ..."):format(pkg_name), vim.log.levels.INFO, notif_opts)
         pkg:install({}, function(success, err)
           if type(callback) == "function" then return callback(success, err)
           else  -- Default callback behavior.
-            if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name))
+            if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name), vim.log.levels.INFO, notif_opts)
             else
-              fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR)
+              fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR, notif_opts)
               if filetype then fvim.lsp.configured_ft[filetype] = false end  -- Mark as not configured due to installation failure.
             end
           end

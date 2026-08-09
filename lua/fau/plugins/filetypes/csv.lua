@@ -22,13 +22,13 @@ return {
       vim.api.nvim_create_autocmd("User", {
         group = group,
         pattern = "CsvViewAttach",
-        callback = function() fvim.notify("CSV view enabled. (Use `<C-r>` to toggle)") end,
+        callback = function() fvim.notify("CSV view enabled. (Use `<C-r>` to toggle)", vim.log.levels.INFO, { id = "csv_view_toggle" }) end,
       })
 
       vim.api.nvim_create_autocmd("User", {
         group = group,
         pattern = "CsvViewDetach",
-        callback = function(args) fvim.notify("CSV view disabled. (Use `<C-r>` to toggle)") end,
+        callback = function() fvim.notify("CSV view disabled. (Use `<C-r>` to toggle)", vim.log.levels.INFO, { id = "csv_view_toggle" }) end,
       })
     end,
 

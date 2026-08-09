@@ -30,6 +30,7 @@ return {
       Fau  = { icon = fvim.icons.todo.Fau,  color = fvim.colors.cobalt },
 
       EXIT   = { icon = fvim.icons.todo.EXIT,   color = fvim.colors.dark_blue, alt = { "RETURN", "CASE", "SPECIAL" } },
+      STEP   = { icon = fvim.icons.todo.STEP,   color = fvim.colors.cyan_gray },
       ASSERT = { icon = fvim.icons.todo.ASSERT, color = fvim.colors.orange_yellow },
     },
 

@@ -40,9 +40,10 @@ local function _ensure_ts_cli(callback)
   if vim.fn.executable("tree-sitter") == 1 then return callback() end
 
   local pkg_name = "tree-sitter-cli"
+  local notif_opts = { id = fvim.lsp.mason.install_notif(pkg_name) }
   fvim.lsp.mason.mason_install(pkg_name, nil, function(success, err)
-    if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name)) return callback()
-    else fvim.notify(("Mason: %s failed to install."):format(pkg_name), vim.log.levels.ERROR)
+    if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name), vim.log.levels.INFO, notif_opts) return callback()
+    else fvim.notify(("Mason: %s failed to install."):format(pkg_name), vim.log.levels.ERROR, notif_opts)
     end
   end)
 end
@@ -51,15 +52,16 @@ end
 ---Install treesitter parser(s) for specific language(s).
 ---@param lang string|string[] Language name or list of language names.
 local function ts_install(lang, callback)
+  local notif_opts = { title = "nvim-treesitter", id = "ts_install" }
   _ensure_ts_cli(vim.schedule_wrap(function()
     require("nvim-treesitter").install(lang, { summary = true }):await(function(err)
-      if err then fvim.notify(err, vim.log.levels.ERROR, { title = "nvim-treesitter" })
+      if err then fvim.notify(err, vim.log.levels.ERROR, notif_opts)
       else
-        fvim.notify("Neovim needs to be restarted to load the newly installed parser.", vim.log.levels.INFO, { title = "nvim-treesitter" })
+        fvim.notify("Neovim needs to be restarted to load the newly installed parser.", vim.log.levels.INFO, notif_opts)
         if vim.fn.has("nvim-0.12") == 1 then
-          fvim.notify("Restarting Neovim in 3 seconds...", vim.log.levels.INFO, { title = "nvim-treesitter" })
+          fvim.notify("Restarting Neovim in 3 seconds...", vim.log.levels.INFO, notif_opts)
           vim.defer_fn(function() vim.cmd("restart") end, 3000)
-        end  -- TEMP: Restart Neovim to load the newly installed parser.
+        end
         ts_get_installed(true)
         if type(callback) == "function" then callback() end
       end

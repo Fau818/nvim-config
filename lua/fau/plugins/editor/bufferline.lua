@@ -186,14 +186,16 @@ return {
     -- ════════════════════════════════════════════════════════
 
     -- ─── Switch Buffers ─────────────────────────────────────
-    ---A wrapper to ensure that the bufferline commands are executed in a regular window.
+    ---A wrapper that runs the bufferline commands in a regular window whenever there is one.
     ---@param cmd string The bufferline command to be executed.
     local function wrapper(cmd)
       return function()
         if vim.bo.buftype ~= "" then
           local w = fvim.utils.get_main_win()
-          if not w then fvim.notify("No regular windows found!", vim.log.levels.ERROR) return end
-          vim.api.nvim_set_current_win(w)
+          if w then vim.api.nvim_set_current_win(w)
+          elseif vim.api.nvim_win_get_config(0).relative ~= "" then fvim.notify("No regular windows found!", vim.log.levels.ERROR) return
+          else  -- NOTE: Current window is a side window, let the redirect autocmd handle it.
+          end
         end
         vim.cmd(cmd)
       end

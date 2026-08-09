@@ -245,8 +245,21 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 
 
 -- ══════════════════════ Pinned Windows ══════════════════════
--- ========== Pinned Windows
--- =============================================
+
+-- WORKAROUND: A file must never open in a side window; one that lands there is sent to a main window instead.
+-- By pinning the non-regular buffers to their windows, we can detect when a regular buffer tries to take over and redirect it to a main window instead.
+-- NOTE: An ideal mechanism would be pinning each non-regular buffer when it enters a window.
+-- Since it won't cause a file being opened in an unfocused side window, so we only manage the pinned buffers in the focused window.
+
+-- ─── Pin & Redirect ─────────────────────────────────────────
+---The side of the current window a main window belongs on: whichever side faces the editor's center.
+---@return "left"|"right"|"above"|"below" side The `split` direction for opening a main window next to the current one.
+local function main_side()
+  local row, col = unpack(vim.api.nvim_win_get_position(0))
+  local width, height = vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
+  if width < vim.o.columns then return col * 2 + width > vim.o.columns and "left" or "right" end
+  return row * 2 + height > vim.o.lines and "above" or "below"
+end
 
 ---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.
 local function pin(buf)
@@ -254,56 +267,85 @@ local function pin(buf)
   if vim.bo[buf].bufhidden == "wipe" then vim.bo[buf].bufhidden = "hide" vim.b[buf].wipe_on_unpin = true end
 end
 
----Wipe a `hide`-demoted pinned buffer.
+---Drop the marks pinning left on the current window.
+local function reset_pin() vim.w.pinned_buf, vim.w.main_side, vim.w.pinned_size = nil, nil, nil end
+
+---Finish the `wipe` that pinning downgraded to `hide`.
 local function unpin(buf)
   if not buf or not vim.api.nvim_buf_is_valid(buf) then return end
   if not vim.b[buf].wipe_on_unpin then return end
   vim.api.nvim_buf_delete(buf, { force = true })
 end
 
----Pin windows for non-regular buffers.
+---Pin windows for non-regular buffers, and redirect buffer switches out of the pinned ones.
 vim.api.nvim_create_autocmd("BufEnter", {
   group = fvim_augroup,
   callback = function(env)
-    if vim.api.nvim_win_get_config(0).relative ~= "" then return end
-    if vim.bo[env.buf].buftype == "" or vim.bo[env.buf].filetype == "snacks_dashboard" then return end
+    local pinned_buf = vim.w.pinned_buf
+    local regular = vim.bo[env.buf].buftype == ""
 
-    if vim.w.pinned_buf then return end
+    -- NOTE: Clear the pinned buffer if it has gone.
+    if pinned_buf and not vim.api.nvim_buf_is_valid(pinned_buf) then reset_pin() pinned_buf = nil end
 
-    -- Record the first non-regular buffer shown in the window as the pinned buffer.
-    pin(env.buf)
+    -- CASE1: Determine if the current buffer should be pinned, and do so if it is.
+    if not pinned_buf then
+      if regular or vim.bo[env.buf].filetype == "snacks_dashboard" then return end
+      if vim.api.nvim_win_get_config(0).relative ~= "" then return end
+      return pin(env.buf)
+    end
+
+    -- CASE2: The current buffer is already pinned.
+    if env.buf == pinned_buf then return end
+
+    -- CASE3: Allow pinned window to be replaced by a non-regular buffer.
+    -- HINT: This is to allow the buffer to switch itself. (E.g. aerial refresh the outline)
+    -- NOTE: This is based on an assumption that a non-regular buffer is the same filetype as the pinned one.
+    if not regular then unpin(pinned_buf) return pin(env.buf) end
+
+    -- CASE4: A regular buffer is trying to take over a pinned window. Redirect it to a main window instead.
+    local target = fvim.utils.get_main_win()
+
+    -- STEP4.1: Use `noautocmd` to place the buffer back silently.
+    vim.cmd("noautocmd buffer " .. pinned_buf)
+
+    -- STEP4.2: If there is a main window, put the opening buffer there; otherwise, open a new main window and put it there.
+    if target then vim.api.nvim_win_set_buf(target, env.buf)
+    else
+      -- HINT: Every window is pinned -- the last main window is gone, so put one back where it used to sit.
+      -- HINT: `nvim_open_win` starts a split from the global option values; `:split` would copy the pinned window's.
+      local notif_id = fvim.notify("No main window found, opening one.", vim.log.levels.INFO)
+      local ok, win = pcall(vim.api.nvim_open_win, env.buf, false, { win = 0, split = vim.w.main_side or "left" })
+      if not ok then fvim.notify("Failed to open a main window.", vim.log.levels.ERROR, { id = notif_id }) return end
+      target = win
+
+      -- Give back the space this window absorbed when the last main window closed.
+      local size = vim.w.pinned_size
+      if size then pcall(vim.api.nvim_win_set_width, 0, size[1]) pcall(vim.api.nvim_win_set_height, 0, size[2]) end
+    end
+
+    vim.api.nvim_set_current_win(target)  -- Focus the main window.
   end,
 })
 
----Wipe `hide`-demoted pinned buffers once their window closes (mirrors the original `wipe`).
+---Wipe the buffers pinning kept alive, and record each pinned window's size and side.
 vim.api.nvim_create_autocmd("WinClosed", {
   group = fvim_augroup,
   callback = function(env)
     local win = tonumber(env.match)
     if not win or not vim.api.nvim_win_is_valid(win) then return end
+
+    -- NOTE: Only a main window hands its space to the pinned ones; a side one leaves them as they are.
+    if fvim.utils.is_main_win(win) then
+      for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        if w ~= win and vim.w[w].pinned_buf then
+          vim.w[w].pinned_size = { vim.api.nvim_win_get_width(w), vim.api.nvim_win_get_height(w) }
+          vim.w[w].main_side = vim.api.nvim_win_call(w, main_side)
+        end
+      end
+    end
+
+    -- NOTE: Recorded first; this may delete a buffer, and with it any window still showing it.
     unpin(vim.w[win].pinned_buf)
-  end,
-})
-
----Redirect buffer switches in pinned windows to an alternate window.
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = fvim_augroup,
-  callback = function(env)
-    local pinned_buf = vim.w.pinned_buf
-    if not pinned_buf or env.buf == pinned_buf then return end
-    if not vim.api.nvim_buf_is_valid(pinned_buf) then return end
-
-    -- NOTE: Allow buffer switches within non-regular buffers (e.g. aerial refreshing its outline).
-    if vim.bo[env.buf].buftype ~= "" then unpin(pinned_buf) pin(env.buf) return end
-
-    -- Redirect into a real editing window.
-    local target = fvim.utils.get_main_win(function(w) return not vim.w[w].pinned_buf end)
-    if not target then fvim.notify("Switch buffer failed.", vim.log.levels.ERROR) return end
-
-    -- NOTE: Use `noautocmd` to place the buffer back silently.
-    vim.cmd("noautocmd buffer " .. pinned_buf)
-    vim.api.nvim_win_set_buf(target, env.buf)
-    vim.api.nvim_set_current_win(target)
   end,
 })
 
