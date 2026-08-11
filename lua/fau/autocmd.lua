@@ -59,11 +59,47 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- ═══════════════════════════ Save ═══════════════════════════
 
+---Detect if a file uses ASCII rules for its section markers.
+---If so, disable the glyph section marker feature for that buffer.
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = fvim_augroup,
+  pattern = "*",
+  -- NOTE: Deferred: ensure the commentstring is set.
+  desc = "Opt a file that draws its own rules in ASCII out of the `---`/`===` shorthand.",
+  callback = function(env)
+    vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(env.buf) or vim.bo[env.buf].buftype ~= "" then return end
+      fvim.format.detect_ascii_separators(env.buf)
+    end)
+  end,
+})
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = fvim_augroup,
   pattern = "*",
-  desc = "Trim blank lines and spaces before writing buffer to file.",
-  callback = function() fvim.format.trim_text() end,
+  desc = "Trim blank lines and spaces, and normalize separators before saving.",
+  callback = function(env)
+    fvim.format.trim_text()
+    fvim.format.normalize_separators(env.buf)
+  end,
+})
+
+
+vim.api.nvim_create_autocmd("User", {
+  group = fvim_augroup,
+  pattern = "MiniSnippetsSessionStop",
+  desc = "Normalize the separator right in snippet area.",
+  -- NOTE: The session extmark tracks the snippet's own range, which the cursor may
+  -- have left by now. Falls back to the whole buffer if that extmark is already gone.
+  callback = function(env)
+    local session = (env.data or {}).session
+    if not session then return end
+
+    local ok, mark = pcall(vim.api.nvim_buf_get_extmark_by_id, session.buf_id, session.ns_id, session.extmark_id, { details = true })
+    if not ok or not mark[1] then return fvim.format.normalize_separators(session.buf_id) end
+
+    fvim.format.normalize_separators(session.buf_id, mark[1], mark[3].end_row + 1)
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
