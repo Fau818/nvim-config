@@ -41,6 +41,34 @@ return {
     require("snacks").setup(opts)
 
 
+    -- ─── Notifier ───────────────────────────────────────────
+    -- HACK: Merge repeated messages into one notification, suffixed with `(xN)`.
+
+    -- Two extra fields we bolt onto the notification to carry the repeat count.
+    ---@class snacks.notifier.Notif
+    ---@field _fvim_msg? string the message as it was passed in, before the `(xN)` suffix
+    ---@field _fvim_count? integer how many times it has been shown in a row
+
+    Snacks.notifier._fvim_notify = Snacks.notifier._fvim_notify or Snacks.notifier.notify  -- `:Lazy reload` re-runs `config`
+    local notify = Snacks.notifier._fvim_notify
+
+    Snacks.notifier.notify = function(msg, level, notif_opts)
+      notif_opts = vim.tbl_extend("force", {}, notif_opts or {})
+      msg = msg or notif_opts.msg or ""
+      local id = notif_opts.id or ("fvim:%s:%s:%s"):format(level or "", notif_opts.title or "", msg)  -- Identical messages share one window.
+      notif_opts.id = id
+
+      -- Only a notification that is still on screen keeps counting up. The count rides on the
+      -- notification (`snacks` deep-copies these opts into it), so it dies together with it.
+      local notif = Snacks.notifier.get_history({ filter = function(n) return n.id == id end })[1]
+      local repeated = notif and notif.hidden == nil and notif._fvim_msg == msg
+      local count = repeated and notif._fvim_count + 1 or 1
+
+      notif_opts._fvim_msg, notif_opts._fvim_count = msg, count
+      return notify(count > 1 and ("%s (x%d)"):format(msg, count) or msg, level, notif_opts)
+    end
+
+
     -- ─── Picker ─────────────────────────────────────────────
     -- HACK: Remove std_data path from default config.
     Snacks.picker.sources.recent.filter.paths = { [vim.fn.stdpath("cache")] = false, [vim.fn.stdpath("state")] = false }

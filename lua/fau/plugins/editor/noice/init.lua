@@ -74,5 +74,31 @@ return {
   config = function(_, opts)
     require("noice").setup(opts)
     require("fau.plugins.editor.noice.hover").setup()
+
+
+    -- ─── Repeated Messages ──────────────────────────────────
+    -- HACK: `noice` skips a ui event equal to the previous one — a perf guard for the constant
+    -- `msg_showmode`/`msg_ruler` that also swallows a repeated `:echo 123`. Let messages through,
+    -- counted as `(xN)` by the notifier patch. Still deduped: `search_count`, prompts, same-turn.
+
+    -- SEE: https://github.com/folke/noice.nvim/blob/main/lua/noice/ui/msg.lua (`skip()` call sites)
+    local KEEP_DEDUP = { search_count = true, confirm = true, confirm_sub = true, number_prompt = true }
+    local this_turn = false
+
+    local State = require("noice.ui.state")
+    State._fvim_skip = State._fvim_skip or State.skip  -- `:Lazy reload` re-runs `config`
+
+    ---@diagnostic disable-next-line: duplicate-set-field
+    State.skip = function(event, kind, ...)
+      local duplicate = State._fvim_skip(event, kind, ...)  -- also records this event as the last one
+      if event ~= "msg_show" or KEEP_DEDUP[kind] then return duplicate end
+
+      if duplicate and this_turn then return true end
+      if not this_turn then
+        this_turn = true
+        vim.schedule(function() this_turn = false end)  -- fires when control returns to the loop
+      end
+      return false
+    end
   end,
 }

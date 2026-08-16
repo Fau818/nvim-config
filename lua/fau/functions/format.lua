@@ -203,7 +203,7 @@ function M.auto_indent()
     vim.fn.setpos(".", save_cursor)
   end
   M.trim_text()
-  fvim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal" })
+  fvim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal", id = "smart_format" })
 end
 
 
@@ -224,7 +224,7 @@ function M.smart_format()
   vim.lsp.buf.format()
 
   local names = vim.tbl_map(function(client) return client.name end, clients)
-  fvim.notify(("formatted by: %s"):format(table.concat(names, ", ")), vim.log.levels.INFO, { render = "minimal" })
+  fvim.notify(("formatted by: %s"):format(table.concat(names, ", ")), vim.log.levels.INFO, { render = "minimal", id = "smart_format" })
 end
 
 

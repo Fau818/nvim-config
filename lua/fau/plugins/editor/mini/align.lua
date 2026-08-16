@@ -75,7 +75,8 @@ return {
   config = function(_, opts)
     require("mini.align").setup(opts)
 
-    local _align_user = MiniAlign.align_user
+    MiniAlign._fvim_align_user = MiniAlign._fvim_align_user or MiniAlign.align_user  -- `:Lazy reload` re-runs `config`
+    local _align_user = MiniAlign._fvim_align_user
     ---@diagnostic disable-next-line: duplicate-set-field
     MiniAlign.align_user = function(...)
       _align_user(...)

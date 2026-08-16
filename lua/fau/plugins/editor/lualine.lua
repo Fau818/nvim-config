@@ -269,7 +269,7 @@ return {
       },
 
       ignore_focus = {
-        "", "help", "netrw", "tutor", "man", "qf", "log",
+        "", "netrw", "tutor", "man", "qf", "log",
         "aerial", "aerial-nav",
         "chatgpt-input", "codecompanion",
         "crunner",

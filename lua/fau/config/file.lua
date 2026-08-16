@@ -15,7 +15,7 @@ return {
   -- HINT: Please consider to update `lualine.ignore_focus` when you add new filetypes.
   excluded_filetypes = {
     -- NOTE: Keep `""` as the first element.
-    "", "help", "netrw", "tutor", "man", "qf", "log",
+    "", "netrw", "tutor", "man", "qf", "log",
     "alpha",
     "aerial", "aerial-nav",
     "bigfile",
