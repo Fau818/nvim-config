@@ -246,7 +246,7 @@ keymap("n", "[w", function() vim.diagnostic.jump({ count = -1, severity = vim.di
 keymap("n", "]w", function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end,  opts("LSP: Next Warning"))
 
 -- ┄┄┄ Diagnostics List
-keymap("n", "<LEADER>ld", vim.diagnostic.setqflist, opts("LSP: Workspace Diagnostics"))
+keymap("n", "<LEADER>ld", function() vim.diagnostic.setqflist({ format = fvim.diagnostics.smart_format }) end, opts("LSP: Workspace Diagnostics"))
 
 
 -- ─── LSP ────────────────────────────────────────────────────

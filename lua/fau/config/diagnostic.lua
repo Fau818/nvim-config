@@ -1,8 +1,5 @@
 local M = {}
 
-M.virtual_text = true
-M.virtual_lines = false
-
 
 ---Smart show diagnostic message.
 ---@param diagnostic vim.Diagnostic
@@ -14,9 +11,52 @@ function M.smart_format(diagnostic)
     return ("%s: %s"):format(source, message)
   elseif not source and code then
     return ("%s [%s]"):format(message, code)
-  else  -- not source and not code
+  else  -- not source and code
     return message
   end
+end
+
+
+---Virtual text options, kept outside `setup` so the toggle can restore them.
+---@type vim.diagnostic.Opts.VirtualText
+M.virtual_text_opts = {
+  severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.WARN },
+  current_line = nil,
+  source = false,  -- NOTE: Set in `smart_format`.
+
+  spacing = 4,
+  prefix = "●", suffix = nil,
+  hl_mode = nil,  -- Use default.
+
+  virt_text = nil,  -- Use default.
+  virt_text_pos = "eol",
+  virt_text_win_col = nil,  -- Use default.
+  virt_text_hide = false,
+
+  format = M.smart_format,  -- Show the error code.
+}
+
+
+---Virtual lines options.
+---@type vim.diagnostic.Opts.VirtualLines
+M.virtual_lines_opts = {
+  severity = vim.diagnostic.severity.ERROR,
+  current_line = true,
+  format = M.smart_format,
+}
+
+
+---Whether diagnostic virtual text is currently shown.
+---@return boolean
+function M.virtual_text_enabled()
+  return vim.diagnostic.config().virtual_text ~= false
+end
+
+
+---Show or hide diagnostic virtual text.
+---@param state boolean
+function M.set_virtual_text(state)
+  vim.diagnostic.config({ virtual_text = state and M.virtual_text_opts or false })
 end
 
 
@@ -27,36 +67,10 @@ function M.setup()
 
     underline = { severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.HINT } },
 
-    virtual_text = {
-      severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.WARN },
-      current_line = nil,
-      source = false,  -- NOTE: Set in format function below.
+    virtual_text = M.virtual_text_opts,
 
-      spacing = 4,
-      prefix = "●", suffix = nil,
-      hl_mode = nil,  -- Use default.
-
-      virt_text = nil,  -- Use default.
-      virt_text_pos = "eol",
-      virt_text_win_col = nil,  -- Use default.
-      virt_text_hide = false,
-
-      -- format = nil,  -- Use default format.
-      format = function(diagnostic)  -- for show the error code
-        -- EXIT: Virtual text is disabled.
-        if not M.virtual_text then return nil end
-        return M.smart_format(diagnostic)
-      end,
-    },
-
-    virtual_lines = {
-      severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.WARN },
-      current_line = true,
-      format = function(diagnostic)
-        if not M.virtual_lines then return nil end
-        return ("%s [%s]"):format(diagnostic.message, diagnostic.code or "N/A")
-      end,
-    },
+    -- NOTE: `false` skips the handler entirely.
+    virtual_lines = false,
 
     signs = {
       severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.HINT },
@@ -93,12 +107,10 @@ function M.setup()
       border = "rounded",
 
       header = "",
-      prefix = nil,  -- Use default ([code]).
-      suffix = nil,  -- Use default (No.).
+      prefix = nil,  -- Use default (`N. `, only dropped for a lone `scope = "cursor"` diagnostic).
+      suffix = nil,  -- Use default (` [code]`).
       source = true,
       focus_id = nil,  -- Use default.
-
-      -- format = function(diagnostic) return ("%s: %s [%s]"):format(diagnostic.source, diagnostic.message, diagnostic.code) end,
     },
 
     jump = {

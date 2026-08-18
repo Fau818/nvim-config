@@ -27,7 +27,7 @@ return {
     statuscolumn = require("fau.plugins.editor.snacks.statuscolumn"),
     styles       = require("fau.plugins.editor.snacks.styles"),
     terminal     = {},  -- TODO: QwQ
-    toggle       = { enabled = true },
+    toggle       = require("fau.plugins.editor.snacks.toggle"),
     words        = require("fau.plugins.editor.snacks.words"),
     zen          = require("fau.plugins.editor.snacks.zen"),
   },
@@ -108,13 +108,15 @@ return {
 
 
     -- ─── Toggle ─────────────────────────────────────────────
-    -- TODO: Toggle diagnostics update in insert mode.
-    -- TODO: Toggle virtual text (false to disabled and with a default table value to enable).
-
     Snacks.toggle.dim():map("<LEADER><LEADER>t")
     Snacks.toggle.zen():map("<LEADER><LEADER>z")
     Snacks.toggle.inlay_hints():map("<LEADER>lh")
-    Snacks.toggle.diagnostics():map("<LEADER>lv")
+    Snacks.toggle({
+      id = "diagnostic_virtual_text",
+      name = "Diagnostic Virtual Text",
+      get = fvim.diagnostics.virtual_text_enabled,
+      set = fvim.diagnostics.set_virtual_text,
+    }):map("<LEADER>lv")
   end,
 
 
