@@ -66,7 +66,7 @@ return {
       ["grug-far-help"] = false,
     },
 
-    should_attach = function(_, _) return not fvim.utils.is_large_file() end,
+    should_attach = function(bufnr, _) return not fvim.utils.is_large_file(bufnr) end,
 
     server = {
       type = "nodejs",  ---@type "nodejs" | "binary"

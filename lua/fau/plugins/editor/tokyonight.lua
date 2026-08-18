@@ -74,6 +74,14 @@ return {
       highlights["LineNrAbove"] = { fg = fvim.colors.dark_gray }
 
 
+      -- ─── Diff ─────────────────────────────────────────────
+      -- `DiffDelete` also paints the `╱` filler, so a tonal `fg` keeps the hatching from reading as text.
+      highlights["DiffChange"]  = { bg = fvim.colors.diff.change }
+      highlights["DiffText"]    = { bg = fvim.colors.diff.changeInline }
+      highlights["DiffTextAdd"] = { bg = fvim.colors.diff.addInline }
+      highlights["DiffDelete"]  = { bg = fvim.colors.diff.delete, fg = fvim.colors.diff.deleteInline }
+
+
       -- ─── Statusline (make it transparent) ─────────────────
       highlights["StatusLine"]   = { fg = colors.fg_dark }
       highlights["StatusLineNC"] = { fg = colors.fg_gutter }
@@ -159,7 +167,7 @@ return {
       -- ─── Gitsigns (inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined) ───
       highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addInline }
       highlights["GitSignsDeleteInline"] = { bg = fvim.colors.diff.deleteInline }
-      highlights["GitSignsChangeInline"] = { bg = colors.diff.text }
+      highlights["GitSignsChangeInline"] = { bg = fvim.colors.diff.changeInline }
       highlights["GitSignsCurrentLineBlame"] = { fg = colors.dark5, italic = true, bold = true }
 
 
@@ -197,6 +205,13 @@ return {
       highlights["NvimTreeSpecialFile"] = { fg = colors.purple }
       highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
       highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
+
+
+      -- ─── Sidekick ─────────────────────────────────────────
+      highlights["SidekickDiffContext"] = { bg = fvim.colors.bg }
+      highlights["SidekickDiffAdd"]     = { bg = fvim.colors.diff.add }
+      highlights["SidekickDiffDelete"]  = { bg = fvim.colors.diff.delete, strikethrough = true }
+      highlights["SidekickSign"]        = { fg = fvim.colors.cobalt, bold = true }
 
 
       -- ─── Snacks ───────────────────────────────────────────
