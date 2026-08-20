@@ -36,6 +36,7 @@ return {
       colors.comment = fvim.colors.comment
 
       colors.diff.add    = fvim.colors.diff.add
+      colors.diff.change = fvim.colors.diff.change
       colors.diff.delete = fvim.colors.diff.delete
 
       colors.terminal.black = fvim.colors.gray
@@ -75,11 +76,13 @@ return {
 
 
       -- ─── Diff ─────────────────────────────────────────────
-      -- `DiffDelete` also paints the `╱` filler, so a tonal `fg` keeps the hatching from reading as text.
       highlights["DiffChange"]  = { bg = fvim.colors.diff.change }
       highlights["DiffText"]    = { bg = fvim.colors.diff.changeInline }
       highlights["DiffTextAdd"] = { bg = fvim.colors.diff.addInline }
+
+      -- `DiffDelete` also paints the `╱` filler, so a tonal `fg` keeps the hatching from reading as text.
       highlights["DiffDelete"]  = { bg = fvim.colors.diff.delete, fg = fvim.colors.diff.deleteInline }
+      highlights["@diff.minus"] = { bg = fvim.colors.diff.delete }  -- Restore the fg color of `@diff.minus` since `DiffDelete` overrides it with a tonal color.
 
 
       -- ─── Statusline (make it transparent) ─────────────────
@@ -164,10 +167,15 @@ return {
       highlights["CopilotAnnotation"] = { link = "CopilotSuggestion" }
 
 
-      -- ─── Gitsigns (inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined) ───
-      highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addInline }
+      -- ─── Gitsigns ─────────────────────────────────────────
+      -- NOTE: inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined.
+
+      -- NOTE: `GitSignsAddInline` sits on the green preview row, where `addInline` would be the same hue.
+      highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.changeInline }
       highlights["GitSignsDeleteInline"] = { bg = fvim.colors.diff.deleteInline }
       highlights["GitSignsChangeInline"] = { bg = fvim.colors.diff.changeInline }
+      highlights["GitSignsDeleteVirtLn"]  = { bg = fvim.colors.diff.delete }
+      highlights["GitSignsDeletePreview"] = { bg = fvim.colors.diff.delete }
       highlights["GitSignsCurrentLineBlame"] = { fg = colors.dark5, italic = true, bold = true }
 
 
