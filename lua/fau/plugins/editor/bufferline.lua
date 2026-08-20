@@ -201,8 +201,8 @@ return {
       end
     end
 
-    vim.keymap.set({ "n", "t" }, "<A-h>", wrapper("BufferLineCyclePrev"), { desc = "Buffer: Focus Shift Prev" })
-    vim.keymap.set({ "n", "t" }, "<A-l>", wrapper("BufferLineCycleNext"), { desc = "Buffer: Focus Shift Next" })
+    vim.keymap.set("n", "<A-h>", wrapper("BufferLineCyclePrev"), { desc = "Buffer: Focus Shift Prev" })
+    vim.keymap.set("n", "<A-l>", wrapper("BufferLineCycleNext"), { desc = "Buffer: Focus Shift Next" })
 
 
     -- ─── Swap Buffers ───────────────────────────────────────

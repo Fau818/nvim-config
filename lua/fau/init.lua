@@ -3,6 +3,7 @@ fvim = {}
 
 -- ══════════════════════════ Basic ═══════════════════════════
 
+require("fau.clipboard")
 require("fau.options")
 require("fau.keymaps.basic")
 
