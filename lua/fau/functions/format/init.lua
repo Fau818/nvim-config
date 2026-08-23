@@ -1,5 +1,7 @@
 local M = {}
 
+M.tag = require("fau.functions.format.tagcomment")  -- `TAG:` comments
+
 
 -- ════════════════════════════════════════════════════════════
 -- ═══════════════ Trim Blank Lines and Spaces ════════════════
@@ -54,19 +56,6 @@ local function lstrip_run(s, ch)
 end
 
 
----Comment leader of `bufnr`: `--` for lua, `#` for python, …
-local function comment_leader(bufnr)
-  local leader = (vim.bo[bufnr].commentstring or ""):match("^%s*(.-)%s*%%s")
-  return (leader ~= "" and leader) or nil
-end
-
-
----Pattern for a comment line: `^(indent)<leader> (body)$`. (Space after the leader is required)
-local function marker_pattern(leader)
-  return ("^(%%s*)%s (.*)$"):format(vim.pesc(leader))
-end
-
-
 ---Rewrite an ASCII rule into glyphs, one for one, with an optional label
 ---(`=== Label`, `=== Label ===`); nil for a body that is anything else.
 --- - `===` → `═` for `sec2`; a `sec1` box is three of these lines
@@ -94,10 +83,9 @@ end
 function M.detect_ascii_separators(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
 
-  local leader = comment_leader(bufnr)
+  local leader, pattern = fvim.utils.comment_parts(bufnr)
   if not leader then return end
 
-  local pattern = marker_pattern(leader)
   local uses_ascii = false
   for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
     local _, rest = line:match(pattern)
@@ -119,7 +107,7 @@ end
 function M.normalize_separators(bufnr, from, to, force)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
 
-  local leader = comment_leader(bufnr)
+  local leader, pattern = fvim.utils.comment_parts(bufnr)
   if not leader then return end
 
   local count = vim.api.nvim_buf_line_count(bufnr)
@@ -128,7 +116,6 @@ function M.normalize_separators(bufnr, from, to, force)
   if from >= to then return end
 
   local lines = vim.api.nvim_buf_get_lines(bufnr, from, to, false)
-  local pattern = marker_pattern(leader)
   local target = vim.fn.strdisplaywidth(leader) + 1 + SEP_SPAN
   local shorthand = force or not vim.b[bufnr].fvim_ascii_separators
 

@@ -77,10 +77,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = fvim_augroup,
   pattern = "*",
-  desc = "Trim blank lines and spaces, and normalize separators before saving.",
+  desc = "Trim blank lines and spaces, normalize separators and tag comments before saving.",
   callback = function(env)
+    if vim.bo[env.buf].buftype ~= "" or fvim.utils.is_large_file(env.buf) then return end
     fvim.format.trim_text()
     fvim.format.normalize_separators(env.buf)
+    fvim.format.tag.normalize(env.buf)
   end,
 })
 

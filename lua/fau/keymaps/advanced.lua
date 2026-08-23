@@ -23,6 +23,11 @@ keymap("x", "c", function() fvim.utils.smart_visual_mode(); fvim.utils.feedkeys(
 keymap("x", "C", function() fvim.utils.smart_visual_mode(); fvim.utils.feedkeys([["_C]]) end, opts("Edit: Change"))
 
 
+-- ═══════════════════════ Tag Comments ═══════════════════════
+keymap("n", "<A-m>", function() fvim.format.tag.merge_line() end, opts("Edit: Merge Line"))
+keymap("i", "<CR>",  function() fvim.format.tag.newline() end,    opts("Edit: New Line"))
+
+
 -- ══════════════════════════ Buffer ══════════════════════════
 
 keymap("n", "<A-q>", fvim.utils.buf_remove,       opts("Buffer: Close Current Buffer"))

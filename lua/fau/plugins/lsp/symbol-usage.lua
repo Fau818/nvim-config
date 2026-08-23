@@ -68,7 +68,7 @@ return {
           if vim.bo[bufnr].filetype == "python" then return fvim.python.library_root(bufnr) end
         end
       },
-      lsp = nil,  -- Use default.
+      lsp = { "dockerls" },
     },
   },
 

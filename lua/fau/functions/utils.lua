@@ -7,7 +7,8 @@ local M = {}
 
 ---Simulate pressing `keys` in noremap mode (asynchronously).
 ---@param keys string
-function M.feedkeys(keys) vim.api.nvim_feedkeys(vim.keycode(keys), "n", false) end
+---@param mode? string The mode to feed keys in. Default is "n" (normal).
+function M.feedkeys(keys, mode) vim.api.nvim_feedkeys(vim.keycode(keys), mode or "n", false) end
 
 
 -- ════════════════════════════════════════════════════════════
@@ -36,6 +37,21 @@ function M.buf_remove(bufnr)
 
   -- Try to use the provided function to delete buffer.
   if M._buf_remove == nil or not pcall(M._buf_remove, bufnr) then vim.api.nvim_buf_delete(bufnr, { force = false }) end
+end
+
+
+-- ════════════════════════════════════════════════════════════
+-- ═══════════════════════ Comment Line ═══════════════════════
+-- ════════════════════════════════════════════════════════════
+
+---Get the comment leader and pattern for splitting a comment line into indent and body.
+---@param bufnr? integer Default is the current buffer.
+---@return string? leader The comment leader of a buffer (`--` for lua, `#` for python, …)
+---@return string? pattern Pattern for a comment line: `^(indent)<leader> (body)$`. (NOTE: Space after the leader is required)
+function M.comment_parts(bufnr)
+  local leader = (vim.bo[bufnr or 0].commentstring or ""):match("^%s*(.-)%s*%%s")
+  leader = leader ~= "" and leader or nil
+  return leader, leader and ("^(%%s*)%s (.*)$"):format(vim.pesc(leader))
 end
 
 

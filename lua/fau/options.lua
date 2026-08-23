@@ -56,7 +56,7 @@ local options = {
 
   ruler = false,  -- no position information in bottom-right
 
-  -- colorcolumn = "150",
+  -- colorcolumn = "120",
 }
 
 for k, v in pairs(options) do vim.opt[k] = v end
