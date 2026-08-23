@@ -1,0 +1,4 @@
+# SEE: https://github.com/ewhauser/shuck
+
+[lint]
+select = []
