@@ -74,7 +74,7 @@ function M.setup()
 
     signs = {
       severity = { max = vim.diagnostic.severity.ERROR, min = vim.diagnostic.severity.HINT },
-      priority = fvim.settings.sign_priority.diagnostics,
+      priority = fvim.settings.priority.diagnostics,
 
       text = {
         [vim.diagnostic.severity.ERROR] = fvim.icons.diagnostics.BoldError,

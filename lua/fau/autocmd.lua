@@ -86,7 +86,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-
 vim.api.nvim_create_autocmd("User", {
   group = fvim_augroup,
   pattern = "MiniSnippetsSessionStop",
@@ -305,14 +304,17 @@ local function main_side()
   return row * 2 + height > vim.o.lines and "above" or "below"
 end
 
+
 ---Pin `buf` to the current window: record it, and keep `wipe` buffers alive across redirects.
 local function pin(buf)
   vim.w.pinned_buf = buf
   if vim.bo[buf].bufhidden == "wipe" then vim.bo[buf].bufhidden = "hide" vim.b[buf].wipe_on_unpin = true end
 end
 
+
 ---Drop the marks pinning left on the current window.
 local function reset_pin() vim.w.pinned_buf, vim.w.main_side, vim.w.pinned_size = nil, nil, nil end
+
 
 ---Finish the `wipe` that pinning downgraded to `hide`.
 local function unpin(buf)

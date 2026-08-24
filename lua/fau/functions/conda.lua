@@ -69,6 +69,7 @@ end
 
 local _conda_env_list = nil
 
+
 ---Get list of conda environments (cached).
 ---@return fvim.CondaEnv[]
 function M.get_conda_envs()
@@ -139,6 +140,7 @@ local CONF_PATH = os.getenv("CONDA_AUTO_ENVS_CONF")
 
 ---@type {pattern: string, env: string}[]?
 local mappings
+
 
 ---@return {pattern: string, env: string}[]
 local function load_mappings()

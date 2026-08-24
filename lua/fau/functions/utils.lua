@@ -23,6 +23,7 @@ M._buf_remove = nil
 ---@type fun(): boolean?
 M._diff_dismiss = nil
 
+
 ---Delete the specified buffer.
 ---@param bufnr integer Default is the current buffer.
 function M.buf_remove(bufnr)
@@ -215,12 +216,14 @@ local function can_host_main(win)
   return vim.api.nvim_win_get_config(win).relative == "" and not vim.w[win].pinned_buf
 end
 
+
 ---Whether `win` is a "main" window: one that could host a main buffer, and does.
 ---@param win integer
 ---@return boolean
 function M.is_main_win(win)
   return can_host_main(win) and vim.bo[vim.api.nvim_win_get_buf(win)].buftype == ""
 end
+
 
 ---Find the first "main" window in the current tabpage.
 ---Rather than give up, fall back to a window that could host one but is occupied by a panel, e.g. the dashboard.

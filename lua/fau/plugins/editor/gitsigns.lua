@@ -102,7 +102,7 @@ return {
     current_line_blame_opts = {
       virt_text = true,
       virt_text_pos = "eol",  ---@type "eol" | "overlay" | "right_align"
-      virt_text_priority = fvim.settings.sign_priority.git_blame,
+      virt_text_priority = fvim.settings.priority.git_blame,
       delay = fvim.settings.debounce.git_blame,
       ignore_whitespace = true,  -- whether to ignore the whitespace when checking
       use_focus = true,  -- Enable only when buffer is in focus
@@ -110,7 +110,7 @@ return {
     current_line_blame_formatter = "<author>, <author_time:%R> • <summary>",
     -- current_line_blame_formatter_nc = nil,  -- Use default.
 
-    sign_priority = fvim.settings.sign_priority.gitsigns,
+    sign_priority = fvim.settings.priority.gitsigns,
     update_debounce = fvim.settings.debounce.gitsigns,
     -- status_formatter = nil,  -- Use default
     max_file_length = fvim.file.large_file_line,  -- Disable if file is longer than this (in lines)

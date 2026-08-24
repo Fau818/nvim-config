@@ -11,7 +11,7 @@ return {
   ---@type TodoOptions
   opts = {
     signs         = true,  -- show icons in the signs column
-    sign_priority = fvim.settings.sign_priority.todo_comments,    -- sign priority
+    sign_priority = fvim.settings.priority.todo_comments,    -- sign priority
 
     keywords = {
       TODO = { icon = fvim.icons.todo.TODO, color = fvim.colors.dark_green, alt = { "TASK", "QUES", "QUESTION" } },

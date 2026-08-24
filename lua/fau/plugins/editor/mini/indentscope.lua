@@ -29,7 +29,7 @@ return {
       delay = fvim.settings.debounce.indentscope,
       animation = nil,  -- Use default.
       predicate = nil,  -- Use default.
-      priority = 2,
+      priority = fvim.settings.priority.indent.scope,
     },
 
     -- Module mappings. Use `''` (empty string) to disable one.

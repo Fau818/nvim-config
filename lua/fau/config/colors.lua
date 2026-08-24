@@ -44,6 +44,7 @@ return {
   nacarat = "#C78B76",
 
   dark_gray  = "#414868",
+  deep_gray  = "#545C7E",
   gray       = "#6F7A9A",  -- #697391
   light_gray = "#A9B1D6",
   cyan_gray  = "#7D96AF",

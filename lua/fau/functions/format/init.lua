@@ -41,7 +41,6 @@ local SEP_MID   = "─"  -- one level down: a label and a tail
 local SEP_LIGHT = "┄"  -- the level below that: a fixed prefix, and no tail
 
 
-
 ---Right-trim a trailing run of `ch`, which may be multi-byte (Lua patterns match bytes, so regex cannot be used here).
 local function rstrip_run(s, ch)
   while vim.endswith(s, ch) do s = s:sub(1, -#ch - 1) end

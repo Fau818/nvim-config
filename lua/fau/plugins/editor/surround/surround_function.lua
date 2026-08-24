@@ -7,6 +7,7 @@
 
 local M = {}
 
+
 ---Open vim.ui.input with LSP clients from the original buffer attached
 ---to the snacks_input buffer, so blink.cmp can provide LSP completions.
 ---@param bufnr integer
@@ -46,6 +47,7 @@ function M.input_with_lsp(bufnr, opts, callback)
   end)
 end
 
+
 ---Sanitize function name input: trim whitespace and strip trailing "()".
 ---@param input string?
 ---@return string
@@ -57,6 +59,7 @@ local function sanitize_func_name(input)
   return (name:gsub("%(%s*%)$", ""))
 end
 
+
 ---Get the selection marks based on nvim-surround's current mode.
 ---pending_surround == true -> normal mode (operator marks [ ]),
 ---otherwise -> visual mode (visual marks < >).
@@ -67,6 +70,7 @@ local function get_selection_marks(bufnr)
   local marks = require("nvim-surround").pending_surround and { "[", "]" } or { "<", ">" }
   return vim.api.nvim_buf_get_mark(bufnr, marks[1]), vim.api.nvim_buf_get_mark(bufnr, marks[2])
 end
+
 
 ---Find the function name selection at cursor using nvim-surround's own detection
 ---(TreeSitter @call.outer with pattern fallback, then change.target extraction).

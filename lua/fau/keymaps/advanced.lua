@@ -4,14 +4,20 @@ local function opts(desc) return { silent = false, desc = desc } end
 
 -- ═══════════════════════════ Move ═══════════════════════════
 
----In blockwise visual mode, pressing `L` again at the `g_` position escalates
----to `$` (curswant = MAXCOL), enabling the ragged to-line-end block selection.
+---In Visual mode, Pressing `H` again at the `^` position escalates to `0`, vice versa.
+keymap("x", "H", function()
+  local before = vim.api.nvim_win_get_cursor(0)
+  vim.cmd("normal! ^")
+  if vim.deep_equal(vim.api.nvim_win_get_cursor(0), before) then vim.cmd("normal! 0") end
+end, opts("Goto: Line Begin"))
+
+---In blockwise-visual mode, pressing `L` again at the `g_` position escalates to `$`, vice versa.
 keymap("x", "L", function()
   if vim.fn.mode():find("\22") == nil then return end
   local before = vim.api.nvim_win_get_cursor(0)
   vim.cmd("normal! g_")
   if vim.deep_equal(vim.api.nvim_win_get_cursor(0), before) then vim.cmd("normal! $") end
-end, opts("Goto: Line End (twice for `$` in V-Block)"))
+end, opts("Goto: Line End"))
 
 
 -- ═══════════════════════════ Edit ═══════════════════════════

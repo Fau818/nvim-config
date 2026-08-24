@@ -5,7 +5,7 @@ return {
   indent = {
     enabled = true, -- enable indent guides
 
-    priority = 1,
+    priority = fvim.settings.priority.indent.guide,
     char = fvim.icons.ui.IndentLine,
 
     only_scope   = false,  -- only show indent guides of the scope

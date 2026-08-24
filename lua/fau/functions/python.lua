@@ -13,6 +13,7 @@ local library_patterns = {
   "^(.*/typeshed%-fallback)/", "^(.*/python%-type%-stubs)/",
 }
 
+
 ---Determine if the specified buffer holds someone else's code.
 ---@param bufnr? integer Default is the current buffer.
 ---@return string? library_root The library root containing the file, or nil for project code.
@@ -34,6 +35,7 @@ end
 
 ---Venv dir names to look for, in priority order.
 local venv_names = { ".venv", "venv.nosync", "venv" }
+
 
 ---Find the interpreter under `root_dir`, trying each `venv_names` entry in order.
 ---@param root_dir string

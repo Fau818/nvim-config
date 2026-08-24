@@ -181,7 +181,7 @@ return {
 
     link = { enabled = true, render_modes = false },
 
-    sign = { enabled = true, priority = fvim.settings.sign_priority.markdown, },
+    sign = { enabled = true, priority = fvim.settings.priority.markdown, },
 
     inline_highlight = {
       enabled = true,

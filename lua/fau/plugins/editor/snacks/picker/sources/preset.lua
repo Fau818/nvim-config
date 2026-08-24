@@ -1,13 +1,16 @@
 local M = {}
 
 
+-- ══════════════════════ Picker Presets ══════════════════════
+
+function M.default_layout() return vim.o.columns >= 120 and "default" or "dropdown" end
+function M.normal_mode() vim.cmd.stopinsert() end
+
+
 ---@type snacks.win.Config
 M.normal_preview = { minimal = false, wo = { foldenable = true, foldcolumn = "auto" }, w = { snacks_indent = true } }
 ---@type snacks.win.Config
 M.minimal_preview = { minimal = true, wo = { foldenable = false, foldcolumn = "1" }, w = { snacks_indent = false } }
-
-function M.default_layout() return vim.o.columns >= 120 and "default" or "dropdown" end
-function M.normal_mode() vim.cmd.stopinsert() end
 
 ---@type snacks.picker.Config
 M.lsp_action = { layout = { preset = "stack_rev" }, on_show = M.normal_mode, win = { preview = M.minimal_preview }, auto_confirm = false }
@@ -15,6 +18,8 @@ M.lsp_action = { layout = { preset = "stack_rev" }, on_show = M.normal_mode, win
 ---@type snacks.picker.Config
 M.classic_normal = { layout = { preset = M.default_layout }, on_show = M.normal_mode, win = { preview = M.minimal_preview } }
 
+
+-- ══════════════════════ Picker Actions ══════════════════════
 
 ---@type snacks.picker.Action.fn
 function M.open_float(picker, item, action)

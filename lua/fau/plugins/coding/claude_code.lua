@@ -10,11 +10,23 @@ local function send_to_cc()
   local win = vim.api.nvim_get_current_win()
 
   local mode = vim.fn.mode()
-  if mode == "v" or mode == "V" or mode == "\22" then vim.api.nvim_command("ClaudeCodeSend")
-  elseif mode == "n" then vim.api.nvim_command("ClaudeCodeAdd %")
-  else assert(false, "Mode " .. mode .. " not supported!")
+  -- if mode == "v" or mode == "V" or mode == "\22" then vim.api.nvim_command("ClaudeCodeSend")
+  -- elseif mode == "n" then vim.api.nvim_command("ClaudeCodeAdd %")
+  -- else assert(false, "Mode " .. mode .. " not supported!")
+  -- end
+
+  -- HACK: Use a mention instead of the builtin send command since the CLI keeps one global `at_mentioned` handler,
+  -- \     owned by whichever prompt box mounted last (e.g. the agents page), so the command lands in the wrong box.
+  local mention = "@" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+  if mode == "v" or mode == "V" or mode == "\22" then
+    local first, last = vim.fn.line("v"), vim.fn.line(".")
+    if first > last then first, last = last, first end
+    mention = mention .. "#L" .. first .. (first == last and "" or "-" .. last)
+    fvim.utils.feedkeys("<ESC>")
+  elseif mode ~= "n" then assert(false, "Mode " .. mode .. " not supported!")
   end
 
+  require("claudecode.terminal").send_to_terminal(mention .. " ", { submit = false, focus = true })
   vim.schedule(function() broadcast_cursor_position(win) end)
 end
 

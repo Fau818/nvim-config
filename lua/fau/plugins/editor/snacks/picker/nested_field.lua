@@ -36,6 +36,7 @@ local SCRATCH = "__snacks_nested_value__"
 
 local patched = false
 
+
 function M.setup()
   if patched then return end
   local Matcher = require("snacks.picker.core.matcher")

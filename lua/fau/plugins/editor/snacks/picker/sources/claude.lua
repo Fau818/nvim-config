@@ -63,9 +63,11 @@ local function session_meta(path)
   return m
 end
 
+
 -- Render a transcript as a readable markdown conversation for the preview.
 -- Cached by mtime so scrolling the list does not re-parse the same file.
 local convo_cache = {}
+
 
 ---@param path string
 ---@return string[]

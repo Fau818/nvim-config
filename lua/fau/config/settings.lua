@@ -6,15 +6,24 @@ return {
     host_path = vim.fs.joinpath(os.getenv("OPENAI_API_PATH") or vim.fn.expand("$HOME"), "host"),
   },
 
-  sign_priority = {
+  priority = {
     default = 10,
 
+    -- ┄┄┄ Signs
     diagnostics   = 10,  -- NOTE: This is a base priority for diagnostics signs. RANGE: [base, base+3]
     gitsigns      = 11,  -- NOTE: Set to 11 means it will be covered by warn&error signs.
     todo_comments = 10,
     markdown   = 9,
 
+    -- ┄┄┄ EOL
     git_blame = 100,
+
+    -- ┄┄┄ Virtual Text
+    indent = {
+      guide = 1,
+      scope = 2,
+      whitespace = 4097,
+    },
   },
 
 
