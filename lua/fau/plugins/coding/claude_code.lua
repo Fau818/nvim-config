@@ -22,7 +22,6 @@ local function send_to_cc()
     local first, last = vim.fn.line("v"), vim.fn.line(".")
     if first > last then first, last = last, first end
     mention = mention .. "#L" .. first .. (first == last and "" or "-" .. last)
-    fvim.utils.feedkeys("<ESC>")
   elseif mode ~= "n" then assert(false, "Mode " .. mode .. " not supported!")
   end
 
