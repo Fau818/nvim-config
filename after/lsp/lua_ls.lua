@@ -221,15 +221,17 @@ local settings = {
 
     workspace = {
       checkThirdParty = false,  -- Whether third party libraries can be automatically detected and applied.
-      ignoreDir = { ".vscode", ".git" },
+      ignoreDir = { ".git", ".vscode", ".claude" },  -- NOTE: lazydev replaces this list
       ignoreSubmodules = true,  -- Whether git submodules should be ignored and not included in the workspace diagnosis.
       -- library = {},
       maxPreload      = 5000,  -- The maximum amount of files that can be diagnosed. More files will require more RAM.
       preloadFileSize = 500,   -- The maximum size (in KB) of files that the language server will preload and index.
-      useGitIgnore = true,  -- Whether files that are in .gitignore should be ignored by the language server when performing workspace diagnosis.
+      useGitIgnore = true,  -- Reads <root>/.gitignore and .git/info/exclude only; not the global ignore.
       -- userThirdParty = {},  -- An array of paths to custom third party libraries.
     },
   },
+
+  files = { exclude = { [".claude"] = true } },
 }
 
 
