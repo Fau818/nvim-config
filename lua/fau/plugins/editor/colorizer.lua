@@ -1,5 +1,4 @@
--- TODO: use native Neovim feature & remove this plugin.
----@type LazyPluginSpec
+---@type LazySpec
 return {
   -- DESC: Colorizer for showing color.
   ---@module "colorizer"
@@ -8,8 +7,9 @@ return {
 
   ---@type colorizer.Options
   opts = {
-    -- NOTE: Exclusion Only makes sense if '*' is specified first!
-    filetypes = { "*", "!c", "!cpp", "!lazy", "!sidekick_terminal", notify = { RGB = false } },
+    -- NOTE: Exclusion only makes sense if '*' is specified first!
+    -- NOTE: css/scss/less are left to `cssls` via native `vim.lsp.document_color`.
+    filetypes = { "*", "!c", "!cpp", "!css", "!scss", "!less", "!lazy", "!sidekick_terminal", notify = { RGB = false } },
     buftypes = fvim.file.excluded_buftypes,  -- Use default.
     user_commands = true,  ---@type boolean | table Enable all or some usercommands
     lazy_load = false,  -- NOTE: If true, cmp_menu will not show colors.

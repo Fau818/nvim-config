@@ -198,7 +198,7 @@ function M.smart_format()
   local filetype = vim.bo.filetype
 
   -- NOTE: Special treamtment for some filetypes.
-  -- if filetype == "python" then return M.auto_indent()  -- TEST: Use ruff for python formatting. Nov 7, 2025.
+  -- if filetype == "python" then return M.auto_indent()
   if filetype == "c" or filetype == "cpp" then return M.auto_indent() end
 
   -- By lsp capability (visual mode uses rangeFormatting, see `vim.lsp.buf.format`)

@@ -189,7 +189,6 @@ return {
       -- root_dirs = {},  -- Use default.
       prefer_startup_root = true,
       sync_root_with_cwd = true,  -- Changes the tree root directory on `DirChanged` and refreshes the tree.
-      -- TEST: Disabled as the default behavior.  Oct 29, 2025
       reload_on_bufenter = false,  -- Automatically reloads the tree on `BufEnter` nvim-tree.
       respect_buf_cwd = true,     -- Will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 
@@ -374,15 +373,4 @@ return {
       },
     },
   },
-
-
-  -- TEST: Use Snacks.reanme module.  Oct 30, 2025
-  -- {
-  --   -- DESC: Add LSP support for file operations in NvimTree.
-  --   ---@module "lsp-file-operations"
-  --   "antosha417/nvim-lsp-file-operations",
-  --   dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-tree.lua" },
-  --   ft = "NvimTree",
-  --   config = true,
-  -- },
 }

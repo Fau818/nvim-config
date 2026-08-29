@@ -49,7 +49,6 @@ return {
       enabled = true,
       render_modes = false,
       position = "center",
-      -- TEST: Add pad, on March 2, 2026
       top_pad = 1,
       bottom_pad = 1,
     },
