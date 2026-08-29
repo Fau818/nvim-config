@@ -277,7 +277,7 @@ keymap("n", "<LEADER>lr", vim.lsp.buf.rename,      opts("LSP: Rename"))
 keymap("n", "<LEADER>la", vim.lsp.buf.code_action, opts("LSP: Code Action"))
 
 keymap({ "n", "i" }, "<C-d>", vim.lsp.buf.hover, opts("LSP: Document"))
--- TIPS: If call `vim.lsp.buf.signature_help` directly, no noice markdown rendering.
+-- NOTE: If call `vim.lsp.buf.signature_help` directly, no noice markdown rendering.
 keymap({ "n", "i" }, "<C-p>", function() vim.lsp.buf.signature_help() end, opts("LSP: Signature Help"))
 
 keymap("n", "<LEADER>lf", vim.lsp.buf.format,                       opts("LSP: Format Code"))

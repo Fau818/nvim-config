@@ -103,7 +103,7 @@ M.setup_server = vim.schedule_wrap(_setup_server)
 ---@param bufnr integer? buffer number
 function M.restart_lsp(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  -- SPECIAL: LSP is not configured.
+  -- EXIT: LSP is not configured.
   local filetype = vim.bo[bufnr].filetype
   if not M.configured_ft[filetype] then
     local success = pcall(M.mason.setup_by_ft, filetype)

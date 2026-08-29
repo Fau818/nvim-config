@@ -1,5 +1,5 @@
--- IMPORTANT: If use `vim.schedule` to set buffer-local options in a ftplugin,
--- make sure to capture the buffer number first since the current buffer might have changed by the time the schedule runs.
+-- IMPO: If use `vim.schedule` to set buffer-local options in a ftplugin, make sure to capture
+-- \     the buffer number first since the current buffer might have changed by the time the schedule runs.
 
 local formatoptions = "tclqjrnb"
 

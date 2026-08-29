@@ -73,7 +73,6 @@ end
 
 
 ---Check whether a server is relevant to the picker's origin buffer (attached or filetype match).
----CAUTION: Runs in a fast event context (via `transform`), keep it free of API calls.
 ---@param item snacks.picker.Item
 ---@param filetype string
 ---@return boolean

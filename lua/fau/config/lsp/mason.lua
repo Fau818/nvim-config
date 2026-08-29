@@ -81,7 +81,6 @@ function M.install_missing_packages(filetype)
   if package_list == nil then return true end
 
   -- NOTE: Please make sure you have `mason.nvim` and `mason-lspconfig.nvim` installed.
-  -- local mason_lspconfig = require("mason-lspconfig")
   local mason_registry = require("mason-registry")
 
   mason_registry.refresh(function()

@@ -78,8 +78,8 @@ return {
 
     -- ─── Repeated Messages ──────────────────────────────────
     -- HACK: `noice` skips a ui event equal to the previous one — a perf guard for the constant
-    -- `msg_showmode`/`msg_ruler` that also swallows a repeated `:echo 123`. Let messages through,
-    -- counted as `(xN)` by the notifier patch. Still deduped: `search_count`, prompts, same-turn.
+    -- \     `msg_showmode`/`msg_ruler` that also swallows a repeated `:echo 123`. Let messages through,
+    -- \     counted as `(xN)` by the notifier patch. Still deduped: `search_count`, prompts, same-turn.
 
     -- SEE: https://github.com/folke/noice.nvim/blob/main/lua/noice/ui/msg.lua (`skip()` call sites)
     local KEEP_DEDUP = { search_count = true, confirm = true, confirm_sub = true, number_prompt = true }

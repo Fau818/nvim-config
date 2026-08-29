@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "MiniSnippetsSessionStop",
   desc = "Normalize the separator right in snippet area.",
   -- NOTE: The session extmark tracks the snippet's own range, which the cursor may
-  -- have left by now. Falls back to the whole buffer if that extmark is already gone.
+  -- \     have left by now. Falls back to the whole buffer if that extmark is already gone.
   callback = function(env)
     local session = (env.data or {}).session
     if not session then return end
@@ -133,7 +133,7 @@ vim.api.nvim_set_hl(fvim_markdown_hl_ns, "@markup.strong", { fg = fvim.colors.pi
 vim.api.nvim_set_hl(fvim_markdown_hl_ns, "@markup.italic", { fg = fvim.colors.light_red, bold = true, italic = true })
 
 -- NOTE: The namespace is window-scoped, and `WinNew` fires before the new window settles on its
--- buffer (a `:tabnew` off a markdown window still reports the markdown one), so ask a tick later.
+-- \     buffer (a `:tabnew` off a markdown window still reports the markdown one), so ask a tick later.
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
   group = vim.api.nvim_create_augroup("fau_tokyonight_markdown_regular_only", { clear = true }),
   callback = function()
@@ -152,7 +152,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "WinNew" }, {
 -- ═══════════════════════ Auto Reload ════════════════════════
 
 -- WORKAROUND: `autoread` only takes effect when Neovim explicitly checks a file's mtime.
--- Trigger it check on the events most likely to mean the file changed on disk.
+-- \           Trigger it check on the events most likely to mean the file changed on disk.
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   group = fvim_augroup,
   pattern = "*",
@@ -161,7 +161,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 })
 
 -- WORKAROUND: When we do vibe coding in a terminal, the file buffers might not be refreshed in time.
--- So we check all buffers 1s after the terminal last printed something.
+-- \           So we check all buffers 1s after the terminal last printed something.
 local checktime_debounce = vim.uv.new_timer()
 if checktime_debounce then
   vim.api.nvim_create_autocmd("TextChangedT", {
@@ -182,7 +182,7 @@ if checktime_debounce then
 end
 
 -- WORKAROUND: A same-filetype reload re-fires `FileType`, and stock ftplugins unconditionally undo buffer settings via `b:undo_ftplugin`.
--- Scope to affected filetypes and unchanged-filetype refires only, so real switches (json -> jsonc) still use Vim's normal undo-then-reload flow.
+-- \           Scope to affected filetypes and unchanged-filetype refires only, so real switches (json -> jsonc) still use Vim's normal undo-then-reload flow.
 -- SEE: Only work around for filetypes disabled by `*_recommended_style`; check `lua/fau/config/init.lua`
 vim.api.nvim_create_autocmd("FileType", {
   group = fvim_augroup,
@@ -218,7 +218,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- SEE: https://github.com/neovim/neovim/issues/25926
 -- WORKAROUND: Blockwise visual ops resolve their block boundaries from screen columns, which inline inlay-hint virt_text inflates.
--- Hide hints for the whole lifetime of a blockwise edit, including the insert phase of c/I/A.
+-- \           Hide hints for the whole lifetime of a blockwise edit, including the insert phase of c/I/A.
 
 local MAXCOL = vim.v.maxcol  -- curswant of `$`; drives the blockwise-$ feature
 local MAX_TRY = 50
@@ -272,7 +272,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
       end
     elseif vim.b[buf].inlay_hint_hidden and not mode:find("[i\22]") then
       -- NOTE: `c/I/A` in V-B mode pass through insert mode, and <Esc> replication is screen-column based.
-      -- Hints must stay hidden until back in normal mode. ModeChanged fires before replication, hence scheduling past current key processing.
+      -- \     Hints must stay hidden until back in normal mode. ModeChanged fires before replication, hence scheduling past current key processing.
       vim.schedule(function()
         if not vim.api.nvim_buf_is_valid(buf) then return end
         -- NOTE: An insert-mode mapping running `normal!` round-trips i -> n -> v -> n and lands here while the blockwise insert is still going.
@@ -289,10 +289,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 
 -- ══════════════════════ Pinned Windows ══════════════════════
 
--- WORKAROUND: A file must never open in a side window; one that lands there is sent to a main window instead.
--- By pinning the non-regular buffers to their windows, we can detect when a regular buffer tries to take over and redirect it to a main window instead.
+-- HACK: A file must never open in a side window; one that lands there is sent to a main window instead.
+-- \     By pinning the non-regular buffers to their windows, we can detect when a regular buffer tries to take over and redirect it to a main window instead.
 -- NOTE: An ideal mechanism would be pinning each non-regular buffer when it enters a window.
--- Since it won't cause a file being opened in an unfocused side window, so we only manage the pinned buffers in the focused window.
+-- \     Since it won't cause a file being opened in an unfocused side window, so we only manage the pinned buffers in the focused window.
 
 -- ─── Pin & Redirect ─────────────────────────────────────────
 ---The side of the current window a main window belongs on: whichever side faces the editor's center.
@@ -345,7 +345,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
     -- CASE3: Allow pinned window to be replaced by a non-regular buffer.
     -- HINT: This is to allow the buffer to switch itself. (E.g. aerial refresh the outline)
-    -- NOTE: This is based on an assumption that a non-regular buffer is the same filetype as the pinned one.
+    -- INFO: This is based on an assumption that a non-regular buffer is the same filetype as the pinned one.
     if not regular then unpin(pinned_buf) return pin(env.buf) end
 
     -- CASE4: A regular buffer is trying to take over a pinned window. Redirect it to a main window instead.
@@ -399,9 +399,9 @@ vim.api.nvim_create_autocmd("WinClosed", {
 -- ═══════════════════════════ LSP ════════════════════════════
 
 -- WORKAROUND: On detach Neovim only resets the client's PUSH namespace (`vim/lsp/client.lua` `_on_detach`);
--- PULL diagnostics are cleared by a separate handler that fires only once the LAST pull-capable client
--- leaves the buffer. So with two pull servers on one buffer (e.g. python's `basedpyright` + `ruff`),
--- stopping one leaves its diagnostics stuck. Mirror the per-client push cleanup for pull.
+-- \           PULL diagnostics are cleared by a separate handler that fires only once the LAST pull-capable client
+-- \           leaves the buffer. So with two pull servers on one buffer (e.g. python's `basedpyright` + `ruff`),
+-- \           stopping one leaves its diagnostics stuck. Mirror the per-client push cleanup for pull.
 vim.api.nvim_create_autocmd("LspDetach", {
   group = fvim_augroup,
   desc = "Clear a detaching client's stale (pull) diagnostics.",

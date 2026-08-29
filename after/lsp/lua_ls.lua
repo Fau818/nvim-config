@@ -208,7 +208,7 @@ local settings = {
 
     type = {
       castNumberToInteger = true,  -- Whether casting a number to an integer is allowed.
-      checkTableShape = false,  -- HINT: TESTED, set it to false.
+      checkTableShape = false,
       -- inferTableSize = 10,
       inferParamType = true,
 

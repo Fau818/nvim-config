@@ -10,11 +10,11 @@ return {
   large_file_size = 1024 * 1024,  -- 1MiB
   large_file_line = 2000,
 
-  large_folder_size = 100,
+  large_folder_count = 100,
 
-  -- HINT: Please consider to update `lualine.ignore_focus` when you add new filetypes.
+  -- NOTE: Please consider to update `lualine.ignore_focus` when you add new filetypes.
   excluded_filetypes = {
-    -- NOTE: Keep `""` as the first element.
+    -- IMPORTANT: Keep `""` as the first element.
     "", "netrw", "tutor", "man", "qf", "log",
     "alpha",
     "aerial", "aerial-nav",

@@ -14,7 +14,7 @@ local views = {
   cmdline_popup = { size = { width = 60 } },
 
   -- NOTE: basedpyright emits progress every ~100ms; longer timeouts stack stale lines
-  -- because mini ignores `replace`/`merge`. Keep this at one pass' lifetime.
+  -- \     because mini ignores `replace`/`merge`. Keep this at one pass' lifetime.
   mini = { timeout = 100 },
 
 

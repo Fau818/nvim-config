@@ -3,7 +3,7 @@
 -- ════════════════════════════════════════════════════════════
 
 -- NOTE: `main` only installs parsers and hands out `indentexpr`; `ensure_installed`,
--- `auto_install` and the feature switches are gone, so everything below puts them back.
+-- \     `auto_install` and the feature switches are gone, so everything below puts them back.
 
 local _installed = {}  ---@type table<string,boolean> Installed parsers, as a set.
 

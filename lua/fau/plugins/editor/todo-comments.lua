@@ -22,7 +22,7 @@ return {
       IMPO = { icon = fvim.icons.todo.IMPORTANT, color = fvim.colors.lualine.red, alt = { "IMPORTANT" } },
 
       PERF = { icon = fvim.icons.todo.PERF, color = fvim.colors.purple,     alt = { "OPTIM",   "OPTIMIZE", "PERFORMANCE" } },
-      TEST = { icon = fvim.icons.todo.TEST, color = fvim.colors.light_pink, alt = { "TESTING", "PASSED",   "FAILED", "TEMP" }},
+      TEST = { icon = fvim.icons.todo.TEST, color = fvim.colors.light_pink, alt = { "TESTING", "PASSED",   "FAILED", "TEMP", "REGRESSION" }},
 
       NOTE = { icon = fvim.icons.todo.NOTE, color = "note", alt = { "INFO", "HINT", "TIPS" } },
       DESC = { icon = fvim.icons.todo.DESC, color = fvim.colors.light_gray },

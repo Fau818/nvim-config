@@ -67,7 +67,7 @@ return {
       scratch = true,
       on_mount = function(self)
         -- NOTE: `on_mount` fires before trouble swaps in the real preview buffer (`set_buf` runs right after, synchronously).
-        -- Capture `win` now (not `self.win`, which mutates on every remount) and defer past the swap with `vim.schedule`.
+        -- \     Capture `win` now (not `self.win`, which mutates on every remount) and defer past the swap with `vim.schedule`.
         local win = self.win
         vim.schedule(function()
           if not vim.api.nvim_win_is_valid(win) then return end
@@ -144,7 +144,7 @@ return {
 
     ---@type table<string, trouble.Mode>
     modes = {
-      -- HINT: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
+      -- NOTE: Default config is not working. (Since set `auto_jump = true` manually in plugin config.)
       -- HACK: Set `auto_jump` to `false` to avoid jumping to the only matched item.
       lsp_definitions      = { auto_jump = false, auto_refresh = false },
       lsp_declarations     = { auto_jump = false, auto_refresh = false },
