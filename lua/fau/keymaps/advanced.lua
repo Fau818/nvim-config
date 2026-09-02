@@ -13,7 +13,6 @@ end, opts("Goto: Line Begin"))
 
 ---In blockwise-visual mode, pressing `L` again at the `g_` position escalates to `$`, vice versa.
 keymap("x", "L", function()
-  if vim.fn.mode():find("\22") == nil then return end
   local before = vim.api.nvim_win_get_cursor(0)
   vim.cmd("normal! g_")
   if vim.deep_equal(vim.api.nvim_win_get_cursor(0), before) then vim.cmd("normal! $") end
