@@ -1,3 +1,18 @@
+---@type table<string, string>
+local KIND_GROUPS = {
+  Method = "@function.method", Function = "@function", Constructor = "@constructor",
+  Class = "@type", Interface = "@type", Struct = "@type", Enum = "@type", Event = "@type",
+  TypeParameter = "@type.parameter", Module = "@module", Keyword = "@keyword",
+  Field = "@variable.member", Property = "@property", Variable = "@variable",
+  Constant = "@constant", EnumMember = "@constant", Value = "@constant",
+  Operator = "@operator", File = "@string.special.path",
+  Folder = "@string.special.path", Unit = "@number",
+  Color = "@string.special", Reference = "@label",
+
+  Snippet = nil, Text = nil,
+}
+
+
 local function copilot_suggest()
   local copilot_ok, copilot = pcall(require, "copilot.suggestion")
   return copilot_ok and copilot.is_visible() ~= nil and pcall(copilot.accept)
@@ -26,9 +41,6 @@ return {
 
     ---@module "nvim-ts-autotag"
     "windwp/nvim-ts-autotag",
-
-    ---@module "colorful-menu"
-    "xzbdmw/colorful-menu.nvim",
 
     "disrupted/blink-cmp-conventional-commits",
 
@@ -84,8 +96,8 @@ return {
             end)
           end
 
-          -- CASE1: If the current tabstop is not the final one ($0), jump to the final tabstop.
-          -- CASE2: If the current tabstop is the final one ($0), stop the snippet session and move the cursor to the end of $0.
+          -- NOTE: If the current tabstop is not the final one ($0), jump to the final tabstop;
+          -- \     otherwise, stop the snippet session and move the cursor to the end of $0.
           if s.cur_tabstop ~= "0" then jump_to_final_tabstop() else stop_snippet() end
 
           return true
@@ -127,8 +139,42 @@ return {
           components = {
             source_name = { text = function(ctx) return "[" .. ctx.source_name .. "]" end, highlight = "BlinkCmpKindDefault" },
             label = {
-              text = function(ctx) return require("colorful-menu").blink_components_text(ctx) end,
-              highlight = function(ctx) return require("colorful-menu").blink_components_highlight(ctx) end,
+              highlight = function(ctx)
+                -- STEP1: Color the deprecated label and its detail.
+                -- REF: https://github.com/saghen/blink.cmp/blob/61ffe3e9cedb59eac31484248a1de6a0e37f8d21/lua/blink/cmp/config/completion/menu.lua#L95-L103
+                local label = ctx.label
+                ---@type blink.cmp.DrawHighlight[] Each entry is `{ start_col, end_col, group = ... }`: 0-based bytes, end exclusive.
+                local highlights = { { 0, #label, group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel" } }
+                if ctx.label_detail then
+                  table.insert(highlights, { #label, #label + #ctx.label_detail, group = "BlinkCmpLabelDetail" })
+                end
+
+                -- STEP2: Color the label by its kind and treesitter, and dim the signature.
+                if not ctx.deprecated then
+                  -- A label may carry `(params)`; the name is what the kind and treesitter describe.
+                  local name = label:match("^[^(]*")
+
+                  local ts = ctx.source_id == "lsp"
+                      and require("blink.cmp.completion.windows.render.treesitter").highlight(ctx) or {}
+                  -- NOTE: Drops `@variable.<lang>`, what treesitter captures any lone identifier as.
+                  ts = vim.tbl_filter(function(hl) return not hl.group:match("^@variable%.[^.]+$") end, ts)
+
+                  -- The kind stands in only when treesitter had nothing; under it, its attributes leak.
+                  local group = #ts == 0 and KIND_GROUPS[ctx.kind]
+                  if group and #name > 0 then table.insert(highlights, { 0, #name, group = group }) end
+                  vim.list_extend(highlights, ts)
+
+                  -- Dim the signature, last so it covers what treesitter found there too.
+                  if #name < #label then table.insert(highlights, { #name, #label, group = "Comment" }) end
+                end
+
+                -- STEP3: Highlight the matched characters in the label.
+                -- REF: https://github.com/saghen/blink.cmp/blob/61ffe3e9cedb59eac31484248a1de6a0e37f8d21/lua/blink/cmp/config/completion/menu.lua#L110-L113
+                for _, idx in ipairs(ctx.label_matched_indices) do
+                  table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
+                end
+                return highlights
+              end,
             },
           },
         },

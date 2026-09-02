@@ -133,6 +133,10 @@ return {
       highlights["@markup.raw.markdown_inline"] = { fg = colors.blue, bg = colors.bg_highlight }
 
 
+      -- ─── Python ───────────────────────────────────────────
+      highlights["@module.python"] = { fg = colors.fg }
+
+
       -- ════════════════════ Diagnostics ═════════════════════
 
       highlights["ErrorLine"] = { bg = fvim.colors.diagnostic.error }
@@ -244,8 +248,6 @@ return {
       highlights["TelescopePromptPrefix"]   = { fg = fvim.colors.purple_blue }
       highlights["TelescopePromptBorder"]   = { fg = fvim.colors.cobalt }
       highlights["TelescopeSelectionCaret"] = { fg = fvim.colors.cobalt, bg = fvim.colors.visual }
-
-      highlights["@module.python"] = { fg = colors.fg }
     end,
   },
 

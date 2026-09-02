@@ -198,11 +198,16 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- ════════════════════════ Filetypes ═════════════════════════
 
+---Filetypes that count only when the buffer is the matching special window.
+local REQUIRED_BUFTYPE = { help = "help", qf = "quickfix" }
+
 vim.api.nvim_create_autocmd("FileType", {
   group = fvim_augroup,
   pattern = { "snacks_notif", "git", "checkhealth", "grug-far-history", "help", "qf" },
   desc = "Use `q` to close window.",
   callback = function(args)
+    local required = REQUIRED_BUFTYPE[args.match]
+    if required and vim.bo[args.buf].buftype ~= required then return end
     vim.schedule(function()
       if not vim.api.nvim_buf_is_valid(args.buf) then return end
       vim.keymap.set(
