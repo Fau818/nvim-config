@@ -14,6 +14,7 @@ return {
   cyan       = "#32C8C8",
   light_cyan = "#4FD6BE",
   dark_cyan  = "#20B2AA",
+  cadet      = "#4E96A0",
 
   purple       = "#C099FF",
   dark_purple  = "#7D7DFF",
