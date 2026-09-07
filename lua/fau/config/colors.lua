@@ -1,7 +1,7 @@
 return {
   bg      = "#151518",
   comment = "#717CBD",
-  visual  = "#2D3F76",
+  visual  = "#1F2C66",
 
   wathet      = "#87CEEB",
   blue        = "#00A9EF",

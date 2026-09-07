@@ -33,7 +33,8 @@ return {
     ---function will be called with a ColorScheme table
     ---@param colors ColorScheme
     on_colors = function(colors)
-      colors.comment = fvim.colors.comment
+      colors.comment   = fvim.colors.comment
+      colors.bg_visual = fvim.colors.visual
 
       colors.diff.add    = fvim.colors.diff.add
       colors.diff.change = fvim.colors.diff.change
