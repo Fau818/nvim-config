@@ -80,11 +80,17 @@ local function init_inlay_hint_handler()
 end
 
 
+---@type table<string, boolean> Servers whose client is managed by their own plugin
+-- Enabling a `vim.lsp.config` entry for these attaches a second client that ignores the plugin's own attach rules.
+local PLUGIN_MANAGED = { copilot = true }
+
+
 ---Setup a LSP server
 ---@param server string server name
 ---@param opts vim.lsp.ClientConfig? configuration
 local function _setup_server(server, opts)
-  if vim.lsp.is_enabled(server) then return end
+  -- EXIT: Already enabled, or the owning plugin starts its own client.
+  if vim.lsp.is_enabled(server) or PLUGIN_MANAGED[server] then return end
 
   opts = opts or {}
   opts.handlers = opts.handlers or {}

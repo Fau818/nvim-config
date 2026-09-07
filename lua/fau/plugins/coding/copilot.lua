@@ -72,7 +72,12 @@ return {
       type = "nodejs",  ---@type "nodejs" | "binary"
       custom_server_filepath = nil,
     },
-    server_opts_overrides = {},
+    -- SEE: Follow https://github.com/neovim/nvim-lspconfig/blob/master/lsp/copilot.lua
+    server_opts_overrides = {
+      init_options = {
+        editorPluginInfo = { name = "Neovim", version = tostring(vim.version()) },
+      },
+    },
 
     -- auth_provider_url = nil,  -- URL to authentication provider, if not "https://github.com/"
     -- logger = nil,                -- Use default
@@ -80,4 +85,20 @@ return {
     -- workspace_folders = nil,     -- Use default
     -- root_dir = nil,              -- Use default
   },
+
+  config = function(_, opts)
+    -- CASE1: copilot.lua already installed copilot server, so just use it.
+    local installer = require("copilot.lsp.installer")
+    local target = installer.resolve_target(opts.server.type)
+    if target and installer.get_entrypoint(target) then require("copilot").setup(opts) return end
+
+    -- CASE2: copilot.lua didn't install copilot server, so use mason.nvim to manage it.
+    fvim.lsp.mason.mason_install("copilot-language-server", nil, function(success)
+      if success then
+        local mason_root = require("mason.settings").current.install_root_dir
+        opts.server.custom_server_filepath = vim.fs.joinpath(mason_root, "bin", "copilot-language-server")
+      end
+      require("copilot").setup(opts)
+    end)
+  end,
 }
