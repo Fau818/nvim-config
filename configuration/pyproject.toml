@@ -191,7 +191,7 @@ typing-extensions = true
 
 
 [tool.ruff.lint.pydocstyle]
-convention = "google"
+convention = "numpy"
 
 
 [tool.ruff.lint.per-file-ignores]
