@@ -166,3 +166,31 @@ keymap("n", "zc", function() vscode.call("editor.fold") end,       opts("VSCode:
 
 -- TODO: Gitsigns Keymaps
 -- /Users/fau/.config/nvim/lua/fau/plugins/editor/gitsigns.lua
+
+
+-- ════════════════════════════════════════════════════════════
+-- ═════════════════════════ Autocmds ═════════════════════════
+-- ════════════════════════════════════════════════════════════
+
+-- NOTE: VSCode owns the write: every document buffer is `acwrite` with its own
+-- \     `BufWriteCmd`, which replaces the write path and skips `BufWritePre`.
+-- \     Defined before vscode-neovim attaches its handler, so this one runs first.
+vim.api.nvim_create_autocmd("BufWriteCmd", {
+  group = vim.api.nvim_create_augroup("fau_vscode", { clear = true }),
+  pattern = "*",
+  desc = "Trim blank lines and spaces, normalize separators and tag comments before saving.",
+  callback = function(env)
+    -- A buffer VSCode does not own reaches no other handler, so the write is ours to do.
+    if vim.bo[env.buf].buftype ~= "acwrite" then
+      return vim.cmd("noautocmd write! " .. vim.fn.fnameescape(env.match))
+    end
+    if fvim.utils.is_large_file(env.buf) then return end
+
+    local tick = vim.api.nvim_buf_get_changedtick(env.buf)
+    fvim.format.trim_text()
+    fvim.format.normalize_separators(env.buf)
+    fvim.format.tag.normalize(env.buf)
+    -- Block until VSCode has the edits, or it saves the text it held before them.
+    if vim.api.nvim_buf_get_changedtick(env.buf) ~= tick then vscode.eval("return 0") end
+  end,
+})

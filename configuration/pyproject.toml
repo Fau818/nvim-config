@@ -165,6 +165,8 @@ extend-select = ["D"]
 # F405: `'xxx'` may be undefined, or defined from star imports: `yyy`
 
 # F821: Undefined name `xxx` (lsp will handle this)
+
+# PLR0402: Checks for submodule imports that are aliased to the submodule name.
 ignore = [
   "D100", "D101", "D102", "D103", "D105", "D107",
   "D212",
@@ -173,6 +175,8 @@ ignore = [
 
   "F401", "F403", "F405",
   "F821",
+
+  "PLR0402"
 ]
 
 

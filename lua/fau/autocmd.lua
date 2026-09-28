@@ -468,7 +468,7 @@ end
 
 -- ══════════════════════════ Kitty ═══════════════════════════
 
-if fvim.kitty.is_enabled then
+if fvim.kitty.in_kitty then
   -- SEE: https://sw.kovidgoyal.net/kitty/mapping/#conditional-mappings-depending-on-the-state-of-the-focused-window
   vim.api.nvim_create_autocmd({ "VimEnter", "VimResume" }, {
     group = fvim_augroup,

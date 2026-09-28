@@ -41,7 +41,10 @@ return {
 
     lsp = require("fau.plugins.editor.noice.config.lsp").lsp,
 
-    -- markdown = nil,  -- Use default.
+    markdown = {
+      -- Open markdown links with `vim.ui.open`, which kitty.lua reroutes over ssh.
+      hover = { ["%[.-%]%((%S-)%)"] = vim.ui.open },  -- markdown links
+    },
 
     health = { checker = true },
 

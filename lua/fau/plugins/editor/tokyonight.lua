@@ -13,7 +13,7 @@ return {
     terminal_colors = true,
 
     styles = {
-      comments  = fvim.kitty.is_enabled and { italic = true, bold = true } or { italic = true },
+      comments  = fvim.kitty.in_kitty and { italic = true, bold = true } or { italic = true },
       keywords  = { italic = true },
       functions = {},
       variables = {},
@@ -215,7 +215,8 @@ return {
 
       -- ─── Nvim-tree ────────────────────────────────────────
       highlights["NvimTreeWinSeparator"] = { link = "WinSeparator" }
-      highlights["NvimTreeSpecialFile"] = { fg = colors.purple }
+      highlights["NvimTreeSpecialFile"] = { fg = colors.purple, italic = true, bold = true }
+      highlights["NvimTreeSpecialFolderName"] = { link = "NvimTreeSpecialFile" }
       highlights["NvimTreeDiagnosticErrorFileHL"] = { link = "DiagnosticError" }
       highlights["NvimTreeDiagnosticWarnFileHL"]  = { link = "DiagnosticWarn" }
 

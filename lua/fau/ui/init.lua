@@ -1,1 +1,1 @@
-require("fau.ui.whitespace")
+if not vim.g.vscode then require("fau.ui.whitespace") end
