@@ -55,12 +55,19 @@ if is_remote then
   vim.ui.open = M.open
 
   -- lazy.nvim opens uris with its own job instead of `vim.ui.open`.
-  local LazyUtil = require("lazy.util")
-  local _lazy_open = LazyUtil.open
-  function LazyUtil.open(uri, opts)
-    if uri:find("^%w+://") then return M.open(uri) end
-    return _lazy_open(uri, opts)
-  end
+  -- `LazyDone`: this module loads before `fau.lazy` puts lazy.nvim on the runtimepath.
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyDone",
+    once = true,
+    callback = function()
+      local LazyUtil = require("lazy.util")
+      local _lazy_open = LazyUtil.open
+      function LazyUtil.open(uri, opts)
+        if uri:find("^%w+://") then return M.open(uri) end
+        return _lazy_open(uri, opts)
+      end
+    end,
+  })
 end
 
 
