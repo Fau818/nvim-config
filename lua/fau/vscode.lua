@@ -168,6 +168,11 @@ keymap("n", "zc", function() vscode.call("editor.fold") end,       opts("VSCode:
 -- /Users/fau/.config/nvim/lua/fau/plugins/editor/gitsigns.lua
 
 
+-- ─── Copilot ────────────────────────────────────────────────
+keymap("i", "<A-l>", function() vscode.call("editor.action.inlineSuggest.showNext") end, opts("VSCode Copilot: Next Inline Suggestion"))
+keymap("i", "<A-w>", function() vscode.call("editor.action.inlineSuggest.acceptNextWord") end, opts("VSCode Copilot: Accept Next Word"))
+
+
 -- ════════════════════════════════════════════════════════════
 -- ═════════════════════════ Autocmds ═════════════════════════
 -- ════════════════════════════════════════════════════════════
