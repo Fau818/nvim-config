@@ -80,9 +80,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "Trim blank lines and spaces, normalize separators and tag comments before saving.",
   callback = function(env)
     if vim.bo[env.buf].buftype ~= "" or fvim.utils.is_large_file(env.buf) then return end
-    fvim.format.trim_text()
-    fvim.format.normalize_separators(env.buf)
-    fvim.format.tag.normalize(env.buf)
+    fvim.format.run(env.buf)
   end,
 })
 
@@ -191,7 +189,10 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     if vim.bo[args.buf].buftype ~= "" then return end
     if vim.b[args.buf].fvim_last_filetype == args.match then vim.b[args.buf].undo_ftplugin = nil end
-    vim.b[args.buf].fvim_last_filetype = args.match
+    -- NOTE: Deferred, since lazy.nvim's nested `FileType` (after loading `ft` plugins) is not a reload.
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(args.buf) then vim.b[args.buf].fvim_last_filetype = args.match end
+    end)
   end,
 })
 

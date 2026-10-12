@@ -192,9 +192,7 @@ vim.api.nvim_create_autocmd("BufWriteCmd", {
     if fvim.utils.is_large_file(env.buf) then return end
 
     local tick = vim.api.nvim_buf_get_changedtick(env.buf)
-    fvim.format.trim_text()
-    fvim.format.normalize_separators(env.buf)
-    fvim.format.tag.normalize(env.buf)
+    fvim.format.run(env.buf)
     -- Block until VSCode has the edits, or it saves the text it held before them.
     if vim.api.nvim_buf_get_changedtick(env.buf) ~= tick then vscode.eval("return 0") end
   end,

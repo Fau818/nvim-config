@@ -17,7 +17,7 @@ vim.api.nvim_create_user_command("NormalizeSeparators",
   function(ev)
     local from, to
     if ev.range > 0 then from, to = ev.line1 - 1, ev.line2 end
-    fvim.format.normalize_separators(0, from, to, ev.bang)
+    fvim.format.normalize_separators(0, from, to, ev.bang, true)
   end, { bang = true, range = true }
 )
 

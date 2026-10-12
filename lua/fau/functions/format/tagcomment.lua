@@ -62,8 +62,10 @@ end
 
 ---Give every tag comment its `TAG_END` and a padded continuation line for every line below the tag.
 ---@param bufnr? integer buffer number (default: current buffer)
-function M.normalize(bufnr)
+---@param force? boolean whether to force it to run even if it's disabled
+function M.normalize(bufnr, force)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
+  if not force and fvim.format.is_disabled("tags", bufnr) then return end
 
   local leader, pattern = fvim.utils.comment_parts(bufnr)
   if not leader then return end

@@ -4,6 +4,32 @@ M.tag = require("fau.functions.format.tagcomment")  -- `TAG:` comments
 
 
 -- ════════════════════════════════════════════════════════════
+-- ══════════════════════ Disable Flags ═══════════════════════
+-- ════════════════════════════════════════════════════════════
+
+---Whether `fvim_<name>_disable` or `fvim_format_disable` is set in `vim.g` or `vim.b`.
+---@param name "trim"|"separators"|"tags"
+---@param bufnr? integer Default is the current buffer.
+---@return boolean disabled
+function M.is_disabled(name, bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  for _, flag in ipairs({ "fvim_format_disable", ("fvim_%s_disable"):format(name) }) do
+    if vim.g[flag] == true or vim.b[bufnr][flag] == true then return true end
+  end
+  return false
+end
+
+
+---Run each step (trim, separators, tags) that is not disabled for the buffer.
+---@param bufnr? integer Default is the current buffer.
+function M.run(bufnr)
+  M.trim_text(bufnr)
+  M.normalize_separators(bufnr)
+  M.tag.normalize(bufnr)
+end
+
+
+-- ════════════════════════════════════════════════════════════
 -- ═══════════════ Trim Blank Lines and Spaces ════════════════
 -- ════════════════════════════════════════════════════════════
 
@@ -18,15 +44,22 @@ local function _trim_text()
 end
 
 
-M.trim_text = function()
-  if M._trim_text_source == nil then _trim_text()
-  elseif M._trim_text_source == "mini" then
-    local trailspace = require("mini.trailspace")
-    trailspace.trim_last_lines(); trailspace.trim()
-  else
-    fvim.notify(("Unknown trim text source: %s. Back to default."):format(M._trim_text_source), vim.log.levels.WARN)
-    _trim_text()
-  end
+---Trim trailing blank lines and trailing spaces.
+---@param bufnr? integer Default is the current buffer.
+---@param force? boolean Whether to force it to run even if it's disabled.
+M.trim_text = function(bufnr, force)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  if not force and M.is_disabled("trim", bufnr) then return end
+  vim.api.nvim_buf_call(bufnr, function()
+    if M._trim_text_source == nil then _trim_text()
+    elseif M._trim_text_source == "mini" then
+      local trailspace = require("mini.trailspace")
+      trailspace.trim_last_lines(); trailspace.trim()
+    else
+      fvim.notify(("Unknown trim text source: %s. Back to default."):format(M._trim_text_source), vim.log.levels.WARN)
+      _trim_text()
+    end
+  end)
 end
 
 
@@ -102,9 +135,11 @@ end
 ---@param bufnr? integer buffer number (default: current buffer)
 ---@param from? integer 0-based first line to scan (default: whole buffer)
 ---@param to? integer exclusive last line
----@param force? boolean apply the shorthand even in a file that opted out of it
-function M.normalize_separators(bufnr, from, to, force)
+---@param shorthand? boolean apply the shorthand even in a file that opted out of it
+---@param force? boolean whether to force it to run even if it's disabled
+function M.normalize_separators(bufnr, from, to, shorthand, force)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
+  if not force and M.is_disabled("separators", bufnr) then return end
 
   local leader, pattern = fvim.utils.comment_parts(bufnr)
   if not leader then return end
@@ -116,7 +151,7 @@ function M.normalize_separators(bufnr, from, to, force)
 
   local lines = vim.api.nvim_buf_get_lines(bufnr, from, to, false)
   local target = vim.fn.strdisplaywidth(leader) + 1 + SEP_SPAN
-  local shorthand = force or not vim.b[bufnr].fvim_ascii_separators
+  shorthand = shorthand or not vim.b[bufnr].fvim_ascii_separators
 
   ---The label between the runs of `ch`, or nil when there is none.
   local function label_of(rest, ch)
@@ -188,7 +223,7 @@ function M.auto_indent()
     vim.api.nvim_command("normal! gg=G")
     vim.fn.setpos(".", save_cursor)
   end
-  M.trim_text()
+  M.trim_text(nil, true)
   fvim.notify("not found formatter, use auto indent!", vim.log.levels.INFO, { render = "minimal", id = "smart_format" })
 end
 
