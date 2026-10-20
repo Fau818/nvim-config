@@ -20,7 +20,7 @@ M._buf_remove = nil
 
 ---Dismiss a transient diff view (window + buffer), returning true if one was closed.
 ---Registered by the diff provider — see `lua/fau/plugins/editor/gitsigns.lua`.
----@type fun(): boolean?
+---@type fun(): boolean? If a transient diff was dismissed.
 M._diff_dismiss = nil
 
 

@@ -35,6 +35,7 @@ keymap("i", "<CR>",  function() fvim.format.tag.newline() end,    opts("Edit: Ne
 
 -- ══════════════════════════ Buffer ══════════════════════════
 
+keymap("n", "Q", function() if not fvim.utils._diff_dismiss or not fvim.utils._diff_dismiss() then vim.cmd("q") end end, opts("Editor: Quit Current Window"))
 keymap("n", "<A-q>", fvim.utils.buf_remove,       opts("Buffer: Close Current Buffer"))
 keymap("n", "<C-f>", fvim.utils.reveal_in_system, opts("Buffer: Reveal in System"))
 

@@ -18,13 +18,20 @@ local function find_owner_root(bufname)
   return best_root
 end
 
+
+local function cwd_root()
+  local cwd = vim.fn.getcwd()
+  if not vim.fs.relpath(cwd, vim.uv.os_homedir()) then return cwd end  -- Skip home dir.
+end
+
+
 ---@type vim.lsp.Config
 return {
   ---Reusing an owner's root makes `reuse_client` attach to it instead of starting a second server.
   ---The library dir keeps the marker walk out of an unrelated repo above it (Homebrew's `.git`).
   root_dir = function(bufnr, on_dir)
     local bufname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(find_owner_root(bufname) or fvim.python.library_root(bufnr) or vim.fs.root(bufnr, root_markers))
+    on_dir(find_owner_root(bufname) or fvim.python.library_root(bufnr) or vim.fs.root(bufnr, root_markers) or cwd_root())
   end,
 
   ---Set it before initialization, so the server never analyzes the project on the wrong interpreter.
@@ -99,6 +106,9 @@ return {
 
           reportUnreachable      = "information",
 
+          reportImplicitRelativeImport = "warning",
+          reportImplicitOverride = "information",
+
           reportMissingTypeStubs = "hint",
           reportMissingTypeArgument = "hint",
           reportMissingParameterType = "hint",
@@ -110,6 +120,7 @@ return {
           reportUnknownArgumentType = "none",
           reportUnknownMemberType = "none",
           reportUnknownParameterType = "none",
+          reportUnknownLambdaType = "none",
 
           reportArgumentType = "warning",
 
