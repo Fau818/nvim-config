@@ -131,4 +131,16 @@ function M.restart_lsp(bufnr)
 end
 
 
+-- HACK: Drop empty document edits, or each one lists its buffer (basedpyright's rename edit names every file in the workspace).
+-- REF: https://github.com/neovim/neovim/pull/38778
+local apply_workspace_edit = vim.lsp.util.apply_workspace_edit
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.util.apply_workspace_edit = function(workspace_edit, position_encoding)
+  if workspace_edit.documentChanges then
+    workspace_edit.documentChanges = vim.tbl_filter(function(change) return change.kind or #change.edits > 0 end, workspace_edit.documentChanges)
+  end
+  return apply_workspace_edit(workspace_edit, position_encoding)
+end
+
+
 return M

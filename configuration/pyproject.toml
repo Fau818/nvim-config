@@ -199,4 +199,6 @@ convention = "numpy"
 
 
 [tool.ruff.lint.per-file-ignores]
-"*.ipynb" = ["E402"]
+# E402: module level import not at top of file
+# I001: Import block is un-sorted or un-formatted
+"*.ipynb" = ["E402", "I001"]

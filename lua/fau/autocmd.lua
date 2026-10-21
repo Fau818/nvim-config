@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = fvim_augroup,
   pattern = "*",
   desc = "Highlight the yank section.",
-  callback = function() vim.highlight.on_yank() end
+  callback = function() vim.hl.on_yank() end
 })
 
 
