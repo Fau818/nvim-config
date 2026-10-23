@@ -85,7 +85,7 @@ return {
       -- ─── Custom Fields ────────────────────────────────────
       ensure_installed = {
         "vim", "vimdoc", "regex","query",
-        "bash", "toml", "yaml", "json",
+        "bash", "zsh", "toml", "yaml", "json",
         "cpp", "lua", "python",
         "markdown", "markdown_inline",
         "gitignore", "gitcommit", "diff", "git_rebase",
