@@ -19,6 +19,7 @@ return {
     -- ┄┄┄ Disable Snacks
     vim.b.snacks_indent = false
     vim.b.snacks_words  = false
+    vim.b.snacks_scroll = false
 
     -- ┄┄┄ Disable Mini
     vim.b.minitrailspace_disable  = true

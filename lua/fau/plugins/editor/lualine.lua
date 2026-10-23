@@ -92,6 +92,9 @@ local components = {
       local indent_width = vim.bo.tabstop
       local indent_show = string.format("%s %d", indent_type and fvim.icons.ui.Space or fvim.icons.ui.Tab, indent_width)
 
+      -- EXIT: Large file -> skip the scans below; with no match, each one runs until its timeout on every refresh.
+      if fvim.utils.is_large_file() then return indent_show end
+
       local another_indent_type_line = vim.fn.search(indent_type and TAB_PTN or SPC_PTN, "nwc", nil, TIMEOUT)
       if another_indent_type_line > 0 then indent_show = string.format("*%s (?:%d)", indent_show, another_indent_type_line)
       else

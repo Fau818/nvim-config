@@ -9,7 +9,7 @@ return {
   opts = {
     -- NOTE: Exclusion only makes sense if '*' is specified first!
     -- NOTE: css/scss/less are left to `cssls` via native `vim.lsp.document_color`.
-    filetypes = { "*", "!c", "!cpp", "!css", "!scss", "!less", "!lazy", "!sidekick_terminal", notify = { RGB = false } },
+    filetypes = { "*", "!c", "!cpp", "!css", "!scss", "!less", "!lazy", "!sidekick_terminal", "!bigfile", notify = { RGB = false } },
     buftypes = fvim.file.excluded_buftypes,  -- Use default.
     user_commands = true,  ---@type boolean | table Enable all or some usercommands
     lazy_load = false,  -- NOTE: If true, cmp_menu will not show colors.
@@ -87,7 +87,8 @@ return {
       },
 
       hooks = {
-        should_highlight_line = false, -- function(line, bufnr, line_num) -> bool
+        -- PERF: The xterm parser copies the rest of the line at every byte, so a line costs O(n²): ~70ms for 20k chars.
+        should_highlight_line = function(line) return #line <= fvim.file.large_file_line end,
         should_highlight_color = false, -- function(rgb_hex, parser_name, ctx) -> bool
         transform_color = false, -- function(rgb_hex, ctx) -> string
         on_attach = false, -- function(bufnr, opts)
