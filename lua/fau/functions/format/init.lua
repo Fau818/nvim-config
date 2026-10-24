@@ -3,18 +3,19 @@ local M = {}
 M.tag = require("fau.functions.format.tagcomment")  -- `TAG:` comments
 
 
--- ════════════════════════════════════════════════════════════
--- ══════════════════════ Disable Flags ═══════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                      Disable Flags                       │
+-- └──────────────────────────────────────────────────────────┘
 
----Whether `fvim_format` or `fvim_format_<name>` is set to false in `vim.g` or `vim.b`.
+---Whether `fvim_format` or `fvim_format_<feature_name>` is disabled.
 ---@param name "trim"|"sep"|"tag"
 ---@param bufnr? integer Default is the current buffer.
 ---@return boolean disabled
 function M.is_disabled(name, bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
+  local function off(value) return value == false or value == 0 end  -- `:let g:x = 0` reaches Lua as the number 0
   for _, flag in ipairs({ "fvim_format", ("fvim_format_%s"):format(name) }) do
-    if vim.g[flag] == false or vim.b[bufnr][flag] == false then return true end
+    if off(vim.g[flag]) or off(vim.b[bufnr][flag]) then return true end
   end
   return false
 end
@@ -29,9 +30,9 @@ function M.run(bufnr)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═══════════════ Trim Blank Lines and Spaces ════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │               Trim Blank Lines and Spaces                │
+-- └──────────────────────────────────────────────────────────┘
 
 M._trim_text_source = nil
 
@@ -63,16 +64,23 @@ M.trim_text = function(bufnr, force)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════ Separator Normalization ══════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                 Separator Normalization                  │
+-- └──────────────────────────────────────────────────────────┘
 
-local SEP_SPAN  = 60   -- glyph columns after the comment leader
-local SEP_LEN   = 3    -- glyphs in a marker prefix, and the shortest run that reads as a rule
-local SEP_HEAVY = "═"  -- top level: a 3-line box, or a single line
-local SEP_MID   = "─"  -- one level down: a label and a tail
-local SEP_LIGHT = "┄"  -- the level below that: a fixed prefix, and no tail
+local SEP_SPAN   = 60   -- glyph columns after the comment leader
+local SEP_LEN    = 3    -- glyphs in a marker prefix, and the shortest run that reads as a rule
+local SEP_PAD    = 2    -- the fewest spaces between a box's label and each of its bars
+local SEP_DOUBLE = "═"  -- weight 2: a single line, label centered
+local SEP_SINGLE = "─"  -- one level down: a label and a tail
+local SEP_DASHED = "┄"  -- the level below that: a fixed prefix, and no tail
+local SEP_BOXES  = {    -- the 3-line boxes, as { top-left, horizontal, top-right, vertical, bottom-left, bottom-right }
+  { "╔", "═", "╗", "║", "╚", "╝" },  -- weight 0: the file's title
+  { "┌", "─", "┐", "│", "└", "┘" },  -- weight 1
+}
 
+
+-- ═════════════════════════ Helpers ══════════════════════════
 
 ---Right-trim a trailing run of `ch`, which may be multi-byte (Lua patterns match bytes, so regex cannot be used here).
 local function rstrip_run(s, ch)
@@ -88,10 +96,19 @@ local function lstrip_run(s, ch)
 end
 
 
+---The label between the runs of `ch`, or nil when there is none.
+local function label_of(body, ch)
+  local label = vim.trim(rstrip_run(lstrip_run(vim.trim(body), ch), ch))  -- trim first: a stray space stops the strip
+  return label ~= "" and label or nil
+end
+
+
+-- ═════════════════════ ASCII Shorthand ══════════════════════
+
 ---Rewrite an ASCII rule into glyphs, one for one, with an optional label
 ---(`=== Label`, `=== Label ===`); nil for a body that is anything else.
---- - `===` → `═` for `sec2`; a `sec1` box is three of these lines
---- - `---` → `─` for `sec3`
+--- - `===` → `═` for `sec2`; a label between two of these lines becomes a `sec0` box
+--- - `---` → `─` for `sec3`; a label between two of these lines becomes a `sec1` box
 --- - `~~~` → `┄` for `sec4`
 ---
 ---A trailing run is dropped, since the width rules below redraw it
@@ -103,7 +120,7 @@ local function ascii_shorthand(rest)
     label = label:gsub("^%s+", ""):gsub(("%%s*%s+$"):format(ascii), ""):gsub("%s+$", "")
     return glyph:rep(#run) .. (label ~= "" and (" " .. label) or "")
   end
-  return convert("=", SEP_HEAVY) or convert("%-", SEP_MID) or convert("~", SEP_LIGHT)
+  return convert("=", SEP_DOUBLE) or convert("%-", SEP_SINGLE) or convert("~", SEP_DASHED)
 end
 
 
@@ -129,8 +146,97 @@ function M.detect_ascii_separators(bufnr)
 end
 
 
----Redraw every section marker in the range: `═` centred and `─` tailed out to the same
----end column, `┄` given a fixed prefix.
+-- ═══════════════════════ Line Markers ═══════════════════════
+
+---Redraw a one-line marker (`sec2`, `sec3` or `sec4`) in its standard form.
+---@param head string indent, comment leader and the space after it
+---@param body string rest of the line, with the shorthand already applied
+---@param target integer display column that `═` and `─` markers end on
+---@return string? line the redrawn line; nil when `body` is not a marker
+local function redraw_line(head, body, target)
+  local room = target - vim.fn.strdisplaywidth(head)
+
+  -- CASE1: `sec2`, the label centered between two runs of `═`. A bare `═` rule is drawn in full.
+  if vim.startswith(body, SEP_DOUBLE) then
+    local label = label_of(body, SEP_DOUBLE)
+    if not label then return head .. SEP_DOUBLE:rep(math.max(room, SEP_LEN)) end
+    local pad = math.max(room - vim.fn.strdisplaywidth(label) - 2, SEP_LEN * 2)
+    local left = math.floor(pad / 2)  -- odd glyph to the right
+    return ("%s%s %s %s"):format(head, SEP_DOUBLE:rep(left), label, SEP_DOUBLE:rep(pad - left))
+  end
+
+  -- CASE2: `sec3`, `───` and the label, then a tail of `─`. A bare `─` rule is drawn in full.
+  if vim.startswith(body, SEP_SINGLE) then
+    local label = label_of(body, SEP_SINGLE)
+    if not label then return head .. SEP_SINGLE:rep(math.max(room, SEP_LEN)) end
+    local start = ("%s%s %s "):format(head, SEP_SINGLE:rep(SEP_LEN), label)
+    return start .. SEP_SINGLE:rep(math.max(target - vim.fn.strdisplaywidth(start), SEP_LEN))
+  end
+
+  -- CASE3: `sec4`, `┄┄┄` and the label, with no tail. A bare `┄` rule stays as it is.
+  if vim.startswith(body, SEP_DASHED) then
+    local label = label_of(body, SEP_DASHED)
+    return label and ("%s%s %s"):format(head, SEP_DASHED:rep(SEP_LEN), label) or head .. body
+  end
+end
+
+
+-- ═══════════════════════ Box Markers ════════════════════════
+
+---Draw a box marker (`sec0` or `sec1`) around a label.
+---@param head string indent, comment leader and the space after it
+---@param style string[] the box's glyphs, an entry of `SEP_BOXES`
+---@param label string text of the middle line, centered
+---@param target integer display column the box ends on; a label too long for it widens the box
+---@return string[] lines the top, middle and bottom lines
+local function boxed(head, style, label, target)
+  local tl, h, tr, v, bl, br = unpack(style)
+  local width = vim.fn.strdisplaywidth(label)
+  local inner = math.max(target - vim.fn.strdisplaywidth(head) - 2, width + 2 * SEP_PAD)  -- a long label widens the box
+  local left = math.floor((inner - width) / 2)  -- odd glyph to the right
+  local middle = (" "):rep(left) .. label .. (" "):rep(inner - width - left)
+  return { head .. tl .. h:rep(inner) .. tr, head .. v .. middle .. v, head .. bl .. h:rep(inner) .. br }
+end
+
+
+---Redraw three comment lines as a box marker (`sec0` or `sec1`), if they form one.
+---@param top? {head: string, body: string} first line, split as in `normalize_separators`; nil if not a comment
+---@param mid? {head: string, body: string} second line
+---@param bot? {head: string, body: string} third line
+---@param target integer display column the box ends on
+---@return string[]? lines the redrawn top, middle and bottom lines; nil when they do not form a box
+local function redraw_box(top, mid, bot, target)
+  -- EXIT: Not three comment lines with the same indent and leader.
+  if not (top and mid and bot) or top.head ~= mid.head or top.head ~= bot.head then return end
+
+  for _, style in ipairs(SEP_BOXES) do
+    local tl, h, _, v, bl = unpack(style)
+
+    -- CASE1: Already drawn. Its corners are enough, since the middle may have lost its bars while editing.
+    if vim.startswith(top.body, tl) and vim.startswith(bot.body, bl) then
+      local label = label_of(mid.body, v)
+      return label and boxed(top.head, style, label, target)
+    end
+
+    -- CASE2: A label between two bare rules of the box's line (`===` → `═`, `---` → `─`).
+    -- NOTE: The old `sec1` (`═` rules around `═══ Label ═══`) lands here too, and becomes the `sec1` box.
+    if lstrip_run(top.body, h) == "" and lstrip_run(bot.body, h) == "" then
+      local label = label_of(mid.body, h)
+      local old = vim.startswith(mid.body, SEP_DOUBLE)
+      return label and boxed(top.head, old and SEP_BOXES[2] or style, label, target)
+    end
+  end
+end
+
+
+-- ════════════════════════ Normalize ═════════════════════════
+
+---Redraw every section marker in the range; all but `┄` end on the same column:
+--- - box (`sec0`, `sec1`): framed, label centered
+--- - `═` (`sec2`): label centered
+--- - `─` (`sec3`): label after `───`, then a tail
+--- - `┄` (`sec4`): label after `┄┄┄`, no tail
+---
 ---SEE: `ascii_shorthand()` for the ASCII to glyph conversion rules.
 ---@param bufnr? integer buffer number (default: current buffer)
 ---@param from? integer 0-based first line to scan (default: whole buffer)
@@ -141,67 +247,36 @@ function M.normalize_separators(bufnr, from, to, shorthand, force)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   if not force and M.is_disabled("sep", bufnr) then return end
 
+  -- EXIT: No line comment, or a block one (`/* %s */`, `<!-- %s -->`) whose closing part a rule would run past.
   local leader, pattern = fvim.utils.comment_parts(bufnr)
-  if not leader then return end
+  if not leader or vim.bo[bufnr].commentstring:find("%%s%s*%S") then return end
 
-  local count = vim.api.nvim_buf_line_count(bufnr)
-  from = math.max(from or 0, 0)
-  if to == nil or to < 0 then to = count else to = math.min(to, count) end
-  if from >= to then return end
-
-  local lines = vim.api.nvim_buf_get_lines(bufnr, from, to, false)
+  from = from or 0
+  local lines = vim.api.nvim_buf_get_lines(bufnr, from, to or -1, false)  -- out-of-range ends are clamped
   local target = vim.fn.strdisplaywidth(leader) + 1 + SEP_SPAN
   shorthand = shorthand or not vim.b[bufnr].fvim_ascii_separators
 
-  ---The label between the runs of `ch`, or nil when there is none.
-  local function label_of(rest, ch)
-    local label = rstrip_run(lstrip_run(rest, ch):gsub("^%s+", ""), ch):gsub("%s+$", "")
-    return label ~= "" and label or nil
-  end
-
-  ---Three `ch`, the label, then a tail of `ch` out to column `target`.
-  local function tailed(head, ch, label)
-    local h = ("%s%s %s "):format(head, ch:rep(SEP_LEN), label)
-    return h .. ch:rep(math.max(target - vim.fn.strdisplaywidth(h), SEP_LEN))
-  end
-
-  ---The marker redrawn, or nil when the line carries no marker to redraw.
-  local function rewrite(line)
-    local indent, rest = line:match(pattern)
-    if not rest or rest == "" then return end
-
-    local head = ("%s%s "):format(indent, leader)
-    local room = target - vim.fn.strdisplaywidth(head)
-    local new
-
-    -- Convert first, so the branches below run on the glyph form.
-    local glyphs = shorthand and ascii_shorthand(rest) or false
-    if glyphs then rest = glyphs; new = head .. rest end
-
-    if vim.startswith(rest, SEP_HEAVY) then
-      local label = label_of(rest, SEP_HEAVY)
-      if not label then new = head .. SEP_HEAVY:rep(math.max(room, SEP_LEN))  -- box frame line
-      else
-        local pad = math.max(room - vim.fn.strdisplaywidth(label) - 2, SEP_LEN * 2)
-        local left = math.floor(pad / 2)                        -- odd glyph to the right
-        new = ("%s%s %s %s"):format(head, SEP_HEAVY:rep(left), label, SEP_HEAVY:rep(pad - left))
-      end
-    elseif vim.startswith(rest, SEP_MID) then
-      local label = label_of(rest, SEP_MID)
-      if label then new = tailed(head, SEP_MID, label) end
-    elseif vim.startswith(rest, SEP_LIGHT) then
-      local label = label_of(rest, SEP_LIGHT)
-      if label then new = ("%s%s %s"):format(head, SEP_LIGHT:rep(SEP_LEN), label) end
-    end
-
-    return new
-  end
-
+  -- STEP1: Split each comment line into its head (indent and leader) and its body, with the shorthand applied.
+  local parts = {}
   for i, line in ipairs(lines) do
-    local new = rewrite(line)
-    if new and new ~= line then
-      vim.api.nvim_buf_set_lines(bufnr, from + i - 1, from + i, false, { new })
+    local indent, body = line:match(pattern)
+    if body and body ~= "" then
+      parts[i] = { head = indent .. leader .. " ", body = shorthand and ascii_shorthand(body) or body }
     end
+  end
+
+  -- STEP2: Redraw a box 3 lines at a time, any other line on its own; write only the lines that changed.
+  local i = 1
+  while i <= #lines do
+    local p = parts[i]
+    -- CASE1: Lines i to i+2 form a box: redraw all three.
+    local new = redraw_box(p, parts[i + 1], parts[i + 2], target)
+    -- CASE2: Otherwise redraw line i alone; a line that is not a marker stays as it is.
+    if not new then new = { p and redraw_line(p.head, p.body, target) or lines[i] } end
+    if not vim.deep_equal(new, vim.list_slice(lines, i, i + #new - 1)) then
+      vim.api.nvim_buf_set_lines(bufnr, from + i - 1, from + i - 1 + #new, false, new)
+    end
+    i = i + #new
   end
 
   -- The forced run converted the ASCII rules this flag was based on, so recompute it.
@@ -209,9 +284,9 @@ function M.normalize_separators(bufnr, from, to, shorthand, force)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═══════════════════════ Smart Format ═══════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                       Smart Format                       │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Smart indent a file or range.
 function M.auto_indent()

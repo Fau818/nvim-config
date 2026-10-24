@@ -3,11 +3,13 @@ local M = {}
 
 ---Opening section marker; UTF-8 glyphs need no escaping.
 local SEP_MARKERS = {
-  "^═══",       -- `sec1`/`sec2`: a box frame line, or a centred banner
-  "^───",       -- `sec3`: a tailed section
-  "^┄┄┄",       -- `sec4`: a bare subsection
-  "^===",       -- legacy ASCII section (3+ `=`)
-  "^%-%-%-%-",  -- legacy ASCII subsection (4+ `-`, so the markdown `---` rule lives)
+  "^╔═", "^║.*║%s*$", "^╚═",  -- `sec0`: the title box
+  "^┌─", "^│.*│%s*$", "^└─",  -- `sec1`: a single-line box (the middle needs both bars, so diagrams live)
+  "^═══",                     -- `sec2`: a centered banner, and every line of the old `sec1` box
+  "^───",                     -- `sec3`: a tailed section
+  "^┄┄┄",                     -- `sec4`: a bare subsection
+  "^===",                     -- legacy ASCII section (3+ `=`)
+  "^%-%-%-%-",                -- legacy ASCII subsection (4+ `-`, so the markdown `---` rule lives)
 }
 
 

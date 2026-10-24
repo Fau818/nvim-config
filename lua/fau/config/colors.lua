@@ -79,7 +79,8 @@ return {
     changeInline = "#1D3245",
     deleteInline = "#62314F",
 
-    addPreviewInline = "#32574B",
+    addPreviewInline    = "#32574B",
+    changePreviewInline = "#305272",
   },
 
   lualine = {
