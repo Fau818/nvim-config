@@ -15,7 +15,6 @@ return {
 
   -- NOTE: Please consider to update `lualine.ignore_focus` when you add new filetypes.
   excluded_filetypes = {
-    -- IMPORTANT: Keep `""` as the first element.
     "", "netrw", "tutor", "man", "qf", "log",
     "alpha",
     "aerial", "aerial-nav",
@@ -42,7 +41,7 @@ return {
     "trouble",
     "yazi",
   },
-  excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },  -- NOTE: Keep `nofile` as the first element.
+  excluded_buftypes = { "nofile", "help", "terminal", "prompt", "quickfix", "nowrite" },
 
   special_files = {
     "Cargo.toml",

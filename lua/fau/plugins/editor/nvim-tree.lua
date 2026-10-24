@@ -82,7 +82,8 @@ end
 
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
-  local function opts(desc) return { desc = desc, buffer = bufnr } end
+  -- NOTE: `nowait`, so a key like `c` doesn't wait for a longer global map (e.g. nvim-surround's `cs`).
+  local function opts(desc) return { desc = desc, buffer = bufnr, nowait = true } end
 
 
   -- ─── Open ─────────────────────────────────────────────────

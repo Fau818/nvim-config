@@ -68,7 +68,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   desc = "Opt a file that draws its own rules in ASCII out of the `---`/`===` shorthand.",
   callback = function(env)
     vim.schedule(function()
-      if not vim.api.nvim_buf_is_valid(env.buf) or vim.bo[env.buf].buftype ~= "" then return end
+      if not vim.api.nvim_buf_is_valid(env.buf) then return end
+      local buftype = vim.bo[env.buf].buftype
+      if buftype ~= "" and buftype ~= "acwrite" then return end  -- NOTE: `acwrite`: files in VSCode
       fvim.format.detect_ascii_separators(env.buf)
     end)
   end,

@@ -16,7 +16,7 @@ return {
   ---@module "todotag"
   "fau818/todotag.nvim",
   dependencies = "folke/todo-comments.nvim",
-  -- dir = "~/Documents/Fau/projects/todotag.nvim",  -- For development.
+  -- dir = "~/Documents/Fau/projects/nvim_plugins/todotag.nvim",  -- For development.
 
   cmd = { "TodotagStart", "TodotagStop" },
   event = { "BufReadPost", "BufNewFile" },

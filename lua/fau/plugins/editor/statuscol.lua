@@ -12,8 +12,8 @@ return {
       thousands   = false,  -- or line number thousands separator string ("." / ",")
       relculright = true,  -- whether to right-align the cursor line number with 'relativenumber' set
 
-      ft_ignore = vim.list_slice(fvim.file.excluded_filetypes, 2),  -- NOTE: Filtered filetype `""`
-      bt_ignore = vim.list_slice(fvim.file.excluded_buftypes, 2),   -- NOTE: Filtered buftype `"nofile"`
+      ft_ignore = vim.tbl_filter(function(ft) return ft ~= "" end, fvim.file.excluded_filetypes),       -- NOTE: Filtered filetype `""`
+      bt_ignore = vim.tbl_filter(function(bt) return bt ~= "nofile" end, fvim.file.excluded_buftypes),  -- NOTE: Filtered buftype `"nofile"`
 
       segments = {
         -- ─── Sign (Default statuscolumn) ────────────────────

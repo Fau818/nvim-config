@@ -10,7 +10,7 @@ return {
     -- NOTE: Exclusion only makes sense if '*' is specified first!
     -- NOTE: css/scss/less are left to `cssls` via native `vim.lsp.document_color`.
     filetypes = { "*", "!c", "!cpp", "!css", "!scss", "!less", "!lazy", "!sidekick_terminal", "!bigfile", notify = { RGB = false } },
-    buftypes = fvim.file.excluded_buftypes,  -- Use default.
+    -- buftypes = nil,  -- Use default.
     user_commands = true,  ---@type boolean | table Enable all or some usercommands
     lazy_load = false,  -- NOTE: If true, cmp_menu will not show colors.
 

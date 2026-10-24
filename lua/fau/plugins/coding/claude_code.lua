@@ -8,7 +8,7 @@ local function is_visual(mode) return mode == "v" or mode == "V" or mode == "\22
 ---@param win integer The window the selection belongs to.
 ---@param sel? table What to send; the cursor position of `win` when nil.
 local function broadcast(win, sel)
-  local MAX_TRY, TIMEOUT = 5, 200
+  local MAX_TRY, TIMEOUT = 10, 200
   local claudecode, selection = require("claudecode"), require("claudecode.selection")
 
   local tries = 0
