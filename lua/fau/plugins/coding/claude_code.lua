@@ -1,54 +1,61 @@
----Update the selection of current window to Claude Code client.
-local function broadcast_cursor_position(win)
-  local selection = require("claudecode.selection")
-  pcall(vim.api.nvim_win_call, win, function() selection.send_selection_update(selection.get_cursor_position()) end)
+---Check whether a mode is one of the Visual modes.
+---@param mode string
+---@return boolean
+local function is_visual(mode) return mode == "v" or mode == "V" or mode == "\22" end
+
+
+---Send a selection to the Claude Code client once it is connected.
+---@param win integer The window the selection belongs to.
+---@param sel? table What to send; the cursor position of `win` when nil.
+local function broadcast(win, sel)
+  local MAX_TRY, TIMEOUT = 5, 200
+  local claudecode, selection = require("claudecode"), require("claudecode.selection")
+
+  local tries = 0
+  local function try()
+    tries = tries + 1
+    if not claudecode.is_claude_connected() then
+      if tries < MAX_TRY then return vim.defer_fn(try, TIMEOUT) end
+      return fvim.notify("Failed to broadcast selection to Claude Code client after " .. MAX_TRY .. " tries.", vim.log.levels.WARN)
+    end
+    pcall(vim.api.nvim_win_call, win, function() selection.send_selection_update(sel or selection.get_cursor_position()) end)
+  end
+
+  vim.defer_fn(try, TIMEOUT * 2)
 end
 
 
----Send the current selection or file to Claude Code client.
+---Mention the current file, or its selected lines, in the Claude Code prompt.
 local function send_to_cc()
   local win = vim.api.nvim_get_current_win()
-
-  local mode = vim.fn.mode()
-  -- if mode == "v" or mode == "V" or mode == "\22" then vim.api.nvim_command("ClaudeCodeSend")
-  -- elseif mode == "n" then vim.api.nvim_command("ClaudeCodeAdd %")
-  -- else assert(false, "Mode " .. mode .. " not supported!")
-  -- end
 
   -- HACK: Use a mention instead of the builtin send command since the CLI keeps one global `at_mentioned` handler,
   -- \     owned by whichever prompt box mounted last (e.g. the agents page), so the command lands in the wrong box.
   local mention = "@" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
-  if mode == "v" or mode == "V" or mode == "\22" then
+  if is_visual(vim.fn.mode()) then
     local first, last = vim.fn.line("v"), vim.fn.line(".")
     if first > last then first, last = last, first end
     mention = mention .. "#L" .. first .. (first == last and "" or "-" .. last)
-  elseif mode ~= "n" then assert(false, "Mode " .. mode .. " not supported!")
   end
 
   require("claudecode.terminal").send_to_terminal(mention .. " ", { submit = false, focus = true })
-  vim.schedule(function() broadcast_cursor_position(win) end)
+  broadcast(win)
 end
 
 
---- Focus to Claude Code window and broadcast the current selection or file to Claude Code client.
+---Focus the Claude Code window and tell the client what is selected in the current window.
 local function focus_cc()
-  local MAX_TRY = 5
-  local TIMEOUT = 200
+  local win, sel = vim.api.nvim_get_current_win(), nil
 
-  local claudecode = require("claudecode")
-  local win = vim.api.nvim_get_current_win()
-  vim.api.nvim_command("ClaudeCodeFocus")
-
-  local tries = 0
-  local function try_broadcast()
-    tries = tries + 1
-    if tries > MAX_TRY then vim.notify("Failed to broadcast selection to Claude Code client after " .. MAX_TRY .. " tries.", vim.log.levels.WARN) return end
-    if claudecode.is_claude_connected() then broadcast_cursor_position(win)
-    else vim.defer_fn(try_broadcast, TIMEOUT)
-    end
+  -- HACK: From Visual mode `ClaudeCodeFocus` queues an <Esc> to leave it, which only runs once the terminal has
+  -- \     focus, so the CLI receives it and interrupts the running task. Leave Visual mode ourselves first.
+  if is_visual(vim.fn.mode()) then
+    sel = require("claudecode.selection").get_visual_selection()  -- Read it before leaving Visual mode.
+    vim.cmd("normal! \27")
   end
 
-  vim.defer_fn(try_broadcast, TIMEOUT * 2)
+  vim.api.nvim_command("ClaudeCodeFocus")
+  broadcast(win, sel)
 end
 
 
