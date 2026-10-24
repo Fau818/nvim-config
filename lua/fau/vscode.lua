@@ -2,9 +2,9 @@ if not vim.g.vscode then return end
 local vscode = require("vscode")
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════ Neovim-VSCode Integration Setup ══════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │             Neovim-VSCode Integration Setup              │
+-- └──────────────────────────────────────────────────────────┘
 
 _G.vscode = vscode
 
@@ -14,9 +14,9 @@ vim.g.clipboard = vim.g.vscode_clipboard  -- TEST: Use VSCode clipboard integrat
 vim.g.snacks_animate = false
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════════ Keymaps ══════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Keymaps                          │
+-- └──────────────────────────────────────────────────────────┘
 
 -- ═══════════ Remove vscode-neovim default keymaps ═══════════
 
@@ -173,9 +173,9 @@ keymap("i", "<A-l>", function() vscode.call("editor.action.inlineSuggest.showNex
 keymap("i", "<A-w>", function() vscode.call("editor.action.inlineSuggest.acceptNextWord") end, opts("VSCode Copilot: Accept Next Word"))
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════════ Autocmds ═════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Autocmds                         │
+-- └──────────────────────────────────────────────────────────┘
 
 -- NOTE: VSCode owns the write: every document buffer is `acwrite` with its own
 -- \     `BufWriteCmd`, which replaces the write path and skips `BufWritePre`.

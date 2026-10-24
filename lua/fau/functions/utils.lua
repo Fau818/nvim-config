@@ -1,9 +1,9 @@
 local M = {}
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════════ Feedkeys ═════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Feedkeys                         │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Simulate pressing `keys` in noremap mode (asynchronously by default).
 ---@param keys string
@@ -11,9 +11,9 @@ local M = {}
 function M.feedkeys(keys, mode) vim.api.nvim_feedkeys(vim.keycode(keys), mode or "n", false) end
 
 
--- ════════════════════════════════════════════════════════════
--- ══════════════════════ Buffer Remove ═══════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                      Buffer Remove                       │
+-- └──────────────────────────────────────────────────────────┘
 
 ---@type fun(bufnr?: number)
 M._buf_remove = nil
@@ -41,9 +41,9 @@ function M.buf_remove(bufnr)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═══════════════════════ Comment Line ═══════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                       Comment Line                       │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Get the comment leader and pattern for splitting a comment line into indent and body.
 ---@param bufnr? integer Default is the current buffer.
@@ -56,9 +56,9 @@ function M.comment_parts(bufnr)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═══════════════════ Large File Detection ═══════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                   Large File Detection                   │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Check whether a buffer holds a large file.
 ---@param bufnr? integer Default is the current buffer.
@@ -82,9 +82,9 @@ function M.is_large_file(bufnr)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════ Reveal in System ═════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                     Reveal in System                     │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Reveal a file in the system's file manager.
 ---@param path? string The file path to reveal. If nil, the current buffer's path is used.
@@ -97,9 +97,9 @@ function M.reveal_in_system(path)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ════════════════════ Smart Visual Mode ═════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                    Smart Visual Mode                     │
+-- └──────────────────────────────────────────────────────────┘
 
 ---If there is no line crossing when selecting in Visual-Block mode, switch to Visual mode.
 ---This is useful to trim line break when yanking in Visual-Block mode.
@@ -114,9 +114,9 @@ function M.smart_visual_mode()
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════ Fallback Mapping ═════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                     Fallback Mapping                     │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Capture the current mapping for `mode`+`key` and return a closure that invokes it.
 ---If no mapping exists, the closure feeds the original key with the no-remap flag, falling through to vim's built-in behavior.
@@ -150,9 +150,9 @@ function M.keymap_fallback_wrapper(mode, key)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════════ Backdrop ═════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Backdrop                         │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Creates a semi-transparent backdrop window behind the specified parent window.
 ---@param parent integer A valid window ID to anchor the backdrop to.
@@ -204,9 +204,9 @@ function M.backdrop(parent, opts)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ══════════════════════════ Window ══════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                          Window                          │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Whether a main window could live in `win`: it is not floating, and not one of the pinned sidebars.
 ---@param win integer

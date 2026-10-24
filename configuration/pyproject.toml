@@ -3,9 +3,9 @@
 # requires-python = ">=3.12"
 
 
-# ════════════════════════════════════════════════════════════
-# ═══════════════════════ Basedpyright ═══════════════════════
-# ════════════════════════════════════════════════════════════
+# ┌──────────────────────────────────────────────────────────┐
+# │                       Basedpyright                       │
+# └──────────────────────────────────────────────────────────┘
 
 # IMPORTANT: !!!!!! This won't work since neovim handled the LSP config.
 [tool.basedpyright]
@@ -13,8 +13,7 @@
 # SEE: Basedpyright: https://docs.basedpyright.com/dev/configuration/config-files
 
 
-# ═══════════════════ Environment Options ════════════════════
-
+# ─── Environment Options ────────────────────────────────────
 # include = ["src"]
 # exclude = []
 
@@ -34,8 +33,7 @@
 # useLibraryCodeForTypes = true
 
 
-# ═════════════════ Type Evaluation Settings ═════════════════
-
+# ─── Type Evaluation Settings ───────────────────────────────
 # strictListInference        = false
 # strictSetInference         = false
 # strictDictionaryInferencet = false
@@ -53,8 +51,7 @@
 # enableBasedFeatures = false
 
 
-# ═══════════════════════ Diagnostics ════════════════════════
-
+# ─── Diagnostics ────────────────────────────────────────────
 typeCheckingMode = "recommended"  # values: "off" | "basic" | "standard" | "strict" | "recommended" | "all"
 # ignore = []
 
@@ -66,9 +63,9 @@ reportUnusedVariable   = "hint"
 reportUnreachable      = "information"
 
 
-# ════════════════════════════════════════════════════════════
-# ═══════════════════════════ Ruff ═══════════════════════════
-# ════════════════════════════════════════════════════════════
+# ┌──────────────────────────────────────────────────────────┐
+# │                           Ruff                           │
+# └──────────────────────────────────────────────────────────┘
 
 # SEE: https://docs.astral.sh/ruff/settings/       (Full settings)
 # SEE: https://docs.astral.sh/ruff/configuration/  (Basic configuration)

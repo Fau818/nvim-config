@@ -5,9 +5,9 @@ local CONT       = "\\"  -- stands in for the tag on every line below it
 local TAG_END    = ": "  -- closes a tag
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════════ Anatomy ══════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Anatomy                          │
+-- └──────────────────────────────────────────────────────────┘
 
 ---The tag at the head of a comment body (`NOTE`, `CASE1`, `TODO 2`) and the text after it.
 ---NOTE: The whitespace is required, so that a `HTTP://…` in a comment is not read as a tag.
@@ -56,9 +56,9 @@ local function tag_at(bufnr, row, pattern)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ══════════════════════════ Format ══════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                          Format                          │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Give every tag comment its `TAG_END` and a padded continuation line for every line below the tag.
 ---@param bufnr? integer buffer number (default: current buffer)
@@ -101,9 +101,9 @@ function M.normalize(bufnr, force)
 end
 
 
--- ════════════════════════════════════════════════════════════
--- ═════════════════════════ Editing ══════════════════════════
--- ════════════════════════════════════════════════════════════
+-- ┌──────────────────────────────────────────────────────────┐
+-- │                         Editing                          │
+-- └──────────────────────────────────────────────────────────┘
 
 ---Join the line below into the current one, dropping its continuation marker; plain `J` otherwise.
 function M.merge_line()

@@ -1,6 +1,6 @@
--- ════════════════════════════════════════════════════════════
--- HACK: nested-field filtering for the snacks.picker matcher.
--- ════════════════════════════════════════════════════════════
+-- ╔═══════════════════════════════════════════════════════════════╗
+-- ║  HACK: nested-field filtering for the snacks.picker matcher.  ║
+-- ╚═══════════════════════════════════════════════════════════════╝
 --
 -- snacks supports `field:value`, but only for TOP-LEVEL fields: internally it
 -- does `tostring(item[field])`. Values that live in a sub-table, e.g. the
