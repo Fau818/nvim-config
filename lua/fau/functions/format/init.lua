@@ -7,14 +7,14 @@ M.tag = require("fau.functions.format.tagcomment")  -- `TAG:` comments
 -- ══════════════════════ Disable Flags ═══════════════════════
 -- ════════════════════════════════════════════════════════════
 
----Whether `fvim_<name>_disable` or `fvim_format_disable` is set in `vim.g` or `vim.b`.
----@param name "trim"|"separators"|"tags"
+---Whether `fvim_format` or `fvim_format_<name>` is set to false in `vim.g` or `vim.b`.
+---@param name "trim"|"sep"|"tag"
 ---@param bufnr? integer Default is the current buffer.
 ---@return boolean disabled
 function M.is_disabled(name, bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  for _, flag in ipairs({ "fvim_format_disable", ("fvim_%s_disable"):format(name) }) do
-    if vim.g[flag] == true or vim.b[bufnr][flag] == true then return true end
+  for _, flag in ipairs({ "fvim_format", ("fvim_format_%s"):format(name) }) do
+    if vim.g[flag] == false or vim.b[bufnr][flag] == false then return true end
   end
   return false
 end
@@ -139,7 +139,7 @@ end
 ---@param force? boolean whether to force it to run even if it's disabled
 function M.normalize_separators(bufnr, from, to, shorthand, force)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  if not force and M.is_disabled("separators", bufnr) then return end
+  if not force and M.is_disabled("sep", bufnr) then return end
 
   local leader, pattern = fvim.utils.comment_parts(bufnr)
   if not leader then return end

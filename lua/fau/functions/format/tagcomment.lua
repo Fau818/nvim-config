@@ -65,7 +65,7 @@ end
 ---@param force? boolean whether to force it to run even if it's disabled
 function M.normalize(bufnr, force)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  if not force and fvim.format.is_disabled("tags", bufnr) then return end
+  if not force and fvim.format.is_disabled("tag", bufnr) then return end
 
   local leader, pattern = fvim.utils.comment_parts(bufnr)
   if not leader then return end
