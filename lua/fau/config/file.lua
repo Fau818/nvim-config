@@ -8,7 +8,8 @@ vim.filetype.add({
 
 return {
   large_file_size = 1024 * 1024,  -- 1MiB
-  large_file_line = 2000,
+  large_file_line_length = 2000,  -- in bytes, averaged over the file
+  large_file_line_count  = 10000,
 
   large_folder_count = 100,
 

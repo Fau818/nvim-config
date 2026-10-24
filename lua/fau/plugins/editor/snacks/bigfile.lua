@@ -4,7 +4,7 @@ return {
   notify  = true,
 
   size = fvim.file.large_file_size,
-  line_length = fvim.file.large_file_line,
+  line_length = fvim.file.large_file_line_length,
 
   -- Enable or disable features when big file detected
   ---@param ctx {buf: integer, ft:string}
@@ -16,6 +16,9 @@ return {
 
 
     -- ─── Custom ─────────────────────────────────────────────
+    -- ┄┄┄ Mark as a large file
+    vim.b.is_large_file = true  -- `fvim.utils.is_large_file` keeps it, even if the filetype changes later.
+
     -- ┄┄┄ Disable Snacks
     vim.b.snacks_indent = false
     vim.b.snacks_words  = false
@@ -24,7 +27,6 @@ return {
     -- ┄┄┄ Disable Mini
     vim.b.minitrailspace_disable  = true
     vim.b.miniindentscope_disable = true
-    vim.b.minianimate_disable     = true
 
     -- ┄┄┄ Disable undo
     vim.opt_local.undofile   = false

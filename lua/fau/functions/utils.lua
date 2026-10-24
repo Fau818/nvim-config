@@ -5,9 +5,9 @@ local M = {}
 -- ═════════════════════════ Feedkeys ═════════════════════════
 -- ════════════════════════════════════════════════════════════
 
----Simulate pressing `keys` in noremap mode (asynchronously).
+---Simulate pressing `keys` in noremap mode (asynchronously by default).
 ---@param keys string
----@param mode? string The mode to feed keys in. Default is "n" (normal).
+---@param mode? string The flags for `nvim_feedkeys`. Default is "n" (noremap). Add "x" to run immediately.
 function M.feedkeys(keys, mode) vim.api.nvim_feedkeys(vim.keycode(keys), mode or "n", false) end
 
 
@@ -60,25 +60,24 @@ end
 -- ═══════════════════ Large File Detection ═══════════════════
 -- ════════════════════════════════════════════════════════════
 
----Determine if the specified buffer is a large file.
+---Check whether a buffer holds a large file.
 ---@param bufnr? integer Default is the current buffer.
----@return boolean flag True if the buffer is a large file, otherwise false.
+---@return boolean large True if snacks.bigfile flagged it, or the file is at least `fvim.file.large_file_size` bytes on disk.
 function M.is_large_file(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
 
-  -- EXIT: Not a regular buffer.
-  if vim.bo[bufnr].buftype ~= "" then return false end
-  -- EXIT: `bigfile` filetype always a large file.
+  -- CASE1: Not a file buffer. (vscode-neovim uses `acwrite` for its files, so keep it.)
+  local buftype = vim.bo[bufnr].buftype
+  if buftype ~= "" and buftype ~= "acwrite" then return false end
+  -- CASE2: snacks.bigfile already flagged it as a big file.
   if vim.bo[bufnr].filetype == "bigfile" then return true end
-  -- EXIT: Use the cached result.
+  -- CASE3: Use the cached result. `snacks/bigfile.lua` sets it too, so it is kept even if the filetype changes.
   if vim.b[bufnr].is_large_file ~= nil then return vim.b[bufnr].is_large_file end
 
-  -- Get file status.
-  local status_ok, file_status = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-  -- EXIT: Get the status of file error. => Not a large file (E.g., a new buffer)
-  if not status_ok or not file_status then return false end
-
-  vim.b[bufnr].is_large_file = file_status.size >= fvim.file.large_file_size
+  -- CASE4: Fall back to the size on disk. (E.g., in VSCode, or before snacks.bigfile runs)
+  local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(bufnr))
+  if not stat then return false end  -- e.g. a new buffer; not cached, since it may be written later
+  vim.b[bufnr].is_large_file = stat.size >= fvim.file.large_file_size
   return vim.b[bufnr].is_large_file
 end
 

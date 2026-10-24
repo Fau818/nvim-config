@@ -119,7 +119,7 @@ return {
     lazy_load = true,
 
     -- Disable aerial on files with this many lines
-    disable_max_lines = fvim.file.large_file_line,
+    disable_max_lines = fvim.file.large_file_line_count,
 
     -- Disable aerial on files this size or larger (in bytes)
     disable_max_size = fvim.file.large_file_size,

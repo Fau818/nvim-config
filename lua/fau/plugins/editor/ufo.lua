@@ -72,7 +72,10 @@ return {
   opts = {
     open_fold_hl_timeout = 500,
 
-    provider_selector = function(bufnr, filetype, buftype) return { "treesitter", "indent" } end,
+    provider_selector = function(bufnr, filetype, buftype)
+      if fvim.utils.is_large_file(bufnr) then return "" end  -- `""` disables ufo for the buffer
+      return { "treesitter", "indent" }
+    end,
 
     close_fold_kinds_for_ft = nil,  -- Use default.
     close_fold_current_line_for_ft = nil,  -- Use default.

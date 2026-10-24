@@ -71,7 +71,7 @@ return {
     },
     file = {
       max_size = fvim.file.large_file_size,
-      max_line_length = fvim.file.large_file_line,
+      max_line_length = fvim.file.large_file_line_length,
       ft = nil,  ---@type string? filetype for highlighting. Use `nil` for auto detect
     },
     man_pager = nil,  ---@type string? MANPAGER env to use for `man` preview

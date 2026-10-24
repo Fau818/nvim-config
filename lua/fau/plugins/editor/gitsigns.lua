@@ -1,4 +1,7 @@
 local function _on_attach(bufnr)
+  -- EXIT: Large file. (Returning false stops gitsigns from attaching)
+  if fvim.utils.is_large_file(bufnr) then return false end
+
   local gitsigns = require("gitsigns")
   local keymap  = vim.keymap.set
   local function opts(desc) return { desc = "Gitsigns: " .. desc, buffer = bufnr } end
@@ -37,7 +40,7 @@ local function _on_attach(bufnr)
 
   -- ─── Diffthis ─────────────────────────────────────────────
   ---@diagnostic disable-next-line: param-type-mismatch
-  keymap("n", "<LEADER>gf", function() gitsigns.diffthis("HEAD") end, opts("Diff Current Buffer"))
+  keymap("n", "<LEADER>gf", function() gitsigns.diffthis() end, opts("Diff Current Buffer"))
 
 
   -- ─── Quickfix ─────────────────────────────────────────────
@@ -113,7 +116,7 @@ return {
     sign_priority = fvim.settings.priority.gitsigns,
     update_debounce = fvim.settings.debounce.gitsigns,
     -- status_formatter = nil,  -- Use default
-    max_file_length = fvim.file.large_file_line,  -- Disable if file is longer than this (in lines)
+    max_file_length = fvim.file.large_file_line_count,  -- Disable if file is longer than this (in lines)
 
     preview_config = { border = "single", style = "minimal", relative = "cursor", row = 0, col = 1 },
 

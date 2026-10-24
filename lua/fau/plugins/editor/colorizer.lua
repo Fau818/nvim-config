@@ -88,7 +88,7 @@ return {
 
       hooks = {
         -- PERF: The xterm parser copies the rest of the line at every byte, so a line costs O(n²): ~70ms for 20k chars.
-        should_highlight_line = function(line) return #line <= fvim.file.large_file_line end,
+        should_highlight_line = function(line) return #line <= fvim.file.large_file_line_length end,
         should_highlight_color = false, -- function(rgb_hex, parser_name, ctx) -> bool
         transform_color = false, -- function(rgb_hex, ctx) -> string
         on_attach = false, -- function(bufnr, opts)
