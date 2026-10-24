@@ -1,35 +1,82 @@
--- TODO: Refactor.
----If the file is binary, open it in system file explorer.
+---Check whether `vim.ui.open` has a program to hand files to.
+---@return boolean has_opener false on a headless machine, e.g. a server reached over ssh.
+local function _has_system_opener()
+  if vim.fn.has("mac") == 1 or vim.fn.has("win32") == 1 then return true end
+  -- Same candidates, in the same order, as `vim.ui.open` on other systems.
+  for _, cmd in ipairs({ "wslview", "explorer.exe", "xdg-open", "lemonade" }) do
+    if vim.fn.executable(cmd) == 1 then return true end
+  end
+  return false
+end
+
+
+---Check whether a file is binary rather than text.
+---@param path string
+---@return boolean binary
+local function _is_binary(path)
+  local fd = io.open(path, "rb")
+  if not fd then return false end
+  local head = fd:read(8000) or ""
+  fd:close()
+  return head:find("\0", 1, true) ~= nil  -- Same test as git: a NUL byte within the first 8000 bytes.
+end
+
+
+---Check whether `snacks.image` can draw a file as a picture in this terminal.
+---@param path string
+---@return boolean picture false for PDFs and videos, which it only shows a single page or frame of.
+local function _is_picture(path)
+  if not (Snacks and Snacks.image.supports(path)) then return false end
+  return not vim.tbl_contains({ "pdf", "mp4", "mov", "avi", "mkv", "webm" }, vim.fn.fnamemodify(path, ":e"):lower())
+end
+
+
+---Check whether a folder holds more entries than `fvim.file.large_folder_count`.
+---@param path string
+---@return boolean large
+local function _is_large_folder(path)
+  local limit = fvim.file.large_folder_count
+  local dir = vim.uv.fs_opendir(path, nil, limit + 1)  -- A single batch of `limit + 1` entries is enough to tell.
+  if not dir then return false end
+  local entries = dir:readdir() or {}
+  dir:closedir()
+  return #entries > limit
+end
+
+
+---Open the node under the cursor like `o` does, except that a large folder stays folded
+---and a binary file other than a picture goes to the system opener.
 ---@param mode "edit" | "preview"
 ---@return nil
 local function _smart_open(mode)
   local api = require("nvim-tree.api")
-  local function fallback(node)
-    if mode == "edit" then api.node.open.edit(node)
-    elseif mode == "preview" then api.node.open.preview(node)
-    else fvim.notify("nvim-tree: Unknown open mode!", vim.log.levels.ERROR)
-    end
-  end
-
-  -- Get basic information.
+  local open = mode == "preview" and api.node.open.preview or api.node.open.edit
   local node = api.tree.get_node_under_cursor()
-  if not node then fvim.notify("nvim-tree: Get node info error!", vim.log.levels.ERROR) return end
+  if not node then return end  -- e.g. the cursor is on the live filter line
+  -- A folder node also has `nodes` and `open`.
+  ---@cast node nvim_tree.api.Node|{ nodes?: nvim_tree.api.Node[], open?: boolean }
 
-  if node.type == "file" then
-    -- EXIT: Empty file -> handle as normal file.
-    ---@diagnostic disable-next-line: undefined-field
-    if node.fs_stat.size == 0 then return fallback(node) end
-    -- EXIT: No `file` command -> handle as normal file.
-    if vim.fn.executable("file") ~= 1 then return fallback(node) end
-
-    local result = vim.fn.system({ "file", "--mime-encoding", "-b", node.absolute_path }):sub(1, -2)  -- trim line break char
-    if result == "binary" then
-      fvim.notify("Binary file, open it in system. (Use `o` to force edit it in neovim)", vim.log.levels.INFO)
-      return api.node.run.system(node)
-    end
+  -- CASE1: Folder, or a link to one.
+  if node.nodes then
+    -- CASE1.1: Folding it, or small enough to unfold -> toggle as usual.
+    if node.open or not _is_large_folder(node.absolute_path) then return open(node) end
+    -- CASE1.2: Large folder -> keep it folded.
+    fvim.notify(("Large folder (over %d entries), keep it folded. (Use `o` to force unfold it)"):format(fvim.file.large_folder_count), vim.log.levels.WARN)
+    return
   end
 
-  return fallback(node)
+  -- CASE2: File, or a link to one.
+  -- CASE2.1: Text, or a picture snacks.image can draw -> open it in neovim.
+  if not _is_binary(node.absolute_path) or _is_picture(node.absolute_path) then return open(node) end
+  -- CASE2.2: Other binary file, and the system can open it -> hand it to the system.
+  if _has_system_opener() then
+    fvim.notify("Binary file, open it in system. (Use `o` to force edit it in neovim)", vim.log.levels.INFO)
+    return api.node.run.system(node)
+  end
+  -- CASE2.3: No system opener -> snacks.image draws what it can, e.g. a PDF page, right in neovim.
+  if Snacks and Snacks.image.supports_file(node.absolute_path) then return open(node) end
+  -- CASE2.4: Nothing can show it -> only tell the user.
+  fvim.notify("Binary file, but no system opener here. (Use `o` to force edit it in neovim)", vim.log.levels.WARN)
 end
 
 
@@ -57,38 +104,40 @@ local function on_attach(bufnr)
 
 
   -- ─── Filter ───────────────────────────────────────────────
-  vim.keymap.set("n", "f", api.live_filter.start, opts("Filter: Start"))
-  vim.keymap.set("n", "F", api.live_filter.clear, opts("Filter: Clear"))
+  vim.keymap.set("n", "f", api.filter.live.start, opts("Filter: Start"))
+  vim.keymap.set("n", "F", api.filter.live.clear, opts("Filter: Clear"))
   -- vim.keymap.set("n", "s", api.tree.search_node,  opts("Search File"))
 
 
   -- ─── Rename ───────────────────────────────────────────────
   vim.keymap.set("n", "r",     api.fs.rename_basename, opts("Rename: Basename"))
   vim.keymap.set("n", "lr",    api.fs.rename,          opts("Rename: Filename"))
+  -- vim.keymap.set("n", "lp",    api.fs.rename_sub,      opts("Rename: Omit Filename"))
   vim.keymap.set("n", "<C-r>", api.fs.rename_full,     opts("Rename: Full Path"))
 
 
   -- ─── Copy Name/Path ───────────────────────────────────────
-  vim.keymap.set("n", "ge", api.fs.copy.basename,      opts("Copy: Basename"))
-  vim.keymap.set("n", "y",  api.fs.copy.filename,      opts("Copy: Filename"))
-  vim.keymap.set("n", "Y",  api.fs.copy.relative_path, opts("Copy: Relative Path"))
-  vim.keymap.set("n", "gy", api.fs.copy.absolute_path, opts("Copy: Absolute Path"))
+  vim.keymap.set("n",          "ge", api.fs.copy.basename,      opts("Copy: Basename"))
+  vim.keymap.set("n",          "y",  api.fs.copy.filename,      opts("Copy: Filename"))
+  vim.keymap.set("n",          "Y",  api.fs.copy.relative_path, opts("Copy: Relative Path"))
+  vim.keymap.set({ "n", "x" }, "gy", api.fs.copy.absolute_path, opts("Copy: Absolute Path"))
 
 
   -- ─── File Operations ──────────────────────────────────────
-  vim.keymap.set("n", "a", api.fs.create,    opts("File: Create"))
-  vim.keymap.set("n", "x", api.fs.cut,       opts("File: Cut"))
-  vim.keymap.set("n", "c", api.fs.copy.node, opts("File: Copy"))
-  vim.keymap.set("n", "d", api.fs.trash,     opts("File: Trash"))
-  vim.keymap.set("n", "D", api.fs.remove,    opts("File: Delete"))
-  vim.keymap.set("n", "p", api.fs.paste,     opts("File: Paste"))
+  vim.keymap.set("n",          "a",  api.fs.create,    opts("File: Create"))
+  vim.keymap.set({ "n", "x" }, "x",  api.fs.cut,       opts("File: Cut"))
+  vim.keymap.set({ "n", "x" }, "c",  api.fs.copy.node, opts("File: Copy"))
+  vim.keymap.set({ "n", "x" }, "d",  api.fs.trash,     opts("File: Trash"))
+  vim.keymap.set({ "n", "x" }, "D",  api.fs.remove,    opts("File: Delete"))
+  vim.keymap.set("n",          "p",  api.fs.paste,     opts("File: Paste"))
+  vim.keymap.set("n",          "gp", api.fs.move,      opts("File: Paste as Move"))
 
 
   -- ─── View ─────────────────────────────────────────────────
-  vim.keymap.set("n", "B", api.tree.toggle_no_buffer_filter, opts("View: Toggle Buffer"))
-  vim.keymap.set("n", "C", api.tree.toggle_git_clean_filter, opts("View: Toggle Git"))
-  vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts("View: Toggle Ignore"))
-  vim.keymap.set("n", "U", api.tree.toggle_custom_filter,    opts("View: Toggle Hidden"))
+  vim.keymap.set("n", "B", api.filter.no_buffer.toggle,   opts("View: Toggle Buffer"))
+  vim.keymap.set("n", "C", api.filter.git.clean.toggle,   opts("View: Toggle Git"))
+  vim.keymap.set("n", "I", api.filter.git.ignored.toggle, opts("View: Toggle Ignore"))
+  vim.keymap.set("n", "U", api.filter.custom.toggle,      opts("View: Toggle Hidden"))
 
 
   -- ─── Expand/Collapse ──────────────────────────────────────
@@ -127,11 +176,11 @@ local function on_attach(bufnr)
   -- vim.keymap.set("n", "bmv", api.marks.bulk.move,                opts("Bookmark: Move"))
   -- vim.keymap.set("n", "bt",  api.marks.bulk.trash,               opts("Bookmark: Trash"))
   -- vim.keymap.set("n", "bd",  api.marks.bulk.delete,              opts("Bookmark: Delete"))
-  -- vim.keymap.set("n", "M",   api.tree.toggle_no_bookmark_filter, opts("Toggle Filter: No Bookmark"))
+  -- vim.keymap.set("n", "M",   api.filter.no_bookmark.toggle,      opts("Toggle Filter: No Bookmark"))
 
   -- vim.keymap.set("n", "<C-e>",          api.node.open.replace_tree_buffer,  opts("Open: In Place"))
   -- vim.keymap.set("n", "L",              api.node.open.toggle_group_empty,    opts("Toggle Group Empty"))
-  -- vim.keymap.set("n", "H",              api.tree.toggle_hidden_filter,      opts("Toggle Filter: Dotfiles"))
+  -- vim.keymap.set("n", "H",              api.filter.dotfiles.toggle,         opts("Toggle Filter: Dotfiles"))
   -- vim.keymap.set("n", ">",              api.node.navigate.sibling.next,     opts("Next Sibling"))
   -- vim.keymap.set("n", "<",              api.node.navigate.sibling.prev,     opts("Previous Sibling"))
   -- vim.keymap.set("n", "-",              api.tree.change_root_to_parent,     opts("CD: Change Root to Parent"))
