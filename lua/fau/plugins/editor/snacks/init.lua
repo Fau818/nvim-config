@@ -77,6 +77,25 @@ return {
     require("fau.plugins.editor.snacks.picker.nested_field").setup()
 
 
+    -- ─── Image ──────────────────────────────────────────────
+    -- HACK: snacks writes its loading/error text into image buffers after `BufReadCmd` returns,
+    -- \     which leaves them 'modified'. Image buffers are never written, so clear it.
+    local magick_hinted = false
+    vim.api.nvim_create_autocmd("BufModifiedSet", {
+      group = vim.api.nvim_create_augroup("SnacksImageUnmodified", { clear = true }),
+      callback = function(ev)
+        if vim.bo[ev.buf].filetype ~= "image" then return end
+        if vim.bo[ev.buf].modified then vim.bo[ev.buf].modified = false end
+
+        -- NOTE: Without ImageMagick snacks can only draw PNGs; point at the fix once per session.
+        if magick_hinted or vim.fn.executable("magick") == 1 or vim.fn.executable("convert") == 1 then return end
+        if vim.api.nvim_buf_get_name(ev.buf):lower():match("%.png$") then return end
+        magick_hinted = true
+        fvim.notify("ImageMagick is not installed, so only PNG images can be shown.\nInstall it with `brew install imagemagick`.", vim.log.levels.WARN)
+      end,
+    })
+
+
     -- ─── Buffer Remove ──────────────────────────────────────
     fvim.utils._buf_remove = Snacks.bufdelete.delete
 
