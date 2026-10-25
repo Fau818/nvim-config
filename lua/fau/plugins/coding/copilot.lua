@@ -3,7 +3,7 @@ return {
   -- DESC: Github copilot supporter.
   ---@module "copilot"
   "zbirenbaum/copilot.lua",
-  enabled = fvim.settings.copilot.enable,
+  enabled = fvim.settings.copilot.enable and vim.fn.executable("node") == 1,
 
   event = { "InsertEnter", "CmdlineEnter", "LspAttach" },
   cmd   = "Copilot",
