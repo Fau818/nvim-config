@@ -35,6 +35,17 @@ function M.hook_on_install_success()
 end
 
 
+---Why an install failed: the last lines it printed, where Mason names the cause (e.g. a missing tool).
+---@param output string[] What the install printed, in chunks
+---@param err any The error Mason gave the install callback, used when nothing was printed
+---@return string reason
+local function failure_reason(output, err)
+  local lines = vim.tbl_filter(function(line) return vim.trim(line) ~= "" end, vim.split(table.concat(output), "\n"))
+  if #lines == 0 then return tostring(err) end
+  return table.concat(vim.list_slice(lines, math.max(#lines - 5, 1)), "\n")  -- The last 6 lines
+end
+
+
 ---Install a specific package via Mason.
 ---@param pkg_name string Mason package name
 ---@param filetype string? filetype
@@ -65,14 +76,18 @@ function M.mason_install(pkg_name, filetype, callback)
 
     local notif_opts = { id = "mason_install_" .. pkg_name }
     fvim.notify(("Mason: installing %s ..."):format(pkg_name), vim.log.levels.INFO, notif_opts)
-    pkg:install({}, function(success, err)
+
+    local output = {}  -- Everything the install prints, for `failure_reason`
+    local handle = pkg:install({}, function(success, err)
       if success then fvim.notify(("Mason: %s was successfully installed."):format(pkg_name), vim.log.levels.INFO, notif_opts)
       else
-        fvim.notify(("Mason: failed to install %s. Installation logs are available in :Mason and :MasonLog"):format(pkg_name), vim.log.levels.ERROR, notif_opts)
+        fvim.notify(("Mason: failed to install %s:\n%s\nFull logs are in :Mason and :MasonLog."):format(pkg_name, failure_reason(output, err)), vim.log.levels.ERROR, notif_opts)
         if filetype then fvim.lsp.configured_ft[filetype] = false end  -- Mark as not configured due to installation failure.
       end
       if done then done(success, err) end
     end)
+    handle:on("stdout", function(chunk) table.insert(output, chunk) end)
+    handle:on("stderr", function(chunk) table.insert(output, chunk) end)
   end
 
   mason_registry.refresh(_mason_install)
