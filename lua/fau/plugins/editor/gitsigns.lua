@@ -8,10 +8,29 @@ local function _on_attach(bufnr)
 
 
   -- ─── Navigation ───────────────────────────────────────────
+  ---Jump to the next or previous hunk without the snacks scroll animation.
+  ---@param direction "next"|"prev"
+  local function nav_hunk(direction)
+    -- NOTE: The animation moves the cursor, and any cursor move closes the hunk preview.
+    vim.b[bufnr].snacks_scroll = false
+    gitsigns.nav_hunk(direction, nil, function(err)
+      -- NOTE: This `SafeState` comes after the jump's `WinScrolled`.
+      vim.api.nvim_create_autocmd("SafeState", {
+        once = true,
+        callback = function()
+          if vim.api.nvim_buf_is_valid(bufnr) then vim.b[bufnr].snacks_scroll = nil end
+          -- HACK: Rebuild the scroll state snacks dropped during the jump, so the next scroll still animates (`check` is private).
+          ---@diagnostic disable-next-line: invisible
+          if Snacks then Snacks.scroll.check(vim.api.nvim_get_current_win()) end
+        end,
+      })
+      assert(not err, err)
+    end)
+  end
   ---@diagnostic disable-next-line: param-type-mismatch
-  keymap("n", "]g", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gitsigns.nav_hunk("next") end end, opts("Next Hunk"))
+  keymap("n", "]g", function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else nav_hunk("next") end end, opts("Next Hunk"))
   ---@diagnostic disable-next-line: param-type-mismatch
-  keymap("n", "[g", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk("prev") end end, opts("Prev Hunk"))
+  keymap("n", "[g", function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else nav_hunk("prev") end end, opts("Prev Hunk"))
 
 
   -- ─── Stage & Reset ────────────────────────────────────────
