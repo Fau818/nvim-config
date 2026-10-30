@@ -31,6 +31,7 @@ return {
       auto_trigger = true,
       hide_during_completion = true,
       debounce = fvim.settings.debounce.copilot,
+      max_lines = nil,
       trigger_on_accept = true,
       keymap = {
         accept = "<TAB>",

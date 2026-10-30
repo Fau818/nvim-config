@@ -59,7 +59,8 @@ local function _on_attach(bufnr)
 
   -- ─── Diffthis ─────────────────────────────────────────────
   ---@diagnostic disable-next-line: param-type-mismatch
-  keymap("n", "<LEADER>gf", function() gitsigns.diffthis() end, opts("Diff Current Buffer"))
+  keymap("n", "<LEADER>gf", function() gitsigns.diffthis("HEAD") end, opts("Diff Current Buffer Against HEAD"))
+  keymap("n", "<LEADER>gF", function() gitsigns.diffthis() end, opts("Diff Current Buffer Against Index"))
 
 
   -- ─── Quickfix ─────────────────────────────────────────────
