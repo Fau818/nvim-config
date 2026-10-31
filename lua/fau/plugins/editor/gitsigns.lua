@@ -1,6 +1,8 @@
 local function _on_attach(bufnr)
   -- EXIT: Large file. (Returning false stops gitsigns from attaching)
   if fvim.utils.is_large_file(bufnr) then return false end
+  -- EXIT: Notebook. (git holds its JSON, not the cells shown, so every line would look changed)
+  if vim.b[bufnr].notebook then return false end
 
   local gitsigns = require("gitsigns")
   local keymap  = vim.keymap.set

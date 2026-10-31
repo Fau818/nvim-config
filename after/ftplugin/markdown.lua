@@ -14,6 +14,9 @@ if vim.bo.buftype ~= "" then return end
 vim.keymap.set({ "n", "x", "o" }, "J", "5j", { buffer = true, remap = true, desc = "Goto: Five Lines Down" })
 vim.keymap.set({ "n", "x", "o" }, "K", "5k", { buffer = true, remap = true, desc = "Goto: Five Lines Up" })
 
+-- NOTE: gf on a link opens its target, minus `#heading`; `vim.ui._get_urls()` finds it the way gx does.
+vim.bo.includeexpr = [[substitute(v:lua.vim.ui._get_urls()[0], '#.*', '', '')]]
+
 
 --  WARNING: The following code is written by AI and not fully reviewed!
 
