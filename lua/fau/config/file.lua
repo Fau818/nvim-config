@@ -1,11 +1,3 @@
-vim.filetype.add({
-  extension = {
-    ["docker-compose.yaml"] = "yaml.docker-compose",
-    ["docker-compose.yml"] = "yaml.docker-compose",
-  },
-})
-
-
 return {
   large_file_size = 1024 * 1024,  -- 1MiB
   large_file_line_length = 2000,  -- in bytes, averaged over the file
