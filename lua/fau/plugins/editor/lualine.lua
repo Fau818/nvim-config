@@ -267,7 +267,7 @@ return {
       section_separators   = { left = fvim.icons.ui.BoldDividerLeft, right = fvim.icons.ui.BoldDividerRight },
 
       disabled_filetypes = {
-        statusline = { "snacks_dashboard", "yazi" },
+        statusline = { "snacks_dashboard", "yazi", "kitty_scrollback" },
         winbar     = {},
       },
 

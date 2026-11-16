@@ -71,4 +71,24 @@ if is_remote then
 end
 
 
+-- ═════════════════════ Scrollback Pager ═════════════════════
+
+if vim.g.fvim_kitty_scrollback then
+  vim.api.nvim_create_autocmd("StdinReadPost", {
+    once = true,
+    callback = function(ev)
+      vim.bo[ev.buf].filetype = "kitty_scrollback"
+      vim.api.nvim_open_term(ev.buf, {})  -- A terminal buffer turns the text's color codes back into colors.
+      -- NOTE: No program reads keys here, so terminal mode (`i`, `a`, ...) would only trap them, `esc` included.
+      vim.api.nvim_create_autocmd("TermEnter", { buffer = ev.buf, command = "stopinsert" })
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("UIEnter", {
+    once = true,
+    callback = function() vim.schedule(function() vim.cmd("$") end) end,
+  })
+end
+
+
 return M

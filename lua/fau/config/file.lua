@@ -20,6 +20,7 @@ return {
     "grug-far", "grug-far-history", "grug-far-help",
     "hydra_hint",
     "image",
+    "kitty_scrollback",
     "lazy", "lazy_backdrop",
     "lspinfo", "mason",
     "notify", "noice",
