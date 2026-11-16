@@ -101,7 +101,15 @@ return {
 
   -- qlist = {},
 
-  recent = { layout = { preset = preset.default_layout }, hidden = true, follow = true, regex = false, on_show = preset.normal_mode, win = { preview = preset.minimal_preview } },
+  recent = {
+    layout = { preset = preset.default_layout },
+    hidden = true,
+    follow = true,
+    regex = false,
+    on_show = preset.normal_mode,
+    win = { preview = preset.minimal_preview },
+    filter = { filter = function(item) return not item.file:find("/.git/", 1, true) end },
+  },
 
   -- registers = {},
   -- resume = {},
