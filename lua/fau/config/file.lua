@@ -12,7 +12,7 @@ return {
     "aerial", "aerial-nav",
     "bigfile",
     "cmp_menu", "blink-cmp-menu", "blink-cmp-documentation", "blink-cmp-signature", "blink-cmp-dot-repeat",
-    "chatgpt-input", "codecompanion",
+    "chatgpt-input", "claudecode", "codecompanion",
     "crunner",
     "diff", "DiffviewFiles", "DiffviewFileHistory",
     "flash_prompt",

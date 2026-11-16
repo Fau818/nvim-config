@@ -37,13 +37,19 @@ end
 local venv_names = { ".venv", "venv.nosync", "venv" }
 
 
----Find the interpreter under `root_dir`, trying each `venv_names` entry in order.
+---Find the interpreter of the nearest venv, from `root_dir` up to its repo's root, trying each `venv_names` entry per dir.
+---A subproject (a folder with its own `requirements.txt`) often shares the venv at its repo's root.
 ---@param root_dir string
 ---@return string? python_bin The interpreter of the first venv that has one, or nil if none does.
 local function find_venv_python(root_dir)
-  for _, name in ipairs(venv_names) do
-    local python_bin = vim.fs.joinpath(root_dir, name, "bin", "python")
-    if vim.fn.executable(python_bin) == 1 then return python_bin end
+  local top = vim.fs.root(root_dir, ".git") or root_dir  -- Never above the repo, where an unrelated venv may sit.
+  local dir = root_dir  ---@type string?
+  while dir do
+    for _, name in ipairs(venv_names) do
+      local python_bin = vim.fs.joinpath(dir, name, "bin", "python")
+      if vim.fn.executable(python_bin) == 1 then return python_bin end
+    end
+    dir = dir ~= top and vim.fs.relpath(top, dir) and vim.fs.dirname(dir) or nil
   end
 end
 
@@ -51,7 +57,7 @@ end
 ---Decide which interpreter a python project should use, first match wins:
 ---  1. a conda env you selected yourself
 ---  2. the conda env `$CONDA_AUTO_ENVS_CONF` maps `root_dir` to
----  3. a venv under `root_dir`
+---  3. the nearest venv at or above `root_dir`, within its repo
 ---@param root_dir string
 ---@return string? python_path nil hands the choice back to the server, i.e. `python3` on PATH.
 ---@return string? shadowed_venv The local venv a conda env is overriding, if both are present.

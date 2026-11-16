@@ -54,6 +54,9 @@ return {
     config.settings = settings
   end,
 
+  ---`autoFormatStrings` arrives as `textDocument/onTypeFormatting`, which Neovim sends only to clients that enable it.
+  on_init = function(client) vim.lsp.on_type_formatting.enable(true, { client_id = client.id }) end,
+
   -- SEE: https://docs.basedpyright.com/latest/configuration/language-server-settings/
   settings = {
     python = { pythonPath = nil, venvPath = nil },
@@ -79,7 +82,7 @@ return {
 
         useTypingExtensions = false,
         -- fileEnumerationTimeout = nil,  -- Use default.
-        autoFormatStrings = true,  -- NOTE: Neovim doesn't support it yet. Planned for 0.12.
+        autoFormatStrings = true,  -- Typing `{` in a string adds its `f`; needs `on_init` above.
 
         -- configFilePath = nil,  -- Use default.
 

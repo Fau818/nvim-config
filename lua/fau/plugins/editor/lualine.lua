@@ -274,7 +274,7 @@ return {
       ignore_focus = {
         "", "netrw", "tutor", "man", "qf", "log",
         "aerial", "aerial-nav",
-        "chatgpt-input", "codecompanion",
+        "chatgpt-input", "claudecode", "codecompanion",
         "crunner",
         "diff", "DiffviewFiles", "DiffviewFileHistory",
         "flash_prompt",

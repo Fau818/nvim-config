@@ -103,6 +103,11 @@ keymap("i", ",", ",<c-g>u", opts("Add Undo Breakpoint"))
 keymap("i", ".", "<c-g>u.", opts("Add Undo Breakpoint"))
 keymap("i", ";", ";<c-g>u", opts("Add Undo Breakpoint"))
 
+-- ┄┄┄ Emacs Style Keymaps
+keymap("i", "<C-a>", "<C-o>^", opts("Goto: Line Begin"))
+keymap("i", "<C-e>", "<C-o>g$", opts("Goto: Line End"))
+keymap("i", "<A-f>", "<S-Right>", opts("Goto: Next Word"))
+keymap("i", "<A-b>", "<S-Left>",  opts("Goto: Prev Word"))
 
 -- ─── Yank Paste Delete(Cut) Preferences ─────────────────────
 -- ┄┄┄ `x` and `X` using "_ register
@@ -194,7 +199,7 @@ keymap("x", "<S-TAB>", "<gv", opts("Indent: Red Indent Level"))  -- Reduce inden
 -- ─── Buffer Operations ──────────────────────────────────────
 keymap("n", "<LEADER>q", "q", opts("Editor: Recording"))  -- Use `<LEADER>q` to Recording
 
-keymap("n", "<A-h>", "<CMD>bprevious<CR>", opts("Editor: Previous Buffer"))
+keymap("n", "<A-h>", "<CMD>bprevious<CR>", opts("Editor: Prev Buffer"))
 keymap("n", "<A-l>", "<CMD>bnext<CR>",     opts("Editor: Next Buffer"))
 
 keymap("n", "q",         "<CMD>update<CR>",  opts("Editor: Save Current Buffer"))

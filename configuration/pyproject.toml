@@ -13,56 +13,6 @@
 # SEE: Basedpyright: https://docs.basedpyright.com/dev/configuration/config-files
 
 
-# ─── Environment Options ────────────────────────────────────
-# include = ["src"]
-# exclude = []
-
-# strict  = []
-# extends = ""
-# defineConstant = { "DEBUG": true }
-# stubPath = ""
-# extraPaths = []
-
-# verboseOutput = false
-
-# pythonPlatform = "Darwin"  # values: "Windows" | "Darwin" | "Linux" | "All"
-# pythonVersion = ""
-
-# executionEnvironments = []
-
-# useLibraryCodeForTypes = true
-
-
-# ─── Type Evaluation Settings ───────────────────────────────
-# strictListInference        = false
-# strictSetInference         = false
-# strictDictionaryInferencet = false
-
-# strictParameterNoneValue   = true
-
-# analyzeUnannotatedFunctions = true
-
-# deprecateTypingAliases = true
-# disableBytesTypePromotions = true
-# enableExperimentalFeatures = false
-
-# ┄┄┄ Basedpyright Exclusive Settings
-# strictGenericNarrowing = true
-# enableBasedFeatures = false
-
-
-# ─── Diagnostics ────────────────────────────────────────────
-typeCheckingMode = "recommended"  # values: "off" | "basic" | "standard" | "strict" | "recommended" | "all"
-# ignore = []
-
-# ┄┄┄ Type Check Rule Overrides [Not All Settings Shown]
-# Values: "error" | "warning" | "information" | "hint" | "none" | boolean
-reportUnusedCallResult = "none"
-reportUnusedParameter  = "hint"
-reportUnusedVariable   = "hint"
-reportUnreachable      = "information"
-
-
 # ┌──────────────────────────────────────────────────────────┐
 # │                           Ruff                           │
 # └──────────────────────────────────────────────────────────┘

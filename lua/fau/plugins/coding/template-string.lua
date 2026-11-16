@@ -4,6 +4,7 @@ return {
   ---@module "template-string.nvim"
   "axelvc/template-string.nvim",
   ft = { "html", "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "svelte", "python", "cs" },
+  enalbed = false,
 
   opts = {
     filetypes = nil,  -- Use default filetypes.
