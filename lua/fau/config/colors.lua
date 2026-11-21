@@ -72,15 +72,12 @@ return {
 
   diff = {
     add          = "#203830",
-    change       = "#1F2831",
+    change       = "#20354A",
     delete       = "#3A2230",
 
-    addInline    = "#29493E",
-    changeInline = "#1D3245",
+    addInline    = "#32574B",
+    changeInline = "#305272",
     deleteInline = "#62314F",
-
-    addPreviewInline    = "#32574B",
-    changePreviewInline = "#305272",
   },
 
   lualine = {

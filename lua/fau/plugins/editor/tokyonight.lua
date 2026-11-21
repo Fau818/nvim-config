@@ -175,9 +175,9 @@ return {
       -- ─── Gitsigns ─────────────────────────────────────────
       -- NOTE: inline word-diff; gitsigns falls back to TermCursor (reverse video) when these are undefined.
 
-      highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addPreviewInline }
+      highlights["GitSignsAddInline"]    = { bg = fvim.colors.diff.addInline }
       highlights["GitSignsDeleteInline"] = { bg = fvim.colors.diff.deleteInline }
-      highlights["GitSignsChangeInline"] = { bg = fvim.colors.diff.changePreviewInline }
+      highlights["GitSignsChangeInline"] = { bg = fvim.colors.diff.changeInline }
       highlights["GitSignsDeleteVirtLn"]  = { bg = fvim.colors.diff.delete }
       highlights["GitSignsDeletePreview"] = { bg = fvim.colors.diff.delete }
       highlights["GitSignsCurrentLineBlame"] = { fg = colors.dark5, italic = true, bold = true }
