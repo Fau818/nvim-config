@@ -15,7 +15,7 @@ local M = {}
 local function get_conda_path()
   local conda_path_list = {
     -- Universe
-    os.getenv("CONDA_ROOT"),
+    os.getenv("CONDA_ROOT") or "",
     -- macOS
     "/usr/local/Caskroom/miniconda/base",
     "/opt/homebrew/Caskroom/miniconda/base",

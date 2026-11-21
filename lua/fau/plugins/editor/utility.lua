@@ -24,7 +24,7 @@ return {
     -- DESC: Coding time tracker (for wakatime statistics).
     ---@module "wakatime"
     "wakatime/vim-wakatime",
-    enabled = vim.fn.executable("wakatime-cli") == 1,
+    enabled = vim.fn.executable("wakatime-cli") == 1 and not vim.g.fvim_kitty_scrollback,
     event = "VeryLazy",
   },
 
